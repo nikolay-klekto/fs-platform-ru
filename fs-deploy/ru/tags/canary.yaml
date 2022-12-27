@@ -1,0 +1,10 @@
+dsv: '1.0'
+
+update:
+  max_parallel: 1
+  progress_deadline: 20m
+  healthy_deadline: 15m
+  min_healthy_time: 1m
+  canary: 1
+  auto_promote: true
+  auto_revert: false

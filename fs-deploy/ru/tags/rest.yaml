@@ -1,0 +1,58 @@
+dsv: '1.0'
+
+port_label: 'app'
+
+network:
+  ports:
+    - label: app
+      to: 8888
+    - label: agent
+      to: 8887
+
+service_check:
+  check_type: 'http'
+  port_label: 'app'
+  path: '/status'
+  timeout: 10s
+  interval: 15s
+
+network_mode: bridge
+
+tags:
+  - traefik.enable=true
+
+extra_hosts:
+  - "cs24657:192.168.100.2"
+  - "cs24658:192.168.100.3"
+  - "cs24659:192.168.100.4"
+  - "ru-prod-mongo-slave:82.142.152.194"
+  - "ru-prod-mongo-master-file-storage:82.202.222.27"
+  - "ru-prod-mongo-master-behavior-new:95.213.165.202"
+  - "ru-prod-mongo-slave-behavior-sel:31.131.249.233"
+  - "mmru-prod-mongoarbiter-behavior-sel:82.202.222.29"
+  - "mmru-prod-mongo-master:192.168.220.42"
+  - "mmru-prod-mongo-replica:192.168.220.43"
+  - "mmru-prod-mongo-arbiter:192.168.220.72"
+  - "mmru-prod-mongo-master-registration:192.168.220.47"
+  - "mmru-prod-mongo-replica-registration:192.168.220.48"
+  - "mmru-prod-mongo-arbiter-registration:192.168.220.49"
+  - "mmru-prod-mongo-master-creditpolicy:192.168.220.55"
+  - "mmru-prod-mongo-replica-creditpolicy:192.168.220.56"
+  - "mmru-prod-mongo-arbiter-creditpolicy:192.168.220.57"
+
+update:
+  max_parallel: 1
+  progress_deadline: 20m
+  healthy_deadline: 15m
+  min_healthy_time: 1m
+
+migrate:
+  max_parallel: 1
+  health_check: checks
+  min_healthy_time: 1m
+  healthy_deadline: 15m
+
+scaling:
+  enabled: true
+  min: 1
+  max: 5

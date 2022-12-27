@@ -1,0 +1,10 @@
+jooq:
+  ^extends: link.db.funscrut
+
+rabbit.eventbus:
+  ^extends: link.eventbus
+  routingKeys: [
+    'initial-registration'
+  ]
+
+connector:

@@ -1,0 +1,41 @@
+dsv: '1.0'
+
+image: 'nexus.mm.moneyman.ru/mm/boot-app:1.4.10'
+auth: true
+
+constraint:
+  attribute: '${node.class}'
+  value: 'back'
+
+logging:
+  type: 'json-file'
+  config:
+    - max-size: '10m'
+
+volumes:
+  - "/etc/localtime:/etc/localtime:ro"
+  - "/etc/timezone:/etc/timezone:ro"
+
+environment:
+  UPDATE: 'always'
+  CORE_JVM_OPTIONS: "-server \
+    -Duser.timezone=Europe/Moscow \
+    -XX:+UseStringDeduplication \
+    -XX:+UseG1GC \
+    -XX:-OmitStackTraceInFastThrow \
+    -XX:+UnlockExperimentalVMOptions \
+    -XX:+ExitOnOutOfMemoryError \
+    -XX:+UseCGroupMemoryLimitForHeap \
+    -XX:+PerfDisableSharedMem \
+    -XshowSettings:vm \
+    -Dhttp.maxFormContentSize=4000000 \
+    -Dlog4j.configurationFactory=com.mm.base.log.CustomConfigurationFactory"
+  JVM_OPTIONS: "-XX:MinRAMPercentage=80.0 -XX:MaxRAMPercentage=80.0"
+  MALLOC_ARENA_MAX: '4'
+  MODULE: ''
+  LOG_TYPE: 'fluentb,file'
+  LOG_LEVEL: 'INFO'
+  NEXUS_URL: 'https://nexus.mm.moneyman.ru/repository/public/'
+  APP: 'ru'
+  ARTIFACT_GROUP: 'com.mm.platform'
+  SERVICE_8888_IGNORE: 'true'

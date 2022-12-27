@@ -1,0 +1,19 @@
+deploy_script_version: '1.0'
+
+group: service
+
+tags:
+  - micrometer
+  - canary
+  - rest
+  - back
+  - fs-platform-ru
+
+environment:
+  ARTIFACT_ID: bonus-charge #!!!! Must to change !!!!
+  MAIN_CLASS: com.mm.bonus.charge.BonusChargeApp #!!!! Must to change !!!!
+  SERVICE_8888_NAME: run-bonus-charge #!!!! Must to change !!!!
+
+volumes:
+  - /opt/.m2:/.m2
+  - /app_logs/run-bonus-charge:/logs #!!!! Must to change !!!!

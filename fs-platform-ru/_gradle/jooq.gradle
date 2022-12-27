@@ -1,0 +1,178 @@
+//import static JooqApps.BASE
+//import static JooqApps.RU
+//import static JooqApps.RU_FMS
+//import static JooqEnvs.MASTER
+//import static JooqEnvs.RELEASE
+
+buildscript {
+    apply from: "${rootDir}/_gradle/versions.gradle"
+
+    repositories {
+        maven {
+            url "${nexusPublicRepo}"
+            credentials {
+                username "${nexusUsername}"
+                password "${nexusPassword}"
+            }
+        }
+    }
+    dependencies {
+        classpath lib("nu.studer:gradle-jooq-plugin")
+    }
+}
+
+apply plugin: nu.studer.gradle.jooq.JooqPlugin
+apply plugin: 'idea'
+
+dependencies {
+    implementation lib("org.jooq:jooq")
+    jooqRuntime lib("mysql:mysql-connector-java")
+    jooqRuntime lib("com.h2database:h2")
+    jooqRuntime lib("com.idf.soul:config-database")
+    // Intentionally set explicit version here because this dependency must no be used anywhere in project else.
+    // It required only by jooq plugin in runtime.
+    jooqRuntime "org.slf4j:slf4j-log4j12:1.7.30"
+}
+
+idea.module.generatedSourceDirs += file("$buildDir/generated-src/jooq")
+
+enum JooqEnvs {
+
+    MASTER, RELEASE
+}
+
+enum JooqMode {
+
+    LOCAL, REMOTE
+}
+
+enum JooqApps {
+
+    BASE,
+    RU_FMS,
+    RU
+}
+
+class JooqApp extends JooqBaseApp {
+
+    JooqApp(String local, String remote, String user, String password, String inputSchema, String outputSchema) {
+        super("com.mysql.jdbc.Driver", user, password, inputSchema, outputSchema)
+        this.local = local
+        this.remote = remote
+    }
+
+    final String local
+    final String remote
+
+    @Override
+    def url(JooqMode mode) {
+        "jdbc:mysql://" + ((mode == JooqMode.REMOTE) ? remote : local) + "/" + inputSchema + "?useSSL=false"
+    }
+}
+
+class JooqH2App extends JooqBaseApp {
+
+    JooqH2App(String inputSchema, String outputSchema) {
+        super("org.h2.Driver", "sa", "", inputSchema, outputSchema)
+    }
+
+    @Override
+    def url(JooqMode mode) {
+        "jdbc:h2:mem:moneyman;MODE=MYSQL;INIT=runscript from './src/main/resources/database.sql'"
+    }
+}
+
+abstract class JooqBaseApp {
+
+    final String driver
+    final String user
+    final String password
+    final String inputSchema
+    final String outputSchema
+
+    JooqBaseApp(String driver, String user, String password, String inputSchema, String outputSchema) {
+        this.user = user
+        this.driver = driver
+        this.password = password
+        this.inputSchema = inputSchema
+        this.outputSchema = outputSchema
+    }
+
+    abstract def url(JooqMode mode);
+}
+
+Map<JooqBaseApp, Map<JooqEnvs, JooqBaseApp>> jooqAppMap = [
+        (BASE)  : [
+                (MASTER) : new JooqH2App("moneyman", "moneyman"),
+                (RELEASE): new JooqH2App("moneyman", "moneyman")
+        ],
+        (RU_FMS): [
+                (MASTER) : new JooqApp('10.1.1.56:3306', '213.184.250.59:33156', 'mmdev', 'RCt47IU6XtaTW2',
+                        'fms', 'fms'),
+                (RELEASE): new JooqApp('10.1.1.56:3306', '213.184.250.59:33156', 'mmdev', 'RCt47IU6XtaTW2',
+                        'fms', 'fms')
+        ],
+        (RU)    : [
+                (MASTER) : new JooqApp('10.1.1.56:3306', '213.184.250.59:33156', 'mmdev', 'RCt47IU6XtaTW2',
+                        'ru_master_moneyman', 'moneyman'),
+                (RELEASE): new JooqApp('10.1.1.56:3306', '213.184.250.59:33156', 'mmdev', 'RCt47IU6XtaTW2',
+                        'ru_release_moneyman', 'moneyman')
+        ]
+]
+
+JooqEnvs env = JooqEnvs.valueOf(mmJooqEnv.toUpperCase())
+def app = jooqAppMap.get(JooqApps.valueOf(mmJooqApp.toUpperCase()))
+if (app == null) {
+    throw new GradleException("Application(country) for jooq not found. Provided value is ${mmJooqApp.toUpperCase()}")
+}
+JooqBaseApp jooqApp = app.get(env)
+JooqMode jooqMode = JooqMode.valueOf(mmJooqMode.toUpperCase())
+
+apply from: "${rootDir}/_gradle/versions.gradle"
+
+jooq {
+    version = getVersion('org.jooq:jooq')
+    edition = 'OSS'
+
+    db(sourceSets.main) {
+        logging = 'ERROR'
+        jdbc {
+            driver = jooqApp.driver
+            url = jooqApp.url(jooqMode)
+            user = jooqApp.user
+            password = jooqApp.password
+        }
+
+        generator {
+            database {
+                schemata {
+                    schema {
+                        inputSchema = jooqApp.inputSchema
+                        outputSchema = jooqApp.outputSchema
+                    }
+                }
+            }
+
+            generate {
+                pojos = true
+                daos = false
+                fluentSetters = true
+            }
+        }
+    }
+}
+
+if (ext.isCI.equals("false")) {
+    //Disable generation of jooq on build
+    project.tasks.getByName('compileJava').dependsOn -= 'generateDbJooqSchemaSource'
+} else {
+    //add dependency for jooq if kotlin task is detected
+    if (project.tasks.getNames().contains('compileKotlin')) {
+        project.tasks.getByName('compileKotlin').dependsOn += 'generateDbJooqSchemaSource'
+    }
+    //for java dependency on task is added by jooq plugin
+}
+
+
+
+
