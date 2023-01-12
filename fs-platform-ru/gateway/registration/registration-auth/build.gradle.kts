@@ -1,4 +1,16 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val kotlin_version: String by extra
+buildscript {
+    var kotlin_version: String by extra
+    kotlin_version = "1.8.0"
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(kotlin("gradle-plugin", kotlin_version))
+    }
+}
 
 
 dependencies {
@@ -26,16 +38,7 @@ dependencies {
     implementation("javax.validation:validation-api:2.0.1.Final")
     implementation("javax.persistence:javax.persistence-api:2.2")
     implementation("javax.transaction:javax.transaction-api:1.3")
-
-
-
-
-
-
-
-
-
-
+    implementation(kotlin("stdlib-jdk8", kotlin_version))
 
 
 }
@@ -56,3 +59,17 @@ dependencies {
 //dependencies {
 //    implementation(project(":shared"))
 //}
+apply {
+    plugin("kotlin")
+}
+repositories {
+    mavenCentral()
+}
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+    jvmTarget = "1.8"
+}
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.kotlinOptions {
+    jvmTarget = "1.8"
+}

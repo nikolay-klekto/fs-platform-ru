@@ -10,6 +10,7 @@ import com.maxmind.geoip2.exception.GeoIp2Exception;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,6 +39,7 @@ import java.io.IOException;
 @ComponentScan(basePackages = { "com.baeldung.security" })
 // @ImportResource({ "classpath:webSecurityConfig.xml" })
 @EnableWebSecurity
+@Configuration
 public class SecSecurityConfig {
 
     @Autowired
@@ -146,7 +148,8 @@ public class SecSecurityConfig {
 
     @Bean(name="GeoIPCountry")
     public DatabaseReader databaseReader() throws IOException, GeoIp2Exception {
-        final File resource = new File("src/main/resources/maxmind/GeoLite2-Country.mmdb");
+        final File resource = new File("gateway/registration/registration-auth/src/main/resources/maxmind/GeoLite2"
+                + "-Country.mmdb");
         return new DatabaseReader.Builder(resource).build();
     }
 

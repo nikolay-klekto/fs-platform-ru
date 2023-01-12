@@ -1,21 +1,20 @@
 package com.baeldung.captcha;
 
-import java.util.regex.Pattern;
-
+import com.baeldung.web.error.ReCaptchaInvalidException;
+import com.fs.ru.captcha.ICaptchaService;
 import jakarta.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestOperations;
 
-import com.baeldung.web.error.ReCaptchaInvalidException;
+import java.util.regex.Pattern;
 
-public abstract class AbstractCaptchaService implements ICaptchaService{
-    
-    private final static Logger LOGGER = LoggerFactory.getLogger(AbstractCaptchaService.class);
-    
+public abstract class AbstractCaptchaService implements ICaptchaService {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(com.fs.ru.captcha.AbstractCaptchaService.class);
+
     @Autowired
     protected HttpServletRequest request;
 

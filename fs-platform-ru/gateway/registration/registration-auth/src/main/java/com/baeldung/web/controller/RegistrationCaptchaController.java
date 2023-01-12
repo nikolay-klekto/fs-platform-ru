@@ -1,22 +1,20 @@
 package com.baeldung.web.controller;
 
+import com.baeldung.captcha.CaptchaServiceV3;
+import com.baeldung.persistence.model.User;
+import com.baeldung.registration.OnRegistrationCompleteEvent;
+import com.baeldung.service.IUserService;
+import com.baeldung.web.dto.UserDto;
+import com.baeldung.web.util.GenericResponse;
+import com.fs.ru.captcha.ICaptchaService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.baeldung.captcha.CaptchaServiceV3;
-import com.baeldung.captcha.ICaptchaService;
-import com.baeldung.persistence.model.User;
-import com.baeldung.registration.OnRegistrationCompleteEvent;
-import com.baeldung.service.IUserService;
-import com.baeldung.web.dto.UserDto;
-import com.baeldung.web.util.GenericResponse;
 
 @RestController
 public class RegistrationCaptchaController {
