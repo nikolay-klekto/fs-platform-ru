@@ -1,43 +1,51 @@
-# Created by .ignore support plugin (hsz.mobi)
-# IntelliJ project files
-build
-.idea
-*.iml
-*.mv.db
-*.trace.db
-logs
-out
-gen
-docs/index.html
-docs/index.pdf
-
-### Java template
 *.class
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Help #
+backend/*.md
 
 # Package Files #
 *.jar
-!gradle-wrapper.jar
 *.war
 *.ear
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# Eclipse #
+.settings
+.project
+.classpath
+.studio
+target
 
-*~
+# NetBeans #
+backend/nbproject/private/
+backend/nbbuild/
+backend/dist/
+backend/nbdist/
+backend/.nb-gradle/
+backend/build/
+
+# Apple #
 .DS_Store
+
+# Intellij #
+.idea
+*.iml
 *.log
 
-# asciidoc
-.asciidoctor
+# logback
+logback.out.xml
 
-# Python virtual environment and cache
-venv
-__pycache__
-
-# Gradle
+build
+backend/src/main/resources/public/
+backend/target
+backend/build
+backend/.mvn
+backend/mvnw
+frontend/dist/
+frontend/build
+frontend/node/
+frontend/node_modules/
+frontend/npm-debug.log
+frontend/target
 .gradle
-!/gradle/wrapper/gradle-wrapper.properties
-!/gradle/wrapper/gradle-wrapper.jar
+
+!.mvn/wrapper/maven-wrapper.jar

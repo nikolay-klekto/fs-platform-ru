@@ -1,3 +1,4 @@
-
 rootProject.name = "fs-platform-ru"
-include ("gateway:registration:registration-auth")
+
+include(":frontend")
+include(":backend:gateway:registration:registration-auth")
