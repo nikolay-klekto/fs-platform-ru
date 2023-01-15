@@ -6,6 +6,7 @@ import com.fs.ru.registration.model.Greeting
 import com.fs.ru.registration.repository.PersonRepository
 import com.fs.ru.registration.repository.UserRepository
 import com.fs.ru.registration.web.response.ResponseMessage
+import org.apache.logging.log4j.LogManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
@@ -62,6 +63,7 @@ class BackendController() {
             //Uncomment to use
             //emailService.sendSimpleMessage(addressee, "Simple Email", "Hello! This is simple email")
         } catch (e: Exception) {
+            log.error("Error while sending message")
             return ResponseEntity(ResponseMessage("Error while sending message"), HttpStatus.BAD_REQUEST)
         }
 
@@ -78,6 +80,7 @@ class BackendController() {
             //Uncomment to use
             //emailService.sendSimpleMessageUsingTemplate(addressee, "Template Email", "emailTemplate", params)
         } catch (e: Exception) {
+            log.error("Error while sending message")
             return ResponseEntity(ResponseMessage("Error while sending message"), HttpStatus.BAD_REQUEST)
         }
 
@@ -96,4 +99,9 @@ class BackendController() {
 
         return ResponseEntity(ResponseMessage("Email has been sent"), HttpStatus.OK)
     }
+
+    private companion object {
+        private val log = LogManager.getLogger()
+    }
+
 }

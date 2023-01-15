@@ -14,6 +14,7 @@ import com.fs.ru.registration.service.UserDetailsServiceImpl.Companion.TOKEN_INV
 import com.fs.ru.registration.service.UserDetailsServiceImpl.Companion.TOKEN_VALID
 import com.fs.ru.registration.web.response.ResponseMessage
 import com.fs.ru.registration.web.response.SuccessfulSigninResponse
+import org.apache.logging.log4j.LogManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
@@ -155,6 +156,7 @@ class AuthController() {
 
                 emailService.sendRegistrationConfirmationEmail(registeredUser)
             } catch (e: Exception) {
+                log.error("Fail to create user account: $newUser")
                 return ResponseEntity(
                     ResponseMessage("Server error. Please, contact site owner"),
                     HttpStatus.SERVICE_UNAVAILABLE
@@ -166,6 +168,7 @@ class AuthController() {
                 HttpStatus.OK
             )
         } else {
+            log.error("Fail to create user's account, user: $newUser already exists!")
             return ResponseEntity(
                 ResponseMessage("User already exists!"),
                 HttpStatus.BAD_REQUEST
@@ -212,6 +215,10 @@ class AuthController() {
 
     private fun usernameExists(username: String): Boolean {
         return userRepository.findByUsername(username).isPresent
+    }
+
+    private companion object {
+        private val log = LogManager.getLogger()
     }
 
 }
