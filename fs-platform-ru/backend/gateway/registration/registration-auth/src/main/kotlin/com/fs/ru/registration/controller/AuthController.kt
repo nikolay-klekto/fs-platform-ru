@@ -14,6 +14,7 @@ import com.fs.ru.registration.service.UserDetailsServiceImpl.Companion.TOKEN_INV
 import com.fs.ru.registration.service.UserDetailsServiceImpl.Companion.TOKEN_VALID
 import com.fs.ru.registration.web.response.ResponseMessage
 import com.fs.ru.registration.web.response.SuccessfulSigninResponse
+import jakarta.validation.Valid
 import org.apache.logging.log4j.LogManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -33,7 +34,6 @@ import java.util.stream.Collectors
 import javax.servlet.http.Cookie
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api/auth")
@@ -95,7 +95,7 @@ class AuthController() {
             val authentication = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken(loginRequest.username, loginRequest.password)
             )
-            SecurityContextHolder.getContext().setAuthentication(authentication)
+            SecurityContextHolder.getContext().authentication = authentication
             val jwt: String = jwtProvider.generateJwtToken(user.username!!)
 
             val cookie: Cookie = Cookie(authCookieName, jwt)
@@ -106,7 +106,7 @@ class AuthController() {
             response.addCookie(cookie)
 
             val authorities: List<GrantedAuthority> =
-                user.roles!!.stream().map({ role -> SimpleGrantedAuthority(role.name) })
+                user.roles!!.stream().map { role -> SimpleGrantedAuthority(role.name) }
                     .collect(Collectors.toList<GrantedAuthority>())
             return ResponseEntity.ok(SuccessfulSigninResponse(user.username, authorities))
         } else {
@@ -151,7 +151,7 @@ class AuthController() {
                     encoder.encode(newUser.password),
                     false
                 )
-                user.roles = Arrays.asList(roleRepository.findByName("ROLE_USER"))
+                user.roles = listOf(roleRepository.findByName("ROLE_USER"))
                 val registeredUser = userRepository.save(user)
 
                 emailService.sendRegistrationConfirmationEmail(registeredUser)

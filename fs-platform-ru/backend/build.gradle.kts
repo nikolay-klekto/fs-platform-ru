@@ -1,13 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.3.50"
-    kotlin("plugin.spring") version "1.3.50"
+    kotlin("jvm") version "1.8.0"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.8.0"
 }
 
 group = "com.fs.platform.ru"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+//java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenCentral()
@@ -24,23 +24,28 @@ subprojects {
     }
 
     dependencies {
-        implementation("org.jetbrains.kotlin:kotlin-reflect")
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        implementation("org.jetbrains.kotlin:kotlin-noarg:1.3.50")
+        implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0")
+        runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:1.8.0")
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0")
+        implementation("org.jetbrains.kotlin:kotlin-noarg:1.8.0")
     }
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "1.8"
+            jvmTarget = "17"
         }
     }
 }
 
+kotlin { // Extension for easy setup
+    jvmToolchain(8) // Target version of generated JVM bytecode. See 7️⃣
+}
+
 project("gateway:registration:registration-auth") {
-    dependencies {
-        runtimeOnly(project(":frontend"))
-    }
+//    dependencies {
+//        runtimeOnly(project(":frontend"))
+//    }
 }
 
 

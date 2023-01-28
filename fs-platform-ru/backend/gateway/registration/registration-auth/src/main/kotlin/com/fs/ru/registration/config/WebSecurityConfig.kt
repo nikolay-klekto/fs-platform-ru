@@ -8,24 +8,22 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import java.util.*
 
-
-@Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-class WebSecurityConfig : WebSecurityConfigurerAdapter() {
+@Configuration
+class WebSecurityConfig {
 
     @Autowired
     lateinit var userDetailsService: UserDetailsServiceImpl
@@ -43,29 +41,28 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
         return JwtAuthTokenFilter()
     }
 
-    @Throws(Exception::class)
-    override fun configure(authenticationManagerBuilder: AuthenticationManagerBuilder) {
-        authenticationManagerBuilder
+    @Bean
+    @Throws(java.lang.Exception::class)
+    fun authenticationManager(
+        http: HttpSecurity
+    ): AuthenticationManager? {
+        return http.getSharedObject(AuthenticationManagerBuilder::class.java)
             .userDetailsService(userDetailsService)
             .passwordEncoder(bCryptPasswordEncoder())
-    }
-
-    @Bean
-    @Throws(Exception::class)
-    override fun authenticationManagerBean(): AuthenticationManager {
-        return super.authenticationManagerBean()
+            .and()
+            .build()
     }
 
     @Bean
     fun corsConfigurationSource(): CorsConfigurationSource {
         val configuration = CorsConfiguration()
-        configuration.allowedOrigins = Arrays.asList(
+        configuration.allowedOrigins = listOf(
             "http://localhost:8080",
             "http://localhost:8081",
             "https://kotlin-spring-vue-gradle-demo.herokuapp.com"
         )
-        configuration.allowedHeaders = Arrays.asList("*")
-        configuration.allowedMethods = Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")
+        configuration.allowedHeaders = listOf("*")
+        configuration.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
         configuration.allowCredentials = true
         configuration.maxAge = 3600
         val source = UrlBasedCorsConfigurationSource()
@@ -73,12 +70,11 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
         return source
     }
 
-    @Throws(Exception::class)
-    override fun configure(http: HttpSecurity) {
-        http
-            .cors().and()
-            .csrf().disable().authorizeRequests()
-            .antMatchers("/**").permitAll()
+    @Bean
+    @Throws(java.lang.Exception::class)
+    fun filterChain(http: HttpSecurity): SecurityFilterChain? {
+        http.cors().and().csrf().disable()
+            .authorizeHttpRequests().requestMatchers("/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
@@ -86,10 +82,14 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter::class.java)
         http.headers().cacheControl().disable()
+        return http.build()
     }
 
-    @Throws(Exception::class)
-    override fun configure(web: WebSecurity) {
-        web.ignoring().antMatchers("/api/signin", "/api/signup", "/api/registrationConfirm")
+    @Bean
+    fun webSecurityCustomizer(): WebSecurityCustomizer? {
+        return WebSecurityCustomizer { web: WebSecurity ->
+            web.ignoring().requestMatchers("/api/signin", "/api/signup", "/api/registrationConfirm")
+        }
     }
+
 }
