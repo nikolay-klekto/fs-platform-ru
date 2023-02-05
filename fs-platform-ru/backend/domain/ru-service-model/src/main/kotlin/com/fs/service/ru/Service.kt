@@ -2,6 +2,6 @@ package com.fs.service.ru
 
 data class Service(
     val id: Long,
-    val name: String,
-    val price: Long
+    val price: Long,
+    val name: String
 )

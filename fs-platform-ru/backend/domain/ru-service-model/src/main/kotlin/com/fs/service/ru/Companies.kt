@@ -4,8 +4,8 @@ import com.fs.service.ru.enums.Industry
 
 data class Companies(
     val id: Long,
-    val name: String,
-    val shortDescription: String,
     val companyIndustry: Industry,
-    val site: String
+    val site: String,
+    val name: String,
+    val shortDescription: String
 )
