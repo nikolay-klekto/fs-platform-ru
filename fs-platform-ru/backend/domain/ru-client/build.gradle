@@ -58,14 +58,9 @@ jooq {
                     name = 'org.jooq.codegen.DefaultGenerator'
 
                     generate {
-                        tables = 'false'
-                        pojos = 'true'
-                        relations = 'false'
-                        deprecated = 'false'
-                        records = 'false'
-                        immutablePojos = 'false'
-                        fluentSetters = 'false'
-                        daos = 'false'
+                        records = false
+                        daos = false
+                        pojos = true
                     }
 
                     database {

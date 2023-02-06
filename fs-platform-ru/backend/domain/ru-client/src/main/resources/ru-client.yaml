@@ -1,0 +1,4 @@
+jooq:
+  url: jdbc:postgresql:FunScrut
+  user: postgres
+  password: 191220#destin

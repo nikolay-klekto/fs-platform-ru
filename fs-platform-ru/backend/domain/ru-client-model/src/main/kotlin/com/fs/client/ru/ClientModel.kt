@@ -9,7 +9,6 @@ data class ClientModel(
     val id: Int,
     val basketId: Int?,
     val cityId: Int?,
-    val countryCode: Int?,
     val activateStatus: Boolean?,
     val birthday: LocalDateTime?,
     val dateCreated: LocalDateTime?,

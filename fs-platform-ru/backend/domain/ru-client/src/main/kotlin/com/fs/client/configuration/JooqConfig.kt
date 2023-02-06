@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
 import javax.sql.DataSource
 
 @Configuration
-class JooqConfig {
+open class JooqConfig {
     @Bean
     public fun configurationProvider(): ConfigurationProvider {
         val configFilesProvider =
