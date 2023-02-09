@@ -1,0 +1,97 @@
+type Query {
+    clientById(id: ID): Client
+    serviceById(id: ID): Service
+
+}
+
+type Service {
+    id: ID
+    price: Int,
+    name: String
+}
+
+type Client {
+    id: ID,
+    basket: Basket,
+    city: City,
+    activateStatus: Boolean,
+    birthday: Date,
+    dateCreated: timestamptz,
+    educationModelStatus: EducationEnum,
+    email: String,
+    employment: EmploymentEnum,
+    firstName: String,
+    lastName: String,
+    orderQuantity: Int,
+    password: String,
+    phoneNumber: String,
+    role: ClientRoleEnum,
+    telegramUsername: String,
+    username: String
+}
+
+type Author {
+    id: ID,
+    firstName: String,
+    lastName: String
+}
+
+type Basket {
+    id: ID,
+    totalPrice: String
+}
+
+type City {
+    id: ID,
+    country: Country,
+    name: String
+}
+
+type Country {
+    code: ID,
+    currency: CurrencyEnum,
+    name: CountryCodeEnum
+}
+
+enum EducationEnum {
+    LOWER_SECONDARY
+    SECONDARY
+    INCOMPLETE_HIGHER
+    HIGHER
+    MAGISTRACY
+    OTHER
+}
+
+enum EmploymentEnum {
+    SELF_EMPLOYED
+    SCHOOL_BOY
+    STUDENT
+    PENSIONER
+    UNEMPLOYED
+    EMPLOYER
+    EMPLOYEE
+    OTHER
+}
+
+enum ClientRoleEnum {
+    CLIENT
+    PARTNER
+    ADMIN
+}
+
+enum CurrencyEnum {
+    BYN
+    USD
+    EUR
+    RUB
+    PLN
+}
+
+enum CountryCodeEnum {
+    BELARUS
+    RUSSIA
+    POLAND
+}
+
+scalar timestamptz
+scalar Date

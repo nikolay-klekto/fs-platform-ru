@@ -1,6 +1,6 @@
 package com.fs.service.ru
 
-data class Basket(
+data class BasketModel(
     val id: Long,
     val totalPrice: String
 )

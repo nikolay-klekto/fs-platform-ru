@@ -28,7 +28,7 @@ open class JooqConfig {
         val configFilesProvider =
             ConfigFilesProvider {
                 listOf(
-                    Paths.get(Resources.getResource("report.yaml").toURI())
+                    Paths.get(Resources.getResource("ru-client.yaml").toURI())
                 )
             }
 

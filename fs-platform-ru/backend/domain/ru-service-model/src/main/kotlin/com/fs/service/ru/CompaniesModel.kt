@@ -2,7 +2,7 @@ package com.fs.service.ru
 
 import com.fs.service.ru.enums.Industry
 
-data class Companies(
+data class CompaniesModel(
     val id: Long,
     val companyIndustry: Industry,
     val site: String,

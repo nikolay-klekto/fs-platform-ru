@@ -3,7 +3,7 @@ package com.fs.service.ru
 import java.time.LocalDateTime
 
 
-data class Order(
+data class OrderModel(
     val id: Long,
     val basketId: Long,
     val cityId: Long,
