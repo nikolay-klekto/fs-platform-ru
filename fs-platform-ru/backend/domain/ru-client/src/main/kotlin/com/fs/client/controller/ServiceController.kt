@@ -1,19 +1,26 @@
 package com.fs.client.controller
 
 import com.fs.client.repository.ServiceRepository
-import com.fs.service.ru.ServiceModel
-import org.springframework.graphql.data.method.annotation.Argument
-import org.springframework.graphql.data.method.annotation.QueryMapping
+import io.swagger.v3.oas.annotations.tags.Tag
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
-import reactor.core.publisher.Mono
+import org.springframework.web.bind.annotation.RestController
 
-//@RestController
-@RequestMapping("/service")
-class ServiceController(
-    private val serviceRepository: ServiceRepository
+@Tag(name = "Service")
+@RestController
+@RequestMapping("/service", produces = ["application/json"])
+open class ServiceController(
+    open val serviceRepository: ServiceRepository
 ) {
-    @QueryMapping
-    open fun serviceById(@Argument id: Int): Mono<ServiceModel> {
-        return serviceRepository.getServiceById(id)
-    }
+
+//    @QueryMapping
+//    open fun serviceById(@Argument id: Int): ServiceModel {
+//        return serviceRepository.serviceById(id)
+//    }
+
+    @GetMapping("{id}")
+    fun getServiceByID(@PathVariable("id") serviceId: Int) =
+        serviceRepository.getById(serviceId)
+
 }
