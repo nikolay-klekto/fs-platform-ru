@@ -1,31 +1,25 @@
 package com.fs.client.controller
 
 import com.fs.client.repository.ClientRepository
-import com.fs.client.ru.ClientModel
-import org.springframework.graphql.data.method.annotation.Argument
-import org.springframework.graphql.data.method.annotation.QueryMapping
+import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
-import reactor.core.publisher.Mono
+import org.springframework.web.bind.annotation.RestController
 
+@Tag(name = "Client")
+@RestController
+@RequestMapping("/client", produces = ["application/json"])
+open class ClientController(open val clientRepository: ClientRepository) {
 
-//@RestController
-@RequestMapping("/client")
-class ClientController(
-    private val clientRepository: ClientRepository
-) {
+    @GetMapping("{id}")
+    fun getClientById(@PathVariable("id") clientAccountId: Int) =
+        clientRepository.getClintById(clientAccountId)
 
-    @GetMapping("/{id}")
-    fun getClientById(@PathVariable("id") clientAccountId: Int): Mono<ClientModel> {
-        return clientRepository
-            .getClintById(clientAccountId)
-    }
-
-    @QueryMapping
-    fun clientById(@Argument id: Int): Mono<ClientModel>? {
-        return clientRepository.getClintById(id)
-    }
+//    @QueryMapping
+//    fun clientById(@Argument id: Int): Mono<ClientModel> {
+//        return clientRepository.getClintById(id)
+//    }
 
 
 }

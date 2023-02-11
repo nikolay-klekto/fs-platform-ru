@@ -1,37 +1,40 @@
 package com.fs.client
 
-import com.fs.client.configuration.*
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.builder.SpringApplicationBuilder
+import org.springframework.boot.runApplication
+import org.springframework.transaction.annotation.EnableTransactionManagement
+
+
+@SpringBootApplication
+@EnableTransactionManagement
+open class ClientServiceApp {
+
+}
+
+fun main(args: Array<String>) {
+    runApplication<ClientServiceApp>(*args)
+
+}
 
 
 //@SpringBootApplication
 //class ClientServiceApp
-////    : SpringBootServletInitializer()
-//
 //
 //fun main(args: Array<String>) {
-//    runApplication<ClientServiceApp>(*args)
 //
+//    SpringApplicationBuilder()
+//        .sources(
+//            SpringAppConfig::class.java,
+//            JacksonConfig::class.java,
+//            JooqConfig::class.java,
+//            RepositoryConfig::class.java,
+//            ControllerConfig::class.java,
+//            ObjectMapperWebFluxConfigurer::class.java,
+////            DatasourceConfig::class.java
+//        )
+//        .run(*args)
+////    runApplication<ClientServiceApp>(*args)
 //}
-@SpringBootApplication
-class ClientServiceApp
-
-fun main(args: Array<String>) {
-
-    SpringApplicationBuilder()
-        .sources(
-            SpringAppConfig::class.java,
-            JacksonConfig::class.java,
-            JooqConfig::class.java,
-            RepositoryConfig::class.java,
-            ControllerConfig::class.java,
-            ObjectMapperWebFluxConfigurer::class.java,
-//            DatasourceConfig::class.java
-        )
-        .run(*args)
-//    runApplication<ClientServiceApp>(*args)
-}
 
 
 //object ClientServiceApp {

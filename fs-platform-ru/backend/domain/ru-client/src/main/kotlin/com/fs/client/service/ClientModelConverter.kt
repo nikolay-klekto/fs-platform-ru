@@ -2,12 +2,14 @@ package com.fs.client.service
 
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.converter.ModelConverter
-import com.fs.domain.tables.pojos.Client
+import com.fs.domain.jooq.tables.pojos.Client
+import org.springframework.stereotype.Service
 
+@Service
 class ClientModelConverter : ModelConverter<Client, ClientModel> {
     override fun toModel(rawObject: Client): ClientModel {
         return ClientModel(
-            id = rawObject.id,
+            id = rawObject.id!!,
             basketId = rawObject.basketId,
             cityId = rawObject.cityId,
             activateStatus = rawObject.activateStatus,

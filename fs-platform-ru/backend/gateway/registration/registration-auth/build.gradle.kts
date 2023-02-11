@@ -5,6 +5,8 @@ plugins {
     id("org.jetbrains.kotlin.plugin.spring") version "1.8.0"
     id("org.jetbrains.kotlin.plugin.jpa") version "1.8.0"
 }
+
+
 //
 dependencies {
     implementation("org.springframework.boot:spring-boot-gradle-plugin:3.0.2")
