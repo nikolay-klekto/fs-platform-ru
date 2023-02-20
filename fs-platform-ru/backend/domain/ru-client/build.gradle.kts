@@ -86,11 +86,6 @@ jooq {
                         inputSchema = "public"
                         forcedTypes = listOf(
                             ForcedType().apply {
-                                name = "varchar"
-                                includeExpression = ".*"
-                                includeTypes = "JSONB?"
-                            },
-                            ForcedType().apply {
                                 isEnumConverter = true
                                 userType = "com.fs.client.ru.enums.ClientRoleModel"
                                 includeExpression = ".*client.role"
@@ -106,6 +101,18 @@ jooq {
                                 isEnumConverter = true
                                 userType = "com.fs.client.ru.enums.EmploymentModel"
                                 includeExpression = ".*client.employment"
+                                includeTypes = ".*"
+                            },
+                            ForcedType().apply {
+                                isEnumConverter = true
+                                userType = "com.fs.client.ru.enums.CurrencyModel"
+                                includeExpression = ".*country.currency"
+                                includeTypes = ".*"
+                            },
+                            ForcedType().apply {
+                                isEnumConverter = true
+                                userType = "com.fs.client.ru.enums.CountryNameModel"
+                                includeExpression = ".*country.name"
                                 includeTypes = ".*"
                             }
                         )

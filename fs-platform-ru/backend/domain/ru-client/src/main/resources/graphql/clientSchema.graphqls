@@ -1,22 +1,25 @@
+#scalar DateTime
+
 type Query {
-    clientById(id: ID): Client
-    serviceById(id: ID): Service
+    clientById(id: ID!): Client
+    serviceById(id: ID!): Service
 
 }
 
 type Service {
-    id: ID
+    id: ID!
     price: Int,
     name: String
 }
 
+
 type Client {
-    id: ID,
+    id: ID!,
     basket: Basket,
     city: City,
     activateStatus: Boolean,
-    birthday: Date,
-    dateCreated: timestamptz,
+    birthday: String,
+    dateCreated: String,
     educationModelStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,
@@ -28,12 +31,6 @@ type Client {
     role: ClientRoleEnum,
     telegramUsername: String,
     username: String
-}
-
-type Author {
-    id: ID,
-    firstName: String,
-    lastName: String
 }
 
 type Basket {
@@ -93,5 +90,3 @@ enum CountryCodeEnum {
     POLAND
 }
 
-scalar timestamptz
-scalar Date

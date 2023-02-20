@@ -3,6 +3,13 @@ spring:
     url: jdbc:postgresql://localhost:5432/FunScrut
     username: postgres
     password: 191220#destin
+  graphql:
+    enable: true
+    cors:
+      allowed-origins: true
+    schema:
+      printer:
+        enabled: true
 
 server:
   port: 8082

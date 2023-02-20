@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 
 data class ClientModel(
     val id: Int,
-    val basketId: Int?,
+    var basketId: Int?,
     val cityId: Int?,
     val activateStatus: Boolean?,
     val birthday: LocalDateTime?,
