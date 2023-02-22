@@ -109,7 +109,6 @@ open class Address(
             key
         ), child, key, ADDRESS, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<AddressRecord, Int?> = super.getIdentity() as Identity<AddressRecord, Int?>
     override fun getPrimaryKey(): UniqueKey<AddressRecord> = ADDRESS_PKEY
@@ -126,7 +125,6 @@ open class Address(
 
         return _cities;
     }
-
     override fun `as`(alias: String): Address = Address(DSL.name(alias), this)
     override fun `as`(alias: Name): Address = Address(alias, this)
 

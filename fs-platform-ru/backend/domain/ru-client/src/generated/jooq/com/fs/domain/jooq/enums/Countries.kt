@@ -19,7 +19,6 @@ enum class Countries(@get:JvmName("literal") public val literal: String) : EnumT
     BELARUS("BELARUS"),
     RUSSIA("RUSSIA"),
     POLAND("POLAND");
-
     override fun getCatalog(): Catalog? = schema.catalog
     override fun getSchema(): Schema = Public.PUBLIC
     override fun getName(): String = "countries"

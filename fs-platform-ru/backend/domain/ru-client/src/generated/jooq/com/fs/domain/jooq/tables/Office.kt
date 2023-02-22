@@ -101,7 +101,6 @@ open class Office(
             key
         ), child, key, OFFICE, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<OfficeRecord, Int?> = super.getIdentity() as Identity<OfficeRecord, Int?>
     override fun getPrimaryKey(): UniqueKey<OfficeRecord> = OFFICE_PKEY
@@ -130,7 +129,6 @@ open class Office(
 
         return _companies;
     }
-
     override fun `as`(alias: String): Office = Office(DSL.name(alias), this)
     override fun `as`(alias: Name): Office = Office(alias, this)
 

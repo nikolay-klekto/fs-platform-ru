@@ -19,7 +19,6 @@ enum class Role(@get:JvmName("literal") public val literal: String) : EnumType {
     CLIENT("CLIENT"),
     PARTNER("PARTNER"),
     ADMIN("ADMIN");
-
     override fun getCatalog(): Catalog? = schema.catalog
     override fun getSchema(): Schema = Public.PUBLIC
     override fun getName(): String = "role"

@@ -95,7 +95,6 @@ open class Cities(
             key
         ), child, key, CITIES, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<CitiesRecord, Int?> = super.getIdentity() as Identity<CitiesRecord, Int?>
     override fun getPrimaryKey(): UniqueKey<CitiesRecord> = CITIES_PKEY
@@ -112,7 +111,6 @@ open class Cities(
 
         return _country;
     }
-
     override fun `as`(alias: String): Cities = Cities(DSL.name(alias), this)
     override fun `as`(alias: Name): Cities = Cities(alias, this)
 

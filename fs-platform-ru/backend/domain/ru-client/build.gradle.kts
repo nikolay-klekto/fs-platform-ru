@@ -123,9 +123,6 @@ jooq {
                         isImmutablePojos = false
                         isFluentSetters = true
                         isPojos = true
-//						withPojos(true)
-                        //withDaos(true)
-                        //withSerializablePojos(false)
                         withSequences(true)
                     }
                     target.apply {

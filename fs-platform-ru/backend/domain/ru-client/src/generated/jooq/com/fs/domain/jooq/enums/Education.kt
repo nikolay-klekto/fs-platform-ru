@@ -22,7 +22,6 @@ enum class Education(@get:JvmName("literal") public val literal: String) : EnumT
     HIGHER("HIGHER"),
     MAGISTRACY("MAGISTRACY"),
     OTHER("OTHER");
-
     override fun getCatalog(): Catalog? = schema.catalog
     override fun getSchema(): Schema = Public.PUBLIC
     override fun getName(): String = "education"

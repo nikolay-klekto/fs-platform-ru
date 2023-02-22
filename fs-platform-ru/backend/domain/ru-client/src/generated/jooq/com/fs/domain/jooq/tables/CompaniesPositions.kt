@@ -117,7 +117,6 @@ open class CompaniesPositions(
 
         return _position;
     }
-
     override fun `as`(alias: String): CompaniesPositions = CompaniesPositions(DSL.name(alias), this)
     override fun `as`(alias: Name): CompaniesPositions = CompaniesPositions(alias, this)
 

@@ -90,7 +90,6 @@ open class Partner(
             key
         ), child, key, PARTNER, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<PartnerRecord, Int?> = super.getIdentity() as Identity<PartnerRecord, Int?>
     override fun getPrimaryKey(): UniqueKey<PartnerRecord> = PARTNER_PKEY
@@ -108,7 +107,6 @@ open class Partner(
 
         return _client;
     }
-
     override fun `as`(alias: String): Partner = Partner(DSL.name(alias), this)
     override fun `as`(alias: Name): Partner = Partner(alias, this)
 

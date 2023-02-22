@@ -94,7 +94,6 @@ open class Position(
             key
         ), child, key, POSITION, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<PositionRecord, Int?> = super.getIdentity() as Identity<PositionRecord, Int?>
     override fun getPrimaryKey(): UniqueKey<PositionRecord> = POSITION_PKEY

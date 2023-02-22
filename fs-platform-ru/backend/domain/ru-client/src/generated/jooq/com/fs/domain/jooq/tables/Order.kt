@@ -127,7 +127,6 @@ open class Order(
             key
         ), child, key, ORDER, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<OrderRecord, Int?> = super.getIdentity() as Identity<OrderRecord, Int?>
     override fun getPrimaryKey(): UniqueKey<OrderRecord> = ORDER_PKEY
@@ -194,7 +193,6 @@ open class Order(
 
         return _service;
     }
-
     override fun `as`(alias: String): Order = Order(DSL.name(alias), this)
     override fun `as`(alias: Name): Order = Order(alias, this)
 

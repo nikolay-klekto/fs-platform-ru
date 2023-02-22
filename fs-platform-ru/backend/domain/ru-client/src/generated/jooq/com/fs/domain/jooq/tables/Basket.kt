@@ -89,7 +89,6 @@ open class Basket(
             key
         ), child, key, BASKET, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<BasketRecord, Int?> = super.getIdentity() as Identity<BasketRecord, Int?>
     override fun getPrimaryKey(): UniqueKey<BasketRecord> = BASKET_PKEY

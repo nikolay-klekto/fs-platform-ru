@@ -32,7 +32,6 @@ enum class Industry(@get:JvmName("literal") public val literal: String) : EnumTy
     BUILDING("BUILDING"),
     TRANSPORT("TRANSPORT"),
     OTHER("OTHER");
-
     override fun getCatalog(): Catalog? = schema.catalog
     override fun getSchema(): Schema = Public.PUBLIC
     override fun getName(): String = "industry"

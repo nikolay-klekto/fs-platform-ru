@@ -112,7 +112,6 @@ open class Review(
             key
         ), child, key, REVIEW, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<ReviewRecord, Int?> = super.getIdentity() as Identity<ReviewRecord, Int?>
     override fun getPrimaryKey(): UniqueKey<ReviewRecord> = REVIEW_PKEY
@@ -129,7 +128,6 @@ open class Review(
 
         return _companies;
     }
-
     override fun `as`(alias: String): Review = Review(DSL.name(alias), this)
     override fun `as`(alias: Name): Review = Review(alias, this)
 

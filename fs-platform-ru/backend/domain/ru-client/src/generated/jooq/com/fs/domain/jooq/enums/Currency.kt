@@ -21,7 +21,6 @@ enum class Currency(@get:JvmName("literal") public val literal: String) : EnumTy
     EUR("EUR"),
     RUB("RUB"),
     PLN("PLN");
-
     override fun getCatalog(): Catalog? = schema.catalog
     override fun getSchema(): Schema = Public.PUBLIC
     override fun getName(): String = "currency"

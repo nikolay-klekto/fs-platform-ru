@@ -195,7 +195,6 @@ open class Client(
             key
         ), child, key, CLIENT, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<ClientRecord, Int?> = super.getIdentity() as Identity<ClientRecord, Int?>
     override fun getPrimaryKey(): UniqueKey<ClientRecord> = CLIENT_PKEY
@@ -224,7 +223,6 @@ open class Client(
 
         return _cities;
     }
-
     override fun `as`(alias: String): Client = Client(DSL.name(alias), this)
     override fun `as`(alias: Name): Client = Client(alias, this)
 

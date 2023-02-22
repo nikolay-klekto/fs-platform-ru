@@ -89,7 +89,6 @@ open class CompaniesPartner(
         child: Table<out Record>,
         key: ForeignKey<out Record, CompaniesPartnerRecord>
     ) : this(Internal.createPathAlias(child, key), child, key, COMPANIES_PARTNER, null)
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getPrimaryKey(): UniqueKey<CompaniesPartnerRecord> = COMPANIES_PARTNER_PKEY
     override fun getReferences(): List<ForeignKey<CompaniesPartnerRecord, *>> = listOf(
@@ -119,7 +118,6 @@ open class CompaniesPartner(
 
         return _partner;
     }
-
     override fun `as`(alias: String): CompaniesPartner = CompaniesPartner(DSL.name(alias), this)
     override fun `as`(alias: Name): CompaniesPartner = CompaniesPartner(alias, this)
 

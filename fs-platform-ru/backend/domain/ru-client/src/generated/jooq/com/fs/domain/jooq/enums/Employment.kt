@@ -24,7 +24,6 @@ enum class Employment(@get:JvmName("literal") public val literal: String) : Enum
     EMPLOYER("EMPLOYER"),
     EMPLOYEE("EMPLOYEE"),
     OTHER("OTHER");
-
     override fun getCatalog(): Catalog? = schema.catalog
     override fun getSchema(): Schema = Public.PUBLIC
     override fun getName(): String = "employment"
