@@ -3,12 +3,24 @@
 type Query {
     clientById(id: ID!): Client
     serviceById(id: ID!): Service
+    getAllServices: [Service]
+}
 
+type Mutation {
+    addService(services: ServiceInput): Service
+    updateServiceById(id: Int, service: ServiceInput): Boolean
+    deleteServiceById(id: Int): Boolean
 }
 
 type Service {
-    id: ID!
-    price: Int,
+    id: ID
+    price: Int
+    name: String
+}
+
+input ServiceInput {
+    id: ID
+    price: Int
     name: String
 }
 

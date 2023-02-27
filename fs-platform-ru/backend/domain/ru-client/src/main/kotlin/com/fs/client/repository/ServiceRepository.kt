@@ -12,14 +12,6 @@ import reactor.core.publisher.Mono
 
 abstract class ServiceRepository(open val dsl: DSLContext, open val converter: ServiceModelConverter) {
 
-//    fun getById(id: Int) = dsl
-//        .select(SERVICE.asterisk())
-//        .from(SERVICE)
-//        .where(SERVICE.ID.eq(id))
-//        .map { it.into(Service::class.java) }
-//        .map(converter::toModel)
-//        .first()
-
     fun getById(id: Int) =
         Mono.from(
             dsl.select(SERVICE.asterisk())
@@ -43,7 +35,7 @@ abstract class ServiceRepository(open val dsl: DSLContext, open val converter: S
                 .set(SERVICE.PRICE, serviceModel.price)
                 .set(SERVICE.NAME, serviceModel.name)
                 .where(SERVICE.ID.eq(id))
-        ).then()
+        ).thenReturn(true)
 
     fun insert(serviceModel: ServiceModel) =
         Mono.fromSupplier {
@@ -57,10 +49,9 @@ abstract class ServiceRepository(open val dsl: DSLContext, open val converter: S
 
     fun deleteByID(id: Int) =
         Mono.from(
-            dsl
-                .deleteFrom(SERVICE)
+            dsl.deleteFrom(SERVICE)
                 .where(SERVICE.ID.eq(id))
-        ).then()
+        ).thenReturn(true)
 }
 
 
