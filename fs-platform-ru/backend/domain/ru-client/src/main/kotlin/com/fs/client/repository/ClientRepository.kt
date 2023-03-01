@@ -34,11 +34,10 @@ abstract class ClientRepository(
             .map(converter::toModel)
     }
 
-    fun updateClientInfo(id: Int, newClientModel: ClientModel): Mono<Void> {
+    fun updateClientInfo(id: Int, newClientModel: ClientModel): Mono<Boolean> {
         val oldClientModel: ClientModel = getClintById(id).block()!!
-        return Mono.from(
-            dsl
-                .update(CLIENT)
+        return Mono.fromSupplier {
+            dsl.update(CLIENT)
                 .set(CLIENT.CITY_ID, newClientModel.cityId ?: oldClientModel.cityId)
                 .set(CLIENT.BIRTHDAY, newClientModel.birthday ?: oldClientModel.birthday)
                 .set(
@@ -53,34 +52,36 @@ abstract class ClientRepository(
                 .set(CLIENT.TELEGRAM_USERNAME, newClientModel.telegramUsername ?: oldClientModel.telegramUsername)
                 .set(CLIENT.USERNAME, newClientModel.username ?: oldClientModel.username)
                 .where(CLIENT.ID.eq(id))
-        ).then()
+                .execute() == 1
+        }
+
     }
 
-    fun changeActiveStatus(id: Int, activeStatus: Boolean): Mono<Void> {
-        return Mono.from(
-            dsl
-                .update(CLIENT)
+    fun changeActiveStatus(id: Int, activeStatus: Boolean): Mono<Boolean> {
+        return Mono.fromSupplier {
+            dsl.update(CLIENT)
                 .set(CLIENT.ACTIVATE_STATUS, activeStatus)
                 .where(CLIENT.ID.eq(id))
-        ).then()
+                .execute() == 1
+        }
     }
 
-    fun changePassword(id: Int, password: String): Mono<Void> {
-        return Mono.from(
-            dsl
-                .update(CLIENT)
+    fun changePassword(id: Int, password: String): Mono<Boolean> {
+        return Mono.fromSupplier {
+            dsl.update(CLIENT)
                 .set(CLIENT.PASSWORD, password)
                 .where(CLIENT.ID.eq(id))
-        ).then()
+                .execute() == 1
+        }
     }
 
-    fun changeRole(id: Int, role: ClientRoleModel): Mono<Void> {
-        return Mono.from(
-            dsl
-                .update(CLIENT)
+    fun changeRole(id: Int, role: ClientRoleModel): Mono<Boolean> {
+        return Mono.fromSupplier {
+            dsl.update(CLIENT)
                 .set(CLIENT.ROLE, role)
                 .where(CLIENT.ID.eq(id))
-        ).then()
+                .execute() == 1
+        }
     }
 
     fun insert(clientModel: ClientModel) =
@@ -96,18 +97,17 @@ abstract class ClientRepository(
         }
             .map(converter::toModel)
 
-    fun deleteClient(id: Int) =
-        Mono.from(
+    fun deleteClient(id: Int): Mono<Boolean> {
+        return Mono.fromSupplier {
             dsl.deleteFrom(BASKET)
                 .where(BASKET.ID.eq(CLIENT.BASKET_ID))
-        ).then(
-            Mono.from(
-                dsl
-                    .deleteFrom(CLIENT)
-                    .where(CLIENT.ID.eq(id))
+                .execute()
+            dsl.deleteFrom(CLIENT)
+                .where(CLIENT.ID.eq(id))
+                .execute() == 1
+        }
+    }
 
-            ).then()
-        )
 
     fun delete(id: Int): Mono<Boolean> {
         return Mono.fromSupplier {
@@ -116,21 +116,21 @@ abstract class ClientRepository(
                 dsl.deleteFrom(CLIENT)
                     .where(CLIENT.ID.eq(id))
                     .execute()
-                dsl.deleteFrom(BASKET)
+                return@fromSupplier dsl.deleteFrom(BASKET)
                     .where(BASKET.ID.eq(clientRecord.basketId))
-                    .execute()
-                return@fromSupplier true
+                    .execute() == 1
             }
             false
         }
     }
 
-    fun getAllClients() =
-        Flux.from(
+    fun getAllClients(): Flux<ClientModel> {
+        return Flux.from(
             dsl.selectFrom(CLIENT)
         )
             .map { it.into(Client::class.java) }
             .map(converter::toModel)
+    }
 
 }
 

@@ -35,8 +35,9 @@ abstract class ReviewRepository(open val dsl: DSLContext, open val converter: Re
                 .set(REVIEW.DESCRIPTION, review.description ?: oldReview?.description)
                 .set(REVIEW.RATE, review.rate ?: oldReview?.rate)
                 .where(REVIEW.ID.eq(review.id))
+                .execute() == 1
         }
-            .thenReturn(true)
+
     }
 
     fun insert(reviewModel: ReviewModel): Mono<ReviewModel> {
@@ -51,9 +52,10 @@ abstract class ReviewRepository(open val dsl: DSLContext, open val converter: Re
     }
 
     fun deleteByID(id: Int): Mono<Boolean> {
-        return Mono.from(
+        return Mono.fromSupplier {
             dsl.deleteFrom(REVIEW)
                 .where(REVIEW.ID.eq(id))
-        ).thenReturn(true)
+                .execute() == 1
+        }
     }
 }

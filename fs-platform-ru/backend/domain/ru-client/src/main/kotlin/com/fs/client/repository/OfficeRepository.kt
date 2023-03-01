@@ -30,27 +30,25 @@ abstract class OfficeRepository(
         return Flux.from(
             dsl.select(OFFICE.asterisk()).from(OFFICE)
                 .where(OFFICE.COMPANY_ID.eq(id))
-//                .join(COMPANIES).on(COMPANIES.ID.eq(OFFICE.COMPANY_ID))
-//                .and(OFFICE.ID.eq(id))
         )
             .map { it.into(Office::class.java) }
             .map(converter::toModel)
     }
 
     fun updatePhoneNumberByOfficeId(id: Int, phoneNumber: String?): Mono<Boolean> {
-        val oldOfficeModel: OfficeModel = getByOfficeId(id).block() ?: return Mono.just(false)
-        Mono.from(
+        return Mono.fromSupplier {
+            val oldOfficeModel: OfficeModel = getByOfficeId(id).block() ?: return@fromSupplier false
             dsl.update(OFFICE)
                 .set(OFFICE.PHONE_NUMBER, phoneNumber ?: oldOfficeModel.phoneNumber)
                 .where(OFFICE.ID.eq(id))
-        )
-        return Mono.just(true)
+                .execute() == 1
+        }
     }
 
     fun updateCompanyAddress(id: Int, companyAddress: CompanyAddress): Mono<Boolean> {
         if (companyAddress.addressId != null) {
             val newAddressModel = converter.fromCompanyAddressToAddressModel(companyAddress)
-            addressRepository.updateByAddressId(newAddressModel.id, newAddressModel)
+            addressRepository.updateByAddressId(newAddressModel.id, newAddressModel).block()
         }
         return updatePhoneNumberByOfficeId(id, companyAddress.phoneNumber)
     }
@@ -70,14 +68,14 @@ abstract class OfficeRepository(
             .map(converter::toModel)
 
 
-    fun deleteAllByCompanyId(id: Int): Mono<Void> {
+    fun deleteAllByCompanyId(id: Int): Mono<Boolean> {
         return Mono.fromSupplier {
 
             dsl.deleteFrom(OFFICE)
                 .where(OFFICE.COMPANY_ID.eq(id))
                 .execute()
 
-            dsl.deleteFrom(ADDRESS)
+            return@fromSupplier dsl.deleteFrom(ADDRESS)
                 .where(
                     ADDRESS.ID.`in`(
                         dsl.select(OFFICE.ADDRESS_ID)
@@ -85,8 +83,9 @@ abstract class OfficeRepository(
                             .where(OFFICE.COMPANY_ID.eq(id))
                     )
                 )
+                .execute() > 0
 
-        }.then()
+        }
     }
 
 }

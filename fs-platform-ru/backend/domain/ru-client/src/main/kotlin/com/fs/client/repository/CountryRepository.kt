@@ -42,10 +42,11 @@ abstract class CountryRepository(
             .map(converter::toModel)
     }
 
-    fun deleteByCountryName(countryName: CountryNameModel): Mono<Void> {
-        return Mono.from(
+    fun deleteByCountryName(countryName: CountryNameModel): Mono<Boolean> {
+        return Mono.fromSupplier {
             dsl.deleteFrom(COUNTRY)
                 .where(COUNTRY.NAME.eq(countryName))
-        ).then()
+                .execute() == 1
+        }
     }
 }

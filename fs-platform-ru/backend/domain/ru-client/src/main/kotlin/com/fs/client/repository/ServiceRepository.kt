@@ -28,14 +28,16 @@ abstract class ServiceRepository(open val dsl: DSLContext, open val converter: S
             .map { it.into(Service::class.java) }
             .map(converter::toModel)
 
-    fun updateById(id: Int, serviceModel: ServiceModel) =
-        Mono.from(
-            dsl
-                .update(SERVICE)
+    fun updateById(id: Int, serviceModel: ServiceModel): Mono<Boolean> {
+        return Mono.fromSupplier {
+            dsl.update(SERVICE)
                 .set(SERVICE.PRICE, serviceModel.price)
                 .set(SERVICE.NAME, serviceModel.name)
                 .where(SERVICE.ID.eq(id))
-        ).thenReturn(true)
+                .execute() == 1
+        }
+    }
+
 
     fun insert(serviceModel: ServiceModel) =
         Mono.fromSupplier {
@@ -47,11 +49,13 @@ abstract class ServiceRepository(open val dsl: DSLContext, open val converter: S
         }
             .map(converter::toModel)
 
-    fun deleteByID(id: Int) =
-        Mono.from(
+    fun deleteByID(id: Int): Mono<Boolean> {
+        return Mono.fromSupplier {
             dsl.deleteFrom(SERVICE)
                 .where(SERVICE.ID.eq(id))
-        ).thenReturn(true)
+                .execute() == 1
+        }
+    }
 }
 
 

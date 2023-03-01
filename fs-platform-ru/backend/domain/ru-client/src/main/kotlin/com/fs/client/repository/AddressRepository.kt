@@ -33,8 +33,8 @@ abstract class AddressRepository(
             .map(converter::toModel)
 
     fun updateByAddressId(addressId: Int, address: AddressModel): Mono<Boolean> {
-        val oldAddressModel: AddressModel = getByAddressId(addressId).block() ?: return Mono.just(false)
-        Mono.from(
+        return Mono.fromSupplier {
+            val oldAddressModel: AddressModel = getByAddressId(addressId).block() ?: return@fromSupplier false
             dsl.update(ADDRESS)
                 .set(ADDRESS.CITY_ID, address.cityId ?: oldAddressModel.cityId)
                 .set(ADDRESS.APARTMENT, address.apartment ?: oldAddressModel.apartment)
@@ -42,14 +42,15 @@ abstract class AddressRepository(
                 .set(ADDRESS.HOUSE, address.house ?: oldAddressModel.house)
                 .set(ADDRESS.STREET, address.street ?: oldAddressModel.street)
                 .where(ADDRESS.ID.eq(addressId))
-        )
-        return Mono.just(true)
+                .execute() == 1
+        }
     }
 
-    fun deleteByAddressId(id: Int): Mono<Void> {
-        return Mono.from(
+    fun deleteByAddressId(id: Int): Mono<Boolean> {
+        return Mono.fromSupplier {
             dsl.deleteFrom(ADDRESS)
                 .where(ADDRESS.ID.eq(id))
-        ).then()
+                .execute() == 1
+        }
     }
 }
