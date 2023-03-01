@@ -12,8 +12,8 @@ import java.io.Serializable
  */
 @Suppress("UNCHECKED_CAST")
 data class CompaniesPositions(
-    var companyId: Int? = null,
-    var positionId: Int? = null
+    var companyId: Long? = null,
+    var positionId: Long? = null
 ) : Serializable {
 
 

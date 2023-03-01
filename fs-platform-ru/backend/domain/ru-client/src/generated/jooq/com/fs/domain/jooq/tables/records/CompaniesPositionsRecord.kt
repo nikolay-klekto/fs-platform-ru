@@ -17,40 +17,40 @@ import org.jooq.impl.TableRecordImpl
  */
 @Suppress("UNCHECKED_CAST")
 open class CompaniesPositionsRecord() :
-    TableRecordImpl<CompaniesPositionsRecord>(CompaniesPositions.COMPANIES_POSITIONS), Record2<Int?, Int?> {
+    TableRecordImpl<CompaniesPositionsRecord>(CompaniesPositions.COMPANIES_POSITIONS), Record2<Long?, Long?> {
 
-    var companyId: Int?
+    var companyId: Long?
         set(value): Unit = set(0, value)
-        get(): Int? = get(0) as Int?
+        get(): Long? = get(0) as Long?
 
-    var positionId: Int?
+    var positionId: Long?
         set(value): Unit = set(1, value)
-        get(): Int? = get(1) as Int?
+        get(): Long? = get(1) as Long?
 
     // -------------------------------------------------------------------------
     // Record2 type implementation
     // -------------------------------------------------------------------------
 
-    override fun fieldsRow(): Row2<Int?, Int?> = super.fieldsRow() as Row2<Int?, Int?>
-    override fun valuesRow(): Row2<Int?, Int?> = super.valuesRow() as Row2<Int?, Int?>
-    override fun field1(): Field<Int?> = CompaniesPositions.COMPANIES_POSITIONS.COMPANY_ID
-    override fun field2(): Field<Int?> = CompaniesPositions.COMPANIES_POSITIONS.POSITION_ID
-    override fun component1(): Int? = companyId
-    override fun component2(): Int? = positionId
-    override fun value1(): Int? = companyId
-    override fun value2(): Int? = positionId
+    override fun fieldsRow(): Row2<Long?, Long?> = super.fieldsRow() as Row2<Long?, Long?>
+    override fun valuesRow(): Row2<Long?, Long?> = super.valuesRow() as Row2<Long?, Long?>
+    override fun field1(): Field<Long?> = CompaniesPositions.COMPANIES_POSITIONS.COMPANY_ID
+    override fun field2(): Field<Long?> = CompaniesPositions.COMPANIES_POSITIONS.POSITION_ID
+    override fun component1(): Long? = companyId
+    override fun component2(): Long? = positionId
+    override fun value1(): Long? = companyId
+    override fun value2(): Long? = positionId
 
-    override fun value1(value: Int?): CompaniesPositionsRecord {
+    override fun value1(value: Long?): CompaniesPositionsRecord {
         this.companyId = value
         return this
     }
 
-    override fun value2(value: Int?): CompaniesPositionsRecord {
+    override fun value2(value: Long?): CompaniesPositionsRecord {
         this.positionId = value
         return this
     }
 
-    override fun values(value1: Int?, value2: Int?): CompaniesPositionsRecord {
+    override fun values(value1: Long?, value2: Long?): CompaniesPositionsRecord {
         this.value1(value1)
         this.value2(value2)
         return this
@@ -59,7 +59,7 @@ open class CompaniesPositionsRecord() :
     /**
      * Create a detached, initialised CompaniesPositionsRecord
      */
-    constructor(companyId: Int? = null, positionId: Int? = null) : this() {
+    constructor(companyId: Long? = null, positionId: Long? = null) : this() {
         this.companyId = companyId
         this.positionId = positionId
     }

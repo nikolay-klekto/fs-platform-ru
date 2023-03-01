@@ -14,7 +14,7 @@ import java.io.Serializable
  */
 @Suppress("UNCHECKED_CAST")
 data class Companies(
-    var id: Int? = null,
+    var id: Long? = null,
     var companyIndustry: Industry? = null,
     var name: String? = null,
     var site: String? = null,

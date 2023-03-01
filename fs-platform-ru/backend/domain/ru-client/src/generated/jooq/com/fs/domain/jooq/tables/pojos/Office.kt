@@ -12,9 +12,9 @@ import java.io.Serializable
  */
 @Suppress("UNCHECKED_CAST")
 data class Office(
-    var id: Int? = null,
-    var addressId: Int? = null,
-    var companyId: Int? = null,
+    var id: Long? = null,
+    var addressId: Long? = null,
+    var companyId: Long? = null,
     var phoneNumber: String? = null
 ) : Serializable {
 

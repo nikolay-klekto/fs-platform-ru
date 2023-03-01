@@ -15,7 +15,7 @@ import java.io.Serializable
  */
 @Suppress("UNCHECKED_CAST")
 data class Country(
-    var code: Int? = null,
+    var code: Long? = null,
     var currency: CurrencyModel? = null,
     var name: CountryNameModel? = null
 ) : Serializable {

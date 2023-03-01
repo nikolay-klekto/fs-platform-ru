@@ -51,28 +51,28 @@ open class Address(
     /**
      * The column <code>public.address.id</code>.
      */
-    val ID: TableField<AddressRecord, Int?> =
-        createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "")
+    val ID: TableField<AddressRecord, Long?> =
+        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.address.city_id</code>.
      */
-    val CITY_ID: TableField<AddressRecord, Int?> = createField(DSL.name("city_id"), SQLDataType.INTEGER, this, "")
+    val CITY_ID: TableField<AddressRecord, Long?> = createField(DSL.name("city_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.address.apartment</code>.
      */
-    val APARTMENT: TableField<AddressRecord, Int?> = createField(DSL.name("apartment"), SQLDataType.INTEGER, this, "")
+    val APARTMENT: TableField<AddressRecord, Long?> = createField(DSL.name("apartment"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.address.building</code>.
      */
-    val BUILDING: TableField<AddressRecord, Int?> = createField(DSL.name("building"), SQLDataType.INTEGER, this, "")
+    val BUILDING: TableField<AddressRecord, Long?> = createField(DSL.name("building"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.address.house</code>.
      */
-    val HOUSE: TableField<AddressRecord, Int?> = createField(DSL.name("house"), SQLDataType.INTEGER, this, "")
+    val HOUSE: TableField<AddressRecord, Long?> = createField(DSL.name("house"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.address.street</code>.
@@ -109,8 +109,9 @@ open class Address(
             key
         ), child, key, ADDRESS, null
     )
+
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<AddressRecord, Int?> = super.getIdentity() as Identity<AddressRecord, Int?>
+    override fun getIdentity(): Identity<AddressRecord, Long?> = super.getIdentity() as Identity<AddressRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<AddressRecord> = ADDRESS_PKEY
     override fun getReferences(): List<ForeignKey<AddressRecord, *>> = listOf(ADDRESS__ADDRESS_CITY_ID_FKEY)
 
@@ -141,6 +142,6 @@ open class Address(
     // -------------------------------------------------------------------------
     // Row6 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row6<Int?, Int?, Int?, Int?, Int?, String?> =
-        super.fieldsRow() as Row6<Int?, Int?, Int?, Int?, Int?, String?>
+    override fun fieldsRow(): Row6<Long?, Long?, Long?, Long?, Long?, String?> =
+        super.fieldsRow() as Row6<Long?, Long?, Long?, Long?, Long?, String?>
 }

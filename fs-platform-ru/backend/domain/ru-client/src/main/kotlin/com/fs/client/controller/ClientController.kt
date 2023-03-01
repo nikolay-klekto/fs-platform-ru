@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 open class ClientController(open val clientRepository: ClientRepository) {
 
     @GetMapping("{id}")
-    fun getClientById(@PathVariable("id") clientAccountId: Int) =
+    fun getClientById(@PathVariable("id") clientAccountId: Long) =
         clientRepository.getClintById(clientAccountId)
 
     @GetMapping
@@ -22,34 +22,34 @@ open class ClientController(open val clientRepository: ClientRepository) {
     @PutMapping("{id}")
     fun updateClientByID(
         @RequestBody clientModel: ClientModel,
-        @PathVariable("id") id: Int
+        @PathVariable("id") id: Long
     ) = clientRepository
         .updateClientInfo(id, clientModel)
 
     @PutMapping("/status/{id}")
     fun updateClientActiveStatus(
         @RequestBody activeStatus: Boolean,
-        @PathVariable("id") id: Int
+        @PathVariable("id") id: Long
     ) = clientRepository
         .changeActiveStatus(id, activeStatus)
 
     @PutMapping("/password/{id}")
     fun updateClientPassword(
         @RequestBody password: String,
-        @PathVariable("id") id: Int
+        @PathVariable("id") id: Long
     ) = clientRepository
         .changePassword(id, password)
 
     @PutMapping("/role/{id}")
     fun updateClientRole(
         @RequestBody role: ClientRoleModel,
-        @PathVariable("id") id: Int
+        @PathVariable("id") id: Long
     ) = clientRepository
         .changeRole(id, role)
 
     @DeleteMapping("{id}")
     fun deleteClientByID(
-        @PathVariable("id") id: Int
+        @PathVariable("id") id: Long
     ) =
         clientRepository.delete(id)
 
@@ -60,7 +60,7 @@ open class ClientController(open val clientRepository: ClientRepository) {
         clientRepository.insert(clientModel)
 
 //    @QueryMapping
-//    open fun clientById(@Argument id: Int): Mono<ClientModel> {
+//    open fun clientById(@Argument id: Long): Mono<ClientModel> {
 //        return clientRepository.getClintById(id)
 //    }
 

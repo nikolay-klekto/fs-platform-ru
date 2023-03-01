@@ -52,8 +52,8 @@ open class Country(
     /**
      * The column <code>public.country.code</code>.
      */
-    val CODE: TableField<CountryRecord, Int?> =
-        createField(DSL.name("code"), SQLDataType.INTEGER.nullable(false).identity(true), this, "")
+    val CODE: TableField<CountryRecord, Long?> =
+        createField(DSL.name("code"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.country.currency</code>.
@@ -107,8 +107,9 @@ open class Country(
             key
         ), child, key, COUNTRY, null
     )
+
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<CountryRecord, Int?> = super.getIdentity() as Identity<CountryRecord, Int?>
+    override fun getIdentity(): Identity<CountryRecord, Long?> = super.getIdentity() as Identity<CountryRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<CountryRecord> = COUNTRY_PKEY
     override fun `as`(alias: String): Country = Country(DSL.name(alias), this)
     override fun `as`(alias: Name): Country = Country(alias, this)
@@ -126,6 +127,6 @@ open class Country(
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row3<Int?, CurrencyModel?, CountryNameModel?> =
-        super.fieldsRow() as Row3<Int?, CurrencyModel?, CountryNameModel?>
+    override fun fieldsRow(): Row3<Long?, CurrencyModel?, CountryNameModel?> =
+        super.fieldsRow() as Row3<Long?, CurrencyModel?, CountryNameModel?>
 }

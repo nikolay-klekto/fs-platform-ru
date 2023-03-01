@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono
 
 abstract class ReviewRepository(open val dsl: DSLContext, open val converter: ReviewModelConverter) {
 
-    fun getById(id: Int): Mono<ReviewModel> {
+    fun getById(id: Long): Mono<ReviewModel> {
         return Mono.from(
             dsl.select(REVIEW.asterisk()).from(REVIEW)
                 .where(REVIEW.ID.eq(id))
@@ -51,7 +51,7 @@ abstract class ReviewRepository(open val dsl: DSLContext, open val converter: Re
             .map(converter::toModel)
     }
 
-    fun deleteByID(id: Int): Mono<Boolean> {
+    fun deleteByID(id: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.deleteFrom(REVIEW)
                 .where(REVIEW.ID.eq(id))

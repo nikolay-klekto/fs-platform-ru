@@ -12,7 +12,7 @@ import java.io.Serializable
  */
 @Suppress("UNCHECKED_CAST")
 data class Position(
-    var id: Int? = null,
+    var id: Long? = null,
     var description: String? = null,
     var name: String? = null
 ) : Serializable {

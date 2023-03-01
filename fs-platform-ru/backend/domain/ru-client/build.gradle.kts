@@ -33,6 +33,9 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-webmvc-core:1.6.12")
     implementation("org.springdoc:springdoc-openapi-kotlin:1.6.12")
     implementation("org.jooq:jooq-kotlin:3.17.4")
+    implementation("com.tailrocks.graphql:graphql-datetime-spring-boot-starter:6.0.0")
+    implementation("com.graphql-java:graphql-java-extended-scalars:2023-01-24T02-11-56-babda5f")
+
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 

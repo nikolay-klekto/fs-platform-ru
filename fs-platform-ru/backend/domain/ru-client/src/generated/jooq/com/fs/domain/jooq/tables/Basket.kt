@@ -50,8 +50,8 @@ open class Basket(
     /**
      * The column <code>public.basket.id</code>.
      */
-    val ID: TableField<BasketRecord, Int?> =
-        createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "")
+    val ID: TableField<BasketRecord, Long?> =
+        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.basket.total_price</code>.
@@ -89,8 +89,9 @@ open class Basket(
             key
         ), child, key, BASKET, null
     )
+
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<BasketRecord, Int?> = super.getIdentity() as Identity<BasketRecord, Int?>
+    override fun getIdentity(): Identity<BasketRecord, Long?> = super.getIdentity() as Identity<BasketRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<BasketRecord> = BASKET_PKEY
     override fun `as`(alias: String): Basket = Basket(DSL.name(alias), this)
     override fun `as`(alias: Name): Basket = Basket(alias, this)
@@ -108,5 +109,5 @@ open class Basket(
     // -------------------------------------------------------------------------
     // Row2 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row2<Int?, String?> = super.fieldsRow() as Row2<Int?, String?>
+    override fun fieldsRow(): Row2<Long?, String?> = super.fieldsRow() as Row2<Long?, String?>
 }

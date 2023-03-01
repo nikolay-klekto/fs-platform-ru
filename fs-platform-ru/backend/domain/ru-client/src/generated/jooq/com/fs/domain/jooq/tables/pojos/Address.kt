@@ -12,11 +12,11 @@ import java.io.Serializable
  */
 @Suppress("UNCHECKED_CAST")
 data class Address(
-    var id: Int? = null,
-    var cityId: Int? = null,
-    var apartment: Int? = null,
-    var building: Int? = null,
-    var house: Int? = null,
+    var id: Long? = null,
+    var cityId: Long? = null,
+    var apartment: Long? = null,
+    var building: Long? = null,
+    var house: Long? = null,
     var street: String? = null
 ) : Serializable {
 

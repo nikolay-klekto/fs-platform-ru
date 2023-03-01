@@ -18,6 +18,7 @@ import com.fs.domain.jooq.tables.records.ClientRecord
 import org.jooq.*
 import org.jooq.impl.*
 import org.jooq.impl.Internal
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 
@@ -57,18 +58,18 @@ open class Client(
     /**
      * The column <code>public.client.id</code>.
      */
-    val ID: TableField<ClientRecord, Int?> =
-        createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "")
+    val ID: TableField<ClientRecord, Long?> =
+        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.client.basket_id</code>.
      */
-    val BASKET_ID: TableField<ClientRecord, Int?> = createField(DSL.name("basket_id"), SQLDataType.INTEGER, this, "")
+    val BASKET_ID: TableField<ClientRecord, Long?> = createField(DSL.name("basket_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.client.city_id</code>.
      */
-    val CITY_ID: TableField<ClientRecord, Int?> = createField(DSL.name("city_id"), SQLDataType.INTEGER, this, "")
+    val CITY_ID: TableField<ClientRecord, Long?> = createField(DSL.name("city_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.client.activate_status</code>.
@@ -79,8 +80,8 @@ open class Client(
     /**
      * The column <code>public.client.birthday</code>.
      */
-    val BIRTHDAY: TableField<ClientRecord, LocalDateTime?> =
-        createField(DSL.name("birthday"), SQLDataType.LOCALDATETIME(6), this, "")
+    val BIRTHDAY: TableField<ClientRecord, LocalDate?> =
+        createField(DSL.name("birthday"), SQLDataType.LOCALDATE, this, "")
 
     /**
      * The column <code>public.client.date_created</code>.
@@ -129,8 +130,8 @@ open class Client(
     /**
      * The column <code>public.client.order_quantity</code>.
      */
-    val ORDER_QUANTITY: TableField<ClientRecord, Int?> =
-        createField(DSL.name("order_quantity"), SQLDataType.INTEGER, this, "")
+    val ORDER_QUANTITY: TableField<ClientRecord, Long?> =
+        createField(DSL.name("order_quantity"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.client.password</code>.
@@ -195,8 +196,9 @@ open class Client(
             key
         ), child, key, CLIENT, null
     )
+
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<ClientRecord, Int?> = super.getIdentity() as Identity<ClientRecord, Int?>
+    override fun getIdentity(): Identity<ClientRecord, Long?> = super.getIdentity() as Identity<ClientRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ClientRecord> = CLIENT_PKEY
     override fun getReferences(): List<ForeignKey<ClientRecord, *>> =
         listOf(CLIENT__CLIENT_BASKET_ID_FKEY, CLIENT__CLIENT_CITY_ID_FKEY)
@@ -239,6 +241,6 @@ open class Client(
     // -------------------------------------------------------------------------
     // Row17 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row17<Int?, Int?, Int?, Boolean?, LocalDateTime?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Int?, String?, String?, ClientRoleModel?, String?, String?> =
-        super.fieldsRow() as Row17<Int?, Int?, Int?, Boolean?, LocalDateTime?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Int?, String?, String?, ClientRoleModel?, String?, String?>
+    override fun fieldsRow(): Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?> =
+        super.fieldsRow() as Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?>
 }

@@ -38,8 +38,6 @@ val OFFICE_PKEY: UniqueKey<OfficeRecord> =
     Internal.createUniqueKey(Office.OFFICE, DSL.name("office_pkey"), arrayOf(Office.OFFICE.ID), true)
 val ORDER_PKEY: UniqueKey<OrderRecord> =
     Internal.createUniqueKey(Order.ORDER, DSL.name("order_pkey"), arrayOf(Order.ORDER.ID), true)
-val CLIENT_ID: UniqueKey<PartnerRecord> =
-    Internal.createUniqueKey(Partner.PARTNER, DSL.name("client_id"), arrayOf(Partner.PARTNER.CLIENT_ID), true)
 val PARTNER_PKEY: UniqueKey<PartnerRecord> =
     Internal.createUniqueKey(Partner.PARTNER, DSL.name("partner_pkey"), arrayOf(Partner.PARTNER.ID), true)
 val POSITION_PKEY: UniqueKey<PositionRecord> =

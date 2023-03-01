@@ -13,11 +13,11 @@ import java.time.LocalDateTime
  */
 @Suppress("UNCHECKED_CAST")
 data class Review(
-    var id: Int? = null,
-    var companyId: Int? = null,
+    var id: Long? = null,
+    var companyId: Long? = null,
     var dateCreated: LocalDateTime? = null,
     var description: String? = null,
-    var rate: Int? = null,
+    var rate: Long? = null,
     var username: String? = null
 ) : Serializable {
 

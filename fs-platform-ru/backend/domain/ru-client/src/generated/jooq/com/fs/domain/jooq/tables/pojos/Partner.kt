@@ -12,8 +12,8 @@ import java.io.Serializable
  */
 @Suppress("UNCHECKED_CAST")
 data class Partner(
-    var id: Int? = null,
-    var clientId: Int? = null
+    var id: Long? = null,
+    var clientId: Long? = null
 ) : Serializable {
 
 

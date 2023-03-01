@@ -13,7 +13,7 @@ abstract class CountryRepository(
     open val dsl: DSLContext,
     open val converter: CountryModelConverter
 ) {
-    fun getByCode(code: Int): Mono<CountryModel> {
+    fun getByCode(code: Long): Mono<CountryModel> {
         return Mono.from(
             dsl.select(COUNTRY.asterisk()).from(COUNTRY)
                 .where(COUNTRY.CODE.eq(code))

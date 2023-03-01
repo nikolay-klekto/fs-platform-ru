@@ -9,7 +9,7 @@ import org.jooq.DSLContext
 import reactor.core.publisher.Mono
 
 abstract class BasketRepository(open val dsl: DSLContext, open val converter: BasketModelConverter) {
-    fun getById(id: Int) =
+    fun getById(id: Long) =
         Mono.from(
             dsl.select(BASKET.asterisk())
                 .from(BASKET)
@@ -19,7 +19,7 @@ abstract class BasketRepository(open val dsl: DSLContext, open val converter: Ba
             .map { it.into(Basket::class.java) }
             .map(converter::toModel)
 
-    fun updateById(id: Int, basket: BasketModel): Mono<Boolean> {
+    fun updateById(id: Long, basket: BasketModel): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.update(BASKET)
                 .set(BASKET.TOTAL_PRICE, basket.totalPrice)

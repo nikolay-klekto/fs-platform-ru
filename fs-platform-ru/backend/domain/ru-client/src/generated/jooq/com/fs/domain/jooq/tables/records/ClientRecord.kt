@@ -13,6 +13,7 @@ import org.jooq.Record1
 import org.jooq.Record17
 import org.jooq.Row17
 import org.jooq.impl.UpdatableRecordImpl
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 
@@ -21,27 +22,27 @@ import java.time.LocalDateTime
  */
 @Suppress("UNCHECKED_CAST")
 open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
-    Record17<Int?, Int?, Int?, Boolean?, LocalDateTime?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Int?, String?, String?, ClientRoleModel?, String?, String?> {
+    Record17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?> {
 
-    var id: Int?
+    var id: Long?
         set(value): Unit = set(0, value)
-        get(): Int? = get(0) as Int?
+        get(): Long? = get(0) as Long?
 
-    var basketId: Int?
+    var basketId: Long?
         set(value): Unit = set(1, value)
-        get(): Int? = get(1) as Int?
+        get(): Long? = get(1) as Long?
 
-    var cityId: Int?
+    var cityId: Long?
         set(value): Unit = set(2, value)
-        get(): Int? = get(2) as Int?
+        get(): Long? = get(2) as Long?
 
     var activateStatus: Boolean?
         set(value): Unit = set(3, value)
         get(): Boolean? = get(3) as Boolean?
 
-    var birthday: LocalDateTime?
+    var birthday: LocalDate?
         set(value): Unit = set(4, value)
-        get(): LocalDateTime? = get(4) as LocalDateTime?
+        get(): LocalDate? = get(4) as LocalDate?
 
     var dateCreated: LocalDateTime?
         set(value): Unit = set(5, value)
@@ -67,9 +68,9 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
         set(value): Unit = set(10, value)
         get(): String? = get(10) as String?
 
-    var orderQuantity: Int?
+    var orderQuantity: Long?
         set(value): Unit = set(11, value)
-        get(): Int? = get(11) as Int?
+        get(): Long? = get(11) as Long?
 
     var password: String?
         set(value): Unit = set(12, value)
@@ -95,81 +96,81 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
     // Primary key information
     // -------------------------------------------------------------------------
 
-    override fun key(): Record1<Int?> = super.key() as Record1<Int?>
+    override fun key(): Record1<Long?> = super.key() as Record1<Long?>
 
     // -------------------------------------------------------------------------
     // Record17 type implementation
     // -------------------------------------------------------------------------
 
-    override fun fieldsRow(): Row17<Int?, Int?, Int?, Boolean?, LocalDateTime?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Int?, String?, String?, ClientRoleModel?, String?, String?> =
-        super.fieldsRow() as Row17<Int?, Int?, Int?, Boolean?, LocalDateTime?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Int?, String?, String?, ClientRoleModel?, String?, String?>
+    override fun fieldsRow(): Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?> =
+        super.fieldsRow() as Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?>
 
-    override fun valuesRow(): Row17<Int?, Int?, Int?, Boolean?, LocalDateTime?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Int?, String?, String?, ClientRoleModel?, String?, String?> =
-        super.valuesRow() as Row17<Int?, Int?, Int?, Boolean?, LocalDateTime?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Int?, String?, String?, ClientRoleModel?, String?, String?>
+    override fun valuesRow(): Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?> =
+        super.valuesRow() as Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?>
 
-    override fun field1(): Field<Int?> = Client.CLIENT.ID
-    override fun field2(): Field<Int?> = Client.CLIENT.BASKET_ID
-    override fun field3(): Field<Int?> = Client.CLIENT.CITY_ID
+    override fun field1(): Field<Long?> = Client.CLIENT.ID
+    override fun field2(): Field<Long?> = Client.CLIENT.BASKET_ID
+    override fun field3(): Field<Long?> = Client.CLIENT.CITY_ID
     override fun field4(): Field<Boolean?> = Client.CLIENT.ACTIVATE_STATUS
-    override fun field5(): Field<LocalDateTime?> = Client.CLIENT.BIRTHDAY
+    override fun field5(): Field<LocalDate?> = Client.CLIENT.BIRTHDAY
     override fun field6(): Field<LocalDateTime?> = Client.CLIENT.DATE_CREATED
     override fun field7(): Field<EducationModel?> = Client.CLIENT.EDUCATION_STATUS
     override fun field8(): Field<String?> = Client.CLIENT.EMAIL
     override fun field9(): Field<EmploymentModel?> = Client.CLIENT.EMPLOYMENT
     override fun field10(): Field<String?> = Client.CLIENT.FIRST_NAME
     override fun field11(): Field<String?> = Client.CLIENT.LAST_NAME
-    override fun field12(): Field<Int?> = Client.CLIENT.ORDER_QUANTITY
+    override fun field12(): Field<Long?> = Client.CLIENT.ORDER_QUANTITY
     override fun field13(): Field<String?> = Client.CLIENT.PASSWORD
     override fun field14(): Field<String?> = Client.CLIENT.PHONE_NUMBER
     override fun field15(): Field<ClientRoleModel?> = Client.CLIENT.ROLE
     override fun field16(): Field<String?> = Client.CLIENT.TELEGRAM_USERNAME
     override fun field17(): Field<String?> = Client.CLIENT.USERNAME
-    override fun component1(): Int? = id
-    override fun component2(): Int? = basketId
-    override fun component3(): Int? = cityId
+    override fun component1(): Long? = id
+    override fun component2(): Long? = basketId
+    override fun component3(): Long? = cityId
     override fun component4(): Boolean? = activateStatus
-    override fun component5(): LocalDateTime? = birthday
+    override fun component5(): LocalDate? = birthday
     override fun component6(): LocalDateTime? = dateCreated
     override fun component7(): EducationModel? = educationStatus
     override fun component8(): String? = email
     override fun component9(): EmploymentModel? = employment
     override fun component10(): String? = firstName
     override fun component11(): String? = lastName
-    override fun component12(): Int? = orderQuantity
+    override fun component12(): Long? = orderQuantity
     override fun component13(): String? = password
     override fun component14(): String? = phoneNumber
     override fun component15(): ClientRoleModel? = role
     override fun component16(): String? = telegramUsername
     override fun component17(): String? = username
-    override fun value1(): Int? = id
-    override fun value2(): Int? = basketId
-    override fun value3(): Int? = cityId
+    override fun value1(): Long? = id
+    override fun value2(): Long? = basketId
+    override fun value3(): Long? = cityId
     override fun value4(): Boolean? = activateStatus
-    override fun value5(): LocalDateTime? = birthday
+    override fun value5(): LocalDate? = birthday
     override fun value6(): LocalDateTime? = dateCreated
     override fun value7(): EducationModel? = educationStatus
     override fun value8(): String? = email
     override fun value9(): EmploymentModel? = employment
     override fun value10(): String? = firstName
     override fun value11(): String? = lastName
-    override fun value12(): Int? = orderQuantity
+    override fun value12(): Long? = orderQuantity
     override fun value13(): String? = password
     override fun value14(): String? = phoneNumber
     override fun value15(): ClientRoleModel? = role
     override fun value16(): String? = telegramUsername
     override fun value17(): String? = username
 
-    override fun value1(value: Int?): ClientRecord {
+    override fun value1(value: Long?): ClientRecord {
         this.id = value
         return this
     }
 
-    override fun value2(value: Int?): ClientRecord {
+    override fun value2(value: Long?): ClientRecord {
         this.basketId = value
         return this
     }
 
-    override fun value3(value: Int?): ClientRecord {
+    override fun value3(value: Long?): ClientRecord {
         this.cityId = value
         return this
     }
@@ -179,7 +180,7 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
         return this
     }
 
-    override fun value5(value: LocalDateTime?): ClientRecord {
+    override fun value5(value: LocalDate?): ClientRecord {
         this.birthday = value
         return this
     }
@@ -214,7 +215,7 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
         return this
     }
 
-    override fun value12(value: Int?): ClientRecord {
+    override fun value12(value: Long?): ClientRecord {
         this.orderQuantity = value
         return this
     }
@@ -245,18 +246,18 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
     }
 
     override fun values(
-        value1: Int?,
-        value2: Int?,
-        value3: Int?,
+        value1: Long?,
+        value2: Long?,
+        value3: Long?,
         value4: Boolean?,
-        value5: LocalDateTime?,
+        value5: LocalDate?,
         value6: LocalDateTime?,
         value7: EducationModel?,
         value8: String?,
         value9: EmploymentModel?,
         value10: String?,
         value11: String?,
-        value12: Int?,
+        value12: Long?,
         value13: String?,
         value14: String?,
         value15: ClientRoleModel?,
@@ -287,18 +288,18 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
      * Create a detached, initialised ClientRecord
      */
     constructor(
-        id: Int? = null,
-        basketId: Int? = null,
-        cityId: Int? = null,
+        id: Long? = null,
+        basketId: Long? = null,
+        cityId: Long? = null,
         activateStatus: Boolean? = null,
-        birthday: LocalDateTime? = null,
+        birthday: LocalDate? = null,
         dateCreated: LocalDateTime? = null,
         educationStatus: EducationModel? = null,
         email: String? = null,
         employment: EmploymentModel? = null,
         firstName: String? = null,
         lastName: String? = null,
-        orderQuantity: Int? = null,
+        orderQuantity: Long? = null,
         password: String? = null,
         phoneNumber: String? = null,
         role: ClientRoleModel? = null,

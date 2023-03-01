@@ -13,7 +13,7 @@ abstract class AddressRepository(
     open val converter: AddressModelConverter
 ) {
 
-    fun getByAddressId(id: Int): Mono<AddressModel> {
+    fun getByAddressId(id: Long): Mono<AddressModel> {
         return Mono.from(
             dsl.select(ADDRESS.asterisk()).from(ADDRESS)
                 .where(ADDRESS.ID.eq(id))
@@ -32,7 +32,7 @@ abstract class AddressRepository(
         }
             .map(converter::toModel)
 
-    fun updateByAddressId(addressId: Int, address: AddressModel): Mono<Boolean> {
+    fun updateByAddressId(addressId: Long, address: AddressModel): Mono<Boolean> {
         return Mono.fromSupplier {
             val oldAddressModel: AddressModel = getByAddressId(addressId).block() ?: return@fromSupplier false
             dsl.update(ADDRESS)
@@ -46,7 +46,7 @@ abstract class AddressRepository(
         }
     }
 
-    fun deleteByAddressId(id: Int): Mono<Boolean> {
+    fun deleteByAddressId(id: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.deleteFrom(ADDRESS)
                 .where(ADDRESS.ID.eq(id))

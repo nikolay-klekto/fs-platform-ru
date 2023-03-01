@@ -1,3 +1,11 @@
+grapgql:
+  datetime:
+    scalars:
+      local-date-time:
+        format: yyyy-MM-DD'T'HH:mm
+      local-date:
+        format: yyyy-MM-DD
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/FunScrut

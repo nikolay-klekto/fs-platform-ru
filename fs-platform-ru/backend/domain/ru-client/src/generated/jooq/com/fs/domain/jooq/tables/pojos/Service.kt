@@ -12,8 +12,8 @@ import java.io.Serializable
  */
 @Suppress("UNCHECKED_CAST")
 data class Service(
-    var id: Int? = null,
-    var price: Int? = null,
+    var id: Long? = null,
+    var price: Long? = null,
     var name: String? = null
 ) : Serializable {
 

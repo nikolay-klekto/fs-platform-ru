@@ -5,12 +5,12 @@ import java.time.LocalDateTime
 
 data class OrderModel(
     val id: Long,
-    val basketId: Long,
-    val cityId: Long,
-    val companyId: Long,
-    val positionId: Long,
-    val serviceId: Long,
-    val isExpired: Boolean,
-    val startWorkTime: LocalDateTime,
-    val totalWorkDays: Long
+    val basketId: Long?,
+    val cityId: Long?,
+    val companyId: Long?,
+    val positionId: Long?,
+    val serviceId: Long?,
+    val isExpired: Boolean?,
+    val startWorkDate: LocalDateTime?,
+    val totalWorkDays: Long?
 )

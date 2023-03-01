@@ -50,8 +50,8 @@ open class Position(
     /**
      * The column <code>public.position.id</code>.
      */
-    val ID: TableField<PositionRecord, Int?> =
-        createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "")
+    val ID: TableField<PositionRecord, Long?> =
+        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.position.description</code>.
@@ -94,8 +94,9 @@ open class Position(
             key
         ), child, key, POSITION, null
     )
+
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<PositionRecord, Int?> = super.getIdentity() as Identity<PositionRecord, Int?>
+    override fun getIdentity(): Identity<PositionRecord, Long?> = super.getIdentity() as Identity<PositionRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<PositionRecord> = POSITION_PKEY
     override fun `as`(alias: String): Position = Position(DSL.name(alias), this)
     override fun `as`(alias: Name): Position = Position(alias, this)
@@ -113,5 +114,5 @@ open class Position(
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row3<Int?, String?, String?> = super.fieldsRow() as Row3<Int?, String?, String?>
+    override fun fieldsRow(): Row3<Long?, String?, String?> = super.fieldsRow() as Row3<Long?, String?, String?>
 }

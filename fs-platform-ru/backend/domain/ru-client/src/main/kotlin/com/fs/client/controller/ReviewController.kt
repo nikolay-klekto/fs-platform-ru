@@ -19,7 +19,7 @@ open class ReviewController(
 ) {
 
     @QueryMapping
-    open fun reviewById(@Argument id: Int): Mono<ReviewModel> {
+    open fun reviewById(@Argument id: Long): Mono<ReviewModel> {
         return reviewRepository.getById(id)
     }
 
@@ -34,12 +34,12 @@ open class ReviewController(
     }
 
     @MutationMapping
-    open fun addService(@Argument review: ReviewModel): Mono<ReviewModel> {
+    open fun addReview(@Argument review: ReviewModel): Mono<ReviewModel> {
         return reviewRepository.insert(review)
     }
 
     @MutationMapping
-    open fun deleteReviewById(@Argument id: Int): Mono<Boolean> {
+    open fun deleteReviewById(@Argument id: Long): Mono<Boolean> {
         return reviewRepository.deleteByID(id)
     }
 }

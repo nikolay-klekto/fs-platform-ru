@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono
 
 abstract class ServiceRepository(open val dsl: DSLContext, open val converter: ServiceModelConverter) {
 
-    fun getById(id: Int) =
+    fun getById(id: Long) =
         Mono.from(
             dsl.select(SERVICE.asterisk())
                 .from(SERVICE)
@@ -28,7 +28,7 @@ abstract class ServiceRepository(open val dsl: DSLContext, open val converter: S
             .map { it.into(Service::class.java) }
             .map(converter::toModel)
 
-    fun updateById(id: Int, serviceModel: ServiceModel): Mono<Boolean> {
+    fun updateById(id: Long, serviceModel: ServiceModel): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.update(SERVICE)
                 .set(SERVICE.PRICE, serviceModel.price)
@@ -49,7 +49,7 @@ abstract class ServiceRepository(open val dsl: DSLContext, open val converter: S
         }
             .map(converter::toModel)
 
-    fun deleteByID(id: Int): Mono<Boolean> {
+    fun deleteByID(id: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.deleteFrom(SERVICE)
                 .where(SERVICE.ID.eq(id))

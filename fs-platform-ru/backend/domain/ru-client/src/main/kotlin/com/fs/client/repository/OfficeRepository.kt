@@ -17,7 +17,7 @@ abstract class OfficeRepository(
     open val converter: OfficeModelConverter,
     open val addressRepository: AddressRepository
 ) {
-    fun getByOfficeId(id: Int): Mono<OfficeModel> {
+    fun getByOfficeId(id: Long): Mono<OfficeModel> {
         return Mono.from(
             dsl.select(OFFICE.asterisk()).from(OFFICE)
                 .where(OFFICE.ID.eq(id))
@@ -26,7 +26,7 @@ abstract class OfficeRepository(
             .map(converter::toModel)
     }
 
-    fun getAllByCompanyId(id: Int): Flux<OfficeModel> {
+    fun getAllByCompanyId(id: Long): Flux<OfficeModel> {
         return Flux.from(
             dsl.select(OFFICE.asterisk()).from(OFFICE)
                 .where(OFFICE.COMPANY_ID.eq(id))
@@ -35,7 +35,7 @@ abstract class OfficeRepository(
             .map(converter::toModel)
     }
 
-    fun updatePhoneNumberByOfficeId(id: Int, phoneNumber: String?): Mono<Boolean> {
+    fun updatePhoneNumberByOfficeId(id: Long, phoneNumber: String?): Mono<Boolean> {
         return Mono.fromSupplier {
             val oldOfficeModel: OfficeModel = getByOfficeId(id).block() ?: return@fromSupplier false
             dsl.update(OFFICE)
@@ -45,7 +45,7 @@ abstract class OfficeRepository(
         }
     }
 
-    fun updateCompanyAddress(id: Int, companyAddress: CompanyAddress): Mono<Boolean> {
+    fun updateCompanyAddress(id: Long, companyAddress: CompanyAddress): Mono<Boolean> {
         if (companyAddress.addressId != null) {
             val newAddressModel = converter.fromCompanyAddressToAddressModel(companyAddress)
             addressRepository.updateByAddressId(newAddressModel.id, newAddressModel).block()
@@ -68,7 +68,7 @@ abstract class OfficeRepository(
             .map(converter::toModel)
 
 
-    fun deleteAllByCompanyId(id: Int): Mono<Boolean> {
+    fun deleteAllByCompanyId(id: Long): Mono<Boolean> {
         return Mono.fromSupplier {
 
             dsl.deleteFrom(OFFICE)

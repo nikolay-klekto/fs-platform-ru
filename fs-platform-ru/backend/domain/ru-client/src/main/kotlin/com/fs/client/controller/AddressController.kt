@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 open class AddressController(open val addressRepository: AddressRepository) {
 
     @GetMapping("{id}")
-    fun getAddressById(@PathVariable("id") addressId: Int) =
+    fun getAddressById(@PathVariable("id") addressId: Long) =
         addressRepository.getByAddressId(addressId)
 
     @PostMapping

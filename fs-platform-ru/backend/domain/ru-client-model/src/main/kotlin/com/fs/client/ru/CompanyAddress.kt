@@ -1,13 +1,13 @@
 package com.fs.client.ru
 
 data class CompanyAddress(
-    val addressId: Int?,
-    val cityId: Int?,
-    val companyId: Int?,
-    val officeId: Int?,
-    val apartment: Int?,
-    val building: Int?,
-    val house: Int?,
+    val addressId: Long?,
+    val cityId: Long?,
+    val companyId: Long?,
+    val officeId: Long?,
+    val apartment: Long?,
+    val building: Long?,
+    val house: Long?,
     val phoneNumber: String?,
     val street: String?
 ) {

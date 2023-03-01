@@ -16,7 +16,7 @@ open class ServiceController(
 ) {
 
     @GetMapping("{id}")
-    fun getServiceByID(@PathVariable("id") serviceId: Int) =
+    fun getServiceByID(@PathVariable("id") serviceId: Long) =
         serviceRepository.getById(serviceId)
 
     @GetMapping
@@ -25,12 +25,12 @@ open class ServiceController(
     @PutMapping("{id}")
     fun updateServiceModelByID(
         @RequestBody serviceModel: ServiceModel,
-        @PathVariable("id") id: Int
+        @PathVariable("id") id: Long
     ) =
         serviceRepository.updateById(id, serviceModel)
 
     @DeleteMapping("{id}")
-    fun deleteServiceByID(@PathVariable("id") id: Int) =
+    fun deleteServiceByID(@PathVariable("id") id: Long) =
         serviceRepository.deleteByID(id)
 
     @PostMapping
@@ -43,17 +43,20 @@ open class ServiceController(
     }
 
     @MutationMapping
-    open fun updateServiceById(@Arguments id: Int, service: ServiceModel): Mono<Boolean> {
+    open fun updateServiceById(
+        @Argument id: Long,
+        @Argument service: ServiceModel
+    ): Mono<Boolean> {
         return serviceRepository.updateById(id, service)
     }
 
     @MutationMapping
-    open fun deleteServiceById(@Argument id: Int): Mono<Boolean> {
+    open fun deleteServiceById(@Argument id: Long): Mono<Boolean> {
         return serviceRepository.deleteByID(id)
     }
 
     @QueryMapping
-    open fun serviceById(@Argument id: Int): Mono<ServiceModel> {
+    open fun serviceById(@Argument id: Long): Mono<ServiceModel> {
         return serviceRepository.getById(id)
     }
 

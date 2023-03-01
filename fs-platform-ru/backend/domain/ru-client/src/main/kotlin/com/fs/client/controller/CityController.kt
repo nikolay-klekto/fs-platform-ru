@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*
 open class CityController(open val cityRepository: CityRepository) {
 
     @GetMapping("{id}")
-    fun getById(@PathVariable("id") cityId: Int) =
+    fun getById(@PathVariable("id") cityId: Long) =
         cityRepository.getCityById(cityId)
 
     @GetMapping("country/{id}")
-    fun getCountryByCityId(@PathVariable("id") cityId: Int) =
+    fun getCountryByCityId(@PathVariable("id") cityId: Long) =
         cityRepository.getCountryByCityId(cityId)
 
     @PostMapping

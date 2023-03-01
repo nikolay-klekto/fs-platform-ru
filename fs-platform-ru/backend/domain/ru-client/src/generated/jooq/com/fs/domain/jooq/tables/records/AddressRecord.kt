@@ -18,27 +18,27 @@ import org.jooq.impl.UpdatableRecordImpl
  */
 @Suppress("UNCHECKED_CAST")
 open class AddressRecord() : UpdatableRecordImpl<AddressRecord>(Address.ADDRESS),
-    Record6<Int?, Int?, Int?, Int?, Int?, String?> {
+    Record6<Long?, Long?, Long?, Long?, Long?, String?> {
 
-    var id: Int?
+    var id: Long?
         set(value): Unit = set(0, value)
-        get(): Int? = get(0) as Int?
+        get(): Long? = get(0) as Long?
 
-    var cityId: Int?
+    var cityId: Long?
         set(value): Unit = set(1, value)
-        get(): Int? = get(1) as Int?
+        get(): Long? = get(1) as Long?
 
-    var apartment: Int?
+    var apartment: Long?
         set(value): Unit = set(2, value)
-        get(): Int? = get(2) as Int?
+        get(): Long? = get(2) as Long?
 
-    var building: Int?
+    var building: Long?
         set(value): Unit = set(3, value)
-        get(): Int? = get(3) as Int?
+        get(): Long? = get(3) as Long?
 
-    var house: Int?
+    var house: Long?
         set(value): Unit = set(4, value)
-        get(): Int? = get(4) as Int?
+        get(): Long? = get(4) as Long?
 
     var street: String?
         set(value): Unit = set(5, value)
@@ -48,58 +48,58 @@ open class AddressRecord() : UpdatableRecordImpl<AddressRecord>(Address.ADDRESS)
     // Primary key information
     // -------------------------------------------------------------------------
 
-    override fun key(): Record1<Int?> = super.key() as Record1<Int?>
+    override fun key(): Record1<Long?> = super.key() as Record1<Long?>
 
     // -------------------------------------------------------------------------
     // Record6 type implementation
     // -------------------------------------------------------------------------
 
-    override fun fieldsRow(): Row6<Int?, Int?, Int?, Int?, Int?, String?> =
-        super.fieldsRow() as Row6<Int?, Int?, Int?, Int?, Int?, String?>
+    override fun fieldsRow(): Row6<Long?, Long?, Long?, Long?, Long?, String?> =
+        super.fieldsRow() as Row6<Long?, Long?, Long?, Long?, Long?, String?>
 
-    override fun valuesRow(): Row6<Int?, Int?, Int?, Int?, Int?, String?> =
-        super.valuesRow() as Row6<Int?, Int?, Int?, Int?, Int?, String?>
+    override fun valuesRow(): Row6<Long?, Long?, Long?, Long?, Long?, String?> =
+        super.valuesRow() as Row6<Long?, Long?, Long?, Long?, Long?, String?>
 
-    override fun field1(): Field<Int?> = Address.ADDRESS.ID
-    override fun field2(): Field<Int?> = Address.ADDRESS.CITY_ID
-    override fun field3(): Field<Int?> = Address.ADDRESS.APARTMENT
-    override fun field4(): Field<Int?> = Address.ADDRESS.BUILDING
-    override fun field5(): Field<Int?> = Address.ADDRESS.HOUSE
+    override fun field1(): Field<Long?> = Address.ADDRESS.ID
+    override fun field2(): Field<Long?> = Address.ADDRESS.CITY_ID
+    override fun field3(): Field<Long?> = Address.ADDRESS.APARTMENT
+    override fun field4(): Field<Long?> = Address.ADDRESS.BUILDING
+    override fun field5(): Field<Long?> = Address.ADDRESS.HOUSE
     override fun field6(): Field<String?> = Address.ADDRESS.STREET
-    override fun component1(): Int? = id
-    override fun component2(): Int? = cityId
-    override fun component3(): Int? = apartment
-    override fun component4(): Int? = building
-    override fun component5(): Int? = house
+    override fun component1(): Long? = id
+    override fun component2(): Long? = cityId
+    override fun component3(): Long? = apartment
+    override fun component4(): Long? = building
+    override fun component5(): Long? = house
     override fun component6(): String? = street
-    override fun value1(): Int? = id
-    override fun value2(): Int? = cityId
-    override fun value3(): Int? = apartment
-    override fun value4(): Int? = building
-    override fun value5(): Int? = house
+    override fun value1(): Long? = id
+    override fun value2(): Long? = cityId
+    override fun value3(): Long? = apartment
+    override fun value4(): Long? = building
+    override fun value5(): Long? = house
     override fun value6(): String? = street
 
-    override fun value1(value: Int?): AddressRecord {
+    override fun value1(value: Long?): AddressRecord {
         this.id = value
         return this
     }
 
-    override fun value2(value: Int?): AddressRecord {
+    override fun value2(value: Long?): AddressRecord {
         this.cityId = value
         return this
     }
 
-    override fun value3(value: Int?): AddressRecord {
+    override fun value3(value: Long?): AddressRecord {
         this.apartment = value
         return this
     }
 
-    override fun value4(value: Int?): AddressRecord {
+    override fun value4(value: Long?): AddressRecord {
         this.building = value
         return this
     }
 
-    override fun value5(value: Int?): AddressRecord {
+    override fun value5(value: Long?): AddressRecord {
         this.house = value
         return this
     }
@@ -110,11 +110,11 @@ open class AddressRecord() : UpdatableRecordImpl<AddressRecord>(Address.ADDRESS)
     }
 
     override fun values(
-        value1: Int?,
-        value2: Int?,
-        value3: Int?,
-        value4: Int?,
-        value5: Int?,
+        value1: Long?,
+        value2: Long?,
+        value3: Long?,
+        value4: Long?,
+        value5: Long?,
         value6: String?
     ): AddressRecord {
         this.value1(value1)
@@ -130,11 +130,11 @@ open class AddressRecord() : UpdatableRecordImpl<AddressRecord>(Address.ADDRESS)
      * Create a detached, initialised AddressRecord
      */
     constructor(
-        id: Int? = null,
-        cityId: Int? = null,
-        apartment: Int? = null,
-        building: Int? = null,
-        house: Int? = null,
+        id: Long? = null,
+        cityId: Long? = null,
+        apartment: Long? = null,
+        building: Long? = null,
+        house: Long? = null,
         street: String? = null
     ) : this() {
         this.id = id

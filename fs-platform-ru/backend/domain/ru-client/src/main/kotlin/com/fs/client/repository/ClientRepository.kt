@@ -22,7 +22,7 @@ abstract class ClientRepository(
     open val basketRepository: BasketRepository
 ) {
 
-    fun getClintById(id: Int): Mono<ClientModel> {
+    fun getClintById(id: Long): Mono<ClientModel> {
         return Mono.from(
             dsl.select(CLIENT.asterisk()).from(CLIENT)
                 .join(Basket.BASKET).on(CLIENT.BASKET_ID.eq(Basket.BASKET.ID))
@@ -34,7 +34,7 @@ abstract class ClientRepository(
             .map(converter::toModel)
     }
 
-    fun updateClientInfo(id: Int, newClientModel: ClientModel): Mono<Boolean> {
+    fun updateClientInfo(id: Long, newClientModel: ClientModel): Mono<Boolean> {
         val oldClientModel: ClientModel = getClintById(id).block()!!
         return Mono.fromSupplier {
             dsl.update(CLIENT)
@@ -57,7 +57,7 @@ abstract class ClientRepository(
 
     }
 
-    fun changeActiveStatus(id: Int, activeStatus: Boolean): Mono<Boolean> {
+    fun changeActiveStatus(id: Long, activeStatus: Boolean): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.update(CLIENT)
                 .set(CLIENT.ACTIVATE_STATUS, activeStatus)
@@ -66,7 +66,7 @@ abstract class ClientRepository(
         }
     }
 
-    fun changePassword(id: Int, password: String): Mono<Boolean> {
+    fun changePassword(id: Long, password: String): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.update(CLIENT)
                 .set(CLIENT.PASSWORD, password)
@@ -75,7 +75,7 @@ abstract class ClientRepository(
         }
     }
 
-    fun changeRole(id: Int, role: ClientRoleModel): Mono<Boolean> {
+    fun changeRole(id: Long, role: ClientRoleModel): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.update(CLIENT)
                 .set(CLIENT.ROLE, role)
@@ -97,7 +97,7 @@ abstract class ClientRepository(
         }
             .map(converter::toModel)
 
-    fun deleteClient(id: Int): Mono<Boolean> {
+    fun deleteClient(id: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.deleteFrom(BASKET)
                 .where(BASKET.ID.eq(CLIENT.BASKET_ID))
@@ -109,7 +109,7 @@ abstract class ClientRepository(
     }
 
 
-    fun delete(id: Int): Mono<Boolean> {
+    fun delete(id: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             val clientRecord: ClientRecord? = dsl.fetchOne(CLIENT, CLIENT.ID.eq(id))
             if (clientRecord != null) {

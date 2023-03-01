@@ -51,14 +51,14 @@ open class CompaniesPositions(
     /**
      * The column <code>public.companies_positions.company_id</code>.
      */
-    val COMPANY_ID: TableField<CompaniesPositionsRecord, Int?> =
-        createField(DSL.name("company_id"), SQLDataType.INTEGER, this, "")
+    val COMPANY_ID: TableField<CompaniesPositionsRecord, Long?> =
+        createField(DSL.name("company_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.companies_positions.position_id</code>.
      */
-    val POSITION_ID: TableField<CompaniesPositionsRecord, Int?> =
-        createField(DSL.name("position_id"), SQLDataType.INTEGER, this, "")
+    val POSITION_ID: TableField<CompaniesPositionsRecord, Long?> =
+        createField(DSL.name("position_id"), SQLDataType.BIGINT, this, "")
 
     private constructor(alias: Name, aliased: Table<CompaniesPositionsRecord>?) : this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<CompaniesPositionsRecord>?, parameters: Array<Field<*>?>?) : this(
@@ -133,5 +133,5 @@ open class CompaniesPositions(
     // -------------------------------------------------------------------------
     // Row2 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row2<Int?, Int?> = super.fieldsRow() as Row2<Int?, Int?>
+    override fun fieldsRow(): Row2<Long?, Long?> = super.fieldsRow() as Row2<Long?, Long?>
 }

@@ -51,8 +51,8 @@ open class Companies(
     /**
      * The column <code>public.companies.id</code>.
      */
-    val ID: TableField<CompaniesRecord, Int?> =
-        createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "")
+    val ID: TableField<CompaniesRecord, Long?> =
+        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.companies.company_industry</code>.
@@ -110,8 +110,11 @@ open class Companies(
             key
         ), child, key, COMPANIES, null
     )
+
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<CompaniesRecord, Int?> = super.getIdentity() as Identity<CompaniesRecord, Int?>
+    override fun getIdentity(): Identity<CompaniesRecord, Long?> =
+        super.getIdentity() as Identity<CompaniesRecord, Long?>
+
     override fun getPrimaryKey(): UniqueKey<CompaniesRecord> = COMPANIES_PKEY
     override fun `as`(alias: String): Companies = Companies(DSL.name(alias), this)
     override fun `as`(alias: Name): Companies = Companies(alias, this)
@@ -129,6 +132,6 @@ open class Companies(
     // -------------------------------------------------------------------------
     // Row5 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row5<Int?, Industry?, String?, String?, String?> =
-        super.fieldsRow() as Row5<Int?, Industry?, String?, String?, String?>
+    override fun fieldsRow(): Row5<Long?, Industry?, String?, String?, String?> =
+        super.fieldsRow() as Row5<Long?, Industry?, String?, String?, String?>
 }

@@ -9,6 +9,7 @@ import com.fs.client.ru.enums.EducationModel
 import com.fs.client.ru.enums.EmploymentModel
 
 import java.io.Serializable
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 
@@ -17,18 +18,18 @@ import java.time.LocalDateTime
  */
 @Suppress("UNCHECKED_CAST")
 data class Client(
-    var id: Int? = null,
-    var basketId: Int? = null,
-    var cityId: Int? = null,
+    var id: Long? = null,
+    var basketId: Long? = null,
+    var cityId: Long? = null,
     var activateStatus: Boolean? = null,
-    var birthday: LocalDateTime? = null,
+    var birthday: LocalDate? = null,
     var dateCreated: LocalDateTime? = null,
     var educationStatus: EducationModel? = null,
     var email: String? = null,
     var employment: EmploymentModel? = null,
     var firstName: String? = null,
     var lastName: String? = null,
-    var orderQuantity: Int? = null,
+    var orderQuantity: Long? = null,
     var password: String? = null,
     var phoneNumber: String? = null,
     var role: ClientRoleModel? = null,

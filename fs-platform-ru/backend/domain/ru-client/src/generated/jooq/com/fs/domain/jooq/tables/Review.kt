@@ -52,13 +52,13 @@ open class Review(
     /**
      * The column <code>public.review.id</code>.
      */
-    val ID: TableField<ReviewRecord, Int?> =
-        createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "")
+    val ID: TableField<ReviewRecord, Long?> =
+        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.review.company_id</code>.
      */
-    val COMPANY_ID: TableField<ReviewRecord, Int?> = createField(DSL.name("company_id"), SQLDataType.INTEGER, this, "")
+    val COMPANY_ID: TableField<ReviewRecord, Long?> = createField(DSL.name("company_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.review.date_created</code>.
@@ -75,7 +75,7 @@ open class Review(
     /**
      * The column <code>public.review.rate</code>.
      */
-    val RATE: TableField<ReviewRecord, Int?> = createField(DSL.name("rate"), SQLDataType.INTEGER, this, "")
+    val RATE: TableField<ReviewRecord, Long?> = createField(DSL.name("rate"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.review.username</code>.
@@ -112,8 +112,9 @@ open class Review(
             key
         ), child, key, REVIEW, null
     )
+
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<ReviewRecord, Int?> = super.getIdentity() as Identity<ReviewRecord, Int?>
+    override fun getIdentity(): Identity<ReviewRecord, Long?> = super.getIdentity() as Identity<ReviewRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ReviewRecord> = REVIEW_PKEY
     override fun getReferences(): List<ForeignKey<ReviewRecord, *>> = listOf(REVIEW__REVIEW_COMPANY_ID_FKEY)
 
@@ -144,6 +145,6 @@ open class Review(
     // -------------------------------------------------------------------------
     // Row6 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row6<Int?, Int?, LocalDateTime?, String?, Int?, String?> =
-        super.fieldsRow() as Row6<Int?, Int?, LocalDateTime?, String?, Int?, String?>
+    override fun fieldsRow(): Row6<Long?, Long?, LocalDateTime?, String?, Long?, String?> =
+        super.fieldsRow() as Row6<Long?, Long?, LocalDateTime?, String?, Long?, String?>
 }

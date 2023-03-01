@@ -20,11 +20,11 @@ import org.jooq.impl.UpdatableRecordImpl
  */
 @Suppress("UNCHECKED_CAST")
 open class CountryRecord() : UpdatableRecordImpl<CountryRecord>(Country.COUNTRY),
-    Record3<Int?, CurrencyModel?, CountryNameModel?> {
+    Record3<Long?, CurrencyModel?, CountryNameModel?> {
 
-    var code: Int?
+    var code: Long?
         set(value): Unit = set(0, value)
-        get(): Int? = get(0) as Int?
+        get(): Long? = get(0) as Long?
 
     var currency: CurrencyModel?
         set(value): Unit = set(1, value)
@@ -38,29 +38,29 @@ open class CountryRecord() : UpdatableRecordImpl<CountryRecord>(Country.COUNTRY)
     // Primary key information
     // -------------------------------------------------------------------------
 
-    override fun key(): Record1<Int?> = super.key() as Record1<Int?>
+    override fun key(): Record1<Long?> = super.key() as Record1<Long?>
 
     // -------------------------------------------------------------------------
     // Record3 type implementation
     // -------------------------------------------------------------------------
 
-    override fun fieldsRow(): Row3<Int?, CurrencyModel?, CountryNameModel?> =
-        super.fieldsRow() as Row3<Int?, CurrencyModel?, CountryNameModel?>
+    override fun fieldsRow(): Row3<Long?, CurrencyModel?, CountryNameModel?> =
+        super.fieldsRow() as Row3<Long?, CurrencyModel?, CountryNameModel?>
 
-    override fun valuesRow(): Row3<Int?, CurrencyModel?, CountryNameModel?> =
-        super.valuesRow() as Row3<Int?, CurrencyModel?, CountryNameModel?>
+    override fun valuesRow(): Row3<Long?, CurrencyModel?, CountryNameModel?> =
+        super.valuesRow() as Row3<Long?, CurrencyModel?, CountryNameModel?>
 
-    override fun field1(): Field<Int?> = Country.COUNTRY.CODE
+    override fun field1(): Field<Long?> = Country.COUNTRY.CODE
     override fun field2(): Field<CurrencyModel?> = Country.COUNTRY.CURRENCY
     override fun field3(): Field<CountryNameModel?> = Country.COUNTRY.NAME
-    override fun component1(): Int? = code
+    override fun component1(): Long? = code
     override fun component2(): CurrencyModel? = currency
     override fun component3(): CountryNameModel? = name
-    override fun value1(): Int? = code
+    override fun value1(): Long? = code
     override fun value2(): CurrencyModel? = currency
     override fun value3(): CountryNameModel? = name
 
-    override fun value1(value: Int?): CountryRecord {
+    override fun value1(value: Long?): CountryRecord {
         this.code = value
         return this
     }
@@ -75,7 +75,7 @@ open class CountryRecord() : UpdatableRecordImpl<CountryRecord>(Country.COUNTRY)
         return this
     }
 
-    override fun values(value1: Int?, value2: CurrencyModel?, value3: CountryNameModel?): CountryRecord {
+    override fun values(value1: Long?, value2: CurrencyModel?, value3: CountryNameModel?): CountryRecord {
         this.value1(value1)
         this.value2(value2)
         this.value3(value3)
@@ -85,7 +85,7 @@ open class CountryRecord() : UpdatableRecordImpl<CountryRecord>(Country.COUNTRY)
     /**
      * Create a detached, initialised CountryRecord
      */
-    constructor(code: Int? = null, currency: CurrencyModel? = null, name: CountryNameModel? = null) : this() {
+    constructor(code: Long? = null, currency: CurrencyModel? = null, name: CountryNameModel? = null) : this() {
         this.code = code
         this.currency = currency
         this.name = name

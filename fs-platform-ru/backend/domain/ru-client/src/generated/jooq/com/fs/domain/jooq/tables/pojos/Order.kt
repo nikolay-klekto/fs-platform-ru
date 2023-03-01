@@ -13,16 +13,16 @@ import java.time.LocalDateTime
  */
 @Suppress("UNCHECKED_CAST")
 data class Order(
-    var id: Int? = null,
-    var basketId: Int? = null,
-    var cityId: Int? = null,
-    var companyId: Int? = null,
-    var positionId: Int? = null,
-    var serviceId: Int? = null,
+    var id: Long? = null,
+    var basketId: Long? = null,
+    var cityId: Long? = null,
+    var companyId: Long? = null,
+    var positionId: Long? = null,
+    var serviceId: Long? = null,
     @set:JvmName("setIsExpired")
     var isExpired: Boolean? = null,
     var startWorkDate: LocalDateTime? = null,
-    var totalWorkDays: Int? = null
+    var totalWorkDays: Long? = null
 ) : Serializable {
 
 

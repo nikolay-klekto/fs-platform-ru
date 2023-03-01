@@ -18,15 +18,15 @@ import java.time.LocalDateTime
  */
 @Suppress("UNCHECKED_CAST")
 open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
-    Record6<Int?, Int?, LocalDateTime?, String?, Int?, String?> {
+    Record6<Long?, Long?, LocalDateTime?, String?, Long?, String?> {
 
-    var id: Int?
+    var id: Long?
         set(value): Unit = set(0, value)
-        get(): Int? = get(0) as Int?
+        get(): Long? = get(0) as Long?
 
-    var companyId: Int?
+    var companyId: Long?
         set(value): Unit = set(1, value)
-        get(): Int? = get(1) as Int?
+        get(): Long? = get(1) as Long?
 
     var dateCreated: LocalDateTime?
         set(value): Unit = set(2, value)
@@ -36,9 +36,9 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
         set(value): Unit = set(3, value)
         get(): String? = get(3) as String?
 
-    var rate: Int?
+    var rate: Long?
         set(value): Unit = set(4, value)
-        get(): Int? = get(4) as Int?
+        get(): Long? = get(4) as Long?
 
     var username: String?
         set(value): Unit = set(5, value)
@@ -48,43 +48,43 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
     // Primary key information
     // -------------------------------------------------------------------------
 
-    override fun key(): Record1<Int?> = super.key() as Record1<Int?>
+    override fun key(): Record1<Long?> = super.key() as Record1<Long?>
 
     // -------------------------------------------------------------------------
     // Record6 type implementation
     // -------------------------------------------------------------------------
 
-    override fun fieldsRow(): Row6<Int?, Int?, LocalDateTime?, String?, Int?, String?> =
-        super.fieldsRow() as Row6<Int?, Int?, LocalDateTime?, String?, Int?, String?>
+    override fun fieldsRow(): Row6<Long?, Long?, LocalDateTime?, String?, Long?, String?> =
+        super.fieldsRow() as Row6<Long?, Long?, LocalDateTime?, String?, Long?, String?>
 
-    override fun valuesRow(): Row6<Int?, Int?, LocalDateTime?, String?, Int?, String?> =
-        super.valuesRow() as Row6<Int?, Int?, LocalDateTime?, String?, Int?, String?>
+    override fun valuesRow(): Row6<Long?, Long?, LocalDateTime?, String?, Long?, String?> =
+        super.valuesRow() as Row6<Long?, Long?, LocalDateTime?, String?, Long?, String?>
 
-    override fun field1(): Field<Int?> = Review.REVIEW.ID
-    override fun field2(): Field<Int?> = Review.REVIEW.COMPANY_ID
+    override fun field1(): Field<Long?> = Review.REVIEW.ID
+    override fun field2(): Field<Long?> = Review.REVIEW.COMPANY_ID
     override fun field3(): Field<LocalDateTime?> = Review.REVIEW.DATE_CREATED
     override fun field4(): Field<String?> = Review.REVIEW.DESCRIPTION
-    override fun field5(): Field<Int?> = Review.REVIEW.RATE
+    override fun field5(): Field<Long?> = Review.REVIEW.RATE
     override fun field6(): Field<String?> = Review.REVIEW.USERNAME
-    override fun component1(): Int? = id
-    override fun component2(): Int? = companyId
+    override fun component1(): Long? = id
+    override fun component2(): Long? = companyId
     override fun component3(): LocalDateTime? = dateCreated
     override fun component4(): String? = description
-    override fun component5(): Int? = rate
+    override fun component5(): Long? = rate
     override fun component6(): String? = username
-    override fun value1(): Int? = id
-    override fun value2(): Int? = companyId
+    override fun value1(): Long? = id
+    override fun value2(): Long? = companyId
     override fun value3(): LocalDateTime? = dateCreated
     override fun value4(): String? = description
-    override fun value5(): Int? = rate
+    override fun value5(): Long? = rate
     override fun value6(): String? = username
 
-    override fun value1(value: Int?): ReviewRecord {
+    override fun value1(value: Long?): ReviewRecord {
         this.id = value
         return this
     }
 
-    override fun value2(value: Int?): ReviewRecord {
+    override fun value2(value: Long?): ReviewRecord {
         this.companyId = value
         return this
     }
@@ -99,7 +99,7 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
         return this
     }
 
-    override fun value5(value: Int?): ReviewRecord {
+    override fun value5(value: Long?): ReviewRecord {
         this.rate = value
         return this
     }
@@ -110,11 +110,11 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
     }
 
     override fun values(
-        value1: Int?,
-        value2: Int?,
+        value1: Long?,
+        value2: Long?,
         value3: LocalDateTime?,
         value4: String?,
-        value5: Int?,
+        value5: Long?,
         value6: String?
     ): ReviewRecord {
         this.value1(value1)
@@ -130,11 +130,11 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
      * Create a detached, initialised ReviewRecord
      */
     constructor(
-        id: Int? = null,
-        companyId: Int? = null,
+        id: Long? = null,
+        companyId: Long? = null,
         dateCreated: LocalDateTime? = null,
         description: String? = null,
-        rate: Int? = null,
+        rate: Long? = null,
         username: String? = null
     ) : this() {
         this.id = id

@@ -52,14 +52,14 @@ open class CompaniesPartner(
     /**
      * The column <code>public.companies_partner.companies_id</code>.
      */
-    val COMPANIES_ID: TableField<CompaniesPartnerRecord, Int?> =
-        createField(DSL.name("companies_id"), SQLDataType.INTEGER.nullable(false), this, "")
+    val COMPANIES_ID: TableField<CompaniesPartnerRecord, Long?> =
+        createField(DSL.name("companies_id"), SQLDataType.BIGINT.nullable(false), this, "")
 
     /**
      * The column <code>public.companies_partner.partner_id</code>.
      */
-    val PARTNER_ID: TableField<CompaniesPartnerRecord, Int?> =
-        createField(DSL.name("partner_id"), SQLDataType.INTEGER.nullable(false), this, "")
+    val PARTNER_ID: TableField<CompaniesPartnerRecord, Long?> =
+        createField(DSL.name("partner_id"), SQLDataType.BIGINT.nullable(false), this, "")
 
     private constructor(alias: Name, aliased: Table<CompaniesPartnerRecord>?) : this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<CompaniesPartnerRecord>?, parameters: Array<Field<*>?>?) : this(
@@ -134,5 +134,5 @@ open class CompaniesPartner(
     // -------------------------------------------------------------------------
     // Row2 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row2<Int?, Int?> = super.fieldsRow() as Row2<Int?, Int?>
+    override fun fieldsRow(): Row2<Long?, Long?> = super.fieldsRow() as Row2<Long?, Long?>
 }

@@ -18,7 +18,7 @@ abstract class CityRepository(
     open val countryConverter: CountryModelConverter
 ) {
 
-    fun getCityById(id: Int): Mono<CityModel> {
+    fun getCityById(id: Long): Mono<CityModel> {
         return Mono.from(
             dsl.select(CITIES.asterisk()).from(CITIES)
                 .where(CITIES.ID.eq(id))
@@ -27,7 +27,7 @@ abstract class CityRepository(
             .map(cityConverter::toModel)
     }
 
-    fun getCountryByCityId(id: Int): Mono<CountryModel> {
+    fun getCountryByCityId(id: Long): Mono<CountryModel> {
         return Mono.from(
             dsl.select(COUNTRY.asterisk()).from(COUNTRY)
                 .where(

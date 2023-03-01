@@ -51,14 +51,13 @@ open class Partner(
     /**
      * The column <code>public.partner.id</code>.
      */
-    val ID: TableField<PartnerRecord, Int?> =
-        createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "")
+    val ID: TableField<PartnerRecord, Long?> =
+        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.partner.client_id</code>.
      */
-    val CLIENT_ID: TableField<PartnerRecord, Int?> =
-        createField(DSL.name("client_id"), SQLDataType.INTEGER.nullable(false), this, "")
+    val CLIENT_ID: TableField<PartnerRecord, Long?> = createField(DSL.name("client_id"), SQLDataType.BIGINT, this, "")
 
     private constructor(alias: Name, aliased: Table<PartnerRecord>?) : this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<PartnerRecord>?, parameters: Array<Field<*>?>?) : this(
@@ -90,10 +89,10 @@ open class Partner(
             key
         ), child, key, PARTNER, null
     )
+
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<PartnerRecord, Int?> = super.getIdentity() as Identity<PartnerRecord, Int?>
+    override fun getIdentity(): Identity<PartnerRecord, Long?> = super.getIdentity() as Identity<PartnerRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<PartnerRecord> = PARTNER_PKEY
-    override fun getUniqueKeys(): List<UniqueKey<PartnerRecord>> = listOf(com.fs.domain.jooq.keys.CLIENT_ID)
     override fun getReferences(): List<ForeignKey<PartnerRecord, *>> = listOf(PARTNER__PARTNER_CLIENT_ID_FKEY)
 
     private lateinit var _client: Client
@@ -123,5 +122,5 @@ open class Partner(
     // -------------------------------------------------------------------------
     // Row2 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row2<Int?, Int?> = super.fieldsRow() as Row2<Int?, Int?>
+    override fun fieldsRow(): Row2<Long?, Long?> = super.fieldsRow() as Row2<Long?, Long?>
 }

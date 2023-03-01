@@ -51,14 +51,14 @@ open class Cities(
     /**
      * The column <code>public.cities.id</code>.
      */
-    val ID: TableField<CitiesRecord, Int?> =
-        createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "")
+    val ID: TableField<CitiesRecord, Long?> =
+        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.cities.country_code</code>.
      */
-    val COUNTRY_CODE: TableField<CitiesRecord, Int?> =
-        createField(DSL.name("country_code"), SQLDataType.INTEGER, this, "")
+    val COUNTRY_CODE: TableField<CitiesRecord, Long?> =
+        createField(DSL.name("country_code"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.cities.name</code>.
@@ -95,8 +95,9 @@ open class Cities(
             key
         ), child, key, CITIES, null
     )
+
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<CitiesRecord, Int?> = super.getIdentity() as Identity<CitiesRecord, Int?>
+    override fun getIdentity(): Identity<CitiesRecord, Long?> = super.getIdentity() as Identity<CitiesRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<CitiesRecord> = CITIES_PKEY
     override fun getReferences(): List<ForeignKey<CitiesRecord, *>> = listOf(CITIES__CITIES_COUNTRY_CODE_FKEY)
 
@@ -127,5 +128,5 @@ open class Cities(
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row3<Int?, Int?, String?> = super.fieldsRow() as Row3<Int?, Int?, String?>
+    override fun fieldsRow(): Row3<Long?, Long?, String?> = super.fieldsRow() as Row3<Long?, Long?, String?>
 }

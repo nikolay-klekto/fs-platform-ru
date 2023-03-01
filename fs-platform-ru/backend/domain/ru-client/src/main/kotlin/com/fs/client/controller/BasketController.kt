@@ -13,13 +13,13 @@ open class BasketController(
 ) {
 
     @GetMapping("{id}")
-    fun getBasketByID(@PathVariable("id") basketId: Int) =
+    fun getBasketByID(@PathVariable("id") basketId: Long) =
         basketRepository.getById(basketId)
 
     @PutMapping("{id}")
     fun updateBasketByID(
         @RequestBody basketModel: BasketModel,
-        @PathVariable("id") id: Int
+        @PathVariable("id") id: Long
     ) = basketRepository
         .updateById(id, basketModel)
 }

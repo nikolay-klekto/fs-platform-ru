@@ -51,33 +51,33 @@ open class Order(
     /**
      * The column <code>public.order.id</code>.
      */
-    val ID: TableField<OrderRecord, Int?> =
-        createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "")
+    val ID: TableField<OrderRecord, Long?> =
+        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.order.basket_id</code>.
      */
-    val BASKET_ID: TableField<OrderRecord, Int?> = createField(DSL.name("basket_id"), SQLDataType.INTEGER, this, "")
+    val BASKET_ID: TableField<OrderRecord, Long?> = createField(DSL.name("basket_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.order.city_id</code>.
      */
-    val CITY_ID: TableField<OrderRecord, Int?> = createField(DSL.name("city_id"), SQLDataType.INTEGER, this, "")
+    val CITY_ID: TableField<OrderRecord, Long?> = createField(DSL.name("city_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.order.company_id</code>.
      */
-    val COMPANY_ID: TableField<OrderRecord, Int?> = createField(DSL.name("company_id"), SQLDataType.INTEGER, this, "")
+    val COMPANY_ID: TableField<OrderRecord, Long?> = createField(DSL.name("company_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.order.position_id</code>.
      */
-    val POSITION_ID: TableField<OrderRecord, Int?> = createField(DSL.name("position_id"), SQLDataType.INTEGER, this, "")
+    val POSITION_ID: TableField<OrderRecord, Long?> = createField(DSL.name("position_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.order.service_id</code>.
      */
-    val SERVICE_ID: TableField<OrderRecord, Int?> = createField(DSL.name("service_id"), SQLDataType.INTEGER, this, "")
+    val SERVICE_ID: TableField<OrderRecord, Long?> = createField(DSL.name("service_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.order.is_expired</code>.
@@ -94,8 +94,8 @@ open class Order(
     /**
      * The column <code>public.order.total_work_days</code>.
      */
-    val TOTAL_WORK_DAYS: TableField<OrderRecord, Int?> =
-        createField(DSL.name("total_work_days"), SQLDataType.INTEGER, this, "")
+    val TOTAL_WORK_DAYS: TableField<OrderRecord, Long?> =
+        createField(DSL.name("total_work_days"), SQLDataType.BIGINT, this, "")
 
     private constructor(alias: Name, aliased: Table<OrderRecord>?) : this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<OrderRecord>?, parameters: Array<Field<*>?>?) : this(
@@ -127,8 +127,9 @@ open class Order(
             key
         ), child, key, ORDER, null
     )
+
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<OrderRecord, Int?> = super.getIdentity() as Identity<OrderRecord, Int?>
+    override fun getIdentity(): Identity<OrderRecord, Long?> = super.getIdentity() as Identity<OrderRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<OrderRecord> = ORDER_PKEY
     override fun getReferences(): List<ForeignKey<OrderRecord, *>> = listOf(
         ORDER__ORDER_BASKET_ID_FKEY,
@@ -209,6 +210,6 @@ open class Order(
     // -------------------------------------------------------------------------
     // Row9 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row9<Int?, Int?, Int?, Int?, Int?, Int?, Boolean?, LocalDateTime?, Int?> =
-        super.fieldsRow() as Row9<Int?, Int?, Int?, Int?, Int?, Int?, Boolean?, LocalDateTime?, Int?>
+    override fun fieldsRow(): Row9<Long?, Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?> =
+        super.fieldsRow() as Row9<Long?, Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?>
 }

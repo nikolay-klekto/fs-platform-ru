@@ -50,13 +50,13 @@ open class Service(
     /**
      * The column <code>public.service.id</code>.
      */
-    val ID: TableField<ServiceRecord, Int?> =
-        createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "")
+    val ID: TableField<ServiceRecord, Long?> =
+        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.service.price</code>.
      */
-    val PRICE: TableField<ServiceRecord, Int?> = createField(DSL.name("price"), SQLDataType.INTEGER, this, "")
+    val PRICE: TableField<ServiceRecord, Long?> = createField(DSL.name("price"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.service.name</code>.
@@ -93,8 +93,9 @@ open class Service(
             key
         ), child, key, SERVICE, null
     )
+
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<ServiceRecord, Int?> = super.getIdentity() as Identity<ServiceRecord, Int?>
+    override fun getIdentity(): Identity<ServiceRecord, Long?> = super.getIdentity() as Identity<ServiceRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ServiceRecord> = SERVICE_PKEY
     override fun `as`(alias: String): Service = Service(DSL.name(alias), this)
     override fun `as`(alias: Name): Service = Service(alias, this)
@@ -112,5 +113,5 @@ open class Service(
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row3<Int?, Int?, String?> = super.fieldsRow() as Row3<Int?, Int?, String?>
+    override fun fieldsRow(): Row3<Long?, Long?, String?> = super.fieldsRow() as Row3<Long?, Long?, String?>
 }

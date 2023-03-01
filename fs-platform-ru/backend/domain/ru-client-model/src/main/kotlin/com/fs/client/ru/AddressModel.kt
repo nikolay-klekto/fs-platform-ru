@@ -1,10 +1,10 @@
 package com.fs.client.ru
 
 data class AddressModel(
-    val id: Int,
-    val cityId: Int?,
-    val apartment: Int?,
-    val building: Int?,
-    val house: Int?,
+    val id: Long,
+    val cityId: Long?,
+    val apartment: Long?,
+    val building: Long?,
+    val house: Long?,
     val street: String?
 )

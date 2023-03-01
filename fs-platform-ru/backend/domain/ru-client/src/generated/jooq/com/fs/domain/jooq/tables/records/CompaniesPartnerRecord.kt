@@ -17,46 +17,46 @@ import org.jooq.impl.UpdatableRecordImpl
  */
 @Suppress("UNCHECKED_CAST")
 open class CompaniesPartnerRecord() : UpdatableRecordImpl<CompaniesPartnerRecord>(CompaniesPartner.COMPANIES_PARTNER),
-    Record2<Int?, Int?> {
+    Record2<Long?, Long?> {
 
-    var companiesId: Int?
+    var companiesId: Long?
         set(value): Unit = set(0, value)
-        get(): Int? = get(0) as Int?
+        get(): Long? = get(0) as Long?
 
-    var partnerId: Int?
+    var partnerId: Long?
         set(value): Unit = set(1, value)
-        get(): Int? = get(1) as Int?
+        get(): Long? = get(1) as Long?
 
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
 
-    override fun key(): Record2<Int?, Int?> = super.key() as Record2<Int?, Int?>
+    override fun key(): Record2<Long?, Long?> = super.key() as Record2<Long?, Long?>
 
     // -------------------------------------------------------------------------
     // Record2 type implementation
     // -------------------------------------------------------------------------
 
-    override fun fieldsRow(): Row2<Int?, Int?> = super.fieldsRow() as Row2<Int?, Int?>
-    override fun valuesRow(): Row2<Int?, Int?> = super.valuesRow() as Row2<Int?, Int?>
-    override fun field1(): Field<Int?> = CompaniesPartner.COMPANIES_PARTNER.COMPANIES_ID
-    override fun field2(): Field<Int?> = CompaniesPartner.COMPANIES_PARTNER.PARTNER_ID
-    override fun component1(): Int? = companiesId
-    override fun component2(): Int? = partnerId
-    override fun value1(): Int? = companiesId
-    override fun value2(): Int? = partnerId
+    override fun fieldsRow(): Row2<Long?, Long?> = super.fieldsRow() as Row2<Long?, Long?>
+    override fun valuesRow(): Row2<Long?, Long?> = super.valuesRow() as Row2<Long?, Long?>
+    override fun field1(): Field<Long?> = CompaniesPartner.COMPANIES_PARTNER.COMPANIES_ID
+    override fun field2(): Field<Long?> = CompaniesPartner.COMPANIES_PARTNER.PARTNER_ID
+    override fun component1(): Long? = companiesId
+    override fun component2(): Long? = partnerId
+    override fun value1(): Long? = companiesId
+    override fun value2(): Long? = partnerId
 
-    override fun value1(value: Int?): CompaniesPartnerRecord {
+    override fun value1(value: Long?): CompaniesPartnerRecord {
         this.companiesId = value
         return this
     }
 
-    override fun value2(value: Int?): CompaniesPartnerRecord {
+    override fun value2(value: Long?): CompaniesPartnerRecord {
         this.partnerId = value
         return this
     }
 
-    override fun values(value1: Int?, value2: Int?): CompaniesPartnerRecord {
+    override fun values(value1: Long?, value2: Long?): CompaniesPartnerRecord {
         this.value1(value1)
         this.value2(value2)
         return this
@@ -65,7 +65,7 @@ open class CompaniesPartnerRecord() : UpdatableRecordImpl<CompaniesPartnerRecord
     /**
      * Create a detached, initialised CompaniesPartnerRecord
      */
-    constructor(companiesId: Int? = null, partnerId: Int? = null) : this() {
+    constructor(companiesId: Long? = null, partnerId: Long? = null) : this() {
         this.companiesId = companiesId
         this.partnerId = partnerId
     }

@@ -52,18 +52,18 @@ open class Office(
     /**
      * The column <code>public.office.id</code>.
      */
-    val ID: TableField<OfficeRecord, Int?> =
-        createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "")
+    val ID: TableField<OfficeRecord, Long?> =
+        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.office.address_id</code>.
      */
-    val ADDRESS_ID: TableField<OfficeRecord, Int?> = createField(DSL.name("address_id"), SQLDataType.INTEGER, this, "")
+    val ADDRESS_ID: TableField<OfficeRecord, Long?> = createField(DSL.name("address_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.office.company_id</code>.
      */
-    val COMPANY_ID: TableField<OfficeRecord, Int?> = createField(DSL.name("company_id"), SQLDataType.INTEGER, this, "")
+    val COMPANY_ID: TableField<OfficeRecord, Long?> = createField(DSL.name("company_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.office.phone_number</code>.
@@ -101,8 +101,9 @@ open class Office(
             key
         ), child, key, OFFICE, null
     )
+
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<OfficeRecord, Int?> = super.getIdentity() as Identity<OfficeRecord, Int?>
+    override fun getIdentity(): Identity<OfficeRecord, Long?> = super.getIdentity() as Identity<OfficeRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<OfficeRecord> = OFFICE_PKEY
     override fun getReferences(): List<ForeignKey<OfficeRecord, *>> =
         listOf(OFFICE__OFFICE_ADDRESS_ID_FKEY, OFFICE__OFFICE_COMPANY_ID_FKEY)
@@ -145,5 +146,6 @@ open class Office(
     // -------------------------------------------------------------------------
     // Row4 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row4<Int?, Int?, Int?, String?> = super.fieldsRow() as Row4<Int?, Int?, Int?, String?>
+    override fun fieldsRow(): Row4<Long?, Long?, Long?, String?> =
+        super.fieldsRow() as Row4<Long?, Long?, Long?, String?>
 }

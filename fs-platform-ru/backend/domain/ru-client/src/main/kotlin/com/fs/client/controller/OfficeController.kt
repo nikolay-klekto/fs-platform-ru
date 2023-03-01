@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.*
 open class OfficeController(open val officeRepository: OfficeRepository) {
 
     @GetMapping("company/{id}")
-    fun getByCompanyId(@PathVariable("id") companyId: Int) =
+    fun getByCompanyId(@PathVariable("id") companyId: Long) =
         officeRepository.getAllByCompanyId(companyId)
 
     @GetMapping("{id}")
-    fun getByOfficeId(@PathVariable("id") officeId: Int) =
+    fun getByOfficeId(@PathVariable("id") officeId: Long) =
         officeRepository.getByOfficeId(officeId)
 
     @PutMapping("{id}")
     fun updateByOfficeId(
-        @PathVariable("id") officeId: Int,
+        @PathVariable("id") officeId: Long,
         @RequestBody companyAddress: CompanyAddress
     ) =
         officeRepository.updateCompanyAddress(officeId, companyAddress)
@@ -33,6 +33,6 @@ open class OfficeController(open val officeRepository: OfficeRepository) {
         officeRepository.insert(companyAddress)
 
     @DeleteMapping("{id}")
-    fun deleteByCompanyId(@PathVariable companyId: Int) =
+    fun deleteByCompanyId(@PathVariable companyId: Long) =
         officeRepository.deleteAllByCompanyId(companyId)
 }

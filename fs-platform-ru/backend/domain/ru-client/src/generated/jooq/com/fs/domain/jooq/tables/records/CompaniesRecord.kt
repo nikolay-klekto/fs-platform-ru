@@ -19,11 +19,11 @@ import org.jooq.impl.UpdatableRecordImpl
  */
 @Suppress("UNCHECKED_CAST")
 open class CompaniesRecord() : UpdatableRecordImpl<CompaniesRecord>(Companies.COMPANIES),
-    Record5<Int?, Industry?, String?, String?, String?> {
+    Record5<Long?, Industry?, String?, String?, String?> {
 
-    var id: Int?
+    var id: Long?
         set(value): Unit = set(0, value)
-        get(): Int? = get(0) as Int?
+        get(): Long? = get(0) as Long?
 
     var companyIndustry: Industry?
         set(value): Unit = set(1, value)
@@ -45,35 +45,35 @@ open class CompaniesRecord() : UpdatableRecordImpl<CompaniesRecord>(Companies.CO
     // Primary key information
     // -------------------------------------------------------------------------
 
-    override fun key(): Record1<Int?> = super.key() as Record1<Int?>
+    override fun key(): Record1<Long?> = super.key() as Record1<Long?>
 
     // -------------------------------------------------------------------------
     // Record5 type implementation
     // -------------------------------------------------------------------------
 
-    override fun fieldsRow(): Row5<Int?, Industry?, String?, String?, String?> =
-        super.fieldsRow() as Row5<Int?, Industry?, String?, String?, String?>
+    override fun fieldsRow(): Row5<Long?, Industry?, String?, String?, String?> =
+        super.fieldsRow() as Row5<Long?, Industry?, String?, String?, String?>
 
-    override fun valuesRow(): Row5<Int?, Industry?, String?, String?, String?> =
-        super.valuesRow() as Row5<Int?, Industry?, String?, String?, String?>
+    override fun valuesRow(): Row5<Long?, Industry?, String?, String?, String?> =
+        super.valuesRow() as Row5<Long?, Industry?, String?, String?, String?>
 
-    override fun field1(): Field<Int?> = Companies.COMPANIES.ID
+    override fun field1(): Field<Long?> = Companies.COMPANIES.ID
     override fun field2(): Field<Industry?> = Companies.COMPANIES.COMPANY_INDUSTRY
     override fun field3(): Field<String?> = Companies.COMPANIES.NAME
     override fun field4(): Field<String?> = Companies.COMPANIES.SITE
     override fun field5(): Field<String?> = Companies.COMPANIES.SHORT_DESCRIPTION
-    override fun component1(): Int? = id
+    override fun component1(): Long? = id
     override fun component2(): Industry? = companyIndustry
     override fun component3(): String? = name
     override fun component4(): String? = site
     override fun component5(): String? = shortDescription
-    override fun value1(): Int? = id
+    override fun value1(): Long? = id
     override fun value2(): Industry? = companyIndustry
     override fun value3(): String? = name
     override fun value4(): String? = site
     override fun value5(): String? = shortDescription
 
-    override fun value1(value: Int?): CompaniesRecord {
+    override fun value1(value: Long?): CompaniesRecord {
         this.id = value
         return this
     }
@@ -99,7 +99,7 @@ open class CompaniesRecord() : UpdatableRecordImpl<CompaniesRecord>(Companies.CO
     }
 
     override fun values(
-        value1: Int?,
+        value1: Long?,
         value2: Industry?,
         value3: String?,
         value4: String?,
@@ -117,7 +117,7 @@ open class CompaniesRecord() : UpdatableRecordImpl<CompaniesRecord>(Companies.CO
      * Create a detached, initialised CompaniesRecord
      */
     constructor(
-        id: Int? = null,
+        id: Long? = null,
         companyIndustry: Industry? = null,
         name: String? = null,
         site: String? = null,

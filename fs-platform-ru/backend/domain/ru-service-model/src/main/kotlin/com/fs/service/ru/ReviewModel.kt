@@ -3,10 +3,10 @@ package com.fs.service.ru
 import java.time.LocalDateTime
 
 data class ReviewModel(
-    val id: Int?,
-    val companyId: Int?,
+    val id: Long?,
+    val companyId: Long?,
     val dateCreated: LocalDateTime? = LocalDateTime.now(),
     val description: String?,
-    val rate: Int?,
+    val rate: Long?,
     val username: String?
 )
