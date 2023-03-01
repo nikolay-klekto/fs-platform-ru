@@ -10,15 +10,15 @@ class CityModelConverter : ModelConverter<Cities, CityModel> {
     override fun toModel(rawObject: Cities): CityModel {
         return CityModel(
             id = rawObject.id!!,
-            countryId = rawObject.countryCode!!,
-            name = rawObject.name!!
+            countryCode = rawObject.countryCode,
+            name = rawObject.name
         )
     }
 
     override fun fromModel(modelObject: CityModel): Cities {
         return Cities(
             modelObject.id,
-            modelObject.countryId,
+            modelObject.countryCode,
             modelObject.name
         )
     }

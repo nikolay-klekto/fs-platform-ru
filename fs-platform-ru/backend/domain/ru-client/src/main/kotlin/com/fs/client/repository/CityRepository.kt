@@ -52,4 +52,12 @@ abstract class CityRepository(
             .map(cityConverter::toModel)
     }
 
+    fun deleteCity(id: Long): Mono<Boolean> {
+        return Mono.fromSupplier {
+            dsl.deleteFrom(CITIES)
+                .where(CITIES.ID.eq(id))
+                .execute() == 1
+        }
+    }
+
 }

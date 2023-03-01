@@ -7,6 +7,7 @@ import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.Cities
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Country
+import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Client
 import com.fs.domain.jooq.tables.records.ClientRecord
 import com.fs.domain.jooq.tables.references.BASKET
@@ -30,13 +31,14 @@ abstract class ClientRepository(
                 .join(Country.COUNTRY).on(Cities.CITIES.COUNTRY_CODE.eq(Country.COUNTRY.CODE))
                 .where(CLIENT.ID.eq(id))
         )
-            .map { it.into(com.fs.domain.jooq.tables.pojos.Client::class.java) }
+            .map { it.into(Client::class.java) }
             .map(converter::toModel)
     }
 
     fun updateClientInfo(id: Long, newClientModel: ClientModel): Mono<Boolean> {
-        val oldClientModel: ClientModel = getClintById(id).block()!!
         return Mono.fromSupplier {
+            val oldClientModel: ClientModel = getClintById(id).block()!!
+
             dsl.update(CLIENT)
                 .set(CLIENT.CITY_ID, newClientModel.cityId ?: oldClientModel.cityId)
                 .set(CLIENT.BIRTHDAY, newClientModel.birthday ?: oldClientModel.birthday)
@@ -116,9 +118,11 @@ abstract class ClientRepository(
                 dsl.deleteFrom(CLIENT)
                     .where(CLIENT.ID.eq(id))
                     .execute()
-                return@fromSupplier dsl.deleteFrom(BASKET)
+                dsl.deleteFrom(BASKET)
                     .where(BASKET.ID.eq(clientRecord.basketId))
-                    .execute() == 1
+                    .execute()
+                dsl.deleteFrom(ORDER)
+                    .where(ORDER.BASKET_ID.eq(clientRecord.basketId))
             }
             false
         }

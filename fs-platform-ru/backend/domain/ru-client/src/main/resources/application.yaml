@@ -1,4 +1,4 @@
-grapgql:
+graphql:
   datetime:
     scalars:
       local-date-time:

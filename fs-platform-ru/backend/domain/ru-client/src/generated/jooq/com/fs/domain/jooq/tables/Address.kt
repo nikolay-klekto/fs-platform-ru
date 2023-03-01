@@ -109,7 +109,6 @@ open class Address(
             key
         ), child, key, ADDRESS, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<AddressRecord, Long?> = super.getIdentity() as Identity<AddressRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<AddressRecord> = ADDRESS_PKEY

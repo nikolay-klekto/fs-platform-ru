@@ -95,7 +95,6 @@ open class Cities(
             key
         ), child, key, CITIES, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<CitiesRecord, Long?> = super.getIdentity() as Identity<CitiesRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<CitiesRecord> = CITIES_PKEY

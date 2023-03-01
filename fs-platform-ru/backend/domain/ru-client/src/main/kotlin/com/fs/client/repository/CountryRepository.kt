@@ -35,7 +35,6 @@ abstract class CountryRepository(
         return Mono.fromSupplier {
             val newCountryRecord: CountryRecord = dsl.newRecord(COUNTRY)
             newCountryRecord.from(countryModel)
-            newCountryRecord.reset(COUNTRY.CODE)
             newCountryRecord.store()
             return@fromSupplier newCountryRecord.into(Country::class.java)
         }

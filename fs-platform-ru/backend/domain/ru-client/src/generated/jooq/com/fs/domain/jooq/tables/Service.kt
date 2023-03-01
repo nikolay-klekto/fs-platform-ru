@@ -93,7 +93,6 @@ open class Service(
             key
         ), child, key, SERVICE, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<ServiceRecord, Long?> = super.getIdentity() as Identity<ServiceRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ServiceRecord> = SERVICE_PKEY

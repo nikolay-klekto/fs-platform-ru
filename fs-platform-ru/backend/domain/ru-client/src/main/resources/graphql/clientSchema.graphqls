@@ -10,6 +10,15 @@ type Query {
     reviewById(id: ID!): Review
     getAllReviews: [Review]
 
+    getCity(id: ID!): City
+    getCountryByCity(id: ID): Country
+
+    getOrderById(id: ID!): Order
+    getOrdersByClientId(clientId: ID): [Order]
+    getOrdersByBasketId(basketId: ID): [Order]
+
+
+
 }
 
 type Mutation {
@@ -21,23 +30,11 @@ type Mutation {
     updateReview(review: ReviewInput): Boolean
     deleteReviewById(id: ID): Boolean
 
-}
+    addCity(city: CityInput): City
+    deleteCity(cityId: ID): Boolean
 
-type Review {
-    id: ID
-    companyId: ID
-    dateCreated: LocalDateTime
-    description: String,
-    rate: ID
-    username: String
-}
-
-
-
-type Service {
-    id: ID
-    price: ID
-    name: String
+    addOrder(order: OrderInput): Order
+    updateOrder(order: OrderInput): Boolean
 }
 
 input ServiceInput {
@@ -54,6 +51,70 @@ input ReviewInput {
     username: String
 }
 
+input CityInput {
+    id: ID,
+    countryCode: ID,
+    name: String
+}
+
+input CountryInput {
+    code: ID,
+    currency: CurrencyEnum,
+    name: CountryCodeEnum
+}
+
+input OrderInput {
+    id: ID
+    basket: ID
+    city: ID
+    company: ID
+    position: ID
+    service: ID
+    isExpired: Boolean
+    startWorkDate: LocalDateTime
+    totalWorkDays: ID
+}
+
+type Review {
+    id: ID
+    companyId: ID
+    dateCreated: LocalDateTime
+    description: String,
+    rate: ID
+    username: String
+}
+
+type Order {
+    id: ID
+    basket: Basket
+    city: City
+    company: Companies
+    position: Position
+    service: Service
+    isExpired: Boolean
+    startWorkDate: LocalDateTime
+    totalWorkDays: ID
+}
+
+type Companies {
+    id: ID
+    companyIndustry: CompanyIndustryEnum
+    name: String
+    site: String
+    shortDescription: String
+}
+
+type Position {
+    id: ID
+    description: String
+    name: String
+}
+
+type Service {
+    id: ID
+    price: ID
+    name: String
+}
 
 type Client {
     id: ID!,
@@ -130,5 +191,24 @@ enum CountryCodeEnum {
     BELARUS
     RUSSIA
     POLAND
+}
+
+enum CompanyIndustryEnum {
+    IT
+    BOOKKEEPING
+    FEC
+    SERVICE
+    ARMY
+    SECURITY
+    RAWMATERIALSMINING
+    ART
+    MEDICINE
+    SCIENCE
+    GOV_SERVICE
+    SALES
+    PRODUCTION
+    BUILDING
+    TRANSPORT
+    OTHER
 }
 

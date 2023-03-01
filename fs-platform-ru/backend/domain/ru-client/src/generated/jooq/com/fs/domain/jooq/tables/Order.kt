@@ -127,7 +127,6 @@ open class Order(
             key
         ), child, key, ORDER, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<OrderRecord, Long?> = super.getIdentity() as Identity<OrderRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<OrderRecord> = ORDER_PKEY

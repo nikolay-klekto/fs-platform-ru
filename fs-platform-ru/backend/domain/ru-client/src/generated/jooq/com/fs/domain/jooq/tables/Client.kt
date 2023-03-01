@@ -196,7 +196,6 @@ open class Client(
             key
         ), child, key, CLIENT, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<ClientRecord, Long?> = super.getIdentity() as Identity<ClientRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ClientRecord> = CLIENT_PKEY

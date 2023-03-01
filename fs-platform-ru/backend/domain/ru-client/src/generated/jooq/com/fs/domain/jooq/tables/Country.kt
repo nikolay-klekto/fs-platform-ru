@@ -107,7 +107,6 @@ open class Country(
             key
         ), child, key, COUNTRY, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<CountryRecord, Long?> = super.getIdentity() as Identity<CountryRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<CountryRecord> = COUNTRY_PKEY

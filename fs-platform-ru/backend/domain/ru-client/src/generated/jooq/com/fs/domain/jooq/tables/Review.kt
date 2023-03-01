@@ -112,7 +112,6 @@ open class Review(
             key
         ), child, key, REVIEW, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<ReviewRecord, Long?> = super.getIdentity() as Identity<ReviewRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ReviewRecord> = REVIEW_PKEY

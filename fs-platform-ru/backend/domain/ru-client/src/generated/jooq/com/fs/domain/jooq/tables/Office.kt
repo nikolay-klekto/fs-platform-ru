@@ -101,7 +101,6 @@ open class Office(
             key
         ), child, key, OFFICE, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<OfficeRecord, Long?> = super.getIdentity() as Identity<OfficeRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<OfficeRecord> = OFFICE_PKEY

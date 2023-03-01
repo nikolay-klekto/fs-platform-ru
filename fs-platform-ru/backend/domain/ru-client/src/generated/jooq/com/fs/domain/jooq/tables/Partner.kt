@@ -89,7 +89,6 @@ open class Partner(
             key
         ), child, key, PARTNER, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<PartnerRecord, Long?> = super.getIdentity() as Identity<PartnerRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<PartnerRecord> = PARTNER_PKEY
