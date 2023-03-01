@@ -38,10 +38,9 @@ open class ServiceController(
         serviceRepository.insert(serviceModel)
 
     @MutationMapping
-    open fun addService(
-        @Argument services: ServiceModel
-    ): Mono<ServiceModel> =
-        serviceRepository.insert(services)
+    open fun addService(@Argument services: ServiceModel): Mono<ServiceModel> {
+        return serviceRepository.insert(services)
+    }
 
     @MutationMapping
     open fun updateServiceById(@Arguments id: Int, service: ServiceModel): Mono<Boolean> {

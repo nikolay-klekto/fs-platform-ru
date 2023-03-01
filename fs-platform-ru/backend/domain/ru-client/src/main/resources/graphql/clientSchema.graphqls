@@ -2,15 +2,36 @@
 
 type Query {
     clientById(id: ID!): Client
+
     serviceById(id: ID!): Service
     getAllServices: [Service]
+
+    reviewById(id: ID!): Review
+    getAllReviews: [Review]
+
 }
 
 type Mutation {
     addService(services: ServiceInput): Service
     updateServiceById(id: Int, service: ServiceInput): Boolean
     deleteServiceById(id: Int): Boolean
+
+    addService(review: ReviewInput): Review
+    updateReview(review: ReviewInput): Boolean
+    deleteReviewById(id: Int): Boolean
+
 }
+
+type Review {
+    id: ID
+    companyId: ID
+    dateCreated: String
+    description: String,
+    rate: Int
+    username: String
+}
+
+
 
 type Service {
     id: ID
@@ -22,6 +43,14 @@ input ServiceInput {
     id: ID
     price: Int
     name: String
+}
+
+input ReviewInput {
+    id: ID!
+    companyId: ID
+    description: String,
+    rate: Int
+    username: String
 }
 
 
