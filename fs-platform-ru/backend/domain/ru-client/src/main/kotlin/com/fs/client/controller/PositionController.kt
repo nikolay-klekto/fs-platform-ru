@@ -19,7 +19,7 @@ open class PositionController(
 ) {
 
     @QueryMapping
-    open fun positionById(@Argument id: Long): Mono<PositionModel> {
+    open fun getPositionById(@Argument id: Long): Mono<PositionModel> {
         return positionRepository.getById(id)
     }
 
@@ -47,7 +47,7 @@ open class PositionController(
     }
 
     @MutationMapping
-    open fun deletePosition(@Argument positionId: Long): Mono<Boolean> {
-        return positionRepository.delete(positionId)
+    open fun deletePosition(@Argument id: Long): Mono<Boolean> {
+        return positionRepository.delete(id)
     }
 }

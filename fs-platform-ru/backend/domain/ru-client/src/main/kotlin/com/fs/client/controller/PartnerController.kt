@@ -20,7 +20,7 @@ open class PartnerController(
 ) {
 
     @QueryMapping
-    open fun partnerById(@Argument id: Long): Mono<PartnerModel> {
+    open fun getPartnerById(@Argument id: Long): Mono<PartnerModel> {
         return partnerRepository.getById(id)
     }
 
@@ -30,17 +30,17 @@ open class PartnerController(
     }
 
     @QueryMapping
-    open fun getPartnersByCompanyId(@Argument companyId: Long): Mono<PartnerModel> {
-        return partnerRepository.getByCompanyId(companyId)
+    open fun getPartnersByCompanyId(@Argument id: Long): Mono<PartnerModel> {
+        return partnerRepository.getByCompanyId(id)
     }
 
     @MutationMapping
-    open fun addPartner(@Argument clientModel: ClientModel): Mono<PartnerModel> {
-        return partnerRepository.insert(clientModel)
+    open fun addPartner(@Argument client: ClientModel): Mono<PartnerModel> {
+        return partnerRepository.insert(client)
     }
 
     @MutationMapping
-    open fun deletePartner(@Argument partnerId: Long): Mono<Boolean> {
-        return partnerRepository.delete(partnerId)
+    open fun deletePartner(@Argument id: Long): Mono<Boolean> {
+        return partnerRepository.delete(id)
     }
 }

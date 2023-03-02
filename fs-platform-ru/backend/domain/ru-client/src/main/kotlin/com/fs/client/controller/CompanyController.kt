@@ -19,8 +19,8 @@ open class CompanyController(
 ) {
 
     @QueryMapping
-    open fun companyById(@Argument companyId: Long): Mono<CompanyModel> {
-        return companyRepository.getById(companyId)
+    open fun getCompanyById(@Argument id: Long): Mono<CompanyModel> {
+        return companyRepository.getById(id)
     }
 
     @QueryMapping
@@ -29,40 +29,40 @@ open class CompanyController(
     }
 
     @QueryMapping
-    open fun getAllCompaniesByPositionId(@Argument positionId: Long): Flux<CompanyModel> {
-        return companyRepository.getAllByPositionId(positionId)
+    open fun getAllCompaniesByPositionId(@Argument id: Long): Flux<CompanyModel> {
+        return companyRepository.getAllByPositionId(id)
     }
 
     @QueryMapping
-    open fun getAllCompaniesByCountryCode(@Argument countryCode: Long): Flux<CompanyModel> {
-        return companyRepository.getAllByCountryCode(countryCode)
+    open fun getAllCompaniesByCountryCode(@Argument code: Long): Flux<CompanyModel> {
+        return companyRepository.getAllByCountryCode(code)
     }
 
     @QueryMapping
-    open fun getAllCompaniesByCityId(@Argument cityId: Long): Flux<CompanyModel> {
-        return companyRepository.getAllByCityId(cityId)
+    open fun getAllCompaniesByCityId(@Argument id: Long): Flux<CompanyModel> {
+        return companyRepository.getAllByCityId(id)
     }
 
     @MutationMapping
-    open fun addCompany(@Argument companyModel: CompanyModel): Mono<CompanyModel> {
-        return companyRepository.insert(companyModel)
+    open fun addCompany(@Argument company: CompanyModel): Mono<CompanyModel> {
+        return companyRepository.insert(company)
     }
 
     @MutationMapping
     open fun addCompanyByPartner(
         @Argument partnerId: Long,
-        @Argument companyModel: CompanyModel
+        @Argument company: CompanyModel
     ): Mono<CompanyModel> {
-        return companyRepository.insertByPartner(partnerId, companyModel)
+        return companyRepository.insertByPartner(partnerId, company)
     }
 
     @MutationMapping
-    open fun updateCompany(@Argument companyModel: CompanyModel): Mono<Boolean> {
-        return companyRepository.update(companyModel)
+    open fun updateCompany(@Argument company: CompanyModel): Mono<Boolean> {
+        return companyRepository.update(company)
     }
 
     @MutationMapping
-    open fun deleteCompany(@Argument companyId: Long): Mono<Boolean> {
-        return companyRepository.delete(companyId)
+    open fun deleteCompany(@Argument id: Long): Mono<Boolean> {
+        return companyRepository.delete(id)
     }
 }

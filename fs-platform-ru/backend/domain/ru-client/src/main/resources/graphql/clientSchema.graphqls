@@ -16,22 +16,48 @@ type Query {
     getOrderById(id: ID!): Order
     getOrdersByClientId(clientId: ID): [Order]
     getOrdersByBasketId(basketId: ID): [Order]
+
+    getCompanyById(id: ID!): Company
+    getAllCompanies: [Company]
+    getAllCompaniesByPositionId(id: ID!): [Company]
+    getAllCompaniesByCountryCode(code: ID!): [Company]
+    getAllCompaniesByCityId(id: ID!): [Company]
+
+    getPositionById(id: ID!): Position
+    getAllPositionsByCompanyId(id: ID!): [Position]
+
+    getPartnerById(id: ID!): Partner
+    getAllPartners: [Partner]
+    getPartnersByCompanyId(id: ID!): Partner
 }
 
 type Mutation {
-    addService(services: ServiceInput): Service
-    updateServiceById(id: ID, service: ServiceInput): Boolean
-    deleteServiceById(id: ID): Boolean
+    addService(services: ServiceInput!): Service
+    updateServiceById(id: ID!, service: ServiceInput!): Boolean
+    deleteServiceById(id: ID!): Boolean
 
-    addReview(review: ReviewInput): Review
-    updateReview(review: ReviewInput): Boolean
-    deleteReviewById(id: ID): Boolean
+    addReview(review: ReviewInput!): Review
+    updateReview(review: ReviewInput!): Boolean
+    deleteReviewById(id: ID!): Boolean
 
-    addCity(city: CityInput): City
-    deleteCity(cityId: ID): Boolean
+    addCity(city: CityInput!): City
+    deleteCity(cityId: ID!): Boolean
 
-    addOrder(order: OrderInput): Order
-    updateOrder(order: OrderInput): Boolean
+    addOrder(order: OrderInput!): Order
+    updateOrder(order: OrderInput!): Boolean
+
+    addCompany(company: CompanyInput!): Company
+    addCompanyByPartner(partnerId: ID!, company: CompanyInput!): Company
+    updateCompany(company: CompanyInput!): Company
+    deleteCompany(id: ID!): Boolean
+
+    addPosition(position: PositionInput!): Position
+    addCompanyPosition(companyId: ID!, position: PositionInput!): Position
+    updatePosition(position: PositionInput!): Position
+    deletePosition(id: ID!): Boolean
+
+    addPartner(client: ClientInput): Partner
+    deletePartner(id: ID!): Boolean
 }
 
 input ServiceInput {
@@ -72,6 +98,51 @@ input OrderInput {
     totalWorkDays: ID
 }
 
+input CompanyInput {
+    id: ID
+    companyIndustryModel: CompanyIndustryEnum
+    legalCapacityStatus: LegalCapacityStatus
+    name: String
+    site: String
+    shortDescription: String
+}
+
+input PositionInput {
+    id: ID
+    description: String,
+    name: String
+}
+
+input PartnerInput {
+    id: ID
+    clientId: ID
+}
+
+input ClientInput {
+    id: ID!,
+    basket: BasketInput,
+    city: CityInput,
+    activateStatus: Boolean,
+    birthday: LocalDate,
+    dateCreated: LocalDate,
+    educationModelStatus: EducationEnum,
+    email: String,
+    employment: EmploymentEnum,
+    firstName: String,
+    lastName: String,
+    orderQuantity: ID,
+    password: String,
+    phoneNumber: String,
+    role: ClientRoleEnum,
+    telegramUsername: String,
+    username: String
+}
+
+input BasketInput {
+    id: ID,
+    totalPrice: String
+}
+
 type Review {
     id: ID
     companyId: ID
@@ -85,7 +156,7 @@ type Order {
     id: ID
     basket: Basket
     city: City
-    company: Companies
+    company: Company
     position: Position
     service: Service
     isExpired: Boolean
@@ -93,7 +164,7 @@ type Order {
     totalWorkDays: ID
 }
 
-type Companies {
+type Company {
     id: ID
     companyIndustry: CompanyIndustryEnum
     name: String
@@ -148,6 +219,11 @@ type Country {
     code: ID,
     currency: CurrencyEnum,
     name: CountryCodeEnum
+}
+
+type Partner {
+    id: ID,
+    clientId: ID!
 }
 
 enum EducationEnum {
@@ -209,7 +285,7 @@ enum CompanyIndustryEnum {
     OTHER
 }
 
-enum legalCapacityStatus {
+enum LegalCapacityStatus {
     CAPABLE
     TEMPORARILY_UNAVAILABLE
     CLOSED
