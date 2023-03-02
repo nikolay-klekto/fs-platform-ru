@@ -77,7 +77,7 @@ abstract class PositionRepository(open val dsl: DSLContext, open val converter: 
         }
     }
 
-    fun deleteCompanyPosition(positionId: Long): Mono<Boolean> {
+    fun delete(positionId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             val returnResult = dsl.deleteFrom(POSITION)
                 .where(POSITION.ID.eq(positionId))
