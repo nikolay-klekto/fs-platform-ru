@@ -24,12 +24,12 @@ val CITIES_PKEY: UniqueKey<CitiesRecord> =
     Internal.createUniqueKey(Cities.CITIES, DSL.name("cities_pkey"), arrayOf(Cities.CITIES.ID), true)
 val CLIENT_PKEY: UniqueKey<ClientRecord> =
     Internal.createUniqueKey(Client.CLIENT, DSL.name("client_pkey"), arrayOf(Client.CLIENT.ID), true)
-val COMPANIES_PKEY: UniqueKey<CompaniesRecord> =
-    Internal.createUniqueKey(Companies.COMPANIES, DSL.name("companies_pkey"), arrayOf(Companies.COMPANIES.ID), true)
-val COMPANIES_PARTNER_PKEY: UniqueKey<CompaniesPartnerRecord> = Internal.createUniqueKey(
-    CompaniesPartner.COMPANIES_PARTNER,
-    DSL.name("companies_partner_pkey"),
-    arrayOf(CompaniesPartner.COMPANIES_PARTNER.COMPANIES_ID, CompaniesPartner.COMPANIES_PARTNER.PARTNER_ID),
+val COMPANY_PKEY: UniqueKey<CompanyRecord> =
+    Internal.createUniqueKey(Company.COMPANY, DSL.name("company_pkey"), arrayOf(Company.COMPANY.ID), true)
+val COMPANY_PARTNER_PKEY: UniqueKey<CompanyPartnerRecord> = Internal.createUniqueKey(
+    CompanyPartner.COMPANY_PARTNER,
+    DSL.name("company_partner_pkey"),
+    arrayOf(CompanyPartner.COMPANY_PARTNER.COMPANY_ID, CompanyPartner.COMPANY_PARTNER.PARTNER_ID),
     true
 )
 val COUNTRY_PKEY: UniqueKey<CountryRecord> =
@@ -83,31 +83,13 @@ val CLIENT__CLIENT_CITY_ID_FKEY: ForeignKey<ClientRecord, CitiesRecord> = Intern
     arrayOf(Cities.CITIES.ID),
     true
 )
-val COMPANIES_PARTNER__COMPANIES_PARTNER_COMPANIES_ID_FKEY: ForeignKey<CompaniesPartnerRecord, CompaniesRecord> =
-    Internal.createForeignKey(
-        CompaniesPartner.COMPANIES_PARTNER,
-        DSL.name("companies_partner_companies_id_fkey"),
-        arrayOf(CompaniesPartner.COMPANIES_PARTNER.COMPANIES_ID),
-        com.fs.domain.jooq.keys.COMPANIES_PKEY,
-        arrayOf(Companies.COMPANIES.ID),
-        true
-    )
-val COMPANIES_PARTNER__COMPANIES_PARTNER_PARTNER_ID_FKEY: ForeignKey<CompaniesPartnerRecord, PartnerRecord> =
-    Internal.createForeignKey(
-        CompaniesPartner.COMPANIES_PARTNER,
-        DSL.name("companies_partner_partner_id_fkey"),
-        arrayOf(CompaniesPartner.COMPANIES_PARTNER.PARTNER_ID),
-        com.fs.domain.jooq.keys.PARTNER_PKEY,
-        arrayOf(Partner.PARTNER.ID),
-        true
-    )
-val COMPANIES_POSITIONS__COMPANIES_POSITIONS_COMPANY_ID_FKEY: ForeignKey<CompaniesPositionsRecord, CompaniesRecord> =
+val COMPANIES_POSITIONS__COMPANIES_POSITIONS_COMPANY_ID_FKEY: ForeignKey<CompaniesPositionsRecord, CompanyRecord> =
     Internal.createForeignKey(
         CompaniesPositions.COMPANIES_POSITIONS,
         DSL.name("companies_positions_company_id_fkey"),
         arrayOf(CompaniesPositions.COMPANIES_POSITIONS.COMPANY_ID),
-        com.fs.domain.jooq.keys.COMPANIES_PKEY,
-        arrayOf(Companies.COMPANIES.ID),
+        com.fs.domain.jooq.keys.COMPANY_PKEY,
+        arrayOf(Company.COMPANY.ID),
         true
     )
 val COMPANIES_POSITIONS__COMPANIES_POSITIONS_POSITION_ID_FKEY: ForeignKey<CompaniesPositionsRecord, PositionRecord> =
@@ -119,6 +101,24 @@ val COMPANIES_POSITIONS__COMPANIES_POSITIONS_POSITION_ID_FKEY: ForeignKey<Compan
         arrayOf(Position.POSITION.ID),
         true
     )
+val COMPANY_PARTNER__COMPANY_PARTNER_COMPANY_ID_FKEY: ForeignKey<CompanyPartnerRecord, CompanyRecord> =
+    Internal.createForeignKey(
+        CompanyPartner.COMPANY_PARTNER,
+        DSL.name("company_partner_company_id_fkey"),
+        arrayOf(CompanyPartner.COMPANY_PARTNER.COMPANY_ID),
+        com.fs.domain.jooq.keys.COMPANY_PKEY,
+        arrayOf(Company.COMPANY.ID),
+        true
+    )
+val COMPANY_PARTNER__COMPANY_PARTNER_PARTNER_ID_FKEY: ForeignKey<CompanyPartnerRecord, PartnerRecord> =
+    Internal.createForeignKey(
+        CompanyPartner.COMPANY_PARTNER,
+        DSL.name("company_partner_partner_id_fkey"),
+        arrayOf(CompanyPartner.COMPANY_PARTNER.PARTNER_ID),
+        com.fs.domain.jooq.keys.PARTNER_PKEY,
+        arrayOf(Partner.PARTNER.ID),
+        true
+    )
 val OFFICE__OFFICE_ADDRESS_ID_FKEY: ForeignKey<OfficeRecord, AddressRecord> = Internal.createForeignKey(
     Office.OFFICE,
     DSL.name("office_address_id_fkey"),
@@ -127,12 +127,12 @@ val OFFICE__OFFICE_ADDRESS_ID_FKEY: ForeignKey<OfficeRecord, AddressRecord> = In
     arrayOf(Address.ADDRESS.ID),
     true
 )
-val OFFICE__OFFICE_COMPANY_ID_FKEY: ForeignKey<OfficeRecord, CompaniesRecord> = Internal.createForeignKey(
+val OFFICE__OFFICE_COMPANY_ID_FKEY: ForeignKey<OfficeRecord, CompanyRecord> = Internal.createForeignKey(
     Office.OFFICE,
     DSL.name("office_company_id_fkey"),
     arrayOf(Office.OFFICE.COMPANY_ID),
-    com.fs.domain.jooq.keys.COMPANIES_PKEY,
-    arrayOf(Companies.COMPANIES.ID),
+    com.fs.domain.jooq.keys.COMPANY_PKEY,
+    arrayOf(Company.COMPANY.ID),
     true
 )
 val ORDER__ORDER_BASKET_ID_FKEY: ForeignKey<OrderRecord, BasketRecord> = Internal.createForeignKey(
@@ -151,12 +151,12 @@ val ORDER__ORDER_CITY_ID_FKEY: ForeignKey<OrderRecord, CitiesRecord> = Internal.
     arrayOf(Cities.CITIES.ID),
     true
 )
-val ORDER__ORDER_COMPANY_ID_FKEY: ForeignKey<OrderRecord, CompaniesRecord> = Internal.createForeignKey(
+val ORDER__ORDER_COMPANY_ID_FKEY: ForeignKey<OrderRecord, CompanyRecord> = Internal.createForeignKey(
     Order.ORDER,
     DSL.name("order_company_id_fkey"),
     arrayOf(Order.ORDER.COMPANY_ID),
-    com.fs.domain.jooq.keys.COMPANIES_PKEY,
-    arrayOf(Companies.COMPANIES.ID),
+    com.fs.domain.jooq.keys.COMPANY_PKEY,
+    arrayOf(Company.COMPANY.ID),
     true
 )
 val ORDER__ORDER_POSITION_ID_FKEY: ForeignKey<OrderRecord, PositionRecord> = Internal.createForeignKey(
@@ -183,11 +183,11 @@ val PARTNER__PARTNER_CLIENT_ID_FKEY: ForeignKey<PartnerRecord, ClientRecord> = I
     arrayOf(Client.CLIENT.ID),
     true
 )
-val REVIEW__REVIEW_COMPANY_ID_FKEY: ForeignKey<ReviewRecord, CompaniesRecord> = Internal.createForeignKey(
+val REVIEW__REVIEW_COMPANY_ID_FKEY: ForeignKey<ReviewRecord, CompanyRecord> = Internal.createForeignKey(
     Review.REVIEW,
     DSL.name("review_company_id_fkey"),
     arrayOf(Review.REVIEW.COMPANY_ID),
-    com.fs.domain.jooq.keys.COMPANIES_PKEY,
-    arrayOf(Companies.COMPANIES.ID),
+    com.fs.domain.jooq.keys.COMPANY_PKEY,
+    arrayOf(Company.COMPANY.ID),
     true
 )

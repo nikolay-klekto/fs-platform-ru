@@ -117,6 +117,18 @@ jooq {
                                 userType = "com.fs.client.ru.enums.CountryNameModel"
                                 includeExpression = ".*country.name"
                                 includeTypes = ".*"
+                            },
+                            ForcedType().apply {
+                                isEnumConverter = true
+                                userType = "com.fs.service.ru.enums.IndustryModel"
+                                includeExpression = ".*company.company_industry"
+                                includeTypes = ".*"
+                            },
+                            ForcedType().apply {
+                                isEnumConverter = true
+                                userType = "com.fs.service.ru.enums.CompanyLegalCapacityStatus"
+                                includeExpression = ".*company.legal_capacity_status"
+                                includeTypes = ".*"
                             }
                         )
                     }

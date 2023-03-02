@@ -20,5 +20,4 @@ class BasketModelConverter : ModelConverter<Basket, BasketModel> {
             modelObject.totalPrice
         )
     }
-
 }

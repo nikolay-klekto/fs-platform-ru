@@ -16,9 +16,6 @@ type Query {
     getOrderById(id: ID!): Order
     getOrdersByClientId(clientId: ID): [Order]
     getOrdersByBasketId(basketId: ID): [Order]
-
-
-
 }
 
 type Mutation {
@@ -211,4 +208,11 @@ enum CompanyIndustryEnum {
     TRANSPORT
     OTHER
 }
+
+enum legalCapacityStatus {
+    CAPABLE
+    TEMPORARILY_UNAVAILABLE
+    CLOSED
+}
+
 

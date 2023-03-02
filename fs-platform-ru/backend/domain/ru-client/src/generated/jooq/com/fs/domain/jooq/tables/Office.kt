@@ -108,7 +108,7 @@ open class Office(
         listOf(OFFICE__OFFICE_ADDRESS_ID_FKEY, OFFICE__OFFICE_COMPANY_ID_FKEY)
 
     private lateinit var _address: Address
-    private lateinit var _companies: Companies
+    private lateinit var _company: Company
 
     /**
      * Get the implicit join path to the <code>public.address</code> table.
@@ -121,14 +121,15 @@ open class Office(
     }
 
     /**
-     * Get the implicit join path to the <code>public.companies</code> table.
+     * Get the implicit join path to the <code>public.company</code> table.
      */
-    fun companies(): Companies {
-        if (!this::_companies.isInitialized)
-            _companies = Companies(this, OFFICE__OFFICE_COMPANY_ID_FKEY)
+    fun company(): Company {
+        if (!this::_company.isInitialized)
+            _company = Company(this, OFFICE__OFFICE_COMPANY_ID_FKEY)
 
-        return _companies;
+        return _company;
     }
+
     override fun `as`(alias: String): Office = Office(DSL.name(alias), this)
     override fun `as`(alias: Name): Office = Office(alias, this)
 

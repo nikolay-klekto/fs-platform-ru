@@ -27,7 +27,7 @@ abstract class ReviewRepository(open val dsl: DSLContext, open val converter: Re
             .map(converter::toModel)
     }
 
-    fun updateById(review: ReviewModel): Mono<Boolean> {
+    fun updateReview(review: ReviewModel): Mono<Boolean> {
         return Mono.fromSupplier {
             val oldReview = getById(review.id!!).block()
 

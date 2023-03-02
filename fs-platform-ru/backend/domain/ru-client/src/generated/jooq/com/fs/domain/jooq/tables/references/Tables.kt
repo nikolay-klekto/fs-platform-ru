@@ -28,19 +28,19 @@ val CITIES: Cities = Cities.CITIES
 val CLIENT: Client = Client.CLIENT
 
 /**
- * The table <code>public.companies</code>.
- */
-val COMPANIES: Companies = Companies.COMPANIES
-
-/**
- * The table <code>public.companies_partner</code>.
- */
-val COMPANIES_PARTNER: CompaniesPartner = CompaniesPartner.COMPANIES_PARTNER
-
-/**
  * The table <code>public.companies_positions</code>.
  */
 val COMPANIES_POSITIONS: CompaniesPositions = CompaniesPositions.COMPANIES_POSITIONS
+
+/**
+ * The table <code>public.company</code>.
+ */
+val COMPANY: Company = Company.COMPANY
+
+/**
+ * The table <code>public.company_partner</code>.
+ */
+val COMPANY_PARTNER: CompanyPartner = CompanyPartner.COMPANY_PARTNER
 
 /**
  * The table <code>public.country</code>.

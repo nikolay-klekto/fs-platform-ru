@@ -44,19 +44,19 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     val CLIENT: Client get() = Client.CLIENT
 
     /**
-     * The table <code>public.companies</code>.
-     */
-    val COMPANIES: Companies get() = Companies.COMPANIES
-
-    /**
-     * The table <code>public.companies_partner</code>.
-     */
-    val COMPANIES_PARTNER: CompaniesPartner get() = CompaniesPartner.COMPANIES_PARTNER
-
-    /**
      * The table <code>public.companies_positions</code>.
      */
     val COMPANIES_POSITIONS: CompaniesPositions get() = CompaniesPositions.COMPANIES_POSITIONS
+
+    /**
+     * The table <code>public.company</code>.
+     */
+    val COMPANY: Company get() = Company.COMPANY
+
+    /**
+     * The table <code>public.company_partner</code>.
+     */
+    val COMPANY_PARTNER: CompanyPartner get() = CompanyPartner.COMPANY_PARTNER
 
     /**
      * The table <code>public.country</code>.
@@ -100,9 +100,9 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
         Basket.BASKET,
         Cities.CITIES,
         Client.CLIENT,
-        Companies.COMPANIES,
-        CompaniesPartner.COMPANIES_PARTNER,
         CompaniesPositions.COMPANIES_POSITIONS,
+        Company.COMPANY,
+        CompanyPartner.COMPANY_PARTNER,
         Country.COUNTRY,
         Office.OFFICE,
         Order.ORDER,

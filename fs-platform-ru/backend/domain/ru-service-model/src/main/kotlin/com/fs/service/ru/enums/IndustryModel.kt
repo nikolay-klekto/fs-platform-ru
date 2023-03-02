@@ -1,6 +1,6 @@
 package com.fs.service.ru.enums
 
-enum class Industry(val value: Long) {
+enum class IndustryModel(val value: Long) {
     IT(1),
     BOOKKEEPING(2),
     FEC(3),
@@ -19,9 +19,9 @@ enum class Industry(val value: Long) {
     OTHER(16);
 
     companion object {
-        private val map = Industry.values()
-            .associateBy(Industry::value)
+        private val map = IndustryModel.values()
+            .associateBy(IndustryModel::value)
 
-        fun fromString(value: Long) = Industry.map[value]
+        fun fromString(value: Long) = IndustryModel.map[value]
     }
 }

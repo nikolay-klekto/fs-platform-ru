@@ -140,7 +140,7 @@ open class Order(
 
     private lateinit var _basket: Basket
     private lateinit var _cities: Cities
-    private lateinit var _companies: Companies
+    private lateinit var _company: Company
     private lateinit var _position: Position
     private lateinit var _service: Service
 
@@ -165,13 +165,13 @@ open class Order(
     }
 
     /**
-     * Get the implicit join path to the <code>public.companies</code> table.
+     * Get the implicit join path to the <code>public.company</code> table.
      */
-    fun companies(): Companies {
-        if (!this::_companies.isInitialized)
-            _companies = Companies(this, ORDER__ORDER_COMPANY_ID_FKEY)
+    fun company(): Company {
+        if (!this::_company.isInitialized)
+            _company = Company(this, ORDER__ORDER_COMPANY_ID_FKEY)
 
-        return _companies;
+        return _company;
     }
 
     /**

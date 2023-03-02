@@ -30,7 +30,7 @@ open class ReviewController(
 
     @MutationMapping
     open fun updateReview(@Argument review: ReviewModel): Mono<Boolean> {
-        return reviewRepository.updateById(review)
+        return reviewRepository.updateReview(review)
     }
 
     @MutationMapping

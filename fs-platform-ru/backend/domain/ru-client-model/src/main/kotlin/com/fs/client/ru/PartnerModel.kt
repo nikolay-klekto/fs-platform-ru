@@ -1,5 +1,6 @@
 package com.fs.client.ru
 
 data class PartnerModel(
-    val partnerId: Long
+    val id: Long,
+    val clientId: Long
 )

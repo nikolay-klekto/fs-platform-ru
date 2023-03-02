@@ -117,17 +117,18 @@ open class Review(
     override fun getPrimaryKey(): UniqueKey<ReviewRecord> = REVIEW_PKEY
     override fun getReferences(): List<ForeignKey<ReviewRecord, *>> = listOf(REVIEW__REVIEW_COMPANY_ID_FKEY)
 
-    private lateinit var _companies: Companies
+    private lateinit var _company: Company
 
     /**
-     * Get the implicit join path to the <code>public.companies</code> table.
+     * Get the implicit join path to the <code>public.company</code> table.
      */
-    fun companies(): Companies {
-        if (!this::_companies.isInitialized)
-            _companies = Companies(this, REVIEW__REVIEW_COMPANY_ID_FKEY)
+    fun company(): Company {
+        if (!this::_company.isInitialized)
+            _company = Company(this, REVIEW__REVIEW_COMPANY_ID_FKEY)
 
-        return _companies;
+        return _company;
     }
+
     override fun `as`(alias: String): Review = Review(DSL.name(alias), this)
     override fun `as`(alias: Name): Review = Review(alias, this)
 

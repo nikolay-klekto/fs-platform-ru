@@ -95,17 +95,17 @@ open class CompaniesPositions(
         COMPANIES_POSITIONS__COMPANIES_POSITIONS_POSITION_ID_FKEY
     )
 
-    private lateinit var _companies: Companies
+    private lateinit var _company: Company
     private lateinit var _position: Position
 
     /**
-     * Get the implicit join path to the <code>public.companies</code> table.
+     * Get the implicit join path to the <code>public.company</code> table.
      */
-    fun companies(): Companies {
-        if (!this::_companies.isInitialized)
-            _companies = Companies(this, COMPANIES_POSITIONS__COMPANIES_POSITIONS_COMPANY_ID_FKEY)
+    fun company(): Company {
+        if (!this::_company.isInitialized)
+            _company = Company(this, COMPANIES_POSITIONS__COMPANIES_POSITIONS_COMPANY_ID_FKEY)
 
-        return _companies;
+        return _company;
     }
 
     /**
