@@ -13,6 +13,9 @@ abstract class AddressRepository(
     open val converter: AddressModelConverter
 ) {
 
+    /**
+     * Only uses for get full information about company office
+     */
     fun getByAddressId(id: Long): Mono<AddressModel> {
         return Mono.from(
             dsl.select(ADDRESS.asterisk()).from(ADDRESS)
@@ -22,6 +25,9 @@ abstract class AddressRepository(
             .map(converter::toModel)
     }
 
+    /**
+     * Use to init address for client and office
+     */
     fun create(addressModel: AddressModel): Mono<AddressModel> =
         Mono.fromSupplier {
             val newAddressRecord: AddressRecord = dsl.newRecord(ADDRESS)
@@ -32,16 +38,16 @@ abstract class AddressRepository(
         }
             .map(converter::toModel)
 
-    fun updateByAddressId(addressId: Long, address: AddressModel): Mono<Boolean> {
+    fun update(address: AddressModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldAddressModel: AddressModel = getByAddressId(addressId).block() ?: return@fromSupplier false
+            val oldAddressModel: AddressModel = getByAddressId(address.id).block() ?: return@fromSupplier false
             dsl.update(ADDRESS)
                 .set(ADDRESS.CITY_ID, address.cityId ?: oldAddressModel.cityId)
                 .set(ADDRESS.APARTMENT, address.apartment ?: oldAddressModel.apartment)
                 .set(ADDRESS.BUILDING, address.building ?: oldAddressModel.building)
                 .set(ADDRESS.HOUSE, address.house ?: oldAddressModel.house)
                 .set(ADDRESS.STREET, address.street ?: oldAddressModel.street)
-                .where(ADDRESS.ID.eq(addressId))
+                .where(ADDRESS.ID.eq(address.id))
                 .execute() == 1
         }
     }

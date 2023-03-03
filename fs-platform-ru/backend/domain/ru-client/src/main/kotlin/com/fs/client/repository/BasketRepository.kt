@@ -19,11 +19,11 @@ abstract class BasketRepository(open val dsl: DSLContext, open val converter: Ba
             .map { it.into(Basket::class.java) }
             .map(converter::toModel)
 
-    fun updateById(id: Long, basket: BasketModel): Mono<Boolean> {
+    fun update(basket: BasketModel): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.update(BASKET)
                 .set(BASKET.TOTAL_PRICE, basket.totalPrice)
-                .where(BASKET.ID.eq(id))
+                .where(BASKET.ID.eq(basket.id))
                 .execute() == 1
         }
     }

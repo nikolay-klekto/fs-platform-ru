@@ -19,7 +19,6 @@ enum class CompanyLegalCapacityStatus(@get:JvmName("literal") public val literal
     CAPABLE("CAPABLE"),
     TEMPORARILY_UNAVAILABLE("TEMPORARILY_UNAVAILABLE"),
     CLOSED("CLOSED");
-
     override fun getCatalog(): Catalog? = schema.catalog
     override fun getSchema(): Schema = Public.PUBLIC
     override fun getName(): String = "company_legal_capacity_status"

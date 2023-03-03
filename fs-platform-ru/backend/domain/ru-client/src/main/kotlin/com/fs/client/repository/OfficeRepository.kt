@@ -48,7 +48,7 @@ abstract class OfficeRepository(
     fun updateCompanyAddress(id: Long, companyAddress: CompanyAddress): Mono<Boolean> {
         if (companyAddress.addressId != null) {
             val newAddressModel = converter.fromCompanyAddressToAddressModel(companyAddress)
-            addressRepository.updateByAddressId(newAddressModel.id, newAddressModel).block()
+            addressRepository.update(newAddressModel).block()
         }
         return updatePhoneNumberByOfficeId(id, companyAddress.phoneNumber)
     }

@@ -126,7 +126,6 @@ open class Company(
             key
         ), child, key, COMPANY, null
     )
-
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<CompanyRecord, Long?> = super.getIdentity() as Identity<CompanyRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<CompanyRecord> = COMPANY_PKEY

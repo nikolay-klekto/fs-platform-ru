@@ -3,7 +3,11 @@ package com.fs.client.controller
 import com.fs.client.repository.BasketRepository
 import com.fs.service.ru.BasketModel
 import io.swagger.v3.oas.annotations.tags.Tag
+import org.springframework.graphql.data.method.annotation.Argument
+import org.springframework.graphql.data.method.annotation.MutationMapping
+import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Mono
 
 @Tag(name = "Basket")
 @RestController
@@ -19,7 +23,23 @@ open class BasketController(
     @PutMapping("{id}")
     fun updateBasketByID(
         @RequestBody basketModel: BasketModel,
-        @PathVariable("id") id: Long
-    ) = basketRepository
-        .updateById(id, basketModel)
+    ): Mono<Boolean> {
+        return basketRepository.update(basketModel)
+    }
+
+    @QueryMapping
+    open fun getBasketById(@Argument id: Long): Mono<BasketModel> {
+        return basketRepository.getById(id)
+    }
+
+    @MutationMapping
+    open fun addBasket(): Mono<BasketModel> {
+        return basketRepository.insert()
+    }
+
+    @MutationMapping
+    open fun updateBasket(@Argument basket: BasketModel): Mono<Boolean> {
+        return basketRepository.update(basket)
+    }
+
 }

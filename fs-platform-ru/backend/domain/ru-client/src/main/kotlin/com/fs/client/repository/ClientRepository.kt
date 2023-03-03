@@ -35,9 +35,17 @@ abstract class ClientRepository(
             .map(converter::toModel)
     }
 
-    fun updateClientInfo(id: Long, newClientModel: ClientModel): Mono<Boolean> {
+    fun getAllClients(): Flux<ClientModel> {
+        return Flux.from(
+            dsl.selectFrom(CLIENT)
+        )
+            .map { it.into(Client::class.java) }
+            .map(converter::toModel)
+    }
+
+    fun updateClientInfo(newClientModel: ClientModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldClientModel: ClientModel = getClintById(id).block()!!
+            val oldClientModel: ClientModel = getClintById(newClientModel.id).block()!!
 
             dsl.update(CLIENT)
                 .set(CLIENT.CITY_ID, newClientModel.cityId ?: oldClientModel.cityId)
@@ -53,10 +61,9 @@ abstract class ClientRepository(
                 .set(CLIENT.PHONE_NUMBER, newClientModel.phoneNumber ?: oldClientModel.phoneNumber)
                 .set(CLIENT.TELEGRAM_USERNAME, newClientModel.telegramUsername ?: oldClientModel.telegramUsername)
                 .set(CLIENT.USERNAME, newClientModel.username ?: oldClientModel.username)
-                .where(CLIENT.ID.eq(id))
+                .where(CLIENT.ID.eq(newClientModel.id))
                 .execute() == 1
         }
-
     }
 
     fun changeActiveStatus(id: Long, activeStatus: Boolean): Mono<Boolean> {
@@ -99,16 +106,16 @@ abstract class ClientRepository(
         }
             .map(converter::toModel)
 
-    fun deleteClient(id: Long): Mono<Boolean> {
-        return Mono.fromSupplier {
-            dsl.deleteFrom(BASKET)
-                .where(BASKET.ID.eq(CLIENT.BASKET_ID))
-                .execute()
-            dsl.deleteFrom(CLIENT)
-                .where(CLIENT.ID.eq(id))
-                .execute() == 1
-        }
-    }
+//    fun deleteClient(id: Long): Mono<Boolean> {
+//        return Mono.fromSupplier {
+//            dsl.deleteFrom(BASKET)
+//                .where(BASKET.ID.eq(CLIENT.BASKET_ID))
+//                .execute()
+//            dsl.deleteFrom(CLIENT)
+//                .where(CLIENT.ID.eq(id))
+//                .execute() == 1
+//        }
+//    }
 
 
     fun delete(id: Long): Mono<Boolean> {
@@ -127,15 +134,6 @@ abstract class ClientRepository(
             false
         }
     }
-
-    fun getAllClients(): Flux<ClientModel> {
-        return Flux.from(
-            dsl.selectFrom(CLIENT)
-        )
-            .map { it.into(Client::class.java) }
-            .map(converter::toModel)
-    }
-
 }
 
 

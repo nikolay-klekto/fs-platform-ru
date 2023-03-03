@@ -2,7 +2,8 @@ scalar LocalDateTime
 scalar LocalDate
 
 type Query {
-    clientById(id: ID!): Client
+    getClintById(id: ID!): Client
+    getAllClients: [Service]
 
     serviceById(id: ID!): Service
     getAllServices: [Service]
@@ -29,6 +30,14 @@ type Query {
     getPartnerById(id: ID!): Partner
     getAllPartners: [Partner]
     getPartnersByCompanyId(id: ID!): Partner
+
+    getBasketById(id: ID!): Basket
+
+    getCountry(id: ID!): Country
+    getCountryByName(name: CountryNameEnum): Country
+
+    getOffice(id: ID!): Office
+    getAllOfficesByCompanyId: [Office]
 }
 
 type Mutation {
@@ -48,16 +57,36 @@ type Mutation {
 
     addCompany(company: CompanyInput!): Company
     addCompanyByPartner(partnerId: ID!, company: CompanyInput!): Company
-    updateCompany(company: CompanyInput!): Company
+    updateCompany(company: CompanyInput!): Boolean
     deleteCompany(id: ID!): Boolean
 
     addPosition(position: PositionInput!): Position
     addCompanyPosition(companyId: ID!, position: PositionInput!): Position
-    updatePosition(position: PositionInput!): Position
+    updatePosition(position: PositionInput!): Boolean
     deletePosition(id: ID!): Boolean
 
     addPartner(client: ClientInput): Partner
     deletePartner(id: ID!): Boolean
+
+    addAddress(address: AddressInput!): Address
+    updateAddress(address: AddressInput!): Boolean
+    deleteAddress(id: ID!): Boolean
+
+    addBasket: Basket
+    updateBasket(basket: BasketInput!): Boolean
+
+    updateClient(client: ClientInput!): Boolean
+    changePassword(clientId: ID!, password: String): Boolean
+    changeRole(clientId: ID!, role: ClientRoleEnum): Boolean
+    addClient(client: ClientInput): Client
+    deleteClient(id: ID!): Boolean
+
+    addCountry(country: CountryInput): Country
+    deleteCountry(id: ID!): Boolean
+
+    addOfficeAddress(address: AddressInput!): Address
+    updateAddressByCompanyId(id: ID!,  companyAddress: CompanyAddressInput!): Boolean
+    deleteAllOfficeInfoByCompanyId(id: ID!): Boolean
 }
 
 input ServiceInput {
@@ -83,7 +112,7 @@ input CityInput {
 input CountryInput {
     code: ID,
     currency: CurrencyEnum,
-    name: CountryCodeEnum
+    name: CountryNameEnum
 }
 
 input OrderInput {
@@ -141,6 +170,34 @@ input ClientInput {
 input BasketInput {
     id: ID,
     totalPrice: String
+}
+
+input AddressInput {
+    id: ID
+    city: ID
+    apartment: ID
+    building: ID
+    house: ID
+    street: String
+}
+
+input OfficeInput {
+    id: ID
+    addressId: ID
+    companyId: ID
+    phoneNumber: String
+}
+
+input CompanyAddressInput {
+    addressId: ID
+    cityId: ID
+    companyId: ID
+    officeId: ID
+    apartment: ID
+    building: ID
+    house: ID
+    phoneNumber: String
+    street: String
 }
 
 type Review {
@@ -218,12 +275,28 @@ type City {
 type Country {
     code: ID,
     currency: CurrencyEnum,
-    name: CountryCodeEnum
+    name: CountryNameEnum
 }
 
 type Partner {
     id: ID,
     clientId: ID!
+}
+
+type Address {
+    id: ID
+    city: ID
+    apartment: ID
+    building: ID
+    house: ID
+    street: String
+}
+
+type Office {
+    id: ID
+    addressId: ID
+    companyId: ID
+    phoneNumber: String
 }
 
 enum EducationEnum {
@@ -260,7 +333,7 @@ enum CurrencyEnum {
     PLN
 }
 
-enum CountryCodeEnum {
+enum CountryNameEnum {
     BELARUS
     RUSSIA
     POLAND
@@ -290,5 +363,3 @@ enum LegalCapacityStatus {
     TEMPORARILY_UNAVAILABLE
     CLOSED
 }
-
-

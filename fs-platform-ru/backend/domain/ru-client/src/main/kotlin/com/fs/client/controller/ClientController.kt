@@ -4,7 +4,12 @@ import com.fs.client.repository.ClientRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.enums.ClientRoleModel
 import io.swagger.v3.oas.annotations.tags.Tag
+import org.springframework.graphql.data.method.annotation.Argument
+import org.springframework.graphql.data.method.annotation.MutationMapping
+import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 
 @Tag(name = "Client")
 @RestController
@@ -16,15 +21,14 @@ open class ClientController(open val clientRepository: ClientRepository) {
         clientRepository.getClintById(clientAccountId)
 
     @GetMapping
-    fun getAllClients() =
+    fun getAllClientModels() =
         clientRepository.getAllClients()
 
     @PutMapping("{id}")
     fun updateClientByID(
-        @RequestBody clientModel: ClientModel,
-        @PathVariable("id") id: Long
+        @RequestBody clientModel: ClientModel
     ) = clientRepository
-        .updateClientInfo(id, clientModel)
+        .updateClientInfo(clientModel)
 
     @PutMapping("/status/{id}")
     fun updateClientActiveStatus(
@@ -59,9 +63,44 @@ open class ClientController(open val clientRepository: ClientRepository) {
     ) =
         clientRepository.insert(clientModel)
 
-//    @QueryMapping
-//    open fun clientById(@Argument id: Long): Mono<ClientModel> {
-//        return clientRepository.getClintById(id)
-//    }
+    @QueryMapping
+    open fun getClintById(@Argument id: Long): Mono<ClientModel> {
+        return clientRepository.getClintById(id)
+    }
 
+    @QueryMapping
+    open fun getAllClients(): Flux<ClientModel> {
+        return clientRepository.getAllClients()
+    }
+
+    @MutationMapping
+    open fun updateClient(@Argument client: ClientModel): Mono<Boolean> {
+        return clientRepository.updateClientInfo(client)
+    }
+
+    @MutationMapping
+    open fun changePassword(
+        @Argument clientId: Long,
+        @Argument password: String
+    ): Mono<Boolean> {
+        return clientRepository.changePassword(clientId, password)
+    }
+
+    @MutationMapping
+    open fun changeRole(
+        @Argument clientId: Long,
+        @Argument role: ClientRoleModel
+    ): Mono<Boolean> {
+        return clientRepository.changeRole(clientId, role)
+    }
+
+    @MutationMapping
+    open fun addClient(@Argument clientModel: ClientModel): Mono<ClientModel> {
+        return clientRepository.insert(clientModel)
+    }
+
+    @MutationMapping
+    open fun deleteClient(@Argument id: Long): Mono<Boolean> {
+        return clientRepository.delete(id)
+    }
 }

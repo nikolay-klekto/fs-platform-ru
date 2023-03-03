@@ -10,9 +10,4 @@ data class CompanyAddress(
     val house: Long?,
     val phoneNumber: String?,
     val street: String?
-) {
-
-//    companion object{
-//        fun get
-//    }
-}
+)

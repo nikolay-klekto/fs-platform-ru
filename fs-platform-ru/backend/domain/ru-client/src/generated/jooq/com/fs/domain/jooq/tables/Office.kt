@@ -129,7 +129,6 @@ open class Office(
 
         return _company;
     }
-
     override fun `as`(alias: String): Office = Office(DSL.name(alias), this)
     override fun `as`(alias: Name): Office = Office(alias, this)
 
