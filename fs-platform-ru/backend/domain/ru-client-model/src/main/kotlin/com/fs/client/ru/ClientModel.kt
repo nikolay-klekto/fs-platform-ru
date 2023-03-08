@@ -18,7 +18,6 @@ data class ClientModel(
     val employment: EmploymentModel?,
     val firstName: String?,
     val lastName: String?,
-    val orderQuantity: Long?,
     val password: String?,
     val phoneNumber: String?,
     val role: ClientRoleModel?,

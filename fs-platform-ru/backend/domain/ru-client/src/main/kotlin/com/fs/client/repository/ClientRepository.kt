@@ -4,7 +4,7 @@ import com.fs.client.ru.ClientModel
 import com.fs.client.ru.enums.ClientRoleModel
 import com.fs.client.service.ClientModelConverter
 import com.fs.domain.jooq.tables.Basket
-import com.fs.domain.jooq.tables.Cities
+import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
@@ -27,8 +27,8 @@ abstract class ClientRepository(
         return Mono.from(
             dsl.select(CLIENT.asterisk()).from(CLIENT)
                 .join(Basket.BASKET).on(CLIENT.BASKET_ID.eq(Basket.BASKET.ID))
-                .join(Cities.CITIES).on(CLIENT.CITY_ID.eq(Cities.CITIES.ID))
-                .join(Country.COUNTRY).on(Cities.CITIES.COUNTRY_CODE.eq(Country.COUNTRY.CODE))
+                .join(City.CITY).on(CLIENT.CITY_ID.eq(City.CITY.ID))
+                .join(Country.COUNTRY).on(City.CITY.COUNTRY_CODE.eq(Country.COUNTRY.CODE))
                 .where(CLIENT.ID.eq(id))
         )
             .map { it.into(Client::class.java) }
@@ -106,17 +106,6 @@ abstract class ClientRepository(
         }
             .map(converter::toModel)
 
-//    fun deleteClient(id: Long): Mono<Boolean> {
-//        return Mono.fromSupplier {
-//            dsl.deleteFrom(BASKET)
-//                .where(BASKET.ID.eq(CLIENT.BASKET_ID))
-//                .execute()
-//            dsl.deleteFrom(CLIENT)
-//                .where(CLIENT.ID.eq(id))
-//                .execute() == 1
-//        }
-//    }
-
 
     fun delete(id: Long): Mono<Boolean> {
         return Mono.fromSupplier {
@@ -134,6 +123,18 @@ abstract class ClientRepository(
             false
         }
     }
+
+//    fun deleteClient(id: Long): Mono<Boolean> {
+//        return Mono.fromSupplier {
+//            dsl.deleteFrom(BASKET)
+//                .where(BASKET.ID.eq(CLIENT.BASKET_ID))
+//                .execute()
+//            dsl.deleteFrom(CLIENT)
+//                .where(CLIENT.ID.eq(id))
+//                .execute() == 1
+//        }
+//    }
+
 }
 
 

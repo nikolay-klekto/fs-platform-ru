@@ -4,11 +4,11 @@ import com.fs.client.ru.CityModel
 import com.fs.client.ru.CountryModel
 import com.fs.client.service.CityModelConverter
 import com.fs.client.service.CountryModelConverter
-import com.fs.domain.jooq.tables.Cities.Companion.CITIES
+import com.fs.domain.jooq.tables.City.Companion.CITY
 import com.fs.domain.jooq.tables.Country.Companion.COUNTRY
-import com.fs.domain.jooq.tables.pojos.Cities
+import com.fs.domain.jooq.tables.pojos.City
 import com.fs.domain.jooq.tables.pojos.Country
-import com.fs.domain.jooq.tables.records.CitiesRecord
+import com.fs.domain.jooq.tables.records.CityRecord
 import org.jooq.DSLContext
 import reactor.core.publisher.Mono
 
@@ -20,10 +20,10 @@ abstract class CityRepository(
 
     fun getCityById(id: Long): Mono<CityModel> {
         return Mono.from(
-            dsl.select(CITIES.asterisk()).from(CITIES)
-                .where(CITIES.ID.eq(id))
+            dsl.select(CITY.asterisk()).from(CITY)
+                .where(CITY.ID.eq(id))
         )
-            .map { it.into(Cities::class.java) }
+            .map { it.into(City::class.java) }
             .map(cityConverter::toModel)
     }
 
@@ -32,8 +32,8 @@ abstract class CityRepository(
             dsl.select(COUNTRY.asterisk()).from(COUNTRY)
                 .where(
                     COUNTRY.CODE.eq(
-                        dsl.select(CITIES.COUNTRY_CODE).from(CITIES)
-                            .where(CITIES.ID.eq(id))
+                        dsl.select(CITY.COUNTRY_CODE).from(CITY)
+                            .where(CITY.ID.eq(id))
                     )
                 )
         )
@@ -43,19 +43,19 @@ abstract class CityRepository(
 
     fun createCity(newCity: CityModel): Mono<CityModel> {
         return Mono.fromSupplier {
-            val newCityRecord: CitiesRecord = dsl.newRecord(CITIES)
+            val newCityRecord: CityRecord = dsl.newRecord(CITY)
             newCityRecord.from(newCity)
-            newCityRecord.reset(CITIES.ID)
+            newCityRecord.reset(CITY.ID)
             newCityRecord.store()
-            return@fromSupplier newCityRecord.into(Cities::class.java)
+            return@fromSupplier newCityRecord.into(City::class.java)
         }
             .map(cityConverter::toModel)
     }
 
     fun deleteCity(id: Long): Mono<Boolean> {
         return Mono.fromSupplier {
-            dsl.deleteFrom(CITIES)
-                .where(CITIES.ID.eq(id))
+            dsl.deleteFrom(CITY)
+                .where(CITY.ID.eq(id))
                 .execute() == 1
         }
     }

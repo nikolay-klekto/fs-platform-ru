@@ -2,9 +2,11 @@ package com.fs.client.controller
 
 import com.fs.client.repository.AddressRepository
 import com.fs.client.ru.AddressModel
+import com.fs.client.ru.OfficeModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
+import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Mono
 
@@ -36,5 +38,10 @@ open class AddressController(open val addressRepository: AddressRepository) {
     @MutationMapping
     open fun deleteAddress(@Argument id: Long): Mono<Boolean> {
         return addressRepository.deleteByAddressId(id)
+    }
+
+    @SchemaMapping(typeName = "Office", field = "address")
+    fun getAddressForOffice(office: OfficeModel): Mono<AddressModel> {
+        return addressRepository.getByAddressId(office.addressId!!)
     }
 }

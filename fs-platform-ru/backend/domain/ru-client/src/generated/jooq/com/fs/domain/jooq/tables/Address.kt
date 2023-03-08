@@ -114,17 +114,18 @@ open class Address(
     override fun getPrimaryKey(): UniqueKey<AddressRecord> = ADDRESS_PKEY
     override fun getReferences(): List<ForeignKey<AddressRecord, *>> = listOf(ADDRESS__ADDRESS_CITY_ID_FKEY)
 
-    private lateinit var _cities: Cities
+    private lateinit var _city: City
 
     /**
-     * Get the implicit join path to the <code>public.cities</code> table.
+     * Get the implicit join path to the <code>public.city</code> table.
      */
-    fun cities(): Cities {
-        if (!this::_cities.isInitialized)
-            _cities = Cities(this, ADDRESS__ADDRESS_CITY_ID_FKEY)
+    fun city(): City {
+        if (!this::_city.isInitialized)
+            _city = City(this, ADDRESS__ADDRESS_CITY_ID_FKEY)
 
-        return _cities;
+        return _city;
     }
+
     override fun `as`(alias: String): Address = Address(DSL.name(alias), this)
     override fun `as`(alias: Name): Address = Address(alias, this)
 

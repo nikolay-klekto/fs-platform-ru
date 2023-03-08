@@ -12,7 +12,8 @@ import reactor.core.publisher.Mono
 
 abstract class OrderRepository(
     open val dsl: DSLContext,
-    open val converter: OrderModelConverter
+    open val converter: OrderModelConverter,
+    open val clientRepository: ClientRepository
 ) {
 
     fun getByOrderId(id: Long): Mono<OrderModel> {

@@ -1,11 +1,13 @@
 package com.fs.client.controller
 
 import com.fs.client.repository.PositionRepository
+import com.fs.service.ru.OrderModel
 import com.fs.service.ru.PositionModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
+import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
@@ -49,5 +51,10 @@ open class PositionController(
     @MutationMapping
     open fun deletePosition(@Argument id: Long): Mono<Boolean> {
         return positionRepository.delete(id)
+    }
+
+    @SchemaMapping(typeName = "Order", field = "position")
+    fun getPositionForOrder(order: OrderModel): Mono<PositionModel> {
+        return positionRepository.getById(order.positionId!!)
     }
 }

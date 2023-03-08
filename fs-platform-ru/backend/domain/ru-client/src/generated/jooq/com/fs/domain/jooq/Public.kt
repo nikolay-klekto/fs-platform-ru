@@ -34,9 +34,9 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     val BASKET: Basket get() = Basket.BASKET
 
     /**
-     * The table <code>public.cities</code>.
+     * The table <code>public.city</code>.
      */
-    val CITIES: Cities get() = Cities.CITIES
+    val CITY: City get() = City.CITY
 
     /**
      * The table <code>public.client</code>.
@@ -98,7 +98,7 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     override fun getTables(): List<Table<*>> = listOf(
         Address.ADDRESS,
         Basket.BASKET,
-        Cities.CITIES,
+        City.CITY,
         Client.CLIENT,
         CompaniesPositions.COMPANIES_POSITIONS,
         Company.COMPANY,

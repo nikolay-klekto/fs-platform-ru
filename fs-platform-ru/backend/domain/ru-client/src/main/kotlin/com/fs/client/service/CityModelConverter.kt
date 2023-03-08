@@ -2,12 +2,12 @@ package com.fs.client.service
 
 import com.fs.client.ru.CityModel
 import com.fs.client.ru.converter.ModelConverter
-import com.fs.domain.jooq.tables.pojos.Cities
+import com.fs.domain.jooq.tables.pojos.City
 import org.springframework.stereotype.Service
 
 @Service
-class CityModelConverter : ModelConverter<Cities, CityModel> {
-    override fun toModel(rawObject: Cities): CityModel {
+class CityModelConverter : ModelConverter<City, CityModel> {
+    override fun toModel(rawObject: City): CityModel {
         return CityModel(
             id = rawObject.id!!,
             countryCode = rawObject.countryCode,
@@ -15,8 +15,8 @@ class CityModelConverter : ModelConverter<Cities, CityModel> {
         )
     }
 
-    override fun fromModel(modelObject: CityModel): Cities {
-        return Cities(
+    override fun fromModel(modelObject: CityModel): City {
+        return City(
             modelObject.id,
             modelObject.countryCode,
             modelObject.name

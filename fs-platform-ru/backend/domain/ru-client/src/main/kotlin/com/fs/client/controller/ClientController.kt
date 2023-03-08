@@ -2,11 +2,13 @@ package com.fs.client.controller
 
 import com.fs.client.repository.ClientRepository
 import com.fs.client.ru.ClientModel
+import com.fs.client.ru.PartnerModel
 import com.fs.client.ru.enums.ClientRoleModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
+import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -102,5 +104,10 @@ open class ClientController(open val clientRepository: ClientRepository) {
     @MutationMapping
     open fun deleteClient(@Argument id: Long): Mono<Boolean> {
         return clientRepository.delete(id)
+    }
+
+    @SchemaMapping(typeName = "Partner", field = "client")
+    fun getClientForPartner(partner: PartnerModel): Mono<ClientModel> {
+        return clientRepository.getClintById(partner.clientId)
     }
 }

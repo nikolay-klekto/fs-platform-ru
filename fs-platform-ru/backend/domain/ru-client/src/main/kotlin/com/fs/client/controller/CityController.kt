@@ -1,12 +1,16 @@
 package com.fs.client.controller
 
 import com.fs.client.repository.CityRepository
+import com.fs.client.ru.AddressModel
 import com.fs.client.ru.CityModel
+import com.fs.client.ru.ClientModel
 import com.fs.client.ru.CountryModel
+import com.fs.service.ru.OrderModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
+import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Mono
 
@@ -45,5 +49,20 @@ open class CityController(open val cityRepository: CityRepository) {
     @MutationMapping
     fun deleteCity(@Argument cityId: Long): Mono<Boolean> {
         return cityRepository.deleteCity(cityId)
+    }
+
+    @SchemaMapping(typeName = "Order", field = "city")
+    fun getCityForOrder(order: OrderModel): Mono<CityModel> {
+        return cityRepository.getCityById(order.cityId!!)
+    }
+
+    @SchemaMapping(typeName = "Client", field = "city")
+    fun getCityForClient(client: ClientModel): Mono<CityModel> {
+        return cityRepository.getCityById(client.cityId!!)
+    }
+
+    @SchemaMapping(typeName = "Address", field = "city")
+    fun getCityForAddress(address: AddressModel): Mono<CityModel> {
+        return cityRepository.getCityById(address.cityId!!)
     }
 }

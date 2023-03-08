@@ -159,7 +159,6 @@ input ClientInput {
     employment: EmploymentEnum,
     firstName: String,
     lastName: String,
-    orderQuantity: ID,
     password: String,
     phoneNumber: String,
     role: ClientRoleEnum,
@@ -211,7 +210,7 @@ type Review {
 
 type Order {
     id: ID
-    basket: Basket
+    basketId: ID
     city: City
     company: Company
     position: Position
@@ -242,8 +241,8 @@ type Service {
 }
 
 type Client {
-    id: ID!,
-    basket: Basket,
+    id: ID,
+    basketId: ID,
     city: City,
     activateStatus: Boolean,
     birthday: LocalDate,
@@ -253,7 +252,6 @@ type Client {
     employment: EmploymentEnum,
     firstName: String,
     lastName: String,
-    orderQuantity: ID,
     password: String,
     phoneNumber: String,
     role: ClientRoleEnum,
@@ -280,7 +278,7 @@ type Country {
 
 type Partner {
     id: ID,
-    clientId: ID!
+    client: Client
 }
 
 type Address {

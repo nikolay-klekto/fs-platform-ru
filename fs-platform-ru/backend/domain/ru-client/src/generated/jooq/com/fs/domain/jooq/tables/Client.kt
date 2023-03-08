@@ -128,12 +128,6 @@ open class Client(
     val LAST_NAME: TableField<ClientRecord, String?> = createField(DSL.name("last_name"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.client.order_quantity</code>.
-     */
-    val ORDER_QUANTITY: TableField<ClientRecord, Long?> =
-        createField(DSL.name("order_quantity"), SQLDataType.BIGINT, this, "")
-
-    /**
      * The column <code>public.client.password</code>.
      */
     val PASSWORD: TableField<ClientRecord, String?> = createField(DSL.name("password"), SQLDataType.VARCHAR, this, "")
@@ -203,7 +197,7 @@ open class Client(
         listOf(CLIENT__CLIENT_BASKET_ID_FKEY, CLIENT__CLIENT_CITY_ID_FKEY)
 
     private lateinit var _basket: Basket
-    private lateinit var _cities: Cities
+    private lateinit var _city: City
 
     /**
      * Get the implicit join path to the <code>public.basket</code> table.
@@ -216,14 +210,15 @@ open class Client(
     }
 
     /**
-     * Get the implicit join path to the <code>public.cities</code> table.
+     * Get the implicit join path to the <code>public.city</code> table.
      */
-    fun cities(): Cities {
-        if (!this::_cities.isInitialized)
-            _cities = Cities(this, CLIENT__CLIENT_CITY_ID_FKEY)
+    fun city(): City {
+        if (!this::_city.isInitialized)
+            _city = City(this, CLIENT__CLIENT_CITY_ID_FKEY)
 
-        return _cities;
+        return _city;
     }
+
     override fun `as`(alias: String): Client = Client(DSL.name(alias), this)
     override fun `as`(alias: Name): Client = Client(alias, this)
 
@@ -238,8 +233,8 @@ open class Client(
     override fun rename(name: Name): Client = Client(name, null)
 
     // -------------------------------------------------------------------------
-    // Row17 type methods
+    // Row16 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?> =
-        super.fieldsRow() as Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?>
+    override fun fieldsRow(): Row16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?> =
+        super.fieldsRow() as Row16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?>
 }

@@ -20,8 +20,8 @@ val ADDRESS_PKEY: UniqueKey<AddressRecord> =
     Internal.createUniqueKey(Address.ADDRESS, DSL.name("address_pkey"), arrayOf(Address.ADDRESS.ID), true)
 val BASKET_PKEY: UniqueKey<BasketRecord> =
     Internal.createUniqueKey(Basket.BASKET, DSL.name("basket_pkey"), arrayOf(Basket.BASKET.ID), true)
-val CITIES_PKEY: UniqueKey<CitiesRecord> =
-    Internal.createUniqueKey(Cities.CITIES, DSL.name("cities_pkey"), arrayOf(Cities.CITIES.ID), true)
+val CITY_PKEY: UniqueKey<CityRecord> =
+    Internal.createUniqueKey(City.CITY, DSL.name("city_pkey"), arrayOf(City.CITY.ID), true)
 val CLIENT_PKEY: UniqueKey<ClientRecord> =
     Internal.createUniqueKey(Client.CLIENT, DSL.name("client_pkey"), arrayOf(Client.CLIENT.ID), true)
 val COMPANY_PKEY: UniqueKey<CompanyRecord> =
@@ -51,18 +51,18 @@ val SERVICE_PKEY: UniqueKey<ServiceRecord> =
 // FOREIGN KEY definitions
 // -------------------------------------------------------------------------
 
-val ADDRESS__ADDRESS_CITY_ID_FKEY: ForeignKey<AddressRecord, CitiesRecord> = Internal.createForeignKey(
+val ADDRESS__ADDRESS_CITY_ID_FKEY: ForeignKey<AddressRecord, CityRecord> = Internal.createForeignKey(
     Address.ADDRESS,
     DSL.name("address_city_id_fkey"),
     arrayOf(Address.ADDRESS.CITY_ID),
-    com.fs.domain.jooq.keys.CITIES_PKEY,
-    arrayOf(Cities.CITIES.ID),
+    com.fs.domain.jooq.keys.CITY_PKEY,
+    arrayOf(City.CITY.ID),
     true
 )
-val CITIES__CITIES_COUNTRY_CODE_FKEY: ForeignKey<CitiesRecord, CountryRecord> = Internal.createForeignKey(
-    Cities.CITIES,
-    DSL.name("cities_country_code_fkey"),
-    arrayOf(Cities.CITIES.COUNTRY_CODE),
+val CITY__CITY_COUNTRY_CODE_FKEY: ForeignKey<CityRecord, CountryRecord> = Internal.createForeignKey(
+    City.CITY,
+    DSL.name("city_country_code_fkey"),
+    arrayOf(City.CITY.COUNTRY_CODE),
     com.fs.domain.jooq.keys.COUNTRY_PKEY,
     arrayOf(Country.COUNTRY.CODE),
     true
@@ -75,12 +75,12 @@ val CLIENT__CLIENT_BASKET_ID_FKEY: ForeignKey<ClientRecord, BasketRecord> = Inte
     arrayOf(Basket.BASKET.ID),
     true
 )
-val CLIENT__CLIENT_CITY_ID_FKEY: ForeignKey<ClientRecord, CitiesRecord> = Internal.createForeignKey(
+val CLIENT__CLIENT_CITY_ID_FKEY: ForeignKey<ClientRecord, CityRecord> = Internal.createForeignKey(
     Client.CLIENT,
     DSL.name("client_city_id_fkey"),
     arrayOf(Client.CLIENT.CITY_ID),
-    com.fs.domain.jooq.keys.CITIES_PKEY,
-    arrayOf(Cities.CITIES.ID),
+    com.fs.domain.jooq.keys.CITY_PKEY,
+    arrayOf(City.CITY.ID),
     true
 )
 val COMPANIES_POSITIONS__COMPANIES_POSITIONS_COMPANY_ID_FKEY: ForeignKey<CompaniesPositionsRecord, CompanyRecord> =
@@ -143,12 +143,12 @@ val ORDER__ORDER_BASKET_ID_FKEY: ForeignKey<OrderRecord, BasketRecord> = Interna
     arrayOf(Basket.BASKET.ID),
     true
 )
-val ORDER__ORDER_CITY_ID_FKEY: ForeignKey<OrderRecord, CitiesRecord> = Internal.createForeignKey(
+val ORDER__ORDER_CITY_ID_FKEY: ForeignKey<OrderRecord, CityRecord> = Internal.createForeignKey(
     Order.ORDER,
     DSL.name("order_city_id_fkey"),
     arrayOf(Order.ORDER.CITY_ID),
-    com.fs.domain.jooq.keys.CITIES_PKEY,
-    arrayOf(Cities.CITIES.ID),
+    com.fs.domain.jooq.keys.CITY_PKEY,
+    arrayOf(City.CITY.ID),
     true
 )
 val ORDER__ORDER_COMPANY_ID_FKEY: ForeignKey<OrderRecord, CompanyRecord> = Internal.createForeignKey(

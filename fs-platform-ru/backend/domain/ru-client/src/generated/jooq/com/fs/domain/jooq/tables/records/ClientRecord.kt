@@ -10,8 +10,8 @@ import com.fs.client.ru.enums.EmploymentModel
 import com.fs.domain.jooq.tables.Client
 import org.jooq.Field
 import org.jooq.Record1
-import org.jooq.Record17
-import org.jooq.Row17
+import org.jooq.Record16
+import org.jooq.Row16
 import org.jooq.impl.UpdatableRecordImpl
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -22,7 +22,7 @@ import java.time.LocalDateTime
  */
 @Suppress("UNCHECKED_CAST")
 open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
-    Record17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?> {
+    Record16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?> {
 
     var id: Long?
         set(value): Unit = set(0, value)
@@ -68,29 +68,25 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
         set(value): Unit = set(10, value)
         get(): String? = get(10) as String?
 
-    var orderQuantity: Long?
-        set(value): Unit = set(11, value)
-        get(): Long? = get(11) as Long?
-
     var password: String?
+        set(value): Unit = set(11, value)
+        get(): String? = get(11) as String?
+
+    var phoneNumber: String?
         set(value): Unit = set(12, value)
         get(): String? = get(12) as String?
 
-    var phoneNumber: String?
-        set(value): Unit = set(13, value)
-        get(): String? = get(13) as String?
-
     var role: ClientRoleModel?
-        set(value): Unit = set(14, value)
-        get(): ClientRoleModel? = get(14) as ClientRoleModel?
+        set(value): Unit = set(13, value)
+        get(): ClientRoleModel? = get(13) as ClientRoleModel?
 
     var telegramUsername: String?
-        set(value): Unit = set(15, value)
-        get(): String? = get(15) as String?
+        set(value): Unit = set(14, value)
+        get(): String? = get(14) as String?
 
     var username: String?
-        set(value): Unit = set(16, value)
-        get(): String? = get(16) as String?
+        set(value): Unit = set(15, value)
+        get(): String? = get(15) as String?
 
     // -------------------------------------------------------------------------
     // Primary key information
@@ -99,14 +95,14 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
     override fun key(): Record1<Long?> = super.key() as Record1<Long?>
 
     // -------------------------------------------------------------------------
-    // Record17 type implementation
+    // Record16 type implementation
     // -------------------------------------------------------------------------
 
-    override fun fieldsRow(): Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?> =
-        super.fieldsRow() as Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?>
+    override fun fieldsRow(): Row16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?> =
+        super.fieldsRow() as Row16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?>
 
-    override fun valuesRow(): Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?> =
-        super.valuesRow() as Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, Long?, String?, String?, ClientRoleModel?, String?, String?>
+    override fun valuesRow(): Row16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?> =
+        super.valuesRow() as Row16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?>
 
     override fun field1(): Field<Long?> = Client.CLIENT.ID
     override fun field2(): Field<Long?> = Client.CLIENT.BASKET_ID
@@ -119,12 +115,11 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
     override fun field9(): Field<EmploymentModel?> = Client.CLIENT.EMPLOYMENT
     override fun field10(): Field<String?> = Client.CLIENT.FIRST_NAME
     override fun field11(): Field<String?> = Client.CLIENT.LAST_NAME
-    override fun field12(): Field<Long?> = Client.CLIENT.ORDER_QUANTITY
-    override fun field13(): Field<String?> = Client.CLIENT.PASSWORD
-    override fun field14(): Field<String?> = Client.CLIENT.PHONE_NUMBER
-    override fun field15(): Field<ClientRoleModel?> = Client.CLIENT.ROLE
-    override fun field16(): Field<String?> = Client.CLIENT.TELEGRAM_USERNAME
-    override fun field17(): Field<String?> = Client.CLIENT.USERNAME
+    override fun field12(): Field<String?> = Client.CLIENT.PASSWORD
+    override fun field13(): Field<String?> = Client.CLIENT.PHONE_NUMBER
+    override fun field14(): Field<ClientRoleModel?> = Client.CLIENT.ROLE
+    override fun field15(): Field<String?> = Client.CLIENT.TELEGRAM_USERNAME
+    override fun field16(): Field<String?> = Client.CLIENT.USERNAME
     override fun component1(): Long? = id
     override fun component2(): Long? = basketId
     override fun component3(): Long? = cityId
@@ -136,12 +131,11 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
     override fun component9(): EmploymentModel? = employment
     override fun component10(): String? = firstName
     override fun component11(): String? = lastName
-    override fun component12(): Long? = orderQuantity
-    override fun component13(): String? = password
-    override fun component14(): String? = phoneNumber
-    override fun component15(): ClientRoleModel? = role
-    override fun component16(): String? = telegramUsername
-    override fun component17(): String? = username
+    override fun component12(): String? = password
+    override fun component13(): String? = phoneNumber
+    override fun component14(): ClientRoleModel? = role
+    override fun component15(): String? = telegramUsername
+    override fun component16(): String? = username
     override fun value1(): Long? = id
     override fun value2(): Long? = basketId
     override fun value3(): Long? = cityId
@@ -153,12 +147,11 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
     override fun value9(): EmploymentModel? = employment
     override fun value10(): String? = firstName
     override fun value11(): String? = lastName
-    override fun value12(): Long? = orderQuantity
-    override fun value13(): String? = password
-    override fun value14(): String? = phoneNumber
-    override fun value15(): ClientRoleModel? = role
-    override fun value16(): String? = telegramUsername
-    override fun value17(): String? = username
+    override fun value12(): String? = password
+    override fun value13(): String? = phoneNumber
+    override fun value14(): ClientRoleModel? = role
+    override fun value15(): String? = telegramUsername
+    override fun value16(): String? = username
 
     override fun value1(value: Long?): ClientRecord {
         this.id = value
@@ -215,32 +208,27 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
         return this
     }
 
-    override fun value12(value: Long?): ClientRecord {
-        this.orderQuantity = value
-        return this
-    }
-
-    override fun value13(value: String?): ClientRecord {
+    override fun value12(value: String?): ClientRecord {
         this.password = value
         return this
     }
 
-    override fun value14(value: String?): ClientRecord {
+    override fun value13(value: String?): ClientRecord {
         this.phoneNumber = value
         return this
     }
 
-    override fun value15(value: ClientRoleModel?): ClientRecord {
+    override fun value14(value: ClientRoleModel?): ClientRecord {
         this.role = value
         return this
     }
 
-    override fun value16(value: String?): ClientRecord {
+    override fun value15(value: String?): ClientRecord {
         this.telegramUsername = value
         return this
     }
 
-    override fun value17(value: String?): ClientRecord {
+    override fun value16(value: String?): ClientRecord {
         this.username = value
         return this
     }
@@ -257,12 +245,11 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
         value9: EmploymentModel?,
         value10: String?,
         value11: String?,
-        value12: Long?,
+        value12: String?,
         value13: String?,
-        value14: String?,
-        value15: ClientRoleModel?,
-        value16: String?,
-        value17: String?
+        value14: ClientRoleModel?,
+        value15: String?,
+        value16: String?
     ): ClientRecord {
         this.value1(value1)
         this.value2(value2)
@@ -280,7 +267,6 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
         this.value14(value14)
         this.value15(value15)
         this.value16(value16)
-        this.value17(value17)
         return this
     }
 
@@ -299,7 +285,6 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
         employment: EmploymentModel? = null,
         firstName: String? = null,
         lastName: String? = null,
-        orderQuantity: Long? = null,
         password: String? = null,
         phoneNumber: String? = null,
         role: ClientRoleModel? = null,
@@ -317,7 +302,6 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
         this.employment = employment
         this.firstName = firstName
         this.lastName = lastName
-        this.orderQuantity = orderQuantity
         this.password = password
         this.phoneNumber = phoneNumber
         this.role = role
@@ -341,7 +325,6 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT),
             this.employment = value.employment
             this.firstName = value.firstName
             this.lastName = value.lastName
-            this.orderQuantity = value.orderQuantity
             this.password = value.password
             this.phoneNumber = value.phoneNumber
             this.role = value.role

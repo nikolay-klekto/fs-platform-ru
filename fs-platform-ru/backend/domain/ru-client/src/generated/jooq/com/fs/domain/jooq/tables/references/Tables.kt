@@ -18,9 +18,9 @@ val ADDRESS: Address = Address.ADDRESS
 val BASKET: Basket = Basket.BASKET
 
 /**
- * The table <code>public.cities</code>.
+ * The table <code>public.city</code>.
  */
-val CITIES: Cities = Cities.CITIES
+val CITY: City = City.CITY
 
 /**
  * The table <code>public.client</code>.

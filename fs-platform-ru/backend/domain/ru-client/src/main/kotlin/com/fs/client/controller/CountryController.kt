@@ -32,7 +32,7 @@ open class CountryController(open val countryRepository: CountryRepository) {
         countryRepository.deleteByCountryName(countryName)
 
     @SchemaMapping(typeName = "City", field = "country")
-    fun getCountry(city: CityModel): Mono<CountryModel> {
+    fun getCountryForCity(city: CityModel): Mono<CountryModel> {
         return countryRepository.getByCode(city.countryCode!!)
     }
 

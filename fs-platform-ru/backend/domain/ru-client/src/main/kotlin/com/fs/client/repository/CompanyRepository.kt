@@ -8,7 +8,7 @@ import com.fs.domain.jooq.tables.Position.Companion.POSITION
 import com.fs.domain.jooq.tables.pojos.Company
 import com.fs.domain.jooq.tables.records.CompanyPartnerRecord
 import com.fs.domain.jooq.tables.records.CompanyRecord
-import com.fs.domain.jooq.tables.references.CITIES
+import com.fs.domain.jooq.tables.references.CITY
 import com.fs.domain.jooq.tables.references.COMPANIES_POSITIONS
 import com.fs.domain.jooq.tables.references.COMPANY_PARTNER
 import com.fs.service.ru.CompanyModel
@@ -58,8 +58,8 @@ abstract class CompanyRepository(open val dsl: DSLContext, open val converter: C
                                     dsl.select(ADDRESS.ID).from(ADDRESS)
                                         .where(
                                             ADDRESS.CITY_ID.eq(
-                                                dsl.select(CITIES.ID).from(CITIES)
-                                                    .where(CITIES.COUNTRY_CODE.eq(countryCode))
+                                                dsl.select(CITY.ID).from(CITY)
+                                                    .where(CITY.COUNTRY_CODE.eq(countryCode))
                                             )
                                         )
                                 )

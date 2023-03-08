@@ -29,7 +29,6 @@ data class Client(
     var employment: EmploymentModel? = null,
     var firstName: String? = null,
     var lastName: String? = null,
-    var orderQuantity: Long? = null,
     var password: String? = null,
     var phoneNumber: String? = null,
     var role: ClientRoleModel? = null,
@@ -52,7 +51,6 @@ data class Client(
         sb.append(", ").append(employment)
         sb.append(", ").append(firstName)
         sb.append(", ").append(lastName)
-        sb.append(", ").append(orderQuantity)
         sb.append(", ").append(password)
         sb.append(", ").append(phoneNumber)
         sb.append(", ").append(role)

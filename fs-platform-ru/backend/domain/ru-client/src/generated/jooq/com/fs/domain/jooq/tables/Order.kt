@@ -139,7 +139,7 @@ open class Order(
     )
 
     private lateinit var _basket: Basket
-    private lateinit var _cities: Cities
+    private lateinit var _city: City
     private lateinit var _company: Company
     private lateinit var _position: Position
     private lateinit var _service: Service
@@ -155,13 +155,13 @@ open class Order(
     }
 
     /**
-     * Get the implicit join path to the <code>public.cities</code> table.
+     * Get the implicit join path to the <code>public.city</code> table.
      */
-    fun cities(): Cities {
-        if (!this::_cities.isInitialized)
-            _cities = Cities(this, ORDER__ORDER_CITY_ID_FKEY)
+    fun city(): City {
+        if (!this::_city.isInitialized)
+            _city = City(this, ORDER__ORDER_CITY_ID_FKEY)
 
-        return _cities;
+        return _city;
     }
 
     /**

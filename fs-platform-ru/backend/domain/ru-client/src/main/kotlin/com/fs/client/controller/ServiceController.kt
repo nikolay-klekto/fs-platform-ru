@@ -1,6 +1,7 @@
 package com.fs.client.controller
 
 import com.fs.client.repository.ServiceRepository
+import com.fs.service.ru.OrderModel
 import com.fs.service.ru.ServiceModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.*
@@ -63,5 +64,10 @@ open class ServiceController(
     @QueryMapping
     open fun getAllServices(): Flux<ServiceModel> {
         return serviceRepository.getAll()
+    }
+
+    @SchemaMapping(typeName = "Order", field = "service")
+    fun getServiceForOrder(order: OrderModel): Mono<ServiceModel> {
+        return serviceRepository.getById(order.serviceId!!)
     }
 }
