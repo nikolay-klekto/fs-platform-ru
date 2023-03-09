@@ -24,8 +24,8 @@ open class ReviewController(
     }
 
     @QueryMapping
-    open fun getAllReviews(): Flux<ReviewModel> {
-        return reviewRepository.getAll()
+    open fun getAllReviewsByCompany(@Argument id: Long): Flux<ReviewModel> {
+        return reviewRepository.getAllByCompanyId(id)
     }
 
     @MutationMapping

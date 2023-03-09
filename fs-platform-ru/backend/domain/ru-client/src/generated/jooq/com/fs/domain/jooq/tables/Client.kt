@@ -218,7 +218,6 @@ open class Client(
 
         return _city;
     }
-
     override fun `as`(alias: String): Client = Client(DSL.name(alias), this)
     override fun `as`(alias: Name): Client = Client(alias, this)
 

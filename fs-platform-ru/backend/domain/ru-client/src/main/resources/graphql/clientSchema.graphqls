@@ -9,7 +9,7 @@ type Query {
     getAllServices: [Service]
 
     reviewById(id: ID!): Review
-    getAllReviews: [Review]
+    getAllReviewsByCompany(id: ID!): [Review]
 
     getCity(id: ID!): City
     getCountryByCity(id: ID): Country
@@ -29,7 +29,7 @@ type Query {
 
     getPartnerById(id: ID!): Partner
     getAllPartners: [Partner]
-    getPartnersByCompanyId(id: ID!): Partner
+    getPartnersByCompanyId(id: ID!): [Partner]
 
     getBasketById(id: ID!): Basket
 

@@ -30,7 +30,7 @@ open class PartnerController(
     }
 
     @QueryMapping
-    open fun getPartnersByCompanyId(@Argument id: Long): Mono<PartnerModel> {
+    open fun getPartnersByCompanyId(@Argument id: Long): Flux<PartnerModel> {
         return partnerRepository.getByCompanyId(id)
     }
 

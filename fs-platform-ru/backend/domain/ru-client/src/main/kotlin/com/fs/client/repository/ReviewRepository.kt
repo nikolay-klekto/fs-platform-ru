@@ -19,9 +19,10 @@ abstract class ReviewRepository(open val dsl: DSLContext, open val converter: Re
             .map(converter::toModel)
     }
 
-    fun getAll(): Flux<ReviewModel> {
+    fun getAllByCompanyId(id: Long): Flux<ReviewModel> {
         return Flux.from(
             dsl.selectFrom(REVIEW)
+                .where(REVIEW.COMPANY_ID.eq(id))
         )
             .map { it.into(Review::class.java) }
             .map(converter::toModel)

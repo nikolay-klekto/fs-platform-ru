@@ -33,8 +33,8 @@ abstract class PartnerRepository(
             .map(converter::toModel)
     }
 
-    fun getByCompanyId(companyId: Long): Mono<PartnerModel> {
-        return Mono.from(
+    fun getByCompanyId(companyId: Long): Flux<PartnerModel> {
+        return Flux.from(
             dsl.select(PARTNER.asterisk()).from(PARTNER)
                 .where(
                     PARTNER.ID.eq(

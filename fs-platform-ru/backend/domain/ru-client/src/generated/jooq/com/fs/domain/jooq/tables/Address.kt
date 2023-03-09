@@ -125,7 +125,6 @@ open class Address(
 
         return _city;
     }
-
     override fun `as`(alias: String): Address = Address(DSL.name(alias), this)
     override fun `as`(alias: Name): Address = Address(alias, this)
 
