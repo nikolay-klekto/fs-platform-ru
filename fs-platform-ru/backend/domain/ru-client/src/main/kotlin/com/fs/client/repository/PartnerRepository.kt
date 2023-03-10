@@ -48,10 +48,13 @@ abstract class PartnerRepository(
 
     fun insert(clientModel: ClientModel): Mono<PartnerModel> {
         return Mono.fromSupplier {
-            val newClientModel: ClientModel = clientRepository.insert(clientModel).block()!!
+            var newClientModel: ClientModel = clientModel
+            if (clientModel.id == null) {
+                newClientModel = clientRepository.insert(clientModel).block()!!
+            }
             val partnerModel = PartnerModel(
                 id = 0,
-                clientId = newClientModel.id
+                clientId = newClientModel.id!!
             )
             val newPartnerRecord: PartnerRecord = dsl.newRecord(PARTNER)
             newPartnerRecord.from(partnerModel)

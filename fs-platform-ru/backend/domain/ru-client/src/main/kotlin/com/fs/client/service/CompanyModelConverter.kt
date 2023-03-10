@@ -10,7 +10,7 @@ class CompanyModelConverter : ModelConverter<Company, CompanyModel> {
     override fun toModel(rawObject: Company): CompanyModel {
         return CompanyModel(
             id = rawObject.id!!,
-            companyIndustryModel = rawObject.companyIndustry,
+            companyIndustry = rawObject.companyIndustry,
             legalCapacityStatus = rawObject.legalCapacityStatus,
             name = rawObject.name,
             site = rawObject.site,
@@ -21,7 +21,7 @@ class CompanyModelConverter : ModelConverter<Company, CompanyModel> {
     override fun fromModel(modelObject: CompanyModel): Company {
         return Company(
             modelObject.id,
-            modelObject.companyIndustryModel,
+            modelObject.companyIndustry,
             modelObject.legalCapacityStatus,
             modelObject.name,
             modelObject.site,

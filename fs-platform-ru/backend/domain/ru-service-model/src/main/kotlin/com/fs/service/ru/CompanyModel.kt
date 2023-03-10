@@ -5,7 +5,7 @@ import com.fs.service.ru.enums.IndustryModel
 
 data class CompanyModel(
     val id: Long,
-    val companyIndustryModel: IndustryModel?,
+    val companyIndustry: IndustryModel?,
     val legalCapacityStatus: CompanyLegalCapacityStatus?,
     val name: String?,
     val site: String?,

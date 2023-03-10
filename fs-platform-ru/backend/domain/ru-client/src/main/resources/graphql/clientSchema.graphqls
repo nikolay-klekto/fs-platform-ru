@@ -3,7 +3,7 @@ scalar LocalDate
 
 type Query {
     getClintById(id: ID!): Client
-    getAllClients: [Service]
+    getAllClients: [Client]
 
     serviceById(id: ID!): Service
     getAllServices: [Service]
@@ -33,11 +33,11 @@ type Query {
 
     getBasketById(id: ID!): Basket
 
-    getCountry(id: ID!): Country
+    getCountry(code: ID!): Country
     getCountryByName(name: CountryNameEnum): Country
 
     getOffice(id: ID!): Office
-    getAllOfficesByCompanyId: [Office]
+    getAllOfficesByCompanyId(id: ID!): [Office]
 }
 
 type Mutation {
@@ -65,7 +65,7 @@ type Mutation {
     updatePosition(position: PositionInput!): Boolean
     deletePosition(id: ID!): Boolean
 
-    addPartner(client: ClientInput): Partner
+    addPartner(client: ClientInsert): Partner
     deletePartner(id: ID!): Boolean
 
     addAddress(address: AddressInput!): Address
@@ -75,18 +75,19 @@ type Mutation {
     addBasket: Basket
     updateBasket(basket: BasketInput!): Boolean
 
-    updateClient(client: ClientInput!): Boolean
-    changePassword(clientId: ID!, password: String): Boolean
-    changeRole(clientId: ID!, role: ClientRoleEnum): Boolean
-    addClient(client: ClientInput): Client
+    updateClient(client: ClientUpdate!): Boolean
+    changePassword(clientId: ID!, password: String!): Boolean
+    #    changeRole(clientId: ID!, role: ClientRoleEnum): Boolean     //Should to think how to realize this function
+    addClient(client: ClientInsert): Client
     deleteClient(id: ID!): Boolean
 
     addCountry(country: CountryInput): Country
-    deleteCountry(id: ID!): Boolean
+    deleteCountry(countryName: CountryNameEnum!): Boolean
 
-    addOfficeAddress(address: AddressInput!): Address
-    updateAddressByCompanyId(id: ID!,  companyAddress: CompanyAddressInput!): Boolean
-    deleteAllOfficeInfoByCompanyId(id: ID!): Boolean
+    addOfficeAddress(companyAddress: CompanyAddressInput!): Office
+    updateOfficeAddress(companyAddress: CompanyAddressInput!): Boolean
+    deleteAllOfficesByCompanyId(id: ID!): Boolean
+    deleteOffice(id: ID!): Boolean
 }
 
 input ServiceInput {
@@ -129,7 +130,7 @@ input OrderInput {
 
 input CompanyInput {
     id: ID
-    companyIndustryModel: CompanyIndustryEnum
+    companyIndustry: CompanyIndustryEnum
     legalCapacityStatus: LegalCapacityStatus
     name: String
     site: String
@@ -147,13 +148,29 @@ input PartnerInput {
     clientId: ID
 }
 
-input ClientInput {
-    id: ID!,
-    basket: BasketInput,
-    city: CityInput,
+input ClientInsert {
+    cityId: ID!,
     activateStatus: Boolean,
     birthday: LocalDate,
-    dateCreated: LocalDate,
+    dateCreated: LocalDateTime,
+    educationModelStatus: EducationEnum,
+    email: String,
+    employment: EmploymentEnum,
+    firstName: String,
+    lastName: String,
+    password: String,
+    phoneNumber: String,
+    role: ClientRoleEnum,
+    telegramUsername: String,
+    username: String
+}
+
+input ClientUpdate {
+    id: ID!,
+    cityId: ID,
+    activateStatus: Boolean,
+    birthday: LocalDate,
+    dateCreated: LocalDateTime,
     educationModelStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,
@@ -173,7 +190,7 @@ input BasketInput {
 
 input AddressInput {
     id: ID
-    city: ID
+    cityId: ID
     apartment: ID
     building: ID
     house: ID
@@ -223,6 +240,7 @@ type Order {
 type Company {
     id: ID
     companyIndustry: CompanyIndustryEnum
+    legalCapacityStatus: LegalCapacityStatus
     name: String
     site: String
     shortDescription: String
@@ -246,7 +264,7 @@ type Client {
     city: City,
     activateStatus: Boolean,
     birthday: LocalDate,
-    dateCreated: LocalDate,
+    dateCreated: LocalDateTime,
     educationModelStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,
@@ -283,7 +301,7 @@ type Partner {
 
 type Address {
     id: ID
-    city: ID
+    cityId: ID
     apartment: ID
     building: ID
     house: ID
@@ -292,7 +310,7 @@ type Address {
 
 type Office {
     id: ID
-    addressId: ID
+    address: Address
     companyId: ID
     phoneNumber: String
 }

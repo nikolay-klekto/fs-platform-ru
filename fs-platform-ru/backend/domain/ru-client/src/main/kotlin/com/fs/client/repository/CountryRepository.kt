@@ -34,7 +34,12 @@ abstract class CountryRepository(
     fun insert(countryModel: CountryModel): Mono<CountryModel> {
         return Mono.fromSupplier {
             val newCountryRecord: CountryRecord = dsl.newRecord(COUNTRY)
-            newCountryRecord.from(countryModel)
+            val newCountryModel = CountryModel(
+                code = countryModel.name.value,
+                currency = countryModel.currency,
+                name = countryModel.name
+            )
+            newCountryRecord.from(newCountryModel)
             newCountryRecord.store()
             return@fromSupplier newCountryRecord.into(Country::class.java)
         }

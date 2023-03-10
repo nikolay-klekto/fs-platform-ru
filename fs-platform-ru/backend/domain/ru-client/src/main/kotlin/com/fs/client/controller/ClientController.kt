@@ -3,7 +3,6 @@ package com.fs.client.controller
 import com.fs.client.repository.ClientRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.PartnerModel
-import com.fs.client.ru.enums.ClientRoleModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -46,12 +45,12 @@ open class ClientController(open val clientRepository: ClientRepository) {
     ) = clientRepository
         .changePassword(id, password)
 
-    @PutMapping("/role/{id}")
-    fun updateClientRole(
-        @RequestBody role: ClientRoleModel,
-        @PathVariable("id") id: Long
-    ) = clientRepository
-        .changeRole(id, role)
+//    @PutMapping("/role/{id}")
+//    fun updateClientRole(
+//        @RequestBody role: ClientRoleModel,
+//        @PathVariable("id") id: Long
+//    ) = clientRepository
+//        .changeRole(id, role)
 
     @DeleteMapping("{id}")
     fun deleteClientByID(
@@ -88,17 +87,19 @@ open class ClientController(open val clientRepository: ClientRepository) {
         return clientRepository.changePassword(clientId, password)
     }
 
-    @MutationMapping
-    open fun changeRole(
-        @Argument clientId: Long,
-        @Argument role: ClientRoleModel
-    ): Mono<Boolean> {
-        return clientRepository.changeRole(clientId, role)
-    }
+
+    //Should to think how to realize this function
+//    @MutationMapping
+//    open fun changeRole(
+//        @Argument clientId: Long,
+//        @Argument role: ClientRoleModel
+//    ): Mono<Boolean> {
+//        return clientRepository.changeRole(clientId, role)
+//    }
 
     @MutationMapping
-    open fun addClient(@Argument clientModel: ClientModel): Mono<ClientModel> {
-        return clientRepository.insert(clientModel)
+    open fun addClient(@Argument client: ClientModel): Mono<ClientModel> {
+        return clientRepository.insert(client)
     }
 
     @MutationMapping

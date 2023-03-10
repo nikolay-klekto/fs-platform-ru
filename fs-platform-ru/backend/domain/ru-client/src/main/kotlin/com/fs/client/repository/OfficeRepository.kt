@@ -45,12 +45,25 @@ abstract class OfficeRepository(
         }
     }
 
-    fun updateCompanyAddress(id: Long, companyAddress: CompanyAddress): Mono<Boolean> {
-        if (companyAddress.addressId != null) {
-            val newAddressModel = converter.fromCompanyAddressToAddressModel(companyAddress)
-            addressRepository.update(newAddressModel).block()
+    fun updateCompanyAddress(companyAddress: CompanyAddress): Mono<Boolean> {
+        return Mono.fromSupplier {
+            var result = false
+            if (companyAddress.addressId != null) {
+                val newAddressModel = converter.fromCompanyAddressToAddressModel(companyAddress)
+                val resultAddressUpdate = addressRepository.update(newAddressModel).block()
+                if (resultAddressUpdate == true) {
+                    result = resultAddressUpdate
+                }
+            }
+            if (companyAddress.officeId != null) {
+                val resultPhoneUpdate =
+                    updatePhoneNumberByOfficeId(companyAddress.officeId!!, companyAddress.phoneNumber).block()
+                if (resultPhoneUpdate == true) {
+                    result = resultPhoneUpdate
+                }
+            }
+            return@fromSupplier result
         }
-        return updatePhoneNumberByOfficeId(id, companyAddress.phoneNumber)
     }
 
     fun insert(companyAddress: CompanyAddress): Mono<OfficeModel> =
@@ -71,19 +84,49 @@ abstract class OfficeRepository(
     fun deleteAllByCompanyId(id: Long): Mono<Boolean> {
         return Mono.fromSupplier {
 
-            dsl.deleteFrom(OFFICE)
+            val allAddressIdByCompany: List<Long> = dsl.select(OFFICE.ADDRESS_ID)
+                .from(OFFICE)
                 .where(OFFICE.COMPANY_ID.eq(id))
-                .execute()
+                .map { it.into(Long::class.java) }
 
-            return@fromSupplier dsl.deleteFrom(ADDRESS)
-                .where(
-                    ADDRESS.ID.`in`(
-                        dsl.select(OFFICE.ADDRESS_ID)
-                            .from(OFFICE)
-                            .where(OFFICE.COMPANY_ID.eq(id))
-                    )
-                )
+            val result = dsl.deleteFrom(OFFICE)
+                .where(OFFICE.COMPANY_ID.eq(id))
                 .execute() > 0
+
+            allAddressIdByCompany.forEach {
+                dsl.deleteFrom(ADDRESS)
+                    .where(ADDRESS.ID.eq(it))
+                    .execute()
+            }
+            return@fromSupplier result
+
+        }
+    }
+
+    fun deleteByOfficeId(id: Long): Mono<Boolean> {
+        return Mono.fromSupplier {
+
+            val addressIdByOffice: Long? =
+                dsl.select(OFFICE.ADDRESS_ID)
+                    .from(OFFICE)
+                    .where(OFFICE.ID.eq(id))
+                    .map { it.into(Long::class.java) }
+                    .firstOrNull()
+
+            var result = dsl.deleteFrom(OFFICE)
+                .where(OFFICE.ID.eq(id))
+                .execute() > 0
+
+            if (addressIdByOffice != null) {
+                dsl.deleteFrom(ADDRESS)
+                    .where(ADDRESS.ID.eq(addressIdByOffice))
+                    .execute()
+            } else {
+                result = false
+            }
+
+
+            return@fromSupplier result
 
         }
     }

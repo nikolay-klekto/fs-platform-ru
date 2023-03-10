@@ -51,13 +51,13 @@ abstract class CompanyRepository(open val dsl: DSLContext, open val converter: C
         return Flux.from(
             dsl.select(COMPANY.asterisk()).from(COMPANY)
                 .where(
-                    COMPANY.ID.eq(
+                    COMPANY.ID.`in`(
                         dsl.select(OFFICE.COMPANY_ID).from(OFFICE)
                             .where(
-                                OFFICE.ADDRESS_ID.eq(
+                                OFFICE.ADDRESS_ID.`in`(
                                     dsl.select(ADDRESS.ID).from(ADDRESS)
                                         .where(
-                                            ADDRESS.CITY_ID.eq(
+                                            ADDRESS.CITY_ID.`in`(
                                                 dsl.select(CITY.ID).from(CITY)
                                                     .where(CITY.COUNTRY_CODE.eq(countryCode))
                                             )
@@ -74,10 +74,10 @@ abstract class CompanyRepository(open val dsl: DSLContext, open val converter: C
         return Flux.from(
             dsl.select(COMPANY.asterisk()).from(COMPANY)
                 .where(
-                    COMPANY.ID.eq(
+                    COMPANY.ID.`in`(
                         dsl.select(OFFICE.COMPANY_ID).from(OFFICE)
                             .where(
-                                OFFICE.ADDRESS_ID.eq(
+                                OFFICE.ADDRESS_ID.`in`(
                                     dsl.select(ADDRESS.ID).from(ADDRESS)
                                         .where(ADDRESS.CITY_ID.eq(cityId))
                                 )
@@ -124,7 +124,7 @@ abstract class CompanyRepository(open val dsl: DSLContext, open val converter: C
             dsl.update(COMPANY)
                 .set(
                     COMPANY.COMPANY_INDUSTRY,
-                    companyModel.companyIndustryModel ?: oldCompanyModel.companyIndustryModel
+                    companyModel.companyIndustry ?: oldCompanyModel.companyIndustry
                 )
                 .set(
                     COMPANY.LEGAL_CAPACITY_STATUS,
@@ -140,12 +140,19 @@ abstract class CompanyRepository(open val dsl: DSLContext, open val converter: C
 
     fun delete(companyId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
+
+            dsl.deleteFrom(COMPANY_PARTNER)
+                .where(COMPANY_PARTNER.COMPANY_ID.eq(companyId))
+                .execute()
+
             val returnResult = dsl.deleteFrom(COMPANY)
                 .where(COMPANY.ID.eq(companyId))
                 .execute() == 1
+
             dsl.deleteFrom(COMPANIES_POSITIONS)
                 .where(COMPANIES_POSITIONS.COMPANY_ID.eq(companyId))
                 .execute()
+
             dsl.deleteFrom(POSITION)
                 .where(
                     POSITION.ID.eq(

@@ -1,7 +1,6 @@
 package com.fs.client.repository
 
 import com.fs.client.ru.ClientModel
-import com.fs.client.ru.enums.ClientRoleModel
 import com.fs.client.service.ClientModelConverter
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
@@ -20,10 +19,10 @@ import reactor.core.publisher.Mono
 abstract class ClientRepository(
     open val dsl: DSLContext,
     open val converter: ClientModelConverter,
-    open val basketRepository: BasketRepository
+    open val basketRepository: BasketRepository,
 ) {
 
-    fun getClintById(id: Long): Mono<ClientModel> {
+    fun getClintById(id: Long?): Mono<ClientModel> {
         return Mono.from(
             dsl.select(CLIENT.asterisk()).from(CLIENT)
                 .join(Basket.BASKET).on(CLIENT.BASKET_ID.eq(Basket.BASKET.ID))
@@ -84,14 +83,32 @@ abstract class ClientRepository(
         }
     }
 
-    fun changeRole(id: Long, role: ClientRoleModel): Mono<Boolean> {
-        return Mono.fromSupplier {
-            dsl.update(CLIENT)
-                .set(CLIENT.ROLE, role)
-                .where(CLIENT.ID.eq(id))
-                .execute() == 1
-        }
-    }
+    //Should to think how to realize this function
+
+//    fun changeRole(id: Long, role: ClientRoleModel): Mono<Boolean> {
+//        return Mono.fromSupplier {
+//
+//            val updatableClientModel = dsl.update(CLIENT)
+//                .set(CLIENT.ROLE, role)
+//                .where(CLIENT.ID.eq(id))
+//                .returning()
+//                .map { it.into(Client::class.java) }
+//                .map(converter::toModel)
+//                .first()
+//
+//            val oldPartnerClientId = dsl.select(Partner.PARTNER.CLIENT_ID).from(Partner.PARTNER)
+//                .where(Partner.PARTNER.CLIENT_ID.eq(id))
+//                .map { it.into(Long::class.java) }
+//
+//            if(role == ClientRoleModel.PARTNER && oldPartnerClientId.isEmpty()){
+//
+//                partnerRepository.insert(updatableClientModel)
+//
+//            }
+//
+//            return@fromSupplier true
+//        }
+//    }
 
     fun insert(clientModel: ClientModel) =
         Mono.fromSupplier {
@@ -111,14 +128,16 @@ abstract class ClientRepository(
         return Mono.fromSupplier {
             val clientRecord: ClientRecord? = dsl.fetchOne(CLIENT, CLIENT.ID.eq(id))
             if (clientRecord != null) {
-                dsl.deleteFrom(CLIENT)
+                val result = dsl.deleteFrom(CLIENT)
                     .where(CLIENT.ID.eq(id))
-                    .execute()
+                    .execute() == 1
                 dsl.deleteFrom(BASKET)
                     .where(BASKET.ID.eq(clientRecord.basketId))
                     .execute()
                 dsl.deleteFrom(ORDER)
                     .where(ORDER.BASKET_ID.eq(clientRecord.basketId))
+                    .execute()
+                return@fromSupplier result
             }
             false
         }

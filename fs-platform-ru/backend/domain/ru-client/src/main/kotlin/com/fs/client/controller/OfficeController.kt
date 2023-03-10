@@ -26,10 +26,9 @@ open class OfficeController(open val officeRepository: OfficeRepository) {
 
     @PutMapping("{id}")
     fun updateByOfficeId(
-        @PathVariable("id") officeId: Long,
         @RequestBody companyAddress: CompanyAddress
     ) =
-        officeRepository.updateCompanyAddress(officeId, companyAddress)
+        officeRepository.updateCompanyAddress(companyAddress)
 
 
     @PostMapping
@@ -53,11 +52,10 @@ open class OfficeController(open val officeRepository: OfficeRepository) {
     }
 
     @MutationMapping
-    open fun updateAddressByCompanyId(
-        @Argument id: Long,
+    open fun updateOfficeAddress(
         @Argument companyAddress: CompanyAddress
     ): Mono<Boolean> {
-        return officeRepository.updateCompanyAddress(id, companyAddress)
+        return officeRepository.updateCompanyAddress(companyAddress)
     }
 
     @MutationMapping
@@ -68,7 +66,12 @@ open class OfficeController(open val officeRepository: OfficeRepository) {
     }
 
     @MutationMapping
-    open fun deleteAllOfficeInfoByCompanyId(@Argument id: Long): Mono<Boolean> {
+    open fun deleteAllOfficesByCompanyId(@Argument id: Long): Mono<Boolean> {
         return officeRepository.deleteAllByCompanyId(id)
+    }
+
+    @MutationMapping
+    open fun deleteOffice(@Argument id: Long): Mono<Boolean> {
+        return officeRepository.deleteByOfficeId(id)
     }
 }
