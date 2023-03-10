@@ -26,8 +26,13 @@ open class PositionController(
     }
 
     @QueryMapping
-    open fun getAllPositionsByCompanyId(@Argument companyId: Long): Flux<PositionModel> {
-        return positionRepository.getAllByCompanyId(companyId)
+    open fun getAllPositionsByCompanyId(@Argument id: Long): Flux<PositionModel> {
+        return positionRepository.getAllByCompanyId(id)
+    }
+
+    @QueryMapping
+    open fun getAllPositions(): Flux<PositionModel> {
+        return positionRepository.getAll()
     }
 
     @MutationMapping
@@ -41,6 +46,14 @@ open class PositionController(
         @Argument position: PositionModel
     ): Mono<PositionModel> {
         return positionRepository.initCompanyPosition(companyId, position)
+    }
+
+    @MutationMapping
+    open fun addExistingPositionToCompany(
+        @Argument companyId: Long,
+        @Argument positionId: Long
+    ): Mono<Boolean> {
+        return positionRepository.initExistingPositionToCompany(companyId, positionId)
     }
 
     @MutationMapping

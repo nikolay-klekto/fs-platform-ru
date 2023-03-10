@@ -26,6 +26,7 @@ type Query {
 
     getPositionById(id: ID!): Position
     getAllPositionsByCompanyId(id: ID!): [Position]
+    getAllPositions: [Position]
 
     getPartnerById(id: ID!): Partner
     getAllPartners: [Partner]
@@ -62,6 +63,7 @@ type Mutation {
 
     addPosition(position: PositionInput!): Position
     addCompanyPosition(companyId: ID!, position: PositionInput!): Position
+    addExistingPositionToCompany(companyId: ID!, positionId: ID!): Boolean
     updatePosition(position: PositionInput!): Boolean
     deletePosition(id: ID!): Boolean
 

@@ -25,12 +25,19 @@ abstract class PositionRepository(open val dsl: DSLContext, open val converter: 
         return Flux.from(
             dsl.select(POSITION.asterisk()).from(POSITION)
                 .where(
-                    POSITION.ID.eq(
+                    POSITION.ID.`in`(
                         dsl.select(COMPANIES_POSITIONS.POSITION_ID).from(COMPANIES_POSITIONS)
                             .where(COMPANIES_POSITIONS.COMPANY_ID.eq(companyId))
                     )
                 )
 
+        ).map { it.into(Position::class.java) }
+            .map(converter::toModel)
+    }
+
+    fun getAll(): Flux<PositionModel> {
+        return Flux.from(
+            dsl.select(POSITION.asterisk()).from(POSITION)
         ).map { it.into(Position::class.java) }
             .map(converter::toModel)
     }
@@ -65,6 +72,17 @@ abstract class PositionRepository(open val dsl: DSLContext, open val converter: 
             .map(converter::toModel)
     }
 
+    fun initExistingPositionToCompany(companyId: Long, positionId: Long): Mono<Boolean> {
+        return Mono.fromSupplier {
+            val newCompaniesPositionsRecord: CompaniesPositionsRecord = dsl.newRecord(COMPANIES_POSITIONS)
+            newCompaniesPositionsRecord.positionId = positionId
+            newCompaniesPositionsRecord.companyId = companyId
+            dsl.insertInto(COMPANIES_POSITIONS)
+                .set(newCompaniesPositionsRecord)
+                .execute() == 1
+        }
+    }
+
     fun update(position: PositionModel): Mono<Boolean> {
         return Mono.fromSupplier {
             val oldPosition = getById(position.id).block()
@@ -79,13 +97,13 @@ abstract class PositionRepository(open val dsl: DSLContext, open val converter: 
 
     fun delete(positionId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
-            val returnResult = dsl.deleteFrom(POSITION)
-                .where(POSITION.ID.eq(positionId))
-                .execute() == 1
             dsl.deleteFrom(COMPANIES_POSITIONS)
                 .where(COMPANIES_POSITIONS.POSITION_ID.eq(positionId))
                 .execute()
-            return@fromSupplier returnResult
+            dsl.deleteFrom(POSITION)
+                .where(POSITION.ID.eq(positionId))
+                .execute() == 1
+
         }
     }
 }
