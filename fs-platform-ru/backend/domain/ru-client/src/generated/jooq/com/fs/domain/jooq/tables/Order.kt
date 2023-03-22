@@ -60,14 +60,10 @@ open class Order(
     val BASKET_ID: TableField<OrderRecord, Long?> = createField(DSL.name("basket_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.order.city_id</code>.
+     * The column <code>public.order.company_office_id</code>.
      */
-    val CITY_ID: TableField<OrderRecord, Long?> = createField(DSL.name("city_id"), SQLDataType.BIGINT, this, "")
-
-    /**
-     * The column <code>public.order.company_id</code>.
-     */
-    val COMPANY_ID: TableField<OrderRecord, Long?> = createField(DSL.name("company_id"), SQLDataType.BIGINT, this, "")
+    val COMPANY_OFFICE_ID: TableField<OrderRecord, Long?> =
+        createField(DSL.name("company_office_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.order.position_id</code>.
@@ -132,15 +128,13 @@ open class Order(
     override fun getPrimaryKey(): UniqueKey<OrderRecord> = ORDER_PKEY
     override fun getReferences(): List<ForeignKey<OrderRecord, *>> = listOf(
         ORDER__ORDER_BASKET_ID_FKEY,
-        ORDER__ORDER_CITY_ID_FKEY,
-        ORDER__ORDER_COMPANY_ID_FKEY,
+        ORDER__ORDER_COMPANY_OFFICE_ID_FKEY,
         ORDER__ORDER_POSITION_ID_FKEY,
         ORDER__ORDER_SERVICE_ID_FKEY
     )
 
     private lateinit var _basket: Basket
-    private lateinit var _city: City
-    private lateinit var _company: Company
+    private lateinit var _office: Office
     private lateinit var _position: Position
     private lateinit var _service: Service
 
@@ -155,23 +149,13 @@ open class Order(
     }
 
     /**
-     * Get the implicit join path to the <code>public.city</code> table.
+     * Get the implicit join path to the <code>public.office</code> table.
      */
-    fun city(): City {
-        if (!this::_city.isInitialized)
-            _city = City(this, ORDER__ORDER_CITY_ID_FKEY)
+    fun office(): Office {
+        if (!this::_office.isInitialized)
+            _office = Office(this, ORDER__ORDER_COMPANY_OFFICE_ID_FKEY)
 
-        return _city;
-    }
-
-    /**
-     * Get the implicit join path to the <code>public.company</code> table.
-     */
-    fun company(): Company {
-        if (!this::_company.isInitialized)
-            _company = Company(this, ORDER__ORDER_COMPANY_ID_FKEY)
-
-        return _company;
+        return _office;
     }
 
     /**
@@ -207,8 +191,8 @@ open class Order(
     override fun rename(name: Name): Order = Order(name, null)
 
     // -------------------------------------------------------------------------
-    // Row9 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row9<Long?, Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?> =
-        super.fieldsRow() as Row9<Long?, Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?>
+    override fun fieldsRow(): Row8<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?> =
+        super.fieldsRow() as Row8<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?>
 }

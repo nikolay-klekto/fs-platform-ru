@@ -76,7 +76,7 @@ jooq {
                 logging = Logging.WARN
                 jdbc.apply {
                     driver = "org.postgresql.Driver"
-                    url = "jdbc:postgresql://localhost:5432/FunScrut"
+                    url = "jdbc:postgresql://localhost:5432/FunScrut2"
                     user = "postgres"
                     password = "191220#destin"
                     properties = listOf(

@@ -31,7 +31,7 @@ abstract class ServiceRepository(open val dsl: DSLContext, open val converter: S
     fun updateById(id: Long, serviceModel: ServiceModel): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.update(SERVICE)
-                .set(SERVICE.PRICE, serviceModel.price)
+                .set(SERVICE.PRICE_PER_DAY, serviceModel.pricePerDay)
                 .set(SERVICE.NAME, serviceModel.name)
                 .where(SERVICE.ID.eq(id))
                 .execute() == 1

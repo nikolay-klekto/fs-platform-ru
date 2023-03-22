@@ -13,7 +13,7 @@ import java.io.Serializable
 @Suppress("UNCHECKED_CAST")
 data class Service(
     var id: Long? = null,
-    var price: Long? = null,
+    var pricePerDay: Long? = null,
     var name: String? = null
 ) : Serializable {
 
@@ -22,7 +22,7 @@ data class Service(
         val sb = StringBuilder("Service (")
 
         sb.append(id)
-        sb.append(", ").append(price)
+        sb.append(", ").append(pricePerDay)
         sb.append(", ").append(name)
 
         sb.append(")")

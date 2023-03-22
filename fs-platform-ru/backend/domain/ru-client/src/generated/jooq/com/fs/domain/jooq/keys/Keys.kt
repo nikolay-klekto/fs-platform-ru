@@ -143,20 +143,12 @@ val ORDER__ORDER_BASKET_ID_FKEY: ForeignKey<OrderRecord, BasketRecord> = Interna
     arrayOf(Basket.BASKET.ID),
     true
 )
-val ORDER__ORDER_CITY_ID_FKEY: ForeignKey<OrderRecord, CityRecord> = Internal.createForeignKey(
+val ORDER__ORDER_COMPANY_OFFICE_ID_FKEY: ForeignKey<OrderRecord, OfficeRecord> = Internal.createForeignKey(
     Order.ORDER,
-    DSL.name("order_city_id_fkey"),
-    arrayOf(Order.ORDER.CITY_ID),
-    com.fs.domain.jooq.keys.CITY_PKEY,
-    arrayOf(City.CITY.ID),
-    true
-)
-val ORDER__ORDER_COMPANY_ID_FKEY: ForeignKey<OrderRecord, CompanyRecord> = Internal.createForeignKey(
-    Order.ORDER,
-    DSL.name("order_company_id_fkey"),
-    arrayOf(Order.ORDER.COMPANY_ID),
-    com.fs.domain.jooq.keys.COMPANY_PKEY,
-    arrayOf(Company.COMPANY.ID),
+    DSL.name("order_company_office_id_fkey"),
+    arrayOf(Order.ORDER.COMPANY_OFFICE_ID),
+    com.fs.domain.jooq.keys.OFFICE_PKEY,
+    arrayOf(Office.OFFICE.ID),
     true
 )
 val ORDER__ORDER_POSITION_ID_FKEY: ForeignKey<OrderRecord, PositionRecord> = Internal.createForeignKey(
@@ -179,6 +171,14 @@ val PARTNER__PARTNER_CLIENT_ID_FKEY: ForeignKey<PartnerRecord, ClientRecord> = I
     Partner.PARTNER,
     DSL.name("partner_client_id_fkey"),
     arrayOf(Partner.PARTNER.CLIENT_ID),
+    com.fs.domain.jooq.keys.CLIENT_PKEY,
+    arrayOf(Client.CLIENT.ID),
+    true
+)
+val REVIEW__REVIEW_CLIENT_ID_FKEY: ForeignKey<ReviewRecord, ClientRecord> = Internal.createForeignKey(
+    Review.REVIEW,
+    DSL.name("review_client_id_fkey"),
+    arrayOf(Review.REVIEW.CLIENT_ID),
     com.fs.domain.jooq.keys.CLIENT_PKEY,
     arrayOf(Client.CLIENT.ID),
     true

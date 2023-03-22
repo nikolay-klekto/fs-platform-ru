@@ -94,16 +94,17 @@ type Mutation {
 
 input ServiceInput {
     id: ID
-    price: ID
+    pricePerDay: ID
     name: String
 }
 
 input ReviewInput {
     id: ID!
-    companyId: ID
+    companyId: ID!
+    clientId: ID!
     description: String,
-    rate: ID
-    username: String
+    rate: ID!
+    username: String!
 }
 
 input CityInput {
@@ -121,8 +122,7 @@ input CountryInput {
 input OrderInput {
     id: ID
     basketId: ID
-    cityId: ID
-    companyId: ID
+    companyOfficeId: ID
     positionId: ID
     serviceId: ID
     isExpired: Boolean
@@ -221,6 +221,7 @@ input CompanyAddressInput {
 type Review {
     id: ID
     companyId: ID
+    clientId: ID
     dateCreated: LocalDateTime
     description: String,
     rate: ID
@@ -230,7 +231,6 @@ type Review {
 type Order {
     id: ID
     basketId: ID
-    city: City
     company: Company
     position: Position
     service: Service
@@ -256,7 +256,7 @@ type Position {
 
 type Service {
     id: ID
-    price: ID
+    pricePerDay: ID
     name: String
 }
 

@@ -15,8 +15,7 @@ import java.time.LocalDateTime
 data class Order(
     var id: Long? = null,
     var basketId: Long? = null,
-    var cityId: Long? = null,
-    var companyId: Long? = null,
+    var companyOfficeId: Long? = null,
     var positionId: Long? = null,
     var serviceId: Long? = null,
     @set:JvmName("setIsExpired")
@@ -31,8 +30,7 @@ data class Order(
 
         sb.append(id)
         sb.append(", ").append(basketId)
-        sb.append(", ").append(cityId)
-        sb.append(", ").append(companyId)
+        sb.append(", ").append(companyOfficeId)
         sb.append(", ").append(positionId)
         sb.append(", ").append(serviceId)
         sb.append(", ").append(isExpired)

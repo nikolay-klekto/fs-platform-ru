@@ -11,6 +11,7 @@ class ReviewModelConverter : ModelConverter<Review, ReviewModel> {
         return ReviewModel(
             id = rawObject.id,
             companyId = rawObject.companyId,
+            clientId = rawObject.clientId,
             username = rawObject.username,
             rate = rawObject.rate,
             dateCreated = rawObject.dateCreated,
@@ -22,6 +23,7 @@ class ReviewModelConverter : ModelConverter<Review, ReviewModel> {
         return Review(
             modelObject.id,
             modelObject.companyId,
+            modelObject.clientId,
             modelObject.dateCreated,
             modelObject.description,
             modelObject.rate,

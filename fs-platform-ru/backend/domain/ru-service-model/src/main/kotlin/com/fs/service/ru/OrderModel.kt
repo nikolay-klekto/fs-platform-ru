@@ -6,8 +6,7 @@ import java.time.LocalDateTime
 data class OrderModel(
     val id: Long,
     val basketId: Long?,
-    val cityId: Long?,
-    val companyId: Long?,
+    val companyOfficeId: Long?,
     val positionId: Long?,
     val serviceId: Long?,
     val isExpired: Boolean?,

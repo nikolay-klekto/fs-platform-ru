@@ -54,9 +54,10 @@ open class Service(
         createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>public.service.price</code>.
+     * The column <code>public.service.price_per_day</code>.
      */
-    val PRICE: TableField<ServiceRecord, Long?> = createField(DSL.name("price"), SQLDataType.BIGINT, this, "")
+    val PRICE_PER_DAY: TableField<ServiceRecord, Long?> =
+        createField(DSL.name("price_per_day"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.service.name</code>.

@@ -5,7 +5,6 @@ import com.fs.client.ru.AddressModel
 import com.fs.client.ru.CityModel
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.CountryModel
-import com.fs.service.ru.OrderModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -49,11 +48,6 @@ open class CityController(open val cityRepository: CityRepository) {
     @MutationMapping
     fun deleteCity(@Argument cityId: Long): Mono<Boolean> {
         return cityRepository.deleteCity(cityId)
-    }
-
-    @SchemaMapping(typeName = "Order", field = "city")
-    fun getCityForOrder(order: OrderModel): Mono<CityModel> {
-        return cityRepository.getCityById(order.cityId!!)
     }
 
     @SchemaMapping(typeName = "Client", field = "city")

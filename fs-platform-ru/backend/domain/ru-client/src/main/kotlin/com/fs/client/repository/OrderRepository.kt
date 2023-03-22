@@ -55,20 +55,23 @@ abstract class OrderRepository(
     fun insertOrder(orderModel: OrderModel): Mono<OrderModel> {
         return Mono.fromSupplier {
             val totalPrice: String
-            if (orderModel.basketId != null && orderModel.serviceId != null && orderModel.cityId != null) {
+            if (orderModel.basketId != null && orderModel.serviceId != null && orderModel.companyOfficeId != null) {
                 val pastTotalPrice: String? =
                     basketRepository.getById(orderModel.basketId!!).block()!!.totalPrice
                 if (pastTotalPrice != null) {
 
-                    val servicePrice: Long? =
-                        serviceRepository.getById(orderModel.serviceId!!).block()!!.price
+                    val servicePrice: Long =
+                        serviceRepository.getById(orderModel.serviceId!!)
+                            .block()!!.pricePerDay!! * orderModel.totalWorkDays!!
+
+                    val orderCity = cityRepository.getCityByOfficeId(orderModel.companyOfficeId!!)
 
                     val orderCurrency: CurrencyModel =
-                        cityRepository.getCountryByCityId(orderModel.cityId!!).block()!!.currency
+                        cityRepository.getCountryByCityId(orderCity.id).block()!!.currency
 
                     val map: Map<CurrencyModel?, Long> = totalPriceMatcher.decomposeTotalPrice(pastTotalPrice)
                     val oldTotalPrice = map[orderCurrency]
-                    if (oldTotalPrice != null && servicePrice != null) {
+                    if (oldTotalPrice != null) {
                         val newTotalPrice = oldTotalPrice + servicePrice
                         totalPrice = "$newTotalPrice $orderCurrency"
                         basketRepository.updateWithoutMono(BasketModel(orderModel.basketId!!, totalPrice))

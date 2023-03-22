@@ -6,6 +6,7 @@ package com.fs.domain.jooq.tables
 
 import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.REVIEW_PKEY
+import com.fs.domain.jooq.keys.REVIEW__REVIEW_CLIENT_ID_FKEY
 import com.fs.domain.jooq.keys.REVIEW__REVIEW_COMPANY_ID_FKEY
 import com.fs.domain.jooq.tables.records.ReviewRecord
 import org.jooq.*
@@ -59,6 +60,11 @@ open class Review(
      * The column <code>public.review.company_id</code>.
      */
     val COMPANY_ID: TableField<ReviewRecord, Long?> = createField(DSL.name("company_id"), SQLDataType.BIGINT, this, "")
+
+    /**
+     * The column <code>public.review.client_id</code>.
+     */
+    val CLIENT_ID: TableField<ReviewRecord, Long?> = createField(DSL.name("client_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.review.date_created</code>.
@@ -115,9 +121,11 @@ open class Review(
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<ReviewRecord, Long?> = super.getIdentity() as Identity<ReviewRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ReviewRecord> = REVIEW_PKEY
-    override fun getReferences(): List<ForeignKey<ReviewRecord, *>> = listOf(REVIEW__REVIEW_COMPANY_ID_FKEY)
+    override fun getReferences(): List<ForeignKey<ReviewRecord, *>> =
+        listOf(REVIEW__REVIEW_COMPANY_ID_FKEY, REVIEW__REVIEW_CLIENT_ID_FKEY)
 
     private lateinit var _company: Company
+    private lateinit var _client: Client
 
     /**
      * Get the implicit join path to the <code>public.company</code> table.
@@ -128,6 +136,17 @@ open class Review(
 
         return _company;
     }
+
+    /**
+     * Get the implicit join path to the <code>public.client</code> table.
+     */
+    fun client(): Client {
+        if (!this::_client.isInitialized)
+            _client = Client(this, REVIEW__REVIEW_CLIENT_ID_FKEY)
+
+        return _client;
+    }
+
     override fun `as`(alias: String): Review = Review(DSL.name(alias), this)
     override fun `as`(alias: Name): Review = Review(alias, this)
 
@@ -142,8 +161,8 @@ open class Review(
     override fun rename(name: Name): Review = Review(name, null)
 
     // -------------------------------------------------------------------------
-    // Row6 type methods
+    // Row7 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row6<Long?, Long?, LocalDateTime?, String?, Long?, String?> =
-        super.fieldsRow() as Row6<Long?, Long?, LocalDateTime?, String?, Long?, String?>
+    override fun fieldsRow(): Row7<Long?, Long?, Long?, LocalDateTime?, String?, Long?, String?> =
+        super.fieldsRow() as Row7<Long?, Long?, Long?, LocalDateTime?, String?, Long?, String?>
 }

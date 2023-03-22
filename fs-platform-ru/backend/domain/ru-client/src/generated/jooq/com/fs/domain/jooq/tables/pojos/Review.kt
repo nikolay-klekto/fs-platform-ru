@@ -15,6 +15,7 @@ import java.time.LocalDateTime
 data class Review(
     var id: Long? = null,
     var companyId: Long? = null,
+    var clientId: Long? = null,
     var dateCreated: LocalDateTime? = null,
     var description: String? = null,
     var rate: Long? = null,
@@ -27,6 +28,7 @@ data class Review(
 
         sb.append(id)
         sb.append(", ").append(companyId)
+        sb.append(", ").append(clientId)
         sb.append(", ").append(dateCreated)
         sb.append(", ").append(description)
         sb.append(", ").append(rate)

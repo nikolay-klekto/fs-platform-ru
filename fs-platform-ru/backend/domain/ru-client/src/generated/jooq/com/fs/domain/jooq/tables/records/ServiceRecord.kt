@@ -23,7 +23,7 @@ open class ServiceRecord() : UpdatableRecordImpl<ServiceRecord>(Service.SERVICE)
         set(value): Unit = set(0, value)
         get(): Long? = get(0) as Long?
 
-    var price: Long?
+    var pricePerDay: Long?
         set(value): Unit = set(1, value)
         get(): Long? = get(1) as Long?
 
@@ -44,13 +44,13 @@ open class ServiceRecord() : UpdatableRecordImpl<ServiceRecord>(Service.SERVICE)
     override fun fieldsRow(): Row3<Long?, Long?, String?> = super.fieldsRow() as Row3<Long?, Long?, String?>
     override fun valuesRow(): Row3<Long?, Long?, String?> = super.valuesRow() as Row3<Long?, Long?, String?>
     override fun field1(): Field<Long?> = Service.SERVICE.ID
-    override fun field2(): Field<Long?> = Service.SERVICE.PRICE
+    override fun field2(): Field<Long?> = Service.SERVICE.PRICE_PER_DAY
     override fun field3(): Field<String?> = Service.SERVICE.NAME
     override fun component1(): Long? = id
-    override fun component2(): Long? = price
+    override fun component2(): Long? = pricePerDay
     override fun component3(): String? = name
     override fun value1(): Long? = id
-    override fun value2(): Long? = price
+    override fun value2(): Long? = pricePerDay
     override fun value3(): String? = name
 
     override fun value1(value: Long?): ServiceRecord {
@@ -59,7 +59,7 @@ open class ServiceRecord() : UpdatableRecordImpl<ServiceRecord>(Service.SERVICE)
     }
 
     override fun value2(value: Long?): ServiceRecord {
-        this.price = value
+        this.pricePerDay = value
         return this
     }
 
@@ -78,9 +78,9 @@ open class ServiceRecord() : UpdatableRecordImpl<ServiceRecord>(Service.SERVICE)
     /**
      * Create a detached, initialised ServiceRecord
      */
-    constructor(id: Long? = null, price: Long? = null, name: String? = null) : this() {
+    constructor(id: Long? = null, pricePerDay: Long? = null, name: String? = null) : this() {
         this.id = id
-        this.price = price
+        this.pricePerDay = pricePerDay
         this.name = name
     }
 
@@ -90,7 +90,7 @@ open class ServiceRecord() : UpdatableRecordImpl<ServiceRecord>(Service.SERVICE)
     constructor(value: com.fs.domain.jooq.tables.pojos.Service?) : this() {
         if (value != null) {
             this.id = value.id
-            this.price = value.price
+            this.pricePerDay = value.pricePerDay
             this.name = value.name
         }
     }

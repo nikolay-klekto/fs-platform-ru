@@ -11,8 +11,7 @@ class OrderModelConverter : ModelConverter<Order, OrderModel> {
         return OrderModel(
             id = rawObject.id!!,
             basketId = rawObject.basketId,
-            cityId = rawObject.cityId,
-            companyId = rawObject.companyId,
+            companyOfficeId = rawObject.companyOfficeId,
             positionId = rawObject.positionId,
             serviceId = rawObject.serviceId,
             isExpired = rawObject.isExpired,
@@ -25,8 +24,7 @@ class OrderModelConverter : ModelConverter<Order, OrderModel> {
         return Order(
             modelObject.id,
             modelObject.basketId,
-            modelObject.cityId,
-            modelObject.companyId,
+            modelObject.companyOfficeId,
             modelObject.positionId,
             modelObject.serviceId,
             modelObject.isExpired,

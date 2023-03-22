@@ -9,7 +9,7 @@ class ServiceModelConverter : ModelConverter<Service, ServiceModel> {
     override fun toModel(rawObject: Service): ServiceModel {
         return ServiceModel(
             id = rawObject.id!!,
-            price = rawObject.price!!,
+            pricePerDay = rawObject.pricePerDay!!,
             name = rawObject.name!!
         )
     }
@@ -17,7 +17,7 @@ class ServiceModelConverter : ModelConverter<Service, ServiceModel> {
     override fun fromModel(modelObject: ServiceModel): Service {
         return Service(
             modelObject.id,
-            modelObject.price,
+            modelObject.pricePerDay,
             modelObject.name
         )
     }

@@ -8,7 +8,7 @@ graphql:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/FunScrut
+    url: jdbc:postgresql://localhost:5432/FunScrut2
     username: postgres
     password: 191220#destin
   graphql:

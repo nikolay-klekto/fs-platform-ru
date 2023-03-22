@@ -71,7 +71,7 @@ open class CompanyController(
 
     @SchemaMapping(typeName = "Order", field = "company")
     fun getCompanyForOrder(order: OrderModel): Mono<CompanyModel> {
-        return companyRepository.getById(order.companyId!!)
+        return companyRepository.getById(order.companyOfficeId!!)
     }
 
     @SchemaMapping(typeName = "Office", field = "company")

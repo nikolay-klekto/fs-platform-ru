@@ -7,8 +7,8 @@ package com.fs.domain.jooq.tables.records
 import com.fs.domain.jooq.tables.Review
 import org.jooq.Field
 import org.jooq.Record1
-import org.jooq.Record6
-import org.jooq.Row6
+import org.jooq.Record7
+import org.jooq.Row7
 import org.jooq.impl.UpdatableRecordImpl
 import java.time.LocalDateTime
 
@@ -18,7 +18,7 @@ import java.time.LocalDateTime
  */
 @Suppress("UNCHECKED_CAST")
 open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
-    Record6<Long?, Long?, LocalDateTime?, String?, Long?, String?> {
+    Record7<Long?, Long?, Long?, LocalDateTime?, String?, Long?, String?> {
 
     var id: Long?
         set(value): Unit = set(0, value)
@@ -28,21 +28,25 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
         set(value): Unit = set(1, value)
         get(): Long? = get(1) as Long?
 
-    var dateCreated: LocalDateTime?
+    var clientId: Long?
         set(value): Unit = set(2, value)
-        get(): LocalDateTime? = get(2) as LocalDateTime?
+        get(): Long? = get(2) as Long?
+
+    var dateCreated: LocalDateTime?
+        set(value): Unit = set(3, value)
+        get(): LocalDateTime? = get(3) as LocalDateTime?
 
     var description: String?
-        set(value): Unit = set(3, value)
-        get(): String? = get(3) as String?
+        set(value): Unit = set(4, value)
+        get(): String? = get(4) as String?
 
     var rate: Long?
-        set(value): Unit = set(4, value)
-        get(): Long? = get(4) as Long?
+        set(value): Unit = set(5, value)
+        get(): Long? = get(5) as Long?
 
     var username: String?
-        set(value): Unit = set(5, value)
-        get(): String? = get(5) as String?
+        set(value): Unit = set(6, value)
+        get(): String? = get(6) as String?
 
     // -------------------------------------------------------------------------
     // Primary key information
@@ -51,33 +55,36 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
     override fun key(): Record1<Long?> = super.key() as Record1<Long?>
 
     // -------------------------------------------------------------------------
-    // Record6 type implementation
+    // Record7 type implementation
     // -------------------------------------------------------------------------
 
-    override fun fieldsRow(): Row6<Long?, Long?, LocalDateTime?, String?, Long?, String?> =
-        super.fieldsRow() as Row6<Long?, Long?, LocalDateTime?, String?, Long?, String?>
+    override fun fieldsRow(): Row7<Long?, Long?, Long?, LocalDateTime?, String?, Long?, String?> =
+        super.fieldsRow() as Row7<Long?, Long?, Long?, LocalDateTime?, String?, Long?, String?>
 
-    override fun valuesRow(): Row6<Long?, Long?, LocalDateTime?, String?, Long?, String?> =
-        super.valuesRow() as Row6<Long?, Long?, LocalDateTime?, String?, Long?, String?>
+    override fun valuesRow(): Row7<Long?, Long?, Long?, LocalDateTime?, String?, Long?, String?> =
+        super.valuesRow() as Row7<Long?, Long?, Long?, LocalDateTime?, String?, Long?, String?>
 
     override fun field1(): Field<Long?> = Review.REVIEW.ID
     override fun field2(): Field<Long?> = Review.REVIEW.COMPANY_ID
-    override fun field3(): Field<LocalDateTime?> = Review.REVIEW.DATE_CREATED
-    override fun field4(): Field<String?> = Review.REVIEW.DESCRIPTION
-    override fun field5(): Field<Long?> = Review.REVIEW.RATE
-    override fun field6(): Field<String?> = Review.REVIEW.USERNAME
+    override fun field3(): Field<Long?> = Review.REVIEW.CLIENT_ID
+    override fun field4(): Field<LocalDateTime?> = Review.REVIEW.DATE_CREATED
+    override fun field5(): Field<String?> = Review.REVIEW.DESCRIPTION
+    override fun field6(): Field<Long?> = Review.REVIEW.RATE
+    override fun field7(): Field<String?> = Review.REVIEW.USERNAME
     override fun component1(): Long? = id
     override fun component2(): Long? = companyId
-    override fun component3(): LocalDateTime? = dateCreated
-    override fun component4(): String? = description
-    override fun component5(): Long? = rate
-    override fun component6(): String? = username
+    override fun component3(): Long? = clientId
+    override fun component4(): LocalDateTime? = dateCreated
+    override fun component5(): String? = description
+    override fun component6(): Long? = rate
+    override fun component7(): String? = username
     override fun value1(): Long? = id
     override fun value2(): Long? = companyId
-    override fun value3(): LocalDateTime? = dateCreated
-    override fun value4(): String? = description
-    override fun value5(): Long? = rate
-    override fun value6(): String? = username
+    override fun value3(): Long? = clientId
+    override fun value4(): LocalDateTime? = dateCreated
+    override fun value5(): String? = description
+    override fun value6(): Long? = rate
+    override fun value7(): String? = username
 
     override fun value1(value: Long?): ReviewRecord {
         this.id = value
@@ -89,22 +96,27 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
         return this
     }
 
-    override fun value3(value: LocalDateTime?): ReviewRecord {
+    override fun value3(value: Long?): ReviewRecord {
+        this.clientId = value
+        return this
+    }
+
+    override fun value4(value: LocalDateTime?): ReviewRecord {
         this.dateCreated = value
         return this
     }
 
-    override fun value4(value: String?): ReviewRecord {
+    override fun value5(value: String?): ReviewRecord {
         this.description = value
         return this
     }
 
-    override fun value5(value: Long?): ReviewRecord {
+    override fun value6(value: Long?): ReviewRecord {
         this.rate = value
         return this
     }
 
-    override fun value6(value: String?): ReviewRecord {
+    override fun value7(value: String?): ReviewRecord {
         this.username = value
         return this
     }
@@ -112,10 +124,11 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
     override fun values(
         value1: Long?,
         value2: Long?,
-        value3: LocalDateTime?,
-        value4: String?,
-        value5: Long?,
-        value6: String?
+        value3: Long?,
+        value4: LocalDateTime?,
+        value5: String?,
+        value6: Long?,
+        value7: String?
     ): ReviewRecord {
         this.value1(value1)
         this.value2(value2)
@@ -123,6 +136,7 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
         this.value4(value4)
         this.value5(value5)
         this.value6(value6)
+        this.value7(value7)
         return this
     }
 
@@ -132,6 +146,7 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
     constructor(
         id: Long? = null,
         companyId: Long? = null,
+        clientId: Long? = null,
         dateCreated: LocalDateTime? = null,
         description: String? = null,
         rate: Long? = null,
@@ -139,6 +154,7 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
     ) : this() {
         this.id = id
         this.companyId = companyId
+        this.clientId = clientId
         this.dateCreated = dateCreated
         this.description = description
         this.rate = rate
@@ -152,6 +168,7 @@ open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW),
         if (value != null) {
             this.id = value.id
             this.companyId = value.companyId
+            this.clientId = value.clientId
             this.dateCreated = value.dateCreated
             this.description = value.description
             this.rate = value.rate

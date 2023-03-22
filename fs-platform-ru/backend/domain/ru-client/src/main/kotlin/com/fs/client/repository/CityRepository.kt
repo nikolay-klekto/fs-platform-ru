@@ -4,8 +4,10 @@ import com.fs.client.ru.CityModel
 import com.fs.client.ru.CountryModel
 import com.fs.client.service.CityModelConverter
 import com.fs.client.service.CountryModelConverter
+import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.City.Companion.CITY
 import com.fs.domain.jooq.tables.Country.Companion.COUNTRY
+import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.pojos.City
 import com.fs.domain.jooq.tables.pojos.Country
 import com.fs.domain.jooq.tables.records.CityRecord
@@ -39,6 +41,25 @@ abstract class CityRepository(
         )
             .map { it.into(Country::class.java) }
             .map(countryConverter::toModel)
+    }
+
+    fun getCityByOfficeId(id: Long): CityModel {
+        return dsl.select(CITY.asterisk()).from(CITY)
+            .where(
+                CITY.ID.`in`(
+                    dsl.select(Address.ADDRESS.CITY_ID)
+                        .from(Address.ADDRESS)
+                        .where(
+                            Address.ADDRESS.ID.`in`(
+                                dsl.select(Office.OFFICE.ADDRESS_ID).from(Office.OFFICE)
+                                    .where(Office.OFFICE.ID.eq(id))
+                            )
+                        )
+                )
+            )
+            .map { it.into(City::class.java) }
+            .map(cityConverter::toModel)
+            .first()
     }
 
     fun createCity(newCity: CityModel): Mono<CityModel> {

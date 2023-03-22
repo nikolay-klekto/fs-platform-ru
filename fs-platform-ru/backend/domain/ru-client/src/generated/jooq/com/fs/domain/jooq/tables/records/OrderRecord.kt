@@ -7,8 +7,8 @@ package com.fs.domain.jooq.tables.records
 import com.fs.domain.jooq.tables.Order
 import org.jooq.Field
 import org.jooq.Record1
-import org.jooq.Record9
-import org.jooq.Row9
+import org.jooq.Record8
+import org.jooq.Row8
 import org.jooq.impl.UpdatableRecordImpl
 import java.time.LocalDateTime
 
@@ -18,7 +18,7 @@ import java.time.LocalDateTime
  */
 @Suppress("UNCHECKED_CAST")
 open class OrderRecord() : UpdatableRecordImpl<OrderRecord>(Order.ORDER),
-    Record9<Long?, Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?> {
+    Record8<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?> {
 
     var id: Long?
         set(value): Unit = set(0, value)
@@ -28,34 +28,30 @@ open class OrderRecord() : UpdatableRecordImpl<OrderRecord>(Order.ORDER),
         set(value): Unit = set(1, value)
         get(): Long? = get(1) as Long?
 
-    var cityId: Long?
+    var companyOfficeId: Long?
         set(value): Unit = set(2, value)
         get(): Long? = get(2) as Long?
 
-    var companyId: Long?
+    var positionId: Long?
         set(value): Unit = set(3, value)
         get(): Long? = get(3) as Long?
 
-    var positionId: Long?
+    var serviceId: Long?
         set(value): Unit = set(4, value)
         get(): Long? = get(4) as Long?
 
-    var serviceId: Long?
-        set(value): Unit = set(5, value)
-        get(): Long? = get(5) as Long?
-
     @set:JvmName("setIsExpired")
     var isExpired: Boolean?
-        set(value): Unit = set(6, value)
-        get(): Boolean? = get(6) as Boolean?
+        set(value): Unit = set(5, value)
+        get(): Boolean? = get(5) as Boolean?
 
     var startWorkDate: LocalDateTime?
-        set(value): Unit = set(7, value)
-        get(): LocalDateTime? = get(7) as LocalDateTime?
+        set(value): Unit = set(6, value)
+        get(): LocalDateTime? = get(6) as LocalDateTime?
 
     var totalWorkDays: Long?
-        set(value): Unit = set(8, value)
-        get(): Long? = get(8) as Long?
+        set(value): Unit = set(7, value)
+        get(): Long? = get(7) as Long?
 
     // -------------------------------------------------------------------------
     // Primary key information
@@ -64,42 +60,39 @@ open class OrderRecord() : UpdatableRecordImpl<OrderRecord>(Order.ORDER),
     override fun key(): Record1<Long?> = super.key() as Record1<Long?>
 
     // -------------------------------------------------------------------------
-    // Record9 type implementation
+    // Record8 type implementation
     // -------------------------------------------------------------------------
 
-    override fun fieldsRow(): Row9<Long?, Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?> =
-        super.fieldsRow() as Row9<Long?, Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?>
+    override fun fieldsRow(): Row8<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?> =
+        super.fieldsRow() as Row8<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?>
 
-    override fun valuesRow(): Row9<Long?, Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?> =
-        super.valuesRow() as Row9<Long?, Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?>
+    override fun valuesRow(): Row8<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?> =
+        super.valuesRow() as Row8<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?>
 
     override fun field1(): Field<Long?> = Order.ORDER.ID
     override fun field2(): Field<Long?> = Order.ORDER.BASKET_ID
-    override fun field3(): Field<Long?> = Order.ORDER.CITY_ID
-    override fun field4(): Field<Long?> = Order.ORDER.COMPANY_ID
-    override fun field5(): Field<Long?> = Order.ORDER.POSITION_ID
-    override fun field6(): Field<Long?> = Order.ORDER.SERVICE_ID
-    override fun field7(): Field<Boolean?> = Order.ORDER.IS_EXPIRED
-    override fun field8(): Field<LocalDateTime?> = Order.ORDER.START_WORK_DATE
-    override fun field9(): Field<Long?> = Order.ORDER.TOTAL_WORK_DAYS
+    override fun field3(): Field<Long?> = Order.ORDER.COMPANY_OFFICE_ID
+    override fun field4(): Field<Long?> = Order.ORDER.POSITION_ID
+    override fun field5(): Field<Long?> = Order.ORDER.SERVICE_ID
+    override fun field6(): Field<Boolean?> = Order.ORDER.IS_EXPIRED
+    override fun field7(): Field<LocalDateTime?> = Order.ORDER.START_WORK_DATE
+    override fun field8(): Field<Long?> = Order.ORDER.TOTAL_WORK_DAYS
     override fun component1(): Long? = id
     override fun component2(): Long? = basketId
-    override fun component3(): Long? = cityId
-    override fun component4(): Long? = companyId
-    override fun component5(): Long? = positionId
-    override fun component6(): Long? = serviceId
-    override fun component7(): Boolean? = isExpired
-    override fun component8(): LocalDateTime? = startWorkDate
-    override fun component9(): Long? = totalWorkDays
+    override fun component3(): Long? = companyOfficeId
+    override fun component4(): Long? = positionId
+    override fun component5(): Long? = serviceId
+    override fun component6(): Boolean? = isExpired
+    override fun component7(): LocalDateTime? = startWorkDate
+    override fun component8(): Long? = totalWorkDays
     override fun value1(): Long? = id
     override fun value2(): Long? = basketId
-    override fun value3(): Long? = cityId
-    override fun value4(): Long? = companyId
-    override fun value5(): Long? = positionId
-    override fun value6(): Long? = serviceId
-    override fun value7(): Boolean? = isExpired
-    override fun value8(): LocalDateTime? = startWorkDate
-    override fun value9(): Long? = totalWorkDays
+    override fun value3(): Long? = companyOfficeId
+    override fun value4(): Long? = positionId
+    override fun value5(): Long? = serviceId
+    override fun value6(): Boolean? = isExpired
+    override fun value7(): LocalDateTime? = startWorkDate
+    override fun value8(): Long? = totalWorkDays
 
     override fun value1(value: Long?): OrderRecord {
         this.id = value
@@ -112,36 +105,31 @@ open class OrderRecord() : UpdatableRecordImpl<OrderRecord>(Order.ORDER),
     }
 
     override fun value3(value: Long?): OrderRecord {
-        this.cityId = value
+        this.companyOfficeId = value
         return this
     }
 
     override fun value4(value: Long?): OrderRecord {
-        this.companyId = value
-        return this
-    }
-
-    override fun value5(value: Long?): OrderRecord {
         this.positionId = value
         return this
     }
 
-    override fun value6(value: Long?): OrderRecord {
+    override fun value5(value: Long?): OrderRecord {
         this.serviceId = value
         return this
     }
 
-    override fun value7(value: Boolean?): OrderRecord {
+    override fun value6(value: Boolean?): OrderRecord {
         this.isExpired = value
         return this
     }
 
-    override fun value8(value: LocalDateTime?): OrderRecord {
+    override fun value7(value: LocalDateTime?): OrderRecord {
         this.startWorkDate = value
         return this
     }
 
-    override fun value9(value: Long?): OrderRecord {
+    override fun value8(value: Long?): OrderRecord {
         this.totalWorkDays = value
         return this
     }
@@ -152,10 +140,9 @@ open class OrderRecord() : UpdatableRecordImpl<OrderRecord>(Order.ORDER),
         value3: Long?,
         value4: Long?,
         value5: Long?,
-        value6: Long?,
-        value7: Boolean?,
-        value8: LocalDateTime?,
-        value9: Long?
+        value6: Boolean?,
+        value7: LocalDateTime?,
+        value8: Long?
     ): OrderRecord {
         this.value1(value1)
         this.value2(value2)
@@ -165,7 +152,6 @@ open class OrderRecord() : UpdatableRecordImpl<OrderRecord>(Order.ORDER),
         this.value6(value6)
         this.value7(value7)
         this.value8(value8)
-        this.value9(value9)
         return this
     }
 
@@ -175,8 +161,7 @@ open class OrderRecord() : UpdatableRecordImpl<OrderRecord>(Order.ORDER),
     constructor(
         id: Long? = null,
         basketId: Long? = null,
-        cityId: Long? = null,
-        companyId: Long? = null,
+        companyOfficeId: Long? = null,
         positionId: Long? = null,
         serviceId: Long? = null,
         isExpired: Boolean? = null,
@@ -185,8 +170,7 @@ open class OrderRecord() : UpdatableRecordImpl<OrderRecord>(Order.ORDER),
     ) : this() {
         this.id = id
         this.basketId = basketId
-        this.cityId = cityId
-        this.companyId = companyId
+        this.companyOfficeId = companyOfficeId
         this.positionId = positionId
         this.serviceId = serviceId
         this.isExpired = isExpired
@@ -201,8 +185,7 @@ open class OrderRecord() : UpdatableRecordImpl<OrderRecord>(Order.ORDER),
         if (value != null) {
             this.id = value.id
             this.basketId = value.basketId
-            this.cityId = value.cityId
-            this.companyId = value.companyId
+            this.companyOfficeId = value.companyOfficeId
             this.positionId = value.positionId
             this.serviceId = value.serviceId
             this.isExpired = value.isExpired
