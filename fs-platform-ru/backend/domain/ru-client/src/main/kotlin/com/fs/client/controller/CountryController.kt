@@ -28,8 +28,8 @@ open class CountryController(open val countryRepository: CountryRepository) {
         countryRepository.insert(countryModel)
 
     @DeleteMapping("{name}")
-    fun deleteByCountryId(@PathVariable("name") countryName: CountryNameModel) =
-        countryRepository.deleteByCountryName(countryName)
+    fun deleteByCountryId(@PathVariable("code") countryCode: Long) =
+        countryRepository.deleteByCountryCode(countryCode)
 
     @SchemaMapping(typeName = "City", field = "country")
     fun getCountryForCity(city: CityModel): Mono<CountryModel> {
@@ -52,8 +52,8 @@ open class CountryController(open val countryRepository: CountryRepository) {
     }
 
     @MutationMapping
-    open fun deleteCountry(@Argument countryName: CountryNameModel): Mono<Boolean> {
-        return countryRepository.deleteByCountryName(countryName)
+    open fun deleteCountry(@Argument countryCode: Long): Mono<Boolean> {
+        return countryRepository.deleteByCountryCode(countryCode)
     }
 
 }

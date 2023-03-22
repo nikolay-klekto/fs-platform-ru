@@ -28,6 +28,14 @@ abstract class BasketRepository(open val dsl: DSLContext, open val converter: Ba
         }
     }
 
+    fun updateWithoutMono(basket: BasketModel): Boolean {
+        return dsl.update(BASKET)
+            .set(BASKET.TOTAL_PRICE, basket.totalPrice)
+            .where(BASKET.ID.eq(basket.id))
+            .execute() == 1
+    }
+
+
     fun insert() =
         Mono.fromSupplier {
             val newBasket = BasketModel(0, "")

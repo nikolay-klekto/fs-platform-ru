@@ -18,9 +18,17 @@ spring:
     schema:
       printer:
         enabled: true
+  application:
+    name: ru-service
+  cloud:
+    consul:
+      host: 192.168.99.100
+      port: 8500
+      discovery:
+        register: false
 
 server:
-  port: 8082
+  port: ${NOMAD_HOST_PORT_http:8090}
   error:
     include-stacktrace: never
 

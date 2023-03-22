@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 
 @SpringBootApplication
 @EnableTransactionManagement
+//@EnableDiscoveryClient
 open class ClientServiceApp {
 
 }

@@ -35,6 +35,10 @@ dependencies {
     implementation("org.jooq:jooq-kotlin:3.17.4")
     implementation("com.tailrocks.graphql:graphql-datetime-spring-boot-starter:6.0.0")
     implementation("com.graphql-java:graphql-java-extended-scalars:2023-01-24T02-11-56-babda5f")
+//    implementation("org.springframework.cloud:spring-cloud-starter-consul-discovery:4.0.1")
+    implementation("log4j:log4j:1.2.17")
+
+
 
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")

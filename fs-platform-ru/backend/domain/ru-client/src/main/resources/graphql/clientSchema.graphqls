@@ -84,7 +84,7 @@ type Mutation {
     deleteClient(id: ID!): Boolean
 
     addCountry(country: CountryInput): Country
-    deleteCountry(countryName: CountryNameEnum!): Boolean
+    deleteCountry(countryCode: ID!): Boolean
 
     addOfficeAddress(companyAddress: CompanyAddressInput!): Office
     updateOfficeAddress(companyAddress: CompanyAddressInput!): Boolean
@@ -120,11 +120,11 @@ input CountryInput {
 
 input OrderInput {
     id: ID
-    basket: ID
-    city: ID
-    company: ID
-    position: ID
-    service: ID
+    basketId: ID
+    cityId: ID
+    companyId: ID
+    positionId: ID
+    serviceId: ID
     isExpired: Boolean
     startWorkDate: LocalDateTime
     totalWorkDays: ID

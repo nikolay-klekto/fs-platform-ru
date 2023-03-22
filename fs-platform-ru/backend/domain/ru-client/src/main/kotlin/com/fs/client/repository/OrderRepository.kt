@@ -1,10 +1,13 @@
 package com.fs.client.repository
 
+import com.fs.client.ru.enums.CurrencyModel
 import com.fs.client.service.OrderModelConverter
+import com.fs.client.service.TotalPriceMatcher
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.domain.jooq.tables.records.OrderRecord
+import com.fs.service.ru.BasketModel
 import com.fs.service.ru.OrderModel
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
@@ -13,7 +16,10 @@ import reactor.core.publisher.Mono
 abstract class OrderRepository(
     open val dsl: DSLContext,
     open val converter: OrderModelConverter,
-    open val clientRepository: ClientRepository
+    open val basketRepository: BasketRepository,
+    open val serviceRepository: ServiceRepository,
+    open val cityRepository: CityRepository,
+    open val totalPriceMatcher: TotalPriceMatcher
 ) {
 
     fun getByOrderId(id: Long): Mono<OrderModel> {
@@ -48,6 +54,29 @@ abstract class OrderRepository(
 
     fun insertOrder(orderModel: OrderModel): Mono<OrderModel> {
         return Mono.fromSupplier {
+            val totalPrice: String
+            if (orderModel.basketId != null && orderModel.serviceId != null && orderModel.cityId != null) {
+                val pastTotalPrice: String? =
+                    basketRepository.getById(orderModel.basketId!!).block()!!.totalPrice
+                if (pastTotalPrice != null) {
+
+                    val servicePrice: Long? =
+                        serviceRepository.getById(orderModel.serviceId!!).block()!!.price
+
+                    val orderCurrency: CurrencyModel =
+                        cityRepository.getCountryByCityId(orderModel.cityId!!).block()!!.currency
+
+                    val map: Map<CurrencyModel?, Long> = totalPriceMatcher.decomposeTotalPrice(pastTotalPrice)
+                    val oldTotalPrice = map[orderCurrency]
+                    if (oldTotalPrice != null && servicePrice != null) {
+                        val newTotalPrice = oldTotalPrice + servicePrice
+                        totalPrice = "$newTotalPrice $orderCurrency"
+                        basketRepository.updateWithoutMono(BasketModel(orderModel.basketId!!, totalPrice))
+                    }
+                }
+
+            }
+
             val newOrderRecord: OrderRecord = dsl.newRecord(ORDER)
             newOrderRecord.from(orderModel)
             newOrderRecord.reset(ORDER.ID)

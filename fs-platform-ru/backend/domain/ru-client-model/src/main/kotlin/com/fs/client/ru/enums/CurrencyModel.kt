@@ -1,16 +1,15 @@
 package com.fs.client.ru.enums
 
-enum class CurrencyModel(val value: Long) {
-    BYN(1),
-    USD(2),
-    EUR(3),
-    RUB(4),
-    PLN(5);
+enum class CurrencyModel(val value: String) {
+    BYN("BYN"),
+    EUR("EUR"),
+    RUB("RUB"),
+    PLN("PLN");
 
     companion object {
         private val map = CurrencyModel.values()
             .associateBy(CurrencyModel::value)
 
-        fun fromString(value: Long) = CurrencyModel.map[value]
+        fun fromString(value: String) = CurrencyModel.map[value]
     }
 }

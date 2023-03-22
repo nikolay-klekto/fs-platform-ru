@@ -3,9 +3,11 @@ package com.fs.client.repository
 import com.fs.client.ru.CountryModel
 import com.fs.client.ru.enums.CountryNameModel
 import com.fs.client.service.CountryModelConverter
+import com.fs.domain.jooq.tables.City.Companion.CITY
 import com.fs.domain.jooq.tables.Country.Companion.COUNTRY
 import com.fs.domain.jooq.tables.pojos.Country
 import com.fs.domain.jooq.tables.records.CountryRecord
+import org.apache.logging.log4j.LogManager
 import org.jooq.DSLContext
 import reactor.core.publisher.Mono
 
@@ -46,11 +48,22 @@ abstract class CountryRepository(
             .map(converter::toModel)
     }
 
-    fun deleteByCountryName(countryName: CountryNameModel): Mono<Boolean> {
+    fun deleteByCountryCode(countryCode: Long): Mono<Boolean> {
         return Mono.fromSupplier {
+            val result = dsl.deleteFrom(CITY)
+                .where(CITY.COUNTRY_CODE.eq(countryCode))
+                .execute() > 0
+
+            if (!result) {
+                log.info("In current deleted country there are no one city!")
+            }
             dsl.deleteFrom(COUNTRY)
-                .where(COUNTRY.NAME.eq(countryName))
+                .where(COUNTRY.CODE.eq(countryCode))
                 .execute() == 1
         }
+    }
+
+    companion object {
+        private val log = LogManager.getLogger()
     }
 }
