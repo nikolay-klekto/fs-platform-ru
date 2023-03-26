@@ -94,7 +94,7 @@ type Mutation {
 
 input ServiceInput {
     id: ID
-    pricePerDay: ID
+    pricePerDay: Int
     name: String
 }
 
@@ -103,7 +103,7 @@ input ReviewInput {
     companyId: ID!
     clientId: ID!
     description: String,
-    rate: ID!
+    rate: Int!
     username: String!
 }
 
@@ -127,7 +127,7 @@ input OrderInput {
     serviceId: ID
     isExpired: Boolean
     startWorkDate: LocalDateTime
-    totalWorkDays: ID
+    totalWorkDays: Int
 }
 
 input CompanyInput {
@@ -193,9 +193,9 @@ input BasketInput {
 input AddressInput {
     id: ID
     cityId: ID
-    apartment: ID
-    building: ID
-    house: ID
+    apartment: Int
+    building: Int
+    house: Int
     street: String
 }
 
@@ -211,9 +211,9 @@ input CompanyAddressInput {
     cityId: ID
     companyId: ID
     officeId: ID
-    apartment: ID
-    building: ID
-    house: ID
+    apartment: Int
+    building: Int
+    house: Int
     phoneNumber: String
     street: String
 }
@@ -224,7 +224,7 @@ type Review {
     clientId: ID
     dateCreated: LocalDateTime
     description: String,
-    rate: ID
+    rate: Int
     username: String
 }
 
@@ -236,7 +236,7 @@ type Order {
     service: Service
     isExpired: Boolean
     startWorkDate: LocalDateTime
-    totalWorkDays: ID
+    totalWorkDays: Int
 }
 
 type Company {
@@ -256,7 +256,7 @@ type Position {
 
 type Service {
     id: ID
-    pricePerDay: ID
+    pricePerDay: Int
     name: String
 }
 
@@ -304,9 +304,9 @@ type Partner {
 type Address {
     id: ID
     cityId: ID
-    apartment: ID
-    building: ID
-    house: ID
+    apartment: Int
+    building: Int
+    house: Int
     street: String
 }
 

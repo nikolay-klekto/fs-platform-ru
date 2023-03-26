@@ -9,9 +9,13 @@ import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.domain.jooq.tables.records.OrderRecord
 import com.fs.service.ru.BasketModel
 import com.fs.service.ru.OrderModel
+import org.apache.logging.log4j.LogManager
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.util.*
 
 abstract class OrderRepository(
     open val dsl: DSLContext,
@@ -99,5 +103,22 @@ abstract class OrderRepository(
                 .where(ORDER.ID.eq(newOrderModel.id))
                 .execute() == 1
         }
+    }
+
+    fun updateExpiredStatus() {
+        log.info("Scheduler is working. The time is now {}", dateFormat.format(Date()))
+        dsl.update(ORDER)
+            .set(ORDER.IS_EXPIRED, false)
+            .where(
+                ORDER.IS_EXPIRED.eq(true).and(
+                    ORDER.START_WORK_DATE.plus(ORDER.TOTAL_WORK_DAYS).ge(LocalDateTime.now())
+                )
+            )
+
+    }
+
+    companion object {
+        private val log = LogManager.getLogger()
+        private val dateFormat = SimpleDateFormat("HH:mm:ss")
     }
 }
