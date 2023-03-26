@@ -13,7 +13,7 @@ open class ScheduledTasks(open val orderRepository: OrderRepository) {
     }
 
     companion object {
-        private const val EXPIRED_STATUS_CRON_SCHEDULER: String = "0 02 13 * * *"
+        private const val EXPIRED_STATUS_CRON_SCHEDULER: String = "0 0 0 * * *"
 
     }
 }
