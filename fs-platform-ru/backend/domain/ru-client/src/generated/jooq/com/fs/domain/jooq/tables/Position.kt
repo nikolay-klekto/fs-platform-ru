@@ -7,7 +7,18 @@ package com.fs.domain.jooq.tables
 import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.POSITION_PKEY
 import com.fs.domain.jooq.tables.records.PositionRecord
-import org.jooq.*
+
+import org.jooq.Field
+import org.jooq.ForeignKey
+import org.jooq.Identity
+import org.jooq.Name
+import org.jooq.Record
+import org.jooq.Row3
+import org.jooq.Schema
+import org.jooq.Table
+import org.jooq.TableField
+import org.jooq.TableOptions
+import org.jooq.UniqueKey
 import org.jooq.impl.DSL
 import org.jooq.impl.Internal
 import org.jooq.impl.SQLDataType
@@ -24,7 +35,7 @@ open class Position(
     path: ForeignKey<out Record, PositionRecord>?,
     aliased: Table<PositionRecord>?,
     parameters: Array<Field<*>?>?
-) : TableImpl<PositionRecord>(
+): TableImpl<PositionRecord>(
     alias,
     Public.PUBLIC,
     child,
@@ -50,50 +61,37 @@ open class Position(
     /**
      * The column <code>public.position.id</code>.
      */
-    val ID: TableField<PositionRecord, Long?> =
-        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
+    val ID: TableField<PositionRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.position.description</code>.
      */
-    val DESCRIPTION: TableField<PositionRecord, String?> =
-        createField(DSL.name("description"), SQLDataType.VARCHAR, this, "")
+    val DESCRIPTION: TableField<PositionRecord, String?> = createField(DSL.name("description"), SQLDataType.VARCHAR, this, "")
 
     /**
      * The column <code>public.position.name</code>.
      */
     val NAME: TableField<PositionRecord, String?> = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "")
 
-    private constructor(alias: Name, aliased: Table<PositionRecord>?) : this(alias, null, null, aliased, null)
-    private constructor(alias: Name, aliased: Table<PositionRecord>?, parameters: Array<Field<*>?>?) : this(
-        alias,
-        null,
-        null,
-        aliased,
-        parameters
-    )
+    private constructor(alias: Name, aliased: Table<PositionRecord>?): this(alias, null, null, aliased, null)
+    private constructor(alias: Name, aliased: Table<PositionRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
      * Create an aliased <code>public.position</code> table reference
      */
-    constructor(alias: String) : this(DSL.name(alias))
+    constructor(alias: String): this(DSL.name(alias))
 
     /**
      * Create an aliased <code>public.position</code> table reference
      */
-    constructor(alias: Name) : this(alias, null)
+    constructor(alias: Name): this(alias, null)
 
     /**
      * Create a <code>public.position</code> table reference
      */
-    constructor() : this(DSL.name("position"), null)
+    constructor(): this(DSL.name("position"), null)
 
-    constructor(child: Table<out Record>, key: ForeignKey<out Record, PositionRecord>) : this(
-        Internal.createPathAlias(
-            child,
-            key
-        ), child, key, POSITION, null
-    )
+    constructor(child: Table<out Record>, key: ForeignKey<out Record, PositionRecord>): this(Internal.createPathAlias(child, key), child, key, POSITION, null)
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<PositionRecord, Long?> = super.getIdentity() as Identity<PositionRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<PositionRecord> = POSITION_PKEY

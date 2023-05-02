@@ -21,7 +21,7 @@ data class Company(
     var name: String? = null,
     var site: String? = null,
     var shortDescription: String? = null
-) : Serializable {
+): Serializable {
 
 
     override fun toString(): String {

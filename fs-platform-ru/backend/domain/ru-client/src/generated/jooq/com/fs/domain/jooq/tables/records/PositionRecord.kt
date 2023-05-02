@@ -78,7 +78,7 @@ open class PositionRecord() : UpdatableRecordImpl<PositionRecord>(Position.POSIT
     /**
      * Create a detached, initialised PositionRecord
      */
-    constructor(id: Long? = null, description: String? = null, name: String? = null) : this() {
+    constructor(id: Long? = null, description: String? = null, name: String? = null): this() {
         this.id = id
         this.description = description
         this.name = name
@@ -87,7 +87,7 @@ open class PositionRecord() : UpdatableRecordImpl<PositionRecord>(Position.POSIT
     /**
      * Create a detached, initialised PositionRecord
      */
-    constructor(value: com.fs.domain.jooq.tables.pojos.Position?) : this() {
+    constructor(value: com.fs.domain.jooq.tables.pojos.Position?): this() {
         if (value != null) {
             this.id = value.id
             this.description = value.description

@@ -45,12 +45,8 @@ open class OfficeRecord() : UpdatableRecordImpl<OfficeRecord>(Office.OFFICE), Re
     // Record4 type implementation
     // -------------------------------------------------------------------------
 
-    override fun fieldsRow(): Row4<Long?, Long?, Long?, String?> =
-        super.fieldsRow() as Row4<Long?, Long?, Long?, String?>
-
-    override fun valuesRow(): Row4<Long?, Long?, Long?, String?> =
-        super.valuesRow() as Row4<Long?, Long?, Long?, String?>
-
+    override fun fieldsRow(): Row4<Long?, Long?, Long?, String?> = super.fieldsRow() as Row4<Long?, Long?, Long?, String?>
+    override fun valuesRow(): Row4<Long?, Long?, Long?, String?> = super.valuesRow() as Row4<Long?, Long?, Long?, String?>
     override fun field1(): Field<Long?> = Office.OFFICE.ID
     override fun field2(): Field<Long?> = Office.OFFICE.ADDRESS_ID
     override fun field3(): Field<Long?> = Office.OFFICE.COMPANY_ID
@@ -95,12 +91,7 @@ open class OfficeRecord() : UpdatableRecordImpl<OfficeRecord>(Office.OFFICE), Re
     /**
      * Create a detached, initialised OfficeRecord
      */
-    constructor(
-        id: Long? = null,
-        addressId: Long? = null,
-        companyId: Long? = null,
-        phoneNumber: String? = null
-    ) : this() {
+    constructor(id: Long? = null, addressId: Long? = null, companyId: Long? = null, phoneNumber: String? = null): this() {
         this.id = id
         this.addressId = addressId
         this.companyId = companyId
@@ -110,7 +101,7 @@ open class OfficeRecord() : UpdatableRecordImpl<OfficeRecord>(Office.OFFICE), Re
     /**
      * Create a detached, initialised OfficeRecord
      */
-    constructor(value: com.fs.domain.jooq.tables.pojos.Office?) : this() {
+    constructor(value: com.fs.domain.jooq.tables.pojos.Office?): this() {
         if (value != null) {
             this.id = value.id
             this.addressId = value.addressId

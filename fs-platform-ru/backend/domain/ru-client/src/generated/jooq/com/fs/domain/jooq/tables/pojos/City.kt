@@ -15,7 +15,7 @@ data class City(
     var id: Long? = null,
     var countryCode: Long? = null,
     var name: String? = null
-) : Serializable {
+): Serializable {
 
 
     override fun toString(): String {

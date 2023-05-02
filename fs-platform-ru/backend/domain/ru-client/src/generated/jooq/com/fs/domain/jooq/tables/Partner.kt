@@ -8,7 +8,20 @@ import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.PARTNER_PKEY
 import com.fs.domain.jooq.keys.PARTNER__PARTNER_CLIENT_ID_FKEY
 import com.fs.domain.jooq.tables.records.PartnerRecord
-import org.jooq.*
+
+import kotlin.collections.List
+
+import org.jooq.Field
+import org.jooq.ForeignKey
+import org.jooq.Identity
+import org.jooq.Name
+import org.jooq.Record
+import org.jooq.Row2
+import org.jooq.Schema
+import org.jooq.Table
+import org.jooq.TableField
+import org.jooq.TableOptions
+import org.jooq.UniqueKey
 import org.jooq.impl.DSL
 import org.jooq.impl.Internal
 import org.jooq.impl.SQLDataType
@@ -25,7 +38,7 @@ open class Partner(
     path: ForeignKey<out Record, PartnerRecord>?,
     aliased: Table<PartnerRecord>?,
     parameters: Array<Field<*>?>?
-) : TableImpl<PartnerRecord>(
+): TableImpl<PartnerRecord>(
     alias,
     Public.PUBLIC,
     child,
@@ -51,44 +64,32 @@ open class Partner(
     /**
      * The column <code>public.partner.id</code>.
      */
-    val ID: TableField<PartnerRecord, Long?> =
-        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
+    val ID: TableField<PartnerRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.partner.client_id</code>.
      */
     val CLIENT_ID: TableField<PartnerRecord, Long?> = createField(DSL.name("client_id"), SQLDataType.BIGINT, this, "")
 
-    private constructor(alias: Name, aliased: Table<PartnerRecord>?) : this(alias, null, null, aliased, null)
-    private constructor(alias: Name, aliased: Table<PartnerRecord>?, parameters: Array<Field<*>?>?) : this(
-        alias,
-        null,
-        null,
-        aliased,
-        parameters
-    )
+    private constructor(alias: Name, aliased: Table<PartnerRecord>?): this(alias, null, null, aliased, null)
+    private constructor(alias: Name, aliased: Table<PartnerRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
      * Create an aliased <code>public.partner</code> table reference
      */
-    constructor(alias: String) : this(DSL.name(alias))
+    constructor(alias: String): this(DSL.name(alias))
 
     /**
      * Create an aliased <code>public.partner</code> table reference
      */
-    constructor(alias: Name) : this(alias, null)
+    constructor(alias: Name): this(alias, null)
 
     /**
      * Create a <code>public.partner</code> table reference
      */
-    constructor() : this(DSL.name("partner"), null)
+    constructor(): this(DSL.name("partner"), null)
 
-    constructor(child: Table<out Record>, key: ForeignKey<out Record, PartnerRecord>) : this(
-        Internal.createPathAlias(
-            child,
-            key
-        ), child, key, PARTNER, null
-    )
+    constructor(child: Table<out Record>, key: ForeignKey<out Record, PartnerRecord>): this(Internal.createPathAlias(child, key), child, key, PARTNER, null)
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<PartnerRecord, Long?> = super.getIdentity() as Identity<PartnerRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<PartnerRecord> = PARTNER_PKEY

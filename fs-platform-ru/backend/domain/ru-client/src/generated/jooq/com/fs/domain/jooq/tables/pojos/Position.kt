@@ -15,7 +15,7 @@ data class Position(
     var id: Long? = null,
     var description: String? = null,
     var name: String? = null
-) : Serializable {
+): Serializable {
 
 
     override fun toString(): String {

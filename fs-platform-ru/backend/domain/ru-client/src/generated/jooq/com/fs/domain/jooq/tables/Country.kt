@@ -11,9 +11,23 @@ import com.fs.domain.jooq.enums.Countries
 import com.fs.domain.jooq.enums.Currency
 import com.fs.domain.jooq.keys.COUNTRY_PKEY
 import com.fs.domain.jooq.tables.records.CountryRecord
-import org.jooq.*
-import org.jooq.impl.*
+
+import org.jooq.Field
+import org.jooq.ForeignKey
+import org.jooq.Identity
+import org.jooq.Name
+import org.jooq.Record
+import org.jooq.Row3
+import org.jooq.Schema
+import org.jooq.Table
+import org.jooq.TableField
+import org.jooq.TableOptions
+import org.jooq.UniqueKey
+import org.jooq.impl.DSL
+import org.jooq.impl.EnumConverter
 import org.jooq.impl.Internal
+import org.jooq.impl.SQLDataType
+import org.jooq.impl.TableImpl
 
 
 /**
@@ -26,7 +40,7 @@ open class Country(
     path: ForeignKey<out Record, CountryRecord>?,
     aliased: Table<CountryRecord>?,
     parameters: Array<Field<*>?>?
-) : TableImpl<CountryRecord>(
+): TableImpl<CountryRecord>(
     alias,
     Public.PUBLIC,
     child,
@@ -52,61 +66,37 @@ open class Country(
     /**
      * The column <code>public.country.code</code>.
      */
-    val CODE: TableField<CountryRecord, Long?> =
-        createField(DSL.name("code"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
+    val CODE: TableField<CountryRecord, Long?> = createField(DSL.name("code"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.country.currency</code>.
      */
-    val CURRENCY: TableField<CountryRecord, CurrencyModel?> = createField(
-        DSL.name("currency"),
-        SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Currency::class.java),
-        this,
-        "",
-        EnumConverter<Currency, CurrencyModel>(Currency::class.java, CurrencyModel::class.java)
-    )
+    val CURRENCY: TableField<CountryRecord, CurrencyModel?> = createField(DSL.name("currency"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Currency::class.java), this, "", EnumConverter<Currency, CurrencyModel>(Currency::class.java, CurrencyModel::class.java))
 
     /**
      * The column <code>public.country.name</code>.
      */
-    val NAME: TableField<CountryRecord, CountryNameModel?> = createField(
-        DSL.name("name"),
-        SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Countries::class.java),
-        this,
-        "",
-        EnumConverter<Countries, CountryNameModel>(Countries::class.java, CountryNameModel::class.java)
-    )
+    val NAME: TableField<CountryRecord, CountryNameModel?> = createField(DSL.name("name"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Countries::class.java), this, "", EnumConverter<Countries, CountryNameModel>(Countries::class.java, CountryNameModel::class.java))
 
-    private constructor(alias: Name, aliased: Table<CountryRecord>?) : this(alias, null, null, aliased, null)
-    private constructor(alias: Name, aliased: Table<CountryRecord>?, parameters: Array<Field<*>?>?) : this(
-        alias,
-        null,
-        null,
-        aliased,
-        parameters
-    )
+    private constructor(alias: Name, aliased: Table<CountryRecord>?): this(alias, null, null, aliased, null)
+    private constructor(alias: Name, aliased: Table<CountryRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
      * Create an aliased <code>public.country</code> table reference
      */
-    constructor(alias: String) : this(DSL.name(alias))
+    constructor(alias: String): this(DSL.name(alias))
 
     /**
      * Create an aliased <code>public.country</code> table reference
      */
-    constructor(alias: Name) : this(alias, null)
+    constructor(alias: Name): this(alias, null)
 
     /**
      * Create a <code>public.country</code> table reference
      */
-    constructor() : this(DSL.name("country"), null)
+    constructor(): this(DSL.name("country"), null)
 
-    constructor(child: Table<out Record>, key: ForeignKey<out Record, CountryRecord>) : this(
-        Internal.createPathAlias(
-            child,
-            key
-        ), child, key, COUNTRY, null
-    )
+    constructor(child: Table<out Record>, key: ForeignKey<out Record, CountryRecord>): this(Internal.createPathAlias(child, key), child, key, COUNTRY, null)
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<CountryRecord, Long?> = super.getIdentity() as Identity<CountryRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<CountryRecord> = COUNTRY_PKEY
@@ -126,6 +116,5 @@ open class Country(
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row3<Long?, CurrencyModel?, CountryNameModel?> =
-        super.fieldsRow() as Row3<Long?, CurrencyModel?, CountryNameModel?>
+    override fun fieldsRow(): Row3<Long?, CurrencyModel?, CountryNameModel?> = super.fieldsRow() as Row3<Long?, CurrencyModel?, CountryNameModel?>
 }

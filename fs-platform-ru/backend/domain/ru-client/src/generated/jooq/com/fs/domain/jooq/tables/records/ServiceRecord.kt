@@ -78,7 +78,7 @@ open class ServiceRecord() : UpdatableRecordImpl<ServiceRecord>(Service.SERVICE)
     /**
      * Create a detached, initialised ServiceRecord
      */
-    constructor(id: Long? = null, pricePerDay: Long? = null, name: String? = null) : this() {
+    constructor(id: Long? = null, pricePerDay: Long? = null, name: String? = null): this() {
         this.id = id
         this.pricePerDay = pricePerDay
         this.name = name
@@ -87,7 +87,7 @@ open class ServiceRecord() : UpdatableRecordImpl<ServiceRecord>(Service.SERVICE)
     /**
      * Create a detached, initialised ServiceRecord
      */
-    constructor(value: com.fs.domain.jooq.tables.pojos.Service?) : this() {
+    constructor(value: com.fs.domain.jooq.tables.pojos.Service?): this() {
         if (value != null) {
             this.id = value.id
             this.pricePerDay = value.pricePerDay

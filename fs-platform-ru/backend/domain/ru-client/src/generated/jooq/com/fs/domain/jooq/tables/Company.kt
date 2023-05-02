@@ -10,9 +10,23 @@ import com.fs.domain.jooq.enums.Industry
 import com.fs.domain.jooq.keys.COMPANY_PKEY
 import com.fs.domain.jooq.tables.records.CompanyRecord
 import com.fs.service.ru.enums.IndustryModel
-import org.jooq.*
-import org.jooq.impl.*
+
+import org.jooq.Field
+import org.jooq.ForeignKey
+import org.jooq.Identity
+import org.jooq.Name
+import org.jooq.Record
+import org.jooq.Row6
+import org.jooq.Schema
+import org.jooq.Table
+import org.jooq.TableField
+import org.jooq.TableOptions
+import org.jooq.UniqueKey
+import org.jooq.impl.DSL
+import org.jooq.impl.EnumConverter
 import org.jooq.impl.Internal
+import org.jooq.impl.SQLDataType
+import org.jooq.impl.TableImpl
 
 
 /**
@@ -25,7 +39,7 @@ open class Company(
     path: ForeignKey<out Record, CompanyRecord>?,
     aliased: Table<CompanyRecord>?,
     parameters: Array<Field<*>?>?
-) : TableImpl<CompanyRecord>(
+): TableImpl<CompanyRecord>(
     alias,
     Public.PUBLIC,
     child,
@@ -51,34 +65,17 @@ open class Company(
     /**
      * The column <code>public.company.id</code>.
      */
-    val ID: TableField<CompanyRecord, Long?> =
-        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
+    val ID: TableField<CompanyRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.company.company_industry</code>.
      */
-    val COMPANY_INDUSTRY: TableField<CompanyRecord, IndustryModel?> = createField(
-        DSL.name("company_industry"),
-        SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Industry::class.java),
-        this,
-        "",
-        EnumConverter<Industry, IndustryModel>(Industry::class.java, IndustryModel::class.java)
-    )
+    val COMPANY_INDUSTRY: TableField<CompanyRecord, IndustryModel?> = createField(DSL.name("company_industry"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Industry::class.java), this, "", EnumConverter<Industry, IndustryModel>(Industry::class.java, IndustryModel::class.java))
 
     /**
      * The column <code>public.company.legal_capacity_status</code>.
      */
-    val LEGAL_CAPACITY_STATUS: TableField<CompanyRecord, com.fs.service.ru.enums.CompanyLegalCapacityStatus?> =
-        createField(
-            DSL.name("legal_capacity_status"),
-            SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.CompanyLegalCapacityStatus::class.java),
-            this,
-            "",
-            EnumConverter<CompanyLegalCapacityStatus, com.fs.service.ru.enums.CompanyLegalCapacityStatus>(
-                CompanyLegalCapacityStatus::class.java,
-                com.fs.service.ru.enums.CompanyLegalCapacityStatus::class.java
-            )
-        )
+    val LEGAL_CAPACITY_STATUS: TableField<CompanyRecord, com.fs.service.ru.enums.CompanyLegalCapacityStatus?> = createField(DSL.name("legal_capacity_status"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.CompanyLegalCapacityStatus::class.java), this, "", EnumConverter<CompanyLegalCapacityStatus, com.fs.service.ru.enums.CompanyLegalCapacityStatus>(CompanyLegalCapacityStatus::class.java, com.fs.service.ru.enums.CompanyLegalCapacityStatus::class.java))
 
     /**
      * The column <code>public.company.name</code>.
@@ -93,39 +90,27 @@ open class Company(
     /**
      * The column <code>public.company.short_description</code>.
      */
-    val SHORT_DESCRIPTION: TableField<CompanyRecord, String?> =
-        createField(DSL.name("short_description"), SQLDataType.VARCHAR, this, "")
+    val SHORT_DESCRIPTION: TableField<CompanyRecord, String?> = createField(DSL.name("short_description"), SQLDataType.VARCHAR, this, "")
 
-    private constructor(alias: Name, aliased: Table<CompanyRecord>?) : this(alias, null, null, aliased, null)
-    private constructor(alias: Name, aliased: Table<CompanyRecord>?, parameters: Array<Field<*>?>?) : this(
-        alias,
-        null,
-        null,
-        aliased,
-        parameters
-    )
+    private constructor(alias: Name, aliased: Table<CompanyRecord>?): this(alias, null, null, aliased, null)
+    private constructor(alias: Name, aliased: Table<CompanyRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
      * Create an aliased <code>public.company</code> table reference
      */
-    constructor(alias: String) : this(DSL.name(alias))
+    constructor(alias: String): this(DSL.name(alias))
 
     /**
      * Create an aliased <code>public.company</code> table reference
      */
-    constructor(alias: Name) : this(alias, null)
+    constructor(alias: Name): this(alias, null)
 
     /**
      * Create a <code>public.company</code> table reference
      */
-    constructor() : this(DSL.name("company"), null)
+    constructor(): this(DSL.name("company"), null)
 
-    constructor(child: Table<out Record>, key: ForeignKey<out Record, CompanyRecord>) : this(
-        Internal.createPathAlias(
-            child,
-            key
-        ), child, key, COMPANY, null
-    )
+    constructor(child: Table<out Record>, key: ForeignKey<out Record, CompanyRecord>): this(Internal.createPathAlias(child, key), child, key, COMPANY, null)
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<CompanyRecord, Long?> = super.getIdentity() as Identity<CompanyRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<CompanyRecord> = COMPANY_PKEY
@@ -145,6 +130,5 @@ open class Company(
     // -------------------------------------------------------------------------
     // Row6 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row6<Long?, IndustryModel?, com.fs.service.ru.enums.CompanyLegalCapacityStatus?, String?, String?, String?> =
-        super.fieldsRow() as Row6<Long?, IndustryModel?, com.fs.service.ru.enums.CompanyLegalCapacityStatus?, String?, String?, String?>
+    override fun fieldsRow(): Row6<Long?, IndustryModel?, com.fs.service.ru.enums.CompanyLegalCapacityStatus?, String?, String?, String?> = super.fieldsRow() as Row6<Long?, IndustryModel?, com.fs.service.ru.enums.CompanyLegalCapacityStatus?, String?, String?, String?>
 }

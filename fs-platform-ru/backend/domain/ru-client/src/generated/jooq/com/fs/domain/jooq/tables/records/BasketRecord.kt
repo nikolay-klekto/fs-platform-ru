@@ -65,7 +65,7 @@ open class BasketRecord() : UpdatableRecordImpl<BasketRecord>(Basket.BASKET), Re
     /**
      * Create a detached, initialised BasketRecord
      */
-    constructor(id: Long? = null, totalPrice: String? = null) : this() {
+    constructor(id: Long? = null, totalPrice: String? = null): this() {
         this.id = id
         this.totalPrice = totalPrice
     }
@@ -73,7 +73,7 @@ open class BasketRecord() : UpdatableRecordImpl<BasketRecord>(Basket.BASKET), Re
     /**
      * Create a detached, initialised BasketRecord
      */
-    constructor(value: com.fs.domain.jooq.tables.pojos.Basket?) : this() {
+    constructor(value: com.fs.domain.jooq.tables.pojos.Basket?): this() {
         if (value != null) {
             this.id = value.id
             this.totalPrice = value.totalPrice

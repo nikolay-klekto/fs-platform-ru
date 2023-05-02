@@ -42,10 +42,10 @@ kotlin { // Extension for easy setup
     jvmToolchain(8) // Target version of generated JVM bytecode. See 7️⃣
 }
 
-project("gateway:registration:registration-auth") {
-    dependencies {
-        runtimeOnly(project(":frontend"))
-    }
-}
+//project("gateway:registration:registration-auth") {
+//    dependencies {
+//        runtimeOnly(project(":frontend"))
+//    }
+//}
 
 

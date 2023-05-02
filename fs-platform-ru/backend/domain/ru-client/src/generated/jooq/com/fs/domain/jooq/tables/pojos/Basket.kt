@@ -14,7 +14,7 @@ import java.io.Serializable
 data class Basket(
     var id: Long? = null,
     var totalPrice: String? = null
-) : Serializable {
+): Serializable {
 
 
     override fun toString(): String {

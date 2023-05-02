@@ -65,7 +65,7 @@ open class PartnerRecord() : UpdatableRecordImpl<PartnerRecord>(Partner.PARTNER)
     /**
      * Create a detached, initialised PartnerRecord
      */
-    constructor(id: Long? = null, clientId: Long? = null) : this() {
+    constructor(id: Long? = null, clientId: Long? = null): this() {
         this.id = id
         this.clientId = clientId
     }
@@ -73,7 +73,7 @@ open class PartnerRecord() : UpdatableRecordImpl<PartnerRecord>(Partner.PARTNER)
     /**
      * Create a detached, initialised PartnerRecord
      */
-    constructor(value: com.fs.domain.jooq.tables.pojos.Partner?) : this() {
+    constructor(value: com.fs.domain.jooq.tables.pojos.Partner?): this() {
         if (value != null) {
             this.id = value.id
             this.clientId = value.clientId

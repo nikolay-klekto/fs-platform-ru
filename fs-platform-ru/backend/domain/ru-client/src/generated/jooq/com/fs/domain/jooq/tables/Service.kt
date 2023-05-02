@@ -7,7 +7,18 @@ package com.fs.domain.jooq.tables
 import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.SERVICE_PKEY
 import com.fs.domain.jooq.tables.records.ServiceRecord
-import org.jooq.*
+
+import org.jooq.Field
+import org.jooq.ForeignKey
+import org.jooq.Identity
+import org.jooq.Name
+import org.jooq.Record
+import org.jooq.Row3
+import org.jooq.Schema
+import org.jooq.Table
+import org.jooq.TableField
+import org.jooq.TableOptions
+import org.jooq.UniqueKey
 import org.jooq.impl.DSL
 import org.jooq.impl.Internal
 import org.jooq.impl.SQLDataType
@@ -24,7 +35,7 @@ open class Service(
     path: ForeignKey<out Record, ServiceRecord>?,
     aliased: Table<ServiceRecord>?,
     parameters: Array<Field<*>?>?
-) : TableImpl<ServiceRecord>(
+): TableImpl<ServiceRecord>(
     alias,
     Public.PUBLIC,
     child,
@@ -50,50 +61,37 @@ open class Service(
     /**
      * The column <code>public.service.id</code>.
      */
-    val ID: TableField<ServiceRecord, Long?> =
-        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
+    val ID: TableField<ServiceRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.service.price_per_day</code>.
      */
-    val PRICE_PER_DAY: TableField<ServiceRecord, Long?> =
-        createField(DSL.name("price_per_day"), SQLDataType.BIGINT, this, "")
+    val PRICE_PER_DAY: TableField<ServiceRecord, Long?> = createField(DSL.name("price_per_day"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>public.service.name</code>.
      */
     val NAME: TableField<ServiceRecord, String?> = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "")
 
-    private constructor(alias: Name, aliased: Table<ServiceRecord>?) : this(alias, null, null, aliased, null)
-    private constructor(alias: Name, aliased: Table<ServiceRecord>?, parameters: Array<Field<*>?>?) : this(
-        alias,
-        null,
-        null,
-        aliased,
-        parameters
-    )
+    private constructor(alias: Name, aliased: Table<ServiceRecord>?): this(alias, null, null, aliased, null)
+    private constructor(alias: Name, aliased: Table<ServiceRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
      * Create an aliased <code>public.service</code> table reference
      */
-    constructor(alias: String) : this(DSL.name(alias))
+    constructor(alias: String): this(DSL.name(alias))
 
     /**
      * Create an aliased <code>public.service</code> table reference
      */
-    constructor(alias: Name) : this(alias, null)
+    constructor(alias: Name): this(alias, null)
 
     /**
      * Create a <code>public.service</code> table reference
      */
-    constructor() : this(DSL.name("service"), null)
+    constructor(): this(DSL.name("service"), null)
 
-    constructor(child: Table<out Record>, key: ForeignKey<out Record, ServiceRecord>) : this(
-        Internal.createPathAlias(
-            child,
-            key
-        ), child, key, SERVICE, null
-    )
+    constructor(child: Table<out Record>, key: ForeignKey<out Record, ServiceRecord>): this(Internal.createPathAlias(child, key), child, key, SERVICE, null)
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<ServiceRecord, Long?> = super.getIdentity() as Identity<ServiceRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ServiceRecord> = SERVICE_PKEY

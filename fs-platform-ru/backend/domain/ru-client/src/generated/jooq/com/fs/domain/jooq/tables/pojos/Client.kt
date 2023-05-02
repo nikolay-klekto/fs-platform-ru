@@ -34,7 +34,7 @@ data class Client(
     var role: ClientRoleModel? = null,
     var telegramUsername: String? = null,
     var username: String? = null
-) : Serializable {
+): Serializable {
 
 
     override fun toString(): String {

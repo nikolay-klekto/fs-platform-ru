@@ -15,7 +15,7 @@ data class Service(
     var id: Long? = null,
     var pricePerDay: Long? = null,
     var name: String? = null
-) : Serializable {
+): Serializable {
 
 
     override fun toString(): String {

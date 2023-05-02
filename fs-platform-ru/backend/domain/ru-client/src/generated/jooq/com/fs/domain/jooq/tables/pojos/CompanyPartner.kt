@@ -14,7 +14,7 @@ import java.io.Serializable
 data class CompanyPartner(
     var companyId: Long? = null,
     var partnerId: Long? = null
-) : Serializable {
+): Serializable {
 
 
     override fun toString(): String {

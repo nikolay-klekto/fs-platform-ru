@@ -18,7 +18,7 @@ data class Address(
     var building: Long? = null,
     var house: Long? = null,
     var street: String? = null
-) : Serializable {
+): Serializable {
 
 
     override fun toString(): String {

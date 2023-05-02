@@ -18,7 +18,7 @@ data class Country(
     var code: Long? = null,
     var currency: CurrencyModel? = null,
     var name: CountryNameModel? = null
-) : Serializable {
+): Serializable {
 
 
     override fun toString(): String {

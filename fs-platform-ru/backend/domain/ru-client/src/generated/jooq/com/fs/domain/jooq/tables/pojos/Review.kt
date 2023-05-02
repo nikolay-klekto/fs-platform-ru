@@ -20,7 +20,7 @@ data class Review(
     var description: String? = null,
     var rate: Long? = null,
     var username: String? = null
-) : Serializable {
+): Serializable {
 
 
     override fun toString(): String {

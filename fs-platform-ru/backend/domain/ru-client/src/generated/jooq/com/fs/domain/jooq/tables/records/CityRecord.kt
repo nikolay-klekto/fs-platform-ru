@@ -78,7 +78,7 @@ open class CityRecord() : UpdatableRecordImpl<CityRecord>(City.CITY), Record3<Lo
     /**
      * Create a detached, initialised CityRecord
      */
-    constructor(id: Long? = null, countryCode: Long? = null, name: String? = null) : this() {
+    constructor(id: Long? = null, countryCode: Long? = null, name: String? = null): this() {
         this.id = id
         this.countryCode = countryCode
         this.name = name
@@ -87,7 +87,7 @@ open class CityRecord() : UpdatableRecordImpl<CityRecord>(City.CITY), Record3<Lo
     /**
      * Create a detached, initialised CityRecord
      */
-    constructor(value: com.fs.domain.jooq.tables.pojos.City?) : this() {
+    constructor(value: com.fs.domain.jooq.tables.pojos.City?): this() {
         if (value != null) {
             this.id = value.id
             this.countryCode = value.countryCode

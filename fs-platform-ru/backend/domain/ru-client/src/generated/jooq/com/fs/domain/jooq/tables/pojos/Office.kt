@@ -16,7 +16,7 @@ data class Office(
     var addressId: Long? = null,
     var companyId: Long? = null,
     var phoneNumber: String? = null
-) : Serializable {
+): Serializable {
 
 
     override fun toString(): String {

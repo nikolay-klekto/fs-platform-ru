@@ -9,7 +9,20 @@ import com.fs.domain.jooq.keys.OFFICE_PKEY
 import com.fs.domain.jooq.keys.OFFICE__OFFICE_ADDRESS_ID_FKEY
 import com.fs.domain.jooq.keys.OFFICE__OFFICE_COMPANY_ID_FKEY
 import com.fs.domain.jooq.tables.records.OfficeRecord
-import org.jooq.*
+
+import kotlin.collections.List
+
+import org.jooq.Field
+import org.jooq.ForeignKey
+import org.jooq.Identity
+import org.jooq.Name
+import org.jooq.Record
+import org.jooq.Row4
+import org.jooq.Schema
+import org.jooq.Table
+import org.jooq.TableField
+import org.jooq.TableOptions
+import org.jooq.UniqueKey
 import org.jooq.impl.DSL
 import org.jooq.impl.Internal
 import org.jooq.impl.SQLDataType
@@ -26,7 +39,7 @@ open class Office(
     path: ForeignKey<out Record, OfficeRecord>?,
     aliased: Table<OfficeRecord>?,
     parameters: Array<Field<*>?>?
-) : TableImpl<OfficeRecord>(
+): TableImpl<OfficeRecord>(
     alias,
     Public.PUBLIC,
     child,
@@ -52,8 +65,7 @@ open class Office(
     /**
      * The column <code>public.office.id</code>.
      */
-    val ID: TableField<OfficeRecord, Long?> =
-        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
+    val ID: TableField<OfficeRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.office.address_id</code>.
@@ -68,44 +80,31 @@ open class Office(
     /**
      * The column <code>public.office.phone_number</code>.
      */
-    val PHONE_NUMBER: TableField<OfficeRecord, String?> =
-        createField(DSL.name("phone_number"), SQLDataType.VARCHAR, this, "")
+    val PHONE_NUMBER: TableField<OfficeRecord, String?> = createField(DSL.name("phone_number"), SQLDataType.VARCHAR, this, "")
 
-    private constructor(alias: Name, aliased: Table<OfficeRecord>?) : this(alias, null, null, aliased, null)
-    private constructor(alias: Name, aliased: Table<OfficeRecord>?, parameters: Array<Field<*>?>?) : this(
-        alias,
-        null,
-        null,
-        aliased,
-        parameters
-    )
+    private constructor(alias: Name, aliased: Table<OfficeRecord>?): this(alias, null, null, aliased, null)
+    private constructor(alias: Name, aliased: Table<OfficeRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
      * Create an aliased <code>public.office</code> table reference
      */
-    constructor(alias: String) : this(DSL.name(alias))
+    constructor(alias: String): this(DSL.name(alias))
 
     /**
      * Create an aliased <code>public.office</code> table reference
      */
-    constructor(alias: Name) : this(alias, null)
+    constructor(alias: Name): this(alias, null)
 
     /**
      * Create a <code>public.office</code> table reference
      */
-    constructor() : this(DSL.name("office"), null)
+    constructor(): this(DSL.name("office"), null)
 
-    constructor(child: Table<out Record>, key: ForeignKey<out Record, OfficeRecord>) : this(
-        Internal.createPathAlias(
-            child,
-            key
-        ), child, key, OFFICE, null
-    )
+    constructor(child: Table<out Record>, key: ForeignKey<out Record, OfficeRecord>): this(Internal.createPathAlias(child, key), child, key, OFFICE, null)
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<OfficeRecord, Long?> = super.getIdentity() as Identity<OfficeRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<OfficeRecord> = OFFICE_PKEY
-    override fun getReferences(): List<ForeignKey<OfficeRecord, *>> =
-        listOf(OFFICE__OFFICE_ADDRESS_ID_FKEY, OFFICE__OFFICE_COMPANY_ID_FKEY)
+    override fun getReferences(): List<ForeignKey<OfficeRecord, *>> = listOf(OFFICE__OFFICE_ADDRESS_ID_FKEY, OFFICE__OFFICE_COMPANY_ID_FKEY)
 
     private lateinit var _address: Address
     private lateinit var _company: Company
@@ -145,6 +144,5 @@ open class Office(
     // -------------------------------------------------------------------------
     // Row4 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row4<Long?, Long?, Long?, String?> =
-        super.fieldsRow() as Row4<Long?, Long?, Long?, String?>
+    override fun fieldsRow(): Row4<Long?, Long?, Long?, String?> = super.fieldsRow() as Row4<Long?, Long?, Long?, String?>
 }

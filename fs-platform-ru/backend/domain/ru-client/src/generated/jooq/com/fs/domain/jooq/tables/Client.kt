@@ -15,11 +15,28 @@ import com.fs.domain.jooq.keys.CLIENT_PKEY
 import com.fs.domain.jooq.keys.CLIENT__CLIENT_BASKET_ID_FKEY
 import com.fs.domain.jooq.keys.CLIENT__CLIENT_CITY_ID_FKEY
 import com.fs.domain.jooq.tables.records.ClientRecord
-import org.jooq.*
-import org.jooq.impl.*
-import org.jooq.impl.Internal
+
 import java.time.LocalDate
 import java.time.LocalDateTime
+
+import kotlin.collections.List
+
+import org.jooq.Field
+import org.jooq.ForeignKey
+import org.jooq.Identity
+import org.jooq.Name
+import org.jooq.Record
+import org.jooq.Row16
+import org.jooq.Schema
+import org.jooq.Table
+import org.jooq.TableField
+import org.jooq.TableOptions
+import org.jooq.UniqueKey
+import org.jooq.impl.DSL
+import org.jooq.impl.EnumConverter
+import org.jooq.impl.Internal
+import org.jooq.impl.SQLDataType
+import org.jooq.impl.TableImpl
 
 
 /**
@@ -32,7 +49,7 @@ open class Client(
     path: ForeignKey<out Record, ClientRecord>?,
     aliased: Table<ClientRecord>?,
     parameters: Array<Field<*>?>?
-) : TableImpl<ClientRecord>(
+): TableImpl<ClientRecord>(
     alias,
     Public.PUBLIC,
     child,
@@ -58,8 +75,7 @@ open class Client(
     /**
      * The column <code>public.client.id</code>.
      */
-    val ID: TableField<ClientRecord, Long?> =
-        createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
+    val ID: TableField<ClientRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.client.basket_id</code>.
@@ -74,31 +90,22 @@ open class Client(
     /**
      * The column <code>public.client.activate_status</code>.
      */
-    val ACTIVATE_STATUS: TableField<ClientRecord, Boolean?> =
-        createField(DSL.name("activate_status"), SQLDataType.BOOLEAN, this, "")
+    val ACTIVATE_STATUS: TableField<ClientRecord, Boolean?> = createField(DSL.name("activate_status"), SQLDataType.BOOLEAN, this, "")
 
     /**
      * The column <code>public.client.birthday</code>.
      */
-    val BIRTHDAY: TableField<ClientRecord, LocalDate?> =
-        createField(DSL.name("birthday"), SQLDataType.LOCALDATE, this, "")
+    val BIRTHDAY: TableField<ClientRecord, LocalDate?> = createField(DSL.name("birthday"), SQLDataType.LOCALDATE, this, "")
 
     /**
      * The column <code>public.client.date_created</code>.
      */
-    val DATE_CREATED: TableField<ClientRecord, LocalDateTime?> =
-        createField(DSL.name("date_created"), SQLDataType.LOCALDATETIME(6), this, "")
+    val DATE_CREATED: TableField<ClientRecord, LocalDateTime?> = createField(DSL.name("date_created"), SQLDataType.LOCALDATETIME(6), this, "")
 
     /**
      * The column <code>public.client.education_status</code>.
      */
-    val EDUCATION_STATUS: TableField<ClientRecord, EducationModel?> = createField(
-        DSL.name("education_status"),
-        SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Education::class.java),
-        this,
-        "",
-        EnumConverter<Education, EducationModel>(Education::class.java, EducationModel::class.java)
-    )
+    val EDUCATION_STATUS: TableField<ClientRecord, EducationModel?> = createField(DSL.name("education_status"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Education::class.java), this, "", EnumConverter<Education, EducationModel>(Education::class.java, EducationModel::class.java))
 
     /**
      * The column <code>public.client.email</code>.
@@ -108,19 +115,12 @@ open class Client(
     /**
      * The column <code>public.client.employment</code>.
      */
-    val EMPLOYMENT: TableField<ClientRecord, EmploymentModel?> = createField(
-        DSL.name("employment"),
-        SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Employment::class.java),
-        this,
-        "",
-        EnumConverter<Employment, EmploymentModel>(Employment::class.java, EmploymentModel::class.java)
-    )
+    val EMPLOYMENT: TableField<ClientRecord, EmploymentModel?> = createField(DSL.name("employment"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Employment::class.java), this, "", EnumConverter<Employment, EmploymentModel>(Employment::class.java, EmploymentModel::class.java))
 
     /**
      * The column <code>public.client.first_name</code>.
      */
-    val FIRST_NAME: TableField<ClientRecord, String?> =
-        createField(DSL.name("first_name"), SQLDataType.VARCHAR, this, "")
+    val FIRST_NAME: TableField<ClientRecord, String?> = createField(DSL.name("first_name"), SQLDataType.VARCHAR, this, "")
 
     /**
      * The column <code>public.client.last_name</code>.
@@ -135,66 +135,46 @@ open class Client(
     /**
      * The column <code>public.client.phone_number</code>.
      */
-    val PHONE_NUMBER: TableField<ClientRecord, String?> =
-        createField(DSL.name("phone_number"), SQLDataType.VARCHAR, this, "")
+    val PHONE_NUMBER: TableField<ClientRecord, String?> = createField(DSL.name("phone_number"), SQLDataType.VARCHAR, this, "")
 
     /**
      * The column <code>public.client.role</code>.
      */
-    val ROLE: TableField<ClientRecord, ClientRoleModel?> = createField(
-        DSL.name("role"),
-        SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Role::class.java),
-        this,
-        "",
-        EnumConverter<Role, ClientRoleModel>(Role::class.java, ClientRoleModel::class.java)
-    )
+    val ROLE: TableField<ClientRecord, ClientRoleModel?> = createField(DSL.name("role"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Role::class.java), this, "", EnumConverter<Role, ClientRoleModel>(Role::class.java, ClientRoleModel::class.java))
 
     /**
      * The column <code>public.client.telegram_username</code>.
      */
-    val TELEGRAM_USERNAME: TableField<ClientRecord, String?> =
-        createField(DSL.name("telegram_username"), SQLDataType.VARCHAR, this, "")
+    val TELEGRAM_USERNAME: TableField<ClientRecord, String?> = createField(DSL.name("telegram_username"), SQLDataType.VARCHAR, this, "")
 
     /**
      * The column <code>public.client.username</code>.
      */
     val USERNAME: TableField<ClientRecord, String?> = createField(DSL.name("username"), SQLDataType.VARCHAR, this, "")
 
-    private constructor(alias: Name, aliased: Table<ClientRecord>?) : this(alias, null, null, aliased, null)
-    private constructor(alias: Name, aliased: Table<ClientRecord>?, parameters: Array<Field<*>?>?) : this(
-        alias,
-        null,
-        null,
-        aliased,
-        parameters
-    )
+    private constructor(alias: Name, aliased: Table<ClientRecord>?): this(alias, null, null, aliased, null)
+    private constructor(alias: Name, aliased: Table<ClientRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
      * Create an aliased <code>public.client</code> table reference
      */
-    constructor(alias: String) : this(DSL.name(alias))
+    constructor(alias: String): this(DSL.name(alias))
 
     /**
      * Create an aliased <code>public.client</code> table reference
      */
-    constructor(alias: Name) : this(alias, null)
+    constructor(alias: Name): this(alias, null)
 
     /**
      * Create a <code>public.client</code> table reference
      */
-    constructor() : this(DSL.name("client"), null)
+    constructor(): this(DSL.name("client"), null)
 
-    constructor(child: Table<out Record>, key: ForeignKey<out Record, ClientRecord>) : this(
-        Internal.createPathAlias(
-            child,
-            key
-        ), child, key, CLIENT, null
-    )
+    constructor(child: Table<out Record>, key: ForeignKey<out Record, ClientRecord>): this(Internal.createPathAlias(child, key), child, key, CLIENT, null)
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<ClientRecord, Long?> = super.getIdentity() as Identity<ClientRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ClientRecord> = CLIENT_PKEY
-    override fun getReferences(): List<ForeignKey<ClientRecord, *>> =
-        listOf(CLIENT__CLIENT_BASKET_ID_FKEY, CLIENT__CLIENT_CITY_ID_FKEY)
+    override fun getReferences(): List<ForeignKey<ClientRecord, *>> = listOf(CLIENT__CLIENT_BASKET_ID_FKEY, CLIENT__CLIENT_CITY_ID_FKEY)
 
     private lateinit var _basket: Basket
     private lateinit var _city: City
@@ -234,6 +214,5 @@ open class Client(
     // -------------------------------------------------------------------------
     // Row16 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?> =
-        super.fieldsRow() as Row16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?>
+    override fun fieldsRow(): Row16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?> = super.fieldsRow() as Row16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?>
 }

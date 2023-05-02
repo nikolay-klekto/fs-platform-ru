@@ -22,7 +22,7 @@ data class Order(
     var isExpired: Boolean? = null,
     var startWorkDate: LocalDateTime? = null,
     var totalWorkDays: Long? = null
-) : Serializable {
+): Serializable {
 
 
     override fun toString(): String {

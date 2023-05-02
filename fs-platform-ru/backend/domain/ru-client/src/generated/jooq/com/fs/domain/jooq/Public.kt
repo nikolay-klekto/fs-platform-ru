@@ -4,7 +4,23 @@
 package com.fs.domain.jooq
 
 
-import com.fs.domain.jooq.tables.*
+import com.fs.domain.jooq.tables.Address
+import com.fs.domain.jooq.tables.Basket
+import com.fs.domain.jooq.tables.City
+import com.fs.domain.jooq.tables.Client
+import com.fs.domain.jooq.tables.CompaniesPositions
+import com.fs.domain.jooq.tables.Company
+import com.fs.domain.jooq.tables.CompanyPartner
+import com.fs.domain.jooq.tables.Country
+import com.fs.domain.jooq.tables.Office
+import com.fs.domain.jooq.tables.Order
+import com.fs.domain.jooq.tables.Partner
+import com.fs.domain.jooq.tables.Position
+import com.fs.domain.jooq.tables.Review
+import com.fs.domain.jooq.tables.Service
+
+import kotlin.collections.List
+
 import org.jooq.Catalog
 import org.jooq.Table
 import org.jooq.impl.SchemaImpl

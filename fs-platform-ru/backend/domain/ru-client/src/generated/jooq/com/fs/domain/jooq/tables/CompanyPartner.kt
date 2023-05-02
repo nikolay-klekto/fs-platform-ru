@@ -9,7 +9,19 @@ import com.fs.domain.jooq.keys.COMPANY_PARTNER_PKEY
 import com.fs.domain.jooq.keys.COMPANY_PARTNER__COMPANY_PARTNER_COMPANY_ID_FKEY
 import com.fs.domain.jooq.keys.COMPANY_PARTNER__COMPANY_PARTNER_PARTNER_ID_FKEY
 import com.fs.domain.jooq.tables.records.CompanyPartnerRecord
-import org.jooq.*
+
+import kotlin.collections.List
+
+import org.jooq.Field
+import org.jooq.ForeignKey
+import org.jooq.Name
+import org.jooq.Record
+import org.jooq.Row2
+import org.jooq.Schema
+import org.jooq.Table
+import org.jooq.TableField
+import org.jooq.TableOptions
+import org.jooq.UniqueKey
 import org.jooq.impl.DSL
 import org.jooq.impl.Internal
 import org.jooq.impl.SQLDataType
@@ -26,7 +38,7 @@ open class CompanyPartner(
     path: ForeignKey<out Record, CompanyPartnerRecord>?,
     aliased: Table<CompanyPartnerRecord>?,
     parameters: Array<Field<*>?>?
-) : TableImpl<CompanyPartnerRecord>(
+): TableImpl<CompanyPartnerRecord>(
     alias,
     Public.PUBLIC,
     child,
@@ -52,47 +64,35 @@ open class CompanyPartner(
     /**
      * The column <code>public.company_partner.company_id</code>.
      */
-    val COMPANY_ID: TableField<CompanyPartnerRecord, Long?> =
-        createField(DSL.name("company_id"), SQLDataType.BIGINT.nullable(false), this, "")
+    val COMPANY_ID: TableField<CompanyPartnerRecord, Long?> = createField(DSL.name("company_id"), SQLDataType.BIGINT.nullable(false), this, "")
 
     /**
      * The column <code>public.company_partner.partner_id</code>.
      */
-    val PARTNER_ID: TableField<CompanyPartnerRecord, Long?> =
-        createField(DSL.name("partner_id"), SQLDataType.BIGINT.nullable(false), this, "")
+    val PARTNER_ID: TableField<CompanyPartnerRecord, Long?> = createField(DSL.name("partner_id"), SQLDataType.BIGINT.nullable(false), this, "")
 
-    private constructor(alias: Name, aliased: Table<CompanyPartnerRecord>?) : this(alias, null, null, aliased, null)
-    private constructor(alias: Name, aliased: Table<CompanyPartnerRecord>?, parameters: Array<Field<*>?>?) : this(
-        alias,
-        null,
-        null,
-        aliased,
-        parameters
-    )
+    private constructor(alias: Name, aliased: Table<CompanyPartnerRecord>?): this(alias, null, null, aliased, null)
+    private constructor(alias: Name, aliased: Table<CompanyPartnerRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
      * Create an aliased <code>public.company_partner</code> table reference
      */
-    constructor(alias: String) : this(DSL.name(alias))
+    constructor(alias: String): this(DSL.name(alias))
 
     /**
      * Create an aliased <code>public.company_partner</code> table reference
      */
-    constructor(alias: Name) : this(alias, null)
+    constructor(alias: Name): this(alias, null)
 
     /**
      * Create a <code>public.company_partner</code> table reference
      */
-    constructor() : this(DSL.name("company_partner"), null)
+    constructor(): this(DSL.name("company_partner"), null)
 
-    constructor(
-        child: Table<out Record>,
-        key: ForeignKey<out Record, CompanyPartnerRecord>
-    ) : this(Internal.createPathAlias(child, key), child, key, COMPANY_PARTNER, null)
+    constructor(child: Table<out Record>, key: ForeignKey<out Record, CompanyPartnerRecord>): this(Internal.createPathAlias(child, key), child, key, COMPANY_PARTNER, null)
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getPrimaryKey(): UniqueKey<CompanyPartnerRecord> = COMPANY_PARTNER_PKEY
-    override fun getReferences(): List<ForeignKey<CompanyPartnerRecord, *>> =
-        listOf(COMPANY_PARTNER__COMPANY_PARTNER_COMPANY_ID_FKEY, COMPANY_PARTNER__COMPANY_PARTNER_PARTNER_ID_FKEY)
+    override fun getReferences(): List<ForeignKey<CompanyPartnerRecord, *>> = listOf(COMPANY_PARTNER__COMPANY_PARTNER_COMPANY_ID_FKEY, COMPANY_PARTNER__COMPANY_PARTNER_PARTNER_ID_FKEY)
 
     private lateinit var _company: Company
     private lateinit var _partner: Partner
