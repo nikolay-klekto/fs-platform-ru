@@ -1,5 +1,5 @@
-scalar LocalDateTime
-scalar LocalDate
+#scalar LocalDateTime
+#scalar LocalDate
 
 type Query {
     getClintById(id: ID!): Client
@@ -126,7 +126,9 @@ input OrderInput {
     positionId: ID
     serviceId: ID
     isExpired: Boolean
-    startWorkDate: LocalDateTime
+#    startWorkDate: LocalDateTime
+    startWorkDate: String
+
     totalWorkDays: Int
 }
 
@@ -153,8 +155,10 @@ input PartnerInput {
 input ClientInsert {
     cityId: ID!,
     activateStatus: Boolean,
-    birthday: LocalDate,
-    dateCreated: LocalDateTime,
+#    birthday: LocalDate,
+    birthday: String,
+#    dateCreated: LocalDateTime,
+    dateCreated: String,
     educationModelStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,
@@ -171,8 +175,10 @@ input ClientUpdate {
     id: ID!,
     cityId: ID,
     activateStatus: Boolean,
-    birthday: LocalDate,
-    dateCreated: LocalDateTime,
+    #    birthday: LocalDate,
+    birthday: String,
+    #    dateCreated: LocalDateTime,
+    dateCreated: String,
     educationModelStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,
@@ -222,8 +228,9 @@ type Review {
     id: ID
     companyId: ID
     clientId: ID
-    dateCreated: LocalDateTime
-    description: String,
+#    dateCreated: LocalDateTime
+    dateCreated: String
+    description: String
     rate: Int
     username: String
 }
@@ -235,7 +242,8 @@ type Order {
     position: Position
     service: Service
     isExpired: Boolean
-    startWorkDate: LocalDateTime
+#    startWorkDate: LocalDateTime
+    startWorkDate: String
     totalWorkDays: Int
 }
 
@@ -265,8 +273,10 @@ type Client {
     basketId: ID,
     city: City,
     activateStatus: Boolean,
-    birthday: LocalDate,
-    dateCreated: LocalDateTime,
+    #    birthday: LocalDate,
+    birthday: String,
+    #    dateCreated: LocalDateTime,
+    dateCreated: String,
     educationModelStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,

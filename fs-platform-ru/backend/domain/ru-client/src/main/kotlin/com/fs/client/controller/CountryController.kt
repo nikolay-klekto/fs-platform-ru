@@ -46,6 +46,11 @@ open class CountryController(open val countryRepository: CountryRepository) {
         return countryRepository.getByName(name)
     }
 
+    @QueryMapping
+    fun getCountryByCity(@Argument id: Long): Mono<CountryModel> {
+        return countryRepository.getByCityId(id)
+    }
+
     @MutationMapping
     open fun addCountry(@Argument country: CountryModel): Mono<CountryModel> {
         return countryRepository.insert(country)

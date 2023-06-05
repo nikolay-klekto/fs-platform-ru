@@ -1,0 +1,25 @@
+version: '2'
+services:
+  app:
+    image: 'ru-client:latest'
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - postgres
+    environment:
+      - jdbc:postgresql://localhost:5432/FunScrut2
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=191220#destin
+      - SPRING_DATASOURCE_SCHEMA=PUBLIC
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+
+  postgres:
+    image: 'postgres:13.3-alpine'
+    container_name: 'java-postgres'
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_PASSWORD=191220#destin

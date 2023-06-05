@@ -22,10 +22,6 @@ open class CityController(open val cityRepository: CityRepository) {
     fun getById(@PathVariable("id") cityId: Long) =
         cityRepository.getCityById(cityId)
 
-    @GetMapping("country/{id}")
-    fun getCountryByCityId(@PathVariable("id") cityId: Long) =
-        cityRepository.getCountryByCityId(cityId)
-
     @PostMapping
     fun createCity(@RequestBody cityModel: CityModel) =
         cityRepository.createCity(cityModel)
@@ -33,11 +29,6 @@ open class CityController(open val cityRepository: CityRepository) {
     @QueryMapping
     fun getCity(@Argument id: Long): Mono<CityModel> {
         return cityRepository.getCityById(id)
-    }
-
-    @QueryMapping
-    fun getCountryByCity(@Argument id: Long): Mono<CountryModel> {
-        return cityRepository.getCountryByCityId(id)
     }
 
     @MutationMapping

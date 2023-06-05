@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.8.0"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.8.0"
+    kotlin("jvm") version "1.8.21"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.8.21"
 }
 
 group = "com.fs.platform.ru"
@@ -43,9 +43,11 @@ kotlin { // Extension for easy setup
 }
 
 //project("gateway:registration:registration-auth") {
-//    dependencies {
-//        runtimeOnly(project(":frontend"))
-//    }
-//}
+project("domain:ru-client") {
+
+    dependencies {
+        runtimeOnly(project(":frontend"))
+    }
+}
 
 

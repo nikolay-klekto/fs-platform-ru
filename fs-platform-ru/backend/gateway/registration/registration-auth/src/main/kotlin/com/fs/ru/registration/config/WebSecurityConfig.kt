@@ -88,7 +88,7 @@ class WebSecurityConfig {
     @Bean
     fun webSecurityCustomizer(): WebSecurityCustomizer? {
         return WebSecurityCustomizer { web: WebSecurity ->
-            web.ignoring().requestMatchers("/api/signin", "/api/signup", "/api/registrationConfirm")
+                web.ignoring().requestMatchers("/api/signin", "/api/signup", "/api/registrationConfirm")
         }
     }
 

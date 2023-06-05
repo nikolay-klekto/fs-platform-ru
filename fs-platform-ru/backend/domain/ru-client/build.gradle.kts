@@ -4,9 +4,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jooq.meta.jaxb.ForcedType
 import org.jooq.meta.jaxb.Logging
 import org.jooq.meta.jaxb.Property
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    kotlin("plugin.spring") version "1.8.0"
+    kotlin("plugin.spring") version "1.8.21"
     application
     id("java")
     id("org.springframework.boot") version "2.7.4"
@@ -22,15 +23,35 @@ the<DependencyManagementExtension>().apply {
 
 val mainClassPath = "com.fs.client.ClientServiceAppKt"
 
-tasks.jar {
-    isZip64 = true
-    manifest {
-        attributes(mapOf("Main-Class" to mainClassPath))
-    }
-}
+//tasks.bootJar {
+//tasks.jar {
+//    isZip64 = true
+//    manifest {
+//        attributes(mapOf("Main-Class" to mainClassPath))
+//    }
+//}
 
-tasks.withType<Jar> {
-    // Otherwise you'll get a "No main manifest attribute" error
+//tasks.withType<BootJar> {
+//    launchScript()
+//
+//    // Otherwise you'll get a "No main manifest attribute" error
+//    manifest {
+//        attributes["Main-Class"] = "com.fs.client.ClientServiceAppKt"
+//    }
+//
+//    // To avoid the duplicate handling strategy error
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//
+//    // To add all of the dependencies
+//    from(sourceSets.main.get().output)
+//
+//    dependsOn(configurations.runtimeClasspath)
+//    from({
+//        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
+//    })
+//}
+
+tasks.named<Jar>("jar") {
     manifest {
         attributes["Main-Class"] = "com.fs.client.ClientServiceAppKt"
     }
@@ -46,6 +67,10 @@ tasks.withType<Jar> {
         configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
     })
 }
+//
+//springBoot {
+//    mainClass.set(mainClassPath)
+//}
 
 group = "com.fs.platform.ru"
 version = "0.0.2-SNAPSHOT"
@@ -64,6 +89,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-jooq")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-tomcat")
+
 
     implementation("org.springframework:spring-core")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -72,10 +99,13 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-webmvc-core:1.6.12")
     implementation("org.springdoc:springdoc-openapi-kotlin:1.6.12")
     implementation("org.jooq:jooq-kotlin:3.17.4")
-    implementation("com.tailrocks.graphql:graphql-datetime-spring-boot-starter:6.0.0")
-    implementation("com.graphql-java:graphql-java-extended-scalars:2023-01-24T02-11-56-babda5f")
+//    implementation("com.tailrocks.graphql:graphql-datetime-spring-boot-starter:6.0.0")
+    implementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
+//    implementation("com.graphql-java:graphql-java-extended-scalars:2023-01-24T02-11-56-babda5f")
 //    implementation("org.springframework.cloud:spring-cloud-starter-consul-discovery:4.0.1")
     implementation("log4j:log4j:1.2.17")
+    implementation("org.cfg4j:cfg4j-core:4.4.1")
+
 
 
 
@@ -192,4 +222,7 @@ jooq {
             }
         }
     }
+}
+kotlin {
+    jvmToolchain(17)
 }

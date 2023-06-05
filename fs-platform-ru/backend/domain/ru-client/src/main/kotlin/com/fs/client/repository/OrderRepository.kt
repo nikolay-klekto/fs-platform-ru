@@ -23,6 +23,7 @@ abstract class OrderRepository(
     open val basketRepository: BasketRepository,
     open val serviceRepository: ServiceRepository,
     open val cityRepository: CityRepository,
+    open val countryRepository: CountryRepository,
     open val totalPriceMatcher: TotalPriceMatcher
 ) {
 
@@ -71,7 +72,7 @@ abstract class OrderRepository(
                     val orderCity = cityRepository.getCityByOfficeId(orderModel.companyOfficeId!!)
 
                     val orderCurrency: CurrencyModel =
-                        cityRepository.getCountryByCityId(orderCity.id).block()!!.currency
+                        countryRepository.getByCityId(orderCity.id).block()!!.currency
 
                     val map: Map<CurrencyModel?, Long> = totalPriceMatcher.decomposeTotalPrice(pastTotalPrice)
                     val oldTotalPrice = map[orderCurrency]
@@ -106,7 +107,7 @@ abstract class OrderRepository(
     }
 
     fun updateExpiredStatus() {
-        log.info("Scheduler is working. The time is now {}", dateFormat.format(Date()))
+//        log.info("Scheduler is working. The time is now {}", dateFormat.format(Date()))
         dsl.update(ORDER)
             .set(ORDER.IS_EXPIRED, false)
             .where(
@@ -118,7 +119,7 @@ abstract class OrderRepository(
     }
 
     companion object {
-        private val log = LogManager.getLogger()
+//        private val log = LogManager.getLogger()
         private val dateFormat = SimpleDateFormat("HH:mm:ss")
     }
 }

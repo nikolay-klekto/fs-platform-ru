@@ -1,16 +1,18 @@
-graphql:
-  datetime:
-    scalars:
-      local-date-time:
-        format: yyyy-MM-DD'T'HH:mm
-      local-date:
-        format: yyyy-MM-DD
+#graphql:
+#  datetime:
+#    scalars:
+#      local-date-time:
+#        format: yyyy-MM-DD'T'HH:mm
+#      local-date:
+#        format: yyyy-MM-DD
 
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/FunScrut2
     username: postgres
     password: 191220#destin
+    schema: public
+    driverClassName: org.postgresql.Driver
   graphql:
     enable: true
     cors:
@@ -26,9 +28,15 @@ spring:
       port: 8500
       discovery:
         register: false
+  jooq:
+    url: jdbc:postgresql:FunScrut2
+    user: postgres
+    password: 191220#destin
+    schema: public
+    driver: org.postgresql.Driver
 
 server:
-  port: ${NOMAD_HOST_PORT_http:8090}
+  port: ${NOMAD_HOST_PORT_http:8082}
   error:
     include-stacktrace: never
 
@@ -38,3 +46,10 @@ logging:
       jooq:
         tools:
           LoggerListener: debug
+
+jooq:
+  url: jdbc:postgresql:FunScrut2
+  user: postgres
+  password: 191220#destin
+  schema: public
+  driver: org.postgresql.Driver

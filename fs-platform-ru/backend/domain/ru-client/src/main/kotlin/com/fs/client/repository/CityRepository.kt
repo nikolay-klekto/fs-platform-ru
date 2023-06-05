@@ -17,7 +17,6 @@ import reactor.core.publisher.Mono
 abstract class CityRepository(
     open val dsl: DSLContext,
     open val cityConverter: CityModelConverter,
-    open val countryConverter: CountryModelConverter
 ) {
 
     fun getCityById(id: Long): Mono<CityModel> {
@@ -27,20 +26,6 @@ abstract class CityRepository(
         )
             .map { it.into(City::class.java) }
             .map(cityConverter::toModel)
-    }
-
-    fun getCountryByCityId(id: Long): Mono<CountryModel> {
-        return Mono.from(
-            dsl.select(COUNTRY.asterisk()).from(COUNTRY)
-                .where(
-                    COUNTRY.CODE.eq(
-                        dsl.select(CITY.COUNTRY_CODE).from(CITY)
-                            .where(CITY.ID.eq(id))
-                    )
-                )
-        )
-            .map { it.into(Country::class.java) }
-            .map(countryConverter::toModel)
     }
 
     fun getCityByOfficeId(id: Long): CityModel {

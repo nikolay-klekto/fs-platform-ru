@@ -33,6 +33,20 @@ abstract class CountryRepository(
             .map(converter::toModel)
     }
 
+    fun getByCityId(id: Long): Mono<CountryModel> {
+        return Mono.from(
+            dsl.select(COUNTRY.asterisk()).from(COUNTRY)
+                .where(
+                    COUNTRY.CODE.eq(
+                        dsl.select(CITY.COUNTRY_CODE).from(CITY)
+                            .where(CITY.ID.eq(id))
+                    )
+                )
+        )
+            .map { it.into(Country::class.java) }
+            .map(converter::toModel)
+    }
+
     fun insert(countryModel: CountryModel): Mono<CountryModel> {
         return Mono.fromSupplier {
             val newCountryRecord: CountryRecord = dsl.newRecord(COUNTRY)
@@ -54,9 +68,9 @@ abstract class CountryRepository(
                 .where(CITY.COUNTRY_CODE.eq(countryCode))
                 .execute() > 0
 
-            if (!result) {
-                log.info("In current deleted country there are no one city!")
-            }
+//            if (!result) {
+//                log.info("In current deleted country there are no one city!")
+//            }
             dsl.deleteFrom(COUNTRY)
                 .where(COUNTRY.CODE.eq(countryCode))
                 .execute() == 1
@@ -64,6 +78,6 @@ abstract class CountryRepository(
     }
 
     companion object {
-        private val log = LogManager.getLogger()
+//        private val log = LogManager.getLogger()
     }
 }

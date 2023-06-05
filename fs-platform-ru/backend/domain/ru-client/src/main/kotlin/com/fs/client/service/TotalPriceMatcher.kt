@@ -12,5 +12,4 @@ class TotalPriceMatcher {
         val currencyModel: CurrencyModel? = CurrencyModel.fromString(totalPrice.substringAfter(" "))
         return mapOf(Pair(currencyModel, price))
     }
-
 }
