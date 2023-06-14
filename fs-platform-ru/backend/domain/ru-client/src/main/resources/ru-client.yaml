@@ -12,50 +12,55 @@
 #      local-date:
 #        format: yyyy-MM-DD
 
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/FunScrut2
-    username: postgres
-    password: 191220#destin
-    schema: public
-    driverClassName: org.postgresql.Driver
-  graphql:
-    enable: true
-    cors:
-      allowed-origins: true
-    schema:
-      printer:
-        enabled: true
-  application:
-    name: ru-service
-  cloud:
-    consul:
-      host: 192.168.99.100
-      port: 8500
-      discovery:
-        register: false
-  jooq:
-    url: jdbc:postgresql:FunScrut2
-    user: postgres
-    password: 191220#destin
-    schema: public
-    driver: org.postgresql.Driver
-
-server:
-  port: ${NOMAD_HOST_PORT_http:8082}
-  error:
-    include-stacktrace: never
-
-logging:
-  level:
-    org:
-      jooq:
-        tools:
-          LoggerListener: debug
-
-jooq:
-  url: jdbc:postgresql:FunScrut2
-  user: postgres
-  password: 191220#destin
-  schema: public
-  driver: org.postgresql.Driver
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://service-db/funScrut
+#    username: postgres
+#    password: 191220#destin
+#    schema: public
+#    driverClassName: org.postgresql.Driver
+#  graphql:
+#    enable: true
+#    cors:
+#      allowed-origins: true
+#    schema:
+#      printer:
+#        enabled: true
+#  application:
+#    name: ru-service
+#  cloud:
+#    consul:
+#      host: 192.168.99.100
+#      port: 8500
+#      discovery:
+#        register: false
+#  jooq:
+#    url: jdbc:postgresql:FunScrut2
+#    user: postgres
+#    password: 191220#destin
+#    schema: public
+#    driver: org.postgresql.Driver
+#  liquibase:
+#    enabled: false
+#    drop-first: false
+#    change-log: classpath:db/changelog/db.changelog-master.xml
+#    default-schema: public
+#
+#server:
+#  port: ${NOMAD_HOST_PORT_http:8082}
+#  error:
+#    include-stacktrace: never
+#
+#logging:
+#  level:
+#    org:
+#      jooq:
+#        tools:
+#          LoggerListener: debug
+#
+#jooq:
+#  url: jdbc:postgresql:FunScrut2
+#  user: postgres
+#  password: 191220#destin
+#  schema: public
+#  driver: org.postgresql.Driver

@@ -1,5 +1,5 @@
-#scalar LocalDateTime
-#scalar LocalDate
+scalar LocalDateTime
+scalar LocalDate
 
 type Query {
     getClintById(id: ID!): Client
@@ -126,9 +126,8 @@ input OrderInput {
     positionId: ID
     serviceId: ID
     isExpired: Boolean
-#    startWorkDate: LocalDateTime
-    startWorkDate: String
-
+        startWorkDate: LocalDateTime
+#    startWorkDate: String
     totalWorkDays: Int
 }
 
@@ -155,11 +154,11 @@ input PartnerInput {
 input ClientInsert {
     cityId: ID!,
     activateStatus: Boolean,
-#    birthday: LocalDate,
-    birthday: String,
-#    dateCreated: LocalDateTime,
-    dateCreated: String,
-    educationModelStatus: EducationEnum,
+    birthday: LocalDate,
+    #    birthday: String,
+    dateCreated: LocalDateTime,
+    #    dateCreated: String,
+    educationStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,
     firstName: String,
@@ -175,11 +174,11 @@ input ClientUpdate {
     id: ID!,
     cityId: ID,
     activateStatus: Boolean,
-    #    birthday: LocalDate,
-    birthday: String,
-    #    dateCreated: LocalDateTime,
-    dateCreated: String,
-    educationModelStatus: EducationEnum,
+    birthday: LocalDate,
+    #    birthday: String,
+    dateCreated: LocalDateTime,
+    #    dateCreated: String,
+    educationStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,
     firstName: String,
@@ -228,8 +227,8 @@ type Review {
     id: ID
     companyId: ID
     clientId: ID
-#    dateCreated: LocalDateTime
-    dateCreated: String
+    dateCreated: LocalDateTime
+    #    dateCreated: String
     description: String
     rate: Int
     username: String
@@ -242,8 +241,8 @@ type Order {
     position: Position
     service: Service
     isExpired: Boolean
-#    startWorkDate: LocalDateTime
-    startWorkDate: String
+        startWorkDate: LocalDateTime
+#    startWorkDate: String
     totalWorkDays: Int
 }
 
@@ -273,11 +272,11 @@ type Client {
     basketId: ID,
     city: City,
     activateStatus: Boolean,
-    #    birthday: LocalDate,
-    birthday: String,
-    #    dateCreated: LocalDateTime,
-    dateCreated: String,
-    educationModelStatus: EducationEnum,
+        birthday: LocalDate,
+#    birthday: String,
+        dateCreated: LocalDateTime,
+#    dateCreated: String,
+    educationStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,
     firstName: String,

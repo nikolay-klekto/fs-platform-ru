@@ -1,13 +1,17 @@
-#graphql:
-#  datetime:
-#    scalars:
-#      local-date-time:
-#        format: yyyy-MM-DD'T'HH:mm
-#      local-date:
-#        format: yyyy-MM-DD
+graphql:
+  datetime:
+    scalars:
+      local-date-time:
+        format: yyyy-MM-DD'T'HH:mm
+      local-date:
+        format: yyyy-MM-DD
 
 spring:
   datasource:
+#    For docker
+#    url: jdbc:postgresql://localhost:15432/fun_scrut
+#    username: username
+#    password: password
     url: jdbc:postgresql://localhost:5432/FunScrut2
     username: postgres
     password: 191220#destin
@@ -29,14 +33,26 @@ spring:
       discovery:
         register: false
   jooq:
+#    url: jdbc:postresql://localhost:15432/fun_scrut
+#    user: username
+#    password: password
     url: jdbc:postgresql:FunScrut2
     user: postgres
     password: 191220#destin
     schema: public
     driver: org.postgresql.Driver
+  liquibase:
+    enabled: false
+    drop-first: false
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    default-schema: public
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+  devtools:
+    add-properties: false
 
 server:
-  port: ${NOMAD_HOST_PORT_http:8082}
+  port: ${NOMAD_HOST_PORT_http:8183}
   error:
     include-stacktrace: never
 
@@ -48,6 +64,9 @@ logging:
           LoggerListener: debug
 
 jooq:
+#  url: jdbc:postgresql://localhost:15432/fun_scrut
+#  user: username
+#  password: password
   url: jdbc:postgresql:FunScrut2
   user: postgres
   password: 191220#destin

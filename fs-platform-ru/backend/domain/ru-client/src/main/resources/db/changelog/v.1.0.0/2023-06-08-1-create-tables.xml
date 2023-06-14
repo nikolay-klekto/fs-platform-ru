@@ -1,0 +1,205 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="nikolay (generated)" id="1686223952214-1">
+        <createTable tableName="client">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="client_pkey"/>
+            </column>
+            <column name="basket_id" type="BIGINT"/>
+            <column name="city_id" type="BIGINT"/>
+            <column name="activate_status" type="BOOLEAN"/>
+            <column name="birthday" type="date"/>
+            <column name="date_created" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="education_status" type="EDUCATION"/>
+            <column name="email" type="VARCHAR"/>
+            <column name="employment" type="EMPLOYMENT"/>
+            <column name="first_name" type="VARCHAR"/>
+            <column name="last_name" type="VARCHAR"/>
+            <column name="password" type="VARCHAR"/>
+            <column name="phone_number" type="VARCHAR"/>
+            <column name="role" type="ROLE"/>
+            <column name="telegram_username" type="VARCHAR"/>
+            <column name="username" type="VARCHAR"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-2">
+        <createTable tableName="country">
+            <column autoIncrement="true" name="code" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="country_pkey"/>
+            </column>
+            <column name="currency" type="DECIMAL"/>
+            <column name="name" type="COUNTRIES"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-3">
+        <createTable tableName="company">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="company_pkey"/>
+            </column>
+            <column name="company_industry" type="INDUSTRY"/>
+            <column name="legal_capacity_status" type="COMPANY_LEGAL_CAPACITY_STATUS"/>
+            <column name="name" type="VARCHAR"/>
+            <column name="site" type="VARCHAR"/>
+            <column name="short_description" type="VARCHAR"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-4">
+        <createTable tableName="address">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="address_pkey"/>
+            </column>
+            <column name="city_id" type="BIGINT"/>
+            <column name="apartment" type="BIGINT"/>
+            <column name="building" type="BIGINT"/>
+            <column name="house" type="BIGINT"/>
+            <column name="street" type="VARCHAR"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-5">
+        <createTable tableName="basket">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="basket_pkey"/>
+            </column>
+            <column name="total_price" type="VARCHAR"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-6">
+        <createTable tableName="city">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="city_pkey"/>
+            </column>
+            <column name="country_code" type="BIGINT"/>
+            <column name="name" type="VARCHAR"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-7">
+        <createTable tableName="companies_positions">
+            <column name="company_id" type="BIGINT"/>
+            <column name="position_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-8">
+        <createTable tableName="company_partner">
+            <column name="company_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="company_partner_pkey"/>
+            </column>
+            <column name="partner_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="company_partner_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-9">
+        <createTable tableName="office">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="office_pkey"/>
+            </column>
+            <column name="address_id" type="BIGINT"/>
+            <column name="company_id" type="BIGINT"/>
+            <column name="phone_number" type="VARCHAR"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-10">
+        <createTable tableName="order">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="order_pkey"/>
+            </column>
+            <column name="basket_id" type="BIGINT"/>
+            <column name="company_office_id" type="BIGINT"/>
+            <column name="position_id" type="BIGINT"/>
+            <column name="service_id" type="BIGINT"/>
+            <column name="is_expired" type="BOOLEAN"/>
+            <column name="start_work_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="total_work_days" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-11">
+        <createTable tableName="partner">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="partner_pkey"/>
+            </column>
+            <column name="client_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-12">
+        <createTable tableName="position">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="position_pkey"/>
+            </column>
+            <column name="description" type="VARCHAR"/>
+            <column name="name" type="VARCHAR"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-13">
+        <createTable tableName="review">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="review_pkey"/>
+            </column>
+            <column name="company_id" type="BIGINT"/>
+            <column name="client_id" type="BIGINT"/>
+            <column name="date_created" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="description" type="VARCHAR"/>
+            <column name="rate" type="BIGINT"/>
+            <column name="username" type="VARCHAR"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-14">
+        <createTable tableName="service">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="service_pkey"/>
+            </column>
+            <column name="price_per_day" type="BIGINT"/>
+            <column name="name" type="VARCHAR"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-15">
+        <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="address" constraintName="address_city_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="city" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-16">
+        <addForeignKeyConstraint baseColumnNames="country_code" baseTableName="city" constraintName="city_country_code_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="code" referencedTableName="country" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-17">
+        <addForeignKeyConstraint baseColumnNames="basket_id" baseTableName="client" constraintName="client_basket_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="basket" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-18">
+        <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="client" constraintName="client_city_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="city" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-19">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="companies_positions" constraintName="companies_positions_company_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-20">
+        <addForeignKeyConstraint baseColumnNames="position_id" baseTableName="companies_positions" constraintName="companies_positions_position_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="position" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-21">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="company_partner" constraintName="company_partner_company_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-22">
+        <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="company_partner" constraintName="company_partner_partner_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-23">
+        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="office" constraintName="office_address_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="address" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-24">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="office" constraintName="office_company_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-25">
+        <addForeignKeyConstraint baseColumnNames="basket_id" baseTableName="order" constraintName="order_basket_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="basket" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-26">
+        <addForeignKeyConstraint baseColumnNames="company_office_id" baseTableName="order" constraintName="order_company_office_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="office" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-27">
+        <addForeignKeyConstraint baseColumnNames="position_id" baseTableName="order" constraintName="order_position_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="position" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-28">
+        <addForeignKeyConstraint baseColumnNames="service_id" baseTableName="order" constraintName="order_service_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="service" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-29">
+        <addForeignKeyConstraint baseColumnNames="client_id" baseTableName="partner" constraintName="partner_client_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="client" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-30">
+        <addForeignKeyConstraint baseColumnNames="client_id" baseTableName="review" constraintName="review_client_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="client" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolay (generated)" id="1686223952214-31">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="review" constraintName="review_company_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,22 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet logicalFilePath="2023-06-08-2-insert-services"
+               id="2023-05-12-2-insert-services" author="nikolay">
+        <insert tableName="service">
+            <column  name="id"  value="1"/>
+            <column  name="price_per_day"  value="50"/>
+            <column  name="name"  value="Test Note 1"/>
+        </insert>
+        <insert tableName="service">
+            <column  name="id"  value="2"/>
+            <column  name="price_per_day"  value="100"/>
+            <column  name="name"  value="Test Note 2"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

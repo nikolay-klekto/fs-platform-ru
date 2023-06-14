@@ -13,7 +13,7 @@ data class ClientModel(
     val activateStatus: Boolean?,
     val birthday: LocalDate?,
     val dateCreated: LocalDateTime?,
-    val educationModelStatus: EducationModel?,
+    val educationStatus: EducationModel?,
     val email: String?,
     val employment: EmploymentModel?,
     val firstName: String?,

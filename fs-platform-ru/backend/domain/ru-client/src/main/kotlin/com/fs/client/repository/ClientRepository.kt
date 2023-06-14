@@ -51,7 +51,7 @@ abstract class ClientRepository(
                 .set(CLIENT.BIRTHDAY, newClientModel.birthday ?: oldClientModel.birthday)
                 .set(
                     CLIENT.EDUCATION_STATUS,
-                    newClientModel.educationModelStatus ?: oldClientModel.educationModelStatus
+                    newClientModel.educationStatus ?: oldClientModel.educationStatus
                 )
                 .set(CLIENT.EMAIL, newClientModel.email ?: oldClientModel.email)
                 .set(CLIENT.EMPLOYMENT, newClientModel.employment ?: oldClientModel.employment)
