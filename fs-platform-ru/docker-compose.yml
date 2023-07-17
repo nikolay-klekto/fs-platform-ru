@@ -1,10 +1,10 @@
-version: '3.8'
+version: '3.7'
 services:
   app:
-    image: ru-client:0.0.1
+    image: ru-client:0.0.2
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-Client
     ports:
       - "8183:8183"
     #    container_name: app
@@ -15,11 +15,27 @@ services:
       - SERVER_PORT= 8183
       - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
 
+  app2:
+    image: ru-gateway:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile-Gateway
+    ports:
+      - "8081:8081"
+    #    container_name: app
+    depends_on:
+      - service-db
+    #       condition: service_healthy
+    environment:
+      - SERVER_PORT= 8081
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/users
+
   service-db:
     image: postgres:14.7-alpine
     environment:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: password
+      PGDATA: "/var/lib/postgresql/data/pgdata"
 #    healthcheck:
 #      test: [ "CMD-SHELL", "pg_isready", "-d", "fun_scrut" ]
 #      interval: 10s
@@ -28,7 +44,8 @@ services:
     ports:
       - "15432:5432"
     volumes:
-      - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+#      - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+      - ./infrastructure/db:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
     restart: unless-stopped
 

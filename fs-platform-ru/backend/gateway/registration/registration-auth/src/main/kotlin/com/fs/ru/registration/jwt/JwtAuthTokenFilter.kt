@@ -1,9 +1,9 @@
 package com.fs.ru.registration.jwt
 
 import com.fs.ru.registration.service.UserDetailsServiceImpl
-import jakarta.servlet.FilterChain
-import jakarta.servlet.ServletException
-import jakarta.servlet.http.*
+import javax.servlet.FilterChain
+import javax.servlet.ServletException
+import javax.servlet.http.*
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value

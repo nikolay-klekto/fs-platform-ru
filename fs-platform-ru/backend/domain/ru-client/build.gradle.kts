@@ -1,15 +1,9 @@
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
-import nu.studer.gradle.jooq.JooqEdition
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jooq.meta.jaxb.ForcedType
-import org.jooq.meta.jaxb.Logging
-import org.jooq.meta.jaxb.Property
-import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 
 plugins {
     kotlin("plugin.spring") version "1.8.21"
-    application
-    id("java")
     id("org.springframework.boot") version "2.7.4"
     id("io.spring.dependency-management") version "1.0.14.RELEASE"
     id("nu.studer.jooq") version "7.1.1"
@@ -107,13 +101,14 @@ dependencies {
     implementation("log4j:log4j:1.2.17")
     implementation("org.cfg4j:cfg4j-core:4.4.1")
     implementation("org.liquibase:liquibase-core:4.22.0")
+    implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
+    implementation("org.springframework:spring-orm:6.0.10")
+    implementation("org.postgresql:postgresql:42.5.0")
 
-
-
-
-
+    compileOnly ("com.vk.api:sdk:1.0.14")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    compileOnly ("com.vk.api:sdk:1.0.14")
 
     runtimeOnly("org.postgresql:postgresql")
 

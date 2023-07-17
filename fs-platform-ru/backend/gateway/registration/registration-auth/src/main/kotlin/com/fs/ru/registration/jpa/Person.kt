@@ -1,6 +1,6 @@
 package com.fs.ru.registration.jpa
 
-import jakarta.persistence.*
+import javax.persistence.*
 import org.hibernate.Hibernate
 
 

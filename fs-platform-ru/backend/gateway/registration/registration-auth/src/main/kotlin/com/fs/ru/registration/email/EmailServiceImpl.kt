@@ -2,7 +2,6 @@ package com.fs.ru.registration.email
 
 import com.fs.ru.registration.jpa.User
 import com.fs.ru.registration.service.UserDetailsServiceImpl
-import jakarta.mail.MessagingException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.env.Environment
@@ -13,9 +12,10 @@ import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.MimeMessageHelper
 import org.springframework.stereotype.Component
 import org.thymeleaf.context.Context
-import org.thymeleaf.spring6.SpringTemplateEngine
+import org.thymeleaf.spring5.SpringTemplateEngine
 import java.io.File
 import java.util.*
+import javax.mail.MessagingException
 
 @Component
 class EmailServiceImpl : EmailService {

@@ -3,6 +3,7 @@ module.exports = {
     assetsDir: 'static',
     devServer: {
       host: 'localhost',
-      port: 8082
+//      port: 8183
+        port: 8081
     }
   }

@@ -16,7 +16,7 @@ import org.jooq.Schema
  */
 @Suppress("UNCHECKED_CAST")
 enum class Industry(@get:JvmName("literal") public val literal: String) : EnumType {
-    IT("IT"),
+    IT("CAR_INDUSTRY"),
     BOOKKEEPING("BOOKKEEPING"),
     FEC("FEC"),
     SERVICE("SERVICE"),
