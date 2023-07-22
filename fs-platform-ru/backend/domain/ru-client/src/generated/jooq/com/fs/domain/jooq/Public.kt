@@ -12,6 +12,9 @@ import com.fs.domain.jooq.tables.CompaniesPositions
 import com.fs.domain.jooq.tables.Company
 import com.fs.domain.jooq.tables.CompanyPartner
 import com.fs.domain.jooq.tables.Country
+import com.fs.domain.jooq.tables.Databasechangelog
+import com.fs.domain.jooq.tables.Databasechangeloglock
+import com.fs.domain.jooq.tables.Event
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.Order
 import com.fs.domain.jooq.tables.Partner
@@ -80,6 +83,21 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     val COUNTRY: Country get() = Country.COUNTRY
 
     /**
+     * The table <code>public.databasechangelog</code>.
+     */
+    val DATABASECHANGELOG: Databasechangelog get() = Databasechangelog.DATABASECHANGELOG
+
+    /**
+     * The table <code>public.databasechangeloglock</code>.
+     */
+    val DATABASECHANGELOGLOCK: Databasechangeloglock get() = Databasechangeloglock.DATABASECHANGELOGLOCK
+
+    /**
+     * The table <code>public.event</code>.
+     */
+    val EVENT: Event get() = Event.EVENT
+
+    /**
      * The table <code>public.office</code>.
      */
     val OFFICE: Office get() = Office.OFFICE
@@ -120,6 +138,9 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
         Company.COMPANY,
         CompanyPartner.COMPANY_PARTNER,
         Country.COUNTRY,
+        Databasechangelog.DATABASECHANGELOG,
+        Databasechangeloglock.DATABASECHANGELOGLOCK,
+        Event.EVENT,
         Office.OFFICE,
         Order.ORDER,
         Partner.PARTNER,

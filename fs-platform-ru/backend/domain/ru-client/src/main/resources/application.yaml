@@ -9,12 +9,12 @@ graphql:
 spring:
   datasource:
 #    For docker
-    url: jdbc:postgresql://localhost:15432/fun_scrut
-    username: username
-    password: password
-#    url: jdbc:postgresql://localhost:5432/FunScrut2
-#    username: postgres
-#    password: 191220#destin
+#    url: jdbc:postgresql://localhost:15432/fun_scrut
+#    username: username
+#    password: password
+    url: jdbc:postgresql://localhost:5432/FunScrut2
+    username: postgres
+    password: 191220#destin
     schema: public
     driverClassName: org.postgresql.Driver
   graphql:
@@ -33,12 +33,12 @@ spring:
       discovery:
         register: false
   jooq:
-    url: jdbc:postresql://localhost:15432/fun_scrut
-    user: username
-    password: password
-#    url: jdbc:postgresql:FunScrut2
-#    user: postgres
-#    password: 191220#destin
+#    url: jdbc:postresql://localhost:15432/fun_scrut
+#    user: username
+#    password: password
+    url: jdbc:postgresql:FunScrut2
+    user: postgres
+    password: 191220#destin
     schema: public
     driver: org.postgresql.Driver
   liquibase:
@@ -64,11 +64,11 @@ logging:
           LoggerListener: debug
 
 jooq:
-  url: jdbc:postgresql://localhost:15432/fun_scrut
-  user: username
-  password: password
-#  url: jdbc:postgresql:FunScrut2
-#  user: postgres
-#  password: 191220#destin
+#  url: jdbc:postgresql://localhost:15432/fun_scrut
+#  user: username
+#  password: password
+  url: jdbc:postgresql:FunScrut2
+  user: postgres
+  password: 191220#destin
   schema: public
   driver: org.postgresql.Driver

@@ -1,11 +1,7 @@
 plugins {
     id("org.jetbrains.kotlin.plugin.jpa") version "1.8.21"
-    id("org.springframework.boot") version "2.7.4"
-    id("io.spring.dependency-management") version "1.0.14.RELEASE"
 }
 
 dependencies {
     implementation("org.jooq:jooq:3.17.7")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-
 }

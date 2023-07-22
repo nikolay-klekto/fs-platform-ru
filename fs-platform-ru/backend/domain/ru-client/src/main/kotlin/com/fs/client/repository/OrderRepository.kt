@@ -107,7 +107,7 @@ abstract class OrderRepository(
     }
 
     fun updateExpiredStatus() {
-//        log.info("Scheduler is working. The time is now {}", dateFormat.format(Date()))
+        log.info("Scheduler is working. The time is now {}", dateFormat.format(Date()))
         dsl.update(ORDER)
             .set(ORDER.IS_EXPIRED, false)
             .where(
@@ -119,7 +119,7 @@ abstract class OrderRepository(
     }
 
     companion object {
-//        private val log = LogManager.getLogger()
+        private val log = LogManager.getLogger()
         private val dateFormat = SimpleDateFormat("HH:mm:ss")
     }
 }

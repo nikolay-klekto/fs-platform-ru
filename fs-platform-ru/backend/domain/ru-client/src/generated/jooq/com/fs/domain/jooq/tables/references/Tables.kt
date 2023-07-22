@@ -12,6 +12,9 @@ import com.fs.domain.jooq.tables.CompaniesPositions
 import com.fs.domain.jooq.tables.Company
 import com.fs.domain.jooq.tables.CompanyPartner
 import com.fs.domain.jooq.tables.Country
+import com.fs.domain.jooq.tables.Databasechangelog
+import com.fs.domain.jooq.tables.Databasechangeloglock
+import com.fs.domain.jooq.tables.Event
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.Order
 import com.fs.domain.jooq.tables.Partner
@@ -60,6 +63,21 @@ val COMPANY_PARTNER: CompanyPartner = CompanyPartner.COMPANY_PARTNER
  * The table <code>public.country</code>.
  */
 val COUNTRY: Country = Country.COUNTRY
+
+/**
+ * The table <code>public.databasechangelog</code>.
+ */
+val DATABASECHANGELOG: Databasechangelog = Databasechangelog.DATABASECHANGELOG
+
+/**
+ * The table <code>public.databasechangeloglock</code>.
+ */
+val DATABASECHANGELOGLOCK: Databasechangeloglock = Databasechangeloglock.DATABASECHANGELOGLOCK
+
+/**
+ * The table <code>public.event</code>.
+ */
+val EVENT: Event = Event.EVENT
 
 /**
  * The table <code>public.office</code>.

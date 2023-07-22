@@ -1,5 +1,5 @@
 FROM openjdk:17-oracle
-ARG JAR_FILE=jar/registration-auth-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=backend/gateway/registration/registration-auth/build/libs/registration-auth-0.0.1-SNAPSHOT.jar
 WORKDIR /opt/app
 COPY ${JAR_FILE} appGateway.jar
 EXPOSE 8081

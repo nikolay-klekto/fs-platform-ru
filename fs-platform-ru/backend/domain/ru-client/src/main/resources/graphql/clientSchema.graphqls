@@ -39,6 +39,12 @@ type Query {
 
     getOffice(id: ID!): Office
     getAllOfficesByCompanyId(id: ID!): [Office]
+
+    getEvent(eventId: ID!): Event
+    getAllEvents: [Event]
+    getAllActualEvents: [Event]
+    getAllActualEventsByCityId(cityId: ID!): [Event]
+
 }
 
 type Mutation {
@@ -90,6 +96,13 @@ type Mutation {
     updateOfficeAddress(companyAddress: CompanyAddressInput!): Boolean
     deleteAllOfficesByCompanyId(id: ID!): Boolean
     deleteOffice(id: ID!): Boolean
+
+    addAllEvents(events: [EventInput]): ErrorBooleanModel
+    updateAllEvents(events: [EventInput]): ErrorBooleanModel
+    updateExpiredEventsStatus: Boolean
+    deleteEvent(eventId: ID!): Boolean
+    deleteAllEvents: Boolean
+    deleteAllExpiredEvents: Boolean
 }
 
 input ServiceInput {
@@ -223,6 +236,17 @@ input CompanyAddressInput {
     street: String
 }
 
+input EventInput {
+    id: ID
+    cityId: ID
+    description: String
+    endDate: LocalDateTime
+    isExpired: Boolean
+    mainGoal: String
+    name: String
+    startDate: LocalDateTime
+}
+
 type Review {
     id: ID
     companyId: ID
@@ -241,7 +265,7 @@ type Order {
     position: Position
     service: Service
     isExpired: Boolean
-        startWorkDate: LocalDateTime
+    startWorkDate: LocalDateTime
 #    startWorkDate: String
     totalWorkDays: Int
 }
@@ -324,6 +348,22 @@ type Office {
     address: Address
     companyId: ID
     phoneNumber: String
+}
+
+type Event {
+    id: ID
+    cityId: ID
+    description: String
+    endDate: LocalDateTime
+    isExpired: Boolean
+    mainGoal: String
+    name: String
+    startDate: LocalDateTime
+}
+
+type ErrorBooleanModel {
+    data: Boolean
+    errorMessage: String
 }
 
 enum EducationEnum {
