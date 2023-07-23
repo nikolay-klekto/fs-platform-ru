@@ -3,6 +3,7 @@ package com.fs.client.controller
 import com.fs.client.repository.AddressRepository
 import com.fs.client.ru.AddressModel
 import com.fs.client.ru.OfficeModel
+import com.fs.service.ru.EventModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -43,5 +44,10 @@ open class AddressController(open val addressRepository: AddressRepository) {
     @SchemaMapping(typeName = "Office", field = "address")
     fun getAddressForOffice(office: OfficeModel): Mono<AddressModel> {
         return addressRepository.getByAddressId(office.addressId!!)
+    }
+
+    @SchemaMapping(typeName = "Event", field = "address")
+    fun getAddressForEvent(event: EventModel): Mono<AddressModel> {
+        return addressRepository.getByAddressId(event.addressId!!)
     }
 }

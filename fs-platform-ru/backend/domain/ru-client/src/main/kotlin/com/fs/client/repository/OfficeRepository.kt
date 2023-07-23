@@ -1,5 +1,6 @@
 package com.fs.client.repository
 
+import com.fs.client.repository.blocked.AddressBlockingRepository
 import com.fs.client.ru.AddressModel
 import com.fs.client.ru.CompanyAddress
 import com.fs.client.ru.OfficeModel
@@ -15,7 +16,8 @@ import reactor.core.publisher.Mono
 abstract class OfficeRepository(
     open val dsl: DSLContext,
     open val converter: OfficeModelConverter,
-    open val addressRepository: AddressRepository
+    open val addressRepository: AddressRepository,
+    open val blockingAddressRepository: AddressBlockingRepository
 ) {
     fun getByOfficeId(id: Long): Mono<OfficeModel> {
         return Mono.from(
@@ -71,7 +73,7 @@ abstract class OfficeRepository(
             val officeModel: OfficeModel = converter.fromCompanyAddressToOfficeModel(companyAddress)
             val addressModel: AddressModel = converter.fromCompanyAddressToAddressModel(companyAddress)
             val newOfficeRecord: OfficeRecord = dsl.newRecord(OFFICE)
-            val address: AddressModel = addressRepository.create(addressModel).block()!!
+            val address: AddressModel = blockingAddressRepository.create(addressModel)!!
             officeModel.addressId = address.id
             newOfficeRecord.from(officeModel)
             newOfficeRecord.reset(OFFICE.ID)

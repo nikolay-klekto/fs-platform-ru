@@ -239,12 +239,17 @@ input CompanyAddressInput {
 input EventInput {
     id: ID
     cityId: ID
+    apartment: ID
+    building: ID
+    date: LocalDateTime
     description: String
-    endDate: LocalDateTime
-    isExpired: Boolean
+    house: ID
     mainGoal: String
     name: String
-    startDate: LocalDateTime
+    phoneNumber: String
+    publicPlaceName: String
+    site: String
+    street: String
 }
 
 type Review {
@@ -352,13 +357,15 @@ type Office {
 
 type Event {
     id: ID
-    cityId: ID
+    address: Address
+    date: LocalDateTime
     description: String
-    endDate: LocalDateTime
     isExpired: Boolean
     mainGoal: String
     name: String
-    startDate: LocalDateTime
+    phoneNumber: String
+    publicPlaceName: String
+    site: String
 }
 
 type ErrorBooleanModel {

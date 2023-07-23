@@ -4,7 +4,6 @@ import com.fs.client.service.EventModelConverter
 import com.fs.domain.jooq.tables.Event
 import com.fs.service.ru.EventModel
 import org.jooq.DSLContext
-import reactor.core.publisher.Mono
 
 abstract class EventBlockingRepository(
     open val dsl: DSLContext,
