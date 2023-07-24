@@ -1,6 +1,7 @@
 package com.fs.client.repository
 
 import com.fs.client.repository.blocked.AddressBlockingRepository
+import com.fs.client.repository.blocked.OfficeBlockingRepository
 import com.fs.client.ru.AddressModel
 import com.fs.client.ru.CompanyAddress
 import com.fs.client.ru.OfficeModel
@@ -17,15 +18,13 @@ abstract class OfficeRepository(
     open val dsl: DSLContext,
     open val converter: OfficeModelConverter,
     open val addressRepository: AddressRepository,
-    open val blockingAddressRepository: AddressBlockingRepository
+    open val blockingAddressRepository: AddressBlockingRepository,
+    open val blockingOfficeRepository: OfficeBlockingRepository
 ) {
-    fun getByOfficeId(id: Long): Mono<OfficeModel> {
-        return Mono.from(
-            dsl.select(OFFICE.asterisk()).from(OFFICE)
-                .where(OFFICE.ID.eq(id))
-        )
-            .map { it.into(Office::class.java) }
-            .map(converter::toModel)
+    fun getOfficeById(id: Long): Mono<OfficeModel> {
+        return Mono.fromSupplier {
+           blockingOfficeRepository.getById(id)
+        }
     }
 
     fun getAllByCompanyId(id: Long): Flux<OfficeModel> {
@@ -37,30 +36,21 @@ abstract class OfficeRepository(
             .map(converter::toModel)
     }
 
-    fun updatePhoneNumberByOfficeId(id: Long, phoneNumber: String?): Mono<Boolean> {
-        return Mono.fromSupplier {
-            val oldOfficeModel: OfficeModel = getByOfficeId(id).block() ?: return@fromSupplier false
-            dsl.update(OFFICE)
-                .set(OFFICE.PHONE_NUMBER, phoneNumber ?: oldOfficeModel.phoneNumber)
-                .where(OFFICE.ID.eq(id))
-                .execute() == 1
-        }
-    }
-
     fun updateCompanyAddress(companyAddress: CompanyAddress): Mono<Boolean> {
         return Mono.fromSupplier {
             var result = false
             if (companyAddress.addressId != null) {
                 val newAddressModel = converter.fromCompanyAddressToAddressModel(companyAddress)
-                val resultAddressUpdate = addressRepository.update(newAddressModel).block()
+                val resultAddressUpdate = blockingAddressRepository.update(newAddressModel)
                 if (resultAddressUpdate == true) {
                     result = resultAddressUpdate
                 }
             }
             if (companyAddress.officeId != null) {
                 val resultPhoneUpdate =
-                    updatePhoneNumberByOfficeId(companyAddress.officeId!!, companyAddress.phoneNumber).block()
-                if (resultPhoneUpdate == true) {
+                    blockingOfficeRepository
+                        .updatePhoneNumberByOfficeId(companyAddress.officeId!!, companyAddress.phoneNumber)
+                if (resultPhoneUpdate) {
                     result = resultPhoneUpdate
                 }
             }

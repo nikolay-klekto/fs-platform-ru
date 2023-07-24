@@ -20,7 +20,7 @@ abstract class AddressRepository(
      */
     fun getByAddressId(id: Long): Mono<AddressModel> {
         return Mono.fromSupplier {
-            addressBlockingRepository.getByAddressId(id)
+            addressBlockingRepository.getById(id)
         }
     }
 

@@ -18,7 +18,7 @@ open class ServiceController(
 
     @GetMapping("{id}")
     fun getServiceByID(@PathVariable("id") serviceId: Long) =
-        serviceRepository.getById(serviceId)
+        serviceRepository.getServiceById(serviceId)
 
     @GetMapping
     fun getAllServicesModel() = serviceRepository.getAll()
@@ -58,7 +58,7 @@ open class ServiceController(
 
     @QueryMapping
     open fun serviceById(@Argument id: Long): Mono<ServiceModel> {
-        return serviceRepository.getById(id)
+        return serviceRepository.getServiceById(id)
     }
 
     @QueryMapping
@@ -68,6 +68,6 @@ open class ServiceController(
 
     @SchemaMapping(typeName = "Order", field = "service")
     fun getServiceForOrder(order: OrderModel): Mono<ServiceModel> {
-        return serviceRepository.getById(order.serviceId!!)
+        return serviceRepository.getServiceById(order.serviceId!!)
     }
 }

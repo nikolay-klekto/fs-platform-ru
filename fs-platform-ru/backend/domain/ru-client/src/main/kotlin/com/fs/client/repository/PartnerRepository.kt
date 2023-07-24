@@ -8,6 +8,7 @@ import com.fs.domain.jooq.tables.CompanyPartner.Companion.COMPANY_PARTNER
 import com.fs.domain.jooq.tables.Partner.Companion.PARTNER
 import com.fs.domain.jooq.tables.pojos.Partner
 import com.fs.domain.jooq.tables.records.PartnerRecord
+import com.fs.client.repository.blocked.ClientBlockingRepository
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -15,7 +16,7 @@ import reactor.core.publisher.Mono
 abstract class PartnerRepository(
     open val dsl: DSLContext,
     open val converter: PartnerModelConverter,
-    open val clientRepository: ClientRepository
+    open val clientBlockingRepository: ClientBlockingRepository
 ) {
 
     fun getById(id: Long): Mono<PartnerModel> {
@@ -50,7 +51,7 @@ abstract class PartnerRepository(
         return Mono.fromSupplier {
             var newClientModel: ClientModel = clientModel
             if (clientModel.id == null) {
-                newClientModel = clientRepository.insert(clientModel).block()!!
+                newClientModel = clientBlockingRepository.insert(clientModel)
             }
             val partnerModel = PartnerModel(
                 id = 0,

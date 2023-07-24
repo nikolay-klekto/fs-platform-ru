@@ -1,5 +1,9 @@
 package com.fs.client.repository
 
+import com.fs.client.repository.blocked.BasketBlockingRepository
+import com.fs.client.repository.blocked.CountryBlockingRepository
+import com.fs.client.repository.blocked.OrderBlockingRepository
+import com.fs.client.repository.blocked.ServiceBlockingRepository
 import com.fs.client.ru.enums.CurrencyModel
 import com.fs.client.service.OrderModelConverter
 import com.fs.client.service.TotalPriceMatcher
@@ -21,19 +25,18 @@ abstract class OrderRepository(
     open val dsl: DSLContext,
     open val converter: OrderModelConverter,
     open val basketRepository: BasketRepository,
-    open val serviceRepository: ServiceRepository,
+    open val serviceBlockingRepository: ServiceBlockingRepository,
     open val cityRepository: CityRepository,
-    open val countryRepository: CountryRepository,
-    open val totalPriceMatcher: TotalPriceMatcher
+    open val countryBlockingRepository: CountryBlockingRepository,
+    open val basketBlockingRepository: BasketBlockingRepository,
+    open val totalPriceMatcher: TotalPriceMatcher,
+    open val orderBlockingRepository: OrderBlockingRepository
 ) {
 
-    fun getByOrderId(id: Long): Mono<OrderModel> {
-        return Mono.from(
-            dsl.select(ORDER.asterisk()).from(ORDER)
-                .where(ORDER.ID.eq(id))
-        )
-            .map { it.into(Order::class.java) }
-            .map(converter::toModel)
+    fun getOrderByrId(id: Long): Mono<OrderModel> {
+        return Mono.fromSupplier {
+            orderBlockingRepository.getById(id)
+        }
     }
 
     fun getAllOrdersByClientId(clientId: Long): Flux<OrderModel> {
@@ -62,17 +65,17 @@ abstract class OrderRepository(
             val totalPrice: String
             if (orderModel.basketId != null && orderModel.serviceId != null && orderModel.companyOfficeId != null) {
                 val pastTotalPrice: String? =
-                    basketRepository.getById(orderModel.basketId!!).block()!!.totalPrice
+                    basketBlockingRepository.getById(orderModel.basketId!!)?.totalPrice
                 if (pastTotalPrice != null) {
 
                     val servicePrice: Long =
-                        serviceRepository.getById(orderModel.serviceId!!)
-                            .block()!!.pricePerDay!! * orderModel.totalWorkDays!!
+                        serviceBlockingRepository.getById(orderModel.serviceId!!)
+                            ?.pricePerDay!! * orderModel.totalWorkDays!!
 
                     val orderCity = cityRepository.getCityByOfficeId(orderModel.companyOfficeId!!)
 
                     val orderCurrency: CurrencyModel =
-                        countryRepository.getByCityId(orderCity.id).block()!!.currency
+                        countryBlockingRepository.getCountryByCityId(orderCity.id)?.currency!!
 
                     val map: Map<CurrencyModel?, Long> = totalPriceMatcher.decomposeTotalPrice(pastTotalPrice)
                     val oldTotalPrice = map[orderCurrency]
@@ -96,7 +99,7 @@ abstract class OrderRepository(
 
     fun updateOrder(newOrderModel: OrderModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldOrderModel: OrderModel = getByOrderId(newOrderModel.id).block()!!
+            val oldOrderModel: OrderModel = orderBlockingRepository.getById(newOrderModel.id)!!
 
             dsl.update(ORDER)
                 .set(ORDER.START_WORK_DATE, newOrderModel.startWorkDate ?: oldOrderModel.startWorkDate)

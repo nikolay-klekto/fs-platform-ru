@@ -10,6 +10,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Tag(name = "Country")
@@ -47,8 +48,13 @@ open class CountryController(open val countryRepository: CountryRepository) {
     }
 
     @QueryMapping
-    fun getCountryByCity(@Argument id: Long): Mono<CountryModel> {
+    open fun getCountryByCity(@Argument id: Long): Mono<CountryModel> {
         return countryRepository.getByCityId(id)
+    }
+
+    @QueryMapping
+    open fun getAllCountries(): Flux<CountryModel> {
+        return countryRepository.getAll()
     }
 
     @MutationMapping
@@ -60,5 +66,4 @@ open class CountryController(open val countryRepository: CountryRepository) {
     open fun deleteCountry(@Argument countryCode: Long): Mono<Boolean> {
         return countryRepository.deleteByCountryCode(countryCode)
     }
-
 }

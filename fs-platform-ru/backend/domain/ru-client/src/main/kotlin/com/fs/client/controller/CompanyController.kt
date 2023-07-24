@@ -23,7 +23,7 @@ open class CompanyController(
 
     @QueryMapping
     open fun getCompanyById(@Argument id: Long): Mono<CompanyModel> {
-        return companyRepository.getById(id)
+        return companyRepository.getCompanyById(id)
     }
 
     @QueryMapping
@@ -71,11 +71,11 @@ open class CompanyController(
 
     @SchemaMapping(typeName = "Order", field = "company")
     fun getCompanyForOrder(order: OrderModel): Mono<CompanyModel> {
-        return companyRepository.getById(order.companyOfficeId!!)
+        return companyRepository.getCompanyById(order.companyOfficeId!!)
     }
 
     @SchemaMapping(typeName = "Office", field = "company")
     fun getCompanyForOffice(office: OfficeModel): Mono<CompanyModel> {
-        return companyRepository.getById(office.companyId!!)
+        return companyRepository.getCompanyById(office.companyId!!)
     }
 }

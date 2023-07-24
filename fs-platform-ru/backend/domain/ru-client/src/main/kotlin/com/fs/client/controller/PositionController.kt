@@ -22,7 +22,7 @@ open class PositionController(
 
     @QueryMapping
     open fun getPositionById(@Argument id: Long): Mono<PositionModel> {
-        return positionRepository.getById(id)
+        return positionRepository.getPositionById(id)
     }
 
     @QueryMapping
@@ -68,6 +68,6 @@ open class PositionController(
 
     @SchemaMapping(typeName = "Order", field = "position")
     fun getPositionForOrder(order: OrderModel): Mono<PositionModel> {
-        return positionRepository.getById(order.positionId!!)
+        return positionRepository.getPositionById(order.positionId!!)
     }
 }

@@ -1,5 +1,6 @@
 package com.fs.client.repository
 
+import com.fs.client.repository.blocked.CompanyBlockingRepository
 import com.fs.client.service.CompanyModelConverter
 import com.fs.domain.jooq.tables.Address.Companion.ADDRESS
 import com.fs.domain.jooq.tables.Company.Companion.COMPANY
@@ -16,14 +17,16 @@ import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-abstract class CompanyRepository(open val dsl: DSLContext, open val converter: CompanyModelConverter) {
+abstract class CompanyRepository(
+    open val dsl: DSLContext,
+    open val converter: CompanyModelConverter,
+    open val companyBlockingRepository: CompanyBlockingRepository
+) {
 
-    fun getById(id: Long): Mono<CompanyModel> {
-        return Mono.from(
-            dsl.select(COMPANY.asterisk()).from(COMPANY)
-                .where(COMPANY.ID.eq(id))
-        ).map { it.into(Company::class.java) }
-            .map(converter::toModel)
+    fun getCompanyById(id: Long): Mono<CompanyModel> {
+        return Mono.fromSupplier {
+            companyBlockingRepository.getById(id)
+        }
     }
 
     fun getAll(): Flux<CompanyModel> {
@@ -119,7 +122,7 @@ abstract class CompanyRepository(open val dsl: DSLContext, open val converter: C
 
     fun update(companyModel: CompanyModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldCompanyModel: CompanyModel = getById(companyModel.id).block()!!
+            val oldCompanyModel: CompanyModel = companyBlockingRepository.getById(companyModel.id)!!
 
             dsl.update(COMPANY)
                 .set(

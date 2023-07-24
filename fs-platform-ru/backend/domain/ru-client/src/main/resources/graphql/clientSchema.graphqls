@@ -13,6 +13,7 @@ type Query {
 
     getCity(id: ID!): City
     getCountryByCity(id: ID): Country
+    getAllCities: [City]
 
     getOrderById(id: ID!): Order
     getOrdersByClientId(clientId: ID): [Order]
@@ -36,6 +37,7 @@ type Query {
 
     getCountry(code: ID!): Country
     getCountryByName(name: CountryNameEnum): Country
+    getAllCountries: [Country]
 
     getOffice(id: ID!): Office
     getAllOfficesByCompanyId(id: ID!): [Office]

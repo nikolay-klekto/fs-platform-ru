@@ -11,6 +11,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Tag(name = "City")
@@ -29,6 +30,11 @@ open class CityController(open val cityRepository: CityRepository) {
     @QueryMapping
     fun getCity(@Argument id: Long): Mono<CityModel> {
         return cityRepository.getCityById(id)
+    }
+
+    @QueryMapping
+    fun getAllCities(): Flux<CityModel> {
+        return cityRepository.getAllCities()
     }
 
     @MutationMapping

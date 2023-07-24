@@ -18,7 +18,7 @@ open class BasketController(
 
     @GetMapping("{id}")
     fun getBasketByID(@PathVariable("id") basketId: Long) =
-        basketRepository.getById(basketId)
+        basketRepository.getBasketById(basketId)
 
     @PutMapping("{id}")
     fun updateBasketByID(
@@ -29,7 +29,7 @@ open class BasketController(
 
     @QueryMapping
     open fun getBasketById(@Argument id: Long): Mono<BasketModel> {
-        return basketRepository.getById(id)
+        return basketRepository.getBasketById(id)
     }
 
     @MutationMapping

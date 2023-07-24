@@ -18,7 +18,7 @@ open class OrderController(open val orderRepository: OrderRepository) {
 
     @QueryMapping
     fun getOrderById(@Argument id: Long): Mono<OrderModel> {
-        return orderRepository.getByOrderId(id)
+        return orderRepository.getOrderByrId(id)
     }
 
     @QueryMapping

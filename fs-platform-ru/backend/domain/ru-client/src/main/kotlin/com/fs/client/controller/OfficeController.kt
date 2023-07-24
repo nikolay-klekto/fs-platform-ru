@@ -22,7 +22,7 @@ open class OfficeController(open val officeRepository: OfficeRepository) {
 
     @GetMapping("{id}")
     fun getByOfficeId(@PathVariable("id") officeId: Long) =
-        officeRepository.getByOfficeId(officeId)
+        officeRepository.getOfficeById(officeId)
 
     @PutMapping("{id}")
     fun updateByOfficeId(
@@ -43,7 +43,7 @@ open class OfficeController(open val officeRepository: OfficeRepository) {
 
     @QueryMapping
     open fun getOffice(@Argument id: Long): Mono<OfficeModel> {
-        return officeRepository.getByOfficeId(id)
+        return officeRepository.getOfficeById(id)
     }
 
     @QueryMapping

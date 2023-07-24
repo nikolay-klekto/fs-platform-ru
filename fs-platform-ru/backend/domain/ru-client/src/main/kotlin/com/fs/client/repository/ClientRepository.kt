@@ -1,15 +1,14 @@
 package com.fs.client.repository
 
+import com.fs.client.repository.blocked.BasketBlockingRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.service.ClientModelConverter
-import com.fs.domain.jooq.tables.Basket
-import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
-import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Client
 import com.fs.domain.jooq.tables.records.ClientRecord
 import com.fs.domain.jooq.tables.references.BASKET
+import com.fs.client.repository.blocked.ClientBlockingRepository
 import com.fs.service.ru.BasketModel
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
@@ -19,19 +18,15 @@ import reactor.core.publisher.Mono
 abstract class ClientRepository(
     open val dsl: DSLContext,
     open val converter: ClientModelConverter,
-    open val basketRepository: BasketRepository,
+    open val basketBlockingRepository: BasketBlockingRepository,
+    open val clientBlockingRepository: ClientBlockingRepository
 ) {
 
     fun getClintById(id: Long?): Mono<ClientModel> {
-        return Mono.from(
-            dsl.select(CLIENT.asterisk()).from(CLIENT)
-                .join(Basket.BASKET).on(CLIENT.BASKET_ID.eq(Basket.BASKET.ID))
-                .join(City.CITY).on(CLIENT.CITY_ID.eq(City.CITY.ID))
-                .join(Country.COUNTRY).on(City.CITY.COUNTRY_CODE.eq(Country.COUNTRY.CODE))
-                .where(CLIENT.ID.eq(id))
-        )
-            .map { it.into(Client::class.java) }
-            .map(converter::toModel)
+        return Mono.fromSupplier {
+            clientBlockingRepository.getById(id)
+        }
+
     }
 
     fun getAllClients(): Flux<ClientModel> {
@@ -44,7 +39,7 @@ abstract class ClientRepository(
 
     fun updateClientInfo(newClientModel: ClientModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldClientModel: ClientModel = getClintById(newClientModel.id).block()!!
+            val oldClientModel: ClientModel = clientBlockingRepository.getById(newClientModel.id)!!
 
             dsl.update(CLIENT)
                 .set(CLIENT.CITY_ID, newClientModel.cityId ?: oldClientModel.cityId)
@@ -110,18 +105,11 @@ abstract class ClientRepository(
 //        }
 //    }
 
-    fun insert(clientModel: ClientModel) =
-        Mono.fromSupplier {
-
-            val newClientRecord: ClientRecord = dsl.newRecord(CLIENT)
-            val basket: BasketModel = basketRepository.insert().block()!!
-            clientModel.basketId = basket.id
-            newClientRecord.from(clientModel)
-            newClientRecord.reset(CLIENT.ID)
-            newClientRecord.store()
-            return@fromSupplier newClientRecord.into(Client::class.java)
+    fun insert(clientModel: ClientModel) : Mono<ClientModel> {
+        return Mono.fromSupplier {
+            clientBlockingRepository.insert(clientModel)
         }
-            .map(converter::toModel)
+    }
 
 
     fun delete(id: Long): Mono<Boolean> {

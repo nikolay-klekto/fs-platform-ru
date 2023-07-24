@@ -1,5 +1,6 @@
 package com.fs.client.repository
 
+import com.fs.client.repository.blocked.PositionBlockingRepository
 import com.fs.client.service.PositionModelConverter
 import com.fs.domain.jooq.tables.Position.Companion.POSITION
 import com.fs.domain.jooq.tables.pojos.Position
@@ -11,14 +12,16 @@ import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-abstract class PositionRepository(open val dsl: DSLContext, open val converter: PositionModelConverter) {
+abstract class PositionRepository(
+    open val dsl: DSLContext,
+    open val converter: PositionModelConverter,
+    open val positionBlockingRepository: PositionBlockingRepository
+    ) {
 
-    fun getById(id: Long): Mono<PositionModel> {
-        return Mono.from(
-            dsl.select(POSITION.asterisk()).from(POSITION)
-                .where(POSITION.ID.eq(id))
-        ).map { it.into(Position::class.java) }
-            .map(converter::toModel)
+    fun getPositionById(id: Long): Mono<PositionModel> {
+        return Mono.fromSupplier {
+            positionBlockingRepository.getById(id)
+        }
     }
 
     fun getAllByCompanyId(companyId: Long): Flux<PositionModel> {
@@ -85,7 +88,7 @@ abstract class PositionRepository(open val dsl: DSLContext, open val converter: 
 
     fun update(position: PositionModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldPosition = getById(position.id).block()
+            val oldPosition = positionBlockingRepository.getById(position.id)
 
             dsl.update(POSITION)
                 .set(POSITION.DESCRIPTION, position.description ?: oldPosition?.description)

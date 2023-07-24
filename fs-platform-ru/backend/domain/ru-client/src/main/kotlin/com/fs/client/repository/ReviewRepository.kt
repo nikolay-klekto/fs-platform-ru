@@ -1,5 +1,6 @@
 package com.fs.client.repository
 
+import com.fs.client.repository.blocked.ReviewBlockingRepository
 import com.fs.client.service.ReviewModelConverter
 import com.fs.domain.jooq.tables.Review.Companion.REVIEW
 import com.fs.domain.jooq.tables.pojos.Review
@@ -9,14 +10,15 @@ import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-abstract class ReviewRepository(open val dsl: DSLContext, open val converter: ReviewModelConverter) {
+abstract class ReviewRepository(
+    open val dsl: DSLContext,
+    open val converter: ReviewModelConverter,
+    open val reviewBlockingRepository: ReviewBlockingRepository) {
 
     fun getById(id: Long): Mono<ReviewModel> {
-        return Mono.from(
-            dsl.select(REVIEW.asterisk()).from(REVIEW)
-                .where(REVIEW.ID.eq(id))
-        ).map { it.into(Review::class.java) }
-            .map(converter::toModel)
+        return Mono.fromSupplier {
+            reviewBlockingRepository.getById(id)
+        }
     }
 
     fun getAllByCompanyId(id: Long): Flux<ReviewModel> {
@@ -30,7 +32,7 @@ abstract class ReviewRepository(open val dsl: DSLContext, open val converter: Re
 
     fun updateReview(review: ReviewModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldReview = getById(review.id!!).block()
+            val oldReview = reviewBlockingRepository.getById(review.id!!)
 
             dsl.update(REVIEW)
                 .set(REVIEW.DESCRIPTION, review.description ?: oldReview?.description)

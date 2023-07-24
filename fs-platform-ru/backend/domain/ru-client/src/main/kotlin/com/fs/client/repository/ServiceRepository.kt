@@ -1,5 +1,6 @@
 package com.fs.client.repository
 
+import com.fs.client.repository.blocked.ServiceBlockingRepository
 import com.fs.client.service.ServiceModelConverter
 import com.fs.domain.jooq.tables.Service.Companion.SERVICE
 import com.fs.domain.jooq.tables.pojos.Service
@@ -10,16 +11,17 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 
-abstract class ServiceRepository(open val dsl: DSLContext, open val converter: ServiceModelConverter) {
+abstract class ServiceRepository(
+    open val dsl: DSLContext,
+    open val converter: ServiceModelConverter,
+    open val serviceBlockingRepository: ServiceBlockingRepository
+) {
 
-    fun getById(id: Long) =
-        Mono.from(
-            dsl.select(SERVICE.asterisk())
-                .from(SERVICE)
-                .where(SERVICE.ID.eq(id))
-        )
-            .map { it.into(Service::class.java) }
-            .map(converter::toModel)
+    fun getServiceById(id: Long): Mono<ServiceModel> {
+        return Mono.fromSupplier {
+            serviceBlockingRepository.getById(id)
+        }
+    }
 
     fun getAll(): Flux<ServiceModel> =
         Flux.from(

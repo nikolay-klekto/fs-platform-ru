@@ -12,6 +12,7 @@ import com.fs.domain.jooq.tables.pojos.City
 import com.fs.domain.jooq.tables.pojos.Country
 import com.fs.domain.jooq.tables.records.CityRecord
 import org.jooq.DSLContext
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 abstract class CityRepository(
@@ -45,6 +46,14 @@ abstract class CityRepository(
             .map { it.into(City::class.java) }
             .map(cityConverter::toModel)
             .first()
+    }
+
+    fun getAllCities(): Flux<CityModel>{
+        return Flux.from(
+            dsl.select(CITY.asterisk()).from(CITY)
+        )
+            .map { it.into(City::class.java) }
+            .map(cityConverter::toModel)
     }
 
     fun createCity(newCity: CityModel): Mono<CityModel> {

@@ -1,6 +1,10 @@
 package com.fs.client.repository.impl
 
 import com.fs.client.repository.*
+import com.fs.client.repository.blocked.BasketBlockingRepository
+import com.fs.client.repository.blocked.CountryBlockingRepository
+import com.fs.client.repository.blocked.OrderBlockingRepository
+import com.fs.client.repository.blocked.ServiceBlockingRepository
 import com.fs.client.service.OrderModelConverter
 import com.fs.client.service.TotalPriceMatcher
 import org.jooq.DSLContext
@@ -11,10 +15,11 @@ open class DefaultOrderRepository(
     dsl: DSLContext,
     converter: OrderModelConverter,
     basketRepository: BasketRepository,
-    serviceRepository: ServiceRepository,
+    serviceBlockingRepository: ServiceBlockingRepository,
     cityRepository: CityRepository,
-    countryRepository: CountryRepository,
-    totalPriceMatcher: TotalPriceMatcher
-) : OrderRepository(
-    dsl, converter, basketRepository, serviceRepository, cityRepository, countryRepository, totalPriceMatcher
-)
+    countryBlockingRepository: CountryBlockingRepository,
+    basketBlockingRepository: BasketBlockingRepository,
+    totalPriceMatcher: TotalPriceMatcher,
+    orderBlockingRepository: OrderBlockingRepository
+) : OrderRepository(dsl, converter, basketRepository, serviceBlockingRepository, cityRepository,
+    countryBlockingRepository, basketBlockingRepository, totalPriceMatcher,orderBlockingRepository)
