@@ -56,7 +56,7 @@ abstract class CityRepository(
             .map(cityConverter::toModel)
     }
 
-    fun createCity(newCity: CityModel): Mono<CityModel> {
+    fun insertCity(newCity: CityModel): Mono<CityModel> {
         return Mono.fromSupplier {
             val newCityRecord: CityRecord = dsl.newRecord(CITY)
             newCityRecord.from(newCity)

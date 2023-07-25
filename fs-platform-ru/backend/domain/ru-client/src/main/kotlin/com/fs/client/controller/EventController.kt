@@ -23,7 +23,7 @@ open class EventController(open val eventRepository: EventRepository) {
 
     @QueryMapping
     open fun getEvent(@Argument eventId: Long): Mono<EventModel> {
-        return eventRepository.getByEventId(eventId)
+        return eventRepository.getEventById(eventId)
     }
 
     @QueryMapping

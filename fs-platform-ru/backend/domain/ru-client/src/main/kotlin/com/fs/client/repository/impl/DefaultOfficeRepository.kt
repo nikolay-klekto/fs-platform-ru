@@ -12,8 +12,7 @@ import org.springframework.stereotype.Repository
 open class DefaultOfficeRepository(
     dsl: DSLContext,
     converter: OfficeModelConverter,
-    addressRepository: AddressRepository,
     addressBlockingRepository: AddressBlockingRepository,
     officeBlockingRepository: OfficeBlockingRepository
 ) :
-    OfficeRepository(dsl, converter, addressRepository, addressBlockingRepository, officeBlockingRepository)
+    OfficeRepository(dsl, converter, addressBlockingRepository, officeBlockingRepository)

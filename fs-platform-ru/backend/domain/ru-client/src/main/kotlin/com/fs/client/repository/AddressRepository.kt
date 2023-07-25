@@ -18,16 +18,16 @@ abstract class AddressRepository(
     /**
      * Only uses for get full information about company office
      */
-    fun getByAddressId(id: Long): Mono<AddressModel> {
+    fun getAddressById(addressId: Long): Mono<AddressModel> {
         return Mono.fromSupplier {
-            addressBlockingRepository.getById(id)
+            addressBlockingRepository.getById(addressId)
         }
     }
 
     /**
      * Use to init address for client and office
      */
-    fun create(addressModel: AddressModel): Mono<AddressModel> =
+    fun insertAddress(addressModel: AddressModel): Mono<AddressModel> =
         Mono.fromSupplier {
             val newAddressRecord: AddressRecord = dsl.newRecord(ADDRESS)
             newAddressRecord.from(addressModel)
@@ -37,13 +37,13 @@ abstract class AddressRepository(
         }
             .map(converter::toModel)
 
-    fun update(address: AddressModel): Mono<Boolean> {
+    fun updateAddress(address: AddressModel): Mono<Boolean> {
         return Mono.fromSupplier {
             addressBlockingRepository.update(address)
         }
     }
 
-    fun deleteByAddressId(id: Long): Mono<Boolean> {
+    fun deleteAddressById(id: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.deleteFrom(ADDRESS)
                 .where(ADDRESS.ID.eq(id))

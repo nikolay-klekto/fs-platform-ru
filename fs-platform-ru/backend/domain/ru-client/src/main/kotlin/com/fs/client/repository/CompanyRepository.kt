@@ -29,14 +29,14 @@ abstract class CompanyRepository(
         }
     }
 
-    fun getAll(): Flux<CompanyModel> {
+    fun getAllCompanies(): Flux<CompanyModel> {
         return Flux.from(
             dsl.select(COMPANY.asterisk()).from(COMPANY)
         ).map { it.into(Company::class.java) }
             .map(converter::toModel)
     }
 
-    fun getAllByPositionId(positionId: Long): Flux<CompanyModel> {
+    fun getAllCompaniesByPositionId(positionId: Long): Flux<CompanyModel> {
         return Flux.from(
             dsl.select(COMPANY.asterisk()).from(COMPANY)
                 .where(
@@ -50,7 +50,7 @@ abstract class CompanyRepository(
             .map(converter::toModel)
     }
 
-    fun getAllByCountryCode(countryCode: Long): Flux<CompanyModel> {
+    fun getAllCompaniesByCountryCode(countryCode: Long): Flux<CompanyModel> {
         return Flux.from(
             dsl.select(COMPANY.asterisk()).from(COMPANY)
                 .where(
@@ -73,7 +73,7 @@ abstract class CompanyRepository(
             .map(converter::toModel)
     }
 
-    fun getAllByCityId(cityId: Long): Flux<CompanyModel> {
+    fun getAllCompaniesByCityId(cityId: Long): Flux<CompanyModel> {
         return Flux.from(
             dsl.select(COMPANY.asterisk()).from(COMPANY)
                 .where(
@@ -91,7 +91,7 @@ abstract class CompanyRepository(
             .map(converter::toModel)
     }
 
-    fun insert(companyModel: CompanyModel): Mono<CompanyModel> {
+    fun insertCompany(companyModel: CompanyModel): Mono<CompanyModel> {
         return Mono.fromSupplier {
             val newCompanyRecord: CompanyRecord = dsl.newRecord(COMPANY)
             newCompanyRecord.from(companyModel)
@@ -102,7 +102,7 @@ abstract class CompanyRepository(
             .map(converter::toModel)
     }
 
-    fun insertByPartner(partnerId: Long, companyModel: CompanyModel): Mono<CompanyModel> {
+    fun insertCompanyByPartnerId(partnerId: Long, companyModel: CompanyModel): Mono<CompanyModel> {
         return Mono.fromSupplier {
             val newCompanyRecord: CompanyRecord = dsl.newRecord(COMPANY)
             newCompanyRecord.from(companyModel)
@@ -120,7 +120,7 @@ abstract class CompanyRepository(
             .map(converter::toModel)
     }
 
-    fun update(companyModel: CompanyModel): Mono<Boolean> {
+    fun updateCompany(companyModel: CompanyModel): Mono<Boolean> {
         return Mono.fromSupplier {
             val oldCompanyModel: CompanyModel = companyBlockingRepository.getById(companyModel.id)!!
 
@@ -141,7 +141,7 @@ abstract class CompanyRepository(
         }
     }
 
-    fun delete(companyId: Long): Mono<Boolean> {
+    fun deleteCompany(companyId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
 
             dsl.deleteFrom(COMPANY_PARTNER)

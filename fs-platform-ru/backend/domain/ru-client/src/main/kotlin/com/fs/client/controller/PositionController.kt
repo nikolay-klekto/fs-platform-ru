@@ -27,12 +27,12 @@ open class PositionController(
 
     @QueryMapping
     open fun getAllPositionsByCompanyId(@Argument id: Long): Flux<PositionModel> {
-        return positionRepository.getAllByCompanyId(id)
+        return positionRepository.getAllPositionsByCompanyId(id)
     }
 
     @QueryMapping
     open fun getAllPositions(): Flux<PositionModel> {
-        return positionRepository.getAll()
+        return positionRepository.getAllPositions()
     }
 
     @MutationMapping
@@ -58,12 +58,12 @@ open class PositionController(
 
     @MutationMapping
     open fun updatePosition(@Argument position: PositionModel): Mono<Boolean> {
-        return positionRepository.update(position)
+        return positionRepository.updatePosition(position)
     }
 
     @MutationMapping
     open fun deletePosition(@Argument id: Long): Mono<Boolean> {
-        return positionRepository.delete(id)
+        return positionRepository.deletePosition(id)
     }
 
     @SchemaMapping(typeName = "Order", field = "position")

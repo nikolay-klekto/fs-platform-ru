@@ -19,7 +19,7 @@ abstract class PartnerRepository(
     open val clientBlockingRepository: ClientBlockingRepository
 ) {
 
-    fun getById(id: Long): Mono<PartnerModel> {
+    fun getPartnerById(id: Long): Mono<PartnerModel> {
         return Mono.from(
             dsl.select(PARTNER.asterisk()).from(PARTNER)
                 .where(PARTNER.ID.eq(id))
@@ -27,14 +27,14 @@ abstract class PartnerRepository(
             .map(converter::toModel)
     }
 
-    fun getAll(): Flux<PartnerModel> {
+    fun getAllPartners(): Flux<PartnerModel> {
         return Flux.from(
             dsl.select(PARTNER.asterisk()).from(PARTNER)
         ).map { it.into(Partner::class.java) }
             .map(converter::toModel)
     }
 
-    fun getByCompanyId(companyId: Long): Flux<PartnerModel> {
+    fun getPartnerByCompanyId(companyId: Long): Flux<PartnerModel> {
         return Flux.from(
             dsl.select(PARTNER.asterisk()).from(PARTNER)
                 .where(
@@ -47,7 +47,7 @@ abstract class PartnerRepository(
             .map(converter::toModel)
     }
 
-    fun insert(clientModel: ClientModel): Mono<PartnerModel> {
+    fun insertPartner(clientModel: ClientModel): Mono<PartnerModel> {
         return Mono.fromSupplier {
             var newClientModel: ClientModel = clientModel
             if (clientModel.id == null) {
@@ -66,7 +66,7 @@ abstract class PartnerRepository(
             .map(converter::toModel)
     }
 
-    fun delete(partnerId: Long): Mono<Boolean> {
+    fun deletePartner(partnerId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             val returnResult = dsl.deleteFrom(PARTNER)
                 .where(PARTNER.ID.eq(partnerId))

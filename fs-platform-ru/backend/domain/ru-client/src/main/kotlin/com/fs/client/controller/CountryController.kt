@@ -20,50 +20,50 @@ open class CountryController(open val countryRepository: CountryRepository) {
 
     @GetMapping("{name}")
     fun getByCompanyId(@PathVariable("name") countryName: CountryNameModel) =
-        countryRepository.getByName(countryName)
+        countryRepository.getCountryByName(countryName)
 
     @PostMapping
     fun createCountry(
         @RequestBody countryModel: CountryModel
     ) =
-        countryRepository.insert(countryModel)
+        countryRepository.insertCountry(countryModel)
 
     @DeleteMapping("{name}")
     fun deleteByCountryId(@PathVariable("code") countryCode: Long) =
-        countryRepository.deleteByCountryCode(countryCode)
+        countryRepository.deleteCountryByCode(countryCode)
 
     @SchemaMapping(typeName = "City", field = "country")
     fun getCountryForCity(city: CityModel): Mono<CountryModel> {
-        return countryRepository.getByCode(city.countryCode!!)
+        return countryRepository.getCountryByCode(city.countryCode!!)
     }
 
     @QueryMapping
     open fun getCountry(@Argument code: Long): Mono<CountryModel> {
-        return countryRepository.getByCode(code)
+        return countryRepository.getCountryByCode(code)
     }
 
     @QueryMapping
     open fun getCountryByName(@Argument name: CountryNameModel): Mono<CountryModel> {
-        return countryRepository.getByName(name)
+        return countryRepository.getCountryByName(name)
     }
 
     @QueryMapping
     open fun getCountryByCity(@Argument id: Long): Mono<CountryModel> {
-        return countryRepository.getByCityId(id)
+        return countryRepository.getCountryByCityId(id)
     }
 
     @QueryMapping
     open fun getAllCountries(): Flux<CountryModel> {
-        return countryRepository.getAll()
+        return countryRepository.getAllCountries()
     }
 
     @MutationMapping
     open fun addCountry(@Argument country: CountryModel): Mono<CountryModel> {
-        return countryRepository.insert(country)
+        return countryRepository.insertCountry(country)
     }
 
     @MutationMapping
     open fun deleteCountry(@Argument countryCode: Long): Mono<Boolean> {
-        return countryRepository.deleteByCountryCode(countryCode)
+        return countryRepository.deleteCountryByCode(countryCode)
     }
 }

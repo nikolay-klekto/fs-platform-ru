@@ -25,7 +25,7 @@ open class CityController(open val cityRepository: CityRepository) {
 
     @PostMapping
     fun createCity(@RequestBody cityModel: CityModel) =
-        cityRepository.createCity(cityModel)
+        cityRepository.insertCity(cityModel)
 
     @QueryMapping
     fun getCity(@Argument id: Long): Mono<CityModel> {
@@ -39,7 +39,7 @@ open class CityController(open val cityRepository: CityRepository) {
 
     @MutationMapping
     fun addCity(@Argument city: CityModel): Mono<CityModel> {
-        return cityRepository.createCity(city)
+        return cityRepository.insertCity(city)
     }
 
     @MutationMapping

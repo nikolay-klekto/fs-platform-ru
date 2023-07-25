@@ -28,27 +28,27 @@ open class CompanyController(
 
     @QueryMapping
     open fun getAllCompanies(): Flux<CompanyModel> {
-        return companyRepository.getAll()
+        return companyRepository.getAllCompanies()
     }
 
     @QueryMapping
     open fun getAllCompaniesByPositionId(@Argument id: Long): Flux<CompanyModel> {
-        return companyRepository.getAllByPositionId(id)
+        return companyRepository.getAllCompaniesByPositionId(id)
     }
 
     @QueryMapping
     open fun getAllCompaniesByCountryCode(@Argument code: Long): Flux<CompanyModel> {
-        return companyRepository.getAllByCountryCode(code)
+        return companyRepository.getAllCompaniesByCountryCode(code)
     }
 
     @QueryMapping
     open fun getAllCompaniesByCityId(@Argument id: Long): Flux<CompanyModel> {
-        return companyRepository.getAllByCityId(id)
+        return companyRepository.getAllCompaniesByCityId(id)
     }
 
     @MutationMapping
     open fun addCompany(@Argument company: CompanyModel): Mono<CompanyModel> {
-        return companyRepository.insert(company)
+        return companyRepository.insertCompany(company)
     }
 
     @MutationMapping
@@ -56,17 +56,17 @@ open class CompanyController(
         @Argument partnerId: Long,
         @Argument company: CompanyModel
     ): Mono<CompanyModel> {
-        return companyRepository.insertByPartner(partnerId, company)
+        return companyRepository.insertCompanyByPartnerId(partnerId, company)
     }
 
     @MutationMapping
     open fun updateCompany(@Argument company: CompanyModel): Mono<Boolean> {
-        return companyRepository.update(company)
+        return companyRepository.updateCompany(company)
     }
 
     @MutationMapping
     open fun deleteCompany(@Argument id: Long): Mono<Boolean> {
-        return companyRepository.delete(id)
+        return companyRepository.deleteCompany(id)
     }
 
     @SchemaMapping(typeName = "Order", field = "company")

@@ -24,7 +24,6 @@ import java.util.*
 abstract class OrderRepository(
     open val dsl: DSLContext,
     open val converter: OrderModelConverter,
-    open val basketRepository: BasketRepository,
     open val serviceBlockingRepository: ServiceBlockingRepository,
     open val cityRepository: CityRepository,
     open val countryBlockingRepository: CountryBlockingRepository,
@@ -82,7 +81,7 @@ abstract class OrderRepository(
                     if (oldTotalPrice != null) {
                         val newTotalPrice = oldTotalPrice + servicePrice
                         totalPrice = "$newTotalPrice $orderCurrency"
-                        basketRepository.updateWithoutMono(BasketModel(orderModel.basketId!!, totalPrice))
+                        basketBlockingRepository.update(BasketModel(orderModel.basketId!!, totalPrice))
                     }
                 }
 

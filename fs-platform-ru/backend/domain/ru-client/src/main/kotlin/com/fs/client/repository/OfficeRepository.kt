@@ -17,7 +17,6 @@ import reactor.core.publisher.Mono
 abstract class OfficeRepository(
     open val dsl: DSLContext,
     open val converter: OfficeModelConverter,
-    open val addressRepository: AddressRepository,
     open val blockingAddressRepository: AddressBlockingRepository,
     open val blockingOfficeRepository: OfficeBlockingRepository
 ) {

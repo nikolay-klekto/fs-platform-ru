@@ -21,14 +21,14 @@ open class ServiceController(
         serviceRepository.getServiceById(serviceId)
 
     @GetMapping
-    fun getAllServicesModel() = serviceRepository.getAll()
+    fun getAllServicesModel() = serviceRepository.getAllServices()
 
     @PutMapping("{id}")
     fun updateServiceModelByID(
         @RequestBody serviceModel: ServiceModel,
         @PathVariable("id") id: Long
     ) =
-        serviceRepository.updateById(id, serviceModel)
+        serviceRepository.updateServiceById(id, serviceModel)
 
     @DeleteMapping("{id}")
     fun deleteServiceByID(@PathVariable("id") id: Long) =
@@ -48,7 +48,7 @@ open class ServiceController(
         @Argument id: Long,
         @Argument service: ServiceModel
     ): Mono<Boolean> {
-        return serviceRepository.updateById(id, service)
+        return serviceRepository.updateServiceById(id, service)
     }
 
     @MutationMapping
@@ -57,13 +57,13 @@ open class ServiceController(
     }
 
     @QueryMapping
-    open fun serviceById(@Argument id: Long): Mono<ServiceModel> {
+    open fun getServiceById(@Argument id: Long): Mono<ServiceModel> {
         return serviceRepository.getServiceById(id)
     }
 
     @QueryMapping
     open fun getAllServices(): Flux<ServiceModel> {
-        return serviceRepository.getAll()
+        return serviceRepository.getAllServices()
     }
 
     @SchemaMapping(typeName = "Order", field = "service")

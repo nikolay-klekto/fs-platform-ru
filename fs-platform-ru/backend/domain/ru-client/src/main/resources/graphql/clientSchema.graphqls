@@ -5,10 +5,10 @@ type Query {
     getClintById(id: ID!): Client
     getAllClients: [Client]
 
-    serviceById(id: ID!): Service
+    getServiceById(id: ID!): Service
     getAllServices: [Service]
 
-    reviewById(id: ID!): Review
+    getReviewById(id: ID!): Review
     getAllReviewsByCompany(id: ID!): [Review]
 
     getCity(id: ID!): City

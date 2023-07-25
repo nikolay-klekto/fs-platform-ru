@@ -14,12 +14,11 @@ import org.springframework.stereotype.Repository
 open class DefaultOrderRepository(
     dsl: DSLContext,
     converter: OrderModelConverter,
-    basketRepository: BasketRepository,
     serviceBlockingRepository: ServiceBlockingRepository,
     cityRepository: CityRepository,
     countryBlockingRepository: CountryBlockingRepository,
     basketBlockingRepository: BasketBlockingRepository,
     totalPriceMatcher: TotalPriceMatcher,
     orderBlockingRepository: OrderBlockingRepository
-) : OrderRepository(dsl, converter, basketRepository, serviceBlockingRepository, cityRepository,
+) : OrderRepository(dsl, converter, serviceBlockingRepository, cityRepository,
     countryBlockingRepository, basketBlockingRepository, totalPriceMatcher,orderBlockingRepository)

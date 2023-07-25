@@ -18,36 +18,36 @@ open class AddressController(open val addressRepository: AddressRepository) {
 
     @GetMapping("{id}")
     fun getAddressById(@PathVariable("id") addressId: Long) =
-        addressRepository.getByAddressId(addressId)
+        addressRepository.getAddressById(addressId)
 
     @PostMapping
     fun insertAddressModel(
         @RequestBody addressModel: AddressModel
     ) =
-        addressRepository.create(addressModel)
+        addressRepository.insertAddress(addressModel)
 
     @MutationMapping
     fun addAddress(@Argument address: AddressModel): Mono<AddressModel> {
-        return addressRepository.create(address)
+        return addressRepository.insertAddress(address)
     }
 
     @MutationMapping
     open fun updateAddress(@Argument address: AddressModel): Mono<Boolean> {
-        return addressRepository.update(address)
+        return addressRepository.updateAddress(address)
     }
 
     @MutationMapping
     open fun deleteAddress(@Argument id: Long): Mono<Boolean> {
-        return addressRepository.deleteByAddressId(id)
+        return addressRepository.deleteAddressById(id)
     }
 
     @SchemaMapping(typeName = "Office", field = "address")
     fun getAddressForOffice(office: OfficeModel): Mono<AddressModel> {
-        return addressRepository.getByAddressId(office.addressId!!)
+        return addressRepository.getAddressById(office.addressId!!)
     }
 
     @SchemaMapping(typeName = "Event", field = "address")
     fun getAddressForEvent(event: EventModel): Mono<AddressModel> {
-        return addressRepository.getByAddressId(event.addressId!!)
+        return addressRepository.getAddressById(event.addressId!!)
     }
 }

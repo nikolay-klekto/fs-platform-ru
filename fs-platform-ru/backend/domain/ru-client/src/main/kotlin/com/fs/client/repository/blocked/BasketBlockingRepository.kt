@@ -6,7 +6,6 @@ import com.fs.domain.jooq.tables.pojos.Basket
 import com.fs.domain.jooq.tables.records.BasketRecord
 import com.fs.service.ru.BasketModel
 import org.jooq.DSLContext
-import reactor.core.publisher.Mono
 
 abstract class BasketBlockingRepository(
     open val dsl: DSLContext,
@@ -28,5 +27,12 @@ abstract class BasketBlockingRepository(
         newBasketRecord.reset(BASKET.ID)
         newBasketRecord.store()
         return converter.toModel(newBasketRecord.into(Basket::class.java))
-}
+    }
+
+    fun update(basket: BasketModel): Boolean {
+        return dsl.update(BASKET)
+            .set(BASKET.TOTAL_PRICE, basket.totalPrice)
+            .where(BASKET.ID.eq(basket.id))
+            .execute() == 1
+    }
 }

@@ -17,7 +17,7 @@ abstract class CountryRepository(
     open val converter: CountryModelConverter,
     open val countryBlockingRepository: CountryBlockingRepository
 ) {
-    fun getByCode(code: Long): Mono<CountryModel> {
+    fun getCountryByCode(code: Long): Mono<CountryModel> {
         return Mono.from(
             dsl.select(COUNTRY.asterisk()).from(COUNTRY)
                 .where(COUNTRY.CODE.eq(code))
@@ -26,7 +26,7 @@ abstract class CountryRepository(
             .map(converter::toModel)
     }
 
-    fun getByName(countryName: CountryNameModel): Mono<CountryModel> {
+    fun getCountryByName(countryName: CountryNameModel): Mono<CountryModel> {
         return Mono.from(
             dsl.select(COUNTRY.asterisk()).from(COUNTRY)
                 .where(COUNTRY.NAME.eq(countryName))
@@ -35,13 +35,13 @@ abstract class CountryRepository(
             .map(converter::toModel)
     }
 
-    fun getByCityId(id: Long): Mono<CountryModel> {
+    fun getCountryByCityId(id: Long): Mono<CountryModel> {
         return Mono.fromSupplier {
             countryBlockingRepository.getCountryByCityId(id)
         }
     }
 
-    fun getAll(): Flux<CountryModel> {
+    fun getAllCountries(): Flux<CountryModel> {
         return Flux.from(
             dsl.select(COUNTRY.asterisk()).from(COUNTRY)
         )
@@ -50,7 +50,7 @@ abstract class CountryRepository(
 
     }
 
-    fun insert(countryModel: CountryModel): Mono<CountryModel> {
+    fun insertCountry(countryModel: CountryModel): Mono<CountryModel> {
         return Mono.fromSupplier {
             val newCountryRecord: CountryRecord = dsl.newRecord(COUNTRY)
             val newCountryModel = CountryModel(
@@ -65,7 +65,7 @@ abstract class CountryRepository(
             .map(converter::toModel)
     }
 
-    fun deleteByCountryCode(countryCode: Long): Mono<Boolean> {
+    fun deleteCountryByCode(countryCode: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             val result = dsl.deleteFrom(CITY)
                 .where(CITY.COUNTRY_CODE.eq(countryCode))

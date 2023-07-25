@@ -24,7 +24,7 @@ abstract class PositionRepository(
         }
     }
 
-    fun getAllByCompanyId(companyId: Long): Flux<PositionModel> {
+    fun getAllPositionsByCompanyId(companyId: Long): Flux<PositionModel> {
         return Flux.from(
             dsl.select(POSITION.asterisk()).from(POSITION)
                 .where(
@@ -38,7 +38,7 @@ abstract class PositionRepository(
             .map(converter::toModel)
     }
 
-    fun getAll(): Flux<PositionModel> {
+    fun getAllPositions(): Flux<PositionModel> {
         return Flux.from(
             dsl.select(POSITION.asterisk()).from(POSITION)
         ).map { it.into(Position::class.java) }
@@ -86,7 +86,7 @@ abstract class PositionRepository(
         }
     }
 
-    fun update(position: PositionModel): Mono<Boolean> {
+    fun updatePosition(position: PositionModel): Mono<Boolean> {
         return Mono.fromSupplier {
             val oldPosition = positionBlockingRepository.getById(position.id)
 
@@ -98,7 +98,7 @@ abstract class PositionRepository(
         }
     }
 
-    fun delete(positionId: Long): Mono<Boolean> {
+    fun deletePosition(positionId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.deleteFrom(COMPANIES_POSITIONS)
                 .where(COMPANIES_POSITIONS.POSITION_ID.eq(positionId))

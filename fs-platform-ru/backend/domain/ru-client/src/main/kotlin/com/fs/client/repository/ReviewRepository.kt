@@ -15,13 +15,13 @@ abstract class ReviewRepository(
     open val converter: ReviewModelConverter,
     open val reviewBlockingRepository: ReviewBlockingRepository) {
 
-    fun getById(id: Long): Mono<ReviewModel> {
+    fun getReviewById(id: Long): Mono<ReviewModel> {
         return Mono.fromSupplier {
             reviewBlockingRepository.getById(id)
         }
     }
 
-    fun getAllByCompanyId(id: Long): Flux<ReviewModel> {
+    fun getAllReviewByCompanyId(id: Long): Flux<ReviewModel> {
         return Flux.from(
             dsl.selectFrom(REVIEW)
                 .where(REVIEW.COMPANY_ID.eq(id))
@@ -43,7 +43,7 @@ abstract class ReviewRepository(
 
     }
 
-    fun insert(reviewModel: ReviewModel): Mono<ReviewModel> {
+    fun insertReview(reviewModel: ReviewModel): Mono<ReviewModel> {
         return Mono.fromSupplier {
             val newReviewRecord: ReviewRecord = dsl.newRecord(REVIEW)
             newReviewRecord.from(reviewModel)
@@ -54,7 +54,7 @@ abstract class ReviewRepository(
             .map(converter::toModel)
     }
 
-    fun deleteByID(id: Long): Mono<Boolean> {
+    fun deleteReviewByID(id: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.deleteFrom(REVIEW)
                 .where(REVIEW.ID.eq(id))

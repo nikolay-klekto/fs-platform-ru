@@ -24,7 +24,7 @@ open class BasketController(
     fun updateBasketByID(
         @RequestBody basketModel: BasketModel,
     ): Mono<Boolean> {
-        return basketRepository.update(basketModel)
+        return basketRepository.updateBasket(basketModel)
     }
 
     @QueryMapping
@@ -34,12 +34,12 @@ open class BasketController(
 
     @MutationMapping
     open fun addBasket(): Mono<BasketModel> {
-        return basketRepository.insert()
+        return basketRepository.insertBasket()
     }
 
     @MutationMapping
     open fun updateBasket(@Argument basket: BasketModel): Mono<Boolean> {
-        return basketRepository.update(basket)
+        return basketRepository.updateBasket(basket)
     }
 
 }

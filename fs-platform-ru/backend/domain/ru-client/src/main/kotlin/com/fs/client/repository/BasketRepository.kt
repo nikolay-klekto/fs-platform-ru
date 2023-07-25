@@ -18,24 +18,13 @@ abstract class BasketRepository(
         }
     }
 
-    fun update(basket: BasketModel): Mono<Boolean> {
+    fun updateBasket(basket: BasketModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            dsl.update(BASKET)
-                .set(BASKET.TOTAL_PRICE, basket.totalPrice)
-                .where(BASKET.ID.eq(basket.id))
-                .execute() == 1
+            basketBlockingRepository.update(basket)
         }
     }
 
-    fun updateWithoutMono(basket: BasketModel): Boolean {
-        return dsl.update(BASKET)
-            .set(BASKET.TOTAL_PRICE, basket.totalPrice)
-            .where(BASKET.ID.eq(basket.id))
-            .execute() == 1
-    }
-
-
-    fun insert(): Mono<BasketModel> {
+    fun insertBasket(): Mono<BasketModel> {
         return Mono.fromSupplier {
             basketBlockingRepository.insert()
         }

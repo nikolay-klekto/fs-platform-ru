@@ -23,7 +23,7 @@ abstract class EventRepository(
     open val blockingEventRepository: EventBlockingRepository,
     open val blockingAddressRepository: AddressBlockingRepository
 ) {
-    fun getByEventId(id: Long): Mono<EventModel> {
+    fun getEventById(id: Long): Mono<EventModel> {
         return Mono.fromSupplier {
             blockingEventRepository.getEventBlockingById(id)
         }

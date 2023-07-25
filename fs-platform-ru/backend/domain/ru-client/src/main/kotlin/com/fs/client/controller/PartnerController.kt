@@ -21,26 +21,26 @@ open class PartnerController(
 
     @QueryMapping
     open fun getPartnerById(@Argument id: Long): Mono<PartnerModel> {
-        return partnerRepository.getById(id)
+        return partnerRepository.getPartnerById(id)
     }
 
     @QueryMapping
     open fun getAllPartners(): Flux<PartnerModel> {
-        return partnerRepository.getAll()
+        return partnerRepository.getAllPartners()
     }
 
     @QueryMapping
     open fun getPartnersByCompanyId(@Argument id: Long): Flux<PartnerModel> {
-        return partnerRepository.getByCompanyId(id)
+        return partnerRepository.getPartnerByCompanyId(id)
     }
 
     @MutationMapping
     open fun addPartner(@Argument client: ClientModel): Mono<PartnerModel> {
-        return partnerRepository.insert(client)
+        return partnerRepository.insertPartner(client)
     }
 
     @MutationMapping
     open fun deletePartner(@Argument id: Long): Mono<Boolean> {
-        return partnerRepository.delete(id)
+        return partnerRepository.deletePartner(id)
     }
 }

@@ -56,13 +56,13 @@ open class ClientController(open val clientRepository: ClientRepository) {
     fun deleteClientByID(
         @PathVariable("id") id: Long
     ) =
-        clientRepository.delete(id)
+        clientRepository.deleteClientById(id)
 
     @PostMapping
     fun insertClientModel(
         @RequestBody clientModel: ClientModel
     ) =
-        clientRepository.insert(clientModel)
+        clientRepository.insertClient(clientModel)
 
     @QueryMapping
     open fun getClintById(@Argument id: Long): Mono<ClientModel> {
@@ -99,12 +99,12 @@ open class ClientController(open val clientRepository: ClientRepository) {
 
     @MutationMapping
     open fun addClient(@Argument client: ClientModel): Mono<ClientModel> {
-        return clientRepository.insert(client)
+        return clientRepository.insertClient(client)
     }
 
     @MutationMapping
     open fun deleteClient(@Argument id: Long): Mono<Boolean> {
-        return clientRepository.delete(id)
+        return clientRepository.deleteClientById(id)
     }
 
     @SchemaMapping(typeName = "Partner", field = "client")

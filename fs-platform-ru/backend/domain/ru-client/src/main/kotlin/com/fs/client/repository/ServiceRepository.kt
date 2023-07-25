@@ -23,14 +23,14 @@ abstract class ServiceRepository(
         }
     }
 
-    fun getAll(): Flux<ServiceModel> =
+    fun getAllServices(): Flux<ServiceModel> =
         Flux.from(
             dsl.selectFrom(SERVICE)
         )
             .map { it.into(Service::class.java) }
             .map(converter::toModel)
 
-    fun updateById(id: Long, serviceModel: ServiceModel): Mono<Boolean> {
+    fun updateServiceById(id: Long, serviceModel: ServiceModel): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.update(SERVICE)
                 .set(SERVICE.PRICE_PER_DAY, serviceModel.pricePerDay)

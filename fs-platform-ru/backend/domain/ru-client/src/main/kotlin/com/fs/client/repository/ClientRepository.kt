@@ -105,14 +105,14 @@ abstract class ClientRepository(
 //        }
 //    }
 
-    fun insert(clientModel: ClientModel) : Mono<ClientModel> {
+    fun insertClient(clientModel: ClientModel) : Mono<ClientModel> {
         return Mono.fromSupplier {
             clientBlockingRepository.insert(clientModel)
         }
     }
 
 
-    fun delete(id: Long): Mono<Boolean> {
+    fun deleteClientById(id: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             val clientRecord: ClientRecord? = dsl.fetchOne(CLIENT, CLIENT.ID.eq(id))
             if (clientRecord != null) {
@@ -130,17 +130,6 @@ abstract class ClientRepository(
             false
         }
     }
-
-//    fun deleteClient(id: Long): Mono<Boolean> {
-//        return Mono.fromSupplier {
-//            dsl.deleteFrom(BASKET)
-//                .where(BASKET.ID.eq(CLIENT.BASKET_ID))
-//                .execute()
-//            dsl.deleteFrom(CLIENT)
-//                .where(CLIENT.ID.eq(id))
-//                .execute() == 1
-//        }
-//    }
 
 }
 
