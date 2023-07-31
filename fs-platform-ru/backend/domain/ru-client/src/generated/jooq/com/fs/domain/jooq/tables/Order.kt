@@ -21,7 +21,7 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
-import org.jooq.Row8
+import org.jooq.Row9
 import org.jooq.Schema
 import org.jooq.Table
 import org.jooq.TableField
@@ -106,6 +106,11 @@ open class Order(
      */
     val TOTAL_WORK_DAYS: TableField<OrderRecord, Long?> = createField(DSL.name("total_work_days"), SQLDataType.BIGINT, this, "")
 
+    /**
+     * The column <code>public.order.price</code>.
+     */
+    val PRICE: TableField<OrderRecord, Double?> = createField(DSL.name("price"), SQLDataType.DOUBLE, this, "")
+
     private constructor(alias: Name, aliased: Table<OrderRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<OrderRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
@@ -188,7 +193,7 @@ open class Order(
     override fun rename(name: Name): Order = Order(name, null)
 
     // -------------------------------------------------------------------------
-    // Row8 type methods
+    // Row9 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row8<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?> = super.fieldsRow() as Row8<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?>
+    override fun fieldsRow(): Row9<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?> = super.fieldsRow() as Row9<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?>
 }

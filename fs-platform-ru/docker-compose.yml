@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   app:
-    image: ru-client:0.0.2
+    image: ru-client:latest
     build:
       context: .
       dockerfile: Dockerfile-Client
@@ -16,7 +16,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
 
   app2:
-    image: ru-gateway:0.0.1
+    image: ru-gateway:latest
     build:
       context: .
       dockerfile: Dockerfile-Gateway

@@ -18,7 +18,6 @@ import reactor.core.publisher.Mono
 abstract class ClientRepository(
     open val dsl: DSLContext,
     open val converter: ClientModelConverter,
-    open val basketBlockingRepository: BasketBlockingRepository,
     open val clientBlockingRepository: ClientBlockingRepository
 ) {
 

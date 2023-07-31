@@ -21,7 +21,7 @@ abstract class BasketBlockingRepository(
             .firstOrNull()
 
     fun insert(): BasketModel {
-        val newBasket = BasketModel(0, "")
+        val newBasket = BasketModel(0, 0.0)
         val newBasketRecord: BasketRecord = dsl.newRecord(BASKET)
         newBasketRecord.from(newBasket)
         newBasketRecord.reset(BASKET.ID)

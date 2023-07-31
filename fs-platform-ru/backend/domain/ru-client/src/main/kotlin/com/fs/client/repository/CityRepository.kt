@@ -20,7 +20,7 @@ abstract class CityRepository(
     open val cityConverter: CityModelConverter,
 ) {
 
-    fun getCityById(id: Long): Mono<CityModel> {
+    fun getCityById(id: Long?): Mono<CityModel?> {
         return Mono.from(
             dsl.select(CITY.asterisk()).from(CITY)
                 .where(CITY.ID.eq(id))

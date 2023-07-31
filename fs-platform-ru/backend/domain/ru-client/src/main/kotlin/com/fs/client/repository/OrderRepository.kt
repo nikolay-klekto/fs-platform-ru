@@ -7,6 +7,7 @@ import com.fs.client.repository.blocked.ServiceBlockingRepository
 import com.fs.client.ru.enums.CurrencyModel
 import com.fs.client.service.OrderModelConverter
 import com.fs.client.service.TotalPriceMatcher
+import com.fs.domain.jooq.tables.Basket.Companion.BASKET
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
@@ -61,34 +62,48 @@ abstract class OrderRepository(
 
     fun insertOrder(orderModel: OrderModel): Mono<OrderModel> {
         return Mono.fromSupplier {
-            val totalPrice: String
-            if (orderModel.basketId != null && orderModel.serviceId != null && orderModel.companyOfficeId != null) {
-                val pastTotalPrice: String? =
-                    basketBlockingRepository.getById(orderModel.basketId!!)?.totalPrice
-                if (pastTotalPrice != null) {
-
-                    val servicePrice: Long =
-                        serviceBlockingRepository.getById(orderModel.serviceId!!)
-                            ?.pricePerDay!! * orderModel.totalWorkDays!!
-
-                    val orderCity = cityRepository.getCityByOfficeId(orderModel.companyOfficeId!!)
-
-                    val orderCurrency: CurrencyModel =
-                        countryBlockingRepository.getCountryByCityId(orderCity.id)?.currency!!
-
-                    val map: Map<CurrencyModel?, Long> = totalPriceMatcher.decomposeTotalPrice(pastTotalPrice)
-                    val oldTotalPrice = map[orderCurrency]
-                    if (oldTotalPrice != null) {
-                        val newTotalPrice = oldTotalPrice + servicePrice
-                        totalPrice = "$newTotalPrice $orderCurrency"
-                        basketBlockingRepository.update(BasketModel(orderModel.basketId!!, totalPrice))
-                    }
-                }
-
+            if (orderModel.basketId == null || orderModel.serviceId == null || orderModel.companyOfficeId == null ||
+                orderModel.startWorkDate == null || orderModel.totalWorkDays == null) {
+                throw Exception("Необходимо заполнить все обязательные поля!")
             }
 
+            val isExpired =
+                orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!).isAfter(LocalDateTime.now())
+
+            val pastTotalPrice: Double? =
+                basketBlockingRepository.getById(orderModel.basketId!!)?.totalPrice
+
+            val orderCity = cityRepository.getCityByOfficeId(orderModel.companyOfficeId!!)
+
+            val orderCurrency: CurrencyModel =
+                countryBlockingRepository.getCountryByCityId(orderCity.id)?.currency!!
+
+            val servicePrice: Double =
+                serviceBlockingRepository.getById(orderModel.serviceId!!)
+                    ?.pricePerDay!!.toDouble() * orderModel.totalWorkDays!!
+
+            val totalPrice: Double = if (pastTotalPrice != null) {
+
+                pastTotalPrice + servicePrice
+
+            } else {
+                servicePrice
+            }
+            basketBlockingRepository.update(BasketModel(orderModel.basketId!!, totalPrice))
+
+            val newOrderModel = OrderModel(
+                defaultOrderId,
+                orderModel.basketId,
+                orderModel.companyOfficeId,
+                orderModel.positionId,
+                orderModel.serviceId,
+                isExpired,
+                orderModel.startWorkDate,
+                orderModel.totalWorkDays,
+                orderModel.price
+            )
             val newOrderRecord: OrderRecord = dsl.newRecord(ORDER)
-            newOrderRecord.from(orderModel)
+            newOrderRecord.from(newOrderModel)
             newOrderRecord.reset(ORDER.ID)
             newOrderRecord.store()
             return@fromSupplier newOrderRecord.into(Order::class.java)
@@ -98,7 +113,7 @@ abstract class OrderRepository(
 
     fun updateOrder(newOrderModel: OrderModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldOrderModel: OrderModel = orderBlockingRepository.getById(newOrderModel.id)!!
+            val oldOrderModel: OrderModel = orderBlockingRepository.getById(newOrderModel.id!!)!!
 
             dsl.update(ORDER)
                 .set(ORDER.START_WORK_DATE, newOrderModel.startWorkDate ?: oldOrderModel.startWorkDate)
@@ -110,18 +125,39 @@ abstract class OrderRepository(
 
     fun updateExpiredStatus() {
         log.info("Scheduler is working. The time is now {}", dateFormat.format(Date()))
+        val expiredOrdersList: List<Long> = dsl.select(ORDER.ID).from(ORDER).where(
+            ORDER.IS_EXPIRED.eq(false).and(
+                ORDER.START_WORK_DATE.plus(ORDER.TOTAL_WORK_DAYS).ge(LocalDateTime.now())
+            )
+        ).map {it.into(Long::class.java)}
+
+        expiredOrdersList.stream().map {orderId ->
+            orderBlockingRepository.decreaseBasketTotalPriceByOrderId(orderId)
+        }
         dsl.update(ORDER)
-            .set(ORDER.IS_EXPIRED, false)
+            .set(ORDER.IS_EXPIRED, true)
             .where(
-                ORDER.IS_EXPIRED.eq(true).and(
+                ORDER.IS_EXPIRED.eq(false).and(
                     ORDER.START_WORK_DATE.plus(ORDER.TOTAL_WORK_DAYS).ge(LocalDateTime.now())
                 )
             )
 
     }
 
+    fun deleteOrderById(orderId: Long): Mono<Boolean> {
+        return Mono.fromSupplier {
+            orderBlockingRepository.decreaseBasketTotalPriceByOrderId(orderId)
+
+            return@fromSupplier dsl.deleteFrom(ORDER)
+                .where(ORDER.ID.eq(orderId))
+                .execute() == 1
+        }
+    }
+
     companion object {
         private val log = LogManager.getLogger()
         private val dateFormat = SimpleDateFormat("HH:mm:ss")
+
+        private val defaultOrderId: Long = 1
     }
 }

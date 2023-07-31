@@ -21,7 +21,8 @@ data class Order(
     @set:JvmName("setIsExpired")
     var isExpired: Boolean? = null,
     var startWorkDate: LocalDateTime? = null,
-    var totalWorkDays: Long? = null
+    var totalWorkDays: Long? = null,
+    var price: Double? = null
 ): Serializable {
 
 
@@ -36,6 +37,7 @@ data class Order(
         sb.append(", ").append(isExpired)
         sb.append(", ").append(startWorkDate)
         sb.append(", ").append(totalWorkDays)
+        sb.append(", ").append(price)
 
         sb.append(")")
         return sb.toString()

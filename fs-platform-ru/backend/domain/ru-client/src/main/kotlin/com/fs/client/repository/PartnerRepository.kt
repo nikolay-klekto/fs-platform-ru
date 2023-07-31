@@ -9,6 +9,8 @@ import com.fs.domain.jooq.tables.Partner.Companion.PARTNER
 import com.fs.domain.jooq.tables.pojos.Partner
 import com.fs.domain.jooq.tables.records.PartnerRecord
 import com.fs.client.repository.blocked.ClientBlockingRepository
+import com.fs.client.ru.enums.ClientRoleModel
+import org.jetbrains.kotlin.gradle.utils.loadPropertyFromResources
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -49,13 +51,31 @@ abstract class PartnerRepository(
 
     fun insertPartner(clientModel: ClientModel): Mono<PartnerModel> {
         return Mono.fromSupplier {
-            var newClientModel: ClientModel = clientModel
-            if (clientModel.id == null) {
-                newClientModel = clientBlockingRepository.insert(clientModel)
+            var newClientModel: ClientModel = ClientModel(
+                clientModel.id,
+                clientModel.basketId,
+                clientModel.cityId,
+                clientModel.activateStatus,
+                clientModel.birthday,
+                clientModel.dateCreated,
+                clientModel.educationStatus,
+                clientModel.email,
+                clientModel.employment,
+                clientModel.firstName,
+                clientModel.lastName,
+                clientModel.password,
+                clientModel.phoneNumber,
+                ClientRoleModel.PARTNER,
+                clientModel.telegramUsername,
+                clientModel.username
+            )
+            if (newClientModel.id == null) {
+                newClientModel = clientBlockingRepository.insert(newClientModel)
             }
             val partnerModel = PartnerModel(
                 id = 0,
                 clientId = newClientModel.id!!
+
             )
             val newPartnerRecord: PartnerRecord = dsl.newRecord(PARTNER)
             newPartnerRecord.from(partnerModel)

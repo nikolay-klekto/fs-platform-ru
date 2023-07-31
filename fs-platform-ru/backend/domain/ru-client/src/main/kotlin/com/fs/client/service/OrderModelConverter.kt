@@ -16,7 +16,8 @@ class OrderModelConverter : ModelConverter<Order, OrderModel> {
             serviceId = rawObject.serviceId,
             isExpired = rawObject.isExpired,
             startWorkDate = rawObject.startWorkDate,
-            totalWorkDays = rawObject.totalWorkDays
+            totalWorkDays = rawObject.totalWorkDays,
+            price = rawObject.price
         )
     }
 

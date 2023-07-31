@@ -1,6 +1,7 @@
 package com.fs.client.repository.blocked
 
 import com.fs.client.ru.ClientModel
+import com.fs.client.ru.enums.ClientRoleModel
 import com.fs.client.service.ClientModelConverter
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City.Companion.CITY
@@ -9,7 +10,9 @@ import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.pojos.Client
 import com.fs.domain.jooq.tables.records.ClientRecord
 import com.fs.service.ru.BasketModel
+import org.jetbrains.kotlin.tooling.core.closure
 import org.jooq.DSLContext
+import java.time.LocalDateTime
 
 abstract class ClientBlockingRepository(
     open val dsl: DSLContext,
@@ -19,9 +22,6 @@ abstract class ClientBlockingRepository(
 
     fun getById(clientId: Long?): ClientModel? {
         return dsl.select(CLIENT.asterisk()).from(CLIENT)
-            .join(Basket.BASKET).on(CLIENT.BASKET_ID.eq(Basket.BASKET.ID))
-            .join(CITY).on(CLIENT.CITY_ID.eq(CITY.ID))
-            .join(Country.COUNTRY).on(CITY.COUNTRY_CODE.eq(Country.COUNTRY.CODE))
             .where(CLIENT.ID.eq(clientId))
             .map { it.into(Client::class.java) }
             .map(converter::toModel)
@@ -30,13 +30,42 @@ abstract class ClientBlockingRepository(
 
     fun insert(clientModel: ClientModel): ClientModel {
 
+        if(clientModel.email == null || clientModel.username == null || clientModel.password == null  ){
+            throw Exception("Пропущены обязательные поля! Заполните email, username, password.")
+        }
+
         val newClientRecord: ClientRecord = dsl.newRecord(CLIENT)
         val basket: BasketModel = basketBlockingRepository.insert()
-        clientModel.basketId = basket.id
-        newClientRecord.from(clientModel)
+        val newClientModel = ClientModel(
+            defaultClientId,
+            basket.id,
+            clientModel.cityId,
+            defaultActiveStatus,
+            clientModel.birthday,
+            LocalDateTime.now(),
+            clientModel.educationStatus,
+            clientModel.email,
+            clientModel.employment,
+            clientModel.firstName,
+            clientModel.lastName,
+            clientModel.password,
+            clientModel.phoneNumber,
+            clientModel.role?: defaultClientRole,
+            clientModel.telegramUsername,
+            clientModel.username
+        )
+
+        newClientRecord.from(newClientModel)
         newClientRecord.reset(CLIENT.ID)
         newClientRecord.store()
         return converter.toModel(newClientRecord.into(Client::class.java))
 
+    }
+
+    companion object {
+
+        private const val defaultClientId: Long = 1
+        private val defaultClientRole = ClientRoleModel.CLIENT
+        private const val defaultActiveStatus: Boolean = false
     }
 }

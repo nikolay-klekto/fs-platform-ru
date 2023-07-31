@@ -66,7 +66,7 @@ open class Basket(
     /**
      * The column <code>public.basket.total_price</code>.
      */
-    val TOTAL_PRICE: TableField<BasketRecord, String?> = createField(DSL.name("total_price"), SQLDataType.VARCHAR, this, "")
+    val TOTAL_PRICE: TableField<BasketRecord, Double?> = createField(DSL.name("total_price"), SQLDataType.DOUBLE, this, "")
 
     private constructor(alias: Name, aliased: Table<BasketRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<BasketRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
@@ -106,5 +106,5 @@ open class Basket(
     // -------------------------------------------------------------------------
     // Row2 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row2<Long?, String?> = super.fieldsRow() as Row2<Long?, String?>
+    override fun fieldsRow(): Row2<Long?, Double?> = super.fieldsRow() as Row2<Long?, Double?>
 }

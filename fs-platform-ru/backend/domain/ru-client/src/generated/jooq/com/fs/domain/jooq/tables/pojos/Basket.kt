@@ -13,7 +13,7 @@ import java.io.Serializable
 @Suppress("UNCHECKED_CAST")
 data class Basket(
     var id: Long? = null,
-    var totalPrice: String? = null
+    var totalPrice: Double? = null
 ): Serializable {
 
 

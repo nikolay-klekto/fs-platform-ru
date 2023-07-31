@@ -40,4 +40,9 @@ open class OrderController(open val orderRepository: OrderRepository) {
     fun updateOrder(@Argument order: OrderModel): Mono<Boolean> {
         return orderRepository.updateOrder(order)
     }
+
+    @MutationMapping
+    fun deleteOrder(@Argument id: Long): Mono<Boolean> {
+        return orderRepository.deleteOrderById(id)
+    }
 }

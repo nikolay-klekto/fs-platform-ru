@@ -28,7 +28,7 @@ open class CityController(open val cityRepository: CityRepository) {
         cityRepository.insertCity(cityModel)
 
     @QueryMapping
-    fun getCity(@Argument id: Long): Mono<CityModel> {
+    fun getCity(@Argument id: Long): Mono<CityModel?> {
         return cityRepository.getCityById(id)
     }
 
@@ -48,12 +48,12 @@ open class CityController(open val cityRepository: CityRepository) {
     }
 
     @SchemaMapping(typeName = "Client", field = "city")
-    fun getCityForClient(client: ClientModel): Mono<CityModel> {
-        return cityRepository.getCityById(client.cityId!!)
+    fun getCityForClient(client: ClientModel): Mono<CityModel?> {
+        return cityRepository.getCityById(client.cityId)
     }
 
     @SchemaMapping(typeName = "Address", field = "city")
-    fun getCityForAddress(address: AddressModel): Mono<CityModel> {
+    fun getCityForAddress(address: AddressModel): Mono<CityModel?> {
         return cityRepository.getCityById(address.cityId!!)
     }
 }

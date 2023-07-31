@@ -63,6 +63,7 @@ type Mutation {
 
     addOrder(order: OrderInput!): Order
     updateOrder(order: OrderInput!): Boolean
+    deleteOrder(id: ID!): Boolean
 
     addCompany(company: CompanyInput!): Company
     addCompanyByPartner(partnerId: ID!, company: CompanyInput!): Company
@@ -114,10 +115,10 @@ input ServiceInput {
 }
 
 input ReviewInput {
-    id: ID!
+    id: ID
     companyId: ID!
     clientId: ID!
-    description: String,
+    description: String!,
     rate: Int!
     username: String!
 }
@@ -141,9 +142,9 @@ input OrderInput {
     positionId: ID
     serviceId: ID
     isExpired: Boolean
-        startWorkDate: LocalDateTime
-#    startWorkDate: String
+    startWorkDate: LocalDateTime
     totalWorkDays: Int
+    price: Float
 }
 
 input CompanyInput {
@@ -167,11 +168,11 @@ input PartnerInput {
 }
 
 input ClientInsert {
-    cityId: ID!,
-    activateStatus: Boolean,
+    cityId: ID,
+    #    activateStatus: Boolean,
     birthday: LocalDate,
     #    birthday: String,
-    dateCreated: LocalDateTime,
+    #    dateCreated: LocalDateTime,
     #    dateCreated: String,
     educationStatus: EducationEnum,
     email: String,
@@ -180,7 +181,7 @@ input ClientInsert {
     lastName: String,
     password: String,
     phoneNumber: String,
-    role: ClientRoleEnum,
+    #   role: ClientRoleEnum,
     telegramUsername: String,
     username: String
 }
@@ -191,14 +192,14 @@ input ClientUpdate {
     activateStatus: Boolean,
     birthday: LocalDate,
     #    birthday: String,
-    dateCreated: LocalDateTime,
+    #   dateCreated: LocalDateTime,
     #    dateCreated: String,
     educationStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,
     firstName: String,
     lastName: String,
-    password: String,
+    #    password: String,
     phoneNumber: String,
     role: ClientRoleEnum,
     telegramUsername: String,
@@ -207,7 +208,7 @@ input ClientUpdate {
 
 input BasketInput {
     id: ID,
-    totalPrice: String
+    totalPrice: Float
 }
 
 input AddressInput {
@@ -275,6 +276,7 @@ type Order {
     startWorkDate: LocalDateTime
 #    startWorkDate: String
     totalWorkDays: Int
+    price: Float
 }
 
 type Company {
@@ -321,7 +323,7 @@ type Client {
 
 type Basket {
     id: ID,
-    totalPrice: String
+    totalPrice: Float
 }
 
 type City {
