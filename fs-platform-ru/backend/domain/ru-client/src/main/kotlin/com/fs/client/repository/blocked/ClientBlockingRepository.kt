@@ -86,10 +86,10 @@ abstract class ClientBlockingRepository(
         val newClientRecord: ClientRecord = dsl.newRecord(CLIENT)
         val basket: BasketModel = basketBlockingRepository.insert()
         val newClientModel = ClientModel(
-            defaultClientId,
+            DEFAULT_CLIENT_ID,
             basket.id,
             clientModel.cityId,
-            defaultActiveStatus,
+            DEFAULT_ACTIVE_STATUS,
             clientModel.birthday,
             LocalDateTime.now(),
             clientModel.educationStatus,
@@ -118,10 +118,7 @@ abstract class ClientBlockingRepository(
         return dsl.update(CLIENT)
             .set(CLIENT.CITY_ID, newClientModel.cityId ?: oldClientModel.cityId)
             .set(CLIENT.BIRTHDAY, newClientModel.birthday ?: oldClientModel.birthday)
-            .set(
-                CLIENT.EDUCATION_STATUS,
-                newClientModel.educationStatus ?: oldClientModel.educationStatus
-            )
+            .set(CLIENT.EDUCATION_STATUS, newClientModel.educationStatus ?: oldClientModel.educationStatus)
             .set(CLIENT.EMAIL, newClientModel.email ?: oldClientModel.email)
             .set(CLIENT.EMPLOYMENT, newClientModel.employment ?: oldClientModel.employment)
             .set(CLIENT.FIRST_NAME, newClientModel.firstName ?: oldClientModel.firstName)
@@ -138,8 +135,8 @@ abstract class ClientBlockingRepository(
 
     companion object {
 
-        private const val defaultClientId: Long = 1
+        private const val DEFAULT_CLIENT_ID: Long = 1
         private val defaultClientRole = ClientRoleModel.CLIENT
-        private const val defaultActiveStatus: Boolean = false
+        private const val DEFAULT_ACTIVE_STATUS: Boolean = false
     }
 }
