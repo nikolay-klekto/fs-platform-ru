@@ -3,14 +3,10 @@ package com.fs.client.repository.blocked
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.enums.ClientRoleModel
 import com.fs.client.service.ClientModelConverter
-import com.fs.domain.jooq.tables.Basket
-import com.fs.domain.jooq.tables.City.Companion.CITY
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
-import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.pojos.Client
 import com.fs.domain.jooq.tables.records.ClientRecord
 import com.fs.service.ru.BasketModel
-import org.jetbrains.kotlin.tooling.core.closure
 import org.jooq.DSLContext
 import java.time.LocalDateTime
 
@@ -30,7 +26,16 @@ abstract class ClientBlockingRepository(
 
     fun insert(clientModel: ClientModel): ClientModel {
 
-        if(clientModel.email == null || clientModel.username == null || clientModel.password == null  ){
+        if ((clientModel.email == null || clientModel.username == null ||
+                    clientModel.password == null || clientModel.phoneNumber == null)
+            && clientModel.role == ClientRoleModel.CLIENT
+        ) {
+            throw Exception("Пропущены обязательные поля! Заполните email, username, password.")
+        }
+
+        if ((clientModel.email == null && clientModel.phoneNumber == null)
+            && clientModel.role == ClientRoleModel.UNREGISTERED_CLIENT
+        ) {
             throw Exception("Пропущены обязательные поля! Заполните email, username, password.")
         }
 
@@ -50,7 +55,7 @@ abstract class ClientBlockingRepository(
             clientModel.lastName,
             clientModel.password,
             clientModel.phoneNumber,
-            clientModel.role?: defaultClientRole,
+            clientModel.role ?: defaultClientRole,
             clientModel.telegramUsername,
             clientModel.username
         )

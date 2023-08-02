@@ -73,11 +73,6 @@ abstract class OrderRepository(
             val pastTotalPrice: Double? =
                 basketBlockingRepository.getById(orderModel.basketId!!)?.totalPrice
 
-            val orderCity = cityRepository.getCityByOfficeId(orderModel.companyOfficeId!!)
-
-            val orderCurrency: CurrencyModel =
-                countryBlockingRepository.getCountryByCityId(orderCity.id)?.currency!!
-
             val servicePrice: Double =
                 serviceBlockingRepository.getById(orderModel.serviceId!!)
                     ?.pricePerDay!!.toDouble() * orderModel.totalWorkDays!!
@@ -92,7 +87,7 @@ abstract class OrderRepository(
             basketBlockingRepository.update(BasketModel(orderModel.basketId!!, totalPrice))
 
             val newOrderModel = OrderModel(
-                defaultOrderId,
+                DEFAULT_ORDER_ID,
                 orderModel.basketId,
                 orderModel.companyOfficeId,
                 orderModel.positionId,
@@ -158,6 +153,6 @@ abstract class OrderRepository(
         private val log = LogManager.getLogger()
         private val dateFormat = SimpleDateFormat("HH:mm:ss")
 
-        private val defaultOrderId: Long = 1
+        private const val DEFAULT_ORDER_ID: Long = 1
     }
 }

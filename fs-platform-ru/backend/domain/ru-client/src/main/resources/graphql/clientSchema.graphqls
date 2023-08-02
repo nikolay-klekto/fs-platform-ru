@@ -181,7 +181,7 @@ input ClientInsert {
     lastName: String,
     password: String,
     phoneNumber: String,
-    #   role: ClientRoleEnum,
+    role: ClientRoleEnum,
     telegramUsername: String,
     username: String
 }
@@ -401,6 +401,7 @@ enum ClientRoleEnum {
     CLIENT
     PARTNER
     ADMIN
+    UNREGISTERED_CLIENT
 }
 
 enum CurrencyEnum {

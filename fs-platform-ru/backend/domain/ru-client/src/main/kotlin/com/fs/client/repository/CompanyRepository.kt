@@ -122,7 +122,7 @@ abstract class CompanyRepository(
 
     fun updateCompany(companyModel: CompanyModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldCompanyModel: CompanyModel = companyBlockingRepository.getById(companyModel.id)!!
+            val oldCompanyModel: CompanyModel = companyBlockingRepository.getById(companyModel.id!!)!!
 
             dsl.update(COMPANY)
                 .set(
