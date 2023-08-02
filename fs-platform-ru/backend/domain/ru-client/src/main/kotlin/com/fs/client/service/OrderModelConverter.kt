@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class OrderModelConverter : ModelConverter<Order, OrderModel> {
     override fun toModel(rawObject: Order): OrderModel {
         return OrderModel(
-            id = rawObject.id!!,
+            id = rawObject.id,
             basketId = rawObject.basketId,
             companyOfficeId = rawObject.companyOfficeId,
             positionId = rawObject.positionId,

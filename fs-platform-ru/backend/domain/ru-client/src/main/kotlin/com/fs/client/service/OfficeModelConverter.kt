@@ -29,7 +29,7 @@ class OfficeModelConverter : ModelConverter<Office, OfficeModel> {
 
     fun fromCompanyAddressToAddressModel(companyAddress: CompanyAddress): AddressModel {
         return AddressModel(
-            companyAddress.addressId!!,
+            companyAddress.addressId,
             companyAddress.cityId,
             companyAddress.apartment,
             companyAddress.building,

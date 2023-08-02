@@ -41,7 +41,7 @@ abstract class OfficeRepository(
             if (companyAddress.addressId != null) {
                 val newAddressModel = converter.fromCompanyAddressToAddressModel(companyAddress)
                 val resultAddressUpdate = blockingAddressRepository.update(newAddressModel)
-                if (resultAddressUpdate == true) {
+                if (resultAddressUpdate) {
                     result = resultAddressUpdate
                 }
             }

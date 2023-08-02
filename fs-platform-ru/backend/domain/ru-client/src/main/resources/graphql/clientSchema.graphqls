@@ -89,7 +89,7 @@ type Mutation {
     updateClient(client: ClientUpdate!): Boolean
     changePassword(clientId: ID!, password: String!): Boolean
     #    changeRole(clientId: ID!, role: ClientRoleEnum): Boolean     //Should to think how to realize this function
-    addClient(client: ClientInsert): Client
+    addClient(client: ClientInsert): ErrorClientModel
     deleteClient(id: ID!): Boolean
 
     addCountry(country: CountryInput): Country
@@ -374,6 +374,11 @@ type Event {
 
 type ErrorBooleanModel {
     data: Boolean
+    errorMessage: String
+}
+
+type ErrorClientModel {
+    data: Client
     errorMessage: String
 }
 

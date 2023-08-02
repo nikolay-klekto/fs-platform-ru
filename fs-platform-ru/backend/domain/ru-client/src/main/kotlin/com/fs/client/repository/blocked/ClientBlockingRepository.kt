@@ -3,17 +3,20 @@ package com.fs.client.repository.blocked
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.enums.ClientRoleModel
 import com.fs.client.service.ClientModelConverter
+import com.fs.client.service.PasswordService
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.pojos.Client
 import com.fs.domain.jooq.tables.records.ClientRecord
 import com.fs.service.ru.BasketModel
 import org.jooq.DSLContext
+import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
 abstract class ClientBlockingRepository(
     open val dsl: DSLContext,
     open val converter: ClientModelConverter,
-    open val basketBlockingRepository: BasketBlockingRepository
+    open val basketBlockingRepository: BasketBlockingRepository,
+    open val encoder: PasswordService
 ) {
 
     fun getById(clientId: Long?): ClientModel? {
@@ -24,7 +27,48 @@ abstract class ClientBlockingRepository(
             .firstOrNull()
     }
 
+    private fun getByEmail(clientEmail: String): ClientModel? {
+        return dsl.selectFrom(CLIENT).where(CLIENT.EMAIL.eq(clientEmail))
+            .map { it.into(Client::class.java) }
+            .map(converter::toModel)
+            .firstOrNull()
+    }
+
     fun insert(clientModel: ClientModel): ClientModel {
+
+
+        val password = if (clientModel.password != null) {
+            encoder.encodePassword(clientModel.password!!)
+        } else {
+            null
+        }
+
+        if (clientModel.email != null) {
+            val possibleUnregisteredClient = getByEmail(clientModel.email!!)
+            if (possibleUnregisteredClient != null) {
+
+                val newClient = ClientModel(
+                    id = possibleUnregisteredClient.id,
+                    basketId = possibleUnregisteredClient.basketId,
+                    cityId = clientModel.cityId ?: possibleUnregisteredClient.cityId,
+                    activateStatus = clientModel.activateStatus ?: possibleUnregisteredClient.activateStatus,
+                    birthday = clientModel.birthday,
+                    dateCreated = possibleUnregisteredClient.dateCreated,
+                    educationStatus = clientModel.educationStatus,
+                    email = clientModel.email ?: possibleUnregisteredClient.email,
+                    employment = clientModel.employment,
+                    firstName = clientModel.firstName ?: possibleUnregisteredClient.firstName,
+                    lastName = clientModel.lastName ?: possibleUnregisteredClient.lastName,
+                    password = password,
+                    phoneNumber = clientModel.phoneNumber,
+                    role = clientModel.role,
+                    telegramUsername = clientModel.telegramUsername,
+                    username = clientModel.username,
+                )
+                update(newClient)
+                return getById(possibleUnregisteredClient.id)!!
+            }
+        }
 
         if ((clientModel.email == null || clientModel.username == null ||
                     clientModel.password == null || clientModel.phoneNumber == null)
@@ -53,7 +97,7 @@ abstract class ClientBlockingRepository(
             clientModel.employment,
             clientModel.firstName,
             clientModel.lastName,
-            clientModel.password,
+            password,
             clientModel.phoneNumber,
             clientModel.role ?: defaultClientRole,
             clientModel.telegramUsername,
@@ -66,6 +110,31 @@ abstract class ClientBlockingRepository(
         return converter.toModel(newClientRecord.into(Client::class.java))
 
     }
+
+    fun update(newClientModel: ClientModel): Boolean {
+
+        val oldClientModel: ClientModel = getById(newClientModel.id)!!
+
+        return dsl.update(CLIENT)
+            .set(CLIENT.CITY_ID, newClientModel.cityId ?: oldClientModel.cityId)
+            .set(CLIENT.BIRTHDAY, newClientModel.birthday ?: oldClientModel.birthday)
+            .set(
+                CLIENT.EDUCATION_STATUS,
+                newClientModel.educationStatus ?: oldClientModel.educationStatus
+            )
+            .set(CLIENT.EMAIL, newClientModel.email ?: oldClientModel.email)
+            .set(CLIENT.EMPLOYMENT, newClientModel.employment ?: oldClientModel.employment)
+            .set(CLIENT.FIRST_NAME, newClientModel.firstName ?: oldClientModel.firstName)
+            .set(CLIENT.LAST_NAME, newClientModel.lastName ?: oldClientModel.lastName)
+            .set(CLIENT.ROLE, newClientModel.role ?: oldClientModel.role)
+            .set(CLIENT.PASSWORD, newClientModel.password ?: oldClientModel.password)
+            .set(CLIENT.PHONE_NUMBER, newClientModel.phoneNumber ?: oldClientModel.phoneNumber)
+            .set(CLIENT.TELEGRAM_USERNAME, newClientModel.telegramUsername ?: oldClientModel.telegramUsername)
+            .set(CLIENT.USERNAME, newClientModel.username ?: oldClientModel.username)
+            .where(CLIENT.ID.eq(newClientModel.id))
+            .execute() == 1
+    }
+
 
     companion object {
 

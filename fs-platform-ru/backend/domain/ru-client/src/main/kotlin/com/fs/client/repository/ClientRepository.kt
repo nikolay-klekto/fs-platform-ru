@@ -10,6 +10,7 @@ import com.fs.domain.jooq.tables.records.ClientRecord
 import com.fs.domain.jooq.tables.references.BASKET
 import com.fs.client.repository.blocked.ClientBlockingRepository
 import com.fs.service.ru.BasketModel
+import com.fs.service.ru.errors.ErrorModel
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -23,9 +24,9 @@ abstract class ClientRepository(
 
     fun getClintById(id: Long?): Mono<ClientModel> {
         return Mono.fromSupplier {
-            clientBlockingRepository.getById(id)
+            val a = clientBlockingRepository.getById(id)
+            return@fromSupplier a
         }
-
     }
 
     fun getAllClients(): Flux<ClientModel> {
@@ -38,24 +39,7 @@ abstract class ClientRepository(
 
     fun updateClientInfo(newClientModel: ClientModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldClientModel: ClientModel = clientBlockingRepository.getById(newClientModel.id)!!
-
-            dsl.update(CLIENT)
-                .set(CLIENT.CITY_ID, newClientModel.cityId ?: oldClientModel.cityId)
-                .set(CLIENT.BIRTHDAY, newClientModel.birthday ?: oldClientModel.birthday)
-                .set(
-                    CLIENT.EDUCATION_STATUS,
-                    newClientModel.educationStatus ?: oldClientModel.educationStatus
-                )
-                .set(CLIENT.EMAIL, newClientModel.email ?: oldClientModel.email)
-                .set(CLIENT.EMPLOYMENT, newClientModel.employment ?: oldClientModel.employment)
-                .set(CLIENT.FIRST_NAME, newClientModel.firstName ?: oldClientModel.firstName)
-                .set(CLIENT.LAST_NAME, newClientModel.lastName ?: oldClientModel.lastName)
-                .set(CLIENT.PHONE_NUMBER, newClientModel.phoneNumber ?: oldClientModel.phoneNumber)
-                .set(CLIENT.TELEGRAM_USERNAME, newClientModel.telegramUsername ?: oldClientModel.telegramUsername)
-                .set(CLIENT.USERNAME, newClientModel.username ?: oldClientModel.username)
-                .where(CLIENT.ID.eq(newClientModel.id))
-                .execute() == 1
+            clientBlockingRepository.update(newClientModel)
         }
     }
 
@@ -104,9 +88,9 @@ abstract class ClientRepository(
 //        }
 //    }
 
-    fun insertClient(clientModel: ClientModel) : Mono<ClientModel> {
+    fun insertClient(clientModel: ClientModel) : Mono<ErrorModel<ClientModel>> {
         return Mono.fromSupplier {
-            clientBlockingRepository.insert(clientModel)
+            ErrorModel(clientBlockingRepository.insert(clientModel), null)
         }
     }
 

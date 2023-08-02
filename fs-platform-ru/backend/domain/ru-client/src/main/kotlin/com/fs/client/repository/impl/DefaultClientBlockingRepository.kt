@@ -3,6 +3,7 @@ package com.fs.client.repository.impl
 import com.fs.client.repository.blocked.BasketBlockingRepository
 import com.fs.client.repository.blocked.ClientBlockingRepository
 import com.fs.client.service.ClientModelConverter
+import com.fs.client.service.PasswordService
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
 
@@ -10,5 +11,6 @@ import org.springframework.stereotype.Repository
 open class DefaultClientBlockingRepository (
     dsl: DSLContext,
     converter: ClientModelConverter,
-    basketBlockingRepository: BasketBlockingRepository
-): ClientBlockingRepository(dsl, converter, basketBlockingRepository)
+    basketBlockingRepository: BasketBlockingRepository,
+    encoder: PasswordService
+): ClientBlockingRepository(dsl, converter, basketBlockingRepository, encoder)

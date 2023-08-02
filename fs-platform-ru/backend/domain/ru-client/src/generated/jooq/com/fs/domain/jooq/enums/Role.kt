@@ -18,7 +18,8 @@ import org.jooq.Schema
 enum class Role(@get:JvmName("literal") public val literal: String) : EnumType {
     CLIENT("CLIENT"),
     PARTNER("PARTNER"),
-    ADMIN("ADMIN");
+    ADMIN("ADMIN"),
+    UNREGISTERED_CLIENT("UNREGISTERED_CLIENT");
     override fun getCatalog(): Catalog? = schema.catalog
     override fun getSchema(): Schema = Public.PUBLIC
     override fun getName(): String = "role"
