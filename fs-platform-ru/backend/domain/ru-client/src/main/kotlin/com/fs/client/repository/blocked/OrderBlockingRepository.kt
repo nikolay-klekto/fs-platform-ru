@@ -38,4 +38,11 @@ abstract class OrderBlockingRepository(
 
         basketBlockingRepository.update(BasketModel(currentOrder.basketId!!, totalBasketPrice))
     }
+
+    fun isBasketEmpty(basketId: Long): Boolean {
+        val ordersWithCurrentBasket: Int = dsl.selectCount().where(ORDER.BASKET_ID.eq(basketId))
+            .first()
+            .map{it.into(Int::class.java)}
+        return ordersWithCurrentBasket > 0
+    }
 }

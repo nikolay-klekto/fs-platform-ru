@@ -12,9 +12,10 @@ class OrderModelConverter : ModelConverter<Order, OrderModel> {
             id = rawObject.id,
             basketId = rawObject.basketId,
             companyOfficeId = rawObject.companyOfficeId,
+            dateCreated = rawObject.dateCreated,
             positionId = rawObject.positionId,
             serviceId = rawObject.serviceId,
-            isExpired = rawObject.isExpired,
+            orderStatus  = rawObject.orderStatus,
             startWorkDate = rawObject.startWorkDate,
             totalWorkDays = rawObject.totalWorkDays,
             price = rawObject.price
@@ -28,9 +29,11 @@ class OrderModelConverter : ModelConverter<Order, OrderModel> {
             modelObject.companyOfficeId,
             modelObject.positionId,
             modelObject.serviceId,
-            modelObject.isExpired,
             modelObject.startWorkDate,
-            modelObject.totalWorkDays
+            modelObject.totalWorkDays,
+            modelObject.price,
+            modelObject.orderStatus,
+            modelObject.dateCreated
         )
     }
 }

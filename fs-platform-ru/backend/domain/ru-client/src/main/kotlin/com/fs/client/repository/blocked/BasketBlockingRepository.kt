@@ -35,4 +35,10 @@ abstract class BasketBlockingRepository(
             .where(BASKET.ID.eq(basket.id))
             .execute() == 1
     }
+
+    fun delete(basketId: Long): Boolean {
+        return dsl.deleteFrom(BASKET)
+            .where(BASKET.ID.eq(basketId))
+            .execute() == 1
+    }
 }

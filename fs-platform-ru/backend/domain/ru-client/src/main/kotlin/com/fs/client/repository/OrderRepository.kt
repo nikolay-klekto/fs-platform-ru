@@ -14,6 +14,7 @@ import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.domain.jooq.tables.records.OrderRecord
 import com.fs.service.ru.BasketModel
 import com.fs.service.ru.OrderModel
+import com.fs.service.ru.enums.OrderStatus
 import org.apache.logging.log4j.LogManager
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
@@ -90,9 +91,10 @@ abstract class OrderRepository(
                 DEFAULT_ORDER_ID,
                 orderModel.basketId,
                 orderModel.companyOfficeId,
+                LocalDateTime.now(),
                 orderModel.positionId,
                 orderModel.serviceId,
-                isExpired,
+                orderModel.orderStatus,
                 orderModel.startWorkDate,
                 orderModel.totalWorkDays,
                 orderModel.price
@@ -121,7 +123,7 @@ abstract class OrderRepository(
     fun updateExpiredStatus() {
         log.info("Scheduler is working. The time is now {}", dateFormat.format(Date()))
         val expiredOrdersList: List<Long> = dsl.select(ORDER.ID).from(ORDER).where(
-            ORDER.IS_EXPIRED.eq(false).and(
+            ORDER.ORDER_STATUS.eq(OrderStatus.ACTUAL).and(
                 ORDER.START_WORK_DATE.plus(ORDER.TOTAL_WORK_DAYS).ge(LocalDateTime.now())
             )
         ).map {it.into(Long::class.java)}
@@ -130,13 +132,25 @@ abstract class OrderRepository(
             orderBlockingRepository.decreaseBasketTotalPriceByOrderId(orderId)
         }
         dsl.update(ORDER)
-            .set(ORDER.IS_EXPIRED, true)
+            .set(ORDER.ORDER_STATUS, OrderStatus.EXPIRED)
             .where(
-                ORDER.IS_EXPIRED.eq(false).and(
+                ORDER.ORDER_STATUS.eq(OrderStatus.ACTUAL).and(
                     ORDER.START_WORK_DATE.plus(ORDER.TOTAL_WORK_DAYS).ge(LocalDateTime.now())
                 )
             )
 
+        val temporaryExpiredOrders: List<OrderModel> =
+            dsl.select(ORDER.asterisk()).from(ORDER)
+            .where(ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED)
+                .and(ORDER.DATE_CREATED.plus(TEMPORARY_ORDER_LIFE_TIME).ge(LocalDateTime.now())))
+            .map {it.into(OrderModel::class.java)}
+
+        temporaryExpiredOrders.stream().map{orderModel ->
+            deleteOrderById(orderModel.id!!)
+            if(orderBlockingRepository.isBasketEmpty(orderModel.basketId!!)){
+                basketBlockingRepository.delete(orderModel.basketId!!)
+            }
+        }
     }
 
     fun deleteOrderById(orderId: Long): Mono<Boolean> {
@@ -152,7 +166,7 @@ abstract class OrderRepository(
     companion object {
         private val log = LogManager.getLogger()
         private val dateFormat = SimpleDateFormat("HH:mm:ss")
-
+        private const val TEMPORARY_ORDER_LIFE_TIME: Int = 2
         private const val DEFAULT_ORDER_ID: Long = 1
     }
 }

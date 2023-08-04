@@ -5,6 +5,7 @@ package com.fs.domain.jooq.tables
 
 
 import com.fs.domain.jooq.Public
+import com.fs.domain.jooq.enums.OrderStatus
 import com.fs.domain.jooq.keys.ORDER_PKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_BASKET_ID_FKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_COMPANY_OFFICE_ID_FKEY
@@ -21,13 +22,14 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
-import org.jooq.Row9
+import org.jooq.Row10
 import org.jooq.Schema
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
 import org.jooq.UniqueKey
 import org.jooq.impl.DSL
+import org.jooq.impl.EnumConverter
 import org.jooq.impl.Internal
 import org.jooq.impl.SQLDataType
 import org.jooq.impl.TableImpl
@@ -92,11 +94,6 @@ open class Order(
     val SERVICE_ID: TableField<OrderRecord, Long?> = createField(DSL.name("service_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.order.is_expired</code>.
-     */
-    val IS_EXPIRED: TableField<OrderRecord, Boolean?> = createField(DSL.name("is_expired"), SQLDataType.BOOLEAN, this, "")
-
-    /**
      * The column <code>public.order.start_work_date</code>.
      */
     val START_WORK_DATE: TableField<OrderRecord, LocalDateTime?> = createField(DSL.name("start_work_date"), SQLDataType.LOCALDATETIME(6), this, "")
@@ -110,6 +107,16 @@ open class Order(
      * The column <code>public.order.price</code>.
      */
     val PRICE: TableField<OrderRecord, Double?> = createField(DSL.name("price"), SQLDataType.DOUBLE, this, "")
+
+    /**
+     * The column <code>public.order.order_status</code>.
+     */
+    val ORDER_STATUS: TableField<OrderRecord, com.fs.service.ru.enums.OrderStatus?> = createField(DSL.name("order_status"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.OrderStatus::class.java), this, "", EnumConverter<OrderStatus, com.fs.service.ru.enums.OrderStatus>(OrderStatus::class.java, com.fs.service.ru.enums.OrderStatus::class.java))
+
+    /**
+     * The column <code>public.order.date_created</code>.
+     */
+    val DATE_CREATED: TableField<OrderRecord, LocalDateTime?> = createField(DSL.name("date_created"), SQLDataType.LOCALDATETIME(6), this, "")
 
     private constructor(alias: Name, aliased: Table<OrderRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<OrderRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
@@ -193,7 +200,7 @@ open class Order(
     override fun rename(name: Name): Order = Order(name, null)
 
     // -------------------------------------------------------------------------
-    // Row9 type methods
+    // Row10 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row9<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?> = super.fieldsRow() as Row9<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?>
+    override fun fieldsRow(): Row10<Long?, Long?, Long?, Long?, Long?, LocalDateTime?, Long?, Double?, com.fs.service.ru.enums.OrderStatus?, LocalDateTime?> = super.fieldsRow() as Row10<Long?, Long?, Long?, Long?, Long?, LocalDateTime?, Long?, Double?, com.fs.service.ru.enums.OrderStatus?, LocalDateTime?>
 }

@@ -139,9 +139,10 @@ input OrderInput {
     id: ID
     basketId: ID
     companyOfficeId: ID
+    dateCreated: LocalDateTime
     positionId: ID
     serviceId: ID
-    isExpired: Boolean
+    orderStatus: OrderStatus
     startWorkDate: LocalDateTime
     totalWorkDays: Int
     price: Float
@@ -270,9 +271,10 @@ type Order {
     id: ID
     basketId: ID
     company: Company
+    dateCreated: LocalDateTime
     position: Position
     service: Service
-    isExpired: Boolean
+    orderStatus: OrderStatus
     startWorkDate: LocalDateTime
 #    startWorkDate: String
     totalWorkDays: Int
@@ -446,4 +448,10 @@ enum LegalCapacityStatus {
     CAPABLE
     TEMPORARILY_UNAVAILABLE
     CLOSED
+}
+
+enum OrderStatus {
+    EXPIRED
+    ACTUAL
+    PRE_ORDERED
 }

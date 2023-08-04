@@ -4,6 +4,8 @@
 package com.fs.domain.jooq.tables.pojos
 
 
+import com.fs.service.ru.enums.OrderStatus
+
 import java.io.Serializable
 import java.time.LocalDateTime
 
@@ -18,11 +20,11 @@ data class Order(
     var companyOfficeId: Long? = null,
     var positionId: Long? = null,
     var serviceId: Long? = null,
-    @set:JvmName("setIsExpired")
-    var isExpired: Boolean? = null,
     var startWorkDate: LocalDateTime? = null,
     var totalWorkDays: Long? = null,
-    var price: Double? = null
+    var price: Double? = null,
+    var orderStatus: OrderStatus? = null,
+    var dateCreated: LocalDateTime? = null
 ): Serializable {
 
 
@@ -34,10 +36,11 @@ data class Order(
         sb.append(", ").append(companyOfficeId)
         sb.append(", ").append(positionId)
         sb.append(", ").append(serviceId)
-        sb.append(", ").append(isExpired)
         sb.append(", ").append(startWorkDate)
         sb.append(", ").append(totalWorkDays)
         sb.append(", ").append(price)
+        sb.append(", ").append(orderStatus)
+        sb.append(", ").append(dateCreated)
 
         sb.append(")")
         return sb.toString()

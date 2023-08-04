@@ -206,6 +206,12 @@ jooq {
                             },
                             ForcedType().apply {
                                 isEnumConverter = true
+                                userType = "com.fs.service.ru.enums.OrderStatus"
+                                includeExpression = ".*order.order_status"
+                                includeTypes = ".*"
+                            },
+                            ForcedType().apply {
+                                isEnumConverter = true
                                 userType = "com.fs.service.ru.enums.CompanyLegalCapacityStatus"
                                 includeExpression = ".*company.legal_capacity_status"
                                 includeTypes = ".*"

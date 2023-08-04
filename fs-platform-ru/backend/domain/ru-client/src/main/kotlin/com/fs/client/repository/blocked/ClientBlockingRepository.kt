@@ -36,7 +36,6 @@ abstract class ClientBlockingRepository(
 
     fun insert(clientModel: ClientModel): ClientModel {
 
-
         val password = if (clientModel.password != null) {
             encoder.encodePassword(clientModel.password!!)
         } else {
