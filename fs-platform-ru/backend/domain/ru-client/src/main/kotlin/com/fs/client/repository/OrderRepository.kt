@@ -63,13 +63,28 @@ abstract class OrderRepository(
 
     fun insertOrder(orderModel: OrderModel): Mono<OrderModel> {
         return Mono.fromSupplier {
-            if (orderModel.basketId == null || orderModel.serviceId == null || orderModel.companyOfficeId == null ||
-                orderModel.startWorkDate == null || orderModel.totalWorkDays == null) {
+            if (orderModel.serviceId == null || orderModel.companyOfficeId == null ||
+                orderModel.startWorkDate == null || orderModel.totalWorkDays == null
+            ) {
                 throw Exception("Необходимо заполнить все обязательные поля!")
             }
 
-            val isExpired =
-                orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!).isAfter(LocalDateTime.now())
+            var newOrderStatus: OrderStatus
+            var basketId: Long? = orderModel.basketId
+
+            if(orderModel.basketId == null){
+                newOrderStatus = OrderStatus.PRE_ORDERED
+                val newBasketModel: BasketModel = basketBlockingRepository.insert()
+                basketId = newBasketModel.id
+            }
+
+            newOrderStatus = if (orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!)
+                    .isAfter(LocalDateTime.now())
+            ) {
+                OrderStatus.EXPIRED
+            } else {
+                OrderStatus.ACTUAL
+            }
 
             val pastTotalPrice: Double? =
                 basketBlockingRepository.getById(orderModel.basketId!!)?.totalPrice
@@ -89,12 +104,12 @@ abstract class OrderRepository(
 
             val newOrderModel = OrderModel(
                 DEFAULT_ORDER_ID,
-                orderModel.basketId,
+                basketId,
                 orderModel.companyOfficeId,
                 LocalDateTime.now(),
                 orderModel.positionId,
                 orderModel.serviceId,
-                orderModel.orderStatus,
+                newOrderStatus,
                 orderModel.startWorkDate,
                 orderModel.totalWorkDays,
                 orderModel.price
@@ -126,9 +141,9 @@ abstract class OrderRepository(
             ORDER.ORDER_STATUS.eq(OrderStatus.ACTUAL).and(
                 ORDER.START_WORK_DATE.plus(ORDER.TOTAL_WORK_DAYS).ge(LocalDateTime.now())
             )
-        ).map {it.into(Long::class.java)}
+        ).map { it.into(Long::class.java) }
 
-        expiredOrdersList.stream().map {orderId ->
+        expiredOrdersList.stream().map { orderId ->
             orderBlockingRepository.decreaseBasketTotalPriceByOrderId(orderId)
         }
         dsl.update(ORDER)
@@ -141,13 +156,15 @@ abstract class OrderRepository(
 
         val temporaryExpiredOrders: List<OrderModel> =
             dsl.select(ORDER.asterisk()).from(ORDER)
-            .where(ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED)
-                .and(ORDER.DATE_CREATED.plus(TEMPORARY_ORDER_LIFE_TIME).ge(LocalDateTime.now())))
-            .map {it.into(OrderModel::class.java)}
+                .where(
+                    ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED)
+                        .and(ORDER.DATE_CREATED.plus(TEMPORARY_ORDER_LIFE_TIME).ge(LocalDateTime.now()))
+                )
+                .map { it.into(OrderModel::class.java) }
 
-        temporaryExpiredOrders.stream().map{orderModel ->
+        temporaryExpiredOrders.stream().map { orderModel ->
             deleteOrderById(orderModel.id!!)
-            if(orderBlockingRepository.isBasketEmpty(orderModel.basketId!!)){
+            if (orderBlockingRepository.isBasketEmpty(orderModel.basketId!!)) {
                 basketBlockingRepository.delete(orderModel.basketId!!)
             }
         }

@@ -83,10 +83,13 @@ abstract class ClientBlockingRepository(
         }
 
         val newClientRecord: ClientRecord = dsl.newRecord(CLIENT)
-        val basket: BasketModel = basketBlockingRepository.insert()
+        var newBasketId: Long? = clientModel.basketId
+        if(clientModel.basketId == null){
+            newBasketId = basketBlockingRepository.insert().id
+        }
         val newClientModel = ClientModel(
             DEFAULT_CLIENT_ID,
-            basket.id,
+            newBasketId,
             clientModel.cityId,
             DEFAULT_ACTIVE_STATUS,
             clientModel.birthday,
