@@ -1,13 +1,9 @@
 package com.fs.client.repository
 
 import com.fs.client.repository.blocked.BasketBlockingRepository
-import com.fs.client.repository.blocked.CountryBlockingRepository
 import com.fs.client.repository.blocked.OrderBlockingRepository
 import com.fs.client.repository.blocked.ServiceBlockingRepository
-import com.fs.client.ru.enums.CurrencyModel
 import com.fs.client.service.OrderModelConverter
-import com.fs.client.service.TotalPriceMatcher
-import com.fs.domain.jooq.tables.Basket.Companion.BASKET
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
@@ -27,10 +23,7 @@ abstract class OrderRepository(
     open val dsl: DSLContext,
     open val converter: OrderModelConverter,
     open val serviceBlockingRepository: ServiceBlockingRepository,
-    open val cityRepository: CityRepository,
-    open val countryBlockingRepository: CountryBlockingRepository,
     open val basketBlockingRepository: BasketBlockingRepository,
-    open val totalPriceMatcher: TotalPriceMatcher,
     open val orderBlockingRepository: OrderBlockingRepository
 ) {
 
@@ -73,15 +66,15 @@ abstract class OrderRepository(
             var basketId: Long? = orderModel.basketId
             var isBasketTemporary = false
 
-            if(orderModel.basketId != null){
+            if (orderModel.basketId != null) {
                 isBasketTemporary = orderBlockingRepository.isPreOrdersInBasket(orderModel.basketId!!)
             }
 
-            if(orderModel.basketId == null || isBasketTemporary) {
+            if (orderModel.basketId == null || isBasketTemporary) {
                 newOrderStatus = OrderStatus.PRE_ORDERED
                 val newBasketModel: BasketModel = basketBlockingRepository.insert()
                 basketId = newBasketModel.id
-            }else {
+            } else {
 
                 newOrderStatus = if (orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!)
                         .isAfter(LocalDateTime.now())
@@ -190,7 +183,7 @@ abstract class OrderRepository(
         val allTemporaryOrders: List<OrderModel> =
             dsl.select(ORDER.asterisk()).from(ORDER)
                 .where(ORDER.BASKET_ID.eq(temporaryBasketId))
-                .map { it.into(OrderModel::class.java)}
+                .map { it.into(OrderModel::class.java) }
 
 
         allTemporaryOrders.stream().map { temporaryOrder ->
@@ -206,7 +199,7 @@ abstract class OrderRepository(
                 temporaryOrder.totalWorkDays,
                 temporaryOrder.price
             )
-               insertOrder(updatableOrderModel)
+            insertOrder(updatableOrderModel)
             deleteOrderById(temporaryOrder.id!!)
             if (orderBlockingRepository.isBasketEmpty(temporaryBasketId)) {
                 basketBlockingRepository.delete(temporaryBasketId)
