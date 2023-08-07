@@ -15,10 +15,6 @@ open class DefaultOrderRepository(
     dsl: DSLContext,
     converter: OrderModelConverter,
     serviceBlockingRepository: ServiceBlockingRepository,
-    cityRepository: CityRepository,
-    countryBlockingRepository: CountryBlockingRepository,
     basketBlockingRepository: BasketBlockingRepository,
-    totalPriceMatcher: TotalPriceMatcher,
     orderBlockingRepository: OrderBlockingRepository
-) : OrderRepository(dsl, converter, serviceBlockingRepository, cityRepository,
-    countryBlockingRepository, basketBlockingRepository, totalPriceMatcher,orderBlockingRepository)
+) : OrderRepository(dsl, converter, serviceBlockingRepository, basketBlockingRepository,orderBlockingRepository)

@@ -170,6 +170,7 @@ input PartnerInput {
 
 input ClientInsert {
     cityId: ID,
+    basketId: ID
     #    activateStatus: Boolean,
     birthday: LocalDate,
     #    birthday: String,

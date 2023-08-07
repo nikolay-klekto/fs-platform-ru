@@ -62,20 +62,21 @@ abstract class OrderRepository(
                 throw Exception("Необходимо заполнить все обязательные поля!")
             }
 
-            val newOrderStatus: OrderStatus
+            var newOrderStatus: OrderStatus? = null
             var basketId: Long? = orderModel.basketId
             var isBasketTemporary = false
 
             if (orderModel.basketId != null) {
                 isBasketTemporary = orderBlockingRepository.isPreOrdersInBasket(orderModel.basketId!!)
+                if(isBasketTemporary){
+                    newOrderStatus = OrderStatus.PRE_ORDERED
+                }
             }
 
-            if (orderModel.basketId == null || isBasketTemporary) {
-                newOrderStatus = OrderStatus.PRE_ORDERED
+            if (orderModel.basketId == null) {
                 val newBasketModel: BasketModel = basketBlockingRepository.insert()
                 basketId = newBasketModel.id
             } else {
-
                 newOrderStatus = if (orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!)
                         .isAfter(LocalDateTime.now())
                 ) {
@@ -86,7 +87,7 @@ abstract class OrderRepository(
             }
 
             val pastTotalPrice: Double? =
-                basketBlockingRepository.getById(orderModel.basketId!!)?.totalPrice
+                basketBlockingRepository.getById(basketId!!)?.totalPrice
 
             val servicePrice: Double =
                 serviceBlockingRepository.getById(orderModel.serviceId!!)
@@ -99,7 +100,7 @@ abstract class OrderRepository(
             } else {
                 servicePrice
             }
-            basketBlockingRepository.update(BasketModel(orderModel.basketId!!, totalPrice))
+            basketBlockingRepository.update(BasketModel(basketId, totalPrice))
 
             val newOrderModel = OrderModel(
                 DEFAULT_ORDER_ID,
@@ -108,7 +109,7 @@ abstract class OrderRepository(
                 LocalDateTime.now(),
                 orderModel.positionId,
                 orderModel.serviceId,
-                newOrderStatus,
+                newOrderStatus ?: orderModel.orderStatus,
                 orderModel.startWorkDate,
                 orderModel.totalWorkDays,
                 orderModel.price

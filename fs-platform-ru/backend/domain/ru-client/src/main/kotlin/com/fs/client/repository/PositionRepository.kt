@@ -88,7 +88,7 @@ abstract class PositionRepository(
 
     fun updatePosition(position: PositionModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldPosition = positionBlockingRepository.getById(position.id)
+            val oldPosition = positionBlockingRepository.getById(position.id!!)
 
             dsl.update(POSITION)
                 .set(POSITION.DESCRIPTION, position.description ?: oldPosition?.description)
