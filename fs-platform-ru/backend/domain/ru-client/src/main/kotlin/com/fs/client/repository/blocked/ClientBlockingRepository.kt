@@ -1,5 +1,6 @@
 package com.fs.client.repository.blocked
 
+import com.fs.client.repository.OrderRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.enums.ClientRoleModel
 import com.fs.client.service.ClientModelConverter
@@ -7,16 +8,15 @@ import com.fs.client.service.PasswordService
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.pojos.Client
 import com.fs.domain.jooq.tables.records.ClientRecord
-import com.fs.service.ru.BasketModel
 import org.jooq.DSLContext
-import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
 abstract class ClientBlockingRepository(
     open val dsl: DSLContext,
     open val converter: ClientModelConverter,
     open val basketBlockingRepository: BasketBlockingRepository,
-    open val encoder: PasswordService
+    open val encoder: PasswordService,
+    open val orderRepository: OrderRepository
 ) {
 
     fun getById(clientId: Long?): ClientModel? {
@@ -44,7 +44,9 @@ abstract class ClientBlockingRepository(
 
         if (clientModel.email != null) {
             val possibleUnregisteredClient = getByEmail(clientModel.email!!)
-            if (possibleUnregisteredClient != null) {
+            if (possibleUnregisteredClient != null
+                && possibleUnregisteredClient.role == ClientRoleModel.UNREGISTERED_CLIENT
+            ) {
 
                 val newClient = ClientModel(
                     id = possibleUnregisteredClient.id,
@@ -65,6 +67,7 @@ abstract class ClientBlockingRepository(
                     username = clientModel.username,
                 )
                 update(newClient)
+                orderRepository.copyAllOrdersToMainBasket(clientModel.basketId!!, possibleUnregisteredClient.basketId!!)
                 return getById(possibleUnregisteredClient.id)!!
             }
         }
@@ -84,7 +87,7 @@ abstract class ClientBlockingRepository(
 
         val newClientRecord: ClientRecord = dsl.newRecord(CLIENT)
         var newBasketId: Long? = clientModel.basketId
-        if(clientModel.basketId == null){
+        if (clientModel.basketId == null) {
             newBasketId = basketBlockingRepository.insert().id
         }
         val newClientModel = ClientModel(

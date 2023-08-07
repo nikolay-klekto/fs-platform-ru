@@ -69,21 +69,27 @@ abstract class OrderRepository(
                 throw Exception("Необходимо заполнить все обязательные поля!")
             }
 
-            var newOrderStatus: OrderStatus
+            val newOrderStatus: OrderStatus
             var basketId: Long? = orderModel.basketId
+            var isBasketTemporary = false
 
-            if(orderModel.basketId == null){
+            if(orderModel.basketId != null){
+                isBasketTemporary = orderBlockingRepository.isPreOrdersInBasket(orderModel.basketId!!)
+            }
+
+            if(orderModel.basketId == null || isBasketTemporary) {
                 newOrderStatus = OrderStatus.PRE_ORDERED
                 val newBasketModel: BasketModel = basketBlockingRepository.insert()
                 basketId = newBasketModel.id
-            }
+            }else {
 
-            newOrderStatus = if (orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!)
-                    .isAfter(LocalDateTime.now())
-            ) {
-                OrderStatus.EXPIRED
-            } else {
-                OrderStatus.ACTUAL
+                newOrderStatus = if (orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!)
+                        .isAfter(LocalDateTime.now())
+                ) {
+                    OrderStatus.EXPIRED
+                } else {
+                    OrderStatus.ACTUAL
+                }
             }
 
             val pastTotalPrice: Double? =
@@ -177,6 +183,34 @@ abstract class OrderRepository(
             return@fromSupplier dsl.deleteFrom(ORDER)
                 .where(ORDER.ID.eq(orderId))
                 .execute() == 1
+        }
+    }
+
+    fun copyAllOrdersToMainBasket(temporaryBasketId: Long, activeBasketId: Long) {
+        val allTemporaryOrders: List<OrderModel> =
+            dsl.select(ORDER.asterisk()).from(ORDER)
+                .where(ORDER.BASKET_ID.eq(temporaryBasketId))
+                .map { it.into(OrderModel::class.java)}
+
+
+        allTemporaryOrders.stream().map { temporaryOrder ->
+            val updatableOrderModel = OrderModel(
+                temporaryOrder.id,
+                activeBasketId,
+                temporaryOrder.companyOfficeId,
+                temporaryOrder.dateCreated,
+                temporaryOrder.positionId,
+                temporaryOrder.serviceId,
+                temporaryOrder.orderStatus,
+                temporaryOrder.startWorkDate,
+                temporaryOrder.totalWorkDays,
+                temporaryOrder.price
+            )
+               insertOrder(updatableOrderModel)
+            deleteOrderById(temporaryOrder.id!!)
+            if (orderBlockingRepository.isBasketEmpty(temporaryBasketId)) {
+                basketBlockingRepository.delete(temporaryBasketId)
+            }
         }
     }
 

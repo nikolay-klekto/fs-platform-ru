@@ -8,6 +8,7 @@ import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.service.ru.BasketModel
 import com.fs.service.ru.OrderModel
+import com.fs.service.ru.enums.OrderStatus
 import org.jooq.DSLContext
 import reactor.core.publisher.Mono
 
@@ -44,5 +45,13 @@ abstract class OrderBlockingRepository(
             .first()
             .map{it.into(Int::class.java)}
         return ordersWithCurrentBasket > 0
+    }
+
+    fun isPreOrdersInBasket(basketId: Long): Boolean {
+        val preOrdersQuantity: Int =  dsl.selectCount().from(ORDER)
+            .where(ORDER.BASKET_ID.eq(basketId).and(ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED)))
+            .map { it.into(Int::class.java)}
+            .first()
+        return preOrdersQuantity > 0
     }
 }
