@@ -22,7 +22,6 @@ import java.util.*
 abstract class OrderRepository(
     open val dsl: DSLContext,
     open val converter: OrderModelConverter,
-    open val serviceBlockingRepository: ServiceBlockingRepository,
     open val basketBlockingRepository: BasketBlockingRepository,
     open val orderBlockingRepository: OrderBlockingRepository
 ) {
@@ -56,71 +55,8 @@ abstract class OrderRepository(
 
     fun insertOrder(orderModel: OrderModel): Mono<OrderModel> {
         return Mono.fromSupplier {
-            if (orderModel.serviceId == null || orderModel.companyOfficeId == null ||
-                orderModel.startWorkDate == null || orderModel.totalWorkDays == null
-            ) {
-                throw Exception("Необходимо заполнить все обязательные поля!")
-            }
-
-            var newOrderStatus: OrderStatus? = null
-            var basketId: Long? = orderModel.basketId
-            var isBasketTemporary = false
-
-            if (orderModel.basketId != null) {
-                isBasketTemporary = orderBlockingRepository.isPreOrdersInBasket(orderModel.basketId!!)
-                if(isBasketTemporary){
-                    newOrderStatus = OrderStatus.PRE_ORDERED
-                }
-            }
-
-            if (orderModel.basketId == null) {
-                val newBasketModel: BasketModel = basketBlockingRepository.insert()
-                basketId = newBasketModel.id
-            } else {
-                newOrderStatus = if (orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!)
-                        .isAfter(LocalDateTime.now())
-                ) {
-                    OrderStatus.EXPIRED
-                } else {
-                    OrderStatus.ACTUAL
-                }
-            }
-
-            val pastTotalPrice: Double? =
-                basketBlockingRepository.getById(basketId!!)?.totalPrice
-
-            val servicePrice: Double =
-                serviceBlockingRepository.getById(orderModel.serviceId!!)
-                    ?.pricePerDay!!.toDouble() * orderModel.totalWorkDays!!
-
-            val totalPrice: Double = if (pastTotalPrice != null) {
-
-                pastTotalPrice + servicePrice
-
-            } else {
-                servicePrice
-            }
-            basketBlockingRepository.update(BasketModel(basketId, totalPrice))
-
-            val newOrderModel = OrderModel(
-                DEFAULT_ORDER_ID,
-                basketId,
-                orderModel.companyOfficeId,
-                LocalDateTime.now(),
-                orderModel.positionId,
-                orderModel.serviceId,
-                newOrderStatus ?: orderModel.orderStatus,
-                orderModel.startWorkDate,
-                orderModel.totalWorkDays,
-                orderModel.price
-            )
-            val newOrderRecord: OrderRecord = dsl.newRecord(ORDER)
-            newOrderRecord.from(newOrderModel)
-            newOrderRecord.reset(ORDER.ID)
-            newOrderRecord.store()
-            return@fromSupplier newOrderRecord.into(Order::class.java)
+            orderBlockingRepository.insert(orderModel)
         }
-            .map(converter::toModel)
     }
 
     fun updateOrder(newOrderModel: OrderModel): Mono<Boolean> {
@@ -143,7 +79,7 @@ abstract class OrderRepository(
             )
         ).map { it.into(Long::class.java) }
 
-        expiredOrdersList.stream().map { orderId ->
+        expiredOrdersList.forEach { orderId ->
             orderBlockingRepository.decreaseBasketTotalPriceByOrderId(orderId)
         }
         dsl.update(ORDER)
@@ -172,11 +108,7 @@ abstract class OrderRepository(
 
     fun deleteOrderById(orderId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
-            orderBlockingRepository.decreaseBasketTotalPriceByOrderId(orderId)
-
-            return@fromSupplier dsl.deleteFrom(ORDER)
-                .where(ORDER.ID.eq(orderId))
-                .execute() == 1
+            orderBlockingRepository.deleteById(orderId)
         }
     }
 
@@ -187,7 +119,7 @@ abstract class OrderRepository(
                 .map { it.into(OrderModel::class.java) }
 
 
-        allTemporaryOrders.stream().map { temporaryOrder ->
+        allTemporaryOrders.forEach{ temporaryOrder ->
             val updatableOrderModel = OrderModel(
                 temporaryOrder.id,
                 activeBasketId,
@@ -200,8 +132,8 @@ abstract class OrderRepository(
                 temporaryOrder.totalWorkDays,
                 temporaryOrder.price
             )
-            insertOrder(updatableOrderModel)
-            deleteOrderById(temporaryOrder.id!!)
+            orderBlockingRepository.insert(updatableOrderModel)
+            orderBlockingRepository.deleteById(temporaryOrder.id!!)
             if (orderBlockingRepository.isBasketEmpty(temporaryBasketId)) {
                 basketBlockingRepository.delete(temporaryBasketId)
             }

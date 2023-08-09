@@ -122,6 +122,7 @@ abstract class ClientBlockingRepository(
 
         return dsl.update(CLIENT)
             .set(CLIENT.CITY_ID, newClientModel.cityId ?: oldClientModel.cityId)
+            .set(CLIENT.BASKET_ID, newClientModel.basketId ?: oldClientModel.basketId)
             .set(CLIENT.BIRTHDAY, newClientModel.birthday ?: oldClientModel.birthday)
             .set(CLIENT.EDUCATION_STATUS, newClientModel.educationStatus ?: oldClientModel.educationStatus)
             .set(CLIENT.EMAIL, newClientModel.email ?: oldClientModel.email)

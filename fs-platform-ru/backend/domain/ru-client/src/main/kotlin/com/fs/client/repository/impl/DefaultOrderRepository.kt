@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository
 open class DefaultOrderRepository(
     dsl: DSLContext,
     converter: OrderModelConverter,
-    serviceBlockingRepository: ServiceBlockingRepository,
     basketBlockingRepository: BasketBlockingRepository,
     orderBlockingRepository: OrderBlockingRepository
-) : OrderRepository(dsl, converter, serviceBlockingRepository, basketBlockingRepository,orderBlockingRepository)
+) : OrderRepository(dsl, converter, basketBlockingRepository,orderBlockingRepository)
