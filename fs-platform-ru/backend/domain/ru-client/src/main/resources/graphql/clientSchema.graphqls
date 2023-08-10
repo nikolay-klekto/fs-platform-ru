@@ -64,6 +64,7 @@ type Mutation {
     addOrder(order: OrderInput!): Order
     updateOrder(order: OrderInput!): Boolean
     deleteOrder(id: ID!): Boolean
+    deleteAllOrdersByBasketId(basketId: ID!): Boolean
 
     addCompany(company: CompanyInput!): Company
     addCompanyByPartner(partnerId: ID!, company: CompanyInput!): Company

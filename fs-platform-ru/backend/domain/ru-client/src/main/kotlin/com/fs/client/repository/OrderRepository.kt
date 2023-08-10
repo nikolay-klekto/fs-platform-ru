@@ -63,11 +63,14 @@ abstract class OrderRepository(
         return Mono.fromSupplier {
             val oldOrderModel: OrderModel = orderBlockingRepository.getById(newOrderModel.id!!)!!
 
-            dsl.update(ORDER)
+            val result = dsl.update(ORDER)
                 .set(ORDER.START_WORK_DATE, newOrderModel.startWorkDate ?: oldOrderModel.startWorkDate)
                 .set(ORDER.TOTAL_WORK_DAYS, newOrderModel.totalWorkDays ?: oldOrderModel.totalWorkDays)
                 .where(ORDER.ID.eq(newOrderModel.id))
                 .execute() == 1
+
+            orderBlockingRepository.checkAndUpdateOrderStatus(newOrderModel.id!!)
+            return@fromSupplier result
         }
     }
 
@@ -109,6 +112,13 @@ abstract class OrderRepository(
     fun deleteOrderById(orderId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             orderBlockingRepository.deleteById(orderId)
+        }
+    }
+
+    fun deleteAllOrdersByBasketId(basketId: Long): Mono<Boolean> {
+        return Mono.fromSupplier {
+            dsl.deleteFrom(ORDER).where(ORDER.BASKET_ID.eq(basketId))
+                .execute()>0
         }
     }
 

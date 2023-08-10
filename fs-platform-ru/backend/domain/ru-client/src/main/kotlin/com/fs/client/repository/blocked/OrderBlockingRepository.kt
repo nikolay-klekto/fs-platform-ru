@@ -134,6 +134,27 @@ abstract class OrderBlockingRepository(
         return converter.toModel(newOrderRecord.into(Order::class.java))
     }
 
+    fun checkAndUpdateOrderStatus(orderId: Long) {
+        val newOrderStatus: OrderStatus
+
+        val oldOrderModel = getById(orderId)
+        newOrderStatus = if(oldOrderModel?.orderStatus != null && oldOrderModel.orderStatus == OrderStatus.PRE_ORDERED){
+            OrderStatus.PRE_ORDERED
+        }else{
+            if (oldOrderModel?.startWorkDate!!.plusDays(oldOrderModel.totalWorkDays!!)
+                    .isBefore(LocalDateTime.now())
+            ) {
+                OrderStatus.EXPIRED
+            } else {
+                OrderStatus.ACTUAL
+            }
+        }
+        dsl.update(ORDER)
+            .set(ORDER.ORDER_STATUS, newOrderStatus)
+            .where(ORDER.ID.eq(orderId))
+            .execute()
+    }
+
     companion object {
         private const val DEFAULT_ORDER_ID: Long = 1
 
