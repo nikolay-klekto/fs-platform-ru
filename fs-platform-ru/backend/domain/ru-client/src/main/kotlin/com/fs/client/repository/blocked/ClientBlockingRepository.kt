@@ -27,8 +27,8 @@ abstract class ClientBlockingRepository(
             .firstOrNull()
     }
 
-    private fun getByEmail(clientEmail: String): ClientModel? {
-        return dsl.selectFrom(CLIENT).where(CLIENT.EMAIL.eq(clientEmail))
+    private fun getByPhone(clientPhoneNumber: String): ClientModel? {
+        return dsl.selectFrom(CLIENT).where(CLIENT.PHONE_NUMBER.eq(clientPhoneNumber))
             .map { it.into(Client::class.java) }
             .map(converter::toModel)
             .firstOrNull()
@@ -42,8 +42,8 @@ abstract class ClientBlockingRepository(
             null
         }
 
-        if (clientModel.email != null) {
-            val possibleUnregisteredClient = getByEmail(clientModel.email!!)
+        if (clientModel.phoneNumber != null) {
+            val possibleUnregisteredClient = getByPhone(clientModel.phoneNumber!!)
             if (possibleUnregisteredClient != null
                 && possibleUnregisteredClient.role == ClientRoleModel.UNREGISTERED_CLIENT
             ) {
@@ -61,7 +61,7 @@ abstract class ClientBlockingRepository(
                     firstName = clientModel.firstName ?: possibleUnregisteredClient.firstName,
                     lastName = clientModel.lastName ?: possibleUnregisteredClient.lastName,
                     password = password,
-                    phoneNumber = clientModel.phoneNumber,
+                    phoneNumber = clientModel.phoneNumber ?: possibleUnregisteredClient.phoneNumber,
                     role = clientModel.role,
                     telegramUsername = clientModel.telegramUsername,
                     username = clientModel.username,
@@ -74,8 +74,8 @@ abstract class ClientBlockingRepository(
                     )
                 }
                 return getById(possibleUnregisteredClient.id)!!
-            }else{
-                throw Exception("Пользователь с данным email уже был создан!")
+            }else if(possibleUnregisteredClient != null){
+                throw Exception("Пользователь с данным мобильным номером уже был создан!")
             }
         }
 
