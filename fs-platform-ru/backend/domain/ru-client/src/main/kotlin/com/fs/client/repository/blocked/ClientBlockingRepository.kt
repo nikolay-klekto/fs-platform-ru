@@ -67,8 +67,15 @@ abstract class ClientBlockingRepository(
                     username = clientModel.username,
                 )
                 update(newClient)
-                orderRepository.copyAllOrdersToMainBasket(clientModel.basketId!!, possibleUnregisteredClient.basketId!!)
+                if(clientModel.basketId != null) {
+                    orderRepository.copyAllOrdersToMainBasket(
+                        clientModel.basketId!!,
+                        possibleUnregisteredClient.basketId!!
+                    )
+                }
                 return getById(possibleUnregisteredClient.id)!!
+            }else{
+                throw Exception("Пользователь с данным email уже был создан!")
             }
         }
 
