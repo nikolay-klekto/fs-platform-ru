@@ -43,4 +43,9 @@ open class PartnerController(
     open fun deletePartner(@Argument id: Long): Mono<Boolean> {
         return partnerRepository.deletePartner(id)
     }
+
+    @MutationMapping
+    open fun verifyPartner(@Argument partnerId: Long): Mono<Boolean> {
+        return partnerRepository.verifyPartnerStatus(partnerId)
+    }
 }

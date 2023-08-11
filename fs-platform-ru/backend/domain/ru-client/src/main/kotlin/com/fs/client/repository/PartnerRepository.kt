@@ -51,7 +51,7 @@ abstract class PartnerRepository(
 
     fun insertPartner(clientModel: ClientModel): Mono<PartnerModel> {
         return Mono.fromSupplier {
-            var newClientModel: ClientModel = ClientModel(
+            var newClientModel = ClientModel(
                 clientModel.id,
                 clientModel.basketId,
                 clientModel.cityId,
@@ -74,7 +74,8 @@ abstract class PartnerRepository(
             }
             val partnerModel = PartnerModel(
                 id = 0,
-                clientId = newClientModel.id!!
+                clientId = newClientModel.id!!,
+                isVerified = DEFAULT_PARTNER_VERIFIED_STATUS
 
             )
             val newPartnerRecord: PartnerRecord = dsl.newRecord(PARTNER)
@@ -84,6 +85,15 @@ abstract class PartnerRepository(
             return@fromSupplier newPartnerRecord.into(Partner::class.java)
         }
             .map(converter::toModel)
+    }
+
+    fun verifyPartnerStatus(partnerId: Long): Mono<Boolean>{
+        return Mono.fromSupplier {
+            dsl.update(PARTNER)
+                .set(PARTNER.IS_VERIFIED, ACTIVE_PARTNER_VERIFIED_STATUS)
+                .where(PARTNER.ID.eq(partnerId))
+                .execute() == 1
+        }
     }
 
     fun deletePartner(partnerId: Long): Mono<Boolean> {
@@ -105,5 +115,12 @@ abstract class PartnerRepository(
                 .where(COMPANY_PARTNER.PARTNER_ID.eq(partnerId))
             return@fromSupplier returnResult
         }
+    }
+
+    companion object {
+        private const val DEFAULT_PARTNER_VERIFIED_STATUS = false
+        private const val ACTIVE_PARTNER_VERIFIED_STATUS = true
+
+
     }
 }

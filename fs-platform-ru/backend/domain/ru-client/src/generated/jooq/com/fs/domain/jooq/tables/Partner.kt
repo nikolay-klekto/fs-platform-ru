@@ -16,7 +16,7 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
-import org.jooq.Row2
+import org.jooq.Row3
 import org.jooq.Schema
 import org.jooq.Table
 import org.jooq.TableField
@@ -71,6 +71,11 @@ open class Partner(
      */
     val CLIENT_ID: TableField<PartnerRecord, Long?> = createField(DSL.name("client_id"), SQLDataType.BIGINT, this, "")
 
+    /**
+     * The column <code>public.partner.is_verified</code>.
+     */
+    val IS_VERIFIED: TableField<PartnerRecord, Boolean?> = createField(DSL.name("is_verified"), SQLDataType.BOOLEAN, this, "")
+
     private constructor(alias: Name, aliased: Table<PartnerRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<PartnerRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
@@ -120,7 +125,7 @@ open class Partner(
     override fun rename(name: Name): Partner = Partner(name, null)
 
     // -------------------------------------------------------------------------
-    // Row2 type methods
+    // Row3 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row2<Long?, Long?> = super.fieldsRow() as Row2<Long?, Long?>
+    override fun fieldsRow(): Row3<Long?, Long?, Boolean?> = super.fieldsRow() as Row3<Long?, Long?, Boolean?>
 }

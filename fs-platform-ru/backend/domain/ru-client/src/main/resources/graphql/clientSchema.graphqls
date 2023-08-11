@@ -79,6 +79,7 @@ type Mutation {
 
     addPartner(client: ClientInsert): Partner
     deletePartner(id: ID!): Boolean
+    verifyPartner(partnerId: ID!): Boolean
 
     addAddress(address: AddressInput!): Address
     updateAddress(address: AddressInput!): Boolean

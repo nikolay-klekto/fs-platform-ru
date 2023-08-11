@@ -13,7 +13,9 @@ import java.io.Serializable
 @Suppress("UNCHECKED_CAST")
 data class Partner(
     var id: Long? = null,
-    var clientId: Long? = null
+    var clientId: Long? = null,
+    @set:JvmName("setIsVerified")
+    var isVerified: Boolean? = null
 ): Serializable {
 
 
@@ -22,6 +24,7 @@ data class Partner(
 
         sb.append(id)
         sb.append(", ").append(clientId)
+        sb.append(", ").append(isVerified)
 
         sb.append(")")
         return sb.toString()

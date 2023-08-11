@@ -10,14 +10,16 @@ class PartnerModelConverter : ModelConverter<Partner, PartnerModel> {
     override fun toModel(rawObject: Partner): PartnerModel {
         return PartnerModel(
             id = rawObject.id!!,
-            clientId = rawObject.clientId!!
+            clientId = rawObject.clientId!!,
+            isVerified = rawObject.isverified
         )
     }
 
     override fun fromModel(modelObject: PartnerModel): Partner {
         return Partner(
             modelObject.id,
-            modelObject.clientId
+            modelObject.clientId,
+            modelObject.isVerified
         )
     }
 }
