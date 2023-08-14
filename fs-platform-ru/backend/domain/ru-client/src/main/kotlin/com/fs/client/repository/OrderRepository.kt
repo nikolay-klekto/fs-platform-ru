@@ -33,16 +33,9 @@ abstract class OrderRepository(
     }
 
     fun getAllOrdersByClientId(clientId: Long): Flux<OrderModel> {
-        return Flux.from(
-            dsl.selectFrom(ORDER)
-                .where(
-                    ORDER.BASKET_ID.eq(
-                        dsl.select(CLIENT.BASKET_ID).from(CLIENT)
-                            .where(CLIENT.ID.eq(clientId))
-                    )
-                )
-        ).map { it.into(Order::class.java) }
-            .map(converter::toModel)
+        return Flux.fromIterable(
+            orderBlockingRepository.getAllByClientId(clientId)
+        )
     }
 
     fun getAllOrdersByBasketID(basketId: Long): Flux<OrderModel> {

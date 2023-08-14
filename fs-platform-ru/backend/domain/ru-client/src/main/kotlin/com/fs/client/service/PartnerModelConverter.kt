@@ -11,7 +11,7 @@ class PartnerModelConverter : ModelConverter<Partner, PartnerModel> {
         return PartnerModel(
             id = rawObject.id!!,
             clientId = rawObject.clientId!!,
-            isVerified = rawObject.isverified
+            isVerified = rawObject.isVerified
         )
     }
 

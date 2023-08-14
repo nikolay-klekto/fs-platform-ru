@@ -2,6 +2,7 @@ package com.fs.client.controller
 
 import com.fs.client.repository.ReviewRepository
 import com.fs.service.ru.ReviewModel
+import com.fs.service.ru.errors.ErrorModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -34,8 +35,11 @@ open class ReviewController(
     }
 
     @MutationMapping
-    open fun addReview(@Argument review: ReviewModel): Mono<ReviewModel> {
+    open fun addReview(@Argument review: ReviewModel): Mono<ErrorModel<ReviewModel>> {
         return reviewRepository.insertReview(review)
+            .onErrorResume {
+                return@onErrorResume Mono.just(ErrorModel(null, it.message))
+            }
     }
 
     @MutationMapping

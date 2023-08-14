@@ -5,6 +5,7 @@ import com.fs.client.service.CountryModelConverter
 import com.fs.client.service.OrderModelConverter
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.Basket.Companion.BASKET
+import com.fs.domain.jooq.tables.Client
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.domain.jooq.tables.records.OrderRecord
@@ -12,6 +13,7 @@ import com.fs.service.ru.BasketModel
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.enums.OrderStatus
 import org.jooq.DSLContext
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
@@ -28,6 +30,19 @@ abstract class OrderBlockingRepository(
             .map { it.into(Order::class.java) }
             .map(converter::toModel)
             .firstOrNull()
+    }
+
+    fun getAllByClientId(clientId: Long): List<OrderModel> {
+        return dsl.selectFrom(ORDER)
+                .where(
+                    ORDER.BASKET_ID.eq(
+                        dsl.select(Client.CLIENT.BASKET_ID).from(Client.CLIENT)
+                            .where(Client.CLIENT.ID.eq(clientId))
+                    )
+                )
+        .map { it.into(Order::class.java) }
+            .map(converter::toModel)
+
     }
 
     fun decreaseBasketTotalPriceByOrderId(orderId: Long) {
@@ -72,10 +87,9 @@ abstract class OrderBlockingRepository(
         ) {
             throw Exception("Необходимо заполнить все обязательные поля!")
         }
-
         var newOrderStatus: OrderStatus? = null
         var basketId: Long? = orderModel.basketId
-        var isBasketTemporary: Boolean = false
+        var isBasketTemporary = false
 
         if (orderModel.basketId != null) {
             isBasketTemporary = isPreOrdersInBasket(orderModel.basketId!!)

@@ -54,7 +54,7 @@ type Mutation {
     updateServiceById(id: ID!, service: ServiceInput!): Boolean
     deleteServiceById(id: ID!): Boolean
 
-    addReview(review: ReviewInput!): Review
+    addReview(review: ReviewInput!): ErrorReviewModel
     updateReview(review: ReviewInput!): Boolean
     deleteReviewById(id: ID!): Boolean
 
@@ -384,6 +384,11 @@ type ErrorBooleanModel {
 
 type ErrorClientModel {
     data: Client
+    errorMessage: String
+}
+
+type ErrorReviewModel {
+    data: Review
     errorMessage: String
 }
 
