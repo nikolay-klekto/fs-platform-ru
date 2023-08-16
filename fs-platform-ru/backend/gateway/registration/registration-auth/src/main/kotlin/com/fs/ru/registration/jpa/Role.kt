@@ -4,11 +4,11 @@ import javax.persistence.*
 import org.hibernate.Hibernate
 
 @Entity
-@Table(name = "roles")
+@Table(schema = "auth", name = "roles")
 data class Role(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
     @Column(name = "name")

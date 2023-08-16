@@ -29,9 +29,6 @@ class BackendController() {
     @Autowired
     lateinit var userRepository: UserRepository
 
-    @Autowired
-    lateinit var emailService: EmailService
-
     val counter = AtomicLong()
 
     @GetMapping("/greeting")
@@ -46,7 +43,7 @@ class BackendController() {
     @ResponseBody
     fun getUserContent(authentication: Authentication): String {
         val user: User = userRepository.findByUsername(authentication.name).get()
-        return "Hello " + user.firstName + " " + user.lastName + "!"
+        return "Hello " + user.username + "!"
     }
 
     @GetMapping("/admincontent")

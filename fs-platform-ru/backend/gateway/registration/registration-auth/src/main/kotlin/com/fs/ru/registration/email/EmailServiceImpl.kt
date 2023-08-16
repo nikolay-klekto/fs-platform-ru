@@ -120,6 +120,6 @@ class EmailServiceImpl : EmailService {
         userDetailsService.createVerificationTokenForUser(token, user)
         val link = "$hostUrl/?token=$token&confirmRegistration=true"
         val msg = "<p>Please, follow the link to complete your registration:</p><p><a href=\"$link\">$link</a></p>"
-        user.email?.let { sendHtmlMessage(user.email!!, "KSVG APP: Registration Confirmation", msg) }
+        user.username?.let { sendHtmlMessage(user.username!!, "KSVG APP: Registration Confirmation", msg) }
     }
 }

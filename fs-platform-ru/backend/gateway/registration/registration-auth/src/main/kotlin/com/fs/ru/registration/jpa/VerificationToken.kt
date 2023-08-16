@@ -7,11 +7,11 @@ import java.sql.Timestamp
 import java.util.*
 
 @Entity
-@Table(name = "verification_token")
+@Table(schema = "auth", name = "verification_token")
 data class VerificationToken(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = 0,
 
     @Column(name = "token")

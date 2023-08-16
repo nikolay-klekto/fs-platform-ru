@@ -4,24 +4,15 @@ import javax.persistence.*
 import org.hibernate.Hibernate
 
 @Entity
-@Table(name = "users")
+@Table(schema = "auth", name = "users")
 data class User(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = 0,
 
     @Column(name = "username")
     var username: String? = null,
-
-    @Column(name = "first_name")
-    var firstName: String? = null,
-
-    @Column(name = "last_name")
-    var lastName: String? = null,
-
-    @Column(name = "email")
-    var email: String? = null,
 
     @Column(name = "password")
     var password: String? = null,
@@ -49,6 +40,6 @@ data class User(
 
     @Override
     override fun toString(): String {
-        return this::class.simpleName + "(id = $id , username = $username , firstName = $firstName , lastName = $lastName , email = $email , password = $password , enabled = $enabled )"
+        return this::class.simpleName + "(id = $id , username = $username , password = $password , enabled = $enabled )"
     }
 }

@@ -5,11 +5,11 @@ import org.hibernate.Hibernate
 
 
 @Entity
-@Table(name = "person")
+@Table(schema = "auth", name = "person")
 data class Person(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
     @Column(nullable = false)
