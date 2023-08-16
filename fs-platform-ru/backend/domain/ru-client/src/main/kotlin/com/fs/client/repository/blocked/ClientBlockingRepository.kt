@@ -34,6 +34,13 @@ abstract class ClientBlockingRepository(
             .firstOrNull()
     }
 
+    private fun getByEmail(clientEmail: String): ClientModel? {
+        return dsl.selectFrom(CLIENT).where(CLIENT.EMAIL.eq(clientEmail))
+            .map { it.into(Client::class.java) }
+            .map(converter::toModel)
+            .firstOrNull()
+    }
+
     fun insert(clientModel: ClientModel): ClientModel {
 
         val password = if (clientModel.password != null) {
@@ -42,8 +49,8 @@ abstract class ClientBlockingRepository(
             null
         }
 
-        if (clientModel.phoneNumber != null) {
-            val possibleUnregisteredClient = getByPhone(clientModel.phoneNumber!!)
+        if (clientModel.email != null) {
+            val possibleUnregisteredClient = getByEmail(clientModel.email!!)
             if (possibleUnregisteredClient != null
                 && possibleUnregisteredClient.role == ClientRoleModel.UNREGISTERED_CLIENT
             ) {

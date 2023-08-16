@@ -24,8 +24,7 @@ abstract class ClientRepository(
 
     fun getClintById(id: Long?): Mono<ClientModel> {
         return Mono.fromSupplier {
-            val a = clientBlockingRepository.getById(id)
-            return@fromSupplier a
+            return@fromSupplier clientBlockingRepository.getById(id)
         }
     }
 
