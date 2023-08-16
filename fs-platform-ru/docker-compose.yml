@@ -28,7 +28,7 @@ services:
     #       condition: service_healthy
     environment:
       - SERVER_PORT= 8081
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/users
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
 
   service-db:
     image: postgres:14.7-alpine
