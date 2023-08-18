@@ -35,7 +35,7 @@ abstract class OfficeBlockingRepository(
                         .from(ORDER)
                         .where(ORDER.ID.eq(orderId))
                 )
-            ).map {it.into(Long::class.java)}
+            ).map { it.into(Long::class.java) }
             .first()
     }
 }

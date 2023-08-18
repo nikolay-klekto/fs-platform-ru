@@ -1,16 +1,15 @@
 package com.fs.client.repository
 
+import com.fs.client.repository.blocked.ClientBlockingRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.PartnerModel
+import com.fs.client.ru.enums.ClientRoleModel
 import com.fs.client.service.PartnerModelConverter
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.CompanyPartner.Companion.COMPANY_PARTNER
 import com.fs.domain.jooq.tables.Partner.Companion.PARTNER
 import com.fs.domain.jooq.tables.pojos.Partner
 import com.fs.domain.jooq.tables.records.PartnerRecord
-import com.fs.client.repository.blocked.ClientBlockingRepository
-import com.fs.client.ru.enums.ClientRoleModel
-import org.jetbrains.kotlin.gradle.utils.loadPropertyFromResources
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -87,7 +86,7 @@ abstract class PartnerRepository(
             .map(converter::toModel)
     }
 
-    fun verifyPartnerStatus(partnerId: Long): Mono<Boolean>{
+    fun verifyPartnerStatus(partnerId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.update(PARTNER)
                 .set(PARTNER.IS_VERIFIED, ACTIVE_PARTNER_VERIFIED_STATUS)

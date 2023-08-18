@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository
 open class DefaultPositionBlockingRepository(
     dsl: DSLContext,
     converter: PositionModelConverter
-): PositionBlockingRepository(dsl, converter)
+) : PositionBlockingRepository(dsl, converter)

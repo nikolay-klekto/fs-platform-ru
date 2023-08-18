@@ -22,7 +22,7 @@ abstract class OfficeRepository(
 ) {
     fun getOfficeById(id: Long): Mono<OfficeModel> {
         return Mono.fromSupplier {
-           blockingOfficeRepository.getById(id)
+            blockingOfficeRepository.getById(id)
         }
     }
 

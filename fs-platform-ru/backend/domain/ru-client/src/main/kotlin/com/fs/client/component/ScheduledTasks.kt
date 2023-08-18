@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 open class ScheduledTasks(
     open val orderRepository: OrderRepository,
     open val eventRepository: EventRepository
-    ) {
+) {
     @Scheduled(cron = EXPIRED_STATUS_CRON_SCHEDULER)
     fun reportCurrentTime() {
         orderRepository.updateExpiredStatus()

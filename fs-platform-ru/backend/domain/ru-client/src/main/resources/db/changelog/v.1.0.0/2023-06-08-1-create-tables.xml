@@ -1,5 +1,7 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
     <changeSet author="nikolay (generated)" id="1686223952214-1">
         <createTable tableName="client">
             <column autoIncrement="true" name="id" type="BIGINT">
@@ -152,54 +154,102 @@
         </createTable>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-15">
-        <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="address" constraintName="address_city_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="city" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="address" constraintName="address_city_id_fkey"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="city" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-16">
-        <addForeignKeyConstraint baseColumnNames="country_code" baseTableName="city" constraintName="city_country_code_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="code" referencedTableName="country" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="country_code" baseTableName="city"
+                                 constraintName="city_country_code_fkey" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="code"
+                                 referencedTableName="country" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-17">
-        <addForeignKeyConstraint baseColumnNames="basket_id" baseTableName="client" constraintName="client_basket_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="basket" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="basket_id" baseTableName="client"
+                                 constraintName="client_basket_id_fkey" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="basket" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-18">
-        <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="client" constraintName="client_city_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="city" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="client" constraintName="client_city_id_fkey"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="city" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-19">
-        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="companies_positions" constraintName="companies_positions_company_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="companies_positions"
+                                 constraintName="companies_positions_company_id_fkey" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="company" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-20">
-        <addForeignKeyConstraint baseColumnNames="position_id" baseTableName="companies_positions" constraintName="companies_positions_position_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="position" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="position_id" baseTableName="companies_positions"
+                                 constraintName="companies_positions_position_id_fkey" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="position" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-21">
-        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="company_partner" constraintName="company_partner_company_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="company_partner"
+                                 constraintName="company_partner_company_id_fkey" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="company" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-22">
-        <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="company_partner" constraintName="company_partner_partner_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="company_partner"
+                                 constraintName="company_partner_partner_id_fkey" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="partner" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-23">
-        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="office" constraintName="office_address_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="address" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="office"
+                                 constraintName="office_address_id_fkey" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="address" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-24">
-        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="office" constraintName="office_company_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="office"
+                                 constraintName="office_company_id_fkey" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="company" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-25">
-        <addForeignKeyConstraint baseColumnNames="basket_id" baseTableName="order" constraintName="order_basket_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="basket" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="basket_id" baseTableName="order" constraintName="order_basket_id_fkey"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="basket" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-26">
-        <addForeignKeyConstraint baseColumnNames="company_office_id" baseTableName="order" constraintName="order_company_office_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="office" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="company_office_id" baseTableName="order"
+                                 constraintName="order_company_office_id_fkey" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="office" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-27">
-        <addForeignKeyConstraint baseColumnNames="position_id" baseTableName="order" constraintName="order_position_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="position" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="position_id" baseTableName="order"
+                                 constraintName="order_position_id_fkey" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="position" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-28">
-        <addForeignKeyConstraint baseColumnNames="service_id" baseTableName="order" constraintName="order_service_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="service" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="service_id" baseTableName="order"
+                                 constraintName="order_service_id_fkey" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="service" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-29">
-        <addForeignKeyConstraint baseColumnNames="client_id" baseTableName="partner" constraintName="partner_client_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="client" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="client_id" baseTableName="partner"
+                                 constraintName="partner_client_id_fkey" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="client" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-30">
-        <addForeignKeyConstraint baseColumnNames="client_id" baseTableName="review" constraintName="review_client_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="client" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="client_id" baseTableName="review"
+                                 constraintName="review_client_id_fkey" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="client" validate="true"/>
     </changeSet>
     <changeSet author="nikolay (generated)" id="1686223952214-31">
-        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="review" constraintName="review_company_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="review"
+                                 constraintName="review_company_id_fkey" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="company" validate="true"/>
     </changeSet>
 </databaseChangeLog>

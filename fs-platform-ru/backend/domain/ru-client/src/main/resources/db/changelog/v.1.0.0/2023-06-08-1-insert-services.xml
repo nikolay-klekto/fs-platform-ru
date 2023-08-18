@@ -7,14 +7,14 @@
     <changeSet logicalFilePath="2023-06-08-2-insert-services"
                id="2023-05-12-2-insert-services" author="nikolay">
         <insert tableName="service">
-            <column  name="id"  value="1"/>
-            <column  name="price_per_day"  value="50"/>
-            <column  name="name"  value="Test Note 1"/>
+            <column name="id" value="1"/>
+            <column name="price_per_day" value="50"/>
+            <column name="name" value="Test Note 1"/>
         </insert>
         <insert tableName="service">
-            <column  name="id"  value="2"/>
-            <column  name="price_per_day"  value="100"/>
-            <column  name="name"  value="Test Note 2"/>
+            <column name="id" value="2"/>
+            <column name="price_per_day" value="100"/>
+            <column name="name" value="Test Note 2"/>
         </insert>
 
     </changeSet>

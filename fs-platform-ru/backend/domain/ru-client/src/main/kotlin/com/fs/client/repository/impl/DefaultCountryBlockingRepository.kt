@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository
 open class DefaultCountryBlockingRepository(
     dsl: DSLContext,
     converter: CountryModelConverter
-    ): CountryBlockingRepository(dsl, converter)
+) : CountryBlockingRepository(dsl, converter)

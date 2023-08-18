@@ -4,7 +4,10 @@ import com.fs.client.repository.ServiceRepository
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.ServiceModel
 import io.swagger.v3.oas.annotations.tags.Tag
-import org.springframework.graphql.data.method.annotation.*
+import org.springframework.graphql.data.method.annotation.Argument
+import org.springframework.graphql.data.method.annotation.MutationMapping
+import org.springframework.graphql.data.method.annotation.QueryMapping
+import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono

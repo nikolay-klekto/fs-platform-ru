@@ -2,7 +2,6 @@ package com.fs.client.repository
 
 import com.fs.client.repository.blocked.BasketBlockingRepository
 import com.fs.client.service.BasketModelConverter
-import com.fs.domain.jooq.tables.Basket.Companion.BASKET
 import com.fs.service.ru.BasketModel
 import org.jooq.DSLContext
 import reactor.core.publisher.Mono

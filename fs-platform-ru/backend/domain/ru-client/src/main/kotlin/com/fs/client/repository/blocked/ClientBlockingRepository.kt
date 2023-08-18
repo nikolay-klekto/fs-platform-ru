@@ -74,14 +74,14 @@ abstract class ClientBlockingRepository(
                     username = clientModel.username,
                 )
                 update(newClient)
-                if(clientModel.basketId != null) {
+                if (clientModel.basketId != null) {
                     orderRepository.copyAllOrdersToMainBasket(
                         clientModel.basketId!!,
                         possibleUnregisteredClient.basketId!!
                     )
                 }
                 return getById(possibleUnregisteredClient.id)!!
-            }else if(possibleUnregisteredClient != null){
+            } else if (possibleUnregisteredClient != null) {
                 throw Exception("Пользователь с данным мобильным номером уже был создан!")
             }
         }

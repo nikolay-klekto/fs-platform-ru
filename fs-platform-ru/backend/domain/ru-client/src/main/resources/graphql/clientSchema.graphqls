@@ -279,7 +279,7 @@ type Order {
     service: Service
     orderStatus: OrderStatus
     startWorkDate: LocalDateTime
-#    startWorkDate: String
+    #    startWorkDate: String
     totalWorkDays: Int
     price: Float
 }
@@ -310,10 +310,10 @@ type Client {
     basketId: ID,
     city: City,
     activateStatus: Boolean,
-#        birthday: LocalDate,
+    #        birthday: LocalDate,
     birthday: String,
-        dateCreated: LocalDateTime,
-#    dateCreated: String,
+    dateCreated: LocalDateTime,
+    #    dateCreated: String,
     educationStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,

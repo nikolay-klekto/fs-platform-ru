@@ -1,9 +1,6 @@
 package com.fs.client.service
 
-import com.fs.client.repository.EventRepository
 import com.fs.client.ru.AddressModel
-import com.fs.client.ru.CompanyAddress
-import com.fs.client.ru.OfficeModel
 import com.fs.client.ru.converter.ModelConverter
 import com.fs.domain.jooq.tables.pojos.Event
 import com.fs.service.ru.EventModel
@@ -12,18 +9,18 @@ import org.springframework.stereotype.Service
 
 
 @Service
-class EventModelConverter: ModelConverter<Event, EventModel> {
+class EventModelConverter : ModelConverter<Event, EventModel> {
     override fun toModel(rawObject: Event): EventModel {
         return EventModel(
             id = rawObject.id,
-            addressId  = rawObject.addressId,
+            addressId = rawObject.addressId,
             date = rawObject.date,
             description = rawObject.description,
             isExpired = rawObject.isExpired,
             mainGoal = rawObject.mainGoal,
             name = rawObject.name,
             phoneNumber = rawObject.phoneNumber,
-            publicPlaceName  = rawObject.publicPlaceName,
+            publicPlaceName = rawObject.publicPlaceName,
             site = rawObject.site
         )
     }
@@ -45,7 +42,7 @@ class EventModelConverter: ModelConverter<Event, EventModel> {
 
     fun fromEventAddressToAddressModel(eventWithAddress: EventWithAddressModel, addressId: Long? = null): AddressModel {
         return AddressModel(
-            addressId?: defaultAddressModel.id,
+            addressId ?: defaultAddressModel.id,
             eventWithAddress.cityId,
             eventWithAddress.apartment,
             eventWithAddress.building,
@@ -65,7 +62,7 @@ class EventModelConverter: ModelConverter<Event, EventModel> {
             eventWithAddress.date,
             eventWithAddress.description,
             isExpiredStatus,
-            eventWithAddress.mainGoal?: defaultEventModel.mainGoal,
+            eventWithAddress.mainGoal ?: defaultEventModel.mainGoal,
             eventWithAddress.name,
             eventWithAddress.phoneNumber,
             eventWithAddress.publicPlaceName,

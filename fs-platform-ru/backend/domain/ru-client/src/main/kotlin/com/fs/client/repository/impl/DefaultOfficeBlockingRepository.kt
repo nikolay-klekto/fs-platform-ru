@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository
 open class DefaultOfficeBlockingRepository(
     dslContext: DSLContext,
     converter: OfficeModelConverter
-): OfficeBlockingRepository(dslContext, converter)
+) : OfficeBlockingRepository(dslContext, converter)

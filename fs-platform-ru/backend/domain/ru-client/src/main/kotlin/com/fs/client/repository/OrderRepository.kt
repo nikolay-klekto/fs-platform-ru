@@ -2,13 +2,9 @@ package com.fs.client.repository
 
 import com.fs.client.repository.blocked.BasketBlockingRepository
 import com.fs.client.repository.blocked.OrderBlockingRepository
-import com.fs.client.repository.blocked.ServiceBlockingRepository
 import com.fs.client.service.OrderModelConverter
-import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
-import com.fs.domain.jooq.tables.records.OrderRecord
-import com.fs.service.ru.BasketModel
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.enums.OrderStatus
 import org.apache.logging.log4j.LogManager
@@ -111,7 +107,7 @@ abstract class OrderRepository(
     fun deleteAllOrdersByBasketId(basketId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.deleteFrom(ORDER).where(ORDER.BASKET_ID.eq(basketId))
-                .execute()>0
+                .execute() > 0
         }
     }
 
@@ -122,7 +118,7 @@ abstract class OrderRepository(
                 .map { it.into(OrderModel::class.java) }
 
 
-        allTemporaryOrders.forEach{ temporaryOrder ->
+        allTemporaryOrders.forEach { temporaryOrder ->
             val updatableOrderModel = OrderModel(
                 temporaryOrder.id,
                 activeBasketId,

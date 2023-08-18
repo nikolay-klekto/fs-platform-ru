@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository
 open class DefaultCompanyBlockingRepository(
     dsl: DSLContext,
     converter: CompanyModelConverter
-): CompanyBlockingRepository(dsl, converter)
+) : CompanyBlockingRepository(dsl, converter)

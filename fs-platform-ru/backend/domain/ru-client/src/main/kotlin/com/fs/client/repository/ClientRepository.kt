@@ -1,6 +1,6 @@
 package com.fs.client.repository
 
-import com.fs.client.repository.blocked.BasketBlockingRepository
+import com.fs.client.repository.blocked.ClientBlockingRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.service.ClientModelConverter
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
@@ -8,8 +8,6 @@ import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Client
 import com.fs.domain.jooq.tables.records.ClientRecord
 import com.fs.domain.jooq.tables.references.BASKET
-import com.fs.client.repository.blocked.ClientBlockingRepository
-import com.fs.service.ru.BasketModel
 import com.fs.service.ru.errors.ErrorModel
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
@@ -87,7 +85,7 @@ abstract class ClientRepository(
 //        }
 //    }
 
-    fun insertClient(clientModel: ClientModel) : Mono<ErrorModel<ClientModel>> {
+    fun insertClient(clientModel: ClientModel): Mono<ErrorModel<ClientModel>> {
         return Mono.fromSupplier {
             ErrorModel(clientBlockingRepository.insert(clientModel), null)
         }

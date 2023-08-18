@@ -1,8 +1,6 @@
 package com.fs.client.controller
 
 import com.fs.client.repository.EventRepository
-import com.fs.client.ru.AddressModel
-import com.fs.client.ru.CityModel
 import com.fs.service.ru.EventModel
 import com.fs.service.ru.EventWithAddressModel
 import com.fs.service.ru.errors.ErrorModel
@@ -10,7 +8,6 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
-import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
@@ -45,8 +42,8 @@ open class EventController(open val eventRepository: EventRepository) {
     open fun addAllEvents(@Argument events: List<EventWithAddressModel>): Mono<ErrorModel<Boolean>> {
         return eventRepository.insertAllEvents(events)
             .onErrorResume {
-                    return@onErrorResume Mono.just(ErrorModel(null, it.message))
-                }
+                return@onErrorResume Mono.just(ErrorModel(null, it.message))
+            }
     }
 
     @MutationMapping
