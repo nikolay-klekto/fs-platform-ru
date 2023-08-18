@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository
 open class DefaultServiceBlockingRepository(
     dsl: DSLContext,
     converter: ServiceModelConverter
-): ServiceBlockingRepository(dsl, converter)
+) : ServiceBlockingRepository(dsl, converter)

@@ -9,10 +9,10 @@ import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
 
 @Repository
-open class DefaultClientBlockingRepository (
+open class DefaultClientBlockingRepository(
     dsl: DSLContext,
     converter: ClientModelConverter,
     basketBlockingRepository: BasketBlockingRepository,
     encoder: PasswordService,
     orderRepository: OrderRepository
-): ClientBlockingRepository(dsl, converter, basketBlockingRepository, encoder, orderRepository)
+) : ClientBlockingRepository(dsl, converter, basketBlockingRepository, encoder, orderRepository)

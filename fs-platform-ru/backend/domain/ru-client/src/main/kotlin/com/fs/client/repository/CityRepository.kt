@@ -1,15 +1,11 @@
 package com.fs.client.repository
 
 import com.fs.client.ru.CityModel
-import com.fs.client.ru.CountryModel
 import com.fs.client.service.CityModelConverter
-import com.fs.client.service.CountryModelConverter
 import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.City.Companion.CITY
-import com.fs.domain.jooq.tables.Country.Companion.COUNTRY
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.pojos.City
-import com.fs.domain.jooq.tables.pojos.Country
 import com.fs.domain.jooq.tables.records.CityRecord
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
@@ -48,7 +44,7 @@ abstract class CityRepository(
             .first()
     }
 
-    fun getAllCities(): Flux<CityModel>{
+    fun getAllCities(): Flux<CityModel> {
         return Flux.from(
             dsl.select(CITY.asterisk()).from(CITY)
         )

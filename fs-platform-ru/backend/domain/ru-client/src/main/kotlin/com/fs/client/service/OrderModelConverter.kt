@@ -15,7 +15,7 @@ class OrderModelConverter : ModelConverter<Order, OrderModel> {
             dateCreated = rawObject.dateCreated,
             positionId = rawObject.positionId,
             serviceId = rawObject.serviceId,
-            orderStatus  = rawObject.orderStatus,
+            orderStatus = rawObject.orderStatus,
             startWorkDate = rawObject.startWorkDate,
             totalWorkDays = rawObject.totalWorkDays,
             price = rawObject.price

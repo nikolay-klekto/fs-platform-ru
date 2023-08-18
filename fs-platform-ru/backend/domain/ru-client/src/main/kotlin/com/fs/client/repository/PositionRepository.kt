@@ -16,7 +16,7 @@ abstract class PositionRepository(
     open val dsl: DSLContext,
     open val converter: PositionModelConverter,
     open val positionBlockingRepository: PositionBlockingRepository
-    ) {
+) {
 
     fun getPositionById(id: Long): Mono<PositionModel> {
         return Mono.fromSupplier {

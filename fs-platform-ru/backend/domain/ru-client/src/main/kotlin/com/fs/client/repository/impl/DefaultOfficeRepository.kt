@@ -1,6 +1,5 @@
 package com.fs.client.repository.impl
 
-import com.fs.client.repository.AddressRepository
 import com.fs.client.repository.OfficeRepository
 import com.fs.client.repository.blocked.AddressBlockingRepository
 import com.fs.client.repository.blocked.OfficeBlockingRepository

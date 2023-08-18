@@ -107,10 +107,10 @@ dependencies {
     implementation("org.springframework:spring-orm:6.0.10")
     implementation("org.postgresql:postgresql:42.5.0")
 
-    compileOnly ("com.vk.api:sdk:1.0.14")
+    compileOnly("com.vk.api:sdk:1.0.14")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    compileOnly ("com.vk.api:sdk:1.0.14")
+    compileOnly("com.vk.api:sdk:1.0.14")
 
     runtimeOnly("org.postgresql:postgresql")
 

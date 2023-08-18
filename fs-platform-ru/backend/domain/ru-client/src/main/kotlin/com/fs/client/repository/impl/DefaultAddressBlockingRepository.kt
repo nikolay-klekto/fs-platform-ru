@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository
 open class DefaultAddressBlockingRepository(
     dsl: DSLContext,
     converter: AddressModelConverter
-): AddressBlockingRepository(dsl, converter)
+) : AddressBlockingRepository(dsl, converter)

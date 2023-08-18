@@ -1,12 +1,9 @@
 package com.fs.client.repository.impl
 
-import com.fs.client.repository.*
+import com.fs.client.repository.OrderRepository
 import com.fs.client.repository.blocked.BasketBlockingRepository
-import com.fs.client.repository.blocked.CountryBlockingRepository
 import com.fs.client.repository.blocked.OrderBlockingRepository
-import com.fs.client.repository.blocked.ServiceBlockingRepository
 import com.fs.client.service.OrderModelConverter
-import com.fs.client.service.TotalPriceMatcher
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
 
@@ -16,4 +13,4 @@ open class DefaultOrderRepository(
     converter: OrderModelConverter,
     basketBlockingRepository: BasketBlockingRepository,
     orderBlockingRepository: OrderBlockingRepository
-) : OrderRepository(dsl, converter, basketBlockingRepository,orderBlockingRepository)
+) : OrderRepository(dsl, converter, basketBlockingRepository, orderBlockingRepository)

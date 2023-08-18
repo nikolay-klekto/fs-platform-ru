@@ -13,5 +13,5 @@ open class DefaultEventRepository(
     converter: EventModelConverter,
     eventBlockingRepository: EventBlockingRepository,
     addressBlockingRepository: AddressBlockingRepository
-): EventRepository(dsl, converter, eventBlockingRepository, addressBlockingRepository) {
+) : EventRepository(dsl, converter, eventBlockingRepository, addressBlockingRepository) {
 }

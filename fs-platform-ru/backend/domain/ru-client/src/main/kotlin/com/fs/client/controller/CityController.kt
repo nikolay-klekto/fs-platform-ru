@@ -4,7 +4,6 @@ import com.fs.client.repository.CityRepository
 import com.fs.client.ru.AddressModel
 import com.fs.client.ru.CityModel
 import com.fs.client.ru.ClientModel
-import com.fs.client.ru.CountryModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping

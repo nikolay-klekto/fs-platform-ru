@@ -22,7 +22,8 @@ abstract class ReviewRepository(
     open val reviewBlockingRepository: ReviewBlockingRepository,
     open val clientBlockingRepository: ClientBlockingRepository,
     open val blockingOrderRepository: OrderBlockingRepository,
-    open val officeBlockingRepository: OfficeBlockingRepository) {
+    open val officeBlockingRepository: OfficeBlockingRepository
+) {
 
     fun getReviewById(id: Long): Mono<ReviewModel> {
         return Mono.fromSupplier {
@@ -55,7 +56,7 @@ abstract class ReviewRepository(
     fun insertReview(reviewModel: ReviewModel): Mono<ErrorModel<ReviewModel>> {
         return Mono.fromSupplier {
             val clientRole: ClientRoleModel = clientBlockingRepository.getById(reviewModel.clientId)?.role!!
-            if(clientRole != ClientRoleModel.CLIENT){
+            if (clientRole != ClientRoleModel.CLIENT) {
                 throw Exception("Чтобы оставить отзыв, необходимо пройти процесс регистрации.")
             }
 
@@ -64,14 +65,14 @@ abstract class ReviewRepository(
 
             var isCurrentUserWorkInThisCompany = false
 
-            allClientOrders.forEach {orderModel ->
-                   val currentCompanyId: Long = officeBlockingRepository.getCompanyIdByOrderId(orderModel.id!!)
-                if(currentCompanyId == reviewModel.companyId){
+            allClientOrders.forEach { orderModel ->
+                val currentCompanyId: Long = officeBlockingRepository.getCompanyIdByOrderId(orderModel.id!!)
+                if (currentCompanyId == reviewModel.companyId) {
                     isCurrentUserWorkInThisCompany = true
                 }
             }
 
-            if(!isCurrentUserWorkInThisCompany){
+            if (!isCurrentUserWorkInThisCompany) {
                 throw Exception("Чтобы оставить отзыв на эту компанию, вы должны пройти в ней стажировку.")
             }
 

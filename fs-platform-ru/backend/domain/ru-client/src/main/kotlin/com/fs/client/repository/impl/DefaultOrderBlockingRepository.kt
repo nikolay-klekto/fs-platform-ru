@@ -13,4 +13,4 @@ open class DefaultOrderBlockingRepository(
     converter: OrderModelConverter,
     basketBlockingRepository: BasketBlockingRepository,
     serviceBlockingRepository: ServiceBlockingRepository
-): OrderBlockingRepository(dsl, converter, basketBlockingRepository, serviceBlockingRepository)
+) : OrderBlockingRepository(dsl, converter, basketBlockingRepository, serviceBlockingRepository)

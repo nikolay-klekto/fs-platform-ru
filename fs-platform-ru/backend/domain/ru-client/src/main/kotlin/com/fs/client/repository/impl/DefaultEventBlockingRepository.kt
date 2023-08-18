@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository
 open class DefaultEventBlockingRepository(
     dsl: DSLContext,
     converter: EventModelConverter
-): EventBlockingRepository(dsl, converter)
+) : EventBlockingRepository(dsl, converter)

@@ -1,9 +1,6 @@
 package com.fs.client.repository.blocked
 
-import com.fs.client.repository.OrderRepository
-import com.fs.client.service.CountryModelConverter
 import com.fs.client.service.OrderModelConverter
-import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.Basket.Companion.BASKET
 import com.fs.domain.jooq.tables.Client
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
@@ -13,8 +10,6 @@ import com.fs.service.ru.BasketModel
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.enums.OrderStatus
 import org.jooq.DSLContext
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
 abstract class OrderBlockingRepository(
@@ -34,13 +29,13 @@ abstract class OrderBlockingRepository(
 
     fun getAllByClientId(clientId: Long): List<OrderModel> {
         return dsl.selectFrom(ORDER)
-                .where(
-                    ORDER.BASKET_ID.eq(
-                        dsl.select(Client.CLIENT.BASKET_ID).from(Client.CLIENT)
-                            .where(Client.CLIENT.ID.eq(clientId))
-                    )
+            .where(
+                ORDER.BASKET_ID.eq(
+                    dsl.select(Client.CLIENT.BASKET_ID).from(Client.CLIENT)
+                        .where(Client.CLIENT.ID.eq(clientId))
                 )
-        .map { it.into(Order::class.java) }
+            )
+            .map { it.into(Order::class.java) }
             .map(converter::toModel)
 
     }
@@ -48,7 +43,7 @@ abstract class OrderBlockingRepository(
     fun decreaseBasketTotalPriceByOrderId(orderId: Long) {
         val basketTotalPrice: Double? = dsl.select(BASKET.TOTAL_PRICE).from(BASKET)
             .where(BASKET.ID.eq(dsl.select(ORDER.BASKET_ID).from(ORDER).where(ORDER.ID.eq(orderId))))
-            .map { it.into(Double::class.java)}.firstOrNull()
+            .map { it.into(Double::class.java) }.firstOrNull()
 
         val currentOrder: OrderModel? = getById(orderId)
 
@@ -62,14 +57,14 @@ abstract class OrderBlockingRepository(
     fun isBasketEmpty(basketId: Long): Boolean {
         val ordersWithCurrentBasket: Int = dsl.selectCount().from(ORDER).where(ORDER.BASKET_ID.eq(basketId))
             .first()
-            .map{it.into(Int::class.java)}
+            .map { it.into(Int::class.java) }
         return ordersWithCurrentBasket == 0
     }
 
     private fun isPreOrdersInBasket(basketId: Long): Boolean {
-        val preOrdersQuantity: Int =  dsl.selectCount().from(ORDER)
+        val preOrdersQuantity: Int = dsl.selectCount().from(ORDER)
             .where(ORDER.BASKET_ID.eq(basketId).and(ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED)))
-            .map { it.into(Int::class.java)}
+            .map { it.into(Int::class.java) }
             .first()
         return preOrdersQuantity > 0
     }
@@ -93,7 +88,7 @@ abstract class OrderBlockingRepository(
 
         if (orderModel.basketId != null) {
             isBasketTemporary = isPreOrdersInBasket(orderModel.basketId!!)
-            if(isBasketTemporary){
+            if (isBasketTemporary) {
                 newOrderStatus = OrderStatus.PRE_ORDERED
             }
         }
@@ -152,17 +147,18 @@ abstract class OrderBlockingRepository(
         val newOrderStatus: OrderStatus
 
         val oldOrderModel = getById(orderId)
-        newOrderStatus = if(oldOrderModel?.orderStatus != null && oldOrderModel.orderStatus == OrderStatus.PRE_ORDERED){
-            OrderStatus.PRE_ORDERED
-        }else{
-            if (oldOrderModel?.startWorkDate!!.plusDays(oldOrderModel.totalWorkDays!!)
-                    .isBefore(LocalDateTime.now())
-            ) {
-                OrderStatus.EXPIRED
+        newOrderStatus =
+            if (oldOrderModel?.orderStatus != null && oldOrderModel.orderStatus == OrderStatus.PRE_ORDERED) {
+                OrderStatus.PRE_ORDERED
             } else {
-                OrderStatus.ACTUAL
+                if (oldOrderModel?.startWorkDate!!.plusDays(oldOrderModel.totalWorkDays!!)
+                        .isBefore(LocalDateTime.now())
+                ) {
+                    OrderStatus.EXPIRED
+                } else {
+                    OrderStatus.ACTUAL
+                }
             }
-        }
         dsl.update(ORDER)
             .set(ORDER.ORDER_STATUS, newOrderStatus)
             .where(ORDER.ID.eq(orderId))
