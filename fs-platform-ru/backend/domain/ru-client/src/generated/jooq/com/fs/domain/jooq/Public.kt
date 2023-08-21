@@ -4,6 +4,7 @@
 package com.fs.domain.jooq
 
 
+import com.fs.domain.jooq.sequences.HIBERNATE_SEQUENCE
 import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
@@ -25,6 +26,7 @@ import com.fs.domain.jooq.tables.Service
 import kotlin.collections.List
 
 import org.jooq.Catalog
+import org.jooq.Sequence
 import org.jooq.Table
 import org.jooq.impl.SchemaImpl
 
@@ -128,6 +130,10 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     val SERVICE: Service get() = Service.SERVICE
 
     override fun getCatalog(): Catalog = DefaultCatalog.DEFAULT_CATALOG
+
+    override fun getSequences(): List<Sequence<*>> = listOf(
+        HIBERNATE_SEQUENCE
+    )
 
     override fun getTables(): List<Table<*>> = listOf(
         Address.ADDRESS,
