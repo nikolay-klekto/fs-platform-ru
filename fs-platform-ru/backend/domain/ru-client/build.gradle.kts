@@ -224,7 +224,7 @@ jooq {
                         isImmutablePojos = false
                         isFluentSetters = true
                         isPojos = true
-                        withSequences(true)
+                        withSequences(false)
                     }
                     target.apply {
                         packageName = "com.fs.domain.jooq"
