@@ -49,3 +49,4 @@ frontend/target
 .gradle
 
 !.mvn/wrapper/maven-wrapper.jar
+*.MF
