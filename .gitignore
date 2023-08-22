@@ -40,12 +40,12 @@ backend/target
 backend/build
 backend/.mvn
 backend/mvnw
-*.frontend/dist/
-*.frontend/build
-*.frontend/node/
-*.frontend/node_modules/
-*.frontend/npm-debug.log
-*.frontend/target
+/fs-platform-ru/frontend/dist/
+/fs-platform-ru/frontend/build
+/fs-platform-ru/frontend/node/
+/fs-platform-ru/frontend/node_modules/
+/fs-platform-ru/frontend/npm-debug.log
+/fs-platform-ru/frontend/target
 .gradle
 
 !.mvn/wrapper/maven-wrapper.jar
