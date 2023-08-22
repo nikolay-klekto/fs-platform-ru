@@ -40,12 +40,12 @@ backend/target
 backend/build
 backend/.mvn
 backend/mvnw
-frontend/dist/
-frontend/build
-frontend/node/
-frontend/node_modules/
-frontend/npm-debug.log
-frontend/target
+*.frontend/dist/
+*.frontend/build
+*.frontend/node/
+*.frontend/node_modules/
+*.frontend/npm-debug.log
+*.frontend/target
 .gradle
 
 !.mvn/wrapper/maven-wrapper.jar
