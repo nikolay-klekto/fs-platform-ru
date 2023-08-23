@@ -1,2 +1,2 @@
-someText from Liz
+someText from liz
 Some text
