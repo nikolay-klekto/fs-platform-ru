@@ -1,3 +1,2 @@
-
-someText from liz
+someText from Alexandr2
 Some text
