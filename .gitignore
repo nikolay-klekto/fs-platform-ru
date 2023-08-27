@@ -50,3 +50,5 @@ backend/mvnw
 
 !.mvn/wrapper/maven-wrapper.jar
 *.MF
+/frontend/node/
+/frontend/node_modules/
