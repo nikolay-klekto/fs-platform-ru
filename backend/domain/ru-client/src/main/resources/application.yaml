@@ -9,7 +9,7 @@ graphql:
 spring:
   datasource:
 #    For docker
-    url: jdbc:postgresql://localhost:15432/fun_scrut
+    url: jdbc:postgresql://funscrut.online:15432/fun_scrut
     username: username
     password: password
 #    url: jdbc:postgresql://localhost:5432/FunScrut2
@@ -33,7 +33,7 @@ spring:
       discovery:
         register: false
   jooq:
-    url: jdbc:postresql://localhost:15432/fun_scrut
+    url: jdbc:postresql://funscrut.online:15432/fun_scrut
     user: username
     password: password
 #    url: jdbc:postgresql:FunScrut2
@@ -64,7 +64,7 @@ logging:
           LoggerListener: debug
 
 jooq:
-  url: jdbc:postgresql://localhost:15432/fun_scrut
+  url: jdbc:postgresql://funscrut.online:15432/fun_scrut
   user: username
   password: password
 #  url: jdbc:postgresql:FunScrut2
