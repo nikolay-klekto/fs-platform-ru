@@ -88,7 +88,7 @@ dependencies {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr4096=strict")
+        freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "1.8"
     }
 }
