@@ -36,16 +36,16 @@ jobs:
         arguments: build
         gradle-version: 7.4.2
     - uses: actions/upload-artifact@v3
-    with:
-      name: Package
-      path: build/libs
+      with:
+        name: Package
+        path: build/libs
     - name: Copy single file to remote
-    uses: garygrossgarten/github-action-scp@release
-    with:
-      local: build/libs
-      remote: /home/Nikolay/funScrut
-      host: ${{ secrets.HOST }}
-      username: ${{ secrets.SSH_USER }}
-      password: ${{ secrets.PASSWORD }}
+      uses: garygrossgarten/github-action-scp@release
+      with:
+        local: build/libs
+        remote: /home/Nikolay/funScrut
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.SSH_USER }}
+        password: ${{ secrets.PASSWORD }}
 
         
