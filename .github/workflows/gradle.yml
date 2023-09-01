@@ -35,14 +35,10 @@ jobs:
       with:
         arguments: build
         gradle-version: 7.4.2
-    - uses: actions/upload-artifact@v3
-      with:
-        name: Package
-        path: build/libs
     - name: Copy single file to remote
       uses: garygrossgarten/github-action-scp@release
       with:
-        local: build/libs
+        local: /home/runner/work/fs-platform-ru/fs-platform-ru/backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar
         remote: /home/Nikolay/funScrut
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
