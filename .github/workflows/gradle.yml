@@ -36,12 +36,4 @@ jobs:
         arguments: build
         gradle-version: 7.4.2
     - name: Copy single file to remote
-      uses: garygrossgarten/github-action-scp@release
-      with:
-        local: /home/runner/work/fs-platform-ru/fs-platform-ru/backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar
-        remote: /home/Nikolay/funScrut
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.SSH_USER }}
-        password: ${{ secrets.PASSWORD }}
-
-        
+      run: scp -r /home/runner/work/fs-platform-ru/fs-platform-ru/backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar root@45.135.234.61:/home/Nikolay/funScrut
