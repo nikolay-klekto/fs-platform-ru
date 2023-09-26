@@ -14,8 +14,6 @@
 
 <img src="https://img.shields.io/badge/Spring_Framework-2.7.4-green.svg">
 
-<img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" >
-
 <img src="https://img.shields.io/github/languages/top/nikolay-klekto/FunscrutRU.svg">
 
 <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat">
