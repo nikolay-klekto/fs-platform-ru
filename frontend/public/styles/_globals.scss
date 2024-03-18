@@ -1,0 +1,41 @@
+// глобальные стили
+// @import './mixins';
+
+body{
+    @include fluid-text(24,20);
+
+    font-family: var(--font-family);
+    font-weight: 500;
+    line-height: 1.28;
+    color: var(--color-basic-white);
+    background-color: var(--color-basic-dark-blue);
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+    transition-duration: var(--transition-duration);
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+h1{
+    @include fluid-text(80,32);
+}
+
+h2{
+    @include fluid-text(46,28);
+}
+
+h3{
+    @include fluid-text(36,16);
+}
+
+h4{
+    @include fluid-text(28,18);
+}

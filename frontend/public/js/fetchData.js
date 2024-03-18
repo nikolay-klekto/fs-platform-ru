@@ -1,36 +1,38 @@
-import BASE_URL from "../../constants/url.js";
+import BASE_URL from "../constants/url.js";
 
 /** функция для отправки запроса на сервер
  * @queryBody тело query запроса
  */
 async function sendQuery(queryBody) {
-    try {
-      const response = await fetch(BASE_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        body: JSON.stringify({ query: queryBody }),
-      });
+    console.log(BASE_URL)
+  try {
+    const response = await fetch(BASE_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ query: queryBody }),
+    });
 
-      if (response.ok) {
-        const { data } = await response.json();
+    if (response.ok) {
+      const { data } = await response.json();
 
-        return { data, response };
-      } else {
-        throw new Error(response.status);
-      }
-    } catch (e) {
-      return e.message;
+      return { data, response };
+    } else {
+      throw new Error(response.status);
     }
+  } catch (e) {
+    return e.message;
+  }
 }
 
 // ---------- Event ----------
 
 // функция для получения всех мероприятий
 export async function getAllEvents() {
-    const query = await sendQuery(`
+    console.log('fghjk')
+  const query = await sendQuery(`
         query company {
             getAllEvents {
                 id
@@ -54,12 +56,12 @@ export async function getAllEvents() {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllActualEvents() {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company {
             getAllActualEvents {
                 id
@@ -83,12 +85,12 @@ export async function getAllActualEvents() {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function eventByID(eventId) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query event {
             getEvent(
                 eventId: ${eventId}
@@ -115,12 +117,12 @@ export async function eventByID(eventId) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllActualEventsByCityId(cityId) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query event {
             getAllActualEventsByCityId(
                 cityId: ${cityId}
@@ -147,12 +149,12 @@ export async function getAllActualEventsByCityId(cityId) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function insertAllEvents(events) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             addAllEvents(
                 events: ${events}
@@ -164,12 +166,12 @@ export async function insertAllEvents(events) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function updateAllEvents(events) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation event {
             updateAllEvents(
                 events: ${events}
@@ -181,12 +183,12 @@ export async function updateAllEvents(events) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteEvent(eventId) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteEvent(
                 eventId: ${eventId}
@@ -194,36 +196,36 @@ export async function deleteEvent(eventId) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteAllEvents() {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteAllEvents
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteAllExpiredEvents() {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteAllExpiredEvents
         }
     `);
 
-    return query;
+  return query;
 }
 
 // ---------- Basket ----------
 
-// функция для 
+// функция для
 export async function updateBasket(id, totalPrice) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation company {
             updateBasket(
                 basket: {
@@ -234,12 +236,12 @@ export async function updateBasket(id, totalPrice) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function basketByID(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company {
             getBasketById(
                 id: ${id}
@@ -251,14 +253,14 @@ export async function basketByID(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
 // ---------- Order ----------
 
-// функция для 
+// функция для
 export async function orderByID(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company {
             getOrderById(
                 id: ${id}
@@ -292,12 +294,12 @@ export async function orderByID(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function ordersByClientId(clientId) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company {
             getOrdersByClientId(
                 clientId: ${clientId}
@@ -331,12 +333,12 @@ export async function ordersByClientId(clientId) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function orderByBasketId(basketId) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company {
             getOrdersByBasketId(
                 basketId: ${basketId}
@@ -370,12 +372,12 @@ export async function orderByBasketId(basketId) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function insertOrder(order) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             addOrder(
                 order: ${order}
@@ -409,12 +411,12 @@ export async function insertOrder(order) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function updateOrder(order) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation company {
             updateOrder(
                 order: ${order}
@@ -422,12 +424,12 @@ export async function updateOrder(order) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteOrder(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteOrder(
                 id: ${id}
@@ -435,12 +437,12 @@ export async function deleteOrder(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteAllOrdersByBasketId(basketId) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteAllOrdersByBasketId(
                 basketId: ${basketId}
@@ -448,14 +450,14 @@ export async function deleteAllOrdersByBasketId(basketId) {
         }
     `);
 
-    return query;
+  return query;
 }
 
 // ---------- Position ----------
 
-// функция для 
+// функция для
 export async function insertByCompany(companyId, description, name) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
 	        addCompanyPosition(
 		        companyId: ${companyId}
@@ -472,12 +474,12 @@ export async function insertByCompany(companyId, description, name) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function addExistingPositionToCompany(companyId, positionId) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
 	        addExistingPositionToCompany(
 		        companyId: ${companyId}
@@ -486,12 +488,12 @@ export async function addExistingPositionToCompany(companyId, positionId) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function positionByID(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company {
 	        getPositionById(
                 id: ${id}
@@ -504,12 +506,12 @@ export async function positionByID(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllByCompanyId(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company {
             getAllPositionsByCompanyId(
                 id: ${id}
@@ -522,12 +524,12 @@ export async function getAllByCompanyId(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllPositions() {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company {
             getAllPositions {
 		        id
@@ -537,12 +539,12 @@ export async function getAllPositions() {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function insertPosition(id, description, name) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
 	        addPosition(
 		        position: {
@@ -559,12 +561,12 @@ export async function insertPosition(id, description, name) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function updatePosition(id, description, name) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation company {
             updatePosition(
 		        position: {
@@ -576,12 +578,12 @@ export async function updatePosition(id, description, name) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deletePosition(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deletePosition(
                 id: ${id}
@@ -589,14 +591,14 @@ export async function deletePosition(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
 // ---------- Office ----------
 
-// функция для 
+// функция для
 export async function insertOffice(companyAddress) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             addOfficeAddress(
                 companyAddress: ${companyAddress}
@@ -612,12 +614,12 @@ export async function insertOffice(companyAddress) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function officeByID(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company {
             getOffice(
                 id: ${id}
@@ -636,12 +638,12 @@ export async function officeByID(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllByCompanyId(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company{
             getAllOfficesByCompanyId(
                 id: ${id}
@@ -660,13 +662,12 @@ export async function getAllByCompanyId(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-
-// функция для 
+// функция для
 export async function updateOffice(companyAddress) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation company {
             updateOfficeAddress(
                 companyAddress: ${companyAddress}
@@ -674,12 +675,12 @@ export async function updateOffice(companyAddress) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteAllByCompanyId(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteAllOfficesByCompanyId(
                 id: ${id}
@@ -687,12 +688,12 @@ export async function deleteAllByCompanyId(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteOffice(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteOffice(
                 id: ${id}
@@ -700,14 +701,14 @@ export async function deleteOffice(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
 // ---------- Company ----------
 
-// функция для 
+// функция для
 export async function insertCompanyByPartner(partnerId, company) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             addCompanyByPartner(
                 partnerId: ${partnerId},
@@ -724,12 +725,12 @@ export async function insertCompanyByPartner(partnerId, company) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function updateCompany(company) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation company {
             updateCompany(
                 company:${company}
@@ -737,12 +738,12 @@ export async function updateCompany(company) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function companyByID(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company{
             getCompanyById(
                 id: ${id}
@@ -758,12 +759,12 @@ export async function companyByID(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllByPositionId(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company{
             getAllCompaniesByPositionId(
                 id: ${id}
@@ -779,12 +780,12 @@ export async function getAllByPositionId(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllByCountryCode(code) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company{
             getAllCompaniesByCountryCode(
                 code: ${code}
@@ -800,12 +801,12 @@ export async function getAllByCountryCode(code) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllByCityId(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query company{
             getAllCompaniesByCityId(
                 id: ${id}
@@ -821,12 +822,12 @@ export async function getAllByCityId(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteCompany(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteCompany(
                 id: ${id}
@@ -834,12 +835,12 @@ export async function deleteCompany(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllCompany() {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query parter {
             getAllCompanies{
                 id
@@ -852,14 +853,14 @@ export async function getAllCompany() {
         }
     `);
 
-    return query;
+  return query;
 }
 
 // ---------- Partner ----------
 
-// функция для 
+// функция для
 export async function getPartnerByID(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query country {
             getPartnerById(
                 id: ${id}
@@ -874,12 +875,12 @@ export async function getPartnerByID(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function insertPartner(client) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             addPartner(
                 client: ${client}
@@ -898,12 +899,12 @@ export async function insertPartner(client) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deletePartner(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deletePartner(
                 id: ${id}
@@ -911,12 +912,12 @@ export async function deletePartner(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllPartners() {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query partner {
             getAllPartners  {
                 id
@@ -929,12 +930,12 @@ export async function getAllPartners() {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getPartnersByCompanyId(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query partner {
             getPartnersByCompanyId(
                 id: ${id}
@@ -949,14 +950,14 @@ export async function getPartnersByCompanyId(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
 // ---------- Address ----------
 
-// функция для 
+// функция для
 export async function insertAddress(address) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             addAddress(
                 address: ${address}
@@ -972,12 +973,12 @@ export async function insertAddress(address) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function updateAddress(address) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation address {
             updateAddress(
                 address: ${address}
@@ -985,12 +986,12 @@ export async function updateAddress(address) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteAddress(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteAddress(
                 id: ${id}
@@ -998,14 +999,14 @@ export async function deleteAddress(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
 // ---------- Client ----------
 
-// функция для 
+// функция для
 export async function insertClient(client) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             addClient(
                 client: ${client}
@@ -1037,12 +1038,12 @@ export async function insertClient(client) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllClients() {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query client {
             getAllClients {
                 id
@@ -1067,12 +1068,12 @@ export async function getAllClients() {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getClientByID(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query {
             getClintById(
                 id: ${id}
@@ -1106,12 +1107,12 @@ export async function getClientByID(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function changePassword(clientId, password) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation client {
             changePassword(
                 clientId: ${clientId},
@@ -1120,12 +1121,12 @@ export async function changePassword(clientId, password) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function updateClient(id, role) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation service {
             updateClient(
                 client: {
@@ -1136,12 +1137,12 @@ export async function updateClient(id, role) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteClient(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteClient(
                 id: ${id}
@@ -1149,14 +1150,14 @@ export async function deleteClient(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
 // ---------- Country ----------
 
-// функция для 
+// функция для
 export async function insertCountry(currency, name) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             addCountry(
                 country: {
@@ -1172,12 +1173,12 @@ export async function insertCountry(currency, name) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteCountry(countryCode) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteCountry(
                 countryCode: ${countryCode}
@@ -1185,12 +1186,12 @@ export async function deleteCountry(countryCode) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getCountryByID(code) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query country{
             getCountry(
                 code: ${code}
@@ -1203,12 +1204,12 @@ export async function getCountryByID(code) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllCountries() {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query country {
             getAllCountries {
                 code
@@ -1218,12 +1219,12 @@ export async function getAllCountries() {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getCountryByName(name) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query country {
             getCountryByName(
                 name: ${name}
@@ -1236,14 +1237,14 @@ export async function getCountryByName(name) {
         }
     `);
 
-    return query;
+  return query;
 }
 
 // ---------- Cities ----------
 
-// функция для 
+// функция для
 export async function cityById(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query city {
             getCity(
                 id: ${id}
@@ -1259,12 +1260,12 @@ export async function cityById(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllCities() {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query city {
             getAllCities {
             name
@@ -1278,12 +1279,12 @@ export async function getAllCities() {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getCountryByCity(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query country{
             getCountryByCity(
                 id: ${id}
@@ -1295,12 +1296,12 @@ export async function getCountryByCity(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function insertCity(countryCode, name) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             addCity(
                 city: {
@@ -1320,12 +1321,12 @@ export async function insertCity(countryCode, name) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteCity(cityId) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteCity(
                 cityId: ${cityId}
@@ -1333,14 +1334,14 @@ export async function deleteCity(cityId) {
         }
     `);
 
-    return query;
+  return query;
 }
 
 // ---------- Service ----------
 
-// функция для 
+// функция для
 export async function insertService(services) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation service {
             addService(
                 services: ${services}
@@ -1353,12 +1354,12 @@ export async function insertService(services) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteService(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteServiceById(
                 id: ${id}
@@ -1366,12 +1367,12 @@ export async function deleteService(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function updateService(id, service) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation service {
             updateServiceById(
                 id: ${id},
@@ -1380,12 +1381,12 @@ export async function updateService(id, service) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getServiceByID(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query service {
             getServiceById(
                 id: ${id}
@@ -1398,12 +1399,12 @@ export async function getServiceByID(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllServices() {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query service {
             getAllServices {
                 id
@@ -1413,14 +1414,14 @@ export async function getAllServices() {
         }
     `);
 
-    return query;
+  return query;
 }
 
 // ---------- Review ----------
 
-// функция для 
+// функция для
 export async function insertReview(review) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation review {
             addReview
             (
@@ -1441,12 +1442,12 @@ export async function insertReview(review) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getReviewByID(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query service {
             reviewById(
                 id: ${id}
@@ -1461,12 +1462,12 @@ export async function getReviewByID(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function getAllReviewsByCompanyId(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         query service {
             getAllReviewsByCompany(
                 id: ${id}
@@ -1481,12 +1482,12 @@ export async function getAllReviewsByCompanyId(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function deleteReview(id) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation {
             deleteReviewById(
                 id: ${id}
@@ -1494,12 +1495,12 @@ export async function deleteReview(id) {
         }
     `);
 
-    return query;
+  return query;
 }
 
-// функция для 
+// функция для
 export async function updateReview(review) {
-    const query = await sendQuery(`
+  const query = await sendQuery(`
         mutation service {
             updateReview(
                 review: ${review}
@@ -1507,5 +1508,5 @@ export async function updateReview(review) {
         }
     `);
 
-    return query;
+  return query;
 }
