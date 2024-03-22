@@ -1,5 +1,12 @@
+// @import './fonts',
+// './globals',
+// './media',
+// './normalize',
+// './utils',
+// './variables';
+
 @mixin fluid-text ($max:48, $min:16){
-	font-size: clamp(#{$min}px, #{$max/1920*100}vw,#{$max}px);
+	font-size: clamp(#{$min}px, #{$max/1920*100}vw, #{$max}px); //(1rem + 5vw)
 }
 
 @mixin reset-link{
