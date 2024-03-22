@@ -601,10 +601,6 @@ svg * {
   align-items: center;
   column-gap: 3.125rem;
 }
-.header__logo {
-  width: 6.25rem;
-  height: 5.19rem;
-}
 .header__menu-list {
   display: flex;
   align-items: center;
@@ -655,4 +651,8 @@ svg * {
 .header__icons-profile {
   width: 3.125rem;
   height: 3.125rem;
+}
+.logo__image {
+  width: 6.25rem;
+  height: 5.19rem;
 }/*# sourceMappingURL=index.css.map */

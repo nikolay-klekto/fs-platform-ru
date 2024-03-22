@@ -2,6 +2,11 @@
     // position: fixed;
     padding: 1.875rem 0;
     // background: url('../../img/logo.svg');
+
+    @include desktop{
+        
+    }
+
     // .header__inner
     &__inner {
         display: flex;
@@ -14,8 +19,6 @@
     }
     // .header__logo
     &__logo {
-        width: 6.25rem;
-        height: 5.19rem;
     }
     // .header__menu
     &__menu {
