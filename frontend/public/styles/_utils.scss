@@ -1,3 +1,10 @@
+// @import './fonts',
+// './globals',
+// './media',
+// './mixins',
+// './normalize',
+// './variables';
+
 // утилитарные функции
 .container{
     max-width: calc(var(--container-width) + var(--container-padding-x) *2);

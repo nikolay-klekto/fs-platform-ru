@@ -1,8 +1,43 @@
 @charset "UTF-8";
 @font-face {
+  font-family: "Angry";
+  src: url("../fonts/Angry-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM-Sans";
+  src: url("../fonts/DM-Sans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Euclid-Square";
+  src: url("../fonts/Euclid-Square-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Euclid-Square";
+  src: url("../fonts/Euclid-Square-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: "Montserrat";
-  src: url("../fonts/Montserrat-Bold.woff2") format("woff2");
-  font-weight: 700;
+  src: url("../fonts/Montserrat-Regular.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -15,12 +50,377 @@
 }
 @font-face {
   font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Medium-Italic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
   src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Angry";
+  src: url("../fonts/Angry-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM-Sans";
+  src: url("../fonts/DM-Sans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Euclid-Square";
+  src: url("../fonts/Euclid-Square-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Euclid-Square";
+  src: url("../fonts/Euclid-Square-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Medium-Italic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+/**
+  Нормализация блочной модели
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями
+ */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Плавный скролл
+   */
+  scroll-behavior: smooth;
+}
+
 body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+ */
+svg *[fill] {
+  fill: currentColor;
+}
+
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 375px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 376px) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+:root {
+  --color-basic-white: #FFFFFF;
+  --color-basic-grey: #878797;
+  --color-basic-dark-grey: #353652;
+  --color-basic-blue: #1F203F;
+  --color-basic-dark-blue: #101030;
+  --color-accent-brown: #BC8070;
+  --color-accent-purple: #8333F3;
+  --color-accent-purple-gradient: linear-gradient(
+      90deg, #8333F3 0%,
+      #5f4af3 48.55%,
+      #3b51a8 100%);
+  --color-accent-purple-light-gradient:linear-gradient(
+      90deg, #a875f1 0%,
+      #8d7ef3 48.55%,
+      #6c7cba 100%);
+  --color-transparent-grey: rgba(255, 255, 255, 0.1);
+  --color-transparent-purple: rgba(16, 16, 48, 0.7);
+  --color-transparent-dark: rgba(0, 0, 0, 0.7);
+  --button-border: black;
+  --button-border-radius: 3.12rem;
+  --button-shadow: 0 0 5rem 0 #9653f5;
+  --font-family: "Montserrat", sans-serif;
+  --second-family: "Angry", sans-serif;
+  --font3: "Euclid Square", sans-serif;
+  --third-family: "DM Sans", sans-serif;
+  --font5: "Poppins", sans-serif;
+  --font4: "Inter", sans-serif;
+  --font6: "Roboto", sans-serif;
+  --container-width: min(100vw,1798px);
+  --container-padding-x: 15px;
+  --section-padding-y: 100px;
+  --input-height: 4rem;
+  --button-height: 4.25rem;
+  --button-secondary-height: 4rem;
+  --transition-duration: 0.2s;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-size: clamp(20px, 1.25vw, 24px);
   font-family: var(--font-family);
   font-weight: 500;
   line-height: 1.28;
@@ -39,6 +439,22 @@ svg * {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+h1 {
+  font-size: clamp(32px, 4.1666666667vw, 80px);
+}
+
+h2 {
+  font-size: clamp(28px, 2.3958333333vw, 46px);
+}
+
+h3 {
+  font-size: clamp(16px, 1.875vw, 36px);
+}
+
+h4 {
+  font-size: clamp(18px, 1.4583333333vw, 28px);
 }
 
 /**
@@ -231,11 +647,20 @@ svg * {
   --color-basic-dark-blue: #101030;
   --color-accent-brown: #BC8070;
   --color-accent-purple: #8333F3;
+  --color-accent-purple-gradient: linear-gradient(
+      90deg, #8333F3 0%,
+      #5f4af3 48.55%,
+      #3b51a8 100%);
+  --color-accent-purple-light-gradient:linear-gradient(
+      90deg, #a875f1 0%,
+      #8d7ef3 48.55%,
+      #6c7cba 100%);
   --color-transparent-grey: rgba(255, 255, 255, 0.1);
   --color-transparent-purple: rgba(16, 16, 48, 0.7);
   --color-transparent-dark: rgba(0, 0, 0, 0.7);
-  --border: border: 3px solid var(var(--color-basic-grey));
-  --border-radius: 50px;
+  --button-border: black;
+  --button-border-radius: 3.12rem;
+  --button-shadow: 0 0 5rem 0 #9653f5;
   --font-family: "Montserrat", sans-serif;
   --second-family: "Angry", sans-serif;
   --font3: "Euclid Square", sans-serif;
@@ -243,11 +668,145 @@ svg * {
   --font5: "Poppins", sans-serif;
   --font4: "Inter", sans-serif;
   --font6: "Roboto", sans-serif;
-  --container-width: 1798px;
+  --container-width: min(100vw,1798px);
   --container-padding-x: 15px;
   --section-padding-y: 100px;
   --input-height: 4rem;
   --button-height: 4.25rem;
   --button-secondary-height: 4rem;
   --transition-duration: 0.2s;
+}
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: fit-content;
+  height: var(--button-height);
+  padding-inline: 2.5rem;
+  border-radius: var(--button-border-radius);
+  border: none;
+  transition-duration: var(--transition-duration);
+}
+.button__text {
+  font-weight: 600;
+  font-size: 1.56rem;
+  color: var(--color-basic-white);
+}
+.button__text::first-letter {
+  text-transform: uppercase;
+}
+.button_purple {
+  background: var(--color-accent-purple-gradient);
+}
+@media (hover: hover) {
+  .button_purple:hover {
+    background: var(--color-accent-purple-light-gradient);
+  }
+}
+@media (hover: none) {
+  .button_purple:active {
+    background: var(--color-accent-purple-light-gradient);
+  }
+}
+.button_white {
+  background: var(--color-basic-white);
+}
+.button_white .button__text {
+  background: var(--color-accent-purple-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-accent-purple);
+}
+@media (hover: hover) {
+  .button_white:hover {
+    box-shadow: var(--button-shadow);
+  }
+}
+@media (hover: none) {
+  .button_white:active {
+    box-shadow: var(--button-shadow);
+  }
+}
+.button_transparent {
+  height: var(--button-secondary-height);
+  border: 4px solid transparent;
+  border-image: var(--color-accent-purple-gradient);
+  background: transparent;
+}
+@media (hover: hover) {
+  .button_transparent:hover {
+    background: var(--color-accent-purple-gradient);
+  }
+}
+@media (hover: none) {
+  .button_transparent:active {
+    background: var(--color-accent-purple-gradient);
+  }
+}
+
+.header {
+  padding: 1.875rem 0;
+}
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 3.125rem;
+}
+.header__menu-list {
+  display: flex;
+  align-items: center;
+  border-radius: 3.12rem;
+  background: var(--color-basic-white);
+  height: 4.25rem;
+  padding-inline: 0.25rem;
+}
+.header__menu-link {
+  height: 3.75rem;
+  padding-inline: 2.625rem;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 3.12rem;
+  font-size: 1.12rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--color-accent-purple-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-accent-purple);
+  transition-duration: var(--transition-duration);
+}
+@media (hover: hover) {
+  .header__menu-link:hover {
+    -webkit-background-clip: border-box;
+    -webkit-text-fill-color: var(--color-basic-white);
+    color: var(--color-basic-white);
+  }
+}
+@media (hover: none) {
+  .header__menu-link:active {
+    -webkit-background-clip: border-box;
+    -webkit-text-fill-color: var(--color-basic-white);
+    color: var(--color-basic-white);
+  }
+}
+.header__icons {
+  display: flex;
+  align-items: center;
+  column-gap: 3.125rem;
+}
+.header__icons-basket {
+  width: 3.125rem;
+  height: 3.125rem;
+}
+.header__icons-profile {
+  width: 3.125rem;
+  height: 3.125rem;
+}
+.logo__image {
+  width: 6.25rem;
+  height: 5.19rem;
 }/*# sourceMappingURL=index.css.map */

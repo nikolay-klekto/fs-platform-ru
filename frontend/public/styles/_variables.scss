@@ -8,16 +8,27 @@
 
     --color-accent-brown: #BC8070;
     --color-accent-purple: #8333F3;
+    --color-accent-purple-gradient: linear-gradient(
+        90deg, #8333F3 0%,
+        #5f4af3 48.55%,
+        #3b51a8 100%);
+    --color-accent-purple-light-gradient:linear-gradient(
+        90deg, #a875f1 0%,
+        #8d7ef3 48.55%,
+        #6c7cba 100%);
 
     --color-transparent-grey: rgba(255, 255, 255, 0.1);
     --color-transparent-purple: rgba(16, 16, 48, 0.7);
     --color-transparent-dark: rgba(0, 0, 0, 0.7);
 
     //границы
-    --border: border: 3px solid var(var(--color-basic-grey));//???
-    --border-radius: 50px; //+small +large
+    // --border: border: 3px solid var(var(--color-basic-grey));//???
+    // --border-radius: 50px; //+small +large
+    --button-border: black;
+    --button-border-radius: 3.12rem;
 
     //тени
+    --button-shadow: 0 0 5rem 0 #9653f5;
 
 
     //шрифты
@@ -30,7 +41,7 @@
     --font6: "Roboto", sans-serif;
 
     //сетка
-    --container-width: 1798px;
+    --container-width: min(100vw,1798px); //1798px;
     --container-padding-x: 15px;
 
     --section-padding-y: 100px; //????

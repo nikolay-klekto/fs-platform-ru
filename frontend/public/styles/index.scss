@@ -1,7 +1,22 @@
-@import './fonts',
+@import
+'./fonts',
 './globals',
 './media',
 './mixins',
 './normalize',
 './utils',
 './variables';
+
+@import
+'./blocks/button',
+'./blocks/header';
+
+
+
+.logo {
+    // .logo__image
+    &__image {
+        width: 6.25rem;
+        height: 5.19rem;
+    }
+}

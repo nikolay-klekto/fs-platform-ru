@@ -1,0 +1,62 @@
+.button {
+    @include flex-center(true);
+    min-width: fit-content;
+    height: var(--button-height);
+    padding-inline: 2.5rem;
+    border-radius: var(--button-border-radius);
+    border: none;
+    transition-duration: var(--transition-duration);
+
+    // .button__text
+    &__text{
+        font-weight: 600;
+        font-size: 1.56rem;
+        color: var(--color-basic-white);
+        &::first-letter{
+            text-transform: uppercase;
+        }
+    }
+
+    // .button_purple
+    &_purple {
+        background: var(--color-accent-purple-gradient);
+
+        // .button__text{
+        //     -webkit-text-fill-color: var(--color-basic-white);
+        //     color: var(--color-basic-white);
+        // }
+
+        @include hover{
+            background: var(--color-accent-purple-light-gradient);
+        }
+    }
+
+    // .button_white
+    &_white {
+        background: var(--color-basic-white);
+
+        .button__text{
+            background: var(--color-accent-purple-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var( --color-accent-purple);
+        }
+
+        @include hover{
+            box-shadow: var(--button-shadow);
+        }
+    }
+
+    // .button_transparent
+    &_transparent {
+        height: var(--button-secondary-height);
+        border: 4px solid transparent;
+        border-image: var(--color-accent-purple-gradient);
+        background: transparent;
+
+        @include hover{
+            background: var(--color-accent-purple-gradient);
+        }
+    }
+}
