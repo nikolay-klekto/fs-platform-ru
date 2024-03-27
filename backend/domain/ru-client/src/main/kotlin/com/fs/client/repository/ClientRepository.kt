@@ -3,6 +3,7 @@ package com.fs.client.repository
 import com.fs.client.repository.blocked.ClientBlockingRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.service.ClientModelConverter
+import com.fs.client.service.PasswordService
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Client
@@ -17,7 +18,8 @@ import reactor.core.publisher.Mono
 abstract class ClientRepository(
     open val dsl: DSLContext,
     open val converter: ClientModelConverter,
-    open val clientBlockingRepository: ClientBlockingRepository
+    open val clientBlockingRepository: ClientBlockingRepository,
+    open val passwordService: PasswordService
 ) {
 
     fun getClintById(id: Long?): Mono<ClientModel> {
@@ -52,7 +54,7 @@ abstract class ClientRepository(
     fun changePassword(id: Long, password: String): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.update(CLIENT)
-                .set(CLIENT.PASSWORD, password)
+                .set(CLIENT.PASSWORD, passwordService.encodePassword(password))
                 .where(CLIENT.ID.eq(id))
                 .execute() == 1
         }
