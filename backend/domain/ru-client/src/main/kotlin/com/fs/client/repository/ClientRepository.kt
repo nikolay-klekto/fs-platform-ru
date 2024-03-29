@@ -53,8 +53,10 @@ abstract class ClientRepository(
 
     fun changePassword(id: Long, password: String): Mono<Boolean> {
         return Mono.fromSupplier {
+            val passwordCredentials = passwordService.encodePassword(password)
             dsl.update(CLIENT)
-                .set(CLIENT.PASSWORD, passwordService.encodePassword(password))
+                .set(CLIENT.PASSWORD, passwordCredentials.first)
+                .set(CLIENT.SALT, passwordCredentials.second)
                 .where(CLIENT.ID.eq(id))
                 .execute() == 1
         }
@@ -90,6 +92,25 @@ abstract class ClientRepository(
     fun insertClient(clientModel: ClientModel): Mono<ErrorModel<ClientModel>> {
         return Mono.fromSupplier {
             ErrorModel(clientBlockingRepository.insert(clientModel), null)
+        }
+    }
+
+    fun verifyPassword(clientModel: ClientModel): Mono<ErrorModel<Long>>{
+        return Mono.fromSupplier {
+            if(clientModel.email == null || clientModel.password == null){
+                throw Exception("Введены не все поля!")
+            }
+
+            val possibleClient = clientBlockingRepository.getByEmail(clientModel.email!!)
+                ?: throw Exception("Данного пользователя не существует!")
+
+            if(passwordService.verifyPassword(clientModel.password!!,
+                Pair(possibleClient.password!!, possibleClient.salt!!))){
+                return@fromSupplier ErrorModel(possibleClient.id, null)
+            }else{
+                throw Exception("Пароль неверный!")
+            }
+
         }
     }
 

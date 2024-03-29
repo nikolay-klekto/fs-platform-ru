@@ -65,6 +65,14 @@ open class ClientController(open val clientRepository: ClientRepository) {
     ) =
         clientRepository.insertClient(clientModel)
 
+    @PostMapping
+    fun verifyClientPassword(@RequestBody clientModel: ClientModel): Mono<ErrorModel<Long>>{
+        return clientRepository.verifyPassword(clientModel)
+            .onErrorResume {
+                Mono.just(ErrorModel(null, it.message))
+            }
+    }
+
     @QueryMapping
     open fun getClintById(@Argument id: Long): Mono<ClientModel> {
         return clientRepository.getClintById(id)

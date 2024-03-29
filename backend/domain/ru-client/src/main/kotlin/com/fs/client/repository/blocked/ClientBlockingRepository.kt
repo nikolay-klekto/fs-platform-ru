@@ -34,7 +34,7 @@ abstract class ClientBlockingRepository(
             .firstOrNull()
     }
 
-    private fun getByEmail(clientEmail: String): ClientModel? {
+    fun getByEmail(clientEmail: String): ClientModel? {
         return dsl.selectFrom(CLIENT).where(CLIENT.EMAIL.eq(clientEmail))
             .map { it.into(Client::class.java) }
             .map(converter::toModel)

@@ -16,13 +16,6 @@ open class PasswordService {
         return BCrypt.gensalt(12, random)
     }
 
-    // Хеширование пароля с солью
-    fun hashPassword(password: String): Pair<String, String> {
-        val salt = generateSalt()
-        val hashedPassword = BCrypt.hashpw(password, salt)
-        return Pair(hashedPassword, salt)
-    }
-
     // Проверка соответствия пароля и его хеша
     fun verifyPassword(password: String, hashedPasswordWithSalt: Pair<String, String>): Boolean {
         val (hashedPassword, salt) = hashedPasswordWithSalt
@@ -31,10 +24,14 @@ open class PasswordService {
     }
 
 
+    // Хеширование пароля с солью
     fun encodePassword(rawPassword: String): Pair<String, String> {
-        return hashPassword(rawPassword)
+        val salt = generateSalt()
+        val hashedPassword = BCrypt.hashpw(rawPassword, salt)
+        return Pair(hashedPassword, salt)
     }
 
+    // Старая версия шифрования пароля
 //    fun encodePassword(rawPassword: String): String {
 //        return BCryptPasswordEncoder().encode(rawPassword)
 //    }
