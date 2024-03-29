@@ -20,6 +20,8 @@ data class Order(
     var companyOfficeId: Long? = null,
     var positionId: Long? = null,
     var serviceId: Long? = null,
+    @set:JvmName("setIsExpired")
+    var isExpired: Boolean? = null,
     var startWorkDate: LocalDateTime? = null,
     var totalWorkDays: Long? = null,
     var price: Double? = null,
@@ -36,6 +38,7 @@ data class Order(
         sb.append(", ").append(companyOfficeId)
         sb.append(", ").append(positionId)
         sb.append(", ").append(serviceId)
+        sb.append(", ").append(isExpired)
         sb.append(", ").append(startWorkDate)
         sb.append(", ").append(totalWorkDays)
         sb.append(", ").append(price)

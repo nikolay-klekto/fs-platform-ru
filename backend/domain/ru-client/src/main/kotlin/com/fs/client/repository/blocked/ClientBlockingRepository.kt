@@ -43,7 +43,7 @@ abstract class ClientBlockingRepository(
 
     fun insert(clientModel: ClientModel): ClientModel {
 
-        val password = if (clientModel.password != null) {
+        val passwordCredentials = if (clientModel.password != null) {
             encoder.encodePassword(clientModel.password!!)
         } else {
             null
@@ -67,8 +67,9 @@ abstract class ClientBlockingRepository(
                     employment = clientModel.employment,
                     firstName = clientModel.firstName ?: possibleUnregisteredClient.firstName,
                     lastName = clientModel.lastName ?: possibleUnregisteredClient.lastName,
-                    password = password,
+                    password = passwordCredentials?.first,
                     phoneNumber = clientModel.phoneNumber ?: possibleUnregisteredClient.phoneNumber,
+                    salt = passwordCredentials?.second,
                     role = clientModel.role,
                     telegramUsername = clientModel.telegramUsername,
                     username = clientModel.username,
@@ -116,8 +117,9 @@ abstract class ClientBlockingRepository(
             clientModel.employment,
             clientModel.firstName,
             clientModel.lastName,
-            password,
+            passwordCredentials?.first,
             clientModel.phoneNumber,
+            passwordCredentials?.second,
             clientModel.role ?: defaultClientRole,
             clientModel.telegramUsername,
             clientModel.username
