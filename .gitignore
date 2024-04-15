@@ -23,6 +23,7 @@ backend/dist/
 backend/nbdist/
 backend/.nb-gradle/
 backend/build/
+backend/domain/ru-client/src/main/resources/credentials.json
 
 # Apple #
 .DS_Store

@@ -3,8 +3,10 @@ package com.fs.client.repository
 import com.fs.client.repository.blocked.AddressBlockingRepository
 import com.fs.client.repository.blocked.EventBlockingRepository
 import com.fs.client.ru.AddressModel
+import com.fs.client.service.DateTimeConverterService
 import com.fs.client.service.EventModelConverter
 import com.fs.client.service.EventModelConverter.Companion.defaultAddressModel
+import com.fs.client.service.GoogleCalendarEventService
 import com.fs.domain.jooq.tables.Address.Companion.ADDRESS
 import com.fs.domain.jooq.tables.Event.Companion.EVENT
 import com.fs.domain.jooq.tables.pojos.Event
@@ -17,11 +19,14 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
+
 abstract class EventRepository(
     open val dsl: DSLContext,
     open val converter: EventModelConverter,
     open val blockingEventRepository: EventBlockingRepository,
-    open val blockingAddressRepository: AddressBlockingRepository
+    open val blockingAddressRepository: AddressBlockingRepository,
+    open val googleCalendarService: GoogleCalendarEventService,
+    open val dateTimeConverterService: DateTimeConverterService
 ) {
     fun getEventById(id: Long): Mono<EventModel> {
         return Mono.fromSupplier {
@@ -61,6 +66,19 @@ abstract class EventRepository(
         )
             .map { it.into(Event::class.java) }
             .map(converter::toModel)
+    }
+
+    fun createGoogleCalendarEvent(clientEmail: String, event: EventModel): Mono<Boolean>{
+        return Mono.fromSupplier {
+            val googleEvent = com.google.api.services.calendar.model.Event()
+                .setSummary(event.name)
+                .setLocation(event.publicPlaceName)
+                .setDescription(event.description)
+                .setStart(dateTimeConverterService.convertToEventDateTime(event.date!!))
+                .setEnd(dateTimeConverterService.convertToEventDateTime(event.date!!.plusDays(2)))
+            googleCalendarService.addEventToCalendar(clientEmail,googleEvent)
+            return@fromSupplier true
+        }
     }
 
     fun insertAllEvents(events: List<EventWithAddressModel>): Mono<ErrorModel<Boolean>> {

@@ -109,6 +109,7 @@ type Mutation {
     deleteEvent(eventId: ID!): Boolean
     deleteAllEvents: Boolean
     deleteAllExpiredEvents: Boolean
+    createGoogleCalendarEvent(clientEmail: String!, event: EventInput!): Boolean
 }
 
 input ServiceInput {

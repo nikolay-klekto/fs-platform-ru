@@ -8,6 +8,7 @@ import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.enums.OrderStatus
 import org.apache.logging.log4j.LogManager
+import org.jetbrains.kotlin.gradle.utils.`is`
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -126,6 +127,7 @@ abstract class OrderRepository(
                 temporaryOrder.dateCreated,
                 temporaryOrder.positionId,
                 temporaryOrder.serviceId,
+                temporaryOrder.isExpired,
                 temporaryOrder.orderStatus,
                 temporaryOrder.startWorkDate,
                 temporaryOrder.totalWorkDays,

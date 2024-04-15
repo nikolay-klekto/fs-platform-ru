@@ -131,6 +131,7 @@ abstract class OrderBlockingRepository(
             LocalDateTime.now(),
             orderModel.positionId,
             orderModel.serviceId,
+            orderModel.isExpired,
             newOrderStatus ?: orderModel.orderStatus,
             orderModel.startWorkDate,
             orderModel.totalWorkDays,
