@@ -1,24 +1,92 @@
 .header {
-    // position: fixed;
-    padding: 1.875rem 0;
-    // background: url('../../img/logo.svg');
+    position: fixed;
+    width: 100%;
+    padding: 30px 0; //1.875rem 0;
+    border: 1px solid black;
 
     @include desktop{
-        
+        padding: 20px 0;
+    }
+
+    @include tablet{
+        padding: 10px 0;
+    }
+
+    @include mobile{
+        padding: 4px 0;
     }
 
     // .header__inner
     &__inner {
+        // background: #000;
+
         display: flex;
         justify-content: space-between;
         align-items: center;
-        column-gap: 3.125rem;
+        column-gap: 50px; //3.125rem;
+
+        @include desktop{
+            column-gap: 30px;
+        }
+
+        @media (max-width: 1040px) {
+            column-gap: 20px;
+        }
     }
     // .header__icons-phone
-    &__icon-phone {
+    &__icon-phone{
+        display: none;
+
+        svg{
+            width: 45px; //3.125rem;
+            height: 45px; //3.125rem;
+
+            @include tablet{
+                width: 35px;
+            }
+
+            @include mobile{
+                width: 24px;
+            }
+
+            path{
+                stroke-width: 1.4;
+
+                @include mobile{
+                    stroke-width:2;
+                }
+            }
+        }
+
+        @media (max-width: 1450px) {
+            display: inline;
+            order: 1;
+        }
+
+        @include tablet{
+            order: -1;
+            margin-right: 60px;
+        }
+
+        @include mobile{
+            margin-right: 40px;
+        }
     }
     // .header__logo
-    &__logo {
+    &__logo img{
+        @include desktop{
+            width: 85px;
+        }
+
+        @include tablet{
+            // max-width: 70px;
+            height: 60px;
+        }
+
+        @include mobile{
+            // max-width: 58px;
+            height: 48px;
+        }
     }
     // .header__menu
     &__menu {
@@ -26,26 +94,32 @@
         &-list {
             display: flex;
             align-items: center;
-            // column-gap: 3.125rem;
-            border-radius: 3.12rem;
+            border-radius: 50px; //3.12rem;
             background: var(--color-basic-white);
-            // padding:0.25rem;
-            height: 4.25rem;
-            padding-inline: 0.25rem;
+            height: 68px; //4.25rem;
+            padding-inline: 4px; //0.25rem;
+
+            @include desktop{
+                height: 60px;
+            }
         }
         // .header__menu-item
         &-item {
+            &:nth-child(1){
+                @media (max-width: 1125px) {
+                    display: none;
+                }
+            }
         }
         // .header__menu-link
         &-link {
-            height: 3.75rem;
-            padding-inline: 2.625rem;
-            // padding: 1.25rem 2.625rem;
+            height: 60px; //3.75rem;
+            padding-inline: 40px; //2.625rem;
             display: inline-flex;
             align-items: center;
 
-            border-radius: 3.12rem;
-            font-size: 1.12rem; //18px
+            border-radius: 50px; //3.12rem;
+            font-size: 18px; //1.12rem
             font-weight: 700;
             text-transform: uppercase;
             background: var(--color-accent-purple-gradient);
@@ -61,26 +135,88 @@
                 -webkit-text-fill-color: var(--color-basic-white);
                 color: var(--color-basic-white);
             }
+
+            @include desktop{
+                padding-inline: 30px;
+                height: 52px;
+                font-size: 16px;
+            }
+
+            @media (max-width: 1215px) {
+                padding-inline: 20px;
+            }
         }
     }
     // .header__button
     &__button {
+        width: 380px;
+
+        @include desktop{
+            height: 60px;
+            max-width: fit-content; //300px
+            span{
+                font-size:  22px;
+            }
+        }
+
+        @media (max-width: 1450px) {
+            display: none;
+        }
     }
     // .header__icons
     &__icons {
+        // background:red;
         display: flex;
         align-items: center;
-        //возможен миксин???
-        column-gap: 3.125rem;
+        column-gap: 50px; //3.125rem;
+
+        @include desktop{
+            column-gap: 30px;
+        }
+
+        @media (max-width: 1450px) {
+            order: 2;
+        }
+
+        @include tablet{
+            column-gap: 25px;
+        }
+
+        @include mobile{
+            column-gap: 16px;
+        }
+
         // .header__icons-basket
-        &-basket {
-            width: 3.125rem;
-            height: 3.125rem;
+        &-basket svg{
+            width: 50px; //3.125rem;
+            height: 50px; //3.125rem;
+
+            @include desktop{
+                width: 45px;
+            }
+
+            @include tablet{
+                width: 35px;
+            }
+
+            @include mobile{
+                width: 24px;
+            }
+
+            path{
+                @include mobile{
+                    stroke-width: 4.2;
+                }
+            }
         }
         // .header__icons-profile
-        &-profile {
-            width: 3.125rem;
-            height: 3.125rem;
+        &-profile svg{
+            width: 50px; //3.125rem;
+            height: 50px; //3.125rem;
+
+            @include desktop{
+                width: 45px;
+            }
         }
         // .header__icons-burger-button
         &-burger-button {

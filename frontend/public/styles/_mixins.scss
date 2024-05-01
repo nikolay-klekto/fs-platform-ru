@@ -1,14 +1,9 @@
-// @import './fonts',
-// './globals',
-// './media',
-// './normalize',
-// './utils',
-// './variables';
 
 @mixin fluid-text ($max:48, $min:16){
-	font-size: clamp(#{$min}px, #{$max/1920*100}vw, #{$max}px); //(1rem + 5vw)
+	font-size: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px); //(1rem + 5vw)
 }
 
+//сброс стилей ссылки
 @mixin reset-link{
     color: inherit;
     &,
@@ -17,6 +12,7 @@
     }
 }
 
+//сброс стилей кнопки
 @mixin reset-button{
     padding: 0;
     background-color: transparent;
@@ -32,7 +28,6 @@
 
     justify-content: center;
     align-items: center;
-
 }
 
 @mixin abs-center{
@@ -42,7 +37,8 @@
     transform: -50% -50%;
 }
 
+//задает пропорции 1:1
 @mixin square($size){
     width: $size;
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 1; //1
 }

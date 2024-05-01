@@ -22,13 +22,11 @@
     --color-transparent-dark: rgba(0, 0, 0, 0.7);
 
     //границы
-    // --border: border: 3px solid var(var(--color-basic-grey));//???
-    // --border-radius: 50px; //+small +large
-    --button-border: black;
-    --button-border-radius: 3.12rem;
+    --button-border-radius: 50px; //3.12rem;
+    --button-border-radius-small: 20px;
 
     //тени
-    --button-shadow: 0 0 5rem 0 #9653f5;
+    --button-shadow: 0 0 80px 0 #9653f5; //5rem
 
 
     //шрифты
@@ -41,14 +39,15 @@
     --font6: "Roboto", sans-serif;
 
     //сетка
-    --container-width: min(100vw,1798px); //1798px;
+    // --container-width: min(98.3vw,1798px); //1798px;
+    --container-width: 1798px;
     --container-padding-x: 15px;
 
     --section-padding-y: 100px; //????
 
-    --input-height: 4rem;
-    --button-height: 4.25rem;
-    --button-secondary-height: 4rem;
+    --input-height: 64px; //4rem;
+    --button-height: 68px; //4.25rem;
+    --button-secondary-height: 64px; //4rem;
 
     //анимация
     --transition-duration: 0.2s;

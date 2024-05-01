@@ -1,2 +1,30 @@
 .burger-button {
+    background: yellow;
+    @include reset-button;
+    @include square(24);
+    margin-top: -6px;
+    margin-right: 20px;
+
+    position: relative;
+
+    &::after{
+        @include abs-center;
+        content: '';
+        width: 20px;
+        height: 2px;
+        background-color: var(--color-basic-white);
+        border-radius: 2px;
+        box-shadow: 0 -6px var(--color-basic-white),
+            0 6px var(--color-basic-white);
+
+            @include tablet{
+                box-shadow: 0 -8px var(--color-basic-white),
+                0 8px var(--color-basic-white);
+            }
+
+            @include mobile{
+                box-shadow: 0 -6px var(--color-basic-white),
+                0 6px var(--color-basic-white);
+            }
+    }
 }

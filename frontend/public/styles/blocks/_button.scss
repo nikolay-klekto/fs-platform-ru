@@ -2,29 +2,45 @@
     @include flex-center(true);
     min-width: fit-content;
     height: var(--button-height);
-    padding-inline: 2.5rem;
+    padding-inline: 40px; //2.5rem;
     border-radius: var(--button-border-radius);
     border: none;
-    transition-duration: var(--transition-duration);
+    // transition-duration: var(--transition-duration);
+
+    // @include desktop{
+    //     height: 3.7rem; //4.25
+    //     // padding-inline: 2.5rem;  //80px
+    //     border-radius: 3rem;  //3.12
+    // }
+
+    // @include tablet{
+    //     height: 3.12rem;
+    //     padding-inline: 2.56rem;
+    //     border-radius: 2.38rem;
+    //     //ширина на всю ???
+    // }
 
     // .button__text
     &__text{
         font-weight: 600;
-        font-size: 1.56rem;
+        font-size:  25px; //1.56rem;
         color: var(--color-basic-white);
         &::first-letter{
             text-transform: uppercase;
         }
+
+        // @include desktop{
+        //     font-size: 20px;
+        // }
+
+        // @include tablet{
+        //     font-size: 18px;
+        // }
     }
 
     // .button_purple
     &_purple {
         background: var(--color-accent-purple-gradient);
-
-        // .button__text{
-        //     -webkit-text-fill-color: var(--color-basic-white);
-        //     color: var(--color-basic-white);
-        // }
 
         @include hover{
             background: var(--color-accent-purple-light-gradient);

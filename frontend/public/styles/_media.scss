@@ -1,15 +1,9 @@
-// @import './fonts',
-// './globals',
-// './mixins',
-// './normalize',
-// './utils',
-// './variables';
-
 // специальные миксины для медиа завпросов
 $desktop: 1920px;
 $desktop-above: 1921px;
 
-// $tablet: 1023px;
+$tablet: 1023px;
+$tablet-above: 1024px;
 
 $mobile: 375px;
 $mobile-above: 376px;
@@ -26,6 +20,18 @@ $mobile-above: 376px;
     }
 }
 
+@mixin tablet-above{
+    @media (min-width: $tablet-above) {
+        @content;
+    }
+}
+
+@mixin tablet{
+    @media (max-width: $tablet) {
+        @content;
+    }
+}
+
 @mixin mobile-above{
     @media (min-width: $mobile-above) {
         @content;
@@ -38,6 +44,7 @@ $mobile-above: 376px;
     }
 }
 
+//убрать эффект залипания
 @mixin hover{
     @media(hover: hover){
         &:hover{
