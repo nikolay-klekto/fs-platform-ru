@@ -35,41 +35,6 @@
   font-display: swap;
 }
 @font-face {
-  font-family: "Angry";
-  src: url("../fonts/Angry-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "DM-Sans";
-  src: url("../fonts/DM-Sans-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Euclid-Square";
-  src: url("../fonts/Euclid-Square-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Euclid-Square";
-  src: url("../fonts/Euclid-Square-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("../fonts/Inter-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
   font-family: "Montserrat";
   src: url("../fonts/Montserrat-Regular.woff2") format("woff2");
   font-weight: 400;
@@ -79,146 +44,6 @@
 @font-face {
   font-family: "Montserrat";
   src: url("../fonts/Montserrat-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat-Medium-Italic.woff2") format("woff2");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Roboto";
-  src: url("../fonts/Roboto-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Roboto";
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Angry";
-  src: url("../fonts/Angry-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "DM-Sans";
-  src: url("../fonts/DM-Sans-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Euclid-Square";
-  src: url("../fonts/Euclid-Square-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Euclid-Square";
-  src: url("../fonts/Euclid-Square-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("../fonts/Inter-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat-Medium-Italic.woff2") format("woff2");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Roboto";
-  src: url("../fonts/Roboto-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Roboto";
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -584,6 +409,14 @@ svg * {
   --color-basic-dark-blue: #101030;
   --color-accent-brown: #BC8070;
   --color-accent-purple: #8333F3;
+  --color-accent-purple-gradient: linear-gradient(
+      90deg, #8333F3 0%,
+      #5f4af3 48.55%,
+      #3b51a8 100%);
+  --color-accent-purple-light-gradient:linear-gradient(
+      90deg, #a875f1 0%,
+      #8d7ef3 48.55%,
+      #6c7cba 100%);
   --color-accent-purple-gradient: linear-gradient(
       90deg, #8333F3 0%,
       #5f4af3 48.55%,
@@ -882,6 +715,14 @@ svg * {
       90deg, #a875f1 0%,
       #8d7ef3 48.55%,
       #6c7cba 100%);
+  --color-accent-purple-gradient: linear-gradient(
+      90deg, #8333F3 0%,
+      #5f4af3 48.55%,
+      #3b51a8 100%);
+  --color-accent-purple-light-gradient:linear-gradient(
+      90deg, #a875f1 0%,
+      #8d7ef3 48.55%,
+      #6c7cba 100%);
   --color-transparent-grey: rgba(255, 255, 255, 0.1);
   --color-transparent-purple: rgba(16, 16, 48, 0.7);
   --color-transparent-dark: rgba(0, 0, 0, 0.7);
@@ -895,7 +736,7 @@ svg * {
   --font5: "Poppins", sans-serif;
   --font4: "Inter", sans-serif;
   --font6: "Roboto", sans-serif;
-  --container-width: min(100vw,1798px);
+  --container-width: 1798px;
   --container-padding-x: 15px;
   --section-padding-y: 100px;
   --input-height: 64px;
