@@ -26,7 +26,7 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
-import org.jooq.Row16
+import org.jooq.Row17
 import org.jooq.Schema
 import org.jooq.Table
 import org.jooq.TableField
@@ -152,6 +152,11 @@ open class Client(
      */
     val USERNAME: TableField<ClientRecord, String?> = createField(DSL.name("username"), SQLDataType.VARCHAR, this, "")
 
+    /**
+     * The column <code>public.client.salt</code>.
+     */
+    val SALT: TableField<ClientRecord, String?> = createField(DSL.name("salt"), SQLDataType.VARCHAR, this, "")
+
     private constructor(alias: Name, aliased: Table<ClientRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<ClientRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
@@ -212,7 +217,7 @@ open class Client(
     override fun rename(name: Name): Client = Client(name, null)
 
     // -------------------------------------------------------------------------
-    // Row16 type methods
+    // Row17 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?> = super.fieldsRow() as Row16<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?>
+    override fun fieldsRow(): Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?> = super.fieldsRow() as Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?>
 }

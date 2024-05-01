@@ -22,6 +22,7 @@ class ClientModelConverter : ModelConverter<Client, ClientModel> {
             lastName = rawObject.lastName,
             password = rawObject.password,
             phoneNumber = rawObject.phoneNumber,
+            salt = rawObject.salt,
             role = rawObject.role,
             telegramUsername = rawObject.telegramUsername,
             username = rawObject.username

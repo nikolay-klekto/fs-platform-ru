@@ -12,6 +12,7 @@ import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import java.lang.Error
 
 @Tag(name = "Client")
 @RestController
@@ -59,11 +60,23 @@ open class ClientController(open val clientRepository: ClientRepository) {
     ) =
         clientRepository.deleteClientById(id)
 
-    @PostMapping
-    fun insertClientModel(
-        @RequestBody clientModel: ClientModel
-    ) =
-        clientRepository.insertClient(clientModel)
+//    @PostMapping
+//    open fun insertClientModel(
+//        @RequestBody clientModel: ClientModel
+//    ): Mono<ErrorModel<ClientModel>> {
+//        return clientRepository.insertClient(clientModel)
+//            .onErrorResume {
+//                Mono.just(ErrorModel(null, it.message))
+//            }
+//    }
+
+    @MutationMapping
+    open fun verifyClientPassword(@Argument client: ClientModel): Mono<ErrorModel<Long>>{
+        return clientRepository.verifyPassword(client)
+            .onErrorResume {
+                Mono.just(ErrorModel(null, it.message))
+            }
+    }
 
     @QueryMapping
     open fun getClintById(@Argument id: Long): Mono<ClientModel> {

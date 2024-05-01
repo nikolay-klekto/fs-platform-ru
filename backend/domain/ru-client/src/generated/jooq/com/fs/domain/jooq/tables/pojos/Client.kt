@@ -33,7 +33,8 @@ data class Client(
     var phoneNumber: String? = null,
     var role: ClientRoleModel? = null,
     var telegramUsername: String? = null,
-    var username: String? = null
+    var username: String? = null,
+    var salt: String? = null
 ): Serializable {
 
 
@@ -56,6 +57,7 @@ data class Client(
         sb.append(", ").append(role)
         sb.append(", ").append(telegramUsername)
         sb.append(", ").append(username)
+        sb.append(", ").append(salt)
 
         sb.append(")")
         return sb.toString()

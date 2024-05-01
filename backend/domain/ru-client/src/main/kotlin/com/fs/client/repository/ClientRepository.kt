@@ -3,6 +3,7 @@ package com.fs.client.repository
 import com.fs.client.repository.blocked.ClientBlockingRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.service.ClientModelConverter
+import com.fs.client.service.PasswordService
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Client
@@ -17,7 +18,8 @@ import reactor.core.publisher.Mono
 abstract class ClientRepository(
     open val dsl: DSLContext,
     open val converter: ClientModelConverter,
-    open val clientBlockingRepository: ClientBlockingRepository
+    open val clientBlockingRepository: ClientBlockingRepository,
+    open val passwordService: PasswordService
 ) {
 
     fun getClintById(id: Long?): Mono<ClientModel> {
@@ -51,8 +53,10 @@ abstract class ClientRepository(
 
     fun changePassword(id: Long, password: String): Mono<Boolean> {
         return Mono.fromSupplier {
+            val passwordCredentials = passwordService.encodePassword(password)
             dsl.update(CLIENT)
-                .set(CLIENT.PASSWORD, password)
+                .set(CLIENT.PASSWORD, passwordCredentials.first)
+                .set(CLIENT.SALT, passwordCredentials.second)
                 .where(CLIENT.ID.eq(id))
                 .execute() == 1
         }
@@ -88,6 +92,25 @@ abstract class ClientRepository(
     fun insertClient(clientModel: ClientModel): Mono<ErrorModel<ClientModel>> {
         return Mono.fromSupplier {
             ErrorModel(clientBlockingRepository.insert(clientModel), null)
+        }
+    }
+
+    fun verifyPassword(clientModel: ClientModel): Mono<ErrorModel<Long>>{
+        return Mono.fromSupplier {
+            if(clientModel.email == null || clientModel.password == null){
+                throw Exception("Введены не все поля!")
+            }
+
+            val possibleClient = clientBlockingRepository.getByEmail(clientModel.email!!)
+                ?: throw Exception("Данного пользователя не существует!")
+
+            if(passwordService.verifyPassword(clientModel.password!!,
+                Pair(possibleClient.password!!, possibleClient.salt!!))){
+                return@fromSupplier ErrorModel(possibleClient.id, null)
+            }else{
+                throw Exception("Пароль неверный!")
+            }
+
         }
     }
 

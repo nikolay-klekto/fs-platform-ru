@@ -22,7 +22,7 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
-import org.jooq.Row10
+import org.jooq.Row11
 import org.jooq.Schema
 import org.jooq.Table
 import org.jooq.TableField
@@ -92,6 +92,11 @@ open class Order(
      * The column <code>public.order.service_id</code>.
      */
     val SERVICE_ID: TableField<OrderRecord, Long?> = createField(DSL.name("service_id"), SQLDataType.BIGINT, this, "")
+
+    /**
+     * The column <code>public.order.is_expired</code>.
+     */
+    val IS_EXPIRED: TableField<OrderRecord, Boolean?> = createField(DSL.name("is_expired"), SQLDataType.BOOLEAN, this, "")
 
     /**
      * The column <code>public.order.start_work_date</code>.
@@ -200,7 +205,7 @@ open class Order(
     override fun rename(name: Name): Order = Order(name, null)
 
     // -------------------------------------------------------------------------
-    // Row10 type methods
+    // Row11 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row10<Long?, Long?, Long?, Long?, Long?, LocalDateTime?, Long?, Double?, com.fs.service.ru.enums.OrderStatus?, LocalDateTime?> = super.fieldsRow() as Row10<Long?, Long?, Long?, Long?, Long?, LocalDateTime?, Long?, Double?, com.fs.service.ru.enums.OrderStatus?, LocalDateTime?>
+    override fun fieldsRow(): Row11<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, com.fs.service.ru.enums.OrderStatus?, LocalDateTime?> = super.fieldsRow() as Row11<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, com.fs.service.ru.enums.OrderStatus?, LocalDateTime?>
 }

@@ -20,6 +20,7 @@ data class ClientModel(
     val lastName: String?,
     val password: String?,
     val phoneNumber: String?,
+    val salt: String?,
     val role: ClientRoleModel?,
     val telegramUsername: String?,
     val username: String?

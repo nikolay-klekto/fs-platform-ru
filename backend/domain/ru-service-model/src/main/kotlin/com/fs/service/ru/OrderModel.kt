@@ -11,6 +11,7 @@ data class OrderModel(
     val dateCreated: LocalDateTime?,
     val positionId: Long?,
     val serviceId: Long?,
+    val isExpired: Boolean?,
     val orderStatus: OrderStatus?,
     val startWorkDate: LocalDateTime?,
     val totalWorkDays: Long?,

@@ -64,6 +64,7 @@ abstract class PartnerRepository(
                 clientModel.lastName,
                 clientModel.password,
                 clientModel.phoneNumber,
+                clientModel.salt,
                 ClientRoleModel.PARTNER,
                 clientModel.telegramUsername,
                 clientModel.username

@@ -28,6 +28,8 @@ subprojects {
         runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:1.8.0")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0")
         implementation("org.jetbrains.kotlin:kotlin-noarg:1.8.0")
+        implementation("org.mindrot:jbcrypt:0.4")
+
     }
 
     tasks.withType<KotlinCompile> {

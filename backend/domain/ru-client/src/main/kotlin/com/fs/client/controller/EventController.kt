@@ -73,4 +73,11 @@ open class EventController(open val eventRepository: EventRepository) {
     open fun deleteAllExpiredEvents(): Mono<Boolean> {
         return eventRepository.deleteAllExpiredEvents()
     }
+
+    @MutationMapping
+    open fun createGoogleCalendarEvent(
+        @Argument clientEmail: String,
+        @Argument event: EventModel): Mono<Boolean>{
+        return eventRepository.createGoogleCalendarEvent(clientEmail, event)
+    }
 }

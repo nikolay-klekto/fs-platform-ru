@@ -107,6 +107,11 @@ dependencies {
     implementation("org.springframework:spring-orm:6.0.10")
     implementation("org.postgresql:postgresql:42.5.0")
 
+    implementation("com.google.api-client:google-api-client:2.4.0")
+    implementation("com.google.oauth-client:google-oauth-client-jetty:1.35.0")
+    implementation("com.google.api-client:google-api-client-gson:2.4.0")
+    implementation("com.google.apis:google-api-services-calendar:v3-rev411-1.25.0")
+
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.6.0")
 
 
@@ -155,9 +160,12 @@ java.sourceSets["main"].java {
 ////                    url = "jdbc:postgresql://service-db/funScrut"
 ////                    user = "username"
 ////                    password = "password"
-//                    url = "jdbc:postgresql://localhost:5432/FunScrut2"
-//                    user = "postgres"
-//                    password = "191220#destin"
+////                    url = "jdbc:postgresql://localhost:5432/FunScrut2"
+////                    user = "postgres"
+////                    password = "191220#destin"
+//                    url = "jdbc:postgresql://funscrut.online:15432/fun_scrut"
+//                    user = "username"
+//                    password = "password"
 ////                    properties = listOf(
 ////                        Property().apply {
 ////                            key = "PAGE_SIZE"

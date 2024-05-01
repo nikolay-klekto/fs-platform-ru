@@ -93,6 +93,7 @@ type Mutation {
     #    changeRole(clientId: ID!, role: ClientRoleEnum): Boolean     //Should to think how to realize this function
     addClient(client: ClientInsert): ErrorClientModel
     deleteClient(id: ID!): Boolean
+    verifyClientPassword(client: ClientInsert!): ErrorLongModel
 
     addCountry(country: CountryInput): Country
     deleteCountry(countryCode: ID!): Boolean
@@ -108,6 +109,7 @@ type Mutation {
     deleteEvent(eventId: ID!): Boolean
     deleteAllEvents: Boolean
     deleteAllExpiredEvents: Boolean
+    createGoogleCalendarEvent(clientEmail: String!, event: EventInput!): Boolean
 }
 
 input ServiceInput {
@@ -384,6 +386,11 @@ type ErrorBooleanModel {
 
 type ErrorClientModel {
     data: Client
+    errorMessage: String
+}
+
+type ErrorLongModel {
+    data: ID
     errorMessage: String
 }
 
