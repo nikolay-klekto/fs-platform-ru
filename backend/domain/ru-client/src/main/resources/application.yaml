@@ -72,3 +72,20 @@ jooq:
 #  password: 191220#destin
   schema: public
   driver: org.postgresql.Driver
+
+management:
+  endpoints.web.exposure.include: 'prometheus, health, info, metric'
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+
+#management:
+#  endpoints:
+#    web.exposure.include: "*"
+#    metrics.enabled: true
+#    prometheus.enabled: true
+
