@@ -15,6 +15,8 @@ services:
     environment:
       - SERVER_PORT= 8183
       - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+    networks:
+      - prometheus-grafana-network
 
   app2:
     image: ru-gateway:latest
@@ -30,6 +32,8 @@ services:
     environment:
       - SERVER_PORT= 8081
       - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+    networks:
+      - prometheus-grafana-network
 
   service-db:
     image: postgres:14.7-alpine
@@ -49,6 +53,8 @@ services:
       - ./infrastructure/db:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
     restart: unless-stopped
+    networks:
+      - prometheus-grafana-network
 
   pgadmin:
     container_name: pgadmin4_container
@@ -61,6 +67,8 @@ services:
       - "5050:80"
     volumes:
       - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - prometheus-grafana-network
 
   prometheus:
     image: prom/prometheus:v2.45.5

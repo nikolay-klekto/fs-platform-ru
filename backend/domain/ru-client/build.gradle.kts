@@ -115,6 +115,8 @@ dependencies {
     implementation("io.micrometer:micrometer-registry-prometheus:1.12.5")
 //    implementation ("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework:spring-aspects:6.1.6")
+    implementation("org.springframework.boot:spring-boot-starter-aop:3.2.5")
+
 
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.6.0")

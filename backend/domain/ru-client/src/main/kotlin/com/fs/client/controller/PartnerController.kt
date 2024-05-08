@@ -3,6 +3,7 @@ package com.fs.client.controller
 import com.fs.client.repository.PartnerRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.PartnerModel
+import com.fs.service.ru.errors.ErrorModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -35,8 +36,11 @@ open class PartnerController(
     }
 
     @MutationMapping
-    open fun addPartner(@Argument client: ClientModel): Mono<PartnerModel> {
+    open fun addPartner(@Argument client: ClientModel): Mono<ErrorModel<PartnerModel>> {
         return partnerRepository.insertPartner(client)
+            .onErrorResume {
+                Mono.just(ErrorModel(null, it.message))
+            }
     }
 
     @MutationMapping

@@ -77,7 +77,7 @@ type Mutation {
     updatePosition(position: PositionInput!): Boolean
     deletePosition(id: ID!): Boolean
 
-    addPartner(client: ClientInsert): Partner
+    addPartner(client: ClientInsert): ErrorPartnerModel
     deletePartner(id: ID!): Boolean
     verifyPartner(partnerId: ID!): Boolean
 
@@ -391,6 +391,11 @@ type ErrorClientModel {
 
 type ErrorLongModel {
     data: ID
+    errorMessage: String
+}
+
+type ErrorPartnerModel {
+    data: Partner
     errorMessage: String
 }
 
