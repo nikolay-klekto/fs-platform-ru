@@ -41,6 +41,12 @@
             width: 45px; //3.125rem;
             height: 45px; //3.125rem;
 
+            @include hover{
+                path{
+                    stroke: var(--color-accent-purple);
+                }
+            }
+
             @include tablet{
                 width: 35px;
             }
@@ -191,6 +197,12 @@
             width: 50px; //3.125rem;
             height: 50px; //3.125rem;
 
+            @include hover{
+                path{
+                    stroke: var(--color-accent-purple);
+                }
+            }
+
             @include desktop{
                 width: 45px;
             }
@@ -213,6 +225,12 @@
         &-profile svg{
             width: 50px; //3.125rem;
             height: 50px; //3.125rem;
+
+            @include hover{
+                path{
+                    stroke: var(--color-accent-purple);
+                }
+            }
 
             @include desktop{
                 width: 45px;

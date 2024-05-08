@@ -818,17 +818,64 @@ svg * {
   padding: 0;
   background-color: transparent;
   border: none;
-  width: 24;
+  width: 24px;
   aspect-ratio: 1/1;
-  margin-top: -6px;
-  margin-right: 20px;
   position: relative;
+  transition-duration: var(--transition-duration);
+}
+@media (max-width: 1023px) {
+  .burger-button {
+    width: 35px;
+    aspect-ratio: 1/1;
+  }
+}
+@media (max-width: 375px) {
+  .burger-button {
+    width: 35px;
+    aspect-ratio: 1/1;
+  }
+}
+@media (hover: hover) {
+  .burger-button:hover {
+    cursor: pointer;
+  }
+  .burger-button:hover::after {
+    background-color: var(--color-accent-purple);
+  }
+}
+@media (hover: hover) and (max-width: 1023px) {
+  .burger-button:hover::after {
+    box-shadow: 0 -10px var(--color-accent-purple), 0 10px var(--color-accent-purple);
+  }
+}
+@media (hover: hover) and (max-width: 375px) {
+  .burger-button:hover::after {
+    box-shadow: 0 -7px var(--color-accent-purple), 0 7px var(--color-accent-purple);
+  }
+}
+@media (hover: none) {
+  .burger-button:active {
+    cursor: pointer;
+  }
+  .burger-button:active::after {
+    background-color: var(--color-accent-purple);
+  }
+}
+@media (hover: none) and (max-width: 1023px) {
+  .burger-button:active::after {
+    box-shadow: 0 -10px var(--color-accent-purple), 0 10px var(--color-accent-purple);
+  }
+}
+@media (hover: none) and (max-width: 375px) {
+  .burger-button:active::after {
+    box-shadow: 0 -7px var(--color-accent-purple), 0 7px var(--color-accent-purple);
+  }
 }
 .burger-button::after {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: -50% -50%;
+  translate: -50% -50%;
   content: "";
   width: 20px;
   height: 2px;
@@ -838,12 +885,16 @@ svg * {
 }
 @media (max-width: 1023px) {
   .burger-button::after {
-    box-shadow: 0 -8px var(--color-basic-white), 0 8px var(--color-basic-white);
+    width: 30px;
+    height: 2.4px;
+    box-shadow: 0 -10px var(--color-basic-white), 0 10px var(--color-basic-white);
   }
 }
 @media (max-width: 375px) {
   .burger-button::after {
-    box-shadow: 0 -6px var(--color-basic-white), 0 6px var(--color-basic-white);
+    width: 20px;
+    height: 2px;
+    box-shadow: 0 -7px var(--color-basic-white), 0 7px var(--color-basic-white);
   }
 }
 
@@ -890,6 +941,16 @@ svg * {
 .header__icon-phone svg {
   width: 45px;
   height: 45px;
+}
+@media (hover: hover) {
+  .header__icon-phone svg:hover path {
+    stroke: var(--color-accent-purple);
+  }
+}
+@media (hover: none) {
+  .header__icon-phone svg:active path {
+    stroke: var(--color-accent-purple);
+  }
 }
 @media (max-width: 1023px) {
   .header__icon-phone svg {
@@ -1047,6 +1108,16 @@ svg * {
   width: 50px;
   height: 50px;
 }
+@media (hover: hover) {
+  .header__icons-basket svg:hover path {
+    stroke: var(--color-accent-purple);
+  }
+}
+@media (hover: none) {
+  .header__icons-basket svg:active path {
+    stroke: var(--color-accent-purple);
+  }
+}
 @media (max-width: 1920px) {
   .header__icons-basket svg {
     width: 45px;
@@ -1070,6 +1141,16 @@ svg * {
 .header__icons-profile svg {
   width: 50px;
   height: 50px;
+}
+@media (hover: hover) {
+  .header__icons-profile svg:hover path {
+    stroke: var(--color-accent-purple);
+  }
+}
+@media (hover: none) {
+  .header__icons-profile svg:active path {
+    stroke: var(--color-accent-purple);
+  }
 }
 @media (max-width: 1920px) {
   .header__icons-profile svg {

@@ -1,11 +1,36 @@
 .burger-button {
     background: yellow;
     @include reset-button;
-    @include square(24);
-    margin-top: -6px;
-    margin-right: 20px;
+    @include square(24px);
 
     position: relative;
+
+    @include tablet{
+        @include square(35px);
+    }
+
+    @include mobile{
+        @include square(35px);
+    }
+
+    transition-duration: var(--transition-duration);
+
+    @include hover{
+        cursor: pointer;
+        &::after{
+            background-color: var(--color-accent-purple);
+
+            @include tablet{
+                box-shadow: 0 -10px var(--color-accent-purple),
+                0 10px var(--color-accent-purple);
+            }
+
+            @include mobile{
+                box-shadow: 0 -7px var(--color-accent-purple),
+                0 7px var(--color-accent-purple);
+            }
+        }
+    }
 
     &::after{
         @include abs-center;
@@ -18,13 +43,17 @@
             0 6px var(--color-basic-white);
 
             @include tablet{
-                box-shadow: 0 -8px var(--color-basic-white),
-                0 8px var(--color-basic-white);
+                width: 30px;
+                height: 2.4px;
+                box-shadow: 0 -10px var(--color-basic-white),
+                0 10px var(--color-basic-white);
             }
 
             @include mobile{
-                box-shadow: 0 -6px var(--color-basic-white),
-                0 6px var(--color-basic-white);
+                width: 20px;
+                height: 2px;
+                box-shadow: 0 -7px var(--color-basic-white),
+                0 7px var(--color-basic-white);
             }
     }
 }
