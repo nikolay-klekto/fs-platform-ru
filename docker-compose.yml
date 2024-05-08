@@ -1,9 +1,10 @@
-version: '3.7'
+version: '3.9'
 services:
   app:
     image: ru-client:latest
     build:
-      context: fs-platform-ru
+#      context: .
+#      context: fs-platform-ru
       dockerfile: Dockerfile-Client
     ports:
       - "8183:8183"
@@ -61,6 +62,62 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
 
+  prometheus:
+    image: prom/prometheus:v2.45.5
+    container_name: prometheus-container
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - prometheus-grafana-network
+
+  grafana:
+    image: grafana/grafana:10.4.2
+    container_name: grafana-container
+#    volumes:
+#      - ./config/grafana/provisioning:/etc/grafana/provisioning
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+    networks:
+      - prometheus-grafana-network
+
+networks:
+  prometheus-grafana-network:
+
 volumes:
   db-data:
   pgadmin-data:
+
+#  grafana:
+#    build: './config/grafana'
+#    ports:
+#      - 3000:3000
+#    volumes:
+#      - ./grafana:/var/lib/grafana
+#    environment:
+#      - GF_SECURITY_ADMIN_USER=admin
+#      - GF_SECURITY_ADMIN_PASSWORD=admin
+#    networks:
+#      monitoring:
+#        aliases:
+#          - grafana
+#
+#  prometheus:
+#    image: prom/prometheus
+#    ports:
+#      - 9090:9090
+#    volumes:
+#      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+#      - ./prometheus:/prometheus
+#    extra_hosts:
+#      - "host.docker.internal:host-gateway"
+#    networks:
+#      monitoring:
+#        aliases:
+

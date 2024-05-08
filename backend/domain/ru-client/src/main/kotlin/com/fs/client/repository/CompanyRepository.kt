@@ -13,6 +13,7 @@ import com.fs.domain.jooq.tables.references.CITY
 import com.fs.domain.jooq.tables.references.COMPANIES_POSITIONS
 import com.fs.domain.jooq.tables.references.COMPANY_PARTNER
 import com.fs.service.ru.CompanyModel
+import io.micrometer.core.annotation.Timed
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -29,6 +30,7 @@ abstract class CompanyRepository(
         }
     }
 
+    @Timed("gettingPricesFromDB")
     fun getAllCompanies(): Flux<CompanyModel> {
         return Flux.from(
             dsl.select(COMPANY.asterisk()).from(COMPANY)
