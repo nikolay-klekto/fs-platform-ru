@@ -1,17 +1,12 @@
-// @import './fonts',
-// './globals',
-// './media',
-// './mixins',
-// './normalize',
-// './variables';
 
 // утилитарные функции
 .container{
-    max-width: calc(var(--container-width) + var(--container-padding-x) *2);
-    margin-inline: auto;
+    max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+    margin-inline: auto; //центрирование по горизонтали
     padding-inline: var(--container-padding-x);
 }
 
+//доступность интерактивных элементов
 .visually-hidden{
     position: absolute !important;
     width: 1px !important;
@@ -33,6 +28,30 @@
 
 .visible-mobile{
     @include mobile-above{
+        display: none !important;
+    }
+}
+
+.hidden-tablet{
+    @include tablet{
+        display: none !important;
+    }
+}
+
+.visible-tablet{
+    @include tablet-above{
+        display: none !important;
+    }
+}
+
+.hidden-desktop{
+    @include desktop{
+        display: none !important;
+    }
+}
+
+.visible-desktop{
+    @include desktop-above{
         display: none !important;
     }
 }
