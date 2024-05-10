@@ -10,6 +10,7 @@ import com.fs.domain.jooq.tables.CompanyPartner.Companion.COMPANY_PARTNER
 import com.fs.domain.jooq.tables.Partner.Companion.PARTNER
 import com.fs.domain.jooq.tables.pojos.Partner
 import com.fs.domain.jooq.tables.records.PartnerRecord
+import com.fs.service.ru.errors.ErrorModel
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -48,7 +49,7 @@ abstract class PartnerRepository(
             .map(converter::toModel)
     }
 
-    fun insertPartner(clientModel: ClientModel): Mono<PartnerModel> {
+    fun insertPartner(clientModel: ClientModel): Mono<ErrorModel<PartnerModel>> {
         return Mono.fromSupplier {
             var newClientModel = ClientModel(
                 clientModel.id,
@@ -82,9 +83,12 @@ abstract class PartnerRepository(
             newPartnerRecord.from(partnerModel)
             newPartnerRecord.reset(PARTNER.ID)
             newPartnerRecord.store()
-            return@fromSupplier newPartnerRecord.into(Partner::class.java)
+            converter.toModel(newPartnerRecord.into(Partner::class.java))
+
+            return@fromSupplier ErrorModel(
+                converter.toModel(newPartnerRecord.into(Partner::class.java)),
+                null)
         }
-            .map(converter::toModel)
     }
 
     fun verifyPartnerStatus(partnerId: Long): Mono<Boolean> {

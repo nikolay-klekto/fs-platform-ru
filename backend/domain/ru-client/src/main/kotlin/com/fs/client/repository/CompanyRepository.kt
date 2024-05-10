@@ -30,8 +30,8 @@ abstract class CompanyRepository(
         }
     }
 
-    @Timed("gettingPricesFromDB")
-    fun getAllCompanies(): Flux<CompanyModel> {
+    @Timed(value = "companies.time", description = "Time taken to return all companies")
+    open fun getAllCompanies(): Flux<CompanyModel> {
         return Flux.from(
             dsl.select(COMPANY.asterisk()).from(COMPANY)
         ).map { it.into(Company::class.java) }
