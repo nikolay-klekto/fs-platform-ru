@@ -30,4 +30,4 @@ spec:
       port: 9090
       targetPort: 9090
 
-# some changes for git rebase commands
+# some info from main
