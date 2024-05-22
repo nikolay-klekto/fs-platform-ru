@@ -1,0 +1,48 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main  # Ветка, на которую будет срабатывать событие
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2  
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'  # Укажите версию JDK
+
+    - name: Build with Gradle
+      run: ./gradlew build  # Или используйте Maven: mvn clean package
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-app
+        path: build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: my-app
+        path: ./artifact
+
+    - name: Copy files via SCP
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        scp -o StrictHostKeyChecking=no ./artifact/ru-client-0.0.2-SNAPSHOT.jar user@funscrut.online:${{ secrets.DESTINATION_FOLDER }}
