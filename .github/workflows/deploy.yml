@@ -11,18 +11,19 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2  
+      uses: actions/checkout@v3  
 
     - name: Set up JDK
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
-        java-version: '11'  # Укажите версию JDK
+        java-version: '17'  # Укажите версию JDK
+        distribution: 'temurin'        
 
     - name: Build with Gradle
       run: ./gradlew build  # Или используйте Maven: mvn clean package
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: my-app
         path: build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
