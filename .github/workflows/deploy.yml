@@ -55,4 +55,4 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        scp -o StrictHostKeyChecking=no ./artifact/backend-0.0.1-SNAPSHOT.jar user@funscrut.online:${{ secrets.DESTINATION_FOLDER }}
+        scp -o StrictHostKeyChecking=no ./artifact/backend-0.0.1-SNAPSHOT.jar root@funscrut.online:${{ secrets.DESTINATION_FOLDER }}
