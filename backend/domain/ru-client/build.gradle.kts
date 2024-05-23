@@ -1,15 +1,14 @@
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
-import nu.studer.gradle.jooq.JooqEdition
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jooq.meta.jaxb.ForcedType
+        import nu.studer.gradle.jooq.JooqEdition
+        import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+        import org.jooq.meta.jaxb.ForcedType
 
-
-plugins {
-    kotlin("plugin.spring") version "1.8.21"
-    id("org.springframework.boot") version "2.7.4"
-    id("io.spring.dependency-management") version "1.0.14.RELEASE"
-    id("nu.studer.jooq") version "7.1.1"
-}
+        plugins {
+            kotlin("plugin.spring") version "1.8.21"
+            id("org.springframework.boot") version "2.7.4"
+            id("io.spring.dependency-management") version "1.0.14.RELEASE"
+            id("nu.studer.jooq") version "7.1.1"
+        }
 
 the<DependencyManagementExtension>().apply {
     imports {
@@ -19,60 +18,25 @@ the<DependencyManagementExtension>().apply {
 
 val mainClassPath = "com.fs.client.ClientServiceAppKt"
 
-//tasks.bootJar {
-//tasks.jar {
-//    isZip64 = true
-//    manifest {
-//        attributes(mapOf("Main-Class" to mainClassPath))
-//    }
-//}
-
-//tasks.withType<BootJar> {
-//    launchScript()
-//
-//    // Otherwise you'll get a "No main manifest attribute" error
-//    manifest {
-//        attributes["Main-Class"] = "com.fs.client.ClientServiceAppKt"
-//    }
-//
-//    // To avoid the duplicate handling strategy error
-//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-//
-//    // To add all of the dependencies
-//    from(sourceSets.main.get().output)
-//
-//    dependsOn(configurations.runtimeClasspath)
-//    from({
-//        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
-//    })
-//}
-
 tasks.named<Jar>("jar") {
     isZip64 = true
     manifest {
-        attributes["Main-Class"] = "com.fs.client.ClientServiceAppKt"
+        attributes["Main-Class"] = mainClassPath
     }
-
-    // To avoid the duplicate handling strategy error
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    // To add all the dependencies
     from(sourceSets.main.get().output)
-
     dependsOn(configurations.runtimeClasspath)
     from({
         configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
     })
-
-    archiveBaseName.set("ru-client")  // Основное имя файла JAR
-    archiveVersion.set("0.0.2-SNAPSHOT")    // Версия JAR файла
-    archiveClassifier.set("")      // Классификатор, если требуется
-    destinationDirectory.set(file("$buildDir/libs"))  // Каталог для размещения JAR файла
+    archiveBaseName.set("ru-client")
+    archiveVersion.set("0.0.2-SNAPSHOT")
+    archiveClassifier.set("")
+    destinationDirectory.set(file("$buildDir/libs"))
 }
 
 group = "com.fs.platform.ru"
 version = "0.0.2-SNAPSHOT"
-//java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
@@ -88,8 +52,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-tomcat")
-
-
     implementation("org.springframework:spring-core")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -99,13 +61,9 @@ dependencies {
     implementation("org.jooq:jooq-kotlin:3.17.4")
     implementation("com.tailrocks.graphql:graphql-datetime-spring-boot-starter:6.0.0")
     implementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
-//    implementation("com.graphql-java:graphql-java-extended-scalars:2023-01-24T02-11-56-babda5f")
-//    implementation("org.springframework.cloud:spring-cloud-starter-consul-discovery:4.0.1")
-//    implementation("log4j:log4j:1.2.17")
     implementation("org.springframework.boot:spring-boot-starter-logging")
     implementation("org.apache.logging.log4j:log4j-api:2.23.1")
     implementation("org.apache.logging.log4j:log4j-core:2.23.1")
-//    implementation("org.cfg4j:cfg4j-core:4.4.1")
     implementation("org.liquibase:liquibase-core:4.22.0")
     implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
     implementation("org.springframework:spring-orm:6.0.10")
@@ -118,20 +76,13 @@ dependencies {
 
     implementation("io.micrometer:micrometer-core:1.13.0")
     implementation("io.micrometer:micrometer-registry-prometheus:1.12.5")
-//    implementation ("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework:spring-aspects:6.1.6")
     implementation("org.springframework.boot:spring-boot-starter-aop:3.2.5")
-
-
-
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.6.0")
-
 
     compileOnly("com.vk.api:sdk:1.0.14")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    compileOnly("com.vk.api:sdk:1.0.14")
-
     runtimeOnly("org.postgresql:postgresql")
 
     jooqGenerator("org.postgresql:postgresql:42.5.0")
@@ -153,13 +104,11 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-//kotlin.sourceSets.create("src/generated/jooq")
-
-
 java.sourceSets["main"].java {
     srcDir("src/generated/jooq")
 }
-//jooq {
+
+        //jooq {
 //    version.set("3.16.7")
 //    edition.set(JooqEdition.OSS)
 //

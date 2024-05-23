@@ -74,7 +74,10 @@ jooq:
   driver: org.postgresql.Driver
 
 management:
-  endpoints.web.exposure.include: 'prometheus, health, info, metric'
+  endpoints:
+    web:
+      exposure:
+        include: 'prometheus, health, info, metrics'
   metrics:
     export:
       prometheus:
