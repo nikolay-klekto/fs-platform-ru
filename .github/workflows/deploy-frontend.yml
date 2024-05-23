@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: List files in frontend directory
-      run: ls -R frontend
+    - name: Checkout repository
+      uses: actions/checkout@v3
       
     - name: List files in build directory
       run: ls -R frontend/public
