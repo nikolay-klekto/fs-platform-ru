@@ -63,18 +63,12 @@ tasks.named<Jar>("jar") {
     from({
         configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
     })
-}
 
-tasks.jar {
     archiveBaseName.set("ru-client")  // Основное имя файла JAR
     archiveVersion.set("0.0.2-SNAPSHOT")    // Версия JAR файла
     archiveClassifier.set("")      // Классификатор, если требуется
     destinationDirectory.set(file("$buildDir/libs"))  // Каталог для размещения JAR файла
 }
-//
-//springBoot {
-//    mainClass.set(mainClassPath)
-//}
 
 group = "com.fs.platform.ru"
 version = "0.0.2-SNAPSHOT"
