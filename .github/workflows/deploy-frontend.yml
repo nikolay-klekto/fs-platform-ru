@@ -1,0 +1,66 @@
+
+name: Deploy front
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    if: |
+      contains(github.event.head_commit.message, '[deploy-front]') ||
+      contains(github.event.pull_request.title, '[deploy-front]')
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: List files in build directory
+      run: ls -R frontend/public
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-app-front
+        path: frontend/public 
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: my-app-front
+        path: ./artifact
+        
+    - name: Verify artifact downloaded
+      run: ls -l ./artifact  # Проверка, что артефакт был загружен
+
+    - name: Copy files via SCP
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        scp -r -o StrictHostKeyChecking=no ./artifact/* root@funscrut.online:${{ secrets.DESTINATION_FOLDER_FRONTEND }}
+
+    - name: Restart Docker Container
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        ssh -o StrictHostKeyChecking=no root@funscrut.online << 'EOF'
+          cd /home/Nikolay/funScrut/funscrut-frontend
+          docker stop funscrut-frontend || true
+          docker rm funscrut-frontend || true
+          docker rmi funscrut-frontend || true
+          docker build -t funscrut-frontend .
+          docker run -d --name funscrut-frontend -p 8085:8085 funscrut-frontend
+        EOF

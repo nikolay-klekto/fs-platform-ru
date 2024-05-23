@@ -3,10 +3,16 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main  # Ветка, на которую будет срабатывать событие
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
+    if: |
+      contains(github.event.head_commit.message, '[deploy-back]') ||
+      contains(github.event.pull_request.title, '[deploy-back]')
     runs-on: ubuntu-latest
 
     steps:
@@ -18,21 +24,19 @@ jobs:
       with:
         java-version: '17'  # Укажите версию JDK
         distribution: 'temurin'        
-
-    - name: Build with Gradle
+    - name: Run build with Gradle Wrapper
       run: ./gradlew build  # Или используйте Maven: mvn clean package
-
-    - name: List all files in the project directory
-      run: ls -R  # Рекурсивный вывод всех файлов в проекте для диагностики
-
-    - name: List files in build directory
-      run: ls -R backend/build  # Рекурсивный вывод файлов в каталоге сборки для диагностики
+    - name: Build with Gradle
+      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+      with:
+        arguments: build
+        gradle-version: 7.4.2
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: my-app
-        path: backend/build/libs/backend-0.0.1-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+        path: backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,4 +59,13 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        scp -o StrictHostKeyChecking=no ./artifact/backend-0.0.1-SNAPSHOT.jar user@funscrut.online:${{ secrets.DESTINATION_FOLDER }}
+        scp -o StrictHostKeyChecking=no ./artifact/ru-client-0.0.2-SNAPSHOT.jar root@funscrut.online:${{ secrets.DESTINATION_FOLDER_BACK }}
+        
+    - name: Restart Docker Compose
+      env:
+       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+       ssh -o StrictHostKeyChecking=no root@funscrut.online << 'EOF'
+       cd /home/Nikolay/funScrut
+       docker compose up -d --build
+       EOF
