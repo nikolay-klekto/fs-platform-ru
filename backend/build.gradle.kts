@@ -45,11 +45,11 @@ kotlin { // Extension for easy setup
 }
 
 //project("gateway:registration:registration-auth") {
-//project("domain:ru-client") {
+project("domain:ru-client") {
 
 //    dependencies {
 //        runtimeOnly(project(":frontend"))
-//    }
+    }
 //}
 
 
