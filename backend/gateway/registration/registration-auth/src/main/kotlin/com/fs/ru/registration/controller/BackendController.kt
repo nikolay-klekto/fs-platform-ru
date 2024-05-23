@@ -97,7 +97,7 @@ class BackendController() {
     }
 
     private companion object {
-        private val log = LogManager.getLogger()
+        private val log = LogManager.getLogger(BackendController::class.java)
     }
 
 }
