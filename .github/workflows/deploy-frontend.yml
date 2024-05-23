@@ -51,3 +51,16 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         scp -r -o StrictHostKeyChecking=no ./artifact/* root@funscrut.online:${{ secrets.DESTINATION_FOLDER_FRONTEND }}
+
+    - name: Restart Docker Container
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        ssh -o StrictHostKeyChecking=no root@funscrut.online << 'EOF'
+          cd /home/Nikolay/funScrut/funscrut-frontend
+          docker stop funscrut-frontend || true
+          docker rm funscrut-frontend || true
+          docker rmi funscrut-frontend || true
+          docker build -t funscrut-frontend .
+          docker run -d --name funscrut-frontend -p 8085:8085 funscrut-frontend
+        EOF
