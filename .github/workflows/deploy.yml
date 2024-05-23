@@ -22,8 +22,11 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build  # Или используйте Maven: mvn clean package
 
-    - name: Verify JAR file exists
-      run: ls -l build/libs/  # Проверка, что JAR файл существует
+    - name: List all files in the project directory
+      run: ls -R  # Рекурсивный вывод всех файлов в проекте для диагностики
+
+    - name: List files in build directory
+      run: ls -R build  # Рекурсивный вывод файлов в каталоге сборки для диагностики
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
