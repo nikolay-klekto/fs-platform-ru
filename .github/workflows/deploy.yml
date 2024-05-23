@@ -26,13 +26,13 @@ jobs:
       run: ls -R  # Рекурсивный вывод всех файлов в проекте для диагностики
 
     - name: List files in build directory
-      run: ls -R backend/build  # Рекурсивный вывод файлов в каталоге сборки для диагностики
+      run: ls -R backend/domain/ru-client/build/libs  # Рекурсивный вывод файлов в каталоге сборки для диагностики
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: my-app
-        path: backend/build/libs/backend-0.0.1-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+        path: backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,4 +55,4 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        scp -o StrictHostKeyChecking=no ./artifact/backend-0.0.1-SNAPSHOT.jar root@funscrut.online:${{ secrets.DESTINATION_FOLDER }}
+        scp -o StrictHostKeyChecking=no ./artifact/ru-client-0.0.2-SNAPSHOT.jar root@funscrut.online:${{ secrets.DESTINATION_FOLDER }}
