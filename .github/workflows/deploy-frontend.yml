@@ -50,4 +50,4 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        scp -r -o StrictHostKeyChecking=no ./artifact/public/ root@funscrut.online:${{ secrets.DESTINATION_FOLDER_FRONTEND }}
+        scp -r -o StrictHostKeyChecking=no ./artifact/ root@funscrut.online:${{ secrets.DESTINATION_FOLDER_FRONTEND }}
