@@ -22,14 +22,17 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build  # Или используйте Maven: mvn clean package
 
-    - name: Verify JAR file exists
-      run: ls -l build/libs/  # Проверка, что JAR файл существует
+    - name: List all files in the project directory
+      run: ls -R  # Рекурсивный вывод всех файлов в проекте для диагностики
+
+    - name: List files in build directory
+      run: ls -R backend/build  # Рекурсивный вывод файлов в каталоге сборки для диагностики
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: my-app
-        path: build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+        path: backend/build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
 
   deploy:
     runs-on: ubuntu-latest
