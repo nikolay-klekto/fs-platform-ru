@@ -3,10 +3,16 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main  # Ветка, на которую будет срабатывать событие
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
+    if: |
+      contains(github.event.head_commit.message, '[deploy-back]') ||
+      contains(github.event.pull_request.title, '[deploy-back]')
     runs-on: ubuntu-latest
 
     steps:
