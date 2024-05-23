@@ -116,6 +116,7 @@ dependencies {
     implementation("com.google.api-client:google-api-client-gson:2.4.0")
     implementation("com.google.apis:google-api-services-calendar:v3-rev411-1.25.0")
 
+    implementation("io.micrometer:micrometer-core:1.13.0")
     implementation("io.micrometer:micrometer-registry-prometheus:1.12.5")
 //    implementation ("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework:spring-aspects:6.1.6")

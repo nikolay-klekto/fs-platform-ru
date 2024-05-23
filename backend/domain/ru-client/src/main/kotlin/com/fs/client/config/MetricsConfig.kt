@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class MetricsConfig {
     @Bean
-    fun timedAspect(registry: MeterRegistry?): TimedAspect {
-        return TimedAspect(registry!!)
+    fun timedAspect(registry: MeterRegistry): TimedAspect {
+        return TimedAspect(registry)
     }
 }
