@@ -1,17 +1,17 @@
-//package com.fs.client.config
-//
-//import org.jooq.impl.DataSourceConnectionProvider
-//import org.jooq.impl.DefaultConfiguration
-//import org.jooq.impl.DefaultDSLContext
-//import org.springframework.boot.jdbc.DataSourceBuilder
-//import org.springframework.context.annotation.Bean
-//import org.springframework.context.annotation.Configuration
-//import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy
-//import javax.sql.DataSource
-//
-//
-//@Configuration
-//class JooqConfig{
+package com.fs.client.config
+import org.jooq.DSLContext
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+
+    @Configuration
+    class JooqConfig(@Autowired private val dslContext: DSLContext) {
+
+        @Bean
+        fun dslContext(): DSLContext {
+            return dslContext
+        }
+    }
 //
 //    @Bean
 //    fun getDataSource(): DataSource {
