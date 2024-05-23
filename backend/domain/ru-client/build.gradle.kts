@@ -64,6 +64,13 @@ tasks.named<Jar>("jar") {
         configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
     })
 }
+
+tasks.jar {
+    archiveBaseName.set("ru-client")  // Основное имя файла JAR
+    archiveVersion.set("0.0.2-SNAPSHOT")    // Версия JAR файла
+    archiveClassifier.set("")      // Классификатор, если требуется
+    destinationDirectory.set(file("$buildDir/libs"))  // Каталог для размещения JAR файла
+}
 //
 //springBoot {
 //    mainClass.set(mainClassPath)
