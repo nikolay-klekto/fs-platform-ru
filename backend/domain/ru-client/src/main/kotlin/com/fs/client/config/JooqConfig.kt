@@ -12,25 +12,3 @@ import org.springframework.context.annotation.Configuration
             return dslContext
         }
     }
-//
-//    @Bean
-//    fun getDataSource(): DataSource {
-//        val dataSourceBuilder = DataSourceBuilder.create()
-//        return dataSourceBuilder.build()
-//    }
-//    @Bean
-//    fun connectionProvider(): DataSourceConnectionProvider {
-//        return DataSourceConnectionProvider(TransactionAwareDataSourceProxy(getDataSource()))
-//    }
-//
-//    @Bean
-//    fun dsl(): DefaultDSLContext {
-//        return DefaultDSLContext(configuration())
-//    }
-//
-//    fun configuration(): DefaultConfiguration {
-//        val jooqConfiguration = DefaultConfiguration()
-//        jooqConfiguration.set(connectionProvider())
-//        return jooqConfiguration
-//    }
-//}
