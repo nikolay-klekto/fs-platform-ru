@@ -80,7 +80,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-aop:3.2.5")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.6.0")
 
-    compileOnly("com.vk.api:sdk:1.0.14")
+//    compileOnly("com.vk.api:sdk:1.0.14")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql")
