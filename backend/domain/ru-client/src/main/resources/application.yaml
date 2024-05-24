@@ -52,7 +52,7 @@ spring:
     add-properties: false
 
 server:
-  port: ${NOMAD_HOST_PORT_http:8183}
+  port: 8183
   error:
     include-stacktrace: never
 
