@@ -23,14 +23,19 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'  # Укажите версию JDK
-        distribution: 'temurin'
+        distribution: 'amazon-corretto'
+        cache: gradle
+
+    - name: Verify Java version
+      run: java -version
+      
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0.
       with:
         arguments: build
         gradle-version: 7.4.2
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew build --console=plain
       
     - name: Upload artifact
       uses: actions/upload-artifact@v3
