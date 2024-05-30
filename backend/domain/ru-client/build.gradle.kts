@@ -77,6 +77,7 @@ tasks.withType<Test> {
 }
 
 tasks.named<Jar>("jar") {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
         attributes["Main-Class"] = "com.fs.client.ClientServiceAppKt"
     }
