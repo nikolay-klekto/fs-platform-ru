@@ -26,9 +26,9 @@ fun main(args: Array<String>) {
     app.setBannerMode(Banner.Mode.OFF)
     val defaultProperties = mapOf<String, Any>(
         "server.port" to (System.getenv("SERVER_PORT") ?: "8183"),
-        "spring.datasource.url" to (System.getenv("SPRING_DATASOURCE_URL") ?: "jdbc:postgresql://your-database-url"),
-        "spring.datasource.username" to (System.getenv("SPRING_DATASOURCE_USERNAME") ?: "your-database-username"),
-        "spring.datasource.password" to (System.getenv("SPRING_DATASOURCE_PASSWORD") ?: "your-database-password")
+        "spring.datasource.url" to (System.getenv("SPRING_DATASOURCE_URL") ?: "jdbc:postresql://funscrut.online:15432/fun_scrut"),
+        "spring.datasource.username" to (System.getenv("SPRING_DATASOURCE_USERNAME") ?: "username"),
+        "spring.datasource.password" to (System.getenv("SPRING_DATASOURCE_PASSWORD") ?: "password")
     )
     app.setDefaultProperties(defaultProperties)
     app.run(*args)
