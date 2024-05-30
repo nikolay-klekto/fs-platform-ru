@@ -25,9 +25,6 @@ jobs:
         java-version: '17'  # Укажите версию JDK
         distribution: 'corretto'
         cache: gradle
-
-    - name: Verify Java version
-      run: java -version
       
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v3
@@ -36,10 +33,6 @@ jobs:
         
     - name: Build with Gradle
       run: ./gradlew build --console=plain
-
-    - name: Print configuration files
-      run: |
-       cat backend/domain/ru-client/src/main/resources/application.yaml || true
 
     - name: Test JAR
       run: |
