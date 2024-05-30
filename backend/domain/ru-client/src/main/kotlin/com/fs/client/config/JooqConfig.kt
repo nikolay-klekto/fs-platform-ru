@@ -23,9 +23,9 @@ class JooqConfig {
     @Bean
     fun dataSource(): DataSource {
         return DataSourceBuilder.create()
-            .url(url)
-            .username(username)
-            .password(password)
+            .url("jdbc:postgresql://funscrut.online:15432/fun_scrut")
+            .username("username")
+            .password("password")
             .build()
     }
 
