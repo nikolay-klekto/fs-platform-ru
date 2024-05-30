@@ -21,7 +21,8 @@ spring:
     enable: true
     cors:
       allowed-origins: true
-    schema:
+#    schema:
+#      locations: classpath:graphql/clientSchema.graphqls
       printer:
         enabled: true
   application:

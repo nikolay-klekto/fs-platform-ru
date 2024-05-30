@@ -2,6 +2,7 @@ import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
         import nu.studer.gradle.jooq.JooqEdition
         import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
         import org.jooq.meta.jaxb.ForcedType
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     kotlin("jvm") version "1.8.21"
@@ -76,7 +77,13 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-tasks.named<Jar>("jar") {
+tasks.withType<ProcessResources> {
+    from("src/main/resources/graphql") {
+        include("*.graphqls")
+    }
+}
+
+tasks.named<BootJar>("bootJar") {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     isZip64 = true // Включить поддержку zip64
 
