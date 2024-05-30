@@ -14,9 +14,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 @EnableConfigurationProperties
 @EnableScheduling
 open class ClientServiceApp : SpringBootServletInitializer() {
-    override fun configure(builder: SpringApplicationBuilder): SpringApplicationBuilder {
-        return builder.sources(ClientServiceApp::class.java)
-    }
+//    override fun configure(builder: SpringApplicationBuilder): SpringApplicationBuilder {
+//        return builder.sources(ClientServiceApp::class.java)
+//    }
 }
 
 fun main(args: Array<String>) {
