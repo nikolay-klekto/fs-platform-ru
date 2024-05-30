@@ -36,6 +36,20 @@ jobs:
         
     - name: Build with Gradle
       run: ./gradlew build --console=plain
+
+    - name: Print configuration files
+      run: |
+       cat src/main/resources/application.properties
+       cat src/main/resources/application.yml || true
+
+    - name: Test JAR
+      run: |
+        java -jar backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar &
+        sleep 30
+        curl -I http://localhost:8183/actuator/health || true
+
+    - name: Print dependencies
+      run: ./gradlew dependencies
       
     - name: Upload artifact
       uses: actions/upload-artifact@v3
