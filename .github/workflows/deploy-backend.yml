@@ -23,18 +23,28 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'  # Укажите версию JDK
-        distribution: 'temurin'        
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
-      with:
-        arguments: build
-        gradle-version: 7.4.2
+        distribution: 'corretto'
+        cache: gradle
 
+    - name: Verify Java version
+      run: java -version
+      
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v3
+      # with:
+      #   gradle-version: 7.4.2
+        
+    - name: Build with Gradle
+      run: ./gradlew build --console=plain
+
+    - name: Test JAR
+      run: java -jar backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar
+      
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: my-app
-        path: backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+        path: backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу.
 
   deploy:
     runs-on: ubuntu-latest
