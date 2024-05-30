@@ -3,37 +3,13 @@ import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
         import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
         import org.jooq.meta.jaxb.ForcedType
 
-        plugins {
-            kotlin("plugin.spring") version "1.8.21"
-            id("org.springframework.boot") version "2.7.4"
-            id("io.spring.dependency-management") version "1.0.14.RELEASE"
-            id("nu.studer.jooq") version "7.1.1"
-        }
+plugins {
+    kotlin("jvm") version "1.8.21"
+    kotlin("plugin.spring") version "1.8.21"
+    id("org.springframework.boot") version "2.7.4"
+    id("io.spring.dependency-management") version "1.0.14.RELEASE"
+    id("nu.studer.jooq") version "7.1.1"
 
-the<DependencyManagementExtension>().apply {
-    imports {
-        mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
-    }
-}
-
-val mainClassPath = "com.fs.client.ClientServiceAppKt"
-
-tasks.named<Jar>("jar") {
-    isZip64 = true
-    manifest {
-        attributes["Main-Class"] = mainClassPath
-    }
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    from(sourceSets.main.get().output)
-    from(sourceSets.main.get().resources)
-    dependsOn(configurations.runtimeClasspath)
-    from({
-        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
-    })
-    archiveBaseName.set("ru-client")
-    archiveVersion.set("0.0.2-SNAPSHOT")
-    archiveClassifier.set("")
-    destinationDirectory.set(file("$buildDir/libs"))
 }
 
 group = "com.fs.platform.ru"
@@ -60,7 +36,6 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-webmvc-core:1.6.12")
     implementation("org.springdoc:springdoc-openapi-kotlin:1.6.12")
     implementation("org.jooq:jooq-kotlin:3.17.4")
-//    implementation("com.tailrocks.graphql:graphql-datetime-spring-boot-starter:6.0.0")
     implementation("com.graphql-java:graphql-java-extended-scalars:22.0")
     implementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
     implementation("org.springframework.boot:spring-boot-starter-logging")
@@ -70,20 +45,15 @@ dependencies {
     implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
     implementation("org.springframework:spring-orm:6.0.10")
     implementation("org.postgresql:postgresql:42.5.0")
-
     implementation("com.google.api-client:google-api-client:2.4.0")
     implementation("com.google.oauth-client:google-oauth-client-jetty:1.35.0")
     implementation("com.google.api-client:google-api-client-gson:2.4.0")
     implementation("com.google.apis:google-api-services-calendar:v3-rev411-1.25.0")
-
     implementation("io.micrometer:micrometer-core:1.13.0")
     implementation("io.micrometer:micrometer-registry-prometheus:1.12.5")
     implementation("org.springframework:spring-aspects:6.1.6")
     implementation("org.springframework.boot:spring-boot-starter-aop:3.2.5")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.6.0")
-
-//    compileOnly("com.vk.api:sdk:1.0.14")
-
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql")
 
@@ -106,10 +76,29 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+tasks.named<Jar>("jar") {
+    manifest {
+        attributes["Main-Class"] = "com.fs.client.ClientServiceAppKt"
+    }
+    from(sourceSets.main.get().output)
+    from(sourceSets.main.get().resources)
+    dependsOn(configurations.runtimeClasspath)
+    from({
+        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
+    })
+    archiveBaseName.set("ru-client")
+    archiveVersion.set("0.0.2-SNAPSHOT")
+    archiveClassifier.set("")
+    destinationDirectory.set(file("$buildDir/libs"))
+}
+
 java.sourceSets["main"].java {
     srcDir("src/generated/jooq")
 }
 
+kotlin {
+    jvmToolchain(17)
+}
         //jooq {
 //    version.set("3.16.7")
 //    edition.set(JooqEdition.OSS)
@@ -211,6 +200,3 @@ java.sourceSets["main"].java {
 //    }
 //}
 
-kotlin {
-    jvmToolchain(17)
-}
