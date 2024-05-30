@@ -50,6 +50,8 @@ spring:
     exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
   devtools:
     add-properties: false
+  main:
+    web-application-type: servlet
 
 server:
   port: 8183
