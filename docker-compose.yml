@@ -3,11 +3,44 @@ services:
   app:
     image: ru-client:latest
     build:
-#      context: .
-#      context: fs-platform-ru
+      context: .
       dockerfile: Dockerfile-Client
     ports:
-      - "8183:8183"
+      - "127.0.0.1:8183:8183"
+    #    container_name: app
+    depends_on:
+      - service-db
+    #       condition: service_healthy
+    environment:
+      - SERVER_PORT= 8183
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+    networks:
+      - prometheus-grafana-network
+
+  app2:
+    image: ru-client:latest
+    build:
+      context: .
+      dockerfile: Dockerfile-Client
+    ports:
+      - "127.0.0.1:8184:8183"
+    #    container_name: app
+    depends_on:
+      - service-db
+    #       condition: service_healthy
+    environment:
+      - SERVER_PORT= 8183
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+    networks:
+      - prometheus-grafana-network
+
+  app3:
+    image: ru-client:latest
+    build:
+      context: .
+      dockerfile: Dockerfile-Client
+    ports:
+      - "127.0.0.1:8185:8183"
     #    container_name: app
     depends_on:
       - service-db
@@ -18,10 +51,10 @@ services:
     networks:
       - prometheus-grafana-network
 
-  app2:
+  gateway:
     image: ru-gateway:latest
     build:
-      context: fs-platform-ru
+      context: .
       dockerfile: Dockerfile-Gateway
     ports:
       - "8081:8081"
@@ -41,15 +74,15 @@ services:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: password
       PGDATA: "/var/lib/postgresql/data/pgdata"
-#    healthcheck:
-#      test: [ "CMD-SHELL", "pg_isready", "-d", "fun_scrut" ]
-#      interval: 10s
-#      timeout: 3s
-#      retries: 3
+    #    healthcheck:
+    #      test: [ "CMD-SHELL", "pg_isready", "-d", "fun_scrut" ]
+    #      interval: 10s
+    #      timeout: 3s
+    #      retries: 3
     ports:
       - "15432:5432"
     volumes:
-#      - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+      #      - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
       - ./infrastructure/db:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
     restart: unless-stopped
@@ -64,7 +97,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
-      - "5050:80"
+      - "127.0.0.1:5050:80"
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     networks:
@@ -83,8 +116,8 @@ services:
   grafana:
     image: grafana/grafana:10.4.2
     container_name: grafana-container
-#    volumes:
-#      - ./config/grafana/provisioning:/etc/grafana/provisioning
+    #    volumes:
+    #      - ./config/grafana/provisioning:/etc/grafana/provisioning
     ports:
       - "3000:3000"
     environment:
@@ -128,4 +161,3 @@ volumes:
 #    networks:
 #      monitoring:
 #        aliases:
-
