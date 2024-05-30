@@ -39,7 +39,7 @@ jobs:
 
     - name: Print configuration files
       run: |
-       cat backend/domain/ru-client/build/libs/ru-client/src/main/resources/application.yaml || true
+       cat backend/domain/ru-client/ru-client/src/main/resources/application.yaml || true
 
     - name: Test JAR
       run: |
