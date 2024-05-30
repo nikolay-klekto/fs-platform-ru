@@ -53,7 +53,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: my-app
-        path: jar/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+        path: jar/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу.
 
   deploy:
     runs-on: ubuntu-latest
