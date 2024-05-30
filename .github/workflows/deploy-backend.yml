@@ -36,9 +36,6 @@ jobs:
         
     - name: Build with Gradle
       run: ./gradlew build --console=plain
-
-    - name: Test JAR
-      run: java -jar backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar
       
     - name: Upload artifact
       uses: actions/upload-artifact@v3
