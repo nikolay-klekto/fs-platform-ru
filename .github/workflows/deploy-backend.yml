@@ -19,42 +19,36 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3  
 
-    # - name: Set up JDK
-    #   uses: actions/setup-java@v3
-    #   with:
-    #     java-version: '17'  # Укажите версию JDK
-    #     distribution: 'corretto'
-    #     cache: gradle
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'  # Укажите версию JDK
+        distribution: 'corretto'
+        cache: gradle
       
-    # - name: Setup Gradle
-    #   uses: gradle/gradle-build-action@v3
-    #   # with:
-    #   #   gradle-version: 7.4.2
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v3
+      # with:
+      #   gradle-version: 7.4.2
         
-    # - name: Build with Gradle
-    #   run: ./gradlew build --console=plain
+    - name: Build with Gradle
+      run: ./gradlew bootJar --console=plain
 
-    # - name: Test JAR
-    #   run: |
-    #     java -jar backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar &
-    #     sleep 30
-    #     curl -I http://localhost:8183/actuator/health || true
+    - name: Test JAR
+      run: |
+        java -jar backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar &
+        sleep 30
+        curl -I http://localhost:8183/actuator/health || true
 
-    # - name: Print dependencies
-    #   run: ./gradlew dependencies
+    - name: Print dependencies
+      run: ./gradlew dependencies
       
-    # - name: Upload artifact
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: my-app
-    #     path: backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
-
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: my-app
-        path: jar/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу.
-
+        path: backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+        
   deploy:
     runs-on: ubuntu-latest
     needs: build
