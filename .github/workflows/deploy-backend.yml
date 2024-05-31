@@ -22,7 +22,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: '17'  # Укажите версию JDK
+        java-version: '17'  # Укажите версию JDK.
         distribution: 'corretto'
         cache: gradle
       
