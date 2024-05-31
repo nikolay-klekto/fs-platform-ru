@@ -71,9 +71,9 @@ abstract class CountryRepository(
                 .where(CITY.COUNTRY_CODE.eq(countryCode))
                 .execute() > 0
 
-//            if (!result) {
-//                log.info("In current deleted country there are no one city!")
-//            }
+            if (!result) {
+                println("In current deleted country there are no one city!")
+            }
             dsl.deleteFrom(COUNTRY)
                 .where(COUNTRY.CODE.eq(countryCode))
                 .execute() == 1
