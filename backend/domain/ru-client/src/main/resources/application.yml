@@ -1,3 +1,9 @@
+server:
+  port: 8183
+  error:
+    include-stacktrace: never
+
+#
 graphql:
   datetime:
     scalars:
@@ -51,13 +57,6 @@ spring:
     exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
   devtools:
     add-properties: false
-  main:
-    web-application-type: servlet
-
-server:
-  port: 8183
-  error:
-    include-stacktrace: never
 
 logging:
   level:
