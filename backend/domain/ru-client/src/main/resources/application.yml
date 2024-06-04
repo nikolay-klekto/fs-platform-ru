@@ -1,3 +1,9 @@
+server:
+  port: 8183
+  error:
+    include-stacktrace: never
+
+#
 graphql:
   datetime:
     scalars:
@@ -21,7 +27,8 @@ spring:
     enable: true
     cors:
       allowed-origins: true
-    schema:
+#    schema:
+#      locations: classpath:graphql/clientSchema.graphqls
       printer:
         enabled: true
   application:
@@ -51,11 +58,6 @@ spring:
   devtools:
     add-properties: false
 
-server:
-  port: ${NOMAD_HOST_PORT_http:8183}
-  error:
-    include-stacktrace: never
-
 logging:
   level:
     org:
@@ -74,7 +76,10 @@ jooq:
   driver: org.postgresql.Driver
 
 management:
-  endpoints.web.exposure.include: 'prometheus, health, info, metric'
+  endpoints:
+    web:
+      exposure:
+        include: 'prometheus, health, info, metrics'
   metrics:
     export:
       prometheus:

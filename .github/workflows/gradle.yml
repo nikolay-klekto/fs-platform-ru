@@ -35,3 +35,21 @@ jobs:
       with:
         arguments: build
         gradle-version: 7.4.2
+  copy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Copy to Remote Server
+      uses: pierrickdelrieu/scp-action
+      with:
+        host: ${{ secrets.DESTINATION_HOST }}
+        ssh_port: ${{ secrets.DESTINATION_SSH_PORT }}
+        ssh_username: ${{ secrets.SSH_USERNAME }}
+        ssh_key: ${{ secrets.SSH_KEY }}
+        ssh_passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        source_dir: ${{ secrets.SOURCE_FOLDER }}
+        destination_dir: ${{ secrets.DESTINATION_FOLDER }}
+        rm: true

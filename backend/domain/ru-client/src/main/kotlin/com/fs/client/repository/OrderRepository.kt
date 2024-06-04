@@ -142,7 +142,7 @@ abstract class OrderRepository(
     }
 
     companion object {
-        private val log = LogManager.getLogger()
+        private val log = LogManager.getLogger(OrderRepository::class.java)
         private val dateFormat = SimpleDateFormat("HH:mm:ss")
         private const val TEMPORARY_ORDER_LIFE_TIME: Int = 2
         private const val DEFAULT_ORDER_ID: Long = 1

@@ -222,7 +222,7 @@ abstract class EventRepository(
     }
 
     companion object {
-        private val log = LogManager.getLogger()
+        private val log = LogManager.getLogger(EventRepository::class.java)
         private const val ACTIVE_EXPIRED_STATUS: Boolean = false
         private const val DEFAULT_EXPIRED_STATUS: Boolean = true
 
