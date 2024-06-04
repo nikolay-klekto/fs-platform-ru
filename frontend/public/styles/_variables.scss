@@ -54,8 +54,20 @@
     --section-padding-y: 100px; //????
 
     --input-height: 64px; //4rem;
+    --input-height-secondary: 50px;
+
     --button-height: 68px; //4.25rem;
-    --button-secondary-height: 64px; //4rem;
+    --button-height-secondary: 64px; //4rem;
+
+    --button-height-tablet: 60px;
+    --button-height-secondary-tablet: 52px;
+
+    --button-height-mobile: 50px;
+    --button-height-secondary-mobile: 40px;
+
+
+    // --input-height-main: 64px;
+
 
     //анимация
     --transition-duration: 0.2s;

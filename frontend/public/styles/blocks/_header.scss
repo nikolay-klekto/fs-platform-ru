@@ -1,12 +1,8 @@
 .header {
     position: fixed;
     width: 100%;
-    padding: 30px 0; //1.875rem 0;
-    border: 1px solid black;
-
-    @include desktop{
-        padding: 20px 0;
-    }
+    padding: 22px 0; //1.875rem 0;
+    // border: 1px solid white;
 
     @include tablet{
         padding: 10px 0;
@@ -18,18 +14,16 @@
 
     // .header__inner
     &__inner {
-        // background: #000;
-
         display: flex;
         justify-content: space-between;
         align-items: center;
         column-gap: 50px; //3.125rem;
 
-        @include desktop{
+        @media (max-width: 1550px) {
             column-gap: 30px;
         }
 
-        @media (max-width: 1040px) {
+        @media (max-width: 1065px) {
             column-gap: 20px;
         }
     }
@@ -38,8 +32,8 @@
         display: none;
 
         svg{
-            width: 45px; //3.125rem;
-            height: 45px; //3.125rem;
+            width: 50px; //3.125rem;
+            height: 50px; //3.125rem;
 
             @include hover{
                 path{
@@ -48,7 +42,7 @@
             }
 
             @include tablet{
-                width: 35px;
+                width: 38px;
             }
 
             @include mobile{
@@ -56,22 +50,20 @@
             }
 
             path{
-                stroke-width: 1.4;
-
-                @include mobile{
-                    stroke-width:2;
+                @include mobile-above{
+                    stroke-width: 1.4;
                 }
             }
         }
 
-        @media (max-width: 1450px) {
+        @media (max-width: 1260px) {
             display: inline;
             order: 1;
         }
 
         @include tablet{
             order: -1;
-            margin-right: 60px;
+            margin-right: 63px;
         }
 
         @include mobile{
@@ -80,17 +72,16 @@
     }
     // .header__logo
     &__logo img{
-        @include desktop{
-            width: 85px;
-        }
+        min-width: 100px;
+        // min-height: 83px;
 
         @include tablet{
-            // max-width: 70px;
-            height: 60px;
+            // min-width: 80px;
+            height: 65px;
         }
 
         @include mobile{
-            // max-width: 58px;
+            // min-width: 58px;
             height: 48px;
         }
     }
@@ -104,17 +95,13 @@
             background: var(--color-basic-white);
             height: 68px; //4.25rem;
             padding-inline: 4px; //0.25rem;
-
-            @include desktop{
-                height: 60px;
-            }
         }
         // .header__menu-item
         &-item {
             &:nth-child(1){
-                @media (max-width: 1125px) {
-                    display: none;
-                }
+                // @media (max-width: 1125px) {
+                //     display: none;
+                // }
             }
         }
         // .header__menu-link
@@ -134,21 +121,17 @@
             -webkit-text-fill-color: transparent;
             color: var(--color-accent-purple);
 
-            transition-duration: var(--transition-duration);
-
             @include hover{
                 -webkit-background-clip: border-box;
                 -webkit-text-fill-color: var(--color-basic-white);
                 color: var(--color-basic-white);
             }
 
-            @include desktop{
+            @media (max-width: 1550px) {
                 padding-inline: 30px;
-                height: 52px;
-                font-size: 16px;
             }
 
-            @media (max-width: 1215px) {
+            @media (max-width: 1420px) {
                 padding-inline: 20px;
             }
         }
@@ -157,15 +140,11 @@
     &__button {
         width: 380px;
 
-        @include desktop{
-            height: 60px;
-            max-width: fit-content; //300px
-            span{
-                font-size:  22px;
-            }
+        @media (max-width: 1420px) {
+            padding-inline: 20px;
         }
 
-        @media (max-width: 1450px) {
+        @media (max-width: 1260px) {
             display: none;
         }
     }
@@ -176,11 +155,15 @@
         align-items: center;
         column-gap: 50px; //3.125rem;
 
-        @include desktop{
+        @media (max-width: 1550px) {
             column-gap: 30px;
         }
 
-        @media (max-width: 1450px) {
+        @media (max-width: 1065px) {
+            column-gap: 20px;
+        }
+
+        @media (max-width: 1260px) {
             order: 2;
         }
 
@@ -203,12 +186,8 @@
                 }
             }
 
-            @include desktop{
-                width: 45px;
-            }
-
             @include tablet{
-                width: 35px;
+                width: 38px;
             }
 
             @include mobile{
@@ -217,7 +196,7 @@
 
             path{
                 @include mobile{
-                    stroke-width: 4.2;
+                    stroke-width: 4;
                 }
             }
         }
@@ -230,10 +209,6 @@
                 path{
                     stroke: var(--color-accent-purple);
                 }
-            }
-
-            @include desktop{
-                width: 45px;
             }
         }
         // .header__icons-burger-button
