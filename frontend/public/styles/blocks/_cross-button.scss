@@ -1,0 +1,56 @@
+.cross-button {
+    @include reset-button;
+    @include square(24px);
+
+    position: relative;
+
+    @include tablet{
+        @include square(38px);
+    }
+
+    @include mobile{
+        @include square(24px);
+    }
+
+    @include hover{
+        cursor: pointer;
+        &::after,
+        &::before{
+            background-color: var(--color-basic-white);
+        }
+    }
+
+    &::after,
+    &::before{
+        content: '';
+        position: absolute;
+        top: 11px;
+        left: 2px;
+        width: 20px;
+        height: 2px;
+        background-color: var(--color-basic-grey);
+        border-radius: 2px;
+
+        @include tablet{
+            top: 17px;
+            width: 34px;
+            height: 2.5px;
+        }
+
+        @include mobile{
+            top: 11px;
+            width: 20px;
+            height: 2px;
+        }
+    }
+
+    &::after{
+        rotate: 45deg;
+    }
+
+    &::before{
+        rotate: -45deg;
+    }
+
+}
+
