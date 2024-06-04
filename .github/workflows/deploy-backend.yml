@@ -34,20 +34,22 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew bootJar --console=plain
 
-    - name: Test JAR
-      run: |
-        java -jar backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar &
-        sleep 30
-        curl -I http://localhost:8183/actuator/health || true
+    # - name: Test JAR
+    #   run: |
+    #     java -jar backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar &
+    #     sleep 30
+    #     curl -I http://localhost:8183/actuator/health || true
 
-    - name: Print dependencies
-      run: ./gradlew dependencies
+    # - name: Print dependencies
+    #   run: ./gradlew dependencies
       
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: my-app
-        path: backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+        path: |
+          backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+          docker-compose.yml  # Путь к файлу Docker Compose
         
   deploy:
     runs-on: ubuntu-latest
@@ -67,7 +69,8 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        scp -o StrictHostKeyChecking=no ./artifact/ru-client-0.0.2-SNAPSHOT.jar root@funscrut.online:${{ secrets.DESTINATION_FOLDER_BACK }}
+        scp -o StrictHostKeyChecking=no ./artifact/ru-client-0.0.2-SNAPSHOT.jar root@funscrut.online:${{ secrets.DESTINATION_BACKEND_JAR_FOLDER }}
+        scp -o StrictHostKeyChecking=no ./artifact/docker-compose.yml root@funscrut.online:${{ secrets.DESTINATION_BASE_FOLDER }}
         
     - name: Restart Docker Compose
       env:
