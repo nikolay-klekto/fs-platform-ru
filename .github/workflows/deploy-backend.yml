@@ -40,9 +40,6 @@ jobs:
     #     sleep 30
     #     curl -I http://localhost:8183/actuator/health || true
 
-    # - name: Print dependencies
-    #   run: ./gradlew dependencies
-
     - name: Upload JAR artifact
       uses: actions/upload-artifact@v3
       with:
