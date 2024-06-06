@@ -59,8 +59,8 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-webmvc-core:1.6.12")
     implementation("org.springdoc:springdoc-openapi-kotlin:1.6.12")
     implementation("org.jooq:jooq-kotlin:3.17.4")
-//    implementation("com.tailrocks.graphql:graphql-datetime-spring-boot-starter:6.0.0")
-    implementation("com.graphql-java:graphql-java-extended-scalars:22.0")
+    implementation("com.tailrocks.graphql:graphql-datetime-spring-boot-starter:6.0.0")
+//    implementation("com.graphql-java:graphql-java-extended-scalars:22.0")
     implementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
     implementation("org.springframework.boot:spring-boot-starter-logging")
     implementation("org.apache.logging.log4j:log4j-api:2.23.1")
@@ -105,110 +105,110 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-java.sourceSets["main"].java {
-    srcDir("src/generated/jooq")
-}
+//java.sourceSets["main"].java {
+//    srcDir("src/generated/jooq")
+//}
 
-//jooq {
-//    version.set("3.16.7")
-//    edition.set(JooqEdition.OSS)
-//
-//    configurations {
-//        create("main") {
-//            jooqConfiguration.apply {
-////                logging = Logging.WARN
-//                jdbc.apply {
-//                    driver = "org.postgresql.Driver"
-////                    url = "jdbc:postgresql://service-db/funScrut"
-////                    user = "username"
-////                    password = "password"
-////                    url = "jdbc:postgresql://localhost:5432/FunScrut2"
-////                    user = "postgres"
-////                    password = "191220#destin"
-//                    url = "jdbc:postgresql://funscrut.online:15432/fun_scrut"
+jooq {
+    version.set("3.16.7")
+    edition.set(JooqEdition.OSS)
+
+    configurations {
+        create("main") {
+            jooqConfiguration.apply {
+//                logging = Logging.WARN
+                jdbc.apply {
+                    driver = "org.postgresql.Driver"
+//                    url = "jdbc:postgresql://service-db/funScrut"
 //                    user = "username"
 //                    password = "password"
-////                    properties = listOf(
-////                        Property().apply {
-////                            key = "PAGE_SIZE"
-////                            value = "2048"
-////                        }
-////                    )
-//                }
-//                generator.apply {
-//                    name = "org.jooq.codegen.KotlinGenerator"
-//                    database.apply {
-//                        name = "org.jooq.meta.postgres.PostgresDatabase"
-//                        inputSchema = "public"
-//                        forcedTypes = listOf(
-//                            ForcedType().apply {
-//                                isEnumConverter = true
-//                                userType = "com.fs.client.ru.enums.ClientRoleModel"
-//                                includeExpression = ".*client.role"
-//                                includeTypes = ".*"
-//                            },
-//                            ForcedType().apply {
-//                                isEnumConverter = true
-//                                userType = "com.fs.client.ru.enums.EducationModel"
-//                                includeExpression = ".*client.education_status"
-//                                includeTypes = ".*"
-//                            },
-//                            ForcedType().apply {
-//                                isEnumConverter = true
-//                                userType = "com.fs.client.ru.enums.EmploymentModel"
-//                                includeExpression = ".*client.employment"
-//                                includeTypes = ".*"
-//                            },
-//                            ForcedType().apply {
-//                                isEnumConverter = true
-//                                userType = "com.fs.client.ru.enums.CurrencyModel"
-//                                includeExpression = ".*country.currency"
-//                                includeTypes = ".*"
-//                            },
-//                            ForcedType().apply {
-//                                isEnumConverter = true
-//                                userType = "com.fs.client.ru.enums.CountryNameModel"
-//                                includeExpression = ".*country.name"
-//                                includeTypes = ".*"
-//                            },
-//                            ForcedType().apply {
-//                                isEnumConverter = true
-//                                userType = "com.fs.service.ru.enums.IndustryModel"
-//                                includeExpression = ".*company.company_industry"
-//                                includeTypes = ".*"
-//                            },
-//                            ForcedType().apply {
-//                                isEnumConverter = true
-//                                userType = "com.fs.service.ru.enums.OrderStatus"
-//                                includeExpression = ".*order.order_status"
-//                                includeTypes = ".*"
-//                            },
-//                            ForcedType().apply {
-//                                isEnumConverter = true
-//                                userType = "com.fs.service.ru.enums.CompanyLegalCapacityStatus"
-//                                includeExpression = ".*company.legal_capacity_status"
-//                                includeTypes = ".*"
-//                            }
-//                        )
-//                    }
-//                    generate.apply {
-//                        isDeprecated = false
-//                        isRecords = true
-//                        isImmutablePojos = false
-//                        isFluentSetters = true
-//                        isPojos = true
-//                        withSequences(false)
-//                    }
-//                    target.apply {
-//                        packageName = "com.fs.domain.jooq"
-//                        directory = "src/generated/jooq"
-//                    }
-//                    strategy.name = "org.jooq.codegen.DefaultGeneratorStrategy"
-//                }
-//            }
-//        }
-//    }
-//}
+//                    url = "jdbc:postgresql://localhost:5432/FunScrut2"
+//                    user = "postgres"
+//                    password = "191220#destin"
+                    url = "jdbc:postgresql://funscrut.online:15432/fun_scrut"
+                    user = "username"
+                    password = "password"
+//                    properties = listOf(
+//                        Property().apply {
+//                            key = "PAGE_SIZE"
+//                            value = "2048"
+//                        }
+//                    )
+                }
+                generator.apply {
+                    name = "org.jooq.codegen.KotlinGenerator"
+                    database.apply {
+                        name = "org.jooq.meta.postgres.PostgresDatabase"
+                        inputSchema = "public"
+                        forcedTypes = listOf(
+                            ForcedType().apply {
+                                isEnumConverter = true
+                                userType = "com.fs.client.ru.enums.ClientRoleModel"
+                                includeExpression = ".*client.role"
+                                includeTypes = ".*"
+                            },
+                            ForcedType().apply {
+                                isEnumConverter = true
+                                userType = "com.fs.client.ru.enums.EducationModel"
+                                includeExpression = ".*education_status.*"
+                                includeTypes = ".*"
+                            },
+                            ForcedType().apply {
+                                isEnumConverter = true
+                                userType = "com.fs.client.ru.enums.EmploymentModel"
+                                includeExpression = ".*client.employment"
+                                includeTypes = ".*"
+                            },
+                            ForcedType().apply {
+                                isEnumConverter = true
+                                userType = "com.fs.client.ru.enums.CurrencyModel"
+                                includeExpression = ".*country.currency"
+                                includeTypes = ".*"
+                            },
+                            ForcedType().apply {
+                                isEnumConverter = true
+                                userType = "com.fs.client.ru.enums.CountryNameModel"
+                                includeExpression = ".*country.name"
+                                includeTypes = ".*"
+                            },
+                            ForcedType().apply {
+                                isEnumConverter = true
+                                userType = "com.fs.service.ru.enums.IndustryModel"
+                                includeExpression = ".*company.company_industry"
+                                includeTypes = ".*"
+                            },
+                            ForcedType().apply {
+                                isEnumConverter = true
+                                userType = "com.fs.service.ru.enums.OrderStatus"
+                                includeExpression = ".*order.order_status"
+                                includeTypes = ".*"
+                            },
+                            ForcedType().apply {
+                                isEnumConverter = true
+                                userType = "com.fs.service.ru.enums.CompanyLegalCapacityStatus"
+                                includeExpression = ".*company.legal_capacity_status"
+                                includeTypes = ".*"
+                            }
+                        )
+                    }
+                    generate.apply {
+                        isDeprecated = false
+                        isRecords = true
+                        isImmutablePojos = false
+                        isFluentSetters = true
+                        isPojos = true
+                        withSequences(false)
+                    }
+                    target.apply {
+                        packageName = "com.fs.domain.jooq"
+                        directory = "src/generated/jooq"
+                    }
+                    strategy.name = "org.jooq.codegen.DefaultGeneratorStrategy"
+                }
+            }
+        }
+    }
+}
 
 kotlin {
     jvmToolchain(17)

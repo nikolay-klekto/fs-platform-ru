@@ -5,13 +5,13 @@ package com.fs.domain.jooq.tables
 
 
 import com.fs.domain.jooq.Public
-import com.fs.domain.jooq.enums.OrderStatus
 import com.fs.domain.jooq.keys.ORDER_PKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_BASKET_ID_FKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_COMPANY_OFFICE_ID_FKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_POSITION_ID_FKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_SERVICE_ID_FKEY
 import com.fs.domain.jooq.tables.records.OrderRecord
+import com.fs.service.ru.enums.OrderStatus
 
 import java.time.LocalDateTime
 
@@ -116,7 +116,7 @@ open class Order(
     /**
      * The column <code>public.order.order_status</code>.
      */
-    val ORDER_STATUS: TableField<OrderRecord, com.fs.service.ru.enums.OrderStatus?> = createField(DSL.name("order_status"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.OrderStatus::class.java), this, "", EnumConverter<OrderStatus, com.fs.service.ru.enums.OrderStatus>(OrderStatus::class.java, com.fs.service.ru.enums.OrderStatus::class.java))
+    val ORDER_STATUS: TableField<OrderRecord, OrderStatus?> = createField(DSL.name("order_status"), SQLDataType.VARCHAR, this, "", EnumConverter<String, OrderStatus>(String::class.java, OrderStatus::class.java))
 
     /**
      * The column <code>public.order.date_created</code>.
@@ -207,5 +207,5 @@ open class Order(
     // -------------------------------------------------------------------------
     // Row11 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row11<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, com.fs.service.ru.enums.OrderStatus?, LocalDateTime?> = super.fieldsRow() as Row11<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, com.fs.service.ru.enums.OrderStatus?, LocalDateTime?>
+    override fun fieldsRow(): Row11<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, OrderStatus?, LocalDateTime?> = super.fieldsRow() as Row11<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, OrderStatus?, LocalDateTime?>
 }

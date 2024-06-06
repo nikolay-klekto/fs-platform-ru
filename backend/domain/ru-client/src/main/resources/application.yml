@@ -3,7 +3,6 @@ server:
   error:
     include-stacktrace: never
 
-#
 graphql:
   datetime:
     scalars:

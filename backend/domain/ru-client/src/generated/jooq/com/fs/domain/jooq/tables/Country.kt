@@ -7,8 +7,6 @@ package com.fs.domain.jooq.tables
 import com.fs.client.ru.enums.CountryNameModel
 import com.fs.client.ru.enums.CurrencyModel
 import com.fs.domain.jooq.Public
-import com.fs.domain.jooq.enums.Countries
-import com.fs.domain.jooq.enums.Currency
 import com.fs.domain.jooq.keys.COUNTRY_PKEY
 import com.fs.domain.jooq.tables.records.CountryRecord
 
@@ -71,12 +69,12 @@ open class Country(
     /**
      * The column <code>public.country.currency</code>.
      */
-    val CURRENCY: TableField<CountryRecord, CurrencyModel?> = createField(DSL.name("currency"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Currency::class.java), this, "", EnumConverter<Currency, CurrencyModel>(Currency::class.java, CurrencyModel::class.java))
+    val CURRENCY: TableField<CountryRecord, CurrencyModel?> = createField(DSL.name("currency"), SQLDataType.VARCHAR, this, "", EnumConverter<String, CurrencyModel>(String::class.java, CurrencyModel::class.java))
 
     /**
      * The column <code>public.country.name</code>.
      */
-    val NAME: TableField<CountryRecord, CountryNameModel?> = createField(DSL.name("name"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Countries::class.java), this, "", EnumConverter<Countries, CountryNameModel>(Countries::class.java, CountryNameModel::class.java))
+    val NAME: TableField<CountryRecord, CountryNameModel?> = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "", EnumConverter<String, CountryNameModel>(String::class.java, CountryNameModel::class.java))
 
     private constructor(alias: Name, aliased: Table<CountryRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<CountryRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)

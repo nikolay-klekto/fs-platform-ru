@@ -146,7 +146,6 @@ abstract class ClientBlockingRepository(
             .set(CLIENT.FIRST_NAME, newClientModel.firstName ?: oldClientModel.firstName)
             .set(CLIENT.LAST_NAME, newClientModel.lastName ?: oldClientModel.lastName)
             .set(CLIENT.ROLE, newClientModel.role ?: oldClientModel.role)
-            .set(CLIENT.PASSWORD, newClientModel.password ?: oldClientModel.password)
             .set(CLIENT.PHONE_NUMBER, newClientModel.phoneNumber ?: oldClientModel.phoneNumber)
             .set(CLIENT.TELEGRAM_USERNAME, newClientModel.telegramUsername ?: oldClientModel.telegramUsername)
             .set(CLIENT.USERNAME, newClientModel.username ?: oldClientModel.username)

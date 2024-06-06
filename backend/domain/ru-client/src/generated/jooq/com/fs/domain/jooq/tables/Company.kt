@@ -5,10 +5,9 @@ package com.fs.domain.jooq.tables
 
 
 import com.fs.domain.jooq.Public
-import com.fs.domain.jooq.enums.CompanyLegalCapacityStatus
-import com.fs.domain.jooq.enums.Industry
 import com.fs.domain.jooq.keys.COMPANY_PKEY
 import com.fs.domain.jooq.tables.records.CompanyRecord
+import com.fs.service.ru.enums.CompanyLegalCapacityStatus
 import com.fs.service.ru.enums.IndustryModel
 
 import org.jooq.Field
@@ -70,12 +69,12 @@ open class Company(
     /**
      * The column <code>public.company.company_industry</code>.
      */
-    val COMPANY_INDUSTRY: TableField<CompanyRecord, IndustryModel?> = createField(DSL.name("company_industry"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Industry::class.java), this, "", EnumConverter<Industry, IndustryModel>(Industry::class.java, IndustryModel::class.java))
+    val COMPANY_INDUSTRY: TableField<CompanyRecord, IndustryModel?> = createField(DSL.name("company_industry"), SQLDataType.VARCHAR, this, "", EnumConverter<String, IndustryModel>(String::class.java, IndustryModel::class.java))
 
     /**
      * The column <code>public.company.legal_capacity_status</code>.
      */
-    val LEGAL_CAPACITY_STATUS: TableField<CompanyRecord, com.fs.service.ru.enums.CompanyLegalCapacityStatus?> = createField(DSL.name("legal_capacity_status"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.CompanyLegalCapacityStatus::class.java), this, "", EnumConverter<CompanyLegalCapacityStatus, com.fs.service.ru.enums.CompanyLegalCapacityStatus>(CompanyLegalCapacityStatus::class.java, com.fs.service.ru.enums.CompanyLegalCapacityStatus::class.java))
+    val LEGAL_CAPACITY_STATUS: TableField<CompanyRecord, CompanyLegalCapacityStatus?> = createField(DSL.name("legal_capacity_status"), SQLDataType.VARCHAR, this, "", EnumConverter<String, CompanyLegalCapacityStatus>(String::class.java, CompanyLegalCapacityStatus::class.java))
 
     /**
      * The column <code>public.company.name</code>.
@@ -130,5 +129,5 @@ open class Company(
     // -------------------------------------------------------------------------
     // Row6 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row6<Long?, IndustryModel?, com.fs.service.ru.enums.CompanyLegalCapacityStatus?, String?, String?, String?> = super.fieldsRow() as Row6<Long?, IndustryModel?, com.fs.service.ru.enums.CompanyLegalCapacityStatus?, String?, String?, String?>
+    override fun fieldsRow(): Row6<Long?, IndustryModel?, CompanyLegalCapacityStatus?, String?, String?, String?> = super.fieldsRow() as Row6<Long?, IndustryModel?, CompanyLegalCapacityStatus?, String?, String?, String?>
 }

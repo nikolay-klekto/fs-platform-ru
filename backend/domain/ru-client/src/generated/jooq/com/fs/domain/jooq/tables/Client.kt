@@ -8,9 +8,6 @@ import com.fs.client.ru.enums.ClientRoleModel
 import com.fs.client.ru.enums.EducationModel
 import com.fs.client.ru.enums.EmploymentModel
 import com.fs.domain.jooq.Public
-import com.fs.domain.jooq.enums.Education
-import com.fs.domain.jooq.enums.Employment
-import com.fs.domain.jooq.enums.Role
 import com.fs.domain.jooq.keys.CLIENT_PKEY
 import com.fs.domain.jooq.keys.CLIENT__CLIENT_BASKET_ID_FKEY
 import com.fs.domain.jooq.keys.CLIENT__CLIENT_CITY_ID_FKEY
@@ -105,7 +102,7 @@ open class Client(
     /**
      * The column <code>public.client.education_status</code>.
      */
-    val EDUCATION_STATUS: TableField<ClientRecord, EducationModel?> = createField(DSL.name("education_status"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Education::class.java), this, "", EnumConverter<Education, EducationModel>(Education::class.java, EducationModel::class.java))
+    val EDUCATION_STATUS: TableField<ClientRecord, EducationModel?> = createField(DSL.name("education_status"), SQLDataType.VARCHAR, this, "", EnumConverter<String, EducationModel>(String::class.java, EducationModel::class.java))
 
     /**
      * The column <code>public.client.email</code>.
@@ -115,7 +112,7 @@ open class Client(
     /**
      * The column <code>public.client.employment</code>.
      */
-    val EMPLOYMENT: TableField<ClientRecord, EmploymentModel?> = createField(DSL.name("employment"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Employment::class.java), this, "", EnumConverter<Employment, EmploymentModel>(Employment::class.java, EmploymentModel::class.java))
+    val EMPLOYMENT: TableField<ClientRecord, EmploymentModel?> = createField(DSL.name("employment"), SQLDataType.VARCHAR, this, "", EnumConverter<String, EmploymentModel>(String::class.java, EmploymentModel::class.java))
 
     /**
      * The column <code>public.client.first_name</code>.
@@ -140,7 +137,7 @@ open class Client(
     /**
      * The column <code>public.client.role</code>.
      */
-    val ROLE: TableField<ClientRecord, ClientRoleModel?> = createField(DSL.name("role"), SQLDataType.VARCHAR.asEnumDataType(com.fs.domain.jooq.enums.Role::class.java), this, "", EnumConverter<Role, ClientRoleModel>(Role::class.java, ClientRoleModel::class.java))
+    val ROLE: TableField<ClientRecord, ClientRoleModel?> = createField(DSL.name("role"), SQLDataType.VARCHAR, this, "", EnumConverter<String, ClientRoleModel>(String::class.java, ClientRoleModel::class.java))
 
     /**
      * The column <code>public.client.telegram_username</code>.
