@@ -42,24 +42,34 @@ jobs:
 
     # - name: Print dependencies
     #   run: ./gradlew dependencies
-      
-    - name: Upload artifact
+
+    - name: Upload JAR artifact
       uses: actions/upload-artifact@v3
       with:
-        name: my-app
-        path: |
-          backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
-          docker-compose.yml  # Путь к файлу Docker Compose
+        name: my-app-jar
+        path: backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+
+    - name: Upload Docker Compose artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: docker-compose-file
+        path: docker-compose.yml  # Путь к файлу Docker Compose      
         
   deploy:
     runs-on: ubuntu-latest
     needs: build
 
     steps:
-    - name: Download artifact
+    - name: Download JAR artifact
       uses: actions/download-artifact@v3
       with:
-        name: my-app
+        name: my-app-jar
+        path: ./artifact
+
+    - name: Download Docker Compose artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: docker-compose-file
         path: ./artifact
 
     - name: Copy files via SCP
