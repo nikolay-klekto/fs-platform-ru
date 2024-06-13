@@ -33,23 +33,25 @@ a{
     color: inherit;
 }
 
-h1, h2, h3, h4{
+h1, h2, h3, h4, h5{
+    margin: 0;
+    padding: 0;
     font-weight: 500;
 }
 
-h1{
+h2{
     @include fluid-text(80,32);
 }
 
-h2{
+h3{
     @include fluid-text(46,28);
 }
 
-h3{
+h4{
     @include fluid-text(36,16);
 }
 
-h4{
+h5{
     @include fluid-text(28,18);
 }
 
