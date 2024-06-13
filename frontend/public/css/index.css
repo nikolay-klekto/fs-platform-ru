@@ -1352,9 +1352,6 @@ svg * {
   align-items: center;
   margin-top: 28px;
 }
-.mobile-overlay__button {
-  padding-inline: 25px;
-}
 @media (max-width: 1023px) {
   .mobile-overlay__button {
     height: var(--button-height-tablet);
@@ -1368,6 +1365,7 @@ svg * {
   .mobile-overlay__button {
     height: var(--button-height-mobile);
     padding-inline: 20px;
+    padding-inline: 25px !important;
   }
   .mobile-overlay__button .button__text {
     font-size: 17px;
