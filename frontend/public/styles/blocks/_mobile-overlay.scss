@@ -112,14 +112,13 @@
     }
     // .mobile-overlay__button
     &__button {
-        padding-inline: 25px;
-
         @include tablet{
             @include button-tablet;
         }
 
         @include mobile{
             @include button-mobile;
+            padding-inline: 25px !important;
         }
     }
     // .mobile-overlay__networks
