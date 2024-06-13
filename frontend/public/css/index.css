@@ -1229,7 +1229,6 @@ svg * {
   margin: 0;
   border: none;
   background-color: var(--color-basic-dark-blue);
-  display: block;
 }
 .mobile-overlay:modal {
   max-width: 100%;
