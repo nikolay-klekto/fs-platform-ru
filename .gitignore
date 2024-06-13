@@ -49,6 +49,7 @@ backend/mvnw
 /fs-platform-ru/frontend/npm-debug.log
 /fs-platform-ru/frontend/target
 .gradle
+.vscode/
 
 !.mvn/wrapper/maven-wrapper.jar
 *.MF
