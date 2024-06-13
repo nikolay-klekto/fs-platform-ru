@@ -41,7 +41,7 @@ jobs:
         path: ./artifact
         
     - name: Verify artifact downloaded
-      run: ls -l ./artifact  # Проверка, что артефакт был загружен
+      run: ls -l ./artifact
 
     - name: Copy files via SCP
       env:
