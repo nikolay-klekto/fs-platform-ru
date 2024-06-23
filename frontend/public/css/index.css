@@ -1399,10 +1399,127 @@ svg * {
   }
 }
 
+.professions {
+  width: 100%;
+  margin: 0 auto;
+  padding: 100px 60px;
+}
+.professions h2 {
+  position: relative;
+  text-transform: uppercase;
+}
+.professions h2::before {
+  position: absolute;
+  transform: translateY(-40%);
+  content: "профессии";
+  font-weight: 600;
+  font-size: clamp(0px, 8.3333333333vw, 160px);
+  text-transform: uppercase;
+  opacity: 0.02;
+}
+@media (max-width: 1023px) {
+  .professions h2::before {
+    display: none;
+  }
+}
+.professions__most-popular {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 80px;
+}
+.professions__most-popular h4 {
+  text-transform: uppercase;
+}
+.professions__catalog {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 80px;
+  gap: 80px 230px;
+}
+.professions__catalog-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 426px;
+  height: 520px;
+  padding: 20px 30px;
+  border-radius: 50px;
+  background: var(--color-basic-grey);
+}
+.professions__catalog-item-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 281px;
+  height: 58px;
+  border-radius: 50px;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: var(--color-basic-white);
+  opacity: 0.7;
+}
+.professions__catalog-item-name p {
+  font-weight: 600;
+  font-size: clamp(22px, 1.5625vw, 30px);
+  line-height: 167%;
+  color: var(--color-basic-dark-blue);
+}
+.professions__catalog-item-name p::first-letter {
+  text-transform: uppercase;
+}
+.professions__catalog-item-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 298px;
+  height: 62px;
+  border-radius: 50px;
+  background: var(--color-basic-white);
+}
+.professions__catalog-item-price p {
+  font-size: clamp(18px, 1.25vw, 24px);
+  line-height: 167%;
+  color: var(--color-basic-grey);
+}
+.professions__catalog-item-price span {
+  font-size: clamp(27px, 1.875vw, 36px);
+  background: var(--color-accent-purple-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.professions__what-else {
+  margin-top: 100px;
+}
+.professions__what-else h4 {
+  text-transform: uppercase;
+}
+.professions__suggestion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.professions__suggestion input {
+  width: 72%;
+  height: 64px;
+  border: 3px solid var(--color-basic-grey);
+  border-radius: 50px;
+  background-color: transparent;
+}
+.professions__suggestion__button {
+  height: 64px;
+}
+
 .stages-of-work {
   width: 100%;
   margin: 0 auto;
-  padding: 102px 61px 100px;
+  padding: 100px 60px;
 }
 @media (max-width: 375.2px) {
   .stages-of-work {
@@ -1443,7 +1560,6 @@ svg * {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%;
   margin-top: 122px;
   gap: 80px 40px;
 }

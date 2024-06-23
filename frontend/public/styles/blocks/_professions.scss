@@ -1,0 +1,207 @@
+.professions {
+    width: 100%;
+    margin: 0 auto;
+    padding: 100px 60px;
+
+    @include tablet {
+
+    }
+
+    @include mobile {
+
+    }
+
+    h2 {
+        position: relative;
+        text-transform: uppercase;
+
+        @include tablet {
+
+        }
+
+        @include mobile {
+
+        }
+
+        &::before {
+            position: absolute;
+            transform: translateY(-40%);
+
+            content: "профессии";
+
+            font-weight: 600;
+            @include fluid-text(160,0);
+
+            text-transform: uppercase;
+
+            opacity: 0.02;
+
+            @include tablet {
+                display: none;
+            }
+
+            @include mobile {
+
+            }
+        }
+    }
+
+    // .professions__most-popular
+    &__most-popular {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-top: 80px;
+
+        h4 {
+            text-transform: uppercase;
+        }
+
+        // .professions__most-popular__button
+        &__button {
+
+        }
+
+    }
+
+    // .professions__catalog
+    &__catalog {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        margin-top: 80px;
+
+        gap: 80px 230px;
+
+        @include tablet {
+
+        }
+
+        @include mobile {
+
+        }
+
+        // .professions__catalog-item
+        &-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            // flex-grow: 1;
+
+            width: 426px;
+            height: 520px;
+
+            padding: 20px 30px;
+
+            border-radius: 50px;
+            background: var(--color-basic-grey);
+
+            @include tablet {
+
+            }
+
+            @include mobile {
+
+            }
+
+            // .professions__catalog-item-name
+            &-name {
+                @include flex-center;
+
+                width: 281px;
+                height: 58px;
+
+                border-radius: 50px;
+
+                backdrop-filter: blur(5px);
+                background: var(--color-basic-white);
+                opacity: 0.7;
+
+                p {
+                    font-weight: 600;
+                    @include fluid-text(30,22);
+                    line-height: 167%;
+                    color: var(--color-basic-dark-blue);
+
+                    &::first-letter{
+                        text-transform: uppercase;
+                    }
+                }
+            }
+
+            // .professions__catalog-item-price
+            &-price {
+                @include flex-center;
+
+                width: 298px;
+                height: 62px;
+
+                border-radius: 50px;
+
+                background: var(--color-basic-white);
+
+                p {
+                    @include fluid-text(24,18);
+                    line-height: 167%;
+                    color: var(--color-basic-grey);
+                }
+
+                span {
+                    @include fluid-text(36,27);
+
+                    background: var(--color-accent-purple-gradient);;
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+        }
+    }
+
+    // .professions__what-else
+    &__what-else {
+        margin-top: 100px;
+
+        h4 {
+            text-transform: uppercase;
+        }
+    }
+
+    // .professions__suggestion
+    &__suggestion {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 60%;
+
+        margin-top: 80px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include tablet {
+
+        }
+
+        @include mobile {
+
+        }
+
+        input {
+            width: 72%;
+            height: 64px;
+
+            border: 3px solid var(--color-basic-grey);
+            border-radius: 50px;
+
+            background-color: transparent;
+        }
+
+        // .professions__suggestion__button
+        &__button {
+
+        }
+    }
+}
