@@ -6,6 +6,10 @@
     border-radius: var(--button-border-radius);
     border: none;
 
+    &:hover {
+        cursor: pointer;
+    }
+
     // .button__text
     &__text{
         font-weight: 600;
