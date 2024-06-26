@@ -8,8 +8,7 @@
     }
 
     @include mobile {
-        margin-top: 2px;
-        padding: 60px 15px;
+        padding: 0 15px 60px;
     }
 
     h2 {
@@ -158,6 +157,7 @@
             @include hover {
                 box-shadow: var(--button-shadow);
                 scale: 1.02;
+                cursor: pointer;
 
                 .professions__catalog-item-arrow-right {
                     display: flex;
@@ -188,10 +188,6 @@
                 background: var(--color-basic-white);
 
                 display: none;
-
-                @include hover {
-                    cursor: pointer;
-                }
 
                 svg {
                     stroke-width: 2px;
@@ -270,12 +266,11 @@
 
     // .professions__slider
     &__slider {
-
-        margin-top: 40px;
         display: none;
 
         @include mobile {
             display: block;
+            margin-top: 40px;
         }
 
         input {
@@ -311,6 +306,28 @@
                 appearance: none;
                 border: 1px solid var(--color-basic-grey);
                 cursor: pointer;
+            }
+        }
+    }
+
+    // .professions__see-all-button
+    &__see-all-button {
+        display: none;
+
+        @include mobile {
+            @include flex-center;
+            margin-top: 10px;
+        }
+
+        .button {
+            width: 188px;
+            height: var(--button-height-secondary-mobile);
+
+            padding: 16px 20px;
+
+            .button__text {
+                font-weight: 500;
+                font-size: 15px;
             }
         }
     }

@@ -1411,8 +1411,7 @@ svg * {
 }
 @media (max-width: 375.2px) {
   .professions {
-    margin-top: 2px;
-    padding: 60px 15px;
+    padding: 0 15px 60px;
   }
 }
 .professions h2 {
@@ -1524,6 +1523,7 @@ svg * {
   .professions__catalog-item:hover {
     box-shadow: var(--button-shadow);
     scale: 1.02;
+    cursor: pointer;
   }
   .professions__catalog-item:hover .professions__catalog-item-arrow-right {
     display: flex;
@@ -1542,6 +1542,7 @@ svg * {
   .professions__catalog-item:active {
     box-shadow: var(--button-shadow);
     scale: 1.02;
+    cursor: pointer;
   }
   .professions__catalog-item:active .professions__catalog-item-arrow-right {
     display: flex;
@@ -1567,16 +1568,6 @@ svg * {
   border-radius: 50%;
   background: var(--color-basic-white);
   display: none;
-}
-@media (hover: hover) {
-  .professions__catalog-item-arrow-right:hover {
-    cursor: pointer;
-  }
-}
-@media (hover: none) {
-  .professions__catalog-item-arrow-right:active {
-    cursor: pointer;
-  }
 }
 .professions__catalog-item-arrow-right svg {
   stroke-width: 2px;
@@ -1642,12 +1633,12 @@ svg * {
   -webkit-text-fill-color: transparent;
 }
 .professions__slider {
-  margin-top: 40px;
   display: none;
 }
 @media (max-width: 375.2px) {
   .professions__slider {
     display: block;
+    margin-top: 40px;
   }
 }
 .professions__slider input {
@@ -1680,6 +1671,26 @@ svg * {
        appearance: none;
   border: 1px solid var(--color-basic-grey);
   cursor: pointer;
+}
+.professions__see-all-button {
+  display: none;
+}
+@media (max-width: 375.2px) {
+  .professions__see-all-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+}
+.professions__see-all-button .button {
+  width: 188px;
+  height: var(--button-height-secondary-mobile);
+  padding: 16px 20px;
+}
+.professions__see-all-button .button .button__text {
+  font-weight: 500;
+  font-size: 15px;
 }
 .professions__what-else {
   margin-top: 100px;
@@ -1783,7 +1794,6 @@ svg * {
 }
 @media (max-width: 375.2px) {
   .stages-of-work {
-    margin-top: 10px;
     padding: 0 15px 60px;
   }
   .stages-of-work::after {
