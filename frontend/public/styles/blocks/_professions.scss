@@ -1,0 +1,435 @@
+.professions {
+    width: 100%;
+    margin: 0 auto;
+    padding: 100px 60px;
+
+    @include tablet {
+
+    }
+
+    @include mobile {
+        padding: 0 15px 60px;
+    }
+
+    h2 {
+        position: relative;
+        text-transform: uppercase;
+
+        &::before {
+            position: absolute;
+            transform: translateY(-40%);
+
+            content: "профессии";
+
+            font-weight: 600;
+            @include fluid-text(160,0);
+
+            text-transform: uppercase;
+
+            opacity: 0.02;
+
+            @include tablet {
+                display: none;
+            }
+
+            @include mobile {
+
+            }
+        }
+    }
+
+    // .professions__most-popular
+    &__most-popular {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-top: 80px;
+
+        @include mobile {
+            margin-top: 30px;
+        }
+
+        h4 {
+            text-transform: uppercase;
+
+            @include mobile {
+                text-transform: none;
+                color: var(--color-basic-grey);
+
+                &::first-letter{
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        // .professions__most-popular__button
+        &__button {
+
+            @include mobile {
+                display: none;
+            }
+
+            .button {
+                width: 272px;
+                height: var(--button-height-secondary);
+
+                padding: 20px 60px;
+
+                .button__text {
+                    font-weight: 600;
+                    font-size: 20px;
+                }
+            }
+        }
+
+    }
+
+    // .professions__catalog
+    &__catalog {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 80px 30px;
+
+        width: 100%;
+
+        margin-top: 80px;
+
+        @include tablet {
+
+        }
+
+        @include mobile {
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            margin-top: 30px;
+            gap: 0 12px;
+            overflow-x: hidden;
+        }
+
+        // .professions__catalog-item
+        &-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            position: relative;
+
+            width: 100%;
+            max-width: 426px;
+            min-width: 320px;
+            height: 520px;
+
+            padding: 20px 30px;
+
+            border-radius: 50px;
+            background: var(--color-accent-purple-gradient);
+
+            transition-duration: var(--transition-duration);
+
+            &:nth-of-type(1) {
+                background: url(../img/image30.svg) no-repeat center/100%;
+            }
+
+            &:nth-of-type(2) {
+                background: url(../img/image31.svg) no-repeat center/100%;
+            }
+
+            &:nth-of-type(3) {
+                background: url(../img/image32.svg) no-repeat center/100%;
+            }
+
+            &:nth-of-type(4) {
+                background: url(../img/image30.svg) no-repeat center/100%;
+            }
+
+            @include tablet {
+
+            }
+
+            @include mobile {
+                height: 391px;
+                padding: 15px 23px;
+                border-radius: 38px;
+            }
+
+            @include hover {
+                box-shadow: var(--button-shadow);
+                scale: 1.02;
+                cursor: pointer;
+
+                .professions__catalog-item-arrow-right {
+                    display: flex;
+                }
+
+                @include mobile {
+                    scale: 1.0;
+                    background-size: 105%;
+
+                    .professions__catalog-item-arrow-right {
+                        display: none;
+                    }
+                }
+            }
+
+            // .professions__catalog-item-arrow-right
+            &-arrow-right {
+                justify-content: center;
+                align-items: center;
+
+                position: absolute;
+                top: 30px;
+                right: 20px;
+
+                @include square(58px);
+
+                border-radius: 50%;
+                background: var(--color-basic-white);
+
+                display: none;
+
+                svg {
+                    stroke-width: 2px;
+                    color: var(--color-basic-dark-grey-light);
+                }
+            }
+
+            // .professions__catalog-item-name
+            &-name {
+                @include flex-center;
+
+                width: 281px;
+                height: 58px;
+
+                border-radius: 50px;
+
+                backdrop-filter: blur(5px);
+                background: var(--color-basic-white);
+                opacity: 0.7;
+
+                @include mobile {
+                    width: 211px;
+                    height: 43px;
+                    border-radius: 38px;
+                    backdrop-filter: blur(3.7613182067871094px);
+                }
+
+                p {
+                    font-weight: 600;
+                    @include fluid-text(30,22);
+                    line-height: 167%;
+                    color: var(--color-basic-dark-blue);
+
+                    &::first-letter{
+                        text-transform: uppercase;
+                    }
+                }
+            }
+
+            // .professions__catalog-item-price
+            &-price {
+                @include flex-center;
+
+                width: 298px;
+                height: 62px;
+
+                border-radius: 50px;
+
+                background: var(--color-basic-white);
+
+                @include mobile {
+                    width: 224px;
+                    height: 46px;
+                    border-radius: 38px;
+                }
+
+                p {
+                    @include fluid-text(24,18);
+                    line-height: 167%;
+                    color: var(--color-basic-grey);
+                }
+
+                span {
+                    @include fluid-text(36,27);
+                    text-transform: uppercase;
+
+                    background: var(--color-accent-purple-gradient);;
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+
+            }
+        }
+    }
+
+    // .professions__slider
+    &__slider {
+        display: none;
+
+        @include mobile {
+            display: block;
+            margin-top: 40px;
+        }
+
+        input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+
+            width: 100%;
+            height: 2px;
+
+            margin: 0;
+            padding: 0;
+
+            border: 0;
+            background: var(--color-basic-blue);
+
+            overflow: hidden;
+            outline: none;
+
+            &::-webkit-slider-thumb {
+                width: 25%;
+                height: 2px;
+                background: var(--color-basic-white);
+                appearance: none;
+                border: 1px solid var(--color-basic-grey);
+                cursor: pointer;
+            }
+
+            &::-moz-range-thumb {
+                width: 25%;
+                height: 2px;
+                background: var(--color-basic-white);
+                appearance: none;
+                border: 1px solid var(--color-basic-grey);
+                cursor: pointer;
+            }
+        }
+    }
+
+    // .professions__see-all-button
+    &__see-all-button {
+        display: none;
+
+        @include mobile {
+            @include flex-center;
+            margin-top: 10px;
+        }
+
+        .button {
+            width: 188px;
+            height: var(--button-height-secondary-mobile);
+
+            padding: 16px 20px;
+
+            .button__text {
+                font-weight: 500;
+                font-size: 15px;
+            }
+        }
+    }
+
+    // .professions__what-else
+    &__what-else {
+        margin-top: 100px;
+
+        @include mobile {
+            margin-top: 40px;
+        }
+
+        h4 {
+            text-transform: uppercase;
+
+            @include mobile {
+                text-transform: none;
+
+                &::first-letter{
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+
+    // .professions__suggestion
+    &__suggestion {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 43px;
+
+        width: 100%;
+
+        margin-top: 80px;
+
+        @include tablet {
+
+        }
+
+        @include mobile {
+            column-gap: 7px;
+            margin-top: 20px;
+        }
+
+        input {
+            width: 42%;
+            max-width: 799px;
+            height: 64px;
+
+            padding: 0 40px;
+
+            border: 3px solid var(--color-basic-grey);
+            border-radius: 50px;
+
+            @include fluid-text(36,16);
+
+            background-color: transparent;
+            color: var(--color-basic-grey);
+            caret-color: var(--color-basic-grey);
+
+            @include mobile {
+                width: 295px;
+                height: 44px;
+                border-width: 2px;
+            }
+        }
+
+        // .professions__suggestion__button
+        &__button {
+
+            @include mobile {
+                @include flex-center;
+                border-radius: 50%;
+                background: url(../img/icons/ion_arrow-redo-outline-purple.svg) no-repeat center/50%;
+            }
+
+            .button {
+                width: 272px;
+                height: var(--button-height-secondary);
+
+                padding: 20px 60px;
+
+                @include mobile {
+                    width: 44px;
+                    height: 44px;
+                    padding: 0;
+
+                    @include hover {
+                        border: 3px solid var(--color-basic-white);
+                    }
+                }
+
+                .button__text {
+                    font-weight: 600;
+                    font-size: 20px;
+
+                    @include mobile {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,29 +1,30 @@
 .stages-of-work {
     width: 100%;
     margin: 0 auto;
-    padding: 102px 61px 100px;
+    padding: 100px 60px;
 
     @include tablet {
 
     }
 
     @include mobile {
-        height: 499px;
-        margin-top: 10px;
-        padding: 0 21px 60px 15px;
+        padding: 0 15px 60px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-55%);
+            height: 25%;
+            background: linear-gradient(180deg, rgba(16, 16, 48, 0) 0%, rgba(16, 16, 48, 0.78) 60.23%, #101030 100%);
+        }
     }
 
     h2 {
         position: relative;
         text-transform: uppercase;
-
-        @include tablet {
-
-        }
-
-        @include mobile {
-
-        }
 
         &::before {
             position: absolute;
@@ -53,8 +54,6 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-
-        width: 100%;
 
         margin-top: 122px;
 
@@ -204,23 +203,6 @@
                     font-size: 12px;
                     line-height: 15px;
                 }
-            }
-        }
-
-        // .stages-of-work__stages-mask
-        &-mask {
-            display: none;
-
-            position: absolute;
-
-            width: 100%;
-            height: 100%;
-
-            // background: linear-gradient(180deg, rgba(16, 16, 48, 0) 0%, rgba(16, 16, 48, 0.78) 60.23%, #101030 100%);
-            background: linear-gradient(180deg, rgba(16, 16, 48, 0) 77%, rgba(16, 16, 48, 0.78) 90.23%, #101030 100%);
-
-            @include mobile {
-                display: block;
             }
         }
     }
