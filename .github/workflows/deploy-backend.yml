@@ -76,14 +76,14 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        scp -o StrictHostKeyChecking=no ./artifact/ru-client-0.0.2-SNAPSHOT.jar root@funscrut.online:${{ secrets.DESTINATION_BACKEND_JAR_FOLDER }}
-        scp -o StrictHostKeyChecking=no ./artifact/docker-compose.yml root@funscrut.online:${{ secrets.DESTINATION_BASE_FOLDER }}
+        scp -o StrictHostKeyChecking=no ./artifact/ru-client-0.0.2-SNAPSHOT.jar root@${{ secrets.IP_DOMAIN }}:${{ secrets.DESTINATION_BACKEND_JAR_FOLDER }}
+        scp -o StrictHostKeyChecking=no ./artifact/docker-compose.yml root@${{ secrets.IP_DOMAIN }}:${{ secrets.DESTINATION_BASE_FOLDER }}
         
     - name: Restart Docker Compose
       env:
        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
-       ssh -o StrictHostKeyChecking=no root@funscrut.online << 'EOF'
+       ssh -o StrictHostKeyChecking=no root@${{ secrets.IP_DOMAIN }} << 'EOF'
        cd /home/Nikolay/funScrut
        docker compose up -d --build
        EOF
