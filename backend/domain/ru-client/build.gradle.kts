@@ -125,7 +125,7 @@ jooq {
 //                    url = "jdbc:postgresql://localhost:5432/FunScrut2"
 //                    user = "postgres"
 //                    password = "191220#destin"
-                    url = "jdbc:postgresql://funscrut.online:15432/fun_scrut"
+                    url = "jdbc:postgresql://45.135.234.61:15432/fun_scrut"
                     user = "username"
                     password = "password"
 //                    properties = listOf(
