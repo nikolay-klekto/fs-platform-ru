@@ -1,0 +1,1080 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "Angry";
+  src: url("../fonts/Angry-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM-Sans";
+  src: url("../fonts/DM-Sans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Euclid-Square";
+  src: url("../fonts/Euclid-Square-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Euclid-Square";
+  src: url("../fonts/Euclid-Square-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Medium-Italic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Angry";
+  src: url("../fonts/Angry-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM-Sans";
+  src: url("../fonts/DM-Sans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Euclid-Square";
+  src: url("../fonts/Euclid-Square-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Euclid-Square";
+  src: url("../fonts/Euclid-Square-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Medium-Italic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+/**
+  Нормализация блочной модели
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями
+ */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Плавный скролл
+   */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+ */
+svg *[fill] {
+  fill: currentColor;
+}
+
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 375.2px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 376px) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hidden-tablet {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .visible-tablet {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1920px) {
+  .hidden-desktop {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1921px) {
+  .visible-desktop {
+    display: none !important;
+  }
+}
+
+:root {
+  --color-basic-white: #FFFFFF;
+  --color-basic-grey: #878797;
+  --color-basic-dark-grey-light: #343f42;
+  --color-basic-dark-grey: #353652;
+  --color-basic-blue: #1F203F;
+  --color-basic-dark-blue: #101030;
+  --color-accent-brown: #BC8070;
+  --color-accent-purple: #8333F3;
+  --color-accent-purple-gradient: linear-gradient(
+      90deg, #8333F3 0%,
+      #5f4af3 48.55%,
+      #3b51a8 100%);
+  --color-accent-purple-light-gradient:linear-gradient(
+      90deg, #a875f1 0%,
+      #8d7ef3 48.55%,
+      #6c7cba 100%);
+  --color-accent-purple-gradient: linear-gradient(
+      90deg, #8333F3 0%,
+      #5f4af3 48.55%,
+      #3b51a8 100%);
+  --color-accent-purple-light-gradient:linear-gradient(
+      90deg, #a875f1 0%,
+      #8d7ef3 48.55%,
+      #6c7cba 100%);
+  --color-transparent-grey: rgba(255, 255, 255, 0.1);
+  --color-transparent-purple: rgba(16, 16, 48, 0.7);
+  --color-transparent-dark: rgba(0, 0, 0, 0.7);
+  --button-border-radius: 50px;
+  --button-border-radius-small: 20px;
+  --button-shadow: 0 0 80px 0 #9653f5;
+  --font-family: "Montserrat", sans-serif;
+  --second-family: "Angry", sans-serif;
+  --font3: "Euclid Square", sans-serif;
+  --third-family: "DM Sans", sans-serif;
+  --font5: "Poppins", sans-serif;
+  --font4: "Inter", sans-serif;
+  --font6: "Roboto", sans-serif;
+  --container-width: 1798px;
+  --container-padding-x: 15px;
+  --section-padding-y: 100px;
+  --input-height: 64px;
+  --input-height-secondary: 50px;
+  --button-height: 68px;
+  --button-height-secondary: 64px;
+  --button-height-tablet: 60px;
+  --button-height-secondary-tablet: 52px;
+  --button-height-mobile: 50px;
+  --button-height-secondary-mobile: 40px;
+  --transition-duration: 0.2s;
+}
+
+body {
+  font-size: clamp(20px, 1.25vw, 24px);
+  font-family: var(--font-family);
+  font-weight: 500;
+  line-height: 1.28;
+  color: var(--color-basic-white);
+  background-color: var(--color-basic-dark-blue);
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: clamp(32px, 4.1666666667vw, 80px);
+}
+
+h3 {
+  font-size: clamp(28px, 2.3958333333vw, 46px);
+}
+
+h4 {
+  font-size: clamp(16px, 1.875vw, 36px);
+}
+
+h5 {
+  font-size: clamp(18px, 1.4583333333vw, 28px);
+}
+
+img {
+  display: block;
+}
+
+/**
+  Нормализация блочной модели
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями
+ */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Плавный скролл
+   */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+ */
+svg *[fill] {
+  fill: currentColor;
+}
+
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 375.2px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 376px) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hidden-tablet {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .visible-tablet {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1920px) {
+  .hidden-desktop {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1921px) {
+  .visible-desktop {
+    display: none !important;
+  }
+}
+
+:root {
+  --color-basic-white: #FFFFFF;
+  --color-basic-grey: #878797;
+  --color-basic-dark-grey-light: #343f42;
+  --color-basic-dark-grey: #353652;
+  --color-basic-blue: #1F203F;
+  --color-basic-dark-blue: #101030;
+  --color-accent-brown: #BC8070;
+  --color-accent-purple: #8333F3;
+  --color-accent-purple-gradient: linear-gradient(
+      90deg, #8333F3 0%,
+      #5f4af3 48.55%,
+      #3b51a8 100%);
+  --color-accent-purple-light-gradient:linear-gradient(
+      90deg, #a875f1 0%,
+      #8d7ef3 48.55%,
+      #6c7cba 100%);
+  --color-accent-purple-gradient: linear-gradient(
+      90deg, #8333F3 0%,
+      #5f4af3 48.55%,
+      #3b51a8 100%);
+  --color-accent-purple-light-gradient:linear-gradient(
+      90deg, #a875f1 0%,
+      #8d7ef3 48.55%,
+      #6c7cba 100%);
+  --color-transparent-grey: rgba(255, 255, 255, 0.1);
+  --color-transparent-purple: rgba(16, 16, 48, 0.7);
+  --color-transparent-dark: rgba(0, 0, 0, 0.7);
+  --button-border-radius: 50px;
+  --button-border-radius-small: 20px;
+  --button-shadow: 0 0 80px 0 #9653f5;
+  --font-family: "Montserrat", sans-serif;
+  --second-family: "Angry", sans-serif;
+  --font3: "Euclid Square", sans-serif;
+  --third-family: "DM Sans", sans-serif;
+  --font5: "Poppins", sans-serif;
+  --font4: "Inter", sans-serif;
+  --font6: "Roboto", sans-serif;
+  --container-width: 1798px;
+  --container-padding-x: 15px;
+  --section-padding-y: 100px;
+  --input-height: 64px;
+  --input-height-secondary: 50px;
+  --button-height: 68px;
+  --button-height-secondary: 64px;
+  --button-height-tablet: 60px;
+  --button-height-secondary-tablet: 52px;
+  --button-height-mobile: 50px;
+  --button-height-secondary-mobile: 40px;
+  --transition-duration: 0.2s;
+}
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: fit-content;
+  height: var(--button-height);
+  padding-inline: 40px;
+  border-radius: var(--button-border-radius);
+  border: none;
+}
+.button:hover {
+  cursor: pointer;
+}
+.button__text {
+  font-weight: 600;
+  font-size: 25px;
+  color: var(--color-basic-white);
+}
+.button__text::first-letter {
+  text-transform: uppercase;
+}
+.button_purple {
+  background: var(--color-accent-purple-gradient);
+}
+@media (hover: hover) {
+  .button_purple:hover {
+    background: var(--color-accent-purple-light-gradient);
+  }
+}
+@media (hover: none) {
+  .button_purple:active {
+    background: var(--color-accent-purple-light-gradient);
+  }
+}
+.button_white {
+  background: var(--color-basic-white);
+}
+.button_white .button__text {
+  background: var(--color-accent-purple-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-accent-purple);
+}
+@media (hover: hover) {
+  .button_white:hover {
+    box-shadow: var(--button-shadow);
+  }
+}
+@media (hover: none) {
+  .button_white:active {
+    box-shadow: var(--button-shadow);
+  }
+}
+.button_transparent {
+  background: transparent;
+  position: relative;
+  z-index: 0;
+}
+.button_transparent::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  padding: 4px;
+  border-radius: var(--button-border-radius);
+  background: var(--color-accent-purple-gradient);
+  -webkit-mask: linear-gradient(#fff 10 10) content-box, linear-gradient(#fff 10 10);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+@media (max-width: 1023px) {
+  .button_transparent::before {
+    padding: 3px;
+  }
+}
+@media (max-width: 375.2px) {
+  .button_transparent::before {
+    padding: 2px;
+  }
+}
+@media (hover: hover) {
+  .button_transparent:hover {
+    background: var(--color-accent-purple-gradient);
+  }
+}
+@media (hover: none) {
+  .button_transparent:active {
+    background: var(--color-accent-purple-gradient);
+  }
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  padding: 22px 0;
+}
+@media (max-width: 1023px) {
+  .header {
+    padding: 10px 0;
+  }
+}
+@media (max-width: 375.2px) {
+  .header {
+    padding: 4px 0;
+  }
+}
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 50px;
+}
+@media (max-width: 1550px) {
+  .header__inner {
+    column-gap: 30px;
+  }
+}
+@media (max-width: 1065px) {
+  .header__inner {
+    column-gap: 20px;
+  }
+}
+.header__icon-phone {
+  display: none;
+}
+.header__icon-phone svg {
+  width: 50px;
+  height: 50px;
+}
+@media (hover: hover) {
+  .header__icon-phone svg:hover path {
+    stroke: var(--color-accent-purple);
+  }
+}
+@media (hover: none) {
+  .header__icon-phone svg:active path {
+    stroke: var(--color-accent-purple);
+  }
+}
+@media (max-width: 1023px) {
+  .header__icon-phone svg {
+    width: 38px;
+  }
+}
+@media (max-width: 375.2px) {
+  .header__icon-phone svg {
+    width: 24px;
+  }
+}
+@media (min-width: 376px) {
+  .header__icon-phone svg path {
+    stroke-width: 1.4;
+  }
+}
+@media (max-width: 1260px) {
+  .header__icon-phone {
+    display: inline;
+    order: 1;
+  }
+}
+@media (max-width: 1023px) {
+  .header__icon-phone {
+    order: -1;
+    margin-right: 63px;
+  }
+}
+@media (max-width: 375.2px) {
+  .header__icon-phone {
+    margin-right: 40px;
+  }
+}
+.header__logo img {
+  min-width: 100px;
+}
+@media (max-width: 1023px) {
+  .header__logo img {
+    height: 65px;
+  }
+}
+@media (max-width: 375.2px) {
+  .header__logo img {
+    height: 48px;
+  }
+}
+.header__menu-list {
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  background: var(--color-basic-white);
+  height: 68px;
+  padding-inline: 4px;
+}
+.header__menu-link {
+  height: 60px;
+  padding-inline: 40px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--color-accent-purple-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-accent-purple);
+}
+@media (hover: hover) {
+  .header__menu-link:hover {
+    -webkit-background-clip: border-box;
+    -webkit-text-fill-color: var(--color-basic-white);
+    color: var(--color-basic-white);
+  }
+}
+@media (hover: none) {
+  .header__menu-link:active {
+    -webkit-background-clip: border-box;
+    -webkit-text-fill-color: var(--color-basic-white);
+    color: var(--color-basic-white);
+  }
+}
+@media (max-width: 1550px) {
+  .header__menu-link {
+    padding-inline: 30px;
+  }
+}
+@media (max-width: 1420px) {
+  .header__menu-link {
+    padding-inline: 20px;
+  }
+}
+.header__button {
+  width: 380px;
+}
+@media (max-width: 1420px) {
+  .header__button {
+    padding-inline: 20px;
+  }
+}
+@media (max-width: 1260px) {
+  .header__button {
+    display: none;
+  }
+}
+.header__icons {
+  display: flex;
+  align-items: center;
+  column-gap: 50px;
+}
+@media (max-width: 1550px) {
+  .header__icons {
+    column-gap: 30px;
+  }
+}
+@media (max-width: 1065px) {
+  .header__icons {
+    column-gap: 20px;
+  }
+}
+@media (max-width: 1260px) {
+  .header__icons {
+    order: 2;
+  }
+}
+@media (max-width: 1023px) {
+  .header__icons {
+    column-gap: 25px;
+  }
+}
+@media (max-width: 375.2px) {
+  .header__icons {
+    column-gap: 16px;
+  }
+}
+.header__icons-basket svg {
+  width: 50px;
+  height: 50px;
+}
+@media (hover: hover) {
+  .header__icons-basket svg:hover path {
+    stroke: var(--color-accent-purple);
+  }
+}
+@media (hover: none) {
+  .header__icons-basket svg:active path {
+    stroke: var(--color-accent-purple);
+  }
+}
+@media (max-width: 1023px) {
+  .header__icons-basket svg {
+    width: 38px;
+  }
+}
+@media (max-width: 375.2px) {
+  .header__icons-basket svg {
+    width: 24px;
+  }
+}
+@media (max-width: 375.2px) {
+  .header__icons-basket svg path {
+    stroke-width: 4;
+  }
+}
+.header__icons-profile svg {
+  width: 50px;
+  height: 50px;
+}
+@media (hover: hover) {
+  .header__icons-profile svg:hover path {
+    stroke: var(--color-accent-purple);
+  }
+}
+@media (hover: none) {
+  .header__icons-profile svg:active path {
+    stroke: var(--color-accent-purple);
+  }
+}/*# sourceMappingURL=index.css.map */

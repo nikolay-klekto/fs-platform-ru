@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async
+            defer></script>
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="stylesheet" href="./css/index.css"/>
+    <title>Kotlin + Spring Boot + Vue.js</title>
+</head>
+<body>
+    <!-- <ul>
+    </ul> -->
+    <header class="header">
+        <div class="header__inner container">
+            <a class="header__icon-phone" href="#">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.9994 19.9201V16.9201C22.0116 16.4297 21.8431 15.9519 21.526 15.5776C21.2088 15.2033 20.7652 14.9586 20.2794 14.8901C19.3194 14.7635 18.3767 14.5286 17.4694 14.1901C17.1115 14.0556 16.7225 14.0264 16.3486 14.1062C15.9746 14.1859 15.6313 14.3712 15.3594 14.6401L14.0894 15.9101C11.5859 14.4865 9.513 12.4136 8.08945 9.9101L9.35944 8.6401C9.62831 8.36821 9.8136 8.02494 9.89335 7.65098C9.97311 7.27701 9.94399 6.88802 9.80945 6.5301C9.47089 5.62282 9.23607 4.68016 9.10944 3.7201C9.04152 3.23954 8.80118 2.80008 8.43321 2.48363C8.06524 2.16718 7.59475 1.99532 7.10945 2.0001H4.10945C3.83179 2.00036 3.55722 2.05843 3.30324 2.17062C3.04925 2.28281 2.82141 2.44665 2.63421 2.65172C2.44702 2.85679 2.30457 3.09859 2.21595 3.36172C2.12732 3.62486 2.09446 3.90356 2.11944 4.1801C2.44769 7.27109 3.49942 10.2413 5.18945 12.8501C6.72478 15.2663 8.77327 17.3148 11.1894 18.8501C13.7864 20.5342 16.7423 21.5857 19.8194 21.9201C20.0968 21.9452 20.3764 21.912 20.6402 21.8228C20.904 21.7336 21.1463 21.5902 21.3515 21.402C21.5567 21.2137 21.7204 20.9846 21.832 20.7294C21.9435 20.4743 22.0006 20.1986 21.9994 19.9201Z"
+                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <a class="header__logo logo" href="#">
+                <img
+                    class="logo__image"
+                    src="./img/logo.svg"
+                    alt="Funscrut"
+                    width="100"
+                    height="83"
+                    loading="lazy">
+            </a>
+            <nav class="header__menu hidden-tablet">
+                <ul class="header__menu-list">
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="#">главная</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="#">профессии</a>
+                    </li>
+                    <!-- <li class="header__menu-item">
+                        <a class="header__menu-link" href="#">компании</a>
+                    </li> -->
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="#">мероприятия</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="#">контакты</a>
+                    </li>
+                </ul>
+            </nav>
+            <button class="header__button button button_purple"
+            type="button">
+                <span class="button__text">заказать звонок</span>
+            </button>
+            <div class="header__icons">
+                <a class="header__icons-basket" href="#">
+                    <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.7493 47.3332C20.7284 47.3332 22.3327 45.7289 22.3327 43.7498C22.3327 41.7708 20.7284 40.1665 18.7493 40.1665C16.7703 40.1665 15.166 41.7708 15.166 43.7498C15.166 45.7289 16.7703 47.3332 18.7493 47.3332Z"
+                        stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M41.6673 47.3332C43.6463 47.3332 45.2507 45.7289 45.2507 43.7498C45.2507 41.7708 43.6463 40.1665 41.6673 40.1665C39.6883 40.1665 38.084 41.7708 38.084 43.7498C38.084 45.7289 39.6883 47.3332 41.6673 47.3332Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2.08398 2.0835H10.4173L16.0007 29.9793C16.1912 30.9385 16.713 31.8001 17.4747 32.4133C18.2365 33.0265 19.1896 33.3522 20.1673 33.3335H40.4173C41.395 33.3522 42.3482 33.0265 43.1099 32.4133C43.8717 31.8001 44.3935 30.9385 44.584 29.9793L47.9173 12.5002H12.5007" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a class="header__icons-profile hidden-tablet" href="#">
+                    <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M25.2137 27.7859C30.1448 27.7859 34.1423 23.7884 34.1423 18.8573C34.1423 13.9262 30.1448 9.92871 25.2137 9.92871C20.2826 9.92871 16.2852 13.9262 16.2852 18.8573C16.2852 23.7884 20.2826 27.7859 25.2137 27.7859Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.96484 41.7145C11.5586 39.0985 13.7984 36.9364 16.4692 35.4362C19.1399 33.936 22.1516 33.1479 25.2148 33.1479C28.2781 33.1479 31.2898 33.936 33.9605 35.4362C36.6312 36.9364 38.8711 39.0985 40.4648 41.7145" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M48.5 25C48.5 37.9787 37.9787 48.5 25 48.5C12.0213 48.5 1.5 37.9787 1.5 25C1.5 12.0213 12.0213 1.5 25 1.5C37.9787 1.5 48.5 12.0213 48.5 25Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <button class="header__icons-burger-button burger-button visible-tablet"
+                    type="button"
+                    onclick="mobileOverlay.showModal()">
+                    <span class="visually-hidden">open navigation menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="personal-account">
+        <h2>ЛИЧНЫЙ КАБИНЕТ</h2>
+        <nav class="personal-account__menu">
+            <ul class="personal-account__menu-list">
+                <li class="personal-account__menu-item">
+                    <a class="personal-account__menu-link" href="#">КОРЗИНА</a>
+                </li>
+                <li class="personal-account__menu-item">
+                    <a class="personal-account__menu-link" href="#">ТРЕБУЮЩИЕ ОПЛАТЫ</a>
+                </li>
+                <li class="personal-account__menu-item">
+                    <a class="personal-account__menu-link" href="#">ПРЕДСТОЯЩИЕ СТАЖИРОВКИ</a>
+                </li>
+                <li class="personal-account__menu-item">
+                    <a class="personal-account__menu-link" href="#">АРХИВ</a>
+                </li>
+                <li class="personal-account__menu-item">
+                    <a class="personal-account__menu-link" href="#">МОЙ ПРОФИЛЬ</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="personal-account__cart-catalog">
+            <div class="personal-account__cart-catalog-item">
+                <div class="personal-account__cart-catalog-item-title">
+                    <p>ОФОРМЛЕНИЕ ЗАКАЗА</p>
+                </div>
+                <div class="personal-account__cart-catalog-item-content">
+                    <div class="order-placing__cart-content-profession">
+                        <p>
+                            Профессия:
+                        </p>
+                        <p>
+                            Программист
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-company">
+                        <p>
+                            Компания:
+                        </p>
+                        <p>
+                            EPAM
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-start-of-internship">
+                        <p>
+                            Начало стажировки:
+                        </p>
+                        <p>
+                            18.10.2023
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-end-of-internship">
+                        <p>
+                            Конец  стажировки:
+                        </p>
+                        <p>
+                            25.10.2023
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-type-of-internship">
+                        <p>
+                            Вид стажировки:
+                        </p>
+                        <p>
+                            Стажировка наблюдателя
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-office-adress">
+                        <p>
+                            Адрес офиса:
+                        </p>
+                        <p>
+                            Минск, ул. Тиражная 150
+                        </p>
+                    </div>
+                </div>
+                <div class="personal-account__cart-catalog-item-photo">
+                    <img
+                    class="company-photo"
+                    src="./img/company-photo.svg"
+                    alt="Company photo"
+                    width="290px"
+                    height="328px"
+                    loading="lazy">
+                </div>
+                <div class="personal-account__cart-catalog-item-price">
+                    <hr class="order-placing__cart-price-line">
+                    <div class="order-placing__cart-price-content">
+                        <p>
+                            Стоимость:
+                        </p>
+                        <p>
+                            100 BYN
+                        </p>
+                    </div>
+                </div>
+                <div class="personal-account__cart-catalog-item-remove-card">
+                    <img
+                    class="bin"
+                    src="./img/icons/bin.svg"
+                    alt="bin"
+                    width="40px"
+                    height="40px"
+                    loading="lazy">
+                </div>
+                <div class="personal-account__cart-catalog-item-button">
+                    <button class="button order-placing__cart-button" type="button">
+                        <span class="order-placing__cart-button-text">Оформить заказ</span>
+                    </button>
+                </div>
+            </div>
+            <div class="personal-account__cart-catalog-item">
+                <div class="personal-account__cart-catalog-item-title">
+                    <p>ОФОРМЛЕНИЕ ЗАКАЗА</p>
+                </div>
+                <div class="personal-account__cart-catalog-item-content">
+                    <div class="order-placing__cart-content-profession">
+                        <p>
+                            Профессия:
+                        </p>
+                        <p>
+                            Программист
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-company">
+                        <p>
+                            Компания:
+                        </p>
+                        <p>
+                            EPAM
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-start-of-internship">
+                        <p>
+                            Начало стажировки:
+                        </p>
+                        <p>
+                            18.10.2023
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-end-of-internship">
+                        <p>
+                            Конец  стажировки:
+                        </p>
+                        <p>
+                            25.10.2023
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-type-of-internship">
+                        <p>
+                            Вид стажировки:
+                        </p>
+                        <p>
+                            Стажировка наблюдателя
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-office-adress">
+                        <p>
+                            Адрес офиса:
+                        </p>
+                        <p>
+                            Минск, ул. Тиражная 150
+                        </p>
+                    </div>
+                </div>
+                <div class="personal-account__cart-catalog-item-photo">
+                    <img
+                    class="company-photo"
+                    src="./img/company-photo.svg"
+                    alt="Company photo"
+                    width="290px"
+                    height="328px"
+                    loading="lazy">
+                </div>
+                <div class="personal-account__cart-catalog-item-price">
+                    <hr class="order-placing__cart-price-line">
+                    <div class="order-placing__cart-price-content">
+                        <p>
+                            Стоимость:
+                        </p>
+                        <p>
+                            100 BYN
+                        </p>
+                    </div>
+                </div>
+                <div class="personal-account__cart-catalog-item-remove-card">
+                    <img
+                    class="bin"
+                    src="./img/icons/bin.svg"
+                    alt="bin"
+                    width="40px"
+                    height="40px"
+                    loading="lazy">
+                </div>
+                <div class="personal-account__cart-catalog-item-button">
+                    <button class="button order-placing__cart-button" type="button">
+                        <span class="order-placing__cart-button-text">Оформить заказ</span>
+                    </button>
+                </div>
+            </div>
+            <div class="personal-account__cart-catalog-item">
+                <div class="personal-account__cart-catalog-item-title">
+                    <p>ОФОРМЛЕНИЕ ЗАКАЗА</p>
+                </div>
+                <div class="personal-account__cart-catalog-item-content">
+                    <div class="order-placing__cart-content-profession">
+                        <p>
+                            Профессия:
+                        </p>
+                        <p>
+                            Программист
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-company">
+                        <p>
+                            Компания:
+                        </p>
+                        <p>
+                            EPAM
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-start-of-internship">
+                        <p>
+                            Начало стажировки:
+                        </p>
+                        <p>
+                            18.10.2023
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-end-of-internship">
+                        <p>
+                            Конец  стажировки:
+                        </p>
+                        <p>
+                            25.10.2023
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-type-of-internship">
+                        <p>
+                            Вид стажировки:
+                        </p>
+                        <p>
+                            Стажировка наблюдателя
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-content-line">
+                    <div class="order-placing__cart-content-office-adress">
+                        <p>
+                            Адрес офиса:
+                        </p>
+                        <p>
+                            Минск, ул. Тиражная 150
+                        </p>
+                    </div>
+                </div>
+                <div class="personal-account__cart-catalog-item-photo">
+                    <img
+                    class="company-photo"
+                    src="./img/company-photo.svg"
+                    alt="Company photo"
+                    width="290px"
+                    height="328px"
+                    loading="lazy">
+                </div>
+                <div class="personal-account__cart-catalog-item-price">
+                    <hr class="order-placing__cart-price-line">
+                    <div class="order-placing__cart-price-content">
+                        <p>
+                            Стоимость:
+                        </p>
+                        <p>
+                            100 BYN
+                        </p>
+                    </div>
+                </div>
+                <div class="personal-account__cart-catalog-item-remove-card">
+                    <img
+                    class="bin"
+                    src="./img/icons/bin.svg"
+                    alt="bin"
+                    width="40px"
+                    height="40px"
+                    loading="lazy">
+                </div>
+                <div class="personal-account__cart-catalog-item-button">
+                    <button class="button order-placing__cart-button" type="button">
+                        <span class="order-placing__cart-button-text">Оформить заказ</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

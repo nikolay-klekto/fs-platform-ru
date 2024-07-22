@@ -1,0 +1,218 @@
+.header {
+    position: fixed;
+    width: 100%;
+    padding: 22px 0; //1.875rem 0;
+    // border: 1px solid white;
+
+    @include tablet{
+        padding: 10px 0;
+    }
+
+    @include mobile{
+        padding: 4px 0;
+    }
+
+    // .header__inner
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 50px; //3.125rem;
+
+        @media (max-width: 1550px) {
+            column-gap: 30px;
+        }
+
+        @media (max-width: 1065px) {
+            column-gap: 20px;
+        }
+    }
+    // .header__icons-phone
+    &__icon-phone{
+        display: none;
+
+        svg{
+            width: 50px; //3.125rem;
+            height: 50px; //3.125rem;
+
+            @include hover{
+                path{
+                    stroke: var(--color-accent-purple);
+                }
+            }
+
+            @include tablet{
+                width: 38px;
+            }
+
+            @include mobile{
+                width: 24px;
+            }
+
+            path{
+                @include mobile-above{
+                    stroke-width: 1.4;
+                }
+            }
+        }
+
+        @media (max-width: 1260px) {
+            display: inline;
+            order: 1;
+        }
+
+        @include tablet{
+            order: -1;
+            margin-right: 63px;
+        }
+
+        @include mobile{
+            margin-right: 40px;
+        }
+    }
+    // .header__logo
+    &__logo img{
+        min-width: 100px;
+        // min-height: 83px;
+
+        @include tablet{
+            // min-width: 80px;
+            height: 65px;
+        }
+
+        @include mobile{
+            // min-width: 58px;
+            height: 48px;
+        }
+    }
+    // .header__menu
+    &__menu {
+        // .header__menu-list
+        &-list {
+            display: flex;
+            align-items: center;
+            border-radius: 50px; //3.12rem;
+            background: var(--color-basic-white);
+            height: 68px; //4.25rem;
+            padding-inline: 4px; //0.25rem;
+        }
+        // .header__menu-item
+        &-item {
+            &:nth-child(1){
+                // @media (max-width: 1125px) {
+                //     display: none;
+                // }
+            }
+        }
+        // .header__menu-link
+        &-link {
+            height: 60px; //3.75rem;
+            padding-inline: 40px; //2.625rem;
+            display: inline-flex;
+            align-items: center;
+
+            border-radius: 50px; //3.12rem;
+            font-size: 18px; //1.12rem
+            font-weight: 700;
+            text-transform: uppercase;
+            background: var(--color-accent-purple-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var(--color-accent-purple);
+
+            @include hover{
+                -webkit-background-clip: border-box;
+                -webkit-text-fill-color: var(--color-basic-white);
+                color: var(--color-basic-white);
+            }
+
+            @media (max-width: 1550px) {
+                padding-inline: 30px;
+            }
+
+            @media (max-width: 1420px) {
+                padding-inline: 20px;
+            }
+        }
+    }
+    // .header__button
+    &__button {
+        width: 380px;
+
+        @media (max-width: 1420px) {
+            padding-inline: 20px;
+        }
+
+        @media (max-width: 1260px) {
+            display: none;
+        }
+    }
+    // .header__icons
+    &__icons {
+        // background:red;
+        display: flex;
+        align-items: center;
+        column-gap: 50px; //3.125rem;
+
+        @media (max-width: 1550px) {
+            column-gap: 30px;
+        }
+
+        @media (max-width: 1065px) {
+            column-gap: 20px;
+        }
+
+        @media (max-width: 1260px) {
+            order: 2;
+        }
+
+        @include tablet{
+            column-gap: 25px;
+        }
+
+        @include mobile{
+            column-gap: 16px;
+        }
+
+        // .header__icons-basket
+        &-basket svg{
+            width: 50px; //3.125rem;
+            height: 50px; //3.125rem;
+
+            @include hover{
+                path{
+                    stroke: var(--color-accent-purple);
+                }
+            }
+
+            @include tablet{
+                width: 38px;
+            }
+
+            @include mobile{
+                width: 24px;
+            }
+
+            path{
+                @include mobile{
+                    stroke-width: 4;
+                }
+            }
+        }
+        // .header__icons-profile
+        &-profile svg{
+            width: 50px; //3.125rem;
+            height: 50px; //3.125rem;
+
+            @include hover{
+                path{
+                    stroke: var(--color-accent-purple);
+                }
+            }
+        }
+        // .header__icons-burger-button
+        &-burger-button {
+        }
+    }
+}
