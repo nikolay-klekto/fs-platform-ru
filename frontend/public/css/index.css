@@ -360,7 +360,8 @@ svg * {
   border: 0 !important;
   padding: 0 !important;
   white-space: nowrap !important;
-  clip-path: inset(100%) !important;
+  -webkit-clip-path: inset(100%) !important;
+          clip-path: inset(100%) !important;
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
 }
@@ -666,7 +667,8 @@ svg * {
   border: 0 !important;
   padding: 0 !important;
   white-space: nowrap !important;
-  clip-path: inset(100%) !important;
+  -webkit-clip-path: inset(100%) !important;
+          clip-path: inset(100%) !important;
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
 }
@@ -763,6 +765,7 @@ svg * {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  min-width: -moz-fit-content;
   min-width: fit-content;
   height: var(--button-height);
   padding-inline: 40px;
@@ -956,16 +959,19 @@ svg * {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  column-gap: 50px;
+  -moz-column-gap: 50px;
+       column-gap: 50px;
 }
 @media (max-width: 1550px) {
   .header__inner {
-    column-gap: 30px;
+    -moz-column-gap: 30px;
+         column-gap: 30px;
   }
 }
 @media (max-width: 1065px) {
   .header__inner {
-    column-gap: 20px;
+    -moz-column-gap: 20px;
+         column-gap: 20px;
   }
 }
 .header__icon-phone {
@@ -1093,16 +1099,19 @@ svg * {
 .header__icons {
   display: flex;
   align-items: center;
-  column-gap: 50px;
+  -moz-column-gap: 50px;
+       column-gap: 50px;
 }
 @media (max-width: 1550px) {
   .header__icons {
-    column-gap: 30px;
+    -moz-column-gap: 30px;
+         column-gap: 30px;
   }
 }
 @media (max-width: 1065px) {
   .header__icons {
-    column-gap: 20px;
+    -moz-column-gap: 20px;
+         column-gap: 20px;
   }
 }
 @media (max-width: 1260px) {
@@ -1112,12 +1121,14 @@ svg * {
 }
 @media (max-width: 1023px) {
   .header__icons {
-    column-gap: 25px;
+    -moz-column-gap: 25px;
+         column-gap: 25px;
   }
 }
 @media (max-width: 375.2px) {
   .header__icons {
-    column-gap: 16px;
+    -moz-column-gap: 16px;
+         column-gap: 16px;
   }
 }
 .header__icons-basket svg {
@@ -1232,6 +1243,7 @@ svg * {
 
 .mobile-overlay {
   width: 100%;
+  height: -moz-max-content;
   height: max-content;
   margin: 0;
   border: none;
@@ -1239,6 +1251,7 @@ svg * {
 }
 .mobile-overlay:modal {
   max-width: 100%;
+  max-height: -moz-max-content;
   max-height: max-content;
 }
 .mobile-overlay__close-button-wrapper {
@@ -1254,7 +1267,8 @@ svg * {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  column-gap: 15px;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
   padding: 4px 15px 10px;
   border-bottom: 1px solid var(--color-basic-dark-grey);
 }
@@ -1366,7 +1380,8 @@ svg * {
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 25px;
+  -moz-column-gap: 25px;
+       column-gap: 25px;
   margin: 25px 0 30px;
 }
 @media (hover: hover) {
@@ -1565,7 +1580,8 @@ svg * {
   width: 281px;
   height: 58px;
   border-radius: 50px;
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   background: var(--color-basic-white);
   opacity: 0.7;
 }
@@ -1574,7 +1590,8 @@ svg * {
     width: 211px;
     height: 43px;
     border-radius: 38px;
-    backdrop-filter: blur(3.7613182068px);
+    -webkit-backdrop-filter: blur(3.7613182068px);
+            backdrop-filter: blur(3.7613182068px);
   }
 }
 .professions__catalog-item-name p {
@@ -1641,7 +1658,8 @@ svg * {
   width: 25%;
   height: 2px;
   background: var(--color-basic-white);
-  appearance: none;
+  -webkit-appearance: none;
+          appearance: none;
   border: 1px solid var(--color-basic-grey);
   cursor: pointer;
 }
@@ -1649,7 +1667,8 @@ svg * {
   width: 25%;
   height: 2px;
   background: var(--color-basic-white);
-  appearance: none;
+  -moz-appearance: none;
+       appearance: none;
   border: 1px solid var(--color-basic-grey);
   cursor: pointer;
 }
@@ -1696,13 +1715,15 @@ svg * {
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 43px;
+  -moz-column-gap: 43px;
+       column-gap: 43px;
   width: 100%;
   margin-top: 80px;
 }
 @media (max-width: 375.2px) {
   .professions__suggestion {
-    column-gap: 7px;
+    -moz-column-gap: 7px;
+         column-gap: 7px;
     margin-top: 20px;
   }
 }
@@ -1831,7 +1852,8 @@ svg * {
   border: 1px solid var(--color-basic-dark-blue);
   border-radius: 22px;
   text-align: center;
-  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
   background: var(--color-transparent-grey);
   opacity: 0.7;
   transition-duration: var(--transition-duration);

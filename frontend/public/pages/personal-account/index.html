@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async
             defer></script>
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="icon" href="./favicon.ico">
     <link rel="stylesheet" href="./css/index.css"/>
     <title>Kotlin + Spring Boot + Vue.js</title>
 </head>
@@ -79,7 +79,9 @@
     </header>
 
     <section class="personal-account">
-        <div class="personal-account__header">
+        <div class="ellipse-background"></div>
+        <div class="ellipse-background"></div>
+        <div class="personal-account__header container">
             <h2>личный кабинет</h2>
             <nav class="personal-account__menu">
                 <ul class="personal-account__menu-list">
@@ -101,66 +103,8 @@
                 </ul>
             </nav>
         </div>
-        <div class="personal-account__cart-catalog">
+        <div class="personal-account__cart-catalog container">
             <div class="personal-account__cart-catalog-item">
-                <div class="personal-account__cart-catalog-item-title">
-                    <p>ОФОРМЛЕНИЕ ЗАКАЗА</p>
-                </div>
-                <div class="personal-account__cart-catalog-item-content">
-                    <div class="order-placing__cart-content-profession">
-                        <p>
-                            Профессия:
-                        </p>
-                        <p>
-                            Программист
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-company">
-                        <p>
-                            Компания:
-                        </p>
-                        <p>
-                            EPAM
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-start-of-internship">
-                        <p>
-                            Начало стажировки:
-                        </p>
-                        <p>
-                            18.10.2023
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-end-of-internship">
-                        <p>
-                            Конец  стажировки:
-                        </p>
-                        <p>
-                            25.10.2023
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-type-of-internship">
-                        <p>
-                            Вид стажировки:
-                        </p>
-                        <p>
-                            Стажировка наблюдателя
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-office-adress">
-                        <p>
-                            Адрес офиса:
-                        </p>
-                        <p>
-                            Минск, ул. Тиражная 150
-                        </p>
-                    </div>
-                </div>
                 <div class="personal-account__cart-catalog-item-photo">
                     <img
                     class="company-photo"
@@ -169,6 +113,64 @@
                     width="290px"
                     height="328px"
                     loading="lazy">
+                </div>
+                <div class="personal-account__cart-catalog-item-title">
+                    <p>ОФОРМЛЕНИЕ ЗАКАЗА</p>
+                </div>
+                <div class="personal-account__cart-catalog-item-content">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Профессия:
+                        </p>
+                        <p>
+                            Программист
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Компания:
+                        </p>
+                        <p>
+                            EPAM
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Начало стажировки:
+                        </p>
+                        <p>
+                            18.10.2023
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Конец  стажировки:
+                        </p>
+                        <p>
+                            25.10.2023
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Вид стажировки:
+                        </p>
+                        <p>
+                            Стажировка наблюдателя
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Адрес офиса:
+                        </p>
+                        <p>
+                            Минск, ул. Тиражная 150
+                        </p>
+                    </div>
                 </div>
                 <div class="personal-account__cart-catalog-item-price">
                     <hr class="order-placing__cart-price-line">
@@ -191,70 +193,12 @@
                     loading="lazy">
                 </div>
                 <div class="personal-account__cart-catalog-item-button">
-                    <button class="button order-placing__cart-button" type="button">
+                    <button class="order-placing__cart-button button" type="button">
                         <span class="order-placing__cart-button-text">Оформить заказ</span>
                     </button>
                 </div>
             </div>
             <div class="personal-account__cart-catalog-item">
-                <div class="personal-account__cart-catalog-item-title">
-                    <p>ОФОРМЛЕНИЕ ЗАКАЗА</p>
-                </div>
-                <div class="personal-account__cart-catalog-item-content">
-                    <div class="order-placing__cart-content-profession">
-                        <p>
-                            Профессия:
-                        </p>
-                        <p>
-                            Программист
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-company">
-                        <p>
-                            Компания:
-                        </p>
-                        <p>
-                            EPAM
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-start-of-internship">
-                        <p>
-                            Начало стажировки:
-                        </p>
-                        <p>
-                            18.10.2023
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-end-of-internship">
-                        <p>
-                            Конец  стажировки:
-                        </p>
-                        <p>
-                            25.10.2023
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-type-of-internship">
-                        <p>
-                            Вид стажировки:
-                        </p>
-                        <p>
-                            Стажировка наблюдателя
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-office-adress">
-                        <p>
-                            Адрес офиса:
-                        </p>
-                        <p>
-                            Минск, ул. Тиражная 150
-                        </p>
-                    </div>
-                </div>
                 <div class="personal-account__cart-catalog-item-photo">
                     <img
                     class="company-photo"
@@ -263,6 +207,64 @@
                     width="290px"
                     height="328px"
                     loading="lazy">
+                </div>
+                <div class="personal-account__cart-catalog-item-title">
+                    <p>ОФОРМЛЕНИЕ ЗАКАЗА</p>
+                </div>
+                <div class="personal-account__cart-catalog-item-content">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Профессия:
+                        </p>
+                        <p>
+                            Программист
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Компания:
+                        </p>
+                        <p>
+                            EPAM
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Начало стажировки:
+                        </p>
+                        <p>
+                            18.10.2023
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Конец  стажировки:
+                        </p>
+                        <p>
+                            25.10.2023
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Вид стажировки:
+                        </p>
+                        <p>
+                            Стажировка наблюдателя
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Адрес офиса:
+                        </p>
+                        <p>
+                            Минск, ул. Тиражная 150
+                        </p>
+                    </div>
                 </div>
                 <div class="personal-account__cart-catalog-item-price">
                     <hr class="order-placing__cart-price-line">
@@ -285,70 +287,12 @@
                     loading="lazy">
                 </div>
                 <div class="personal-account__cart-catalog-item-button">
-                    <button class="button order-placing__cart-button" type="button">
+                    <button class="order-placing__cart-button button" type="button">
                         <span class="order-placing__cart-button-text">Оформить заказ</span>
                     </button>
                 </div>
             </div>
             <div class="personal-account__cart-catalog-item">
-                <div class="personal-account__cart-catalog-item-title">
-                    <p>ОФОРМЛЕНИЕ ЗАКАЗА</p>
-                </div>
-                <div class="personal-account__cart-catalog-item-content">
-                    <div class="order-placing__cart-content-profession">
-                        <p>
-                            Профессия:
-                        </p>
-                        <p>
-                            Программист
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-company">
-                        <p>
-                            Компания:
-                        </p>
-                        <p>
-                            EPAM
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-start-of-internship">
-                        <p>
-                            Начало стажировки:
-                        </p>
-                        <p>
-                            18.10.2023
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-end-of-internship">
-                        <p>
-                            Конец  стажировки:
-                        </p>
-                        <p>
-                            25.10.2023
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-type-of-internship">
-                        <p>
-                            Вид стажировки:
-                        </p>
-                        <p>
-                            Стажировка наблюдателя
-                        </p>
-                    </div>
-                    <hr class="order-placing__cart-content-line">
-                    <div class="order-placing__cart-content-office-adress">
-                        <p>
-                            Адрес офиса:
-                        </p>
-                        <p>
-                            Минск, ул. Тиражная 150
-                        </p>
-                    </div>
-                </div>
                 <div class="personal-account__cart-catalog-item-photo">
                     <img
                     class="company-photo"
@@ -357,6 +301,64 @@
                     width="290px"
                     height="328px"
                     loading="lazy">
+                </div>
+                <div class="personal-account__cart-catalog-item-title">
+                    <p>ОФОРМЛЕНИЕ ЗАКАЗА</p>
+                </div>
+                <div class="personal-account__cart-catalog-item-content">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Профессия:
+                        </p>
+                        <p>
+                            Программист
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Компания:
+                        </p>
+                        <p>
+                            EPAM
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Начало стажировки:
+                        </p>
+                        <p>
+                            18.10.2023
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Конец  стажировки:
+                        </p>
+                        <p>
+                            25.10.2023
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Вид стажировки:
+                        </p>
+                        <p>
+                            Стажировка наблюдателя
+                        </p>
+                    </div>
+                    <hr class="order-placing__cart-item-content-line">
+                    <div class="order-placing__cart-item-content">
+                        <p>
+                            Адрес офиса:
+                        </p>
+                        <p>
+                            Минск, ул. Тиражная 150
+                        </p>
+                    </div>
                 </div>
                 <div class="personal-account__cart-catalog-item-price">
                     <hr class="order-placing__cart-price-line">
@@ -379,7 +381,7 @@
                     loading="lazy">
                 </div>
                 <div class="personal-account__cart-catalog-item-button">
-                    <button class="button order-placing__cart-button" type="button">
+                    <button class="order-placing__cart-button button" type="button">
                         <span class="order-placing__cart-button-text">Оформить заказ</span>
                     </button>
                 </div>
