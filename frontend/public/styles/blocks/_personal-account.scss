@@ -1,0 +1,45 @@
+.personal-account {
+  width: 100%;
+  margin: 0 auto;
+  padding: 100px 60px;
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav__title {
+    @include fluid-text(48, 26);
+    text-transform: uppercase;
+  }
+
+  .nav__menu-list {
+    display: flex;
+    justify-content: center;
+    gap: 86px;
+  }
+
+  .nav__menu-list__item {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 22px;
+    color: var(--color-basic-grey);
+    text-transform: uppercase;
+    position: relative;
+
+    &_active {
+      a {
+        color: var(--color-accent-purple-gradient);
+      }
+
+      &::after {
+        position: absolute;
+        width: 98px;
+        height: 4px;
+        bottom: -9px;
+        color: var(--color-accent-purple-gradient);
+      }
+    }
+  }
+}
