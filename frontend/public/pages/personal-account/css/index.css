@@ -852,10 +852,160 @@ svg * {
   }
 }
 
+.personal-account {
+  width: 100%;
+  margin: 0 auto;
+  padding: 228px 60px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 375.2px) {
+  .personal-account {
+    padding: 118px 15px 100px;
+  }
+}
+.personal-account .personal-account__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 375.2px) {
+  .personal-account .personal-account__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.personal-account .personal-account__header h2 {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap;
+  font-size: clamp(28px, 2.3958333333vw, 46px);
+}
+.personal-account .personal-account__header .personal-account__menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.personal-account .personal-account__header .personal-account__menu .personal-account__menu-list {
+  display: flex;
+  gap: 86px;
+}
+.personal-account .personal-account__header .personal-account__menu .personal-account__menu-list .personal-account__menu-item .personal-account__menu-link {
+  display: flex;
+  position: relative;
+  font-weight: 700;
+  color: var(--color-basic-grey);
+  font-size: clamp(18px, 0.9375vw, 18px);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.personal-account .personal-account__header .personal-account__menu .personal-account__menu-list .personal-account__menu-item .personal-account__menu-link::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  width: 0%;
+  height: 2px;
+  transition: 0.2s;
+  background-color: var(--color-accent-purple-gradient);
+}
+.personal-account .personal-account__header .personal-account__menu .personal-account__menu-list .personal-account__menu-item .personal-account__menu-link:hover::before {
+  width: 100%;
+}
+
+.burger-button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  width: 24px;
+  aspect-ratio: 1/1;
+  position: relative;
+}
+@media (max-width: 1023px) {
+  .burger-button {
+    width: 38px;
+    aspect-ratio: 1/1;
+    margin-top: -4px;
+  }
+}
+@media (max-width: 375.2px) {
+  .burger-button {
+    width: 24px;
+    aspect-ratio: 1/1;
+    margin-top: -3px;
+  }
+}
+@media (hover: hover) {
+  .burger-button:hover {
+    cursor: pointer;
+  }
+  .burger-button:hover::after {
+    background-color: var(--color-accent-purple);
+  }
+}
+@media (hover: hover) and (max-width: 1023px) {
+  .burger-button:hover::after {
+    box-shadow: 0 -11px var(--color-accent-purple), 0 11px var(--color-accent-purple);
+  }
+}
+@media (hover: hover) and (max-width: 375.2px) {
+  .burger-button:hover::after {
+    box-shadow: 0 -6px var(--color-accent-purple), 0 6px var(--color-accent-purple);
+  }
+}
+@media (hover: none) {
+  .burger-button:active {
+    cursor: pointer;
+  }
+  .burger-button:active::after {
+    background-color: var(--color-accent-purple);
+  }
+}
+@media (hover: none) and (max-width: 1023px) {
+  .burger-button:active::after {
+    box-shadow: 0 -11px var(--color-accent-purple), 0 11px var(--color-accent-purple);
+  }
+}
+@media (hover: none) and (max-width: 375.2px) {
+  .burger-button:active::after {
+    box-shadow: 0 -6px var(--color-accent-purple), 0 6px var(--color-accent-purple);
+  }
+}
+.burger-button::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  content: "";
+  width: 20px;
+  height: 2.1px;
+  background-color: var(--color-basic-white);
+  border-radius: 2px;
+  box-shadow: 0 -6px var(--color-basic-white), 0 6px var(--color-basic-white);
+}
+@media (max-width: 1023px) {
+  .burger-button::after {
+    width: 34px;
+    height: 2.5px;
+    box-shadow: 0 -11px var(--color-basic-white), 0 11px var(--color-basic-white);
+  }
+}
+@media (max-width: 375.2px) {
+  .burger-button::after {
+    width: 20px;
+    height: 2.1px;
+    box-shadow: 0 -6px var(--color-basic-white), 0 6px var(--color-basic-white);
+  }
+}
+
 .header {
   position: fixed;
   width: 100%;
   padding: 22px 0;
+  background-color: var(--color-accent-purple);
 }
 @media (max-width: 1023px) {
   .header {

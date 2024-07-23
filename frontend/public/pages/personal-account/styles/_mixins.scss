@@ -30,6 +30,17 @@
     align-items: center;
 }
 
+@mixin flex-column-align-center($isInline:false){
+    @if $isInline{
+        display: inline-flex;
+    }@else{
+        display: flex;
+    }
+
+    flex-direction: column;
+    align-items: center;
+}
+
 @mixin abs-center{
     position: absolute;
     top: 50%;
@@ -41,4 +52,8 @@
 @mixin square($size){
     width: $size;
     aspect-ratio: 1 / 1; //1
+}
+
+@mixin link-hover{
+    
 }

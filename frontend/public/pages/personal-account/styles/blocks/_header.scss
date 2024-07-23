@@ -4,6 +4,10 @@
     padding: 22px 0; //1.875rem 0;
     // border: 1px solid white;
 
+
+    background-color: var(--color-accent-purple);
+
+    
     @include tablet{
         padding: 10px 0;
     }
