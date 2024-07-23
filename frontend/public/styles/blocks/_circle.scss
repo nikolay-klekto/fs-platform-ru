@@ -1,0 +1,38 @@
+.circle {
+    @include flex-center(true);
+    @include square(var(--button-height));
+    // padding-inline: 40px; //2.5rem;
+    border-radius: var(--button-border-radius); //или 100%
+    border: none;
+
+    transition-duration: var(--transition-duration);
+
+    //решить вопрос с свг
+    svg{
+        width: 40px;
+        height: 40px;
+        path{
+            fill: red;
+        }
+    }
+
+    // .circle_purple
+    &_purple {
+    }
+
+    // .circle_white
+    &_white {
+        background: var(--color-basic-white);
+
+        svg{
+            path{
+                // fill: var(--color-accent-purple-gradient);
+            }
+        }
+
+    }
+
+    // .circle_transparent
+    &_transparent {
+    }
+}

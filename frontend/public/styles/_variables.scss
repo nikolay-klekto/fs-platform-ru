@@ -30,12 +30,13 @@
     --color-transparent-purple: rgba(16, 16, 48, 0.7);
     --color-transparent-dark: rgba(0, 0, 0, 0.7);
 
+
     //границы
     --button-border-radius: 50px; //3.12rem;
     --button-border-radius-small: 20px;
 
     //тени
-    --button-shadow: 0 0 80px 0 #9653f5; //5rem
+    --button-shadow: 0 0 80px #9653f5; //5rem
 
 
     //шрифты
@@ -49,13 +50,14 @@
 
     //сетка
     // --container-width: min(98.3vw,1798px); //1798px;
-    --container-width: 1798px;
+    --container-width: 1798px; //1800 перепроверить хедер?
     --container-padding-x: 15px;
 
     --section-padding-y: 100px; //????
 
     --input-height: 64px; //4rem;
     --input-height-secondary: 50px;
+    // перепроверить переменную
 
     --button-height: 68px; //4.25rem;
     --button-height-secondary: 64px; //4rem;
@@ -65,6 +67,16 @@
 
     --button-height-mobile: 50px;
     --button-height-secondary-mobile: 40px;
+
+
+    --button-circle-radius: 34px;
+    --button-circle-radius-secondary: 32px;
+
+    --button-circle-radius-tablet: 30px;
+    --button-circle-radius-secondary-tablet: 26px;
+
+    --button-circle-radius-mobile: 25px;
+    --button-circle-radius-secondary-mobile: 20px;
 
 
     // --input-height-main: 64px;

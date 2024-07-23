@@ -1,14 +1,14 @@
 .stages-of-work {
-    width: 100%;
-    margin: 0 auto;
-    padding: 100px 60px;
+    // width: 100%;
+    // margin: 0 auto;
+    // padding: 100px 60px;
 
     @include tablet {
 
     }
 
     @include mobile {
-        padding: 0 15px 60px;
+        // padding: 0 15px 60px;
 
         &::after {
             content: "";

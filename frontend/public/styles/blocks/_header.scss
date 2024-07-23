@@ -1,5 +1,6 @@
 .header {
     position: fixed;
+    z-index: 11;
     width: 100%;
     padding: 22px 0; //1.875rem 0;
     // border: 1px solid white;
@@ -176,27 +177,35 @@
         }
 
         // .header__icons-basket
-        &-basket svg{
-            width: 50px; //3.125rem;
-            height: 50px; //3.125rem;
-
+        &-basket {
             @include hover{
-                path{
+                svg path{
                     stroke: var(--color-accent-purple);
                 }
             }
 
-            @include tablet{
-                width: 38px;
-            }
+            svg{
+                width: 50px; //3.125rem;
+                height: 50px; //3.125rem;
 
-            @include mobile{
-                width: 24px;
-            }
+            // @include hover{
+            //     path{
+            //         stroke: var(--color-accent-purple);
+            //     }
+            // }
 
-            path{
+                @include tablet{
+                    width: 38px;
+                }
+
                 @include mobile{
-                    stroke-width: 4;
+                    width: 24px;
+                }
+
+                path{
+                    @include mobile{
+                        stroke-width: 4;
+                    }
                 }
             }
         }

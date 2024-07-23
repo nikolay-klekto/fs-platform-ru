@@ -12,7 +12,7 @@ $desktop-above: 1921px;
 $tablet: 1023px;
 $tablet-above: 1024px;
 
-$mobile: 375.2px;
+$mobile: 375.2px; //375 перепроверить
 $mobile-above: 376px;
 
 @mixin desktop-above{

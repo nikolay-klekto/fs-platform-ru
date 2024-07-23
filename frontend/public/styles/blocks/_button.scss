@@ -55,6 +55,8 @@
 
         @include hover{
             box-shadow: var(--button-shadow);
+            // & +div{
+            // }
         }
     }
 
@@ -137,5 +139,17 @@
     .button__text{
         font-weight: 500;
         font-size:  15px;
+    }
+}
+
+@mixin button-white-with-circle-shadow{
+    //не поддерживается в IE
+    transition-duration: var(--transition-duration);
+
+    @include hover{
+        filter:drop-shadow(var(--button-shadow));
+        button{
+            box-shadow: none;
+        }
     }
 }

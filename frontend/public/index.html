@@ -11,6 +11,15 @@
     <title>Kotlin + Spring Boot + Vue.js</title>
 </head>
 <body>
+    <!-- почистить папку картинок -->
+    <!-- экспортировать иконку единожды, характеристики менять через код -->
+
+    <!-- папку с муляжами -->
+    <!-- кнопка стрелка?? -->
+    <!-- слайдер отрицательные маржины (блок на весь экран) -->
+    <!-- отступы между секциями переменной -->
+
+
     <!-- <ul>
     </ul> -->
     <header class="header">
@@ -78,93 +87,198 @@
         </div>
     </header>
 
-    <section class="stages-of-work">
-        <h2>как мы работаем</h2>
-        <div class="stages-of-work__stages">
-            <div class="stages-of-work__stages-item">
-                <div class="stages-of-work__stages-icon">
-                    <svg width="50" height="51" viewBox="0 0 50 51" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.9167 40.4308C32.1214 40.4308 39.5833 32.9886 39.5833 23.8082C39.5833 14.6277 32.1214 7.18555 22.9167 7.18555C13.7119 7.18555 6.25 14.6277 6.25 23.8082C6.25 32.9886 13.7119 40.4308 22.9167 40.4308Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M43.75 44.5864L34.6875 35.5479" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <section class="main">
+        <div class="main__inner container">
+            <div class="main__description">
+                <img
+                class="main__image"
+                src="./img/main.svg"
+                alt="Funscrut"
+                width="1016.67"
+                height="130.32"
+                loading="lazy">
+                <p class="main__text">сервис, позволяющий вам выбрать и пройти стажировку 
+                    <span class="main__text-second">в абсолютно разных компаниях
+                    на многообразнейших понравившихся профессиях</span>
+                </p>
+                <div class="main__button-wrapper">
+                    <button class="main__button
+                    button
+                    button_white"
+                    type="button">
+                        <span class="button__text">выбрать профессию</span>
+                    </button>
+                    <div class="main__circle
+                    circle
+                    circle_white">
+                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M26.25 15L15.9375 5.15625V10.7812C6.06856 10.7812 3.75 17.8576 3.75 24.8438C6.59824 21.1969 9.11719 19.2188 15.9375 19.2188V24.8438L26.25 15Z" fill="white" stroke="white" stroke-width="0.814815" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+
+                <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M34.125 19.5L20.7188 6.70312V14.0156C7.88912 14.0156 4.875 23.2149 4.875 32.2969C8.57771 27.5559 11.8523 24.9844 20.7188 24.9844V32.2969L34.125 19.5Z" fill="url(#paint0_linear_162_6910)" stroke="url(#paint1_linear_162_6910)" stroke-linejoin="round"/>
+                    <defs>
+                    <linearGradient id="paint0_linear_162_6910" x1="2.49419" y1="19.7976" x2="34.125" y2="19.7976" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#8333F3"/>
+                    <stop offset="0.485532" stop-color="#5F4AF3"/>
+                    <stop offset="1" stop-color="#3B51A8"/>
+                    </linearGradient>
+                    <linearGradient id="paint1_linear_162_6910" x1="2.49419" y1="19.7976" x2="34.125" y2="19.7976" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#8333F3"/>
+                    <stop offset="0.485532" stop-color="#5F4AF3"/>
+                    <stop offset="1" stop-color="#3B51A8"/>
+                    </linearGradient>
+                    </defs>
                     </svg>
+
+
+
+
+
+            </div>
+            <div class="main__articles">
+                <span class="main__articles-title">цены за неделю стажировки:</span>
+                <div class="main__article article">
+                    <span class="article__description">стажировка 
+                        <span class="article__description-second">наблюдателя</span> для любой профессии</span>
+                    <span class="article__price">ХХ byn</span>
+                    <div class="article__circle
+                    circle
+                    circle_white">
+                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M26.25 15L15.9375 5.15625V10.7812C6.06856 10.7812 3.75 17.8576 3.75 24.8438C6.59824 21.1969 9.11719 19.2188 15.9375 19.2188V24.8438L26.25 15Z" fill="white" stroke="white" stroke-width="0.814815" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                 </div>
-                <div class="stages-of-work__stages-number">
-                    <h5>/01</h5>
-                </div>
-                <div class="stages-of-work__stages-text">
-                    <h5>выбор профессии</h5>
-                    <ul>
-                        <li>выбор профессии и компании</li>
-                        <li>выбор варианта стажировки</li>
-                        <li>выбор дат стажировки</li>
-                    </ul>
+                <div class="main__article article">
+                    <span class="article__description">стажировка 
+                        <span class="article__description-second">с участием в рабочих процессах</span> для любой профессии</span>
+                    <span class="article__price">ХХ byn</span>
+                    <div class="article__circle
+                    circle
+                    circle_white">
+                    <img
+                        class="main__image"
+                        src="./img/icons/circle-arrow.svg"
+                        alt=""
+                        width="40"
+                        height="40"
+                        loading="lazy">
+                    <!-- <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M34.125 19.5L20.7188 6.70312V14.0156C7.88912 14.0156 4.875 23.2149 4.875 32.2969C8.57771 27.5559 11.8523 24.9844 20.7188 24.9844V32.2969L34.125 19.5Z" fill="url(#paint0_linear_162_6910)" stroke="url(#paint1_linear_162_6910)" stroke-linejoin="round"/>
+                        <defs>
+                        <linearGradient id="paint0_linear_162_6910" x1="2.49419" y1="19.7976" x2="34.125" y2="19.7976" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#8333F3"/>
+                        <stop offset="0.485532" stop-color="#5F4AF3"/>
+                        <stop offset="1" stop-color="#3B51A8"/>
+                        </linearGradient>
+                        <linearGradient id="paint1_linear_162_6910" x1="2.49419" y1="19.7976" x2="34.125" y2="19.7976" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#8333F3"/>
+                        <stop offset="0.485532" stop-color="#5F4AF3"/>
+                        <stop offset="1" stop-color="#3B51A8"/>
+                        </linearGradient>
+                        </defs>
+                        </svg> -->
+                    </div>
                 </div>
             </div>
-            <div class="stages-of-work__stages-item">
-                <div class="stages-of-work__stages-icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11.7769 3.92578H27.4784L39.2544 15.7019V39.254C39.2544 40.2951 38.8409 41.2935 38.1047 42.0297C37.3686 42.7658 36.3701 43.1794 35.3291 43.1794H11.7769C10.7359 43.1794 9.73742 42.7658 9.00127 42.0297C8.26513 41.2935 7.85156 40.2951 7.85156 39.254V7.85114C7.85156 6.81007 8.26513 5.81164 9.00127 5.07549C9.73742 4.33934 10.7359 3.92578 11.7769 3.92578Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M27.4766 3.92578V15.7019H39.2526" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M31.4026 25.5146H15.7012" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M31.4026 33.3652H15.7012" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M19.6265 17.6641H17.6639H15.7012" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div class="stages-of-work__stages-number">
-                    <h5>/02</h5>
-                </div>
-                <div class="stages-of-work__stages-text">
-                    <h5>оформление</h5>
-                    <ul>
-                        <li>заполнение необходимых данных</li>
-                        <li>созвон и уточненение информации</li>
-                        <li>подписание договора в офисе, либо дистанционное заключение договора</li>
-                        <li>бронирование дат стажировки</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="stages-of-work__stages-item">
-                <div class="stages-of-work__stages-icon">
-                    <svg width="48" height="41" viewBox="0 0 48 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M33.6453 2.8877H5.04623C3.18802 2.8877 1.68164 4.39408 1.68164 6.25229V26.4398C1.68164 28.2981 3.18802 29.8044 5.04623 29.8044H33.6453C35.5035 29.8044 37.0099 28.2981 37.0099 26.4398V6.25229C37.0099 4.39408 35.5035 2.8877 33.6453 2.8877Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M19.3457 21.3926C22.133 21.3926 24.3926 19.133 24.3926 16.3457C24.3926 13.5584 22.133 11.2988 19.3457 11.2988C16.5584 11.2988 14.2988 13.5584 14.2988 16.3457C14.2988 19.133 16.5584 21.3926 19.3457 21.3926Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M11.7754 38.2159H42.0567C42.9491 38.2159 43.8049 37.8614 44.4359 37.2304C45.0668 36.5994 45.4213 35.7436 45.4213 34.8513V18.0283" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div class="stages-of-work__stages-number">
-                    <h5>/03</h5>
-                </div>
-                <div class="stages-of-work__stages-text">
-                    <h5>оплата</h5>
-                    <ul>
-                        <li>оплата происходит в течении 2-ух дней с момента подписания договора</li>
-                        <li>оплата доступна на сайте, в разделе "требующие оплаты", либо в офисе</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="stages-of-work__stages-item">
-                <div class="stages-of-work__stages-icon">
-                    <img src="img/icons/mask group.svg" alt="Стажировка">
-                </div>
-                <div class="stages-of-work__stages-number">
-                    <h5>/04</h5>
-                </div>
-                <div class="stages-of-work__stages-text">
-                    <h5>стажировка</h5>
-                    <ul>
-                        <li>вам выделяется рабочее пространство</li>
-                        <li>индивидуально под ваш уровень составляется учебная программа</li>
-                        <li>выход клиента в компанию</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="stages-of-work__button">
-            <button class="button button_transparent" type="button">
-                <span class="button__text">развернуть</span>
-            </button>
         </div>
     </section>
+
+    <section class="stages-of-work">
+        <div class="stages-of-work__inner container">
+            <h2>как мы работаем</h2>
+            <div class="stages-of-work__stages">
+                <div class="stages-of-work__stages-item">
+                    <div class="stages-of-work__stages-icon">
+                        <svg width="50" height="51" viewBox="0 0 50 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.9167 40.4308C32.1214 40.4308 39.5833 32.9886 39.5833 23.8082C39.5833 14.6277 32.1214 7.18555 22.9167 7.18555C13.7119 7.18555 6.25 14.6277 6.25 23.8082C6.25 32.9886 13.7119 40.4308 22.9167 40.4308Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M43.75 44.5864L34.6875 35.5479" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="stages-of-work__stages-number">
+                        <h5>/01</h5>
+                    </div>
+                    <div class="stages-of-work__stages-text">
+                        <h5>выбор профессии</h5>
+                        <ul>
+                            <li>выбор профессии и компании</li>
+                            <li>выбор варианта стажировки</li>
+                            <li>выбор дат стажировки</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="stages-of-work__stages-item">
+                    <div class="stages-of-work__stages-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.7769 3.92578H27.4784L39.2544 15.7019V39.254C39.2544 40.2951 38.8409 41.2935 38.1047 42.0297C37.3686 42.7658 36.3701 43.1794 35.3291 43.1794H11.7769C10.7359 43.1794 9.73742 42.7658 9.00127 42.0297C8.26513 41.2935 7.85156 40.2951 7.85156 39.254V7.85114C7.85156 6.81007 8.26513 5.81164 9.00127 5.07549C9.73742 4.33934 10.7359 3.92578 11.7769 3.92578Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M27.4766 3.92578V15.7019H39.2526" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M31.4026 25.5146H15.7012" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M31.4026 33.3652H15.7012" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M19.6265 17.6641H17.6639H15.7012" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="stages-of-work__stages-number">
+                        <h5>/02</h5>
+                    </div>
+                    <div class="stages-of-work__stages-text">
+                        <h5>оформление</h5>
+                        <ul>
+                            <li>заполнение необходимых данных</li>
+                            <li>созвон и уточненение информации</li>
+                            <li>подписание договора в офисе, либо дистанционное заключение договора</li>
+                            <li>бронирование дат стажировки</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="stages-of-work__stages-item">
+                    <div class="stages-of-work__stages-icon">
+                        <svg width="48" height="41" viewBox="0 0 48 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M33.6453 2.8877H5.04623C3.18802 2.8877 1.68164 4.39408 1.68164 6.25229V26.4398C1.68164 28.2981 3.18802 29.8044 5.04623 29.8044H33.6453C35.5035 29.8044 37.0099 28.2981 37.0099 26.4398V6.25229C37.0099 4.39408 35.5035 2.8877 33.6453 2.8877Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M19.3457 21.3926C22.133 21.3926 24.3926 19.133 24.3926 16.3457C24.3926 13.5584 22.133 11.2988 19.3457 11.2988C16.5584 11.2988 14.2988 13.5584 14.2988 16.3457C14.2988 19.133 16.5584 21.3926 19.3457 21.3926Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M11.7754 38.2159H42.0567C42.9491 38.2159 43.8049 37.8614 44.4359 37.2304C45.0668 36.5994 45.4213 35.7436 45.4213 34.8513V18.0283" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="stages-of-work__stages-number">
+                        <h5>/03</h5>
+                    </div>
+                    <div class="stages-of-work__stages-text">
+                        <h5>оплата</h5>
+                        <ul>
+                            <li>оплата происходит в течении 2-ух дней с момента подписания договора</li>
+                            <li>оплата доступна на сайте, в разделе "требующие оплаты", либо в офисе</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="stages-of-work__stages-item">
+                    <div class="stages-of-work__stages-icon">
+                        <img src="img/icons/mask group.svg" alt="Стажировка">
+                    </div>
+                    <div class="stages-of-work__stages-number">
+                        <h5>/04</h5>
+                    </div>
+                    <div class="stages-of-work__stages-text">
+                        <h5>стажировка</h5>
+                        <ul>
+                            <li>вам выделяется рабочее пространство</li>
+                            <li>индивидуально под ваш уровень составляется учебная программа</li>
+                            <li>выход клиента в компанию</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="stages-of-work__button">
+                <button class="button button_transparent" type="button">
+                    <span class="button__text">развернуть</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- перепроверить css -->
+    <!-- отрицательные маржины = gap -->
 
     <section class="professions">
         <h2>профессии</h2>
@@ -259,6 +373,7 @@
         </form>
         </div>
     </section>
+    <!-- добавить контейнер блока и контейнер резерв, проверить css -->
 
     <dialog class="mobile-overlay visible-tablet" id="mobileOverlay">
         <form class="mobile-overlay__close-button-wrapper" action="" method="dialog">

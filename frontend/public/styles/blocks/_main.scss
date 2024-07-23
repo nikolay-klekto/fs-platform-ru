@@ -1,0 +1,63 @@
+.main {
+    padding-top: 366px; //44+83 header + 178+61 отступ
+    height: 100vh;
+    background: linear-gradient(
+        180deg, #101030 0%,
+        #141742 38.92%,
+        #3b2f94 100%);
+    // .main__inner
+    &__inner {
+        @include flex-center;
+        justify-content: space-between;
+    }
+    // .main__description
+    &__description {
+    }
+    // .main__image
+    &__image {
+    }
+    // .main__text
+    &__text {
+        margin-top: 100px;
+        max-width: 730px;
+
+        font-size: 24px; //24????
+        line-height: 167%;  //1.66667
+        &::first-letter{
+            text-transform: uppercase;
+        }
+    }
+    // .main__text-second
+    &__text-second {
+    }
+    // .main__button-wrapper
+    &__button-wrapper{
+        @include flex-center(true);
+        margin-top: 166px;
+        @include button-white-with-circle-shadow;
+    }
+    // .main__button
+    &__button {
+    }
+    // .main__circle
+    &__circle {
+    }
+    // .main__articles
+    &__articles {
+        @include flex-center(true);
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 20px;
+    }
+    // .main__articles-title
+    &__articles-title {
+        font-weight: 700;
+        font-size: 20px;
+        &::first-letter{
+            text-transform: uppercase;
+        }
+    }
+    // .main__article
+    &__article {
+    }
+}
