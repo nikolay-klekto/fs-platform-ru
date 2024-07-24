@@ -2,8 +2,10 @@
     width: 100%;
     margin: 0 auto;
     padding: 228px 0 100px;
+    overflow: hidden;
+    position: relative;
     @include flex-column-align-center;
-    @include mobile{
+    @media (max-width: 939px) {
         padding: 118px 15px 100px;
     }
     .ellipse-background:nth-child(1) {
@@ -37,6 +39,10 @@
         @include mobile{
             @include flex-column-align-center;
         }
+        @media (max-width: 1664px) {
+            align-items: center;
+            flex-direction: column;
+        }
         margin-bottom: 80px;
         h2 {
             position: relative;
@@ -44,12 +50,20 @@
             font-weight: 500;
             white-space: nowrap;
             @include fluid-text(46,28);
+            @media (max-width: 1664px) {
+                margin-bottom: 20px;
+            }
         }
         .personal-account__menu {
             @include flex-center;
             .personal-account__menu-list {
                 display: flex;
                 gap: 86px;
+                @media (max-width: 1664px) {
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 10px;
+                }
                 .personal-account__menu-item {
                     .personal-account__menu-link {
                         display: flex;

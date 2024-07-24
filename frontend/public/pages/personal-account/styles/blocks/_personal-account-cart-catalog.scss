@@ -5,6 +5,13 @@
         flex-wrap: wrap;
         margin: 0 auto;
         gap: 40px 30px;
+        @media (max-width: 1864px) {
+            align-items: center;
+            flex-direction: column;
+        }
+        @media (max-width: 939px) {
+            padding: 0;
+        }
         .personal-account__cart-catalog-item {
             display: flex;
             flex-wrap: wrap;
@@ -14,17 +21,31 @@
             border-radius: 50px;
             background-color: rgba(255, 255, 255, 0.1);
             padding: 40px 32px;
+            @media (max-width: 939px) {
+                width: 100%;
+                justify-content: center;
+                height: fit-content;
+            }
+            @include mobile {
+                padding: 40px 12px;
+            }
             .personal-account__cart-catalog-item-title {
                 display: flex;
                 width: fit-content;
                 height: fit-content;
                 margin-bottom: 30px;
-                font-weight: 500;
-                @include fluid-text(28,28);
                 color: transparent;    
 	            /*-webkit-background-clip: text;*/
 	            background-clip: text;
 	            background-image: var(--color-accent-purple-gradient);
+                h5 {
+                    font-weight: 500;
+                    font-size: 28px;
+                    @media (max-width: 500px) {
+                        font-weight: 600;
+                        font-size: 18px;
+                    }
+                }
             }
             %cart-content {
                 display: flex;
@@ -34,21 +55,67 @@
                 flex-direction: column;
                 gap: 18px;
                 margin-bottom: 30px;
+                @media (max-width: 939px) {
+                    width: 100%;
+                }
+                @include mobile {
+                    margin-bottom: 20px;
+                }
                 .order-placing__cart-item-content {
+                    @include mobile {
+                        height: 18px;
+                    }
                     p {
                         margin: 0;
                         height: 21.5px;
+                    }
+                    &:nth-of-type(5) {
+                        @include mobile {
+                            height: 34px;
+                        }
+                    }
+                    &:nth-of-type(6) {
+                        @include mobile {
+                            height: 34px;
+                        }
                     }
                     p:nth-of-type(1) {
                         font-weight: 500;
                         @include fluid-text(15,15);
                         color: var(--color-basic-grey);
                         width: 248px;
+                        @media (max-width: 939px) {
+                            min-width: 175px;
+                            max-width: 177px;
+                            @include fluid-text(24,24);
+                        }
+                        @media (max-width: 500px) {
+                            @include fluid-text(15,15);
+                        }
+                        @media (max-width: 400px) {
+                            @include fluid-text(13,13);
+                        }
+                        @include mobile {
+                            @include fluid-text(12,12);
+                        }
                     }
                     p:nth-of-type(2) {
                         font-weight: 500;
                         @include fluid-text(18,18);
                         color: #fff;
+                        @media (max-width: 939px) {
+                            height: fit-content;
+                            @include fluid-text(28,28);
+                        }
+                        @media (max-width: 500px) {
+                            @include fluid-text(18,18);
+                        }
+                        @media (max-width: 400px) {
+                            @include fluid-text(15,15);
+                        }
+                        @include mobile {
+                            @include fluid-text(14,14);
+                        }
                     }
                     @extend %cart-content;
                 }
@@ -62,17 +129,29 @@
                         width: 820px;
                         margin: 0;
                     }
+                    @media (max-width: 939px) {
+                        display: none;
+                    }
                 }
             }
             .personal-account__cart-catalog-item-price {
                 width: fit-content;
                 margin-bottom: 13px;
+                @media (max-width: 939px) {
+                    width: 100%;
+                }
+                @media (max-width: 500px) {
+                    margin-bottom: 0;
+                }
                 .order-placing__cart-price-line {
                     margin: 0;
                     height: 0;
                     width: 820px;
                     border: 2px solid #fff;
                     margin-bottom: 20px;
+                    @media (max-width: 939px) {
+                        width: 100%;
+                    }
                 }
                 .order-placing__cart-price-content {
                     display: flex;
@@ -81,9 +160,19 @@
                         font-weight: 600;
                         @include fluid-text(22,22);
                         color: #fff;
+                        @media (max-width: 500px) {
+                            @include fluid-text(16,16);
+                            position: absolute;
+                            bottom: 50px;
+                            left: 12px;
+                            margin-bottom: 0;
+                        }
                     }
                     p:nth-of-type(1) {
                         width: 245px;
+                        @media (max-width: 500px) {
+                            display: none;
+                        }
                     }
                 }
             }
@@ -92,6 +181,12 @@
                 position: absolute;
                 bottom: 52px;
                 right: 324px;
+                @media (max-width: 500px) {
+                    position: absolute;
+                    bottom: 48px;
+                    left: 101px;
+                    right: auto;
+                }
                 &:hover::after {
                     @include flex-center;
                     content: attr(data-title);
@@ -106,7 +201,15 @@
                     border-radius: 25px;
                     width: 201px;
                     height: 38px;
-                   }
+                }
+                .bin {
+                    width: 40px;
+                    height: 40px;
+                    @media (max-width: 500px) {
+                        width: 24px;
+                        height: 24px;
+                    }
+                }
             }
             .personal-account__cart-catalog-item-button {
                 .order-placing__cart-button {
@@ -115,6 +218,12 @@
                     right: 32px;
                     width: 272px;
                     height: 64px;
+                    @media (max-width: 500px) {
+                        min-width: 188px;
+                        max-width: 188px;
+                        height: 40px;
+                        right: 12px;
+                    }
                     border: 4px solid transparent;
                     border-radius: 50px;
                     background: linear-gradient(#eee, #292846 0) padding-box,
@@ -130,18 +239,45 @@
                         @include fluid-text(20,20);
                         color: #fff;
                         font-weight: 600;
+                        @media (max-width: 500px) {
+                            @include fluid-text(15,15);
+                            font-weight: 500;
+                        }
                     }
                 }
                 width: 272px;
                 height: 64px;
-                float: left;
+                @media (max-width: 500px) {
+                    width: 188px;
+                    height: 40px;
+                }
             }
             .personal-account__cart-catalog-item-photo {
                 p {
                     margin: 0;
                 }
+                .company-photo {
+                    width: 290px;
+                    height: 328px;
+                    @media (max-width: 939px) {
+                        position: static;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 25px;
+                        object-fit: cover;
+                        margin-bottom: 20px;
+                    }
+                    @include mobile {
+                        height: 184px;
+                    }
+                }
                 position: absolute;
                 right: 32px;
+                @media (max-width: 939px) {
+                    position: static;
+                    width: 100%;
+                    aspect-ratio: 1 / 0.57;
+                }
             }
         }
     }
