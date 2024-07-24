@@ -960,6 +960,9 @@ svg * {
   gap: 40px 30px;
 }
 .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
   width: 884px;
   height: 634px;
   border-radius: 50px;
@@ -969,6 +972,7 @@ svg * {
 .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-title {
   display: flex;
   width: fit-content;
+  height: fit-content;
   margin-bottom: 30px;
   font-weight: 500;
   font-size: clamp(28px, 1.4583333333vw, 28px);
@@ -1037,10 +1041,26 @@ svg * {
 }
 .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-remove-card {
   width: fit-content;
-  float: left;
-  margin-left: 488px;
-  margin-top: 12px;
-  margin-right: 12px;
+  position: absolute;
+  bottom: 52px;
+  right: 324px;
+}
+.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-remove-card:hover::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  content: attr(data-title);
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  font-weight: 500;
+  font-size: clamp(15px, 0.78125vw, 15px);
+  color: #fff;
+  z-index: 1;
+  background: rgba(53, 54, 82, 0.8);
+  border-radius: 25px;
+  width: 201px;
+  height: 38px;
 }
 .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-button {
   width: 272px;
@@ -1048,6 +1068,9 @@ svg * {
   float: left;
 }
 .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-button .order-placing__cart-button {
+  position: absolute;
+  bottom: 40px;
+  right: 32px;
   width: 272px;
   height: 64px;
   border: 4px solid transparent;
@@ -1058,6 +1081,10 @@ svg * {
   justify-content: center;
   align-items: center;
 }
+.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-button .order-placing__cart-button:hover {
+  background: var(--color-accent-purple-gradient);
+  border: none;
+}
 .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-button .order-placing__cart-button .order-placing__cart-button-text {
   white-space: nowrap;
   font-size: clamp(20px, 1.0416666667vw, 20px);
@@ -1065,7 +1092,8 @@ svg * {
   font-weight: 600;
 }
 .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-photo {
-  float: right;
+  position: absolute;
+  right: 32px;
 }
 .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-photo p {
   margin: 0;
@@ -1074,6 +1102,7 @@ svg * {
 .header {
   position: fixed;
   width: 100%;
+  z-index: 1;
   padding: 22px 0;
   background-image: url("../img/background.svg");
 }

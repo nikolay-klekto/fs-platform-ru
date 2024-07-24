@@ -5,10 +5,10 @@
         flex-wrap: wrap;
         margin: 0 auto;
         gap: 40px 30px;
-        .personal-account__cart-catalog-item:last-child {
-            
-        }
         .personal-account__cart-catalog-item {
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
             width: 884px;
             height: 634px;
             border-radius: 50px;
@@ -17,6 +17,7 @@
             .personal-account__cart-catalog-item-title {
                 display: flex;
                 width: fit-content;
+                height: fit-content;
                 margin-bottom: 30px;
                 font-weight: 500;
                 @include fluid-text(28,28);
@@ -88,13 +89,30 @@
             }
             .personal-account__cart-catalog-item-remove-card {
                 width: fit-content;
-                float: left;
-                margin-left: 488px;
-                margin-top: 12px;
-                margin-right: 12px;
+                position: absolute;
+                bottom: 52px;
+                right: 324px;
+                &:hover::after {
+                    @include flex-center;
+                    content: attr(data-title);
+                    position: absolute;
+                    left: 50%;
+                    top: 70%;
+                    font-weight: 500;
+                    @include fluid-text(15,15);
+                    color: #fff;
+                    z-index: 1;
+                    background: rgba(53, 54, 82, 0.8);
+                    border-radius: 25px;
+                    width: 201px;
+                    height: 38px;
+                   }
             }
             .personal-account__cart-catalog-item-button {
                 .order-placing__cart-button {
+                    position: absolute;
+                    bottom: 40px;
+                    right: 32px;
                     width: 272px;
                     height: 64px;
                     border: 4px solid transparent;
@@ -103,6 +121,10 @@
                     linear-gradient(90deg, #8333F3 0%,#5f4af3 48.55%,#3b51a8 100%) border-box;
                     border-image-slice: 1;
                     @include flex-center;
+                    &:hover {
+                        background: var(--color-accent-purple-gradient);
+                        border: none;
+                    }
                     .order-placing__cart-button-text {
                         white-space: nowrap;
                         @include fluid-text(20,20);
@@ -118,7 +140,8 @@
                 p {
                     margin: 0;
                 }
-                float: right;
+                position: absolute;
+                right: 32px;
             }
         }
     }
