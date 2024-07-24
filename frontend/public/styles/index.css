@@ -2007,20 +2007,75 @@ svg * {
   gap: 86px;
 }
 .personal-account .nav__menu-list__item {
+  position: relative;
+}
+.personal-account .nav__menu-list__item_active a {
+  background: var(--color-accent-purple-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-accent-purple);
+}
+.personal-account .nav__menu-list__item_active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 4px;
+  background: var(--color-accent-purple-gradient);
+}
+.personal-account .nav__menu-list__item a {
   font-size: 18px;
   font-weight: 700;
   line-height: 22px;
   color: var(--color-basic-grey);
   text-transform: uppercase;
+}
+.personal-account .shopping-cart {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 80px;
+  gap: 40px 32px;
+}
+.personal-account .card-container {
+  width: 884px;
+  padding: 40px 34px;
+  border: 1px solid var(--color-basic-blue);
+  border-radius: 50px;
+  background: var(--color-transparent-grey);
+}
+.personal-account .card {
+  display: flex;
+  flex-direction: column;
   position: relative;
 }
-.personal-account .nav__menu-list__item_active a {
-  color: var(--color-accent-purple-gradient);
+.personal-account .card__title {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: var(--color-accent-purple);
 }
-.personal-account .nav__menu-list__item_active::after {
+.personal-account .card__image {
   position: absolute;
-  width: 98px;
-  height: 4px;
-  bottom: -9px;
-  color: var(--color-accent-purple-gradient);
+  top: 0;
+  right: 0;
+}
+.personal-account .card__content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.personal-account .card__content__item {
+  display: contents;
+}
+.personal-account .card__content__item__title {
+  font-size: 15px;
+  line-height: 62px;
+  color: var(--color-basic-grey);
+  border-bottom: 2px solid var(--color-basic-dark-grey);
+}
+.personal-account .card__content__item__description {
+  font-size: 18px;
+  line-height: 62px;
+  color: var(--color-basic-white);
+  border-bottom: 2px solid var(--color-basic-dark-grey);
 }/*# sourceMappingURL=index.css.map */

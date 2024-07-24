@@ -21,25 +21,90 @@
   }
 
   .nav__menu-list__item {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 22px;
-    color: var(--color-basic-grey);
-    text-transform: uppercase;
     position: relative;
 
     &_active {
       a {
-        color: var(--color-accent-purple-gradient);
+        background: var(--color-accent-purple-gradient);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: var(--color-accent-purple);
       }
 
       &::after {
+        content: "";
         position: absolute;
-        width: 98px;
+        left: 0;
+        right: 0;
+        top: 100%;
         height: 4px;
-        bottom: -9px;
-        color: var(--color-accent-purple-gradient);
+        background: var(--color-accent-purple-gradient);
       }
     }
+
+    a {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 22px;
+      color: var(--color-basic-grey);
+      text-transform: uppercase;
+    }
+  }
+
+  .shopping-cart {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 80px;
+    gap: 40px 32px;
+  }
+
+  .card-container {
+    width: 884px;
+    padding: 40px 34px;
+    border: 1px solid var(--color-basic-blue);
+    border-radius: 50px;
+    background: var(--color-transparent-grey);
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .card__title {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: var(--color-accent-purple);
+  }
+
+  .card__image {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .card__content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .card__content__item {
+    display: contents;
+  }
+
+  .card__content__item__title {
+    font-size: 15px;
+    line-height: 62px;
+    color: var(--color-basic-grey);
+    border-bottom: 2px solid var(--color-basic-dark-grey);
+  }
+
+  .card__content__item__description {
+    font-size: 18px;
+    line-height: 62px;
+    color: var(--color-basic-white);
+    border-bottom: 2px solid var(--color-basic-dark-grey);
   }
 }
