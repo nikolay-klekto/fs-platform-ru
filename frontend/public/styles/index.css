@@ -2067,15 +2067,73 @@ svg * {
 .personal-account .card__content__item {
   display: contents;
 }
+.personal-account .card__content__item:not(:last-child):not(:first-child) p {
+  border-top: 2px solid var(--color-basic-dark-grey);
+}
+.personal-account .card__content__item-price p {
+  border-top: 2px solid var(--color-basic-white);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--color-basic-white);
+}
 .personal-account .card__content__item__title {
   font-size: 15px;
   line-height: 62px;
   color: var(--color-basic-grey);
-  border-bottom: 2px solid var(--color-basic-dark-grey);
 }
 .personal-account .card__content__item__description {
   font-size: 18px;
   line-height: 62px;
   color: var(--color-basic-white);
-  border-bottom: 2px solid var(--color-basic-dark-grey);
+}
+.personal-account .card__button-container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 20px;
+}
+.personal-account .card__button-container .card__button-trashcan {
+  position: relative;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+.personal-account .card__button-container .card__button-trashcan svg {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+.personal-account .card__button-container .card__button-trashcan path {
+  stroke: var(--color-basic-grey);
+}
+.personal-account .card__button-container .card__button-trashcan__tooltip {
+  position: absolute;
+  background-color: var(--color-transparent-grey);
+  padding: 10px 20px;
+  border-radius: 25px;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+}
+.personal-account .card__button-container .card__button-trashcan__tooltip:before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 20px;
+  margin-left: -5px;
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent transparent var(--color-transparent-grey) transparent;
+}
+.personal-account .card__button-container .card__button-trashcan__tooltip-text {
+  white-space: nowrap;
+  font-size: 15px;
+  line-height: 18px;
+}
+.personal-account .card__button-container .card__button-trashcan:hover + .card__button-trashcan__tooltip-text,
+.personal-account .card__button-container .card__button-trashcan:focus + .card__button-trashcan__tooltip-text {
+  display: block;
+}
+.personal-account .button__text {
+  font-size: 20px;
 }/*# sourceMappingURL=index.css.map */
