@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async
             defer></script>
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="./css/index.css"/>
-    <title>Kotlin + Spring Boot + Vue.js</title>
+    <title>Kotlin + Spring Boot + JS</title>
 </head>
 <body>
     <!-- <ul>
@@ -257,6 +257,68 @@
                 </button>
             </div>
         </form>
+        </div>
+    </section>
+
+    <section class="companies">
+        <h2>компании</h2>
+        <div class="companies__selection">
+            <div class="companies__selection__inner">
+                <div class="companies__selection__inner-search">
+                    <input type="search" name="" id="" class="" placeholder="поиск">
+                    <div class="companies__selection__inner-search-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.3333 31.6667C25.6971 31.6667 31.6667 25.6971 31.6667 18.3333C31.6667 10.9695 25.6971 5 18.3333 5C10.9695 5 5 10.9695 5 18.3333C5 25.6971 10.9695 31.6667 18.3333 31.6667Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M35 35L27.75 27.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="companies__selection__inner-industries-dropdown">
+                    <input type="text" name="" id="" class="" onmousedown="return false" value="отрасль компании" readonly>
+                    <label id="" class="">
+                        <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.866 16.5C10.4811 17.1667 9.51888 17.1667 9.13398 16.5L0.473722 1.5C0.0888214 0.833332 0.569946 0 1.33975 0H18.6603C19.4301 0 19.9112 0.833334 19.5263 1.5L10.866 16.5Z" fill="white" />
+                        </svg>
+                    </label>
+                    <div id="" class="companies__selection__inner-industries-dropdown-selection-block">
+                        <input type="search" name="" id="" class="" placeholder="Поиск" autocomplete="off">
+                        <div id="noResult-companies-industries" class="hide">
+                            <p>Результаты не найдены</p>
+                        </div>
+                        <ul id="">
+                            <li id="">отрасль 1</li>
+                            <li id="">отрасль 2</li>
+                            <li id="">отрасль 3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="companies__catalog">
+            <div class="companies__catalog-item">
+                <img src="img/emblems/epam-emblem.png" alt="EPAM">
+            </div>
+            <div class="companies__catalog-item">
+                <img src="img/emblems/epam-emblem.png" alt="EPAM">
+            </div>
+            <div class="companies__catalog-item">
+                <img src="img/emblems/nextIT-emblem.png" alt="next IT">
+            </div>
+            <div class="companies__catalog-item">
+                <img src="img/emblems/sberbank-emblem.png" alt="Сбер Банк">
+            </div>
+            <div class="companies__catalog-item">
+                <img src="img/emblems/eagle-emblem.png" alt="Орёл">
+            </div>
+            <div class="companies__catalog-item">
+                <img src="img/emblems/nextIT-emblem.png" alt="next IT">
+            </div>
+            <div class="companies__catalog-item">
+                <img src="img/emblems/epam-emblem.png" alt="EPAM">
+            </div>
+        </div>
+        <div class="companies__slider">
+            <input type="range" name="companies-slider" id="companies-slider" min="0" max="4" step="0.01" value="0">
         </div>
     </section>
 
