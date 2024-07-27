@@ -101,6 +101,34 @@
                         <a class="personal-account__menu-link" href="#">мой профиль</a>
                     </li>
                 </ul>
+                <div class="personal-account__menu-dropdown">
+                    <div class="personal-account__menu-dropdown-button">
+                        <button class="dropdown__button">корзина</button>
+                        <img
+                        class="dropdown__arrow"
+                        src="./img/icons/arrow.svg"
+                        alt="arrow"
+                        loading="lazy">
+                    </div>
+                    <ul class="personal-account__menu-dropdown-list">
+                        <li class="personal-account__menu-dropdown-item" data-value="bin">
+                            <a class="personal-account__menu-dropdown-link" href="#">корзина</a>
+                        </li>
+                        <li class="personal-account__menu-dropdown-item" data-value="unpaid">
+                            <a class="personal-account__menu-dropdown-link" href="#">требующие оплаты</a>
+                        </li>
+                        <li class="personal-account__menu-dropdown-item" data-value="internship">
+                            <a class="personal-account__menu-dropdown-link" href="#">предстоящие стажировки</a>
+                        </li>
+                        <li class="personal-account__menu-dropdown-item" data-value="archive">
+                            <a class="personal-account__menu-dropdown-link" href="#">архив</a>
+                        </li>
+                        <li class="personal-account__menu-dropdown-item" data-value="profile">
+                            <a class="personal-account__menu-dropdown-link" href="#">мой профиль</a>
+                        </li>
+                    </ul>
+                    <input type="text" name="select-category" class="personal-account__menu-dropdown-input" onmousedown="return false" value="" readonly>
+                </div>
             </nav>
         </div>
         <div class="personal-account__cart-catalog container">

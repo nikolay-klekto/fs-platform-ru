@@ -58,6 +58,9 @@
             @include flex-center;
             .personal-account__menu-list {
                 display: flex;
+                @include mobile{
+                    display: none;
+                }
                 gap: 86px;
                 @media (max-width: 1664px) {
                     align-items: center;
@@ -94,6 +97,91 @@
 	                        background-image: var(--color-accent-purple-gradient);
                         }
                     }
+                    &:first-child {
+                        .personal-account__menu-link {
+                            position: relative;
+                            color: transparent;    
+                            /*-webkit-background-clip: text;*/
+                            background-clip: text;
+                            background-image: var(--color-accent-purple-gradient);
+                            &::before {
+                                position: absolute;
+                                bottom: -5px;
+                                left: 0;
+                                content: '';
+                                width: 100%;
+                                height: 4px;
+                                background: var(--color-accent-purple-gradient);
+                            }
+                        }
+                    }
+                }
+            }
+            .personal-account__menu-dropdown {
+                display: none;
+                @include mobile{
+                    display: flex;
+                }
+                position: relative;
+                justify-content: center;
+                .personal-account__menu-dropdown-button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 4px;
+                    height: 26px;
+                    .dropdown__button {
+                        padding: 0;
+                        position: relative;
+                        border: none;
+                        background-color: var(--color-basic-dark-blue);
+                        color: transparent;    
+                        /*-webkit-background-clip: text;*/
+                        background-clip: text;
+                        background-image: var(--color-accent-purple-gradient);
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        @include fluid-text(18,18);
+                        white-space: nowrap;
+                        &::before {
+                            position: absolute;
+                            bottom: -5px;
+                            left: 0;
+                            content: '';
+                            width: 100%;
+                            height: 4px;
+                            background: var(--color-accent-purple-gradient);
+                        }
+                    }
+                    .dropdown__arrow {
+                        width: 15px;
+                        height: 8.82px;
+                    }
+                }
+                .personal-account__menu-dropdown-list {
+                    display: none;
+                    position: absolute;
+                    top: 35px;
+                    background: var(--color-accent-purple-gradient);
+                    z-index: 1;
+                    padding: 10px 20px;
+                    border-radius: 15px;
+                    .personal-account__menu-dropdown-item {
+                        text-align: center;
+                        border-bottom: 2px solid var(--color-basic-dark-blue);
+                        .personal-account__menu-dropdown-link {
+                            white-space: nowrap;
+                            text-transform: uppercase;
+                            font-weight: 600;
+                            @include fluid-text(15,15);
+                        }
+                        &:last-child {
+                            border-bottom: none;
+                        }
+                    }
+                }
+                .personal-account__menu-dropdown-input {
+                    display: none;
                 }
             }
         }
