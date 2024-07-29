@@ -3,34 +3,99 @@
   margin: 0 auto;
   padding: 100px 60px;
 
+  @include tablet {
+    padding: 60px 35px;
+  }
+
+  @include mobile {
+    padding: 40px 15px;
+  }
+
   .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
 
-  .nav__title {
-    @include fluid-text(46, 26);
-    text-transform: uppercase;
-  }
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
-  .nav__menu-list {
-    display: flex;
-    justify-content: center;
-    gap: 86px;
-  }
+    &__title {
+      @include fluid-text(46, 28);
+      text-transform: uppercase;
+    }
 
-  .nav__menu-list__item {
-    position: relative;
-
-    &_active {
-      a {
-        background: var(--color-accent-purple-gradient);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: var(--color-accent-purple);
+    &__menu {
+      @include mobile {
+        display: none;
       }
+    }
+
+    &__menu-list {
+      display: flex;
+      justify-content: center;
+      gap: 86px;
+    }
+
+    &__menu-list__item {
+      position: relative;
+
+      &_active {
+        a {
+          background: var(--color-accent-purple-gradient);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: var(--color-accent-purple);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 100%;
+          height: 4px;
+          background: var(--color-accent-purple-gradient);
+        }
+      }
+
+      a {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 22px;
+        color: var(--color-basic-grey);
+        text-transform: uppercase;
+      }
+    }
+
+    &__menu-burger {}
+
+    &__menu-burger__container {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 4px;
+
+      path {
+        fill: url(#paint0_linear_1_408);
+      }
+    }
+
+    &__menu-burger__title {
+      position: relative;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 22px;
+      text-transform: uppercase;
+
+      background: var(--color-accent-purple-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: var(--color-accent-purple);
 
       &::after {
         content: "";
@@ -41,14 +106,6 @@
         height: 4px;
         background: var(--color-accent-purple-gradient);
       }
-    }
-
-    a {
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 22px;
-      color: var(--color-basic-grey);
-      text-transform: uppercase;
     }
   }
 
