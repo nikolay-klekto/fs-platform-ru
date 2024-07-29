@@ -1998,7 +1998,7 @@ svg * {
   align-items: center;
 }
 .personal-account .nav__title {
-  font-size: clamp(26px, 2.5vw, 48px);
+  font-size: clamp(26px, 2.3958333333vw, 46px);
   text-transform: uppercase;
 }
 .personal-account .nav__menu-list {
@@ -2040,7 +2040,7 @@ svg * {
 }
 .personal-account .card-container {
   width: 884px;
-  padding: 40px 34px;
+  padding: 40px 32px;
   border: 1px solid var(--color-basic-blue);
   border-radius: 50px;
   background: var(--color-transparent-grey);
@@ -2054,6 +2054,7 @@ svg * {
   margin-bottom: 10px;
   text-transform: uppercase;
   color: var(--color-accent-purple);
+  font-size: clamp(18px, 1.4583333333vw, 28px);
 }
 .personal-account .card__image {
   position: absolute;
@@ -2062,10 +2063,19 @@ svg * {
 }
 .personal-account .card__content {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1fr 322px;
 }
 .personal-account .card__content__item {
   display: contents;
+}
+.personal-account .card__content__item__title {
+  grid-column: 1;
+}
+.personal-account .card__content__item__description {
+  grid-column: 2;
+}
+.personal-account .card__content__item:nth-last-child(-n+2) .card__content__item__description {
+  grid-column: 2/4;
 }
 .personal-account .card__content__item:not(:last-child):not(:first-child) p {
   border-top: 2px solid var(--color-basic-dark-grey);
@@ -2073,17 +2083,19 @@ svg * {
 .personal-account .card__content__item-price p {
   border-top: 2px solid var(--color-basic-white);
   font-weight: 600;
-  font-size: 22px;
+  font-size: clamp(16px, 1.1458333333vw, 22px);
   color: var(--color-basic-white);
+  margin-top: 10px;
+  padding-top: 10px;
 }
 .personal-account .card__content__item__title {
-  font-size: 15px;
-  line-height: 62px;
+  font-size: clamp(12px, 0.78125vw, 15px);
+  line-height: 60px;
   color: var(--color-basic-grey);
 }
 .personal-account .card__content__item__description {
-  font-size: 18px;
-  line-height: 62px;
+  font-size: clamp(14px, 0.9375vw, 18px);
+  line-height: 60px;
   color: var(--color-basic-white);
 }
 .personal-account .card__button-container {
@@ -2091,6 +2103,7 @@ svg * {
   justify-content: end;
   align-items: center;
   gap: 20px;
+  margin-top: -13px;
 }
 .personal-account .card__button-container .card__button-trashcan {
   position: relative;
@@ -2106,21 +2119,25 @@ svg * {
 .personal-account .card__button-container .card__button-trashcan path {
   stroke: var(--color-basic-grey);
 }
+.personal-account .card__button-container .card__button-trashcan:hover .card__button-trashcan__tooltip {
+  display: block;
+}
 .personal-account .card__button-container .card__button-trashcan__tooltip {
   position: absolute;
   background-color: var(--color-transparent-grey);
   padding: 10px 20px;
   border-radius: 25px;
-  top: 100%;
+  top: 110%;
   left: 0;
   z-index: 10;
+  transition: var(--transition-duration);
+  display: none;
 }
 .personal-account .card__button-container .card__button-trashcan__tooltip:before {
   content: "";
   position: absolute;
   bottom: 100%;
   left: 20px;
-  margin-left: -5px;
   border-width: 7px;
   border-style: solid;
   border-color: transparent transparent var(--color-transparent-grey) transparent;
@@ -2129,11 +2146,11 @@ svg * {
   white-space: nowrap;
   font-size: 15px;
   line-height: 18px;
+  color: var(--color-basic-white);
 }
-.personal-account .card__button-container .card__button-trashcan:hover + .card__button-trashcan__tooltip-text,
-.personal-account .card__button-container .card__button-trashcan:focus + .card__button-trashcan__tooltip-text {
-  display: block;
+.personal-account .card__button-container .button {
+  padding: 20px 48px;
 }
-.personal-account .button__text {
+.personal-account .card__button-container .button__text {
   font-size: 20px;
 }/*# sourceMappingURL=index.css.map */
