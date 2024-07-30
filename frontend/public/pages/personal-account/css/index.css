@@ -319,14 +319,8 @@ body {
 /**
   Приводим к единому цвету svg-элементы
  */
-svg *[fill] {
-  fill: currentColor;
-}
-
-svg *[stroke] {
-  stroke: currentColor;
-}
-
+/*svg *[fill] { fill: currentColor }
+svg *[stroke] { stroke: currentColor }*/
 /**
   Чиним баг задержки смены цвета при взаимодействии с svg-элементами
  */
@@ -627,14 +621,8 @@ body {
 /**
   Приводим к единому цвету svg-элементы
  */
-svg *[fill] {
-  fill: currentColor;
-}
-
-svg *[stroke] {
-  stroke: currentColor;
-}
-
+/*svg *[fill] { fill: currentColor }
+svg *[stroke] { stroke: currentColor }*/
 /**
   Чиним баг задержки смены цвета при взаимодействии с svg-элементами
  */
@@ -1035,6 +1023,10 @@ svg * {
 .personal-account .personal-account__header .personal-account__menu .personal-account__menu-dropdown .personal-account__menu-dropdown-button .dropdown__arrow {
   width: 15px;
   height: 8.82px;
+  fill: none;
+}
+.personal-account .personal-account__header .personal-account__menu .personal-account__menu-dropdown .personal-account__menu-dropdown-button .dropdown__arrow path {
+  fill: url(#paint0_linear_1_409);
 }
 .personal-account .personal-account__header .personal-account__menu .personal-account__menu-dropdown .personal-account__menu-dropdown-list {
   display: none;
@@ -1111,13 +1103,11 @@ svg * {
   /*-webkit-background-clip: text;*/
   background-clip: text;
   background-image: var(--color-accent-purple-gradient);
-}
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-title h5 {
   font-weight: 500;
   font-size: 28px;
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-title h5 {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-title {
     font-weight: 600;
     font-size: 18px;
   }
@@ -1141,14 +1131,27 @@ svg * {
     margin-bottom: 20px;
   }
 }
+.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content {
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--color-basic-dark-grey);
+}
 @media (max-width: 375.2px) {
   .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content {
     height: 18px;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content p {
+@media (max-width: 375.2px) {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content {
+    border: none;
+  }
+}
+.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span {
   margin: 0;
   height: 21.5px;
+}
+.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content:last-child {
+  border: none;
+  padding: 0;
 }
 @media (max-width: 375.2px) {
   .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content:nth-of-type(5) {
@@ -1160,79 +1163,66 @@ svg * {
     height: 34px;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content p:nth-of-type(1) {
+.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
   font-weight: 500;
   font-size: clamp(15px, 0.78125vw, 15px);
   color: var(--color-basic-grey);
   width: 248px;
 }
 @media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content p:nth-of-type(1) {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
     min-width: 175px;
     max-width: 177px;
     font-size: clamp(24px, 1.25vw, 24px);
   }
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content p:nth-of-type(1) {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
     font-size: clamp(15px, 0.78125vw, 15px);
   }
 }
 @media (max-width: 400px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content p:nth-of-type(1) {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
     font-size: clamp(13px, 0.6770833333vw, 13px);
   }
 }
 @media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content p:nth-of-type(1) {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
     font-size: clamp(12px, 0.625vw, 12px);
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content p:nth-of-type(2) {
+.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(2) {
   font-weight: 500;
   font-size: clamp(18px, 0.9375vw, 18px);
   color: #fff;
 }
 @media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content p:nth-of-type(2) {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(2) {
     height: fit-content;
     font-size: clamp(28px, 1.4583333333vw, 28px);
   }
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content p:nth-of-type(2) {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(2) {
     font-size: clamp(18px, 0.9375vw, 18px);
   }
 }
 @media (max-width: 400px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content p:nth-of-type(2) {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(2) {
     font-size: clamp(15px, 0.78125vw, 15px);
   }
 }
 @media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content p:nth-of-type(2) {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(2) {
     font-size: clamp(14px, 0.7291666667vw, 14px);
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content-line {
-  border: 2px solid var(--color-basic-dark-grey);
-}
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content-line:nth-of-type(1n) {
-  width: 498px;
-  margin: 0;
-}
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content-line:last-of-type {
-  width: 820px;
-  margin: 0;
-}
-@media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content-line {
-    display: none;
-  }
-}
 .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price {
+  padding-top: 20px;
   width: fit-content;
   margin-bottom: 13px;
+  width: 100%;
+  border-top: 2px solid var(--color-basic-white);
 }
 @media (max-width: 939px) {
   .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price {
@@ -1244,29 +1234,17 @@ svg * {
     margin-bottom: 0;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-line {
-  margin: 0;
-  height: 0;
-  width: 820px;
-  border: 2px solid #fff;
-  margin-bottom: 20px;
-}
-@media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-line {
-    width: 100%;
-  }
-}
 .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content {
   display: flex;
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content p {
+.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content span {
   margin: 0;
   font-weight: 600;
   font-size: clamp(22px, 1.1458333333vw, 22px);
   color: #fff;
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content p {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content span {
     font-size: clamp(16px, 0.8333333333vw, 16px);
     position: absolute;
     bottom: 50px;
@@ -1274,16 +1252,19 @@ svg * {
     margin-bottom: 0;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content p:nth-of-type(1) {
+.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content span:nth-of-type(1) {
   width: 245px;
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content p:nth-of-type(1) {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content span:nth-of-type(1) {
     display: none;
   }
 }
 .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-remove-card {
   width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   bottom: 52px;
   right: 324px;
@@ -1377,18 +1358,23 @@ svg * {
   }
 }
 .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-photo {
+  background: url(../img/company-photo.svg) no-repeat center/100%;
   position: absolute;
   right: 32px;
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-photo p {
-  margin: 0;
+@media (max-width: 939px) {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-photo {
+    position: static;
+    width: 100%;
+    aspect-ratio: 1/0.57;
+  }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-photo .company-photo {
+.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .company-photo {
   width: 290px;
   height: 328px;
 }
 @media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-photo .company-photo {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .company-photo {
     position: static;
     width: 100%;
     height: 100%;
@@ -1398,15 +1384,8 @@ svg * {
   }
 }
 @media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-photo .company-photo {
+  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .company-photo {
     height: 184px;
-  }
-}
-@media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-photo {
-    position: static;
-    width: 100%;
-    aspect-ratio: 1/0.57;
   }
 }
 

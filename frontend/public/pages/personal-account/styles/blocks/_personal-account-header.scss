@@ -156,6 +156,10 @@
                     .dropdown__arrow {
                         width: 15px;
                         height: 8.82px;
+                        fill: none;
+                        path {
+                            fill: url(#paint0_linear_1_409);
+                        }
                     }
                 }
                 .personal-account__menu-dropdown-list {

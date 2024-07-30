@@ -104,11 +104,16 @@
                 <div class="personal-account__menu-dropdown">
                     <div class="personal-account__menu-dropdown-button">
                         <button class="dropdown__button">корзина</button>
-                        <img
-                        class="dropdown__arrow"
-                        src="./img/icons/arrow.svg"
-                        alt="arrow"
-                        loading="lazy">
+                        <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.7125 1.74468C14.8985 1.55474 15 1.313 15 1.02809C15 0.458271 14.5603 0.00069046 14.0023 0.00069046C13.7232 0.00069046 13.4696 0.121562 13.2751 0.320134L7.49154 6.36365L1.72492 0.320134C1.53044 0.121562 1.26832 0.00069046 0.997745 0.00069046C0.439684 0.00069046 0 0.458271 0 1.02809C0 1.313 0.101466 1.55474 0.287486 1.74468L6.71364 8.46161C6.93348 8.70335 7.20406 8.81559 7.5 8.82422C7.79594 8.82422 8.04961 8.70335 8.2779 8.46161L14.7125 1.74468Z" fill="url(#paint0_linear_1_409)"/>
+                            <defs>
+                                <linearGradient id="paint0_linear_1_409" x1="7.67442" y1="9.54241" x2="7.67442" y2="0.000690646" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#8333F3"/>
+                                    <stop offset="0.485532" stop-color="#5F4AF3"/>
+                                    <stop offset="1" stop-color="#3B51A8"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
                     </div>
                     <ul class="personal-account__menu-dropdown-list">
                         <li class="personal-account__menu-dropdown-item" data-value="bin">
@@ -132,284 +137,237 @@
             </nav>
         </div>
         <div class="personal-account__cart-catalog container">
-            <div class="personal-account__cart-catalog-item">
-                <div class="personal-account__cart-catalog-item-title">
-                    <h5>ОФОРМЛЕНИЕ ЗАКАЗА</h5>
-                </div>
-                <div class="personal-account__cart-catalog-item-photo">
-                    <img
-                    class="company-photo"
-                    src="./img/company-photo.svg"
-                    alt="Company photo"
-                    loading="lazy">
-                </div>
+            <article class="personal-account__cart-catalog-item">
+                <h5 class="personal-account__cart-catalog-item-title">ОФОРМЛЕНИЕ ЗАКАЗА</h5>
+                <div class="personal-account__cart-catalog-item-photo company-photo"></div>
                 <div class="personal-account__cart-catalog-item-content">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Профессия:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             Программист
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Компания:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             EPAM
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Начало стажировки:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             18.10.2023
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Конец  стажировки:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             25.10.2023
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Вид стажировки:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             Стажировка наблюдателя
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Адрес офиса:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             Минск, ул. Тиражная 150
-                        </p>
+                        </span>
                     </div>
                 </div>
                 <div class="personal-account__cart-catalog-item-price">
-                    <hr class="order-placing__cart-price-line">
                     <div class="order-placing__cart-price-content">
-                        <p>
+                        <span>
                             Стоимость:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             100 BYN
-                        </p>
+                        </span>
                     </div>
                 </div>
                 <div class="personal-account__cart-catalog-item-remove-card" data-title="Удалить из корзины">
-                    <img
-                    class="bin"
-                    src="./img/icons/bin.svg"
-                    alt="bin"
-                    loading="lazy">
+                    <svg class="bin" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 10H8.33333H35" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13.3333 10V6.66668C13.3333 5.78262 13.6845 4.93478 14.3096 4.30965C14.9347 3.68453 15.7826 3.33334 16.6666 3.33334H23.3333C24.2174 3.33334 25.0652 3.68453 25.6903 4.30965C26.3155 4.93478 26.6666 5.78262 26.6666 6.66668V10M31.6666 10V33.3333C31.6666 34.2174 31.3155 35.0652 30.6903 35.6904C30.0652 36.3155 29.2174 36.6667 28.3333 36.6667H11.6666C10.7826 36.6667 9.93474 36.3155 9.30962 35.6904C8.6845 35.0652 8.33331 34.2174 8.33331 33.3333V10H31.6666Z" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.6667 18.3333V28.3333" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23.3333 18.3333V28.3333" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
                 <div class="personal-account__cart-catalog-item-button">
                     <button class="order-placing__cart-button button" type="button">
                         <span class="order-placing__cart-button-text">Оформить заказ</span>
                     </button>
                 </div>
-            </div>
-            <div class="personal-account__cart-catalog-item">
-                <div class="personal-account__cart-catalog-item-title">
-                    <p>ОФОРМЛЕНИЕ ЗАКАЗА</p>
-                </div>
-                <div class="personal-account__cart-catalog-item-photo">
-                    <img
-                    class="company-photo"
-                    src="./img/company-photo.svg"
-                    alt="Company photo"
-                    width="290px"
-                    height="328px"
-                    loading="lazy">
-                </div>
+            </article>
+            <article class="personal-account__cart-catalog-item">
+                <h5 class="personal-account__cart-catalog-item-title">ОФОРМЛЕНИЕ ЗАКАЗА</h5>
+                <div class="personal-account__cart-catalog-item-photo company-photo"></div>
                 <div class="personal-account__cart-catalog-item-content">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Профессия:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             Программист
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Компания:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             EPAM
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Начало стажировки:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             18.10.2023
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Конец  стажировки:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             25.10.2023
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Вид стажировки:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             Стажировка наблюдателя
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Адрес офиса:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             Минск, ул. Тиражная 150
-                        </p>
+                        </span>
                     </div>
                 </div>
                 <div class="personal-account__cart-catalog-item-price">
-                    <hr class="order-placing__cart-price-line">
                     <div class="order-placing__cart-price-content">
-                        <p>
+                        <span>
                             Стоимость:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             100 BYN
-                        </p>
+                        </span>
                     </div>
                 </div>
                 <div class="personal-account__cart-catalog-item-remove-card" data-title="Удалить из корзины">
-                    <img
-                    class="bin"
-                    src="./img/icons/bin.svg"
-                    alt="bin"
-                    width="40px"
-                    height="40px"
-                    loading="lazy">
+                    <svg class="bin" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 10H8.33333H35" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13.3333 10V6.66668C13.3333 5.78262 13.6845 4.93478 14.3096 4.30965C14.9347 3.68453 15.7826 3.33334 16.6666 3.33334H23.3333C24.2174 3.33334 25.0652 3.68453 25.6903 4.30965C26.3155 4.93478 26.6666 5.78262 26.6666 6.66668V10M31.6666 10V33.3333C31.6666 34.2174 31.3155 35.0652 30.6903 35.6904C30.0652 36.3155 29.2174 36.6667 28.3333 36.6667H11.6666C10.7826 36.6667 9.93474 36.3155 9.30962 35.6904C8.6845 35.0652 8.33331 34.2174 8.33331 33.3333V10H31.6666Z" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.6667 18.3333V28.3333" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23.3333 18.3333V28.3333" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
                 <div class="personal-account__cart-catalog-item-button">
                     <button class="order-placing__cart-button button" type="button">
                         <span class="order-placing__cart-button-text">Оформить заказ</span>
                     </button>
                 </div>
-            </div>
-            <div class="personal-account__cart-catalog-item">
-                <div class="personal-account__cart-catalog-item-title">
-                    <p>ОФОРМЛЕНИЕ ЗАКАЗА</p>
-                </div>
-                <div class="personal-account__cart-catalog-item-photo">
-                    <img
-                    class="company-photo"
-                    src="./img/company-photo.svg"
-                    alt="Company photo"
-                    width="290px"
-                    height="328px"
-                    loading="lazy">
-                </div>
+            </article>
+            <article class="personal-account__cart-catalog-item">
+                <h5 class="personal-account__cart-catalog-item-title">ОФОРМЛЕНИЕ ЗАКАЗА</h5>
+                <div class="personal-account__cart-catalog-item-photo company-photo"></div>
                 <div class="personal-account__cart-catalog-item-content">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Профессия:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             Программист
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Компания:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             EPAM
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Начало стажировки:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             18.10.2023
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Конец  стажировки:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             25.10.2023
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Вид стажировки:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             Стажировка наблюдателя
-                        </p>
+                        </span>
                     </div>
-                    <hr class="order-placing__cart-item-content-line">
                     <div class="order-placing__cart-item-content">
-                        <p>
+                        <span>
                             Адрес офиса:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             Минск, ул. Тиражная 150
-                        </p>
+                        </span>
                     </div>
                 </div>
                 <div class="personal-account__cart-catalog-item-price">
-                    <hr class="order-placing__cart-price-line">
                     <div class="order-placing__cart-price-content">
-                        <p>
+                        <span>
                             Стоимость:
-                        </p>
-                        <p>
+                        </span>
+                        <span>
                             100 BYN
-                        </p>
+                        </span>
                     </div>
                 </div>
                 <div class="personal-account__cart-catalog-item-remove-card" data-title="Удалить из корзины">
-                    <img
-                    class="bin"
-                    src="./img/icons/bin.svg"
-                    alt="bin"
-                    width="40px"
-                    height="40px"
-                    loading="lazy">
+                    <svg class="bin" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 10H8.33333H35" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13.3333 10V6.66668C13.3333 5.78262 13.6845 4.93478 14.3096 4.30965C14.9347 3.68453 15.7826 3.33334 16.6666 3.33334H23.3333C24.2174 3.33334 25.0652 3.68453 25.6903 4.30965C26.3155 4.93478 26.6666 5.78262 26.6666 6.66668V10M31.6666 10V33.3333C31.6666 34.2174 31.3155 35.0652 30.6903 35.6904C30.0652 36.3155 29.2174 36.6667 28.3333 36.6667H11.6666C10.7826 36.6667 9.93474 36.3155 9.30962 35.6904C8.6845 35.0652 8.33331 34.2174 8.33331 33.3333V10H31.6666Z" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.6667 18.3333V28.3333" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23.3333 18.3333V28.3333" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
                 <div class="personal-account__cart-catalog-item-button">
                     <button class="order-placing__cart-button button" type="button">
                         <span class="order-placing__cart-button-text">Оформить заказ</span>
                     </button>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
     <script type="module" src="./js/index.js"></script>

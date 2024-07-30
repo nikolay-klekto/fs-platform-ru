@@ -126,8 +126,8 @@
  /**
    Приводим к единому цвету svg-элементы
   */
- svg *[fill] { fill: currentColor }
- svg *[stroke] { stroke: currentColor }
+ /*svg *[fill] { fill: currentColor }
+ svg *[stroke] { stroke: currentColor }*/
  
  /**
    Чиним баг задержки смены цвета при взаимодействии с svg-элементами
