@@ -2,13 +2,12 @@ package com.fs.client.repository
 
 import com.fs.client.repository.blocked.BasketBlockingRepository
 import com.fs.client.repository.blocked.OrderBlockingRepository
-import com.fs.client.service.OrderModelConverter
+import com.fs.client.converter.OrderModelConverter
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.enums.OrderStatus
 import org.apache.logging.log4j.LogManager
-import org.jetbrains.kotlin.gradle.utils.`is`
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono

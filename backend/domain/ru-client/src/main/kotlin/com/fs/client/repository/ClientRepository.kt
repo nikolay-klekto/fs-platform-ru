@@ -2,7 +2,7 @@ package com.fs.client.repository
 
 import com.fs.client.repository.blocked.ClientBlockingRepository
 import com.fs.client.ru.ClientModel
-import com.fs.client.service.ClientModelConverter
+import com.fs.client.converter.ClientModelConverter
 import com.fs.client.service.PasswordService
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER

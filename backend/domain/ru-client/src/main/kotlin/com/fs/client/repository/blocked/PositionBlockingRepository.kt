@@ -1,6 +1,6 @@
 package com.fs.client.repository.blocked
 
-import com.fs.client.service.PositionModelConverter
+import com.fs.client.converter.PositionModelConverter
 import com.fs.domain.jooq.tables.Position.Companion.POSITION
 import com.fs.domain.jooq.tables.pojos.Position
 import com.fs.service.ru.PositionModel
