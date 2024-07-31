@@ -32,8 +32,7 @@
           </p>
           <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-              d="M14.7125 1.74468C14.8985 1.55474 15 1.313 15 1.02809C15 0.458271 14.5603 0.00069046 14.0023 0.00069046C13.7232 0.00069046 13.4696 0.121562 13.2751 0.320134L7.49154 6.36365L1.72492 0.320134C1.53044 0.121562 1.26832 0.00069046 0.997745 0.00069046C0.439684 0.00069046 0 0.458271 0 1.02809C0 1.313 0.101466 1.55474 0.287486 1.74468L6.71364 8.46161C6.93348 8.70335 7.20406 8.81559 7.5 8.82422C7.79594 8.82422 8.04961 8.70335 8.2779 8.46161L14.7125 1.74468Z"
-            />
+              d="M14.7125 1.74468C14.8985 1.55474 15 1.313 15 1.02809C15 0.458271 14.5603 0.00069046 14.0023 0.00069046C13.7232 0.00069046 13.4696 0.121562 13.2751 0.320134L7.49154 6.36365L1.72492 0.320134C1.53044 0.121562 1.26832 0.00069046 0.997745 0.00069046C0.439684 0.00069046 0 0.458271 0 1.02809C0 1.313 0.101466 1.55474 0.287486 1.74468L6.71364 8.46161C6.93348 8.70335 7.20406 8.81559 7.5 8.82422C7.79594 8.82422 8.04961 8.70335 8.2779 8.46161L14.7125 1.74468Z" />
             <defs>
               <linearGradient id="paint0_linear_1_408" x1="7.67442" y1="9.54241" x2="7.67442" y2="0.000690646"
                 gradientUnits="userSpaceOnUse">
@@ -50,7 +49,7 @@
       <div class="card-container">
         <div class="card">
           <h4 class="card__title">Оформление заказа</h4>
-          <img class="card__image" src="img/Rectangle 4558.png" alt="Офис EPAM">
+          <div class="card__image"></div>
           <div class="card__content">
             <div class="card__content__item">
               <p class="card__content__item__title">Профессия:</p>
@@ -79,6 +78,24 @@
             <div class="card__content__item card__content__item-price">
               <p class="card__content__item__title">Стоимость:</p>
               <p class="card__content__item__description">100 BYN</p>
+              <div class="card__content__item__button-container">
+                <button class="card__content__item__button-trashcan">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 6H5H21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                      d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M10 11V17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M14 11V17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <div class="card__content__item__button-trashcan__tooltip">
+                    <p class="card__content__item__button-trashcan__tooltip-text">Удалить из корзины</p>
+                  </div>
+                </button>
+                <button class="card__button-order button button_transparent" type="button">
+                  <span class="card__content__item__button__text">Оформить</span>
+                </button>
+              </div>
             </div>
           </div>
           <div class="card__button-container">
