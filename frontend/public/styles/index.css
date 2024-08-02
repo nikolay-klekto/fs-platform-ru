@@ -2184,11 +2184,11 @@ svg * {
     grid-column: 2/4;
   }
 }
-.personal-account .card__content__item:not(:last-child):not(:first-child) p {
+.personal-account .card__content__item:not(:last-child):not(:first-child) span {
   border-top: 2px solid var(--color-basic-dark-grey);
 }
 @media (max-width: 375.2px) {
-  .personal-account .card__content__item:not(:last-child):not(:first-child) p {
+  .personal-account .card__content__item:not(:last-child):not(:first-child) span {
     border-top: 0;
   }
 }

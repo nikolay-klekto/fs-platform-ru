@@ -212,7 +212,7 @@
       }
     }
 
-    &:not(:last-child):not(:first-child) p {
+    &:not(:last-child):not(:first-child) span {
       border-top: 2px solid var(--color-basic-dark-grey);
 
       @include mobile {
