@@ -2012,6 +2012,7 @@ svg * {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    position: relative;
   }
 }
 .personal-account .nav__title {
@@ -2021,12 +2022,52 @@ svg * {
 @media (max-width: 375.2px) {
   .personal-account .nav__menu {
     display: none;
+    position: absolute;
+    z-index: 10;
+    top: 100%;
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    background: var(--color-basic-dark-blue);
+  }
+  .personal-account .nav__menu.dropdown-menu_open {
+    display: block;
+  }
+  .personal-account .nav__menu-list {
+    align-items: center;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .personal-account .nav__menu-list .nav__menu-list__item_active {
+    display: none;
+  }
+}
+@media (max-width: 375.2px) and (hover: hover) {
+  .personal-account .nav__menu-list__item:hover {
+    background: var(--color-basic-white);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--color-basic-white);
+  }
+}
+@media (max-width: 375.2px) and (hover: none) {
+  .personal-account .nav__menu-list__item:active {
+    background: var(--color-basic-white);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--color-basic-white);
   }
 }
 .personal-account .nav__menu-list {
   display: flex;
   justify-content: center;
-  gap: 86px;
+}
+@media (min-width: 376px) {
+  .personal-account .nav__menu-list {
+    gap: 86px;
+  }
 }
 .personal-account .nav__menu-list__item {
   position: relative;
@@ -2054,24 +2095,25 @@ svg * {
   color: var(--color-basic-grey);
   text-transform: uppercase;
 }
-.personal-account .nav__menu-burger {
+.personal-account .nav__menu-dropdown {
   display: none;
 }
 @media (max-width: 375.2px) {
-  .personal-account .nav__menu-burger {
+  .personal-account .nav__menu-dropdown {
     display: block;
+    cursor: pointer;
   }
 }
-.personal-account .nav__menu-burger__container {
+.personal-account .nav__menu-dropdown__container {
   display: flex;
   justify-content: center;
   align-items: baseline;
   gap: 4px;
 }
-.personal-account .nav__menu-burger__container path {
+.personal-account .nav__menu-dropdown__container path {
   fill: url(#paint0_linear_1_408);
 }
-.personal-account .nav__menu-burger__title {
+.personal-account .nav__menu-dropdown__title {
   position: relative;
   font-size: 18px;
   font-weight: 600;
@@ -2083,7 +2125,7 @@ svg * {
   -webkit-text-fill-color: transparent;
   color: var(--color-accent-purple);
 }
-.personal-account .nav__menu-burger__title::after {
+.personal-account .nav__menu-dropdown__title::after {
   content: "";
   position: absolute;
   left: 0;

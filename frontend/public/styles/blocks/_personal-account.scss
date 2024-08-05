@@ -20,6 +20,7 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+      position: relative;
     }
 
     &__title {
@@ -30,13 +31,47 @@
     &__menu {
       @include mobile {
         display: none;
+        position: absolute;
+        z-index: 10;
+        top: 100%;
+        width: 100vw;
+        height: 100vh;
+        padding: 20px;
+        background: var(--color-basic-dark-blue);
+
+        &.dropdown-menu_open {
+          display: block;
+        }
+
+        &-list {
+          .nav__menu-list__item_active {
+            display: none;
+          }
+
+          align-items: center;
+          flex-direction: column;
+          gap: 18px;
+
+          &__item {
+            @include hover {
+              background: var(--color-basic-white);
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              color: var(--color-basic-white);
+            }
+          }
+        }
       }
     }
 
     &__menu-list {
       display: flex;
       justify-content: center;
-      gap: 86px;
+
+      @include mobile-above {
+        gap: 86px;
+      }
     }
 
     &__menu-list__item {
@@ -71,15 +106,16 @@
       }
     }
 
-    &__menu-burger {
+    &__menu-dropdown {
       display: none;
 
       @include mobile {
         display: block;
+        cursor: pointer;
       }
     }
 
-    &__menu-burger__container {
+    &__menu-dropdown__container {
       display: flex;
       justify-content: center;
       align-items: baseline;
@@ -90,7 +126,7 @@
       }
     }
 
-    &__menu-burger__title {
+    &__menu-dropdown__title {
       position: relative;
       font-size: 18px;
       font-weight: 600;
@@ -221,6 +257,7 @@
     }
 
     &-price {
+
       .card__content__item__title,
       .card__content__item__description {
         border-top: 2px solid var(--color-basic-white);
