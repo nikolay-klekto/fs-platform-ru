@@ -165,12 +165,6 @@
     border-radius: 50px;
     background: var(--color-transparent-grey);
 
-    &:nth-child(n+2) {
-      @include mobile {
-        display: none;
-      }
-    }
-
     @include tablet {
       width: 660px;
     }
@@ -325,6 +319,7 @@
       background: none;
       border: 0;
       padding: 0;
+      cursor: pointer;
 
       svg {
         display: block;
@@ -400,6 +395,8 @@
       background: none;
       border: 0;
       padding: 0;
+      
+      cursor: pointer;
 
       svg {
         display: block;

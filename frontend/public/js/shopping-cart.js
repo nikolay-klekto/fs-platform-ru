@@ -3,7 +3,7 @@ dropdownMenu.addEventListener("click", toggleDropdownMenuOpen);
 
 function toggleDropdownMenuOpen() {
   const menuDropdown = document.querySelector(".nav__menu");
-  menuDropdown.classList.toggle("dropdown-menu_open");
+  menuDropdown.classList.toggle(" ");
   document.body.style.overflow =
     document.body.style.overflow === "hidden" ? "" : "hidden";
 }
@@ -18,3 +18,17 @@ function disableDropdownMenuOpen() {
   menuDropdown.classList.remove("dropdown-menu_open");
   document.body.style.overflow = "";
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const deleteButtons = document.querySelectorAll('.card__content__item__button-trashcan, .card__button-trashcan');
+
+  deleteButtons.forEach(button => {
+    button.addEventListener("click", (event) => {
+      const cardId = event.currentTarget.getAttribute('data-card-id');
+      const card = document.getElementById(cardId);
+      if (card) {
+        card.remove();
+      }
+    });
+  });
+});

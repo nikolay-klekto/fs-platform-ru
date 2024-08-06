@@ -2147,11 +2147,6 @@ svg * {
   border-radius: 50px;
   background: var(--color-transparent-grey);
 }
-@media (max-width: 375.2px) {
-  .personal-account .card-container:nth-child(n+2) {
-    display: none;
-  }
-}
 @media (max-width: 1023px) {
   .personal-account .card-container {
     width: 660px;
@@ -2298,6 +2293,7 @@ svg * {
   background: none;
   border: 0;
   padding: 0;
+  cursor: pointer;
 }
 .personal-account .card__content__item__button-container .card__content__item__button-trashcan svg {
   display: block;
@@ -2364,6 +2360,7 @@ svg * {
   background: none;
   border: 0;
   padding: 0;
+  cursor: pointer;
 }
 .personal-account .card__button-container .card__button-trashcan svg {
   display: block;
