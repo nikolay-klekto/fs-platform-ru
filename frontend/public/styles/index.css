@@ -2332,7 +2332,7 @@ svg * {
   line-height: 14px;
   color: var(--color-basic-white);
 }
-.personal-account .card__content__item__button-container .card__content__item__button__text {
+.personal-account .card__content__item__button-container .card__content__item__button-order__text {
   font-size: 15px;
   font-weight: 500;
   color: var(--color-basic-white);
