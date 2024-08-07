@@ -1,6 +1,6 @@
 package com.fs.client.repository.blocked
 
-import com.fs.client.service.BasketModelConverter
+import com.fs.client.converter.BasketModelConverter
 import com.fs.domain.jooq.tables.Basket.Companion.BASKET
 import com.fs.domain.jooq.tables.pojos.Basket
 import com.fs.domain.jooq.tables.records.BasketRecord

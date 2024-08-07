@@ -2,7 +2,7 @@ package com.fs.client.repository
 
 import com.fs.client.repository.blocked.AddressBlockingRepository
 import com.fs.client.ru.AddressModel
-import com.fs.client.service.AddressModelConverter
+import com.fs.client.converter.AddressModelConverter
 import com.fs.domain.jooq.tables.Address.Companion.ADDRESS
 import com.fs.domain.jooq.tables.pojos.Address
 import com.fs.domain.jooq.tables.records.AddressRecord

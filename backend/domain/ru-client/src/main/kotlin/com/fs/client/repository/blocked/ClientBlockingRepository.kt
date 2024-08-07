@@ -3,7 +3,7 @@ package com.fs.client.repository.blocked
 import com.fs.client.repository.OrderRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.enums.ClientRoleModel
-import com.fs.client.service.ClientModelConverter
+import com.fs.client.converter.ClientModelConverter
 import com.fs.client.service.PasswordService
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.pojos.Client

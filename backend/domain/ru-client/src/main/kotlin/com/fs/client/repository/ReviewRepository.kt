@@ -5,7 +5,7 @@ import com.fs.client.repository.blocked.OfficeBlockingRepository
 import com.fs.client.repository.blocked.OrderBlockingRepository
 import com.fs.client.repository.blocked.ReviewBlockingRepository
 import com.fs.client.ru.enums.ClientRoleModel
-import com.fs.client.service.ReviewModelConverter
+import com.fs.client.converter.ReviewModelConverter
 import com.fs.domain.jooq.tables.Review.Companion.REVIEW
 import com.fs.domain.jooq.tables.pojos.Review
 import com.fs.domain.jooq.tables.records.ReviewRecord

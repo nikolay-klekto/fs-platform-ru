@@ -1,7 +1,7 @@
 package com.fs.client.repository
 
 import com.fs.client.repository.blocked.CompanyBlockingRepository
-import com.fs.client.service.CompanyModelConverter
+import com.fs.client.converter.CompanyModelConverter
 import com.fs.domain.jooq.tables.Address.Companion.ADDRESS
 import com.fs.domain.jooq.tables.Company.Companion.COMPANY
 import com.fs.domain.jooq.tables.Office.Companion.OFFICE

@@ -3,7 +3,7 @@ package com.fs.client.repository
 import com.fs.client.repository.blocked.CountryBlockingRepository
 import com.fs.client.ru.CountryModel
 import com.fs.client.ru.enums.CountryNameModel
-import com.fs.client.service.CountryModelConverter
+import com.fs.client.converter.CountryModelConverter
 import com.fs.domain.jooq.tables.City.Companion.CITY
 import com.fs.domain.jooq.tables.Country.Companion.COUNTRY
 import com.fs.domain.jooq.tables.pojos.Country

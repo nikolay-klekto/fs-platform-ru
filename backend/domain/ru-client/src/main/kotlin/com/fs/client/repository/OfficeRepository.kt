@@ -5,7 +5,7 @@ import com.fs.client.repository.blocked.OfficeBlockingRepository
 import com.fs.client.ru.AddressModel
 import com.fs.client.ru.CompanyAddress
 import com.fs.client.ru.OfficeModel
-import com.fs.client.service.OfficeModelConverter
+import com.fs.client.converter.OfficeModelConverter
 import com.fs.domain.jooq.tables.Address.Companion.ADDRESS
 import com.fs.domain.jooq.tables.Office.Companion.OFFICE
 import com.fs.domain.jooq.tables.pojos.Office

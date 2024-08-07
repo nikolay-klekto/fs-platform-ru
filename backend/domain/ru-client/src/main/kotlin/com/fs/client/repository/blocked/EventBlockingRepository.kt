@@ -1,6 +1,6 @@
 package com.fs.client.repository.blocked
 
-import com.fs.client.service.EventModelConverter
+import com.fs.client.converter.EventModelConverter
 import com.fs.domain.jooq.tables.Event
 import com.fs.service.ru.EventModel
 import org.jooq.DSLContext
