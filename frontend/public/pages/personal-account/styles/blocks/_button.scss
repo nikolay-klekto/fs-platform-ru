@@ -1,0 +1,141 @@
+.button {
+    @include flex-center(true);
+    min-width: fit-content;
+    height: var(--button-height);
+    padding-inline: 40px; //2.5rem;
+    border-radius: var(--button-border-radius);
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    // .button__text
+    &__text{
+        font-weight: 600;
+        font-size:  25px; //1.56rem;
+        color: var(--color-basic-white);
+        &::first-letter{
+            text-transform: uppercase;
+        }
+
+        // @include mobile{
+        //     font-size: 18px;
+        // }
+
+        // @include desktop{
+        //     font-size: 20px;
+        // }
+
+        // @include tablet{
+        //     font-size: 18px;
+        // }
+    }
+
+    // .button_purple
+    &_purple {
+        background: var(--color-accent-purple-gradient);
+
+        @include hover{
+            background: var(--color-accent-purple-light-gradient);
+        }
+    }
+
+    // .button_white
+    &_white {
+        background: var(--color-basic-white);
+
+        .button__text{
+            background: var(--color-accent-purple-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var( --color-accent-purple);
+        }
+
+        @include hover{
+            box-shadow: var(--button-shadow);
+        }
+    }
+
+    // .button_transparent
+    &_transparent {
+        background: transparent;
+        position: relative;
+        z-index: 0;
+
+        &::before{
+            content: '';
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            padding: 4px;
+            border-radius: var(--button-border-radius);
+            background: var(--color-accent-purple-gradient);
+            -webkit-mask:
+                linear-gradient(#fff 10 10) content-box,
+                linear-gradient(#fff 10 10);
+                    mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+
+            @include tablet{
+                padding: 3px;
+            }
+            @include mobile{
+                padding: 2px;
+            }
+        }
+
+        @include hover{
+            background: var(--color-accent-purple-gradient);
+        }
+    }
+}
+
+@mixin button-secondary {
+    height: var(--button-height-secondary);
+
+    .button__text{
+        font-size: 20px;
+    }
+}
+
+@mixin button-tablet {
+    height: var(--button-height-tablet);
+    padding-inline: 30px;
+
+    .button__text{
+        font-size:  20px;
+    }
+}
+
+@mixin button-secondary-tablet {
+    height: var(--button-height-secondary-tablet);
+    padding-inline: 30px;
+
+    .button__text{
+        font-size:  17px;
+    }
+}
+
+@mixin button-mobile {
+    height: var(--button-height-mobile);
+    padding-inline: 20px;
+
+    .button__text{
+        font-size:  17px;
+    }
+}
+
+@mixin button-secondary-mobile {
+    height: var(--button-height-secondary-mobile);
+    padding-inline: 20px;
+
+    .button__text{
+        font-weight: 500;
+        font-size:  15px;
+    }
+}
