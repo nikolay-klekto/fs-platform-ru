@@ -2,7 +2,7 @@ package com.fs.client.repository.impl
 
 import com.fs.client.repository.CompanyRepository
 import com.fs.client.repository.blocked.CompanyBlockingRepository
-import com.fs.client.service.CompanyModelConverter
+import com.fs.client.converter.CompanyModelConverter
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
 

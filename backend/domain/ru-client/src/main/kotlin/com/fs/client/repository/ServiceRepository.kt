@@ -1,7 +1,7 @@
 package com.fs.client.repository
 
 import com.fs.client.repository.blocked.ServiceBlockingRepository
-import com.fs.client.service.ServiceModelConverter
+import com.fs.client.converter.ServiceModelConverter
 import com.fs.domain.jooq.tables.Service.Companion.SERVICE
 import com.fs.domain.jooq.tables.pojos.Service
 import com.fs.domain.jooq.tables.records.ServiceRecord

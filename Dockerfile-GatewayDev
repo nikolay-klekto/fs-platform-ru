@@ -4,3 +4,4 @@ WORKDIR /opt/app
 COPY ${JAR_FILE} appGateway.jar
 EXPOSE 8081
 ENTRYPOINT ["java","-jar","appGateway.jar"]
+#

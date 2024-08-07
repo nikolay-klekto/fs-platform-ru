@@ -1,4 +1,4 @@
-package com.fs.client.service
+package com.fs.client.converter
 
 import com.fs.client.ru.AddressModel
 import com.fs.client.ru.CompanyAddress

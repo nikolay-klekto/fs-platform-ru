@@ -1,6 +1,6 @@
 package com.fs.client.repository.blocked
 
-import com.fs.client.service.OrderModelConverter
+import com.fs.client.converter.OrderModelConverter
 import com.fs.domain.jooq.tables.Basket.Companion.BASKET
 import com.fs.domain.jooq.tables.Client
 import com.fs.domain.jooq.tables.Order.Companion.ORDER

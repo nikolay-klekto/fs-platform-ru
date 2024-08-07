@@ -1,4 +1,4 @@
-package com.fs.client.service
+package com.fs.client.converter
 
 import com.google.api.client.util.DateTime
 import com.google.api.services.calendar.model.EventDateTime

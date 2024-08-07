@@ -3,9 +3,9 @@ package com.fs.client.repository
 import com.fs.client.repository.blocked.AddressBlockingRepository
 import com.fs.client.repository.blocked.EventBlockingRepository
 import com.fs.client.ru.AddressModel
-import com.fs.client.service.DateTimeConverterService
-import com.fs.client.service.EventModelConverter
-import com.fs.client.service.EventModelConverter.Companion.defaultAddressModel
+import com.fs.client.converter.DateTimeConverterService
+import com.fs.client.converter.EventModelConverter
+import com.fs.client.converter.EventModelConverter.Companion.defaultAddressModel
 import com.fs.client.service.GoogleCalendarEventService
 import com.fs.domain.jooq.tables.Address.Companion.ADDRESS
 import com.fs.domain.jooq.tables.Event.Companion.EVENT

@@ -1,7 +1,7 @@
 package com.fs.client.repository
 
 import com.fs.client.ru.CityModel
-import com.fs.client.service.CityModelConverter
+import com.fs.client.converter.CityModelConverter
 import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.City.Companion.CITY
 import com.fs.domain.jooq.tables.Office
