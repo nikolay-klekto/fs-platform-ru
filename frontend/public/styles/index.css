@@ -1987,10 +1987,16 @@ svg * {
   font-size: 15px;
 }
 
+.header {
+  z-index: 20;
+  background: url(/frontend/public/img/Intersect.png), var(--color-transparent-purple);
+  background-blend-mode: overlay;
+}
+
 .personal-account {
   width: 100%;
   margin: 0 auto;
-  padding: 100px 60px;
+  padding: 228px 60px;
 }
 @media (max-width: 1023px) {
   .personal-account {
@@ -2137,7 +2143,7 @@ svg * {
 .personal-account .shopping-cart {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 40px;
+  margin-top: 80px;
   gap: 40px 32px;
 }
 .personal-account .card-container {
