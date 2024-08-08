@@ -18,6 +18,7 @@ type Query {
     getOrderById(id: ID!): Order
     getOrdersByClientId(clientId: ID): [Order]
     getOrdersByBasketId(basketId: ID): [Order]
+    getAllOrders: [Order]
 
     getCompanyById(id: ID!): Company
     getAllCompanies: [Company]

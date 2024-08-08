@@ -33,7 +33,7 @@ class GoogleCalendarEventService(open val resourceLoader: ResourceLoader) {
         private const val TOKENS_DIRECTORY_PATH = "tokens"
         private const val CREDENTIALS_FILE_PATH =
             "classpath:credentials.json" // Путь до файла credentials.json в папке resources
-        private const val REDIRECT_URI = "funscrut.online" // Ваш URI перенаправления
+        private const val REDIRECT_URI = "http://45.135.234.61" // Ваш URI перенаправления
 
     }
 

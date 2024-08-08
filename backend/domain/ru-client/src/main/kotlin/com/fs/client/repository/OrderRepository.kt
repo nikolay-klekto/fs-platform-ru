@@ -1,8 +1,8 @@
 package com.fs.client.repository
 
+import com.fs.client.converter.OrderModelConverter
 import com.fs.client.repository.blocked.BasketBlockingRepository
 import com.fs.client.repository.blocked.OrderBlockingRepository
-import com.fs.client.converter.OrderModelConverter
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.service.ru.OrderModel
@@ -21,6 +21,14 @@ abstract class OrderRepository(
     open val basketBlockingRepository: BasketBlockingRepository,
     open val orderBlockingRepository: OrderBlockingRepository
 ) {
+
+    fun getAllOrders(): Flux<OrderModel> {
+        return Flux.from(
+            dsl.select(ORDER.asterisk()).from(ORDER)
+        )
+            .map { it.into(Order::class.java) }
+            .map(converter::toModel)
+    }
 
     fun getOrderByrId(id: Long): Mono<OrderModel> {
         return Mono.fromSupplier {

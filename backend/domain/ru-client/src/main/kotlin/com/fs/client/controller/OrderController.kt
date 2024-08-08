@@ -22,6 +22,11 @@ open class OrderController(open val orderRepository: OrderRepository) {
     }
 
     @QueryMapping
+    fun getAllOrders(): Flux<OrderModel> {
+        return orderRepository.getAllOrders()
+    }
+
+    @QueryMapping
     fun getOrdersByClientId(@Argument clientId: Long): Flux<OrderModel> {
         return orderRepository.getAllOrdersByClientId(clientId)
     }
