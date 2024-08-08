@@ -3,7 +3,7 @@ dropdownMenu.addEventListener("click", toggleDropdownMenuOpen);
 
 function toggleDropdownMenuOpen() {
   const menuDropdown = document.querySelector(".nav__menu");
-  menuDropdown.classList.toggle(" ");
+  menuDropdown.classList.toggle("dropdown-menu_open");
   document.body.style.overflow =
     document.body.style.overflow === "hidden" ? "" : "hidden";
 }
