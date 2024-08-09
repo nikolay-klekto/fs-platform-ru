@@ -14,7 +14,7 @@
   }
 
   @include mobile {
-    padding: 40px 15px;
+    padding: 100px 15px;
   }
 
   .nav {
@@ -162,6 +162,10 @@
     flex-wrap: wrap;
     margin-top: 80px;
     gap: 40px 32px;
+
+    @include mobile {
+      margin-top: 40px;
+    }
   }
 
   .card-container {

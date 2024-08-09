@@ -2005,7 +2005,7 @@ svg * {
 }
 @media (max-width: 375.2px) {
   .personal-account {
-    padding: 40px 15px;
+    padding: 100px 15px;
   }
 }
 .personal-account .nav {
@@ -2145,6 +2145,11 @@ svg * {
   flex-wrap: wrap;
   margin-top: 80px;
   gap: 40px 32px;
+}
+@media (max-width: 375.2px) {
+  .personal-account .shopping-cart {
+    margin-top: 40px;
+  }
 }
 .personal-account .card-container {
   width: 884px;
