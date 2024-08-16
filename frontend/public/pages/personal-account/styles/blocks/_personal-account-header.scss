@@ -44,7 +44,7 @@
             flex-direction: column;
         }
         margin-bottom: 80px;
-        @include mobile{
+        @media (max-width: 1664px) {
             margin-bottom: 40px;
         }
         h2 {
@@ -64,7 +64,7 @@
             @include flex-center;
             .personal-account__menu-list {
                 display: flex;
-                @include mobile{
+                @media (max-width: 1664px) {
                     display: none;
                 }
                 gap: 86px;
@@ -125,8 +125,22 @@
             }
             .personal-account__menu-dropdown {
                 display: none;
-                @include mobile{
+                @media (max-width: 1664px) {
                     display: flex;
+                }
+                &::before {
+                    content: '';
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.7);
+                    z-index: 1;
+                    display: none;
+                }
+                &.open::before {
+                    display: block;
                 }
                 position: relative;
                 justify-content: center;
@@ -137,6 +151,7 @@
                     gap: 4px;
                     height: 26px;
                     .dropdown__button {
+                        z-index: 3;
                         padding: 0;
                         position: relative;
                         border: none;
@@ -159,31 +174,46 @@
                             background: var(--color-accent-purple-gradient);
                         }
                     }
-                    .dropdown__arrow {
-                        width: 15px;
-                        height: 8.82px;
-                        fill: none;
-                        path {
-                            fill: url(#paint0_linear_1_409);
-                        }
+                    svg {
+                        z-index: 3;
                     }
                 }
                 .personal-account__menu-dropdown-list {
                     display: none;
                     position: absolute;
-                    top: 35px;
-                    background: var(--color-accent-purple-gradient);
+                    flex-direction: column;
+                    gap: 20px;
+                    top: 40px;
+                    background: var(--color-basic-dark-blue);
                     z-index: 1;
-                    padding: 10px 20px;
+                    padding: 36px 12px 39px 11px;
                     border-radius: 15px;
                     .personal-account__menu-dropdown-item {
+                        height: 22px;
                         text-align: center;
-                        border-bottom: 2px solid var(--color-basic-dark-blue);
+                        &:hover {
+                            .personal-account__menu-dropdown-link {
+                                transition: 0.2s;
+                                color: transparent;    
+                                /*-webkit-background-clip: text;*/
+                                background-clip: text;
+                                background-image: var(--color-accent-purple-gradient);
+                            }
+                        }
+                        &.active {
+                            .personal-account__menu-dropdown-link {
+                                color: transparent;
+                                /*-webkit-background-clip: text;*/
+                                background-clip: text;
+                                background-image: var(--color-accent-purple-gradient);
+                            }
+                        }
                         .personal-account__menu-dropdown-link {
+                            color: var(--color-basic-grey);
                             white-space: nowrap;
                             text-transform: uppercase;
                             font-weight: 600;
-                            @include fluid-text(15,15);
+                            @include fluid-text(18,18);
                         }
                         &:last-child {
                             border-bottom: none;

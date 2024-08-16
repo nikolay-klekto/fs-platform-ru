@@ -21,14 +21,17 @@ const dropdownButton = document.querySelector('.dropdown__button');
 const personalAccountMenuDropdownInput = document.querySelector('.personal-account__menu-dropdown-input');
 const personalAccountCartCatalogItemRemoveCards = document.querySelectorAll('.personal-account__cart-catalog-item-remove-card');
 const orderPlacingCartButton = document.querySelectorAll('.order-placing__cart-button');
+const personalAccountMenuDropdown = document.querySelector('.personal-account__menu-dropdown');
 
 //Click on the button. Open/Close select
 personalAccountMenuDropdownButton.addEventListener('click', function (e) {
-    if (personalAccountMenuDropdownList.style.display === 'block') {
+    if (personalAccountMenuDropdownList.style.display === 'flex') {
         personalAccountMenuDropdownList.style.display = 'none';
+        personalAccountMenuDropdown.classList.remove('open');
     } else {
         e.stopPropagation();
-        personalAccountMenuDropdownList.style.display = 'block';
+        personalAccountMenuDropdownList.style.display = 'flex';
+        personalAccountMenuDropdown.classList.add('open');
     }
 });
 
@@ -36,15 +39,21 @@ personalAccountMenuDropdownButton.addEventListener('click', function (e) {
 personalAccountMenuDropdownItems.forEach(function (listItem) {
     listItem.addEventListener('click', function (e) {
         e.stopPropagation();
+        document.querySelector('.personal-account__menu-dropdown-item.active').classList.remove('active');
+        this.classList.add('active');
         dropdownButton.innerText = this.innerText;
         personalAccountMenuDropdownInput.value = this.dataset.value;
         personalAccountMenuDropdownList.style.display = 'none';
+        personalAccountMenuDropdown.classList.remove('open');
     })
 });
 
 //Close dropdown
 document.addEventListener('click', function () {
-    personalAccountMenuDropdownList.style.display = 'none';
+    if (personalAccountMenuDropdownList.style.display === 'flex') {
+        personalAccountMenuDropdownList.style.display = 'none';
+        personalAccountMenuDropdown.classList.remove('open');
+    }
 });
 
 //Close order card
