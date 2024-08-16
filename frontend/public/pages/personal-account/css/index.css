@@ -902,6 +902,11 @@ svg * {
     flex-direction: column;
   }
 }
+@media (max-width: 375.2px) {
+  .personal-account .personal-account__header {
+    margin-bottom: 40px;
+  }
+}
 .personal-account .personal-account__header h2 {
   position: relative;
   text-transform: uppercase;
@@ -912,6 +917,11 @@ svg * {
 @media (max-width: 1664px) {
   .personal-account .personal-account__header h2 {
     margin-bottom: 20px;
+  }
+}
+@media (max-width: 375.2px) {
+  .personal-account .personal-account__header h2 {
+    height: 34px;
   }
 }
 .personal-account .personal-account__header .personal-account__menu {

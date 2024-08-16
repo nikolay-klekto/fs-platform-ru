@@ -44,6 +44,9 @@
             flex-direction: column;
         }
         margin-bottom: 80px;
+        @include mobile{
+            margin-bottom: 40px;
+        }
         h2 {
             position: relative;
             text-transform: uppercase;
@@ -52,6 +55,9 @@
             @include fluid-text(46,28);
             @media (max-width: 1664px) {
                 margin-bottom: 20px;
+            }
+            @include mobile{
+                height: 34px;
             }
         }
         .personal-account__menu {
