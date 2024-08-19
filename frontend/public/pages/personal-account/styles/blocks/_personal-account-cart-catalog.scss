@@ -92,17 +92,18 @@
                         color: var(--color-basic-grey);
                         width: 248px;
                         @media (max-width: 939px) {
-                            min-width: 175px;
-                            max-width: 177px;
-                            @include fluid-text(24,24);
+                            max-width: 300px;
+                            min-width: 300px;
+                            @include fluid-text(20,20);
                         }
-                        @media (max-width: 500px) {
+                        @media (max-width: 600px) {
+                            max-width: 200px;
+                            min-width: 200px;
                             @include fluid-text(15,15);
                         }
-                        @media (max-width: 400px) {
-                            @include fluid-text(13,13);
-                        }
-                        @include mobile {
+                        @media (max-width: 440px) {
+                            max-width: 176px;
+                            min-width: 176px;
                             @include fluid-text(12,12);
                         }
                     }
@@ -112,7 +113,7 @@
                         color: #fff;
                         @media (max-width: 939px) {
                             height: fit-content;
-                            @include fluid-text(28,28);
+                            @include fluid-text(23,23);
                         }
                         @media (max-width: 500px) {
                             @include fluid-text(18,18);

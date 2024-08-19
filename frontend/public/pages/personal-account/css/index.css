@@ -1207,23 +1207,22 @@ svg * {
 }
 @media (max-width: 939px) {
   .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
-    min-width: 175px;
-    max-width: 177px;
-    font-size: clamp(24px, 1.25vw, 24px);
+    max-width: 300px;
+    min-width: 300px;
+    font-size: clamp(20px, 1.0416666667vw, 20px);
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
+    max-width: 200px;
+    min-width: 200px;
     font-size: clamp(15px, 0.78125vw, 15px);
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 440px) {
   .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
-    font-size: clamp(13px, 0.6770833333vw, 13px);
-  }
-}
-@media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
+    max-width: 176px;
+    min-width: 176px;
     font-size: clamp(12px, 0.625vw, 12px);
   }
 }
@@ -1235,7 +1234,7 @@ svg * {
 @media (max-width: 939px) {
   .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(2) {
     height: fit-content;
-    font-size: clamp(28px, 1.4583333333vw, 28px);
+    font-size: clamp(23px, 1.1979166667vw, 23px);
   }
 }
 @media (max-width: 500px) {
