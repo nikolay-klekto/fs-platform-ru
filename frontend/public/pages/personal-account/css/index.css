@@ -854,6 +854,11 @@ svg * {
   flex-direction: column;
   align-items: center;
 }
+@media (max-width: 1864px) {
+  .personal-account {
+    padding-top: 180px;
+  }
+}
 @media (max-width: 939px) {
   .personal-account {
     padding: 118px 15px 100px;
@@ -896,13 +901,18 @@ svg * {
     align-items: center;
   }
 }
-@media (max-width: 1664px) {
+@media (max-width: 1500px) {
   .personal-account .personal-account__header {
     align-items: center;
     flex-direction: column;
   }
 }
-@media (max-width: 1664px) {
+@media (max-width: 1864px) {
+  .personal-account .personal-account__header {
+    width: 95%;
+  }
+}
+@media (max-width: 1500px) {
   .personal-account .personal-account__header {
     margin-bottom: 40px;
   }
@@ -914,7 +924,7 @@ svg * {
   white-space: nowrap;
   font-size: clamp(28px, 2.3958333333vw, 46px);
 }
-@media (max-width: 1664px) {
+@media (max-width: 1500px) {
   .personal-account .personal-account__header h2 {
     margin-bottom: 20px;
   }
@@ -929,16 +939,34 @@ svg * {
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 1864px) {
+  .personal-account .personal-account__header .personal-account__menu {
+    width: 100%;
+    justify-content: end;
+  }
+}
+@media (max-width: 1500px) {
+  .personal-account .personal-account__header .personal-account__menu {
+    justify-content: center;
+  }
+}
 .personal-account .personal-account__header .personal-account__menu .personal-account__menu-list {
   display: flex;
   gap: 86px;
 }
-@media (max-width: 1664px) {
+@media (max-width: 1864px) {
+  .personal-account .personal-account__header .personal-account__menu .personal-account__menu-list {
+    width: 95%;
+    gap: 0;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 1500px) {
   .personal-account .personal-account__header .personal-account__menu .personal-account__menu-list {
     display: none;
   }
 }
-@media (max-width: 1664px) {
+@media (max-width: 1500px) {
   .personal-account .personal-account__header .personal-account__menu .personal-account__menu-list {
     align-items: center;
     flex-direction: column;
@@ -995,7 +1023,7 @@ svg * {
   position: relative;
   justify-content: center;
 }
-@media (max-width: 1664px) {
+@media (max-width: 1500px) {
   .personal-account .personal-account__header .personal-account__menu .personal-account__menu-dropdown {
     display: flex;
   }
