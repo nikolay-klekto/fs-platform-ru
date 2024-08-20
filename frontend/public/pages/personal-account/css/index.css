@@ -1120,7 +1120,7 @@ svg * {
   display: none;
 }
 
-.personal-account .personal-account__cart-catalog {
+.personal-account__cart-catalog {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
@@ -1128,17 +1128,17 @@ svg * {
   gap: 40px 30px;
 }
 @media (max-width: 1864px) {
-  .personal-account .personal-account__cart-catalog {
+  .personal-account__cart-catalog {
     align-items: center;
     flex-direction: column;
   }
 }
 @media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog {
+  .personal-account__cart-catalog {
     padding: 0;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item {
+.personal-account__cart-catalog-item {
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -1149,18 +1149,18 @@ svg * {
   padding: 40px 32px;
 }
 @media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item {
+  .personal-account__cart-catalog-item {
     width: 100%;
     justify-content: center;
     height: fit-content;
   }
 }
 @media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item {
+  .personal-account__cart-catalog-item {
     padding: 40px 12px;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-title {
+.personal-account__cart-catalog-item-title {
   display: flex;
   width: fit-content;
   height: fit-content;
@@ -1173,116 +1173,116 @@ svg * {
   font-size: 28px;
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-title {
+  .personal-account__cart-catalog-item-title {
     font-weight: 600;
     font-size: 18px;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content {
+.personal-account .personal-account__cart-catalog-item-content div, .personal-account__cart-catalog-item-content .personal-account div {
   display: flex;
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content {
+.personal-account__cart-catalog-item-content {
   display: flex;
   flex-direction: column;
   gap: 18px;
   margin-bottom: 30px;
 }
 @media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content {
+  .personal-account__cart-catalog-item-content {
     width: 100%;
   }
 }
 @media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content {
+  .personal-account__cart-catalog-item-content {
     margin-bottom: 20px;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content {
+.personal-account__cart-catalog-item-content div {
   padding-bottom: 20px;
   border-bottom: 2px solid var(--color-basic-dark-grey);
 }
 @media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content {
+  .personal-account__cart-catalog-item-content div {
     height: 18px;
   }
 }
 @media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content {
+  .personal-account__cart-catalog-item-content div {
     border: none;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span {
+.personal-account__cart-catalog-item-content div span {
   margin: 0;
   height: 21.5px;
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content:last-child {
+.personal-account__cart-catalog-item-content div:last-child {
   border: none;
   padding: 0;
 }
 @media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content:nth-of-type(5) {
+  .personal-account__cart-catalog-item-content div:nth-of-type(5) {
     height: 34px;
   }
 }
 @media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content:nth-of-type(6) {
+  .personal-account__cart-catalog-item-content div:nth-of-type(6) {
     height: 34px;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
+.personal-account__cart-catalog-item-content div span:nth-of-type(1) {
   font-weight: 500;
   font-size: clamp(15px, 0.78125vw, 15px);
   color: var(--color-basic-grey);
   width: 248px;
 }
 @media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
+  .personal-account__cart-catalog-item-content div span:nth-of-type(1) {
     max-width: 300px;
     min-width: 300px;
     font-size: clamp(20px, 1.0416666667vw, 20px);
   }
 }
 @media (max-width: 600px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
+  .personal-account__cart-catalog-item-content div span:nth-of-type(1) {
     max-width: 200px;
     min-width: 200px;
     font-size: clamp(15px, 0.78125vw, 15px);
   }
 }
 @media (max-width: 440px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(1) {
+  .personal-account__cart-catalog-item-content div span:nth-of-type(1) {
     max-width: 176px;
     min-width: 176px;
     font-size: clamp(12px, 0.625vw, 12px);
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(2) {
+.personal-account__cart-catalog-item-content div span:nth-of-type(2) {
   font-weight: 500;
   font-size: clamp(18px, 0.9375vw, 18px);
   color: #fff;
 }
 @media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(2) {
+  .personal-account__cart-catalog-item-content div span:nth-of-type(2) {
     height: fit-content;
     font-size: clamp(23px, 1.1979166667vw, 23px);
   }
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(2) {
+  .personal-account__cart-catalog-item-content div span:nth-of-type(2) {
     font-size: clamp(18px, 0.9375vw, 18px);
   }
 }
 @media (max-width: 400px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(2) {
+  .personal-account__cart-catalog-item-content div span:nth-of-type(2) {
     font-size: clamp(15px, 0.78125vw, 15px);
   }
 }
 @media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-content .order-placing__cart-item-content span:nth-of-type(2) {
+  .personal-account__cart-catalog-item-content div span:nth-of-type(2) {
     font-size: clamp(14px, 0.7291666667vw, 14px);
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price {
+.personal-account__cart-catalog-item-price {
   padding-top: 20px;
   width: fit-content;
   margin-bottom: 13px;
@@ -1290,26 +1290,26 @@ svg * {
   border-top: 2px solid var(--color-basic-white);
 }
 @media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price {
+  .personal-account__cart-catalog-item-price {
     width: 100%;
   }
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price {
+  .personal-account__cart-catalog-item-price {
     margin-bottom: 0;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content {
+.personal-account__cart-catalog-item-price div {
   display: flex;
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content span {
+.personal-account__cart-catalog-item-price div span {
   margin: 0;
   font-weight: 600;
   font-size: clamp(22px, 1.1458333333vw, 22px);
   color: #fff;
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content span {
+  .personal-account__cart-catalog-item-price div span {
     font-size: clamp(16px, 0.8333333333vw, 16px);
     position: absolute;
     bottom: 50px;
@@ -1317,15 +1317,15 @@ svg * {
     margin-bottom: 0;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content span:nth-of-type(1) {
+.personal-account__cart-catalog-item-price div span:nth-of-type(1) {
   width: 245px;
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-price .order-placing__cart-price-content span:nth-of-type(1) {
+  .personal-account__cart-catalog-item-price div span:nth-of-type(1) {
     display: none;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-remove-card {
+.personal-account__cart-catalog-item-remove-card {
   width: fit-content;
   display: flex;
   justify-content: center;
@@ -1335,14 +1335,14 @@ svg * {
   right: 324px;
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-remove-card {
+  .personal-account__cart-catalog-item-remove-card {
     position: absolute;
     bottom: 48px;
     left: 101px;
     right: auto;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-remove-card:hover::after {
+.personal-account__cart-catalog-item-remove-card:hover::after {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1359,21 +1359,21 @@ svg * {
   width: 201px;
   height: 38px;
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-remove-card .bin {
+.personal-account__cart-catalog-item-remove-card > svg {
   width: 40px;
   height: 40px;
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-remove-card .bin {
+  .personal-account__cart-catalog-item-remove-card > svg {
     width: 24px;
     height: 24px;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-button {
+.personal-account__cart-catalog-item-button {
   width: 272px;
   height: 64px;
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-button .order-placing__cart-button {
+.personal-account__cart-catalog-item-button button {
   position: absolute;
   bottom: 40px;
   right: 32px;
@@ -1388,7 +1388,7 @@ svg * {
   align-items: center;
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-button .order-placing__cart-button {
+  .personal-account__cart-catalog-item-button button {
     min-width: 188px;
     max-width: 188px;
     height: 40px;
@@ -1396,50 +1396,50 @@ svg * {
   }
 }
 @media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-button .order-placing__cart-button {
+  .personal-account__cart-catalog-item-button button {
     border: 2px solid transparent;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-button .order-placing__cart-button:hover {
+.personal-account__cart-catalog-item-button button:hover {
   background: var(--color-accent-purple-gradient);
   border: none;
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-button .order-placing__cart-button .order-placing__cart-button-text {
+.personal-account__cart-catalog-item-button button span {
   white-space: nowrap;
   font-size: clamp(20px, 1.0416666667vw, 20px);
   color: #fff;
   font-weight: 600;
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-button .order-placing__cart-button .order-placing__cart-button-text {
+  .personal-account__cart-catalog-item-button button span {
     font-size: clamp(15px, 0.78125vw, 15px);
     font-weight: 500;
   }
 }
 @media (max-width: 500px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-button {
+  .personal-account__cart-catalog-item-button {
     width: 188px;
     height: 40px;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-photo {
+.personal-account__cart-catalog-item-photo {
   background: url(../img/company-photo.svg) no-repeat center/100%;
   position: absolute;
   right: 32px;
 }
 @media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .personal-account__cart-catalog-item-photo {
+  .personal-account__cart-catalog-item-photo {
     position: static;
     width: 100%;
     aspect-ratio: 1/0.57;
   }
 }
-.personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .company-photo {
+.personal-account__company-photo {
   width: 290px;
   height: 328px;
 }
 @media (max-width: 939px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .company-photo {
+  .personal-account__company-photo {
     position: static;
     width: 100%;
     height: 100%;
@@ -1449,7 +1449,7 @@ svg * {
   }
 }
 @media (max-width: 375.2px) {
-  .personal-account .personal-account__cart-catalog .personal-account__cart-catalog-item .company-photo {
+  .personal-account__company-photo {
     height: 184px;
   }
 }
