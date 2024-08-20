@@ -205,10 +205,12 @@
                     background: var(--color-basic-dark-blue);
                     z-index: 1;
                     padding: 36px 12px 39px 11px;
-                    border-radius: 15px;
+                    border-radius: 25px;
                     .personal-account__menu-dropdown-item {
                         height: 22px;
-                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                         &:hover {
                             .personal-account__menu-dropdown-link {
                                 transition: 0.2s;
