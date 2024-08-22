@@ -64,7 +64,49 @@ personalAccountCartCatalogItemRemoveCards.forEach(function (listItem) {
 });
 
 
-async function checkout (obj){
+//Click on order place
+orderPlacingCartButton.forEach(function (listItem) {
+    listItem.addEventListener('click', async function () {
+        const cartItem = this.closest('.personal-account__cart-catalog-item');
+        let order = {
+            profession: cartItem.querySelector('#profession').dataset.value,
+            company: cartItem.querySelector('#company').dataset.value,
+            startDate: new Date(cartItem.querySelector('#start-date').dataset.value),
+            endDate: new Date(cartItem.querySelector('#end-date').dataset.value),
+            type: cartItem.querySelector('#type').dataset.value,
+            address: cartItem.querySelector('#address').dataset.value,
+            price: Number(cartItem.querySelector('#price').dataset.value)
+        };
+        const result = await checkout(order);
+
+        console.log(result);
+    })
+});
+
+async function sendQuery (queryBody){
+    try{
+        // 'http://100.100.100.100:3000/graphql'
+        const response = await fetch (URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({query: queryBody}),
+        })
+        if(response.ok){
+            const { data } = await response.json();
+            return { data, response };
+        } else {
+            throw new Error (response.status);
+        }
+    }
+    catch(error){
+        error.message;
+    }
+}
+
+async function checkout(obj) {
     //смоделированный запрос на сервер
 
     let { profession, company, startDate, endDate, type, address, price } = obj;
@@ -104,48 +146,5 @@ async function checkout (obj){
     console.log("address:", address);
     console.log("price:", price);
 
-    const result = true;
-    console.log(result);
-
-    return result;
+    return true;
 }
-
-async function sendQuery (queryBody){
-    try{
-        // 'http://100.100.100.100:3000/graphql'
-        const response = await fetch (URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({query: queryBody}),
-        })
-        if(response.ok){
-            const { data } = await response.json();
-            return { data, response };
-        } else {
-            throw new Error (response.status);
-        }
-    }
-    catch(error){
-        error.message;
-    }
-}
-
-//Click on order place
-orderPlacingCartButton.forEach(function (listItem) {
-    listItem.addEventListener('click', function () {
-        const cartItem = this.closest('.personal-account__cart-catalog-item');
-        let order = {
-            profession: cartItem.querySelector('#profession').dataset.value,
-            company: cartItem.querySelector('#company').dataset.value,
-            startDate: new Date(cartItem.querySelector('#start-date').dataset.value),
-            endDate: new Date(cartItem.querySelector('#end-date').dataset.value),
-            type: cartItem.querySelector('#type').dataset.value,
-            address: cartItem.querySelector('#address').dataset.value,
-            price: Number(cartItem.querySelector('#price').dataset.value)
-        };
-        checkout(order);
-    })
-});
