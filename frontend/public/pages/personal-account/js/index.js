@@ -63,7 +63,6 @@ personalAccountCartCatalogItemRemoveCards.forEach(function (listItem) {
     })
 });
 
-
 //Click on order place
 orderPlacingCartButton.forEach(function (listItem) {
     listItem.addEventListener('click', async function () {
