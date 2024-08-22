@@ -1155,6 +1155,12 @@ svg * {
     height: fit-content;
   }
 }
+@media (max-width: 500px) {
+  .personal-account__cart-catalog-item {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
 @media (max-width: 375.2px) {
   .personal-account__cart-catalog-item {
     padding: 40px 12px;
@@ -1370,6 +1376,9 @@ svg * {
   }
 }
 .personal-account__cart-catalog-item-button {
+  position: static;
+  display: flex;
+  right: 0;
   width: 272px;
   height: 64px;
 }
@@ -1379,30 +1388,14 @@ svg * {
   right: 32px;
   width: 272px;
   height: 64px;
-  border: 4px solid transparent;
-  border-radius: 50px;
-  background: linear-gradient(#eee, #292846 0) padding-box, linear-gradient(90deg, #8333F3 0%, #5f4af3 48.55%, #3b51a8 100%) border-box;
-  border-image-slice: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-inline: 0;
 }
 @media (max-width: 500px) {
   .personal-account__cart-catalog-item-button button {
-    min-width: 188px;
-    max-width: 188px;
+    width: 188px;
     height: 40px;
-    right: 12px;
+    right: 13px;
   }
-}
-@media (max-width: 375.2px) {
-  .personal-account__cart-catalog-item-button button {
-    border: 2px solid transparent;
-  }
-}
-.personal-account__cart-catalog-item-button button:hover {
-  background: var(--color-accent-purple-gradient);
-  border: none;
 }
 .personal-account__cart-catalog-item-button button span {
   white-space: nowrap;
