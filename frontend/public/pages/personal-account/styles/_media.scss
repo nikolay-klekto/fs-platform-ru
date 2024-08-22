@@ -1,0 +1,66 @@
+// @import './fonts',
+// './globals',
+// './mixins',
+// './normalize',
+// './utils',
+// './variables';
+
+// специальные миксины для медиа завпросов
+$desktop: 1920px;
+$desktop-above: 1921px;
+
+$tablet: 1023px;
+$tablet-above: 1024px;
+
+$mobile: 375.2px;
+$mobile-above: 376px;
+
+@mixin desktop-above{
+    @media (min-width: $desktop-above) {
+        @content;
+    }
+}
+
+@mixin desktop{
+    @media (max-width: $desktop) {
+        @content;
+    }
+}
+
+@mixin tablet-above{
+    @media (min-width: $tablet-above) {
+        @content;
+    }
+}
+
+@mixin tablet{
+    @media (max-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin mobile-above{
+    @media (min-width: $mobile-above) {
+        @content;
+    }
+}
+
+@mixin mobile{
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+//убрать эффект залипания
+@mixin hover{
+    @media(hover: hover){
+        &:hover{
+            @content;
+        }
+    }
+    @media(hover: none){
+        &:active{
+            @content;
+        }
+    }
+}
