@@ -11,6 +11,13 @@
 	height: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px);
 }
 
+@mixin fluid-padding ($max-top, $min-top, $max-right, $min-right, $max-bottom:$max-top, $min-bottom:$min-top, $max-left:$max-right, $min-left:$min-right){
+	padding-top: clamp(#{$min-top}px, #{$max-top / 1920 * 100}vw, #{$max-top}px);
+	padding-right: clamp(#{$min-right}px, #{$max-right / 1920 * 100}vw, #{$max-right}px);
+	padding-bottom: clamp(#{$min-bottom}px, #{$max-bottom / 1920 * 100}vw, #{$max-bottom}px);
+	padding-left: clamp(#{$min-left}px, #{$max-left / 1920 * 100}vw, #{$max-left}px);
+}
+
 //сброс стилей ссылки
 @mixin reset-link{
     color: inherit;
@@ -58,6 +65,6 @@
     border-color: $color;
 }
 
-@mixin border-radius($max:50, $min:$max) {
+@mixin fluid-border-radius($max:var(--button-border-radius), $min:$max) {
     border-radius: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px);
 }

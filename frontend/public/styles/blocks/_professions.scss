@@ -1,7 +1,8 @@
 .professions {
     width: 100%;
     margin: 0 auto;
-    padding: 100px 60px;
+    @include fluid-padding(100, 60, 60, 15);
+    overflow-x: hidden;
 
     @include tablet {
 
@@ -22,7 +23,7 @@
             content: "профессии";
 
             font-weight: 600;
-            @include fluid-text(160,0);
+            @include fluid-text(160, 0);
 
             text-transform: uppercase;
 
@@ -71,14 +72,18 @@
             }
 
             .button {
-                width: 272px;
-                height: var(--button-height-secondary);
+                // width: 272px;
+                @include fluid-width(272, 188);
+                // height: var(--button-height-secondary);
+                @include fluid-height(64, 40);
 
-                padding: 20px 60px;
+                // padding: 20px 60px;
+                @include fluid-padding(20, 16, 60, 20);
 
                 .button__text {
                     font-weight: 600;
-                    font-size: 20px;
+                    // font-size: 20px;
+                    @include fluid-text(20, 15);
                 }
             }
         }
@@ -97,15 +102,14 @@
         margin-top: 80px;
 
         @include tablet {
-
+            gap: 50px 20px;
         }
 
         @include mobile {
             flex-wrap: nowrap;
             justify-content: flex-start;
-            margin-top: 30px;
             gap: 0 12px;
-            overflow-x: hidden;
+            margin-top: 30px;
         }
 
         // .professions__catalog-item
@@ -116,12 +120,11 @@
 
             position: relative;
 
-            width: 100%;
-            max-width: 426px;
-            min-width: 320px;
-            height: 520px;
+            @include fluid-width(426, 320);
+            @include fluid-height(520, 391);
 
             padding: 20px 30px;
+            @include fluid-padding(20, 15, 30, 20);
 
             border-radius: 50px;
             background: var(--color-accent-purple-gradient);
@@ -129,19 +132,19 @@
             transition-duration: var(--transition-duration);
 
             &:nth-of-type(1) {
-                background: url(../img/professions/programmer.svg) no-repeat center/100%;
+                background: url(../img/professions/programmer.svg) no-repeat center/cover;
             }
 
             &:nth-of-type(2) {
-                background: url(../img/professions/designer.svg) no-repeat center/100%;
+                background: url(../img/professions/designer.svg) no-repeat center/cover;
             }
 
             &:nth-of-type(3) {
-                background: url(../img/professions/engineer.svg) no-repeat center/100%;
+                background: url(../img/professions/engineer.svg) no-repeat center/cover;
             }
 
             &:nth-of-type(4) {
-                background: url(../img/professions/programmer.svg) no-repeat center/100%;
+                background: url(../img/professions/programmer.svg) no-repeat center/cover;
             }
 
             @include tablet {
@@ -149,8 +152,9 @@
             }
 
             @include mobile {
+                width: 320px;
                 height: 391px;
-                padding: 15px 23px;
+                padding: 15px 20px;
                 border-radius: 38px;
             }
 
@@ -164,8 +168,6 @@
                 }
 
                 @include mobile {
-                    scale: 1.0;
-                    background-size: 105%;
 
                     .professions__catalog-item-arrow-right {
                         display: none;
@@ -175,19 +177,23 @@
 
             // .professions__catalog-item-arrow-right
             &-arrow-right {
+                display: none;
                 justify-content: center;
                 align-items: center;
 
                 position: absolute;
-                top: 30px;
-                right: 20px;
+                top: 4%;
+                right: 4%;
 
                 @include square(58px);
+                @include fluid-width(58, 44);
 
                 border-radius: 50%;
                 background: var(--color-basic-white);
 
-                display: none;
+                @include mobile {
+                    @include square(44px);
+                }
 
                 svg {
                     stroke-width: 2px;
@@ -199,8 +205,8 @@
             &-name {
                 @include flex-center;
 
-                width: 281px;
-                height: 58px;
+                @include fluid-width(281, 211);
+                @include fluid-height(58, 43);
 
                 border-radius: 50px;
 
@@ -231,8 +237,8 @@
             &-price {
                 @include flex-center;
 
-                width: 298px;
-                height: 62px;
+                @include fluid-width(298, 224);
+                @include fluid-height(62, 46);
 
                 border-radius: 50px;
 
@@ -355,9 +361,9 @@
 
     // .professions__suggestion
     &__suggestion {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flex-center;
+        flex-wrap: wrap;
+        row-gap: 20px;
         column-gap: 43px;
 
         width: 100%;
@@ -365,25 +371,27 @@
         margin-top: 80px;
 
         @include tablet {
+            column-gap: 15px;
+            margin-top: 30px;
 
         }
 
         @include mobile {
+            flex-wrap: nowrap;
             column-gap: 7px;
             margin-top: 20px;
         }
 
         input {
-            width: 42%;
-            max-width: 799px;
-            height: var(--input-height);
+            @include fluid-width(799, 345);
+            @include fluid-height(64, 44);
 
-            padding: 0 40px;
+            @include fluid-padding(0, 0, 40, 20);
 
-            @include border(3);
+            @include border(3, 2);
             border-radius: 50px;
 
-            @include fluid-text(36,16);
+            @include fluid-text(36, 16);
 
             background-color: transparent;
             color: var(--color-basic-grey);
@@ -392,6 +400,7 @@
             @include mobile {
                 width: 295px;
                 height: 44px;
+                padding: 0 20px;
                 border-width: 2px;
             }
         }
@@ -406,10 +415,10 @@
             }
 
             .button {
-                width: 272px;
-                height: var(--button-height-secondary);
+                @include fluid-width(272, 188);
+                @include fluid-height(64, 44);
 
-                padding: 20px 60px;
+                @include fluid-padding(20, 16, 60, 20);
 
                 @include mobile {
                     width: 44px;
@@ -423,7 +432,7 @@
 
                 .button__text {
                     font-weight: 600;
-                    font-size: 20px;
+                    @include fluid-text(20, 15);
 
                     @include mobile {
                         display: none;
