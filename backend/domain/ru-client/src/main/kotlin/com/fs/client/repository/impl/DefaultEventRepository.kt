@@ -3,8 +3,8 @@ package com.fs.client.repository.impl
 import com.fs.client.repository.EventRepository
 import com.fs.client.repository.blocked.AddressBlockingRepository
 import com.fs.client.repository.blocked.EventBlockingRepository
-import com.fs.client.service.DateTimeConverterService
-import com.fs.client.service.EventModelConverter
+import com.fs.client.converter.DateTimeConverterService
+import com.fs.client.converter.EventModelConverter
 import com.fs.client.service.GoogleCalendarEventService
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository

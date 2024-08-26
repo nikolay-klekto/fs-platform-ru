@@ -1,7 +1,7 @@
 package com.fs.client.repository.blocked
 
 import com.fs.client.ru.OfficeModel
-import com.fs.client.service.OfficeModelConverter
+import com.fs.client.converter.OfficeModelConverter
 import com.fs.domain.jooq.tables.Office.Companion.OFFICE
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Office

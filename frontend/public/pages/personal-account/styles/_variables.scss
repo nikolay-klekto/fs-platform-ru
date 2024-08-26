@@ -1,0 +1,79 @@
+:root{
+    //все цвета
+    --color-basic-white: #FFFFFF;
+    --color-basic-grey: #878797;
+    --color-basic-dark-grey-light: #343f42;
+    --color-basic-dark-grey: #353652;
+    --color-basic-blue: #1F203F;
+    --color-basic-dark-blue: #101030;
+
+    --color-accent-brown: #BC8070;
+    --color-accent-purple: #8333F3;
+    --color-accent-purple-gradient: linear-gradient(
+        90deg, #8333F3 0%,
+        #5f4af3 48.55%,
+        #3b51a8 100%);
+    --color-accent-purple-light-gradient:linear-gradient(
+        90deg, #a875f1 0%,
+        #8d7ef3 48.55%,
+        #6c7cba 100%);
+    --color-accent-purple-gradient: linear-gradient(
+        90deg, #8333F3 0%,
+        #5f4af3 48.55%,
+        #3b51a8 100%);
+    --color-accent-purple-light-gradient:linear-gradient(
+        90deg, #a875f1 0%,
+        #8d7ef3 48.55%,
+        #6c7cba 100%);
+
+    --color-accent-purple-light-radial-gradient:radial-gradient(
+        #30217B, #8917A5);
+
+    --color-transparent-grey: rgba(255, 255, 255, 0.1);
+    --color-transparent-purple: rgba(16, 16, 48, 0.7);
+    --color-transparent-dark: rgba(0, 0, 0, 0.7);
+
+    //границы
+    --button-border-radius: 50px; //3.12rem;
+    --button-border-radius-small: 20px;
+
+    //тени
+    --button-shadow: 0 0 80px 0 #9653f5; //5rem
+
+
+    //шрифты
+    --font-family: "Montserrat", sans-serif;
+    --second-family: "Angry", sans-serif;
+    --font3: "Euclid Square", sans-serif;
+    --third-family: "DM Sans", sans-serif;
+    --font5: "Poppins", sans-serif;
+    --font4: "Inter", sans-serif;
+    --font6: "Roboto", sans-serif;
+
+    //сетка
+    // --container-width: min(98.3vw,1798px); //1798px;
+    --container-width: 1798px;
+    --container-padding-x: 15px;
+
+    --section-padding-y: 100px; //????
+
+    --input-height: 64px; //4rem;
+    --input-height-secondary: 50px;
+
+    --button-height: 68px; //4.25rem;
+    --button-height-secondary: 64px; //4rem;
+
+    --button-height-tablet: 60px;
+    --button-height-secondary-tablet: 52px;
+
+    --button-height-mobile: 50px;
+    --button-height-secondary-mobile: 40px;
+
+
+    // --input-height-main: 64px;
+
+
+    //анимация
+    --transition-duration: 0.2s;
+
+}

@@ -1,6 +1,6 @@
 package com.fs.client.repository.blocked
 
-import com.fs.client.service.ReviewModelConverter
+import com.fs.client.converter.ReviewModelConverter
 import com.fs.domain.jooq.tables.Review.Companion.REVIEW
 import com.fs.domain.jooq.tables.pojos.Review
 import com.fs.service.ru.ReviewModel

@@ -4,7 +4,7 @@ import com.fs.client.repository.blocked.ClientBlockingRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.PartnerModel
 import com.fs.client.ru.enums.ClientRoleModel
-import com.fs.client.service.PartnerModelConverter
+import com.fs.client.converter.PartnerModelConverter
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.CompanyPartner.Companion.COMPANY_PARTNER
 import com.fs.domain.jooq.tables.Partner.Companion.PARTNER

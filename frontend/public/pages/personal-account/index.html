@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async
+            defer></script>
+    <link rel="icon" href="./favicon.ico">
+    <link rel="stylesheet" href="./css/index.css"/>
+    <title>Kotlin + Spring Boot + Vue.js</title>
+</head>
+<body>
+    <!-- <ul>
+    </ul> -->
+    <header class="header">
+        <div class="header__inner container">
+            <a class="header__icon-phone" href="#">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.9994 19.9201V16.9201C22.0116 16.4297 21.8431 15.9519 21.526 15.5776C21.2088 15.2033 20.7652 14.9586 20.2794 14.8901C19.3194 14.7635 18.3767 14.5286 17.4694 14.1901C17.1115 14.0556 16.7225 14.0264 16.3486 14.1062C15.9746 14.1859 15.6313 14.3712 15.3594 14.6401L14.0894 15.9101C11.5859 14.4865 9.513 12.4136 8.08945 9.9101L9.35944 8.6401C9.62831 8.36821 9.8136 8.02494 9.89335 7.65098C9.97311 7.27701 9.94399 6.88802 9.80945 6.5301C9.47089 5.62282 9.23607 4.68016 9.10944 3.7201C9.04152 3.23954 8.80118 2.80008 8.43321 2.48363C8.06524 2.16718 7.59475 1.99532 7.10945 2.0001H4.10945C3.83179 2.00036 3.55722 2.05843 3.30324 2.17062C3.04925 2.28281 2.82141 2.44665 2.63421 2.65172C2.44702 2.85679 2.30457 3.09859 2.21595 3.36172C2.12732 3.62486 2.09446 3.90356 2.11944 4.1801C2.44769 7.27109 3.49942 10.2413 5.18945 12.8501C6.72478 15.2663 8.77327 17.3148 11.1894 18.8501C13.7864 20.5342 16.7423 21.5857 19.8194 21.9201C20.0968 21.9452 20.3764 21.912 20.6402 21.8228C20.904 21.7336 21.1463 21.5902 21.3515 21.402C21.5567 21.2137 21.7204 20.9846 21.832 20.7294C21.9435 20.4743 22.0006 20.1986 21.9994 19.9201Z"
+                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <a class="header__logo logo" href="#">
+                <img
+                    class="logo__image"
+                    src="./img/logo.svg"
+                    alt="Funscrut"
+                    width="100"
+                    height="83"
+                    loading="lazy">
+            </a>
+            <nav class="header__menu hidden-tablet">
+                <ul class="header__menu-list">
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="#">главная</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="#">профессии</a>
+                    </li>
+                    <!-- <li class="header__menu-item">
+                        <a class="header__menu-link" href="#">компании</a>
+                    </li> -->
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="#">мероприятия</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="#">контакты</a>
+                    </li>
+                </ul>
+            </nav>
+            <button class="header__button button button_purple"
+            type="button">
+                <span class="button__text">заказать звонок</span>
+            </button>
+            <div class="header__icons">
+                <a class="header__icons-basket" href="#">
+                    <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.7493 47.3332C20.7284 47.3332 22.3327 45.7289 22.3327 43.7498C22.3327 41.7708 20.7284 40.1665 18.7493 40.1665C16.7703 40.1665 15.166 41.7708 15.166 43.7498C15.166 45.7289 16.7703 47.3332 18.7493 47.3332Z"
+                        stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M41.6673 47.3332C43.6463 47.3332 45.2507 45.7289 45.2507 43.7498C45.2507 41.7708 43.6463 40.1665 41.6673 40.1665C39.6883 40.1665 38.084 41.7708 38.084 43.7498C38.084 45.7289 39.6883 47.3332 41.6673 47.3332Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2.08398 2.0835H10.4173L16.0007 29.9793C16.1912 30.9385 16.713 31.8001 17.4747 32.4133C18.2365 33.0265 19.1896 33.3522 20.1673 33.3335H40.4173C41.395 33.3522 42.3482 33.0265 43.1099 32.4133C43.8717 31.8001 44.3935 30.9385 44.584 29.9793L47.9173 12.5002H12.5007" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a class="header__icons-profile hidden-tablet" href="#">
+                    <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M25.2137 27.7859C30.1448 27.7859 34.1423 23.7884 34.1423 18.8573C34.1423 13.9262 30.1448 9.92871 25.2137 9.92871C20.2826 9.92871 16.2852 13.9262 16.2852 18.8573C16.2852 23.7884 20.2826 27.7859 25.2137 27.7859Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.96484 41.7145C11.5586 39.0985 13.7984 36.9364 16.4692 35.4362C19.1399 33.936 22.1516 33.1479 25.2148 33.1479C28.2781 33.1479 31.2898 33.936 33.9605 35.4362C36.6312 36.9364 38.8711 39.0985 40.4648 41.7145" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M48.5 25C48.5 37.9787 37.9787 48.5 25 48.5C12.0213 48.5 1.5 37.9787 1.5 25C1.5 12.0213 12.0213 1.5 25 1.5C37.9787 1.5 48.5 12.0213 48.5 25Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <button class="header__icons-burger-button burger-button visible-tablet"
+                    type="button"
+                    onclick="mobileOverlay.showModal()">
+                    <span class="visually-hidden">open navigation menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="personal-account">
+        <div class="personal-account__ellipse-background"></div>
+        <div class="personal-account__ellipse-background"></div>
+        <div class="personal-account__header container">
+            <h2>личный кабинет</h2>
+            <nav class="personal-account__menu">
+                <ul class="personal-account__menu-list">
+                    <li class="personal-account__menu-item">
+                        <a class="personal-account__menu-link" href="#">корзина</a>
+                    </li>
+                    <li class="personal-account__menu-item">
+                        <a class="personal-account__menu-link" href="#">требующие оплаты</a>
+                    </li>
+                    <li class="personal-account__menu-item">
+                        <a class="personal-account__menu-link" href="#">предстоящие стажировки</a>
+                    </li>
+                    <li class="personal-account__menu-item">
+                        <a class="personal-account__menu-link" href="#">архив</a>
+                    </li>
+                    <li class="personal-account__menu-item">
+                        <a class="personal-account__menu-link" href="#">мой профиль</a>
+                    </li>
+                </ul>
+                <div class="personal-account__menu-dropdown">
+                    <div class="personal-account__menu-dropdown-button">
+                        <button class="dropdown__button">корзина</button>
+                        <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.7125 1.74468C14.8985 1.55474 15 1.313 15 1.02809C15 0.458271 14.5603 0.00069046 14.0023 0.00069046C13.7232 0.00069046 13.4696 0.121562 13.2751 0.320134L7.49154 6.36365L1.72492 0.320134C1.53044 0.121562 1.26832 0.00069046 0.997745 0.00069046C0.439684 0.00069046 0 0.458271 0 1.02809C0 1.313 0.101466 1.55474 0.287486 1.74468L6.71364 8.46161C6.93348 8.70335 7.20406 8.81559 7.5 8.82422C7.79594 8.82422 8.04961 8.70335 8.2779 8.46161L14.7125 1.74468Z" fill="url(#paint0_linear_1_409)"/>
+                            <defs>
+                                <linearGradient id="paint0_linear_1_409" x1="7.67442" y1="9.54241" x2="7.67442" y2="0.000690646" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#8333F3"/>
+                                    <stop offset="0.485532" stop-color="#5F4AF3"/>
+                                    <stop offset="1" stop-color="#3B51A8"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <ul class="personal-account__menu-dropdown-list">
+                        <li class="personal-account__menu-dropdown-item" data-value="profile">
+                            <a class="personal-account__menu-dropdown-link" href="#">мой профиль</a>
+                        </li>
+                        <li class="personal-account__menu-dropdown-item" data-value="unpaid">
+                            <a class="personal-account__menu-dropdown-link" href="#">требующие оплаты</a>
+                        </li>
+                        <li class="personal-account__menu-dropdown-item" data-value="internship">
+                            <a class="personal-account__menu-dropdown-link" href="#">предстоящие стажировки</a>
+                        </li>
+                        <li class="personal-account__menu-dropdown-item" data-value="archive">
+                            <a class="personal-account__menu-dropdown-link" href="#">архив</a>
+                        </li>
+                        <li class="personal-account__menu-dropdown-item active" data-value="bin">
+                            <a class="personal-account__menu-dropdown-link" href="#">корзина</a>
+                        </li>
+                    </ul>
+                    <input type="text" name="select-category" class="personal-account__menu-dropdown-input" onmousedown="return false" value="" readonly>
+                </div>
+            </nav>
+        </div>
+        <div class="personal-account__cart-catalog container">
+            <article class="personal-account__cart-catalog-item">
+                <h5 class="personal-account__cart-catalog-item-title">ОФОРМЛЕНИЕ ЗАКАЗА</h5>
+                <div class="personal-account__cart-catalog-item-photo personal-account__company-photo"></div>
+                <div class="personal-account__cart-catalog-item-content">
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Профессия:
+                        </span>
+                        <span id="profession" data-value="programmer">Программист</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Компания:
+                        </span>
+                        <span id="company" data-value="epam">EPAM</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Начало стажировки:
+                        </span>
+                        <span id="start-date" data-value="2023-10-18">18.10.2023</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Конец  стажировки:
+                        </span>
+                        <span id="end-date" data-value="2023-10-25">25.10.2023</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Вид стажировки:
+                        </span>
+                        <span id="type" data-value="observer internship">Стажировка наблюдателя</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Адрес офиса:
+                        </span>
+                        <span id="address" data-value="Minsk, Tiradzhnaya st. 150">Минск, ул. Тиражная 150</span>
+                    </div>
+                </div>
+                <div class="personal-account__cart-catalog-item-price">
+                    <div class="order-placing__cart-price-content">
+                        <span>
+                            Стоимость:
+                        </span>
+                        <span id="price" data-value="100">100 BYN</span>
+                    </div>
+                </div>
+                <div class="personal-account__cart-catalog-item-remove-card" data-title="Удалить из корзины">
+                    <svg class="bin" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 10H8.33333H35" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13.3333 10V6.66668C13.3333 5.78262 13.6845 4.93478 14.3096 4.30965C14.9347 3.68453 15.7826 3.33334 16.6666 3.33334H23.3333C24.2174 3.33334 25.0652 3.68453 25.6903 4.30965C26.3155 4.93478 26.6666 5.78262 26.6666 6.66668V10M31.6666 10V33.3333C31.6666 34.2174 31.3155 35.0652 30.6903 35.6904C30.0652 36.3155 29.2174 36.6667 28.3333 36.6667H11.6666C10.7826 36.6667 9.93474 36.3155 9.30962 35.6904C8.6845 35.0652 8.33331 34.2174 8.33331 33.3333V10H31.6666Z" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.6667 18.3333V28.3333" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23.3333 18.3333V28.3333" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="personal-account__cart-catalog-item-button">
+                    <button class="order-placing__cart-button button button_transparent" type="button">
+                        <span class="order-placing__cart-button-text">Оформить заказ</span>
+                    </button>
+                </div>
+            </article>
+            <article class="personal-account__cart-catalog-item">
+                <h5 class="personal-account__cart-catalog-item-title">ОФОРМЛЕНИЕ ЗАКАЗА</h5>
+                <div class="personal-account__cart-catalog-item-photo personal-account__company-photo"></div>
+                <div class="personal-account__cart-catalog-item-content">
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Профессия:
+                        </span>
+                        <span id="profession" data-value="programmer">Программист</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Компания:
+                        </span>
+                        <span id="company" data-value="epam">EPAM</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Начало стажировки:
+                        </span>
+                        <span id="start-date" data-value="2023-10-18">18.10.2023</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Конец  стажировки:
+                        </span>
+                        <span id="end-date" data-value="2023-10-25">25.10.2023</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Вид стажировки:
+                        </span>
+                        <span id="type" data-value="observer internship">Стажировка наблюдателя</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Адрес офиса:
+                        </span>
+                        <span id="address" data-value="Minsk, Tiradzhnaya st. 150">Минск, ул. Тиражная 150</span>
+                    </div>
+                </div>
+                <div class="personal-account__cart-catalog-item-price">
+                    <div class="order-placing__cart-price-content">
+                        <span>
+                            Стоимость:
+                        </span>
+                        <span id="price" data-value="100">100 BYN</span>
+                    </div>
+                </div>
+                <div class="personal-account__cart-catalog-item-remove-card" data-title="Удалить из корзины">
+                    <svg class="bin" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 10H8.33333H35" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13.3333 10V6.66668C13.3333 5.78262 13.6845 4.93478 14.3096 4.30965C14.9347 3.68453 15.7826 3.33334 16.6666 3.33334H23.3333C24.2174 3.33334 25.0652 3.68453 25.6903 4.30965C26.3155 4.93478 26.6666 5.78262 26.6666 6.66668V10M31.6666 10V33.3333C31.6666 34.2174 31.3155 35.0652 30.6903 35.6904C30.0652 36.3155 29.2174 36.6667 28.3333 36.6667H11.6666C10.7826 36.6667 9.93474 36.3155 9.30962 35.6904C8.6845 35.0652 8.33331 34.2174 8.33331 33.3333V10H31.6666Z" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.6667 18.3333V28.3333" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23.3333 18.3333V28.3333" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="personal-account__cart-catalog-item-button">
+                    <button class="order-placing__cart-button button button_transparent" type="button">
+                        <span class="order-placing__cart-button-text">Оформить заказ</span>
+                    </button>
+                </div>
+            </article>
+            <article class="personal-account__cart-catalog-item">
+                <h5 class="personal-account__cart-catalog-item-title">ОФОРМЛЕНИЕ ЗАКАЗА</h5>
+                <div class="personal-account__cart-catalog-item-photo personal-account__company-photo"></div>
+                <div class="personal-account__cart-catalog-item-content">
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Профессия:
+                        </span>
+                        <span id="profession" data-value="programmer">Программист</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Компания:
+                        </span>
+                        <span id="company" data-value="epam">EPAM</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Начало стажировки:
+                        </span>
+                        <span id="start-date" data-value="2023-10-18">18.10.2023</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Конец  стажировки:
+                        </span>
+                        <span id="end-date" data-value="2023-10-25">25.10.2023</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Вид стажировки:
+                        </span>
+                        <span id="type" data-value="observer internship">Стажировка наблюдателя</span>
+                    </div>
+                    <div class="order-placing__cart-item-content">
+                        <span>
+                            Адрес офиса:
+                        </span>
+                        <span id="address" data-value="Minsk, Tiradzhnaya st. 150">Минск, ул. Тиражная 150</span>
+                    </div>
+                </div>
+                <div class="personal-account__cart-catalog-item-price">
+                    <div class="order-placing__cart-price-content">
+                        <span>
+                            Стоимость:
+                        </span>
+                        <span id="price" data-value="100">100 BYN</span>
+                    </div>
+                </div>
+                <div class="personal-account__cart-catalog-item-remove-card" data-title="Удалить из корзины">
+                    <svg class="bin" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 10H8.33333H35" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13.3333 10V6.66668C13.3333 5.78262 13.6845 4.93478 14.3096 4.30965C14.9347 3.68453 15.7826 3.33334 16.6666 3.33334H23.3333C24.2174 3.33334 25.0652 3.68453 25.6903 4.30965C26.3155 4.93478 26.6666 5.78262 26.6666 6.66668V10M31.6666 10V33.3333C31.6666 34.2174 31.3155 35.0652 30.6903 35.6904C30.0652 36.3155 29.2174 36.6667 28.3333 36.6667H11.6666C10.7826 36.6667 9.93474 36.3155 9.30962 35.6904C8.6845 35.0652 8.33331 34.2174 8.33331 33.3333V10H31.6666Z" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.6667 18.3333V28.3333" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23.3333 18.3333V28.3333" stroke="#878797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="personal-account__cart-catalog-item-button">
+                    <button class="order-placing__cart-button button button_transparent" type="button">
+                        <span class="order-placing__cart-button-text">Оформить заказ</span>
+                    </button>
+                </div>
+            </article>
+        </div>
+    </section>
+    <script type="module" src="./js/index.js"></script>
+</body>
+</html>
