@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async
             defer></script>
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="./css/index.css"/>
-    <title>Kotlin + Spring Boot + Vue.js</title>
+    <title>Kotlin + Spring Boot + JS</title>
 </head>
 <body>
     <!-- <ul>
@@ -78,6 +78,7 @@
         </div>
     </header>
 
+    <!-- Section КАК МЫ РАБОТАЕМ -->
     <section class="stages-of-work">
         <h2>как мы работаем</h2>
         <div class="stages-of-work__stages">
@@ -166,6 +167,7 @@
         </div>
     </section>
 
+    <!-- Section ПРОФЕСИИ -->
     <section class="professions">
         <h2>профессии</h2>
         <div class="professions__most-popular">
@@ -239,7 +241,7 @@
             </div>
         </div>
         <div class="professions__slider">
-            <input type="range" name="professions-slider" id="professions-slider" min="0" max="3" step="0.01" value="0">
+            <input type="range" name="" id="" min="0" max="3" step="0.01" value="0">
         </div>
         <div class="professions__see-all-button">
             <button class="button button_transparent" type="button">
@@ -257,6 +259,47 @@
                 </button>
             </div>
         </form>
+        </div>
+    </section>
+
+    <!-- Section КОМПАНИИ -->
+    <section class="companies">
+        <h2>компании</h2>
+        <div class="companies__see-all-button">
+            <button class="button button_transparent" type="button">
+                <span class="button__text">смотреть все</span>
+            </button>
+        </div>
+        <div class="companies__catalog">
+            <div class="companies__catalog-item">
+                <img src="img/emblems/epam-emblem.png" alt="EPAM">
+            </div>
+            <div class="companies__catalog-item">
+                <img src="img/emblems/epam-emblem.png" alt="EPAM">
+            </div>
+            <div class="companies__catalog-item">
+                <img src="img/emblems/nextIT-emblem.png" alt="next IT">
+            </div>
+            <div class="companies__catalog-item">
+                <img src="img/emblems/sberbank-emblem.png" alt="Сбер Банк">
+            </div>
+            <div class="companies__catalog-item">
+                <img src="img/emblems/eagle-emblem.png" alt="Орёл">
+            </div>
+            <div class="companies__catalog-item">
+                <img src="img/emblems/nextIT-emblem.png" alt="next IT">
+            </div>
+            <div class="companies__catalog-item">
+                <img src="img/emblems/epam-emblem.png" alt="EPAM">
+            </div>
+        </div>
+        <div class="companies__slider">
+            <input type="range" name="" id="" min="0" max="10" step="0.01" value="0">
+        </div>
+        <div class="companies__see-all-button-mobile">
+            <button class="button button_transparent" type="button">
+                <span class="button__text">смотреть все</span>
+            </button>
         </div>
     </section>
 

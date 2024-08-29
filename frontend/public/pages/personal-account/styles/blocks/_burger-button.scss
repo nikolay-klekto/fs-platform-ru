@@ -1,0 +1,58 @@
+.burger-button {
+    @include reset-button;
+    @include square(24px);
+
+    position: relative;
+
+    @include tablet{
+        @include square(38px);
+        margin-top: -4px;
+    }
+
+    @include mobile{
+        @include square(24px);
+        margin-top: -3px;
+    }
+
+    @include hover{
+        cursor: pointer;
+        &::after{
+            background-color: var(--color-accent-purple);
+
+            @include tablet{
+                box-shadow: 0 -11px var(--color-accent-purple),
+                0 11px var(--color-accent-purple);
+            }
+
+            @include mobile{
+                box-shadow: 0 -6px var(--color-accent-purple),
+                0 6px var(--color-accent-purple);
+            }
+        }
+    }
+
+    &::after{
+        @include abs-center;
+        content: '';
+        width: 20px;
+        height: 2.1px;
+        background-color: var(--color-basic-white);
+        border-radius: 2px;
+        box-shadow: 0 -6px var(--color-basic-white),
+            0 6px var(--color-basic-white);
+
+            @include tablet{
+                width: 34px;
+                height: 2.5px;
+                box-shadow: 0 -11px var(--color-basic-white),
+                0 11px var(--color-basic-white);
+            }
+
+            @include mobile{
+                width: 20px;
+                height: 2.1px;
+                box-shadow: 0 -6px var(--color-basic-white),
+                0 6px var(--color-basic-white);
+            }
+    }
+}

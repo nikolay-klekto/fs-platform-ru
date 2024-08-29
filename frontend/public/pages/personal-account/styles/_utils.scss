@@ -1,0 +1,57 @@
+
+// утилитарные функции
+.container{
+    max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+    margin-inline: auto; //центрирование по горизонтали
+    padding-inline: var(--container-padding-x);
+}
+
+//доступность интерактивных элементов
+.visually-hidden{
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    border: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+    clip-path: inset(100%) !important;
+    clip: rect(0 0 0 0) !important;
+    overflow: hidden !important;
+}
+
+.hidden-mobile{
+    @include mobile{
+        display: none !important;
+    }
+}
+
+.visible-mobile{
+    @include mobile-above{
+        display: none !important;
+    }
+}
+
+.hidden-tablet{
+    @include tablet{
+        display: none !important;
+    }
+}
+
+.visible-tablet{
+    @include tablet-above{
+        display: none !important;
+    }
+}
+
+.hidden-desktop{
+    @include desktop{
+        display: none !important;
+    }
+}
+
+.visible-desktop{
+    @include desktop-above{
+        display: none !important;
+    }
+}

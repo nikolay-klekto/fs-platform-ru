@@ -3,6 +3,21 @@
 	font-size: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px); //(1rem + 5vw)
 }
 
+@mixin fluid-width ($max, $min){
+	width: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px);
+}
+
+@mixin fluid-height ($max, $min){
+	height: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px);
+}
+
+@mixin fluid-padding ($max-top, $min-top, $max-right, $min-right, $max-bottom:$max-top, $min-bottom:$min-top, $max-left:$max-right, $min-left:$min-right){
+	padding-top: clamp(#{$min-top}px, #{$max-top / 1920 * 100}vw, #{$max-top}px);
+	padding-right: clamp(#{$min-right}px, #{$max-right / 1920 * 100}vw, #{$max-right}px);
+	padding-bottom: clamp(#{$min-bottom}px, #{$max-bottom / 1920 * 100}vw, #{$max-bottom}px);
+	padding-left: clamp(#{$min-left}px, #{$max-left / 1920 * 100}vw, #{$max-left}px);
+}
+
 //сброс стилей ссылки
 @mixin reset-link{
     color: inherit;
@@ -41,4 +56,15 @@
 @mixin square($size){
     width: $size;
     aspect-ratio: 1 / 1; //1
+}
+
+//граница (border)
+@mixin border($max-width, $min-width:$max-width, $color:var(--color-basic-grey)) {
+    border-width: clamp(#{$min-width}px, #{$max-width / 1920 * 100}vw, #{$max-width}px);
+    border-style: solid;
+    border-color: $color;
+}
+
+@mixin fluid-border-radius($max:var(--button-border-radius), $min:$max) {
+    border-radius: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px);
 }
