@@ -47,6 +47,7 @@ type Query {
     getAllEvents: [Event]
     getAllActualEvents: [Event]
     getAllActualEventsByCityId(cityId: ID!): [Event]
+    getFirstNActualEvents(eventQuantity: ID!): [Event]
 
 }
 
