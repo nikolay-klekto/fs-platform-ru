@@ -1,9 +1,17 @@
 package com.fs.suggestionsapi;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "profession_company_suggestions")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Suggestion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
