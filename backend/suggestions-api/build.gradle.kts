@@ -7,11 +7,11 @@ plugins {
 group = "com.fs"
 version = "0.0.1-SNAPSHOT"
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(22)
-    }
-}
+//java {
+//    toolchain {
+//        languageVersion.set(JavaLanguageVersion.of(21))
+//    }
+//}
 
 configurations {
     compileOnly {
@@ -34,6 +34,14 @@ dependencies {
     testImplementation("org.springframework:spring-webflux")
     testImplementation("org.springframework.graphql:spring-graphql-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+tasks.jar {
+    manifest {
+        attributes(
+                "Main-Class" to "com.fs.suggestionsapi.SuggestionsApiApplication"  // Укажите основной класс
+        )
+    }
 }
 
 tasks.withType<Test> {
