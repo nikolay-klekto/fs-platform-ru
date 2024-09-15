@@ -66,6 +66,6 @@
 //
 //    @Bean
 //    open fun serviceController(): ServiceController{
-//        return ServiceController(repositoryConfig.serviceRepository())
+//        return ServiceController(repositoryConfig.internshipTypeRepository())
 //    }
 //}

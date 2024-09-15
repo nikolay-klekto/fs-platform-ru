@@ -128,17 +128,16 @@ abstract class OrderRepository(
 
         allTemporaryOrders.forEach { temporaryOrder ->
             val updatableOrderModel = OrderModel(
-                temporaryOrder.id,
-                activeBasketId,
-                temporaryOrder.companyOfficeId,
-                temporaryOrder.dateCreated,
-                temporaryOrder.positionId,
-                temporaryOrder.serviceId,
-                temporaryOrder.isExpired,
-                temporaryOrder.orderStatus,
-                temporaryOrder.startWorkDate,
-                temporaryOrder.totalWorkDays,
-                temporaryOrder.price
+                id = temporaryOrder.id,
+                basketId = activeBasketId,
+                companyOfficeId = temporaryOrder.companyOfficeId,
+                dateCreated = temporaryOrder.dateCreated,
+                isExpired = temporaryOrder.isExpired,
+                orderStatus = temporaryOrder.orderStatus,
+                startWorkDate = temporaryOrder.startWorkDate,
+                totalWorkDays = temporaryOrder.totalWorkDays,
+                price = temporaryOrder.price,
+                companyProfessionId = temporaryOrder.companyProfessionId
             )
             orderBlockingRepository.insert(updatableOrderModel)
             orderBlockingRepository.deleteById(temporaryOrder.id!!)

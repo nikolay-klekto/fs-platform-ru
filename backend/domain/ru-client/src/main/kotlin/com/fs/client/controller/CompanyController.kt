@@ -33,7 +33,7 @@ open class CompanyController(
 
     @QueryMapping
     open fun getAllCompaniesByPositionId(@Argument id: Long): Flux<CompanyModel> {
-        return companyRepository.getAllCompaniesByPositionId(id)
+        return companyRepository.getAllCompaniesByProfessionId(id)
     }
 
     @QueryMapping
