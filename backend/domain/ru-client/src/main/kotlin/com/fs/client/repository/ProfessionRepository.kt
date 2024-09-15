@@ -45,6 +45,15 @@ abstract class ProfessionRepository(
             .map(converter::toModel)
     }
 
+    fun getNMostPopularProfessions(quantity: Int): Flux<ProfessionModel> {
+        return Flux.from(
+            dsl.select(PROFESSION.asterisk()).from(PROFESSION)
+                .orderBy(PROFESSION.CLIENTS_NUMBER.desc()) // Сортировка по полю clientsNumber по убыванию
+                .limit(quantity) // Лимитируем количество записей
+        ).map { it.into(Profession::class.java) }
+            .map(converter::toModel)
+    }
+
     fun insertProfession(professionModel: ProfessionModel): Mono<ProfessionModel> {
         return Mono.fromSupplier {
             val newProfessionRecord: ProfessionRecord = dsl.newRecord(PROFESSION)
@@ -86,7 +95,7 @@ abstract class ProfessionRepository(
         }
     }
 
-    fun updatePosition(professionModel: ProfessionModel): Mono<Boolean> {
+    fun updateProfession(professionModel: ProfessionModel): Mono<Boolean> {
         return Mono.fromSupplier {
             val oldPosition = professionBlockingRepository.getById(professionModel.id!!)
 

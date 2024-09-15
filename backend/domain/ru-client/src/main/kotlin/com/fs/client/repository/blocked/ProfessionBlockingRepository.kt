@@ -17,4 +17,23 @@ abstract class ProfessionBlockingRepository(
             .map(converter::toModel)
             .firstOrNull()
     }
+
+    private fun getClientNumberById(professionId: Long): Int{
+        return dsl.select(PROFESSION.CLIENTS_NUMBER)
+            .from(PROFESSION)
+            .where(PROFESSION.ID.eq(professionId))
+            .fetchOne()
+            ?.map { it.into(Int::class.java) } ?: 0
+    }
+
+    fun increaseClientsNumberByProfessionId(id: Long){
+
+        val newClientNumber = getClientNumberById(id) + 1
+
+        dsl.update(PROFESSION)
+            .set(PROFESSION.CLIENTS_NUMBER, newClientNumber)
+            .where(PROFESSION.ID.eq(id))
+            .execute()
+    }
+
 }

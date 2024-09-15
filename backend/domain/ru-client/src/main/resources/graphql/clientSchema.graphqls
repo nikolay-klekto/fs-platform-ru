@@ -29,6 +29,7 @@ type Query {
     getProfessionById(id: ID!): Profession
     getAllProfessionsByCompanyId(id: ID!): [Profession]
     getAllProfessions: [Profession]
+    getNMostPopularProfessions(quantity: ID!): [Profession]
 
     getPartnerById(id: ID!): Partner
     getAllPartners: [Partner]
@@ -168,7 +169,8 @@ input CompanyInput {
 input ProfessionInput {
     id: ID
     description: String,
-    name: String
+    name: String,
+    clientsNumber: Int
 }
 
 input PartnerInput {
@@ -301,6 +303,7 @@ type Profession {
     id: ID
     description: String
     name: String
+    clientsNumber: Int
 }
 
 type InternshipType {

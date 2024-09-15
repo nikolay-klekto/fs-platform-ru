@@ -14,7 +14,8 @@ import java.io.Serializable
 data class Profession(
     var id: Long? = null,
     var name: String? = null,
-    var description: String? = null
+    var description: String? = null,
+    var clientsNumber: Int? = null
 ): Serializable {
 
 
@@ -24,6 +25,7 @@ data class Profession(
         sb.append(id)
         sb.append(", ").append(name)
         sb.append(", ").append(description)
+        sb.append(", ").append(clientsNumber)
 
         sb.append(")")
         return sb.toString()

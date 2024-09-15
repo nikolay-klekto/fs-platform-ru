@@ -2,7 +2,6 @@ package com.fs.client.controller
 
 import com.fs.client.repository.ProfessionRepository
 import com.fs.service.ru.CompanyProfessionModel
-import com.fs.service.ru.OrderModel
 import com.fs.service.ru.ProfessionModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
@@ -24,6 +23,11 @@ open class ProfessionController(
     @QueryMapping
     open fun getProfessionById(@Argument id: Long): Mono<ProfessionModel> {
         return professionRepository.getProfessionById(id)
+    }
+
+    @QueryMapping
+    open fun getNMostPopularProfessions(@Argument quantity: Int): Flux<ProfessionModel> {
+        return professionRepository.getNMostPopularProfessions(quantity)
     }
 
     @QueryMapping
@@ -59,7 +63,7 @@ open class ProfessionController(
 
     @MutationMapping
     open fun updateProfession(@Argument profession: ProfessionModel): Mono<Boolean> {
-        return professionRepository.updatePosition(profession)
+        return professionRepository.updateProfession(profession)
     }
 
     @MutationMapping

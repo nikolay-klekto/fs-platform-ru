@@ -11,7 +11,8 @@ class ProfessionModelConverter : ModelConverter<Profession, ProfessionModel> {
         return ProfessionModel(
             id = rawObject.id!!,
             description = rawObject.description,
-            name = rawObject.name
+            name = rawObject.name,
+            clientsNumber = rawObject.clientsNumber
         )
     }
 
@@ -19,7 +20,8 @@ class ProfessionModelConverter : ModelConverter<Profession, ProfessionModel> {
         return Profession(
             modelObject.id,
             modelObject.description,
-            modelObject.name
+            modelObject.name,
+            modelObject.clientsNumber
         )
     }
 }
