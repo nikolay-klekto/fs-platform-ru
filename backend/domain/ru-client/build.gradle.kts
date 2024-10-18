@@ -171,12 +171,12 @@ jooq {
                                 includeExpression = ".*country.name"
                                 includeTypes = ".*"
                             },
-                            ForcedType().apply {
-                                isEnumConverter = true
-                                userType = "com.fs.service.ru.enums.IndustryModel"
-                                includeExpression = ".*company.company_industry"
-                                includeTypes = ".*"
-                            },
+//                            ForcedType().apply {
+//                                isEnumConverter = true
+//                                userType = "com.fs.service.ru.enums.IndustryModel"
+//                                includeExpression = ".*company.company_industry"
+//                                includeTypes = ".*"
+//                            },
                             ForcedType().apply {
                                 isEnumConverter = true
                                 userType = "com.fs.service.ru.enums.OrderStatus"

@@ -22,6 +22,7 @@ type Query {
 
     getCompanyById(id: ID!): Company
     getAllCompanies: [Company]
+    getAllCompaniesIndustries: [String]
     getAllCompaniesByPositionId(id: ID!): [Company]
     getAllCompaniesByCountryCode(code: ID!): [Company]
     getAllCompaniesByCityId(id: ID!): [Company]
@@ -159,7 +160,7 @@ input OrderInput {
 
 input CompanyInput {
     id: ID
-    companyIndustry: CompanyIndustryEnum
+    companyIndustry: String
     legalCapacityStatus: LegalCapacityStatus
     name: String
     site: String
@@ -292,7 +293,7 @@ type Order {
 
 type Company {
     id: ID
-    companyIndustry: CompanyIndustryEnum
+    companyIndustry: String
     legalCapacityStatus: LegalCapacityStatus
     name: String
     site: String

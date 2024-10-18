@@ -12,6 +12,7 @@ import com.fs.domain.jooq.tables.records.CompanyRecord
 import com.fs.domain.jooq.tables.references.CITY
 import com.fs.domain.jooq.tables.references.COMPANY_PARTNER
 import com.fs.service.ru.CompanyModel
+import com.fs.service.ru.enums.IndustryModel
 import io.micrometer.core.annotation.Timed
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
@@ -28,6 +29,15 @@ abstract class CompanyRepository(
             companyBlockingRepository.getById(id)
         }
     }
+
+    fun getAllCompaniesIndustries(): Flux<String> {
+        return Flux.fromIterable(
+            dsl.selectDistinct(COMPANY.COMPANY_INDUSTRY)
+                .from(COMPANY)
+                .map { it.into(String::class.java) }
+        )
+    }
+
 
     @Timed(value = "companies.time", description = "Time taken to return all companies")
     open fun getAllCompanies(): Flux<CompanyModel> {
@@ -145,19 +155,19 @@ abstract class CompanyRepository(
     fun deleteCompany(companyId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
 
-            dsl.deleteFrom(COMPANY_PARTNER)
+            val result2 = dsl.deleteFrom(COMPANY_PARTNER)
                 .where(COMPANY_PARTNER.COMPANY_ID.eq(companyId))
-                .execute()
+                .execute() == 1
 
             val returnResult = dsl.deleteFrom(COMPANY)
                 .where(COMPANY.ID.eq(companyId))
                 .execute() == 1
 
-            dsl.deleteFrom(COMPANY_PROFESSION)
+            val result3 = dsl.deleteFrom(COMPANY_PROFESSION)
                 .where(COMPANY_PROFESSION.COMPANY_ID.eq(companyId))
-                .execute()
+                .execute() == 1
 
-            return@fromSupplier returnResult
+            return@fromSupplier returnResult || result2 || result3
         }
     }
 }

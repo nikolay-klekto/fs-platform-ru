@@ -4,6 +4,7 @@ import com.fs.client.repository.CompanyRepository
 import com.fs.client.ru.OfficeModel
 import com.fs.service.ru.CompanyModel
 import com.fs.service.ru.OrderModel
+import com.fs.service.ru.enums.IndustryModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -24,6 +25,11 @@ open class CompanyController(
     @QueryMapping
     open fun getCompanyById(@Argument id: Long): Mono<CompanyModel> {
         return companyRepository.getCompanyById(id)
+    }
+
+    @QueryMapping
+    open fun getAllCompaniesIndustries(): Flux<String> {
+        return companyRepository.getAllCompaniesIndustries()
     }
 
     @QueryMapping
