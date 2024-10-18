@@ -1,7 +1,7 @@
 export default function Home() {
 	return (
-		<main className='flex min-h-screen flex-col items-center justify-between p-24'>
-			<div className='text-3xl'>Main Page</div>
+		<main>
+			<div className='text-3xl'>как мы работаем</div>
 		</main>
 	)
 }
