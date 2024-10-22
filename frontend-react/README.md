@@ -9,14 +9,14 @@
 
 ## Project structure
 
-- components
-  - layout
-  - shared
-  - ui
-- constants
-- hooks
-- services
-- utils
+-   components
+    -   layout
+    -   shared
+    -   ui
+-   constants
+-   hooks
+-   services
+-   utils
 
 ## Installation
 
