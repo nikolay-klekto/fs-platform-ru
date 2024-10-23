@@ -48,6 +48,16 @@ const config = {
                     foreground: 'hsl(var(--card-foreground))',
                 },
             },
+            screens: {
+                'sm': { max: '320px' },
+                'sm_l': { max: '375px' },
+                'sm_xl': { max: '425px' },
+                'md': { max: '768px' },
+                'lg': { max: '1024px' },
+                'xl': { max: '1280px' },
+                '2xl': { max: '1440px' },
+                '3xl': { max: '1560px' },
+            },
             borderRadius: {
                 lg: 'var(--radius)',
                 md: 'calc(var(--radius) - 2px)',
