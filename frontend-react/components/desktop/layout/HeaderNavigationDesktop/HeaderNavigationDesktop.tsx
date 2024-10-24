@@ -11,7 +11,7 @@ const HeaderNavigationDesktop: React.FC = () => {
 
     return (
         <nav className="bg-[#101030] p-4">
-            <ul className="inline-flex justify-evenly align-middle bg-background rounded-[50px] p-1">
+            <ul className="inline-flex justify-evenly align-middle bg-white rounded-[50px] p-1">
                 <li
                     className={
                         isActive('/')
