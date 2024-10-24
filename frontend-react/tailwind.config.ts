@@ -48,6 +48,12 @@ const config = {
                     foreground: 'hsl(var(--card-foreground))',
                 },
             },
+            backgroundImage: {
+                'dark-gradient':
+                    'linear-gradient(90deg, rgba(131,51,243,1) 0%, rgba(95,74,243,1) 49%, rgba(59,81,168,1) 100%)',
+                'light-gradient':
+                    'linear-gradient(90deg, rgba(168,117,241,1) 0%, rgba(141,126,243,1) 49%, rgba(108,124,186,1) 100%)',
+            },
             screens: {
                 'sm': { max: '320px' },
                 'sm_l': { max: '375px' },
