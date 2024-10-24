@@ -27,7 +27,7 @@ export default function Home() {
             {isDesktop ? (
                 <>
                     <HeaderDesktop />
-                    <main className="bg-[#101030]">
+                    <main className="bg-[#101030] text-white">
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />
@@ -35,7 +35,7 @@ export default function Home() {
             ) : (
                 <>
                     <HeaderMobi />
-                    <main className="bg-[#101030]">
+                    <main className="bg-[#101030] text-white">
                         <HomePageMobi />
                     </main>
                     <FooterMobi />

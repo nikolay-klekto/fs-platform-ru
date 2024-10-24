@@ -10,7 +10,7 @@ const HeaderNavigationDesktop: React.FC = () => {
     const isActive = (path: string) => pathname === path
 
     return (
-        <nav className="bg-blue-900 p-0">
+        <nav className="bg-[#101030] p-4">
             <ul className="inline-flex justify-evenly align-middle bg-background rounded-[50px] p-1">
                 <li
                     className={

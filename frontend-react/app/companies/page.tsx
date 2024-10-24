@@ -26,7 +26,7 @@ export default function Companies() {
             {isDesktop ? (
                 <>
                     <HeaderDesktop />
-                    <main className="bg-[#101030]">
+                    <main className="bg-[#101030] text-white">
                         <h1>Companies</h1>
                     </main>
                     <FooterDesktop />
@@ -34,7 +34,7 @@ export default function Companies() {
             ) : (
                 <>
                     <HeaderMobi />
-                    <main className="bg-[#101030]">
+                    <main className="bg-[#101030] text-white">
                         <h1>Companies</h1>
                     </main>
                     <FooterMobi />

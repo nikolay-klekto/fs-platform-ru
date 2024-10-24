@@ -7,7 +7,7 @@ import FooterDesktop from '@/components/desktop/layout/FooterDesktop'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi'
 
-export default function Contacts() {
+export default function Profile() {
     const [isClient, setIsClient] = useState(false)
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export default function Contacts() {
                 <>
                     <HeaderDesktop />
                     <main className="bg-[#101030] text-white">
-                        <h1>Contacts</h1>
+                        <h1>Личный профиль</h1>
                     </main>
                     <FooterDesktop />
                 </>
@@ -35,7 +35,7 @@ export default function Contacts() {
                 <>
                     <HeaderMobi />
                     <main className="bg-[#101030] text-white">
-                        <h1>Contacts</h1>
+                        <h1>Личный профиль</h1>
                     </main>
                     <FooterMobi />
                 </>

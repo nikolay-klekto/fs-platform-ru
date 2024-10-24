@@ -26,7 +26,7 @@ export default function Professions() {
             {isDesktop ? (
                 <>
                     <HeaderDesktop />
-                    <main className="bg-[#101030]">
+                    <main className="bg-[#101030] text-white">
                         <h1>Professions</h1>
                     </main>
                     <FooterDesktop />
@@ -34,7 +34,7 @@ export default function Professions() {
             ) : (
                 <>
                     <HeaderMobi />
-                    <main className="bg-[#101030]">
+                    <main className="bg-[#101030] text-white">
                         <h1>Professions</h1>
                     </main>
                     <FooterMobi />
