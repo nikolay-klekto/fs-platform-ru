@@ -10,13 +10,13 @@ const HeaderNavigationDesktop: React.FC = () => {
     const isActive = (path: string) => pathname === path
 
     return (
-        <nav className="bg-[#101030] p-4">
+        <nav className="bg-[#101030] p-4 ">
             <ul className="inline-flex justify-evenly align-middle bg-white rounded-[50px] p-1">
                 <li
                     className={
                         isActive('/')
-                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px]'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px]'
+                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px] flex justify-center items-center'
+                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px] flex justify-center items-center'
                     }
                 >
                     <Link href="/" className="font-bold text-[18px] leading-[22px] uppercase">
@@ -26,8 +26,8 @@ const HeaderNavigationDesktop: React.FC = () => {
                 <li
                     className={
                         isActive('/professions')
-                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px]'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px]'
+                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px] flex justify-center items-center'
+                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px] flex justify-center items-center'
                     }
                 >
                     <Link href="/professions" className="font-bold text-[18px] leading-[22px] uppercase">
@@ -37,8 +37,8 @@ const HeaderNavigationDesktop: React.FC = () => {
                 <li
                     className={
                         isActive('/companies')
-                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px]'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px]'
+                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px] flex justify-center items-center'
+                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px] flex justify-center items-center'
                     }
                 >
                     <Link href="/companies" className="font-bold text-[18px] leading-[22px] uppercase">
@@ -48,8 +48,8 @@ const HeaderNavigationDesktop: React.FC = () => {
                 <li
                     className={
                         isActive('/profevents')
-                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px]'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px]'
+                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px] flex justify-center items-center'
+                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px] flex justify-center items-center'
                     }
                 >
                     <Link href="/profevents" className="font-bold text-[18px] leading-[22px] uppercase">
@@ -59,8 +59,8 @@ const HeaderNavigationDesktop: React.FC = () => {
                 <li
                     className={
                         isActive('/contacts')
-                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px]'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px]'
+                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px] flex justify-center items-center'
+                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px] flex justify-center items-center'
                     }
                 >
                     <Link href="/contacts" className="font-bold text-[18px] leading-[22px] uppercase">
