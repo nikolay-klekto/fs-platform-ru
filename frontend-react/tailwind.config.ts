@@ -4,6 +4,8 @@ import screensConfig from './tailwind-config/screensConfig'
 import borderRadiusConfig from './tailwind-config/borderRadiusConfig'
 import keyframesConfig from './tailwind-config/keyframesConfig'
 import animationConfig from './tailwind-config/animationConfig'
+import fontSizeConfig from './tailwind-config/fontSizeConfig'
+import backgroundImageConfig from './tailwind-config/backgroundImageConfig'
 
 const config = {
     darkMode: ['class'],
@@ -14,7 +16,15 @@ const config = {
             center: true,
             padding: '2rem',
             screens: {
-                '2xl': '1400px',
+                'sm': '320px',
+                'sm_l': '375px',
+                'sm_xl': '375px',
+                'md': '768px',
+                'lg': '1024px',
+                'xl': '1280px',
+                '2xl': '1440px',
+                '3xl': '1560px',
+                '4xl': '1920px',
             },
         },
         extend: {
@@ -23,6 +33,8 @@ const config = {
             borderRadius: borderRadiusConfig,
             keyframes: keyframesConfig,
             animation: animationConfig,
+            fontSize: fontSizeConfig,
+            backgroundImage: backgroundImageConfig,
         },
     },
     plugins: [require('tailwindcss-animate')],

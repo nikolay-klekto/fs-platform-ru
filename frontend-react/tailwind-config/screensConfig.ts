@@ -7,5 +7,6 @@ const screensConfig = {
     'xl': { max: '1280px' },
     '2xl': { max: '1440px' },
     '3xl': { max: '1560px' },
+    '4xl': { max: '1920px' },
 }
 export default screensConfig
