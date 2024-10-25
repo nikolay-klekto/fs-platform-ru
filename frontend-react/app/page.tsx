@@ -7,12 +7,17 @@ import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/Ho
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
+import ModalCallDesktop from '@/components/desktop/layout/ModalCallDesktop/ModalCallDesktop'
+
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
-
+    const [showModal, setShowModal] = useState(false)
     useEffect(() => {
         setIsClient(true)
     }, [])
+
+    const openModal = () => setShowModal(true)
+    const closeModal = () => setShowModal(false)
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 768px)',
@@ -30,6 +35,7 @@ export default function Home() {
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />
+                    {showModal && <ModalCallDesktop onClose={closeModal} />}
                 </>
             ) : (
                 <>
