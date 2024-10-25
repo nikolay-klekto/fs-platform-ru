@@ -1,4 +1,5 @@
 'use client'
+import React from 'react'
 import { content } from './content'
 
 const HowWeWorkDesktop: React.FC = () => {

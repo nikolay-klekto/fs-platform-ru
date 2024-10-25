@@ -1,5 +1,4 @@
 'use client'
-import HowWeWorkDesktop from '@/components/desktop/layout/HowWeWork/HowWeWorkDesktop'
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop'
@@ -13,7 +12,7 @@ export default function Home() {
 
     useEffect(() => {
         setIsClient(true)
-    })
+    }, [])
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 768px)',
