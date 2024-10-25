@@ -20,6 +20,12 @@
 
 ## Installation and Running
 
+Please, checke your `node.js` version before project installation. It should be not older than **18.17.0**
+
+```js
+node - v
+```
+
 1. Clone the repository
 2. Move to **'frontend-react'** folder
 3. `npm install`
@@ -86,8 +92,8 @@ https://nextjs.org/docs/app/building-your-application/routing/colocation
 
 We have two different apps: desktop and mobile. Each component can be related only for one type:
 
--   desktop (from 320px to 768px)
--   mobile (from 769px to 1920px)
+-   mobile (from 320px to 767px)
+-   desktop (from 768px to 1920px)
 
 _Note: **ui folder** is a list of figma's styled components. Please don't change them_
 
@@ -158,9 +164,40 @@ For more details, refer to this [common practice](https://medium.com/@hiro08gh/n
 
 ### 4.1. Classes for Reusable Styles
 
+You can create your own custom style classes to decrease lines of codes and make clear for reading and understanding.
+`styles/customClasses/customClassElement.css`
+
+```css
+@tailwind components;
+
+@layer components {
+    .btn-custom {
+        @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+    }
+
+    .card_custom {
+        @apply bg-white shadow-md rounded-lg p-4;
+    }
+}
+```
+
+Also, you can add changes in config files in `/tailwind-config` folder. The available configs are described in `tailwind.config.ts`
+
+```ts
+        extend: {
+                colors: colorsConfig,
+                screens: screensConfig,
+                borderRadius: borderRadiusConfig,
+                keyframes: keyframesConfig,
+                animation: animationConfig,
+                fontSize: fontSizeConfig,
+                backgroundImage: backgroundImageConfig,
+            },
+```
+
 ### 4.2. Use of Variables
 
-Avoid "magic numbers." Use variables for colors (use HSV), spacing, and dimensions wherever possible:
+Avoid "magic numbers." Use variables for colors (use HSV), spacing, and dimensions wherever possible. You can add your own variables in `/styles/globals.css` if it needed:
 
 ```css
 :root {
@@ -181,17 +218,70 @@ Avoid "magic numbers." Use variables for colors (use HSV), spacing, and dimensio
 </p>
 ```
 
-### 4.3. Use these variables to determine screen sizes
+### 4.3. Use these variables from `tailwind.config.ts` to determine screen sizes
 
 ```ts
    screens: {
-                'sm': { max: '320px' },
-                'sm_l': { max: '375px' },
-                'sm_xl': { max: '425px' },
-                'md': { max: '768px' },
-                'lg': { max: '1024px' },
-                'xl': { max: '1280px' },
-                '2xl': { max: '1440px' },
-                '3xl': { max: '1560px' },
+                'sm': '320px',
+                'sm_l': '375px',
+                'sm_xl': '375px',
+                'md': '768px',
+                'lg': '1024px',
+                'xl': '1280px',
+                '2xl': '1440px',
+                '3xl': '1560px',
+                '4xl': '1920px',
             },
+```
+
+## 5. Images
+
+### 5.1. To insert any image, you should use the [Image component](https://nextjs.org/docs/pages/api-reference/components/image) from next.js:
+
+    ```jsx
+    import Image from 'next/image'
+
+    export default function Page() {
+        return <Image src="/profile.png" width={500} height={500} alt="Picture of the author" />
+    }
+    ```
+
+### 5.2. SVG
+
+    use the custom component from `/components/assets/icons.tsx`
+
+    ```js
+    import React from 'react'
+    import { TestIcon } from '@/components/next/assets/icons'
+
+    const HomePageMobi: React.FC = () => {
+    return (
+           <div className="h-screen">
+            <TestIcon/>
+           </div>
+           )
+         }
+    export default HomePageMobi
+    ```
+
+### 5.3. Any images, pics, background
+
+```
+    /public
+        /background
+        /images
+```
+
+```jsx
+        const MyBackgroundComponent = () => {
+            return (
+            <div style={{
+                backgroundImage: 'url(/backgrounds/my-background. jpg)',
+                height: '100vh',
+                backgroundSize: 'cover'
+            }}
+                <h1>Привет, мир!</h1>
+            </div>
+            )
+        }
 ```
