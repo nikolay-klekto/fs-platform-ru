@@ -1,0 +1,42 @@
+const fontSizeConfig = {
+    'xs': '0.625rem', // 10px
+    'sm': '0.6875rem', // 11px
+    'base': '0.75rem', // 12px
+    'lg': '0.8125rem', // 13px
+    'xl': '0.875rem', // 14px
+    '2xl': '0.9375rem', // 15px
+    '3xl': '1rem', // 16px
+    '4xl': '1.125rem', // 18px
+    '5xl': '1.25rem', // 20px
+    '6xl': '1.375rem', // 22px
+    '7xl': '1.5rem', // 24px
+    '8xl': '1.625rem', // 26px
+    '9xl': '1.75rem', // 28px
+    '10xl': '1.875rem', // 30px
+    '11xl': '2rem', // 32px
+    '12xl': '2.125rem', // 34px
+    '13xl': '2.25rem', // 36px
+    '14xl': '2.375rem', // 38px
+    '15xl': '2.5rem', // 40px
+    '16xl': '2.625rem', // 42px
+    '17xl': '2.75rem', // 44px
+    '18xl': '2.875rem', // 46px
+    '19xl': '3rem', // 48px
+    '20xl': '3.125rem', // 50px
+    '21xl': '3.25rem', // 52px
+    '22xl': '3.375rem', // 54px
+    '23xl': '3.5rem', // 56px
+    '24xl': '3.625rem', // 58px
+    '25xl': '3.75rem', // 60px
+    '26xl': '3.875rem', // 62px
+    '27xl': '4rem', // 64px
+    '28xl': '4.125rem', // 66px
+    '29xl': '4.25rem', // 68px
+    '30xl': '4.375rem', // 70px
+    '31xl': '4.5rem', // 72px
+    '32xl': '4.625rem', // 74px
+    '33xl': '4.75rem', // 76px
+    '34xl': '4.875rem', // 78px
+    '35xl': '5rem', // 80px
+}
+export default fontSizeConfig
