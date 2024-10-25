@@ -131,16 +131,15 @@ For more details, refer to this [common practice](https://medium.com/@hiro08gh/n
 
 ---
 
-<mark>**Important:** a name of each component should have special end:
-
--   **Mobi** (for mobile components)
-    <br> or
--   **Desktop** (for Desktop components)
-
-    Example:
-
-    -   HowWeWork<mark>Desktop</mark>.tsx
-    -   HomePage<mark>Mobi</mark>.tsx
+> **Important:** a name of each component should have special end:
+>
+> -   **Mobi** (for mobile components)
+> -   **Desktop** (for Desktop components)
+>
+>     Example:
+>
+>     -   HowWeWork<mark>Desktop</mark>.tsx
+>     -   HomePage<mark>Mobi</mark>.tsx
 
 ---
 
