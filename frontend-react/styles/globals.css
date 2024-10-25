@@ -64,6 +64,13 @@
         -webkit-background-clip: text;
         color: transparent;
     }
+    .button-border-mobi{
+        position: relative;
+        border: double 1px transparent;
+        background-image: linear-gradient(#101030, #101030), linear-gradient(90deg, #8333F3 100%, #5F4AF3 100%, #3B51A8 100%);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+    }
 }
 
 @layer base {
