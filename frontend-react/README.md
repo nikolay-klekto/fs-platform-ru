@@ -68,3 +68,106 @@ p.s. We try to stick to this style. The main point is to have meaningful names.
 <br/>
 
 # Style Guide
+
+## Code Guidelines for the project
+
+This document provides suggestions for writing code in the project, covering folder structure, naming conventions, and style management. The main goal of it is improve readability, and facilitate collaboration across the team.
+
+https://nextjs.org/docs/app/building-your-application/routing/colocation
+
+## 1. Folder Structure
+
+We have two different apps: desktop and mobile. Each component can be related only for one type (dektop/mobile).
+
+_Note: **ui folder** is a list of figma's styled components. Please don't change them_
+
+```
+/frontend-react
+ /components
+  desktop
+  mobi
+  ui
+```
+
+We organize components in a structured manner:
+
+-   Main components are placed in the pageDesktop/layout (or pageMobi/layout) folder.
+-   Subcomponents are organized within their respective folders
+
+```
+/components
+ /desktop
+  /layout
+    FooterDesktop.tsx
+    HeaderDesktop.tsx
+    /ProfessionSectionDesktop
+      ProfessionsSectionDesktop.tsx
+    /HowWeWork
+      content.tsx
+      HowWeWorkDesktop.tsx
+```
+
+### Next.js Specific Folder Structure
+
+Following Next.js best practices, the app folder is strictly for pages, layouts, and routing. Other components or logical entities are placed out of app under appropriate directories, such as components.
+
+## 2. Naming Conventions
+
+-   Component file names: **UpperCamelCase** (e.g., HowWeWorkDesktop.tsx).
+-   Hook file names: **lowerCamelCase** (e.g., useSomething.tsx).
+-   Other file names: **kebab-case**
+
+For more details, refer to this [common practice](https://medium.com/@hiro08gh/next-js-naming-conventions-are-checked-with-eslint-rules-946371d67882#:~:text=Component%20Naming%20Conventions,name%20of%20%20the%20folder%20path.).
+
+## 3. TypeScript Naming Conventions
+
+-   Classes, interfaces, types, enums, decorators, type parameters: **UpperCamelCase**.
+-   Variables, parameters, functions, methods, properties, module aliases: **lowerCamelCase**.
+-   Global constants (including enum elements): **CONSTANT_CASE**.
+
+### Props Types
+
+-   Props types are declared directly in the component file.
+-   General or reusable types are placed in a dedicated constants directory.
+
+## 4. Tailwind CSS
+
+### 4.1. Classes for Reusable Styles
+
+### 4.2. Use of Variables
+
+Avoid "magic numbers." Use variables for colors (use HSV), spacing, and dimensions wherever possible:
+
+```css
+:root {
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+}
+```
+
+```tsx
+<p className="w-fit bg-white bg-opacity-70 text-base md:text-xl lg:text-2xl text-[#878797] font-medium py-2 px-4 rounded-[50px]">
+    от{' '}
+    <span className="bg-gradient-to-r from-[#8333F3] via-[#5F4AF3] to-[#3B51A8] text-transparent bg-clip-text text-lg md:text-3xl lg:text-4xl">
+        {price} BYN/
+    </span>{' '}
+    неделя
+</p>
+```
+
+### 4.3. Use these variables to determine screen sizes
+
+```ts
+   screens: {
+                'sm': { max: '320px' },
+                'sm_l': { max: '375px' },
+                'sm_xl': { max: '425px' },
+                'md': { max: '768px' },
+                'lg': { max: '1024px' },
+                'xl': { max: '1280px' },
+                '2xl': { max: '1440px' },
+                '3xl': { max: '1560px' },
+            },
+```
