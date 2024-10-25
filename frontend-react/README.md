@@ -20,9 +20,12 @@
 
 ## Installation and Running
 
-`npm install` <br/>
-`npm ci` <br/>
-`npm run dev` <br/>
+1. Clone the repository
+2. Move to **'frontend-react'** folder
+3. `npm install`
+4. Set up EsLint and Prettier in your code editor (installation in project no needed)
+5. `npm run lint` (errors in libs should be fixed)
+6. `npm run dev`
 
 ---
 
@@ -42,6 +45,10 @@
     1. Pull changes from the main branch (currently is _dev-front-react_) to your task branch
     2. Do a local merge
     3. Check functionality
+        - insert your component on _page.tsx_ and check how it is work
+        ```
+        /app/page.tsx
+        ```
     4. Create a PR (pull request), this PR should not have conflicts with the working branch
     5. According to PR template describe the content of the task at PR test part
     6. To check PR, attach the teamlead to conduct a code review, without their approval we do not merge this PR (except for emergency cases, which are discussed separately in the chat)
@@ -77,7 +84,10 @@ https://nextjs.org/docs/app/building-your-application/routing/colocation
 
 ## 1. Folder Structure
 
-We have two different apps: desktop and mobile. Each component can be related only for one type (dektop/mobile).
+We have two different apps: desktop and mobile. Each component can be related only for one type:
+
+-   desktop (from 320px to 768px)
+-   mobile (from 769px to 1920px)
 
 _Note: **ui folder** is a list of figma's styled components. Please don't change them_
 
@@ -91,7 +101,7 @@ _Note: **ui folder** is a list of figma's styled components. Please don't change
 
 We organize components in a structured manner:
 
--   Main components are placed in the pageDesktop/layout (or pageMobi/layout) folder.
+-   Main components are placed in the _/pageDesktop/layout_ (or /_pageMobi/layout_) folder.
 -   Subcomponents are organized within their respective folders
 
 ```
@@ -118,6 +128,21 @@ Following Next.js best practices, the app folder is strictly for pages, layouts,
 -   Other file names: **kebab-case**
 
 For more details, refer to this [common practice](https://medium.com/@hiro08gh/next-js-naming-conventions-are-checked-with-eslint-rules-946371d67882#:~:text=Component%20Naming%20Conventions,name%20of%20%20the%20folder%20path.).
+
+---
+
+<mark>**Important:** a name of each component should have special end:
+
+-   **Mobi** (for mobile components)
+    <br> or
+-   **Desktop** (for Desktop components)
+
+    Example:
+
+    -   HowWeWork<mark>Desktop</mark>.tsx
+    -   HomePage<mark>Mobi</mark>.tsx
+
+---
 
 ## 3. TypeScript Naming Conventions
 
