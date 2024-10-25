@@ -6,13 +6,12 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+        "lint": "next lint",
         "format": "prettier --write ."
     },
     "dependencies": {
         "@radix-ui/react-dialog": "^1.1.2",
         "@radix-ui/react-slot": "^1.1.0",
-        "@radix-ui/react-tabs": "^1.1/*/.1",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
         "eslint-config-prettier": "^9.1.0",
@@ -31,6 +30,8 @@
         "@typescript-eslint/parser": "^6.21.0",
         "eslint": "^8.57.1",
         "eslint-config-next": "^14.2.16",
+        "eslint-plugin-prettier": "^5.2.1",
+        "eslint-plugin-tailwindcss": "^3.17.5",
         "postcss": "^8.4.47",
         "prettier": "^3.3.3",
         "sass": "^1.80.3",
