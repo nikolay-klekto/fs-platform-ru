@@ -35,6 +35,7 @@ export default function Home() {
                 <>
                     <HeaderMobi />
                     <main className="bg-[#101030]">
+                        <button>Send</button>
                         <HomePageMobi />
                     </main>
                     <FooterMobi />

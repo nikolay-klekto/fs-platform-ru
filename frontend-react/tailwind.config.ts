@@ -1,4 +1,11 @@
 import type { Config } from 'tailwindcss'
+import colorsConfig from './tailwind-config/colorsConfig'
+import screensConfig from './tailwind-config/screensConfig'
+import borderRadiusConfig from './tailwind-config/borderRadiusConfig'
+import keyframesConfig from './tailwind-config/keyframesConfig'
+import animationConfig from './tailwind-config/animationConfig'
+import fontSizeConfig from './tailwind-config/fontSizeConfig'
+import backgroundImageConfig from './tailwind-config/backgroundImageConfig'
 
 const config = {
     darkMode: ['class'],
@@ -9,74 +16,25 @@ const config = {
             center: true,
             padding: '2rem',
             screens: {
-                '2xl': '1400px',
+                'sm': '320px',
+                'sm_l': '375px',
+                'sm_xl': '375px',
+                'md': '768px',
+                'lg': '1024px',
+                'xl': '1280px',
+                '2xl': '1440px',
+                '3xl': '1560px',
+                '4xl': '1920px',
             },
         },
         extend: {
-            colors: {
-                border: 'hsl(var(--border))',
-                input: 'hsl(var(--input))',
-                ring: 'hsl(var(--ring))',
-                background: 'hsl(var(--background))',
-                foreground: 'hsl(var(--foreground))',
-                primary: {
-                    DEFAULT: 'hsl(var(--primary))',
-                    foreground: 'hsl(var(--primary-foreground))',
-                },
-                secondary: {
-                    DEFAULT: 'hsl(var(--secondary))',
-                    foreground: 'hsl(var(--secondary-foreground))',
-                },
-                destructive: {
-                    DEFAULT: 'hsl(var(--destructive))',
-                    foreground: 'hsl(var(--destructive-foreground))',
-                },
-                muted: {
-                    DEFAULT: 'hsl(var(--muted))',
-                    foreground: 'hsl(var(--muted-foreground))',
-                },
-                accent: {
-                    DEFAULT: 'hsl(var(--accent))',
-                    foreground: 'hsl(var(--accent-foreground))',
-                },
-                popover: {
-                    DEFAULT: 'hsl(var(--popover))',
-                    foreground: 'hsl(var(--popover-foreground))',
-                },
-                card: {
-                    DEFAULT: 'hsl(var(--card))',
-                    foreground: 'hsl(var(--card-foreground))',
-                },
-            },
-            screens: {
-                'sm': { max: '320px' },
-                'sm_l': { max: '375px' },
-                'sm_xl': { max: '425px' },
-                'md': { max: '768px' },
-                'lg': { max: '1024px' },
-                'xl': { max: '1280px' },
-                '2xl': { max: '1440px' },
-                '3xl': { max: '1560px' },
-            },
-            borderRadius: {
-                lg: 'var(--radius)',
-                md: 'calc(var(--radius) - 2px)',
-                sm: 'calc(var(--radius) - 4px)',
-            },
-            keyframes: {
-                'accordion-down': {
-                    from: { height: '0' },
-                    to: { height: 'var(--radix-accordion-content-height)' },
-                },
-                'accordion-up': {
-                    from: { height: 'var(--radix-accordion-content-height)' },
-                    to: { height: '0' },
-                },
-            },
-            animation: {
-                'accordion-down': 'accordion-down 0.2s ease-out',
-                'accordion-up': 'accordion-up 0.2s ease-out',
-            },
+            colors: colorsConfig,
+            screens: screensConfig,
+            borderRadius: borderRadiusConfig,
+            keyframes: keyframesConfig,
+            animation: animationConfig,
+            fontSize: fontSizeConfig,
+            backgroundImage: backgroundImageConfig,
         },
     },
     plugins: [require('tailwindcss-animate')],
