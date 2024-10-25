@@ -51,7 +51,7 @@ node - v
     1. Pull changes from the main branch (currently is _dev-front-react_) to your task branch
     2. Do a local merge
     3. Check functionality
-        - insert your component on _page.tsx_ and check how it is work
+        - insert your component on _page.tsx_ and check how it works
         ```
         /app/page.tsx
         ```
@@ -61,7 +61,11 @@ node - v
     7. After approval, merge the feature branch into the working one, select **Squash and merge**
     8. Delete the feature branch
 
-**All correspondence in the repository, names of commits, PR, etc. provided in English.**
+```
+All correspondence in the repository, names of commits, PR, etc. provided in English.
+```
+
+---
 
 ## Project structure
 
@@ -137,7 +141,7 @@ For more details, refer to this [common practice](https://medium.com/@hiro08gh/n
 
 ---
 
-> **Important:** a name of each component should have special end:
+> **Important:** each component be named with a special suffix:
 >
 > -   **Mobi** (for mobile components)
 > -   **Desktop** (for Desktop components)
@@ -238,19 +242,19 @@ Avoid "magic numbers." Use variables for colors (use HSV), spacing, and dimensio
 
 ### 5.1. To insert any image, you should use the [Image component](https://nextjs.org/docs/pages/api-reference/components/image) from next.js:
 
-    ```jsx
-    import Image from 'next/image'
+```js
+import Image from 'next/image'
 
-    export default function Page() {
-        return <Image src="/profile.png" width={500} height={500} alt="Picture of the author" />
-    }
-    ```
+export default function Page() {
+    return <Image src="/profile.png" width={500} height={500} alt="Picture of the author" />
+}
+```
 
 ### 5.2. SVG
 
     use the custom component from `/components/assets/icons.tsx`
 
-    ```js
+```js
     import React from 'react'
     import { TestIcon } from '@/components/next/assets/icons'
 
@@ -262,7 +266,7 @@ Avoid "magic numbers." Use variables for colors (use HSV), spacing, and dimensio
            )
          }
     export default HomePageMobi
-    ```
+```
 
 ### 5.3. Any images, pics, background
 
@@ -272,7 +276,7 @@ Avoid "magic numbers." Use variables for colors (use HSV), spacing, and dimensio
         /images
 ```
 
-```jsx
+```js
         const MyBackgroundComponent = () => {
             return (
             <div style={{
