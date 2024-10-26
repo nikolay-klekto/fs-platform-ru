@@ -53,8 +53,8 @@
 //    }
 //
 //    @Bean
-//    open fun positionModelConverter(): PositionModelConverter {
-//        return PositionModelConverter()
+//    open fun positionModelConverter(): ProfessionModelConverter {
+//        return ProfessionModelConverter()
 //    }
 //
 //    @Bean
@@ -63,8 +63,8 @@
 //    }
 //
 //    @Bean
-//    open fun serviceModelConverter(): ServiceModelConverter {
-//        return ServiceModelConverter()
+//    open fun serviceModelConverter(): InternshipTypeModelConverter {
+//        return InternshipTypeModelConverter()
 //    }
 //
 //}

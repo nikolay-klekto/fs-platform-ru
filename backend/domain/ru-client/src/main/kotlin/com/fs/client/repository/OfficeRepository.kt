@@ -8,6 +8,7 @@ import com.fs.client.ru.OfficeModel
 import com.fs.client.converter.OfficeModelConverter
 import com.fs.domain.jooq.tables.Address.Companion.ADDRESS
 import com.fs.domain.jooq.tables.Office.Companion.OFFICE
+import com.fs.domain.jooq.tables.pojos.CompanyProfession
 import com.fs.domain.jooq.tables.pojos.Office
 import com.fs.domain.jooq.tables.records.OfficeRecord
 import org.jooq.DSLContext
@@ -23,6 +24,16 @@ abstract class OfficeRepository(
     fun getOfficeById(id: Long): Mono<OfficeModel> {
         return Mono.fromSupplier {
             blockingOfficeRepository.getById(id)
+        }
+    }
+
+    fun getOfficeByAddressId(addressId: Long): Mono<OfficeModel> {
+        return Mono.fromSupplier {
+            dsl.selectFrom(OFFICE)
+                .where(OFFICE.ADDRESS_ID.eq(addressId))
+                .fetchOne()
+                ?.into(Office::class.java)
+                ?.let { converter.toModel(it) }
         }
     }
 

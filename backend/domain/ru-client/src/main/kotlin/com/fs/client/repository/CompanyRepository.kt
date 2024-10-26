@@ -4,15 +4,15 @@ import com.fs.client.repository.blocked.CompanyBlockingRepository
 import com.fs.client.converter.CompanyModelConverter
 import com.fs.domain.jooq.tables.Address.Companion.ADDRESS
 import com.fs.domain.jooq.tables.Company.Companion.COMPANY
+import com.fs.domain.jooq.tables.CompanyProfession.Companion.COMPANY_PROFESSION
 import com.fs.domain.jooq.tables.Office.Companion.OFFICE
-import com.fs.domain.jooq.tables.Position.Companion.POSITION
 import com.fs.domain.jooq.tables.pojos.Company
 import com.fs.domain.jooq.tables.records.CompanyPartnerRecord
 import com.fs.domain.jooq.tables.records.CompanyRecord
 import com.fs.domain.jooq.tables.references.CITY
-import com.fs.domain.jooq.tables.references.COMPANIES_POSITIONS
 import com.fs.domain.jooq.tables.references.COMPANY_PARTNER
 import com.fs.service.ru.CompanyModel
+import com.fs.service.ru.enums.IndustryModel
 import io.micrometer.core.annotation.Timed
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
@@ -30,6 +30,15 @@ abstract class CompanyRepository(
         }
     }
 
+    fun getAllCompaniesIndustries(): Flux<String> {
+        return Flux.fromIterable(
+            dsl.selectDistinct(COMPANY.COMPANY_INDUSTRY)
+                .from(COMPANY)
+                .map { it.into(String::class.java) }
+        )
+    }
+
+
     @Timed(value = "companies.time", description = "Time taken to return all companies")
     open fun getAllCompanies(): Flux<CompanyModel> {
         return Flux.from(
@@ -38,13 +47,13 @@ abstract class CompanyRepository(
             .map(converter::toModel)
     }
 
-    fun getAllCompaniesByPositionId(positionId: Long): Flux<CompanyModel> {
+    fun getAllCompaniesByProfessionId(professionId: Long): Flux<CompanyModel> {
         return Flux.from(
             dsl.select(COMPANY.asterisk()).from(COMPANY)
                 .where(
-                    COMPANY.ID.eq(
-                        dsl.select(COMPANIES_POSITIONS.COMPANY_ID).from(COMPANIES_POSITIONS)
-                            .where(COMPANIES_POSITIONS.POSITION_ID.eq(positionId))
+                    COMPANY.ID.`in`(
+                        dsl.select(COMPANY_PROFESSION.COMPANY_ID).from(COMPANY_PROFESSION)
+                            .where(COMPANY_PROFESSION.PROFESSION_ID.eq(professionId))
                     )
                 )
 
@@ -146,26 +155,19 @@ abstract class CompanyRepository(
     fun deleteCompany(companyId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
 
-            dsl.deleteFrom(COMPANY_PARTNER)
+            val result2 = dsl.deleteFrom(COMPANY_PARTNER)
                 .where(COMPANY_PARTNER.COMPANY_ID.eq(companyId))
-                .execute()
+                .execute() == 1
 
             val returnResult = dsl.deleteFrom(COMPANY)
                 .where(COMPANY.ID.eq(companyId))
                 .execute() == 1
 
-            dsl.deleteFrom(COMPANIES_POSITIONS)
-                .where(COMPANIES_POSITIONS.COMPANY_ID.eq(companyId))
-                .execute()
+            val result3 = dsl.deleteFrom(COMPANY_PROFESSION)
+                .where(COMPANY_PROFESSION.COMPANY_ID.eq(companyId))
+                .execute() == 1
 
-            dsl.deleteFrom(POSITION)
-                .where(
-                    POSITION.ID.eq(
-                        dsl.select(COMPANIES_POSITIONS.POSITION_ID)
-                            .where(COMPANIES_POSITIONS.COMPANY_ID.eq(companyId))
-                    )
-                )
-            return@fromSupplier returnResult
+            return@fromSupplier returnResult || result2 || result3
         }
     }
 }

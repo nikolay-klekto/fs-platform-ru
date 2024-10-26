@@ -8,18 +8,18 @@ import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client
-import com.fs.domain.jooq.tables.CompaniesPositions
 import com.fs.domain.jooq.tables.Company
 import com.fs.domain.jooq.tables.CompanyPartner
+import com.fs.domain.jooq.tables.CompanyProfession
 import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.Databasechangeloglock
 import com.fs.domain.jooq.tables.Event
+import com.fs.domain.jooq.tables.InternshipType
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.Order
 import com.fs.domain.jooq.tables.Partner
-import com.fs.domain.jooq.tables.Position
+import com.fs.domain.jooq.tables.Profession
 import com.fs.domain.jooq.tables.Review
-import com.fs.domain.jooq.tables.Service
 
 
 
@@ -44,11 +44,6 @@ val CITY: City = City.CITY
 val CLIENT: Client = Client.CLIENT
 
 /**
- * The table <code>public.companies_positions</code>.
- */
-val COMPANIES_POSITIONS: CompaniesPositions = CompaniesPositions.COMPANIES_POSITIONS
-
-/**
  * The table <code>public.company</code>.
  */
 val COMPANY: Company = Company.COMPANY
@@ -57,6 +52,11 @@ val COMPANY: Company = Company.COMPANY
  * The table <code>public.company_partner</code>.
  */
 val COMPANY_PARTNER: CompanyPartner = CompanyPartner.COMPANY_PARTNER
+
+/**
+ * The table <code>public.company_profession</code>.
+ */
+val COMPANY_PROFESSION: CompanyProfession = CompanyProfession.COMPANY_PROFESSION
 
 /**
  * The table <code>public.country</code>.
@@ -74,6 +74,11 @@ val DATABASECHANGELOGLOCK: Databasechangeloglock = Databasechangeloglock.DATABAS
 val EVENT: Event = Event.EVENT
 
 /**
+ * The table <code>public.internship_type</code>.
+ */
+val INTERNSHIP_TYPE: InternshipType = InternshipType.INTERNSHIP_TYPE
+
+/**
  * The table <code>public.office</code>.
  */
 val OFFICE: Office = Office.OFFICE
@@ -89,16 +94,11 @@ val ORDER: Order = Order.ORDER
 val PARTNER: Partner = Partner.PARTNER
 
 /**
- * The table <code>public.position</code>.
+ * The table <code>public.profession</code>.
  */
-val POSITION: Position = Position.POSITION
+val PROFESSION: Profession = Profession.PROFESSION
 
 /**
  * The table <code>public.review</code>.
  */
 val REVIEW: Review = Review.REVIEW
-
-/**
- * The table <code>public.service</code>.
- */
-val SERVICE: Service = Service.SERVICE

@@ -1,5 +1,4 @@
 'use client'
-import HowWeWorkDesktop from '@/components/desktop/layout/HowWeWork/HowWeWorkDesktop'
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop'
@@ -13,7 +12,7 @@ export default function Home() {
 
     useEffect(() => {
         setIsClient(true)
-    })
+    }, [])
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 768px)',
@@ -35,7 +34,8 @@ export default function Home() {
             ) : (
                 <>
                     <HeaderMobi />
-                    <main className="bg-[#101030] text-white">
+                    <main className="bg-[#101030]">
+                        <button>Send</button>
                         <HomePageMobi />
                     </main>
                     <FooterMobi />

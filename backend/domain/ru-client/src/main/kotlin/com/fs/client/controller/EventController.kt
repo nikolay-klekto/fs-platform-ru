@@ -34,6 +34,11 @@ open class EventController(open val eventRepository: EventRepository) {
     }
 
     @QueryMapping
+    open fun getFirstNActualEvents(@Argument eventQuantity: Long): Flux<EventModel> {
+        return eventRepository.getFirstNActualEvents(eventQuantity)
+    }
+
+    @QueryMapping
     open fun getAllActualEventsByCityId(@Argument cityId: Long): Flux<EventModel> {
         return eventRepository.getAllActualEventsByCityId(cityId)
     }
