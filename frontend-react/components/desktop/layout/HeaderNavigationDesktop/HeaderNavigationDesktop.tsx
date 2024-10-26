@@ -15,55 +15,71 @@ const HeaderNavigationDesktop: React.FC = () => {
                 <li
                     className={
                         isActive('/')
-                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px] flex justify-center items-center'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px] flex justify-center items-center'
+                            ? 'text-white bg-dark-gradient rounded-[50px] flex justify-center items-center'
+                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent flex justify-center items-center'
                     }
                 >
-                    <Link href="/" className="font-bold text-[18px] leading-[22px] uppercase">
+                    <Link
+                        href="/"
+                        className="font-bold text-[18px] leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]
+"
+                    >
                         Главная
                     </Link>
                 </li>
                 <li
                     className={
                         isActive('/professions')
-                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px] flex justify-center items-center'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px] flex justify-center items-center'
+                            ? 'text-white bg-dark-gradient rounded-[50px] flex justify-center items-center'
+                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent flex justify-center items-center'
                     }
                 >
-                    <Link href="/professions" className="font-bold text-[18px] leading-[22px] uppercase">
+                    <Link
+                        href="/professions"
+                        className="font-bold text-[18px] leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
+                    >
                         Профессии
                     </Link>
                 </li>
                 <li
                     className={
                         isActive('/companies')
-                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px] flex justify-center items-center'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px] flex justify-center items-center'
+                            ? 'text-white bg-dark-gradient rounded-[50px] flex justify-center items-center'
+                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent flex justify-center items-center'
                     }
                 >
-                    <Link href="/companies" className="font-bold text-[18px] leading-[22px] uppercase">
+                    <Link
+                        href="/companies"
+                        className="font-bold text-[18px] leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
+                    >
                         Компании
                     </Link>
                 </li>
                 <li
                     className={
                         isActive('/profevents')
-                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px] flex justify-center items-center'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px] flex justify-center items-center'
+                            ? 'text-white bg-dark-gradient rounded-[50px] flex justify-center items-center'
+                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent flex justify-center items-center'
                     }
                 >
-                    <Link href="/profevents" className="font-bold text-[18px] leading-[22px] uppercase">
+                    <Link
+                        href="/profevents"
+                        className="font-bold text-[18px] leading-[22px] uppercase lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
+                    >
                         Мероприятия
                     </Link>
                 </li>
                 <li
                     className={
                         isActive('/contacts')
-                            ? 'text-white bg-dark-gradient px-[57.5px] py-[19px] rounded-[50px] flex justify-center items-center'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent px-[57.5px] py-[19px] flex justify-center items-center'
+                            ? 'text-white bg-dark-gradient rounded-[50px] flex justify-center items-center'
+                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent flex justify-center items-center'
                     }
                 >
-                    <Link href="/contacts" className="font-bold text-[18px] leading-[22px] uppercase">
+                    <Link
+                        href="/contacts"
+                        className="font-bold text-[18px] leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
+                    >
                         Наши контакты
                     </Link>
                 </li>
