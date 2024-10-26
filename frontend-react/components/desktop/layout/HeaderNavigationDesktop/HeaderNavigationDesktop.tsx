@@ -15,13 +15,13 @@ const HeaderNavigationDesktop: React.FC = () => {
                 <li
                     className={
                         isActive('/')
-                            ? 'text-white bg-dark-gradient rounded-[50px] flex justify-center items-center'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent flex justify-center items-center'
+                            ? 'text-white bg-gradient-desktop rounded-[50px] flex justify-center items-center'
+                            : 'bg-gradient-desktop hover:bg-gradient-desktop-hover bg-clip-text text-transparent flex justify-center items-center'
                     }
                 >
                     <Link
                         href="/"
-                        className="font-bold text-[18px] leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]
+                        className="font-bold text-4xl leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]
 "
                     >
                         Главная
@@ -30,13 +30,13 @@ const HeaderNavigationDesktop: React.FC = () => {
                 <li
                     className={
                         isActive('/professions')
-                            ? 'text-white bg-dark-gradient rounded-[50px] flex justify-center items-center'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent flex justify-center items-center'
+                            ? 'text-white bg-gradient-desktop rounded-[50px] flex justify-center items-center'
+                            : 'bg-gradient-desktop hover:bg-gradient-desktop-hover bg-clip-text text-transparent flex justify-center items-center'
                     }
                 >
                     <Link
                         href="/professions"
-                        className="font-bold text-[18px] leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
+                        className="font-bold text-4xl leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
                     >
                         Профессии
                     </Link>
@@ -44,13 +44,13 @@ const HeaderNavigationDesktop: React.FC = () => {
                 <li
                     className={
                         isActive('/companies')
-                            ? 'text-white bg-dark-gradient rounded-[50px] flex justify-center items-center'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent flex justify-center items-center'
+                            ? 'text-white bg-gradient-desktop rounded-[50px] flex justify-center items-center'
+                            : 'bg-gradient-desktop hover:bg-gradient-desktop-hover bg-clip-text text-transparent flex justify-center items-center'
                     }
                 >
                     <Link
                         href="/companies"
-                        className="font-bold text-[18px] leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
+                        className="font-bold text-4xl leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
                     >
                         Компании
                     </Link>
@@ -58,13 +58,13 @@ const HeaderNavigationDesktop: React.FC = () => {
                 <li
                     className={
                         isActive('/profevents')
-                            ? 'text-white bg-dark-gradient rounded-[50px] flex justify-center items-center'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent flex justify-center items-center'
+                            ? 'text-white bg-gradient-desktop rounded-[50px] flex justify-center items-center'
+                            : 'bg-gradient-desktop hover:bg-gradient-desktop-hover bg-clip-text text-transparent flex justify-center items-center'
                     }
                 >
                     <Link
                         href="/profevents"
-                        className="font-bold text-[18px] leading-[22px] uppercase lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
+                        className="font-bold text-4xl leading-[22px] uppercase lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
                     >
                         Мероприятия
                     </Link>
@@ -72,13 +72,13 @@ const HeaderNavigationDesktop: React.FC = () => {
                 <li
                     className={
                         isActive('/contacts')
-                            ? 'text-white bg-dark-gradient rounded-[50px] flex justify-center items-center'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent flex justify-center items-center'
+                            ? 'text-white bg-gradient-desktop rounded-[50px] flex justify-center items-center'
+                            : 'bg-gradient-desktop hover:bg-gradient-desktop-hover bg-clip-text text-transparent flex justify-center items-center'
                     }
                 >
                     <Link
                         href="/contacts"
-                        className="font-bold text-[18px] leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
+                        className="font-bold text-4xl leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
                     >
                         Наши контакты
                     </Link>

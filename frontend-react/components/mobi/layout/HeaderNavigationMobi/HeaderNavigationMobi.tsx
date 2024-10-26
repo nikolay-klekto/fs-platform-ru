@@ -15,8 +15,8 @@ const HeaderNavigationMobi: React.FC = () => {
                 <li
                     className={
                         isActive('/')
-                            ? 'text-white py-[14px] text-[24px] leading-[29px] font-semibold'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent py-[14px] text-[20px] leading-[24px] font-medium'
+                            ? 'text-white py-[14px] text-7xl leading-[29px] font-semibold'
+                            : 'bg-sub-title-gradient-mobi hover:bg-sub-title-gradient-mobi-hover bg-clip-text text-transparent py-[14px] text-5xl leading-[24px] font-medium'
                     }
                 >
                     <Link href="/" className="uppercase">
@@ -26,8 +26,8 @@ const HeaderNavigationMobi: React.FC = () => {
                 <li
                     className={
                         isActive('/professions')
-                            ? 'text-white py-[14px] text-[24px] leading-[29px] font-semibold'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent py-[14px] text-[20px] leading-[24px] font-medium'
+                            ? 'text-white py-[14px] text-7xl leading-[29px] font-semibold'
+                            : 'bg-sub-title-gradient-mobi hover:bg-sub-title-gradient-mobi-hover bg-clip-text text-transparent py-[14px] text-5xl leading-[24px] font-medium'
                     }
                 >
                     <Link href="/professions" className="uppercase">
@@ -37,8 +37,8 @@ const HeaderNavigationMobi: React.FC = () => {
                 <li
                     className={
                         isActive('/companies')
-                            ? 'text-white py-[14px] text-[24px] leading-[29px] font-semibold'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent py-[14px] text-[20px] leading-[24px] font-medium'
+                            ? 'text-white py-[14px] text-7xl leading-[29px] font-semibold'
+                            : 'bg-sub-title-gradient-mobi hover:bg-sub-title-gradient-mobi-hover bg-clip-text text-transparent py-[14px] text-5xl leading-[24px] font-medium'
                     }
                 >
                     <Link href="/companies" className="uppercase">
@@ -48,8 +48,8 @@ const HeaderNavigationMobi: React.FC = () => {
                 <li
                     className={
                         isActive('/profile')
-                            ? 'text-white py-[14px] text-[24px] leading-[29px] font-semibold'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent py-[14px] text-[20px] leading-[24px] font-medium'
+                            ? 'text-white py-[14px] text-7xl leading-[29px] font-semibold'
+                            : 'bg-sub-title-gradient-mobi hover:bg-sub-title-gradient-mobi-hover bg-clip-text text-transparent py-[14px] text-5xl leading-[24px] font-medium'
                     }
                 >
                     <Link href="/profile" className="uppercase">
@@ -59,8 +59,8 @@ const HeaderNavigationMobi: React.FC = () => {
                 <li
                     className={
                         isActive('/profevents')
-                            ? 'text-white py-[14px] text-[24px] leading-[29px] font-semibold'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent py-[14px] text-[20px] leading-[24px] font-medium'
+                            ? 'text-white py-[14px] text-7xl leading-[29px] font-semibold'
+                            : 'bg-sub-title-gradient-mobi hover:bg-sub-title-gradient-mobi-hover bg-clip-text text-transparent py-[14px] text-5xl leading-[24px] font-medium'
                     }
                 >
                     <Link href="/profevents" className="uppercase">
@@ -70,8 +70,8 @@ const HeaderNavigationMobi: React.FC = () => {
                 <li
                     className={
                         isActive('/contacts')
-                            ? 'text-white py-[14px] text-[24px] leading-[29px] font-semibold'
-                            : 'bg-dark-gradient hover:bg-light-gradient bg-clip-text text-transparent py-[14px] text-[20px] leading-[24px] font-medium'
+                            ? 'text-white py-[14px] text-7xl leading-[29px] font-semibold'
+                            : 'bg-sub-title-gradient-mobi hover:bg-sub-title-gradient-mobi-hover bg-clip-text text-transparent py-[14px] text-5xl leading-[24px] font-medium'
                     }
                 >
                     <Link href="/contacts" className="uppercase">
