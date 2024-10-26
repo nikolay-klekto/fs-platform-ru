@@ -1,12 +1,12 @@
 const screensConfig = {
-    'sm': { max: '320px' },
-    'sm_l': { max: '375px' },
-    'sm_xl': { max: '425px' },
-    'md': { max: '768px' },
-    'lg': { max: '1024px' },
-    'xl': { max: '1280px' },
-    '2xl': { max: '1440px' },
-    '3xl': { max: '1560px' },
-    '4xl': { max: '1920px' },
+    'sm': { min: '320px' },
+    'sm_l': { min: '375px' },
+    'sm_xl': { min: '425px' },
+    'md': { min: '768px' },
+    'lg': { min: '1024px' },
+    'xl': { min: '1280px' },
+    '2xl': { min: '1440px' },
+    '3xl': { min: '1560px' },
+    '4xl': { min: '1920px' },
 }
 export default screensConfig

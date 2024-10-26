@@ -21,8 +21,7 @@ const HeaderNavigationDesktop: React.FC = () => {
                 >
                     <Link
                         href="/"
-                        className="font-bold text-4xl leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]
-"
+                        className="md:px-2 md:py-2 lg:px-6 lg:py-3 xl:px-10 xl:py-4 2xl:px-14 2xl:py-5 font-bold text-4xl leading-[22px] uppercase"
                     >
                         Главная
                     </Link>
@@ -36,7 +35,7 @@ const HeaderNavigationDesktop: React.FC = () => {
                 >
                     <Link
                         href="/professions"
-                        className="font-bold text-4xl leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
+                        className="md:px-2 md:py-2 lg:px-6 lg:py-3 xl:px-10 xl:py-4 2xl:px-14 2xl:py-5 font-bold text-4xl leading-[22px] uppercase"
                     >
                         Профессии
                     </Link>
@@ -50,7 +49,7 @@ const HeaderNavigationDesktop: React.FC = () => {
                 >
                     <Link
                         href="/companies"
-                        className="font-bold text-4xl leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
+                        className="md:px-2 md:py-2 lg:px-6 lg:py-3 xl:px-10 xl:py-4 2xl:px-14 2xl:py-5 font-bold text-4xl leading-[22px] uppercase"
                     >
                         Компании
                     </Link>
@@ -64,7 +63,7 @@ const HeaderNavigationDesktop: React.FC = () => {
                 >
                     <Link
                         href="/profevents"
-                        className="font-bold text-4xl leading-[22px] uppercase lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
+                        className="md:px-2 md:py-2 lg:px-6 lg:py-3 xl:px-10 xl:py-4 2xl:px-14 2xl:py-5 font-bold text-4xl leading-[22px] uppercase"
                     >
                         Мероприятия
                     </Link>
@@ -78,7 +77,7 @@ const HeaderNavigationDesktop: React.FC = () => {
                 >
                     <Link
                         href="/contacts"
-                        className="font-bold text-4xl leading-[22px] uppercase  lg:px-[15px] lg:py-[5px] xl:px-[30px] xl:py-[10px] px-[57.5px] py-[19px]"
+                        className="md:px-2 md:py-2 lg:px-6 lg:py-3 xl:px-10 xl:py-4 2xl:px-14 2xl:py-5 font-bold text-4xl leading-[22px] uppercase"
                     >
                         Наши контакты
                     </Link>
