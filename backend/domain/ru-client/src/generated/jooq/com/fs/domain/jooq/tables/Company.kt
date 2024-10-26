@@ -8,7 +8,6 @@ import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.COMPANY_PKEY
 import com.fs.domain.jooq.tables.records.CompanyRecord
 import com.fs.service.ru.enums.CompanyLegalCapacityStatus
-import com.fs.service.ru.enums.IndustryModel
 
 import org.jooq.Field
 import org.jooq.ForeignKey
@@ -69,7 +68,7 @@ open class Company(
     /**
      * The column <code>public.company.company_industry</code>.
      */
-    val COMPANY_INDUSTRY: TableField<CompanyRecord, IndustryModel?> = createField(DSL.name("company_industry"), SQLDataType.VARCHAR, this, "", EnumConverter<String, IndustryModel>(String::class.java, IndustryModel::class.java))
+    val COMPANY_INDUSTRY: TableField<CompanyRecord, String?> = createField(DSL.name("company_industry"), SQLDataType.VARCHAR, this, "")
 
     /**
      * The column <code>public.company.legal_capacity_status</code>.
@@ -129,5 +128,5 @@ open class Company(
     // -------------------------------------------------------------------------
     // Row6 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row6<Long?, IndustryModel?, CompanyLegalCapacityStatus?, String?, String?, String?> = super.fieldsRow() as Row6<Long?, IndustryModel?, CompanyLegalCapacityStatus?, String?, String?, String?>
+    override fun fieldsRow(): Row6<Long?, String?, CompanyLegalCapacityStatus?, String?, String?, String?> = super.fieldsRow() as Row6<Long?, String?, CompanyLegalCapacityStatus?, String?, String?, String?>
 }

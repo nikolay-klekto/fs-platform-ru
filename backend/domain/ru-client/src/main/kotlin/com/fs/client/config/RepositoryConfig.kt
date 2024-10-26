@@ -77,7 +77,7 @@
 //            jooqConfig.dsl(),
 //            converterConfig.orderModelConverter(),
 //            basketRepository(),
-//            serviceRepository(),
+//            internshipTypeRepository(),
 //            cityRepository(),
 //            countryRepository(),
 //            serviceConfig.totalPriceMatcher()
@@ -110,8 +110,8 @@
 //    }
 //
 //    @Bean
-//    open fun serviceRepository(): ServiceRepository {
-//        return DefaultServiceRepository(
+//    open fun internshipTypeRepository(): InternshipTypeRepository {
+//        return DefaultInternshipTypeRepository(
 //            jooqConfig.dsl(),
 //            converterConfig.serviceModelConverter()
 //        )

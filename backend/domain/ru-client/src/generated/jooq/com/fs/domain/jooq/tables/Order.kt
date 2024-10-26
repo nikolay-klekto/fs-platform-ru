@@ -8,8 +8,7 @@ import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.ORDER_PKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_BASKET_ID_FKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_COMPANY_OFFICE_ID_FKEY
-import com.fs.domain.jooq.keys.ORDER__ORDER_POSITION_ID_FKEY
-import com.fs.domain.jooq.keys.ORDER__ORDER_SERVICE_ID_FKEY
+import com.fs.domain.jooq.keys.ORDER__ORDER_COMPANY_PROFESSION_ID_FKEY
 import com.fs.domain.jooq.tables.records.OrderRecord
 import com.fs.service.ru.enums.OrderStatus
 
@@ -22,7 +21,7 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
-import org.jooq.Row11
+import org.jooq.Row10
 import org.jooq.Schema
 import org.jooq.Table
 import org.jooq.TableField
@@ -84,16 +83,6 @@ open class Order(
     val COMPANY_OFFICE_ID: TableField<OrderRecord, Long?> = createField(DSL.name("company_office_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.order.position_id</code>.
-     */
-    val POSITION_ID: TableField<OrderRecord, Long?> = createField(DSL.name("position_id"), SQLDataType.BIGINT, this, "")
-
-    /**
-     * The column <code>public.order.service_id</code>.
-     */
-    val SERVICE_ID: TableField<OrderRecord, Long?> = createField(DSL.name("service_id"), SQLDataType.BIGINT, this, "")
-
-    /**
      * The column <code>public.order.is_expired</code>.
      */
     val IS_EXPIRED: TableField<OrderRecord, Boolean?> = createField(DSL.name("is_expired"), SQLDataType.BOOLEAN, this, "")
@@ -123,6 +112,11 @@ open class Order(
      */
     val DATE_CREATED: TableField<OrderRecord, LocalDateTime?> = createField(DSL.name("date_created"), SQLDataType.LOCALDATETIME(6), this, "")
 
+    /**
+     * The column <code>public.order.company_profession_id</code>.
+     */
+    val COMPANY_PROFESSION_ID: TableField<OrderRecord, Long?> = createField(DSL.name("company_profession_id"), SQLDataType.BIGINT, this, "")
+
     private constructor(alias: Name, aliased: Table<OrderRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<OrderRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
@@ -145,12 +139,11 @@ open class Order(
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<OrderRecord, Long?> = super.getIdentity() as Identity<OrderRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<OrderRecord> = ORDER_PKEY
-    override fun getReferences(): List<ForeignKey<OrderRecord, *>> = listOf(ORDER__ORDER_BASKET_ID_FKEY, ORDER__ORDER_COMPANY_OFFICE_ID_FKEY, ORDER__ORDER_POSITION_ID_FKEY, ORDER__ORDER_SERVICE_ID_FKEY)
+    override fun getReferences(): List<ForeignKey<OrderRecord, *>> = listOf(ORDER__ORDER_BASKET_ID_FKEY, ORDER__ORDER_COMPANY_OFFICE_ID_FKEY, ORDER__ORDER_COMPANY_PROFESSION_ID_FKEY)
 
     private lateinit var _basket: Basket
     private lateinit var _office: Office
-    private lateinit var _position: Position
-    private lateinit var _service: Service
+    private lateinit var _companyProfession: CompanyProfession
 
     /**
      * Get the implicit join path to the <code>public.basket</code> table.
@@ -173,23 +166,14 @@ open class Order(
     }
 
     /**
-     * Get the implicit join path to the <code>public.position</code> table.
+     * Get the implicit join path to the <code>public.company_profession</code>
+     * table.
      */
-    fun position(): Position {
-        if (!this::_position.isInitialized)
-            _position = Position(this, ORDER__ORDER_POSITION_ID_FKEY)
+    fun companyProfession(): CompanyProfession {
+        if (!this::_companyProfession.isInitialized)
+            _companyProfession = CompanyProfession(this, ORDER__ORDER_COMPANY_PROFESSION_ID_FKEY)
 
-        return _position;
-    }
-
-    /**
-     * Get the implicit join path to the <code>public.service</code> table.
-     */
-    fun service(): Service {
-        if (!this::_service.isInitialized)
-            _service = Service(this, ORDER__ORDER_SERVICE_ID_FKEY)
-
-        return _service;
+        return _companyProfession;
     }
     override fun `as`(alias: String): Order = Order(DSL.name(alias), this)
     override fun `as`(alias: Name): Order = Order(alias, this)
@@ -205,7 +189,7 @@ open class Order(
     override fun rename(name: Name): Order = Order(name, null)
 
     // -------------------------------------------------------------------------
-    // Row11 type methods
+    // Row10 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row11<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, OrderStatus?, LocalDateTime?> = super.fieldsRow() as Row11<Long?, Long?, Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, OrderStatus?, LocalDateTime?>
+    override fun fieldsRow(): Row10<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, OrderStatus?, LocalDateTime?, Long?> = super.fieldsRow() as Row10<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, OrderStatus?, LocalDateTime?, Long?>
 }

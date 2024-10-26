@@ -16,7 +16,8 @@ abstract class OrderBlockingRepository(
     open val dsl: DSLContext,
     open val converter: OrderModelConverter,
     open val basketBlockingRepository: BasketBlockingRepository,
-    open val serviceBlockingRepository: ServiceBlockingRepository
+    open val internshipTypeBlockingRepository: InternshipTypeBlockingRepository,
+    open val companyProfessionBlockingRepository: CompanyProfessionBlockingRepository
 ) {
 
     fun getById(orderId: Long): OrderModel? {
@@ -77,7 +78,7 @@ abstract class OrderBlockingRepository(
     }
 
     fun insert(orderModel: OrderModel): OrderModel {
-        if (orderModel.serviceId == null || orderModel.companyOfficeId == null ||
+        if (orderModel.companyProfessionId == null || orderModel.companyOfficeId == null ||
             orderModel.startWorkDate == null || orderModel.totalWorkDays == null
         ) {
             throw Exception("Необходимо заполнить все обязательные поля!")
@@ -111,31 +112,30 @@ abstract class OrderBlockingRepository(
         val pastTotalPrice: Double? =
             basketBlockingRepository.getById(basketId!!)?.totalPrice
 
-        val servicePrice: Double =
-            serviceBlockingRepository.getById(orderModel.serviceId!!)
-                ?.pricePerDay!!.toDouble() * orderModel.totalWorkDays!!
+        val newOrderPrice: Double =
+            companyProfessionBlockingRepository.
+            getPricePerDayById(orderModel.companyProfessionId!!)* orderModel.totalWorkDays!!
 
         val totalPrice: Double = if (pastTotalPrice != null) {
 
-            pastTotalPrice + servicePrice
+            pastTotalPrice + newOrderPrice
 
         } else {
-            servicePrice
+            newOrderPrice
         }
         basketBlockingRepository.update(BasketModel(basketId, totalPrice))
 
         val newOrderModel = OrderModel(
-            DEFAULT_ORDER_ID,
-            basketId,
-            orderModel.companyOfficeId,
-            LocalDateTime.now(),
-            orderModel.positionId,
-            orderModel.serviceId,
-            orderModel.isExpired,
-            newOrderStatus ?: orderModel.orderStatus,
-            orderModel.startWorkDate,
-            orderModel.totalWorkDays,
-            servicePrice
+            id = DEFAULT_ORDER_ID,
+            basketId = basketId,
+            companyOfficeId = orderModel.companyOfficeId,
+            dateCreated = LocalDateTime.now(),
+            isExpired = orderModel.isExpired,
+            orderStatus = newOrderStatus ?: orderModel.orderStatus,
+            startWorkDate = orderModel.startWorkDate,
+            totalWorkDays = orderModel.totalWorkDays,
+            price = newOrderPrice,
+            companyProfessionId = orderModel.companyProfessionId
         )
         val newOrderRecord: OrderRecord = dsl.newRecord(ORDER)
         newOrderRecord.from(newOrderModel)
