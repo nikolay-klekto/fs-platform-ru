@@ -7,6 +7,7 @@ import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/Ho
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
+import HowWeWorkDesktop from '@/components/desktop/layout/HowWeWorkDesktop/HowWeWorkDesktop'
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
 

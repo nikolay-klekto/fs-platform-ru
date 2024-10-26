@@ -1,5 +1,10 @@
 import React from 'react'
+import HeaderCardsDesktop from '../../layout/HeaderCardsDesktop/HeaderCardsDesktop'
 const HomePageDesktop: React.FC = () => {
-    return <h1>HomePageDesktop</h1>
+    return (
+        <>
+            <HeaderCardsDesktop />
+        </>
+    )
 }
 export default HomePageDesktop

@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const TestIcon: React.FC = (props) => {
+export const Arrow: React.FC = (props) => {
     return (
-        <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <svg width="29" height="26" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
                 d="M20.0827 8.61822L11.4081 0.337891V5.06951C3.10656 5.06951 1.15625 11.022 1.15625 16.8986C3.55212 13.8309 5.671 12.1669 11.4081 12.1669V16.8986L20.0827 8.61822Z"
                 fill="url(#paint0_linear_46_24033)"
