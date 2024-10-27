@@ -3,7 +3,7 @@ import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationD
 
 const HeaderDesktop: React.FC = () => {
     return (
-        <div className="w-full flex justify-center align-middle p-4 bg-[#101030]">
+        <div className="w-[60%] flex justify-center align-middle p-4 bg-[#101030] mx-auto">
             {/* <header>HeaderDesktop</header> */}
             <HeaderNavigationDesktop />
         </div>
