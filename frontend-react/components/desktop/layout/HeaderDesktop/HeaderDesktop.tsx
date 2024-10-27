@@ -1,5 +1,5 @@
 import React from 'react'
-import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationDesktop'
+import HeaderNavigationDesktop from './HeaderNavigationDesktop'
 
 const HeaderDesktop: React.FC = () => {
     return (

@@ -22,9 +22,9 @@
     }
 
     .navlink_mobi_custom {
-        @apply bg-sub-title-gradient-mobi hover:bg-sub-title-gradient-mobi-hover bg-clip-text text-transparent font-medium py-2 sm_l:py-3 sm_xl:py-[14px] sm:text-4xl sm_l:text-4xl sm_xl:text-5xl leading-[24px];
+        @apply bg-sub-title-gradient-mobi hover:bg-sub-title-gradient-mobi-hover bg-clip-text text-transparent font-medium py-2 sm_l:py-3 sm_xl:py-[14px] sm:text-3xl sm_l:text-4xl sm_xl:text-5xl leading-[24px];
     }
     .navlink-active_mobi_custom {
-        @apply text-white font-semibold py-2 sm_l:py-3 sm_xl:py-[14px] sm:text-6xl sm_l:text-6xl sm_xl:text-7xl leading-[29px];
+        @apply text-white font-semibold py-2 sm_l:py-3 sm_xl:py-[14px] sm:text-5xl sm_l:text-6xl sm_xl:text-7xl leading-[29px];
     }
 }

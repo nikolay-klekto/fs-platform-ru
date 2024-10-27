@@ -1,5 +1,5 @@
 import React from 'react'
-import HeaderNavigationMobi from './HeaderNavigationMobi/HeaderNavigationMobi'
+import HeaderNavigationMobi from './HeaderNavigationMobi'
 
 const HeaderMobi: React.FC = () => {
     return (
