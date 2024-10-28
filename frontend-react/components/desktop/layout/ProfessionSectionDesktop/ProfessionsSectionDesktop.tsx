@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import ProfessionCard from '@/components/desktop/shared/profession/ProfessionCard'
+import ProfessionCardDesktop from '@/components/desktop/shared/ProfessionCardDesktop'
 import { Button } from '@/components/ui/button'
 
 const IMAGE_URL =
@@ -10,16 +10,16 @@ const IMAGE_URL =
 const ProfessionsSectionDesktop: React.FC = () => {
     return (
         <div className="flex flex-col gap-[80px]">
-            <h2 className="text-white text-[80px] font-medium">ПРОФЕССИИ</h2>
+            <h2 className="text-[80px] font-medium text-white">ПРОФЕССИИ</h2>
             <div className="flex justify-between">
                 <h3 className="text-4xl font-medium text-white">Наиболее популярные на нашем сервисе</h3>
                 <Button variant="outline">Смотреть все</Button>
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[190px] lg:auto-rows-[500px]">
-                <ProfessionCard image={IMAGE_URL} title="Программист" price="15" />
-                <ProfessionCard image={IMAGE_URL} title="Программист" price="16" />
-                <ProfessionCard image={IMAGE_URL} title="Программист" price="24" />
-                <ProfessionCard image={IMAGE_URL} title="Программист" price="12" />
+            <div className="grid auto-rows-[190px] grid-cols-2 gap-4 lg:auto-rows-[500px] lg:grid-cols-4">
+                <ProfessionCardDesktop image={IMAGE_URL} title="Программист" price="15" />
+                <ProfessionCardDesktop image={IMAGE_URL} title="Программист" price="16" />
+                <ProfessionCardDesktop image={IMAGE_URL} title="Программист" price="24" />
+                <ProfessionCardDesktop image={IMAGE_URL} title="Программист" price="12" />
             </div>
         </div>
     )

@@ -6,6 +6,7 @@ import keyframesConfig from './tailwind-config/keyframesConfig'
 import animationConfig from './tailwind-config/animationConfig'
 import fontSizeConfig from './tailwind-config/fontSizeConfig'
 import backgroundImageConfig from './tailwind-config/backgroundImageConfig'
+import plugin from 'tailwindcss/plugin'
 
 const config = {
     darkMode: ['class'],
@@ -37,7 +38,36 @@ const config = {
             backgroundImage: backgroundImageConfig,
         },
     },
-    plugins: [require('tailwindcss-animate')],
+    plugins: [
+        require('tailwindcss-animate'),
+        plugin(function ({ addUtilities }) {
+            addUtilities({
+                '.scrollbar-custom': {
+                    /* Для веб-китовских браузеров */
+                    '&::-webkit-scrollbar': {
+                        width: '12px',
+                        height: '12px',
+                    },
+                    '&::-webkit-scrollbar-track': {
+                        background: '#ac1313',
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                        background: '#888',
+                        borderRadius: '6px',
+                    },
+                    '&::-webkit-scrollbar-thumb:hover': {
+                        background: '#555',
+                    },
+                    '&::-webkit-scrollbar-button': {
+                        display: 'none' /* Убираем стрелочки */,
+                    },
+                    /* Для Firefox */
+                    'scrollbar-width': 'thin' /* Уменьшаем ширину скроллбара */,
+                    'scrollbar-color': '#888 #ac1313' /* Цвет скроллбара и трека */,
+                },
+            })
+        }),
+    ],
 } satisfies Config
 
 export default config
