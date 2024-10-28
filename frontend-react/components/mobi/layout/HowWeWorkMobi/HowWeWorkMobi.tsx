@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 const HowWeWorkMobi: React.FC = () => {
     const [showList, setShowList] = React.useState(true)
     return (
-        <div className="container">
+        <div className="container pb-[20px]">
             <div className="mb-[24px]">
                 <TitleMobi title={'Как мы работаем'} />
             </div>
@@ -32,10 +32,10 @@ const HowWeWorkMobi: React.FC = () => {
                         className="absolute bottom-0  left-0 flex h-[100px] w-full items-end justify-center bg-[#353652]"
                         style={{
                             background:
-                                'linear-gradient(to bottom, rgba(16, 16, 48, 0.2) 0%, rgba(16, 16, 48, 0.5) 30%,  rgba(16, 16, 48, 1) 100%)',
+                                'linear-gradient(to bottom, rgba(16, 16, 48, 0.2) 0%, rgba(16, 16, 48, 0.8) 30%,  rgba(16, 16, 48, 1) 100%)',
                         }}
                     >
-                        <Button variant="select_mobi" size="select_mobi">
+                        <Button onClick={() => setShowList(false)} variant="select_mobi" size="select_mobi">
                             Развернуть
                         </Button>
                     </div>
