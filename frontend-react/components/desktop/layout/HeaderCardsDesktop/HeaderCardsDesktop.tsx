@@ -1,7 +1,8 @@
 'use client'
+
 import React from 'react'
 import { content } from './content'
-import { Arrow } from '@/components/asssets/icons'
+import { ArrowGradientDesktop } from '@/components/assets/iconsDesktop'
 
 const HeaderCardsDesktop: React.FC = () => {
     return (
@@ -11,7 +12,7 @@ const HeaderCardsDesktop: React.FC = () => {
                 <div className="flex flex-col gap-[20px] p-[61px]">
                     {content.map((item) => (
                         <div
-                            className="bg-card flex min-h-[260px] max-w-[426px] flex-1 flex-col justify-center gap-[26px] rounded-[50px] px-10 drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
+                            className="flex min-h-[260px] max-w-[426px] flex-1 flex-col justify-center gap-[26px] bg-[url('/background/subtract_desk.svg')] px-10 drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
                             key={item.id}
                         >
                             <div className="text-[24px] font-medium">
@@ -43,8 +44,8 @@ const HeaderCardsDesktop: React.FC = () => {
                                     {item.price} {item.currency}/ {item.time}
                                 </span>
                             </div>
-                            <button className="bg-card absolute bottom-0 right-0 flex size-[68px] items-center justify-center rounded-[50%] ">
-                                <Arrow />
+                            <button className="bg-card absolute bottom-0 right-0 flex size-[68px] items-center justify-center rounded-[50%] hover:bg-black">
+                                <ArrowGradientDesktop />
                             </button>
                         </div>
                     ))}
