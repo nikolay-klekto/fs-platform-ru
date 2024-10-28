@@ -14,7 +14,7 @@
     }
 
     .navlink-text_desktop_custom {
-        @apply font-bold md:text-sm lg:text-2xl xl:text-4xl leading-[22px] uppercase whitespace-nowrap md:px-2 md:py-1 lg:px-3 lg:py-1 xl:px-3 xl:py-2 2xl:px-6 2xl:py-3 3xl:px-8 3xl:py-4 4xl:px-14 4xl:py-5;
+        @apply font-bold md:text-xs lg:text-sm xl:text-xl 2xl:text-3xl 3xl:text-4xl text-4xl leading-[22px] uppercase whitespace-nowrap md:px-2 md:py-1 lg:px-3 lg:py-1 xl:px-3 xl:py-2 2xl:px-5 2xl:py-3 3xl:px-6 3xl:py-4 4xl:px-10 4xl:py-5 px-14 py-5;
     }
 
     .navlink-active_desktop_custom {
@@ -22,9 +22,9 @@
     }
 
     .navlink_mobi_custom {
-        @apply bg-sub-title-gradient-mobi hover:bg-sub-title-gradient-mobi-hover bg-clip-text text-transparent font-medium py-2 sm_l:py-3 sm_xl:py-[14px] sm:text-3xl sm_l:text-4xl sm_xl:text-5xl leading-[24px];
+        @apply bg-sub-title-gradient-mobi hover:bg-sub-title-gradient-mobi-hover bg-clip-text text-transparent font-medium sm:py-2 sm_l:py-3 sm_xl:py-[14px] py-[14px] sm:text-3xl sm_l:text-4xl sm_xl:text-5xl text-5xl leading-[24px];
     }
     .navlink-active_mobi_custom {
-        @apply text-white font-semibold py-2 sm_l:py-3 sm_xl:py-[14px] sm:text-5xl sm_l:text-6xl sm_xl:text-7xl leading-[29px];
+        @apply text-white font-semibold sm:py-2 sm_l:py-3 sm_xl:py-[14px] py-[14px] sm:text-5xl sm_l:text-6xl sm_xl:text-7xl text-7xl leading-[29px];
     }
 }
