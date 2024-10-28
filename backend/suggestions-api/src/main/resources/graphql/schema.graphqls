@@ -1,0 +1,24 @@
+type Query {
+    getAllProfessionSuggestions: [Suggestion]
+    getAllCompanySuggestions: [Suggestion]
+}
+
+type Mutation{
+    addSuggestion(suggestion: SuggestionInput): Suggestion
+    updateSuggestionStatus(id: ID!, isActive: Boolean!): Suggestion
+}
+input SuggestionInput{
+    professionName: String
+    suggesterName: String
+    companyName: String
+    email: String
+    isActive: Boolean
+}
+type Suggestion{
+    id: ID!
+    professionName: String
+    suggesterName: String
+    companyName: String
+    email: String
+    isActive: Boolean
+}

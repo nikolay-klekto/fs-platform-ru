@@ -18,15 +18,14 @@ data class Order(
     var id: Long? = null,
     var basketId: Long? = null,
     var companyOfficeId: Long? = null,
-    var positionId: Long? = null,
-    var serviceId: Long? = null,
     @set:JvmName("setIsExpired")
     var isExpired: Boolean? = null,
     var startWorkDate: LocalDateTime? = null,
     var totalWorkDays: Long? = null,
     var price: Double? = null,
     var orderStatus: OrderStatus? = null,
-    var dateCreated: LocalDateTime? = null
+    var dateCreated: LocalDateTime? = null,
+    var companyProfessionId: Long? = null
 ): Serializable {
 
 
@@ -36,14 +35,13 @@ data class Order(
         sb.append(id)
         sb.append(", ").append(basketId)
         sb.append(", ").append(companyOfficeId)
-        sb.append(", ").append(positionId)
-        sb.append(", ").append(serviceId)
         sb.append(", ").append(isExpired)
         sb.append(", ").append(startWorkDate)
         sb.append(", ").append(totalWorkDays)
         sb.append(", ").append(price)
         sb.append(", ").append(orderStatus)
         sb.append(", ").append(dateCreated)
+        sb.append(", ").append(companyProfessionId)
 
         sb.append(")")
         return sb.toString()

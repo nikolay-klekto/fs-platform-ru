@@ -5,8 +5,8 @@ type Query {
     getClintById(id: ID!): Client
     getAllClients: [Client]
 
-    getServiceById(id: ID!): Service
-    getAllServices: [Service]
+    getInternshipTypeById(id: ID!): InternshipType
+    getAllInternshipTypes: [InternshipType]
 
     getReviewById(id: ID!): Review
     getAllReviewsByCompany(id: ID!): [Review]
@@ -22,13 +22,15 @@ type Query {
 
     getCompanyById(id: ID!): Company
     getAllCompanies: [Company]
+    getAllCompaniesIndustries: [String]
     getAllCompaniesByPositionId(id: ID!): [Company]
     getAllCompaniesByCountryCode(code: ID!): [Company]
     getAllCompaniesByCityId(id: ID!): [Company]
 
-    getPositionById(id: ID!): Position
-    getAllPositionsByCompanyId(id: ID!): [Position]
-    getAllPositions: [Position]
+    getProfessionById(id: ID!): Profession
+    getAllProfessionsByCompanyId(id: ID!): [Profession]
+    getAllProfessions: [Profession]
+    getNMostPopularProfessions(quantity: ID!): [Profession]
 
     getPartnerById(id: ID!): Partner
     getAllPartners: [Partner]
@@ -47,13 +49,16 @@ type Query {
     getAllEvents: [Event]
     getAllActualEvents: [Event]
     getAllActualEventsByCityId(cityId: ID!): [Event]
+    getFirstNActualEvents(eventQuantity: ID!): [Event]
+
+    getLowestPriceByInternshipTypeId(internshipTypeId: ID): ID
 
 }
 
 type Mutation {
-    addService(services: ServiceInput!): Service
-    updateServiceById(id: ID!, service: ServiceInput!): Boolean
-    deleteServiceById(id: ID!): Boolean
+    addInternshipType(internshipType: InternshipTypeInput!): InternshipType
+    updateInternshipTypeById(id: ID!, internshipType: InternshipTypeInput!): Boolean
+    deleteInternshipTypeById(id: ID!): Boolean
 
     addReview(review: ReviewInput!): ErrorReviewModel
     updateReview(review: ReviewInput!): Boolean
@@ -72,11 +77,11 @@ type Mutation {
     updateCompany(company: CompanyInput!): Boolean
     deleteCompany(id: ID!): Boolean
 
-    addPosition(position: PositionInput!): Position
-    addCompanyPosition(companyId: ID!, position: PositionInput!): Position
-    addExistingPositionToCompany(companyId: ID!, positionId: ID!): Boolean
-    updatePosition(position: PositionInput!): Boolean
-    deletePosition(id: ID!): Boolean
+    addProfession(profession: ProfessionInput!): Profession
+    addCompanyProfession(companyId: ID!, profession: ProfessionInput!): Profession
+    addExistingProfessionToCompany(companyId: ID!, positionId: ID!): Boolean
+    updateProfession(profession: ProfessionInput!): Boolean
+    deleteProfession(id: ID!): Boolean
 
     addPartner(client: ClientInsert): ErrorPartnerModel
     deletePartner(id: ID!): Boolean
@@ -113,10 +118,10 @@ type Mutation {
     createGoogleCalendarEvent(clientEmail: String!, event: EventInput!): Boolean
 }
 
-input ServiceInput {
+input InternshipTypeInput {
     id: ID
-    pricePerDay: Int
     name: String
+    description: String
 }
 
 input ReviewInput {
@@ -155,17 +160,18 @@ input OrderInput {
 
 input CompanyInput {
     id: ID
-    companyIndustry: CompanyIndustryEnum
+    companyIndustry: String
     legalCapacityStatus: LegalCapacityStatus
     name: String
     site: String
     shortDescription: String
 }
 
-input PositionInput {
+input ProfessionInput {
     id: ID
     description: String,
-    name: String
+    name: String,
+    clientsNumber: Int
 }
 
 input PartnerInput {
@@ -276,36 +282,35 @@ type Review {
 type Order {
     id: ID
     basketId: ID
-    company: Company
+    office: Office
     dateCreated: LocalDateTime
-    position: Position
-    service: Service
+    companyProfession: CompanyProfession
     orderStatus: OrderStatus
     startWorkDate: LocalDateTime
-    #    startWorkDate: String
     totalWorkDays: Int
     price: Float
 }
 
 type Company {
     id: ID
-    companyIndustry: CompanyIndustryEnum
+    companyIndustry: String
     legalCapacityStatus: LegalCapacityStatus
     name: String
     site: String
     shortDescription: String
 }
 
-type Position {
+type Profession {
     id: ID
     description: String
     name: String
+    clientsNumber: Int
 }
 
-type Service {
+type InternshipType {
     id: ID
-    pricePerDay: Int
     name: String
+    description: String
 }
 
 type Client {
@@ -363,7 +368,7 @@ type Address {
 type Office {
     id: ID
     address: Address
-    companyId: ID
+    company: Company
     phoneNumber: String
 }
 
@@ -403,6 +408,15 @@ type ErrorPartnerModel {
 type ErrorReviewModel {
     data: Review
     errorMessage: String
+}
+
+type CompanyProfession{
+    id: ID
+    company: Company
+    internshipType: InternshipType
+    pricePerDay: ID
+    profession: Profession
+
 }
 
 enum EducationEnum {

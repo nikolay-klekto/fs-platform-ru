@@ -16,21 +16,12 @@ import org.jooq.Schema
  */
 @Suppress("UNCHECKED_CAST")
 enum class Industry(@get:JvmName("literal") public val literal: String) : EnumType {
-    IT("IT"),
-    BOOKKEEPING("BOOKKEEPING"),
-    FEC("FEC"),
-    SERVICE("SERVICE"),
-    ARMY("ARMY"),
-    SECURITY("SECURITY"),
-    RAWMATERIALSMINING("RAWMATERIALSMINING"),
-    ART("ART"),
-    MEDECINE("MEDECINE"),
-    SCIENCE("SCIENCE"),
-    GOV_SERVICE("GOV_SERVICE"),
-    SALES("SALES"),
-    PRODUCTION("PRODUCTION"),
-    BUILDING("BUILDING"),
-    TRANSPORT("TRANSPORT"),
+    `Economy and Business`("Economy and Business"),
+    `Science and Technology`("Science and Technology"),
+    `Education and Culture`("Education and Culture"),
+    `Public Administration and Law`("Public Administration and Law"),
+    `Healthcare and Medicine`("Healthcare and Medicine"),
+    `Ecology and Agriculture`("Ecology and Agriculture"),
     OTHER("OTHER");
     override fun getCatalog(): Catalog? = schema.catalog
     override fun getSchema(): Schema = Public.PUBLIC

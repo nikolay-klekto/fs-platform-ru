@@ -29,7 +29,7 @@ Each change must be implemented via `pull request`.
 
 ## Commit message, PR and branche name conventions
 
-Follow conventions for commit message and PR name: https://www.conventionalcommits.org . Additionally, for each pull request and branch name, it is necessary to prefix with the task number in Jira. For example: FF-12
+Follow conventions for commit message and PR name: https://www.conventionalcommits.org . Additionally, for each pull request, it is necessary to prefix with the task number in Jira. For example: FF-12
 
 Details optionally can be added below commit message after one empty line:
 
@@ -39,7 +39,7 @@ FF-12 feat(registration-gateway): add action to create user account
 Usefull details here.
 Can be multiline.
 ```
-Branch name: `FF-12-VP-login_form` for directed by Vasya Pupkin branch where he initialize login form functional with FF-12 task in Jira.
+Branch name: `FF-12` for branch with FF-12 task in Jira.
 
 ## Monitoring ##
 * **IMPORTANT** the main resource is http://45.135.234.61/
