@@ -26,7 +26,7 @@ export default function Home() {
             {isDesktop ? (
                 <>
                     <HeaderDesktop />
-                    <main className="bg-[#101030] text-white">
+                    <main className="bg-[#101030]">
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />

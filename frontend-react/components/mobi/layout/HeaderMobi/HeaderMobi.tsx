@@ -1,12 +1,6 @@
 import React from 'react'
-import HeaderNavigationMobi from './HeaderNavigationMobi'
 
 const HeaderMobi: React.FC = () => {
-    return (
-        <div>
-            <header>HeaderDesktop</header>
-            <HeaderNavigationMobi />
-        </div>
-    )
+    return <h1>HeaderMobi</h1>
 }
 export default HeaderMobi
