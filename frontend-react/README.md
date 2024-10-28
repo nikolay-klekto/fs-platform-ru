@@ -27,7 +27,7 @@ node - v
 ```
 
 1. Clone the repository
-2. Move to **'frontend-react'** folder
+2. `cd frontend-react`
 3. `npm install`
 4. Set up EsLint and Prettier in your code editor (installation in project no needed)
 5. `npm run lint` (errors in libs should be fixed)
@@ -37,9 +37,10 @@ node - v
 
 ## Stack
 
--   [TS](https://www.typescriptlang.org/)
 -   [Next](https://nextjs.org/) ([App router](https://nextjs.org/docs/app))
+-   [TS](https://www.typescriptlang.org/)
 -   [Tailwind CSS](https://tailwindcss.com/)
+-   [shadcn](https://ui.shadcn.com/)
 -   Eslint, Prettier
 
 ## Project workflow
@@ -56,7 +57,10 @@ node - v
         /app/page.tsx
         ```
     4. Create a PR (pull request), this PR should not have conflicts with the working branch
-    5. According to PR template describe the content of the task at PR test part
+    5. The PR should include:
+        - PR name according to Jira task index (exambles provided below);
+        - content of the task at PR body part;
+        - pics (screenshots) of your result.
     6. To check PR, attach the teamlead to conduct a code review, without their approval we do not merge this PR (except for emergency cases, which are discussed separately in the chat)
     7. After approval, merge the feature branch into the working one, select **Squash and merge**
     8. Delete the feature branch
