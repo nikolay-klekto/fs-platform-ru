@@ -3,10 +3,13 @@ package com.fs.client.controller
 import com.fs.client.repository.OfficeRepository
 import com.fs.client.ru.CompanyAddress
 import com.fs.client.ru.OfficeModel
+import com.fs.service.ru.CompanyModel
+import com.fs.service.ru.OrderModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
+import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -73,5 +76,10 @@ open class OfficeController(open val officeRepository: OfficeRepository) {
     @MutationMapping
     open fun deleteOffice(@Argument id: Long): Mono<Boolean> {
         return officeRepository.deleteByOfficeId(id)
+    }
+
+    @SchemaMapping(typeName = "Order", field = "office")
+    fun getOfficeForOrder(order: OrderModel): Mono<OfficeModel> {
+        return officeRepository.getOfficeByAddressId(order.companyOfficeId!!)
     }
 }

@@ -2,7 +2,9 @@ package com.fs.client.repository
 
 import com.fs.client.converter.OrderModelConverter
 import com.fs.client.repository.blocked.BasketBlockingRepository
+import com.fs.client.repository.blocked.CompanyProfessionBlockingRepository
 import com.fs.client.repository.blocked.OrderBlockingRepository
+import com.fs.client.repository.blocked.ProfessionBlockingRepository
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.service.ru.OrderModel
@@ -19,7 +21,9 @@ abstract class OrderRepository(
     open val dsl: DSLContext,
     open val converter: OrderModelConverter,
     open val basketBlockingRepository: BasketBlockingRepository,
-    open val orderBlockingRepository: OrderBlockingRepository
+    open val orderBlockingRepository: OrderBlockingRepository,
+    open val professionBlockingRepository: ProfessionBlockingRepository,
+    open val companyProfessionBlockingRepository: CompanyProfessionBlockingRepository
 ) {
 
     fun getAllOrders(): Flux<OrderModel> {
@@ -73,14 +77,16 @@ abstract class OrderRepository(
 
     fun updateExpiredStatus() {
         log.info("Scheduler is working. The time is now {}", dateFormat.format(Date()))
-        val expiredOrdersList: List<Long> = dsl.select(ORDER.ID).from(ORDER).where(
+        val expiredOrdersList: List<OrderModel> = dsl.selectFrom(ORDER).where(
             ORDER.ORDER_STATUS.eq(OrderStatus.ACTUAL).and(
                 ORDER.START_WORK_DATE.plus(ORDER.TOTAL_WORK_DAYS).ge(LocalDateTime.now())
             )
-        ).map { it.into(Long::class.java) }
+        ).map { it.into(OrderModel::class.java) }
 
-        expiredOrdersList.forEach { orderId ->
-            orderBlockingRepository.decreaseBasketTotalPriceByOrderId(orderId)
+        expiredOrdersList.forEach { order ->
+            orderBlockingRepository.decreaseBasketTotalPriceByOrderId(order.id!!)
+            val professionId = companyProfessionBlockingRepository.getProfessionIdById(order.companyProfessionId!!)
+            professionBlockingRepository.increaseClientsNumberByProfessionId(professionId)
         }
         dsl.update(ORDER)
             .set(ORDER.ORDER_STATUS, OrderStatus.EXPIRED)
@@ -128,17 +134,16 @@ abstract class OrderRepository(
 
         allTemporaryOrders.forEach { temporaryOrder ->
             val updatableOrderModel = OrderModel(
-                temporaryOrder.id,
-                activeBasketId,
-                temporaryOrder.companyOfficeId,
-                temporaryOrder.dateCreated,
-                temporaryOrder.positionId,
-                temporaryOrder.serviceId,
-                temporaryOrder.isExpired,
-                temporaryOrder.orderStatus,
-                temporaryOrder.startWorkDate,
-                temporaryOrder.totalWorkDays,
-                temporaryOrder.price
+                id = temporaryOrder.id,
+                basketId = activeBasketId,
+                companyOfficeId = temporaryOrder.companyOfficeId,
+                dateCreated = temporaryOrder.dateCreated,
+                isExpired = temporaryOrder.isExpired,
+                orderStatus = temporaryOrder.orderStatus,
+                startWorkDate = temporaryOrder.startWorkDate,
+                totalWorkDays = temporaryOrder.totalWorkDays,
+                price = temporaryOrder.price,
+                companyProfessionId = temporaryOrder.companyProfessionId
             )
             orderBlockingRepository.insert(updatableOrderModel)
             orderBlockingRepository.deleteById(temporaryOrder.id!!)

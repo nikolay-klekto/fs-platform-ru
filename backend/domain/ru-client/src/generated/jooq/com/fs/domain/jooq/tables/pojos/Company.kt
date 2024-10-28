@@ -5,7 +5,6 @@ package com.fs.domain.jooq.tables.pojos
 
 
 import com.fs.service.ru.enums.CompanyLegalCapacityStatus
-import com.fs.service.ru.enums.IndustryModel
 
 import java.io.Serializable
 
@@ -16,7 +15,7 @@ import java.io.Serializable
 @Suppress("UNCHECKED_CAST")
 data class Company(
     var id: Long? = null,
-    var companyIndustry: IndustryModel? = null,
+    var companyIndustry: String? = null,
     var legalCapacityStatus: CompanyLegalCapacityStatus? = null,
     var name: String? = null,
     var site: String? = null,
