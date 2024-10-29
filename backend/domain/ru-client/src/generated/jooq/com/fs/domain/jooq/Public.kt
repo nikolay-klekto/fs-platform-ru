@@ -8,18 +8,18 @@ import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client
-import com.fs.domain.jooq.tables.CompaniesPositions
 import com.fs.domain.jooq.tables.Company
 import com.fs.domain.jooq.tables.CompanyPartner
+import com.fs.domain.jooq.tables.CompanyProfession
 import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.Databasechangeloglock
 import com.fs.domain.jooq.tables.Event
+import com.fs.domain.jooq.tables.InternshipType
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.Order
 import com.fs.domain.jooq.tables.Partner
-import com.fs.domain.jooq.tables.Position
+import com.fs.domain.jooq.tables.Profession
 import com.fs.domain.jooq.tables.Review
-import com.fs.domain.jooq.tables.Service
 
 import kotlin.collections.List
 
@@ -62,11 +62,6 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     val CLIENT: Client get() = Client.CLIENT
 
     /**
-     * The table <code>public.companies_positions</code>.
-     */
-    val COMPANIES_POSITIONS: CompaniesPositions get() = CompaniesPositions.COMPANIES_POSITIONS
-
-    /**
      * The table <code>public.company</code>.
      */
     val COMPANY: Company get() = Company.COMPANY
@@ -75,6 +70,11 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
      * The table <code>public.company_partner</code>.
      */
     val COMPANY_PARTNER: CompanyPartner get() = CompanyPartner.COMPANY_PARTNER
+
+    /**
+     * The table <code>public.company_profession</code>.
+     */
+    val COMPANY_PROFESSION: CompanyProfession get() = CompanyProfession.COMPANY_PROFESSION
 
     /**
      * The table <code>public.country</code>.
@@ -92,6 +92,11 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     val EVENT: Event get() = Event.EVENT
 
     /**
+     * The table <code>public.internship_type</code>.
+     */
+    val INTERNSHIP_TYPE: InternshipType get() = InternshipType.INTERNSHIP_TYPE
+
+    /**
      * The table <code>public.office</code>.
      */
     val OFFICE: Office get() = Office.OFFICE
@@ -107,19 +112,14 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     val PARTNER: Partner get() = Partner.PARTNER
 
     /**
-     * The table <code>public.position</code>.
+     * The table <code>public.profession</code>.
      */
-    val POSITION: Position get() = Position.POSITION
+    val PROFESSION: Profession get() = Profession.PROFESSION
 
     /**
      * The table <code>public.review</code>.
      */
     val REVIEW: Review get() = Review.REVIEW
-
-    /**
-     * The table <code>public.service</code>.
-     */
-    val SERVICE: Service get() = Service.SERVICE
 
     override fun getCatalog(): Catalog = DefaultCatalog.DEFAULT_CATALOG
 
@@ -128,17 +128,17 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
         Basket.BASKET,
         City.CITY,
         Client.CLIENT,
-        CompaniesPositions.COMPANIES_POSITIONS,
         Company.COMPANY,
         CompanyPartner.COMPANY_PARTNER,
+        CompanyProfession.COMPANY_PROFESSION,
         Country.COUNTRY,
         Databasechangeloglock.DATABASECHANGELOGLOCK,
         Event.EVENT,
+        InternshipType.INTERNSHIP_TYPE,
         Office.OFFICE,
         Order.ORDER,
         Partner.PARTNER,
-        Position.POSITION,
-        Review.REVIEW,
-        Service.SERVICE
+        Profession.PROFESSION,
+        Review.REVIEW
     )
 }

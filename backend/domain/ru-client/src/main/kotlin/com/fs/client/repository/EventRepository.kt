@@ -51,6 +51,14 @@ abstract class EventRepository(
             .map(converter::toModel)
     }
 
+    fun getFirstNActualEvents(eventQuantity: Long): Flux<EventModel>{
+        return Flux.from(
+            dsl.select(EVENT.asterisk()).from(EVENT)
+                .where(EVENT.IS_EXPIRED.eq(ACTIVE_EXPIRED_STATUS))
+                .limit(eventQuantity)
+        ).map { it.into(EventModel::class.java) }
+    }
+
     fun getAllActualEventsByCityId(cityId: Long): Flux<EventModel> {
         return Flux.from(
             dsl.select(EVENT.asterisk()).from(EVENT)
