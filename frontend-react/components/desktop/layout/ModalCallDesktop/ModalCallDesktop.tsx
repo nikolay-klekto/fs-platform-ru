@@ -55,9 +55,9 @@ const ModalCallDesktop: React.FC = () => {
                 <div>
                     <button
                         onClick={handleCloseModal}
-                        className="absolute top-4 right-4 text-4xl text-[#878797] hover:text-5xl"
+                        className="absolute top-4 right-4 text-10xl text-[#878797] hover:text-15xl "
                     >
-                        ✕
+                        X
                     </button>
                     <div className="flex flex-col items-center p-8 rounded-lg text-center max-w-md mx-auto">
                         <h1 className="mb-2 text-13xl bg-header-title-modal-desktop bg-clip-text text-transparent">
@@ -129,7 +129,7 @@ const ModalCallDesktop: React.FC = () => {
                             type="submit"
                             variant="secondary"
                             size="btn_modal_desktop"
-                            className="mx-auto w-full max-w-xs bg-btn-modal-desktop text-white text-5xl rounded-full py-10 mt-1"
+                            className="mx-auto w-full max-w-xs bg-btn-modal-desktop text-white text-5xl rounded-full py-10 mt-1 hover:bg-btn-hover-modal-desktop"
                         >
                             Оставить заявку
                         </Button>

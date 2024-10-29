@@ -23,6 +23,7 @@ const buttonVariants = cva(
                 lg: 'h-11 rounded-md px-8',
                 select_mobi: 'h-[40px] w-full max-w-[188px] ',
                 btn_modal_desktop: 'h-11 max-w-[272px] rounded-md',
+                btn_modal_mobi: 'h-11 max-w-[272px] rounded-md',
                 icon: 'size-10',
             },
         },
