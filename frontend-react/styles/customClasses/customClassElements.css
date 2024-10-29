@@ -9,6 +9,22 @@
         @apply bg-white shadow-md rounded-lg p-4;
     }
 
+    .scrollbar_custom::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .scrollbar_custom::-webkit-scrollbar-thumb {
+        background-color: #898997; /* Цвет и прозрачность ползунка */
+        border: 1px solid #898997;
+        border-radius: 4px;
+    }
+    .scrollbar_custom::-webkit-scrollbar-track {
+        background-color: #fff; /* Цвет фона скроллбара */
+        opacity: 0.9;
+        border: 1px solid #fff;
+        border-radius: 4px;
+    }
+
     .navlink_desktop_custom {
         @apply bg-gradient-desktop hover:bg-gradient-desktop-hover bg-clip-text text-transparent flex justify-center items-center;
     }

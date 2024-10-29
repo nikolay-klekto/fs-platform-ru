@@ -6,7 +6,7 @@ const EventsSectionDesktop: React.FC = () => {
     return (
         <div className="pb-[100px] pt-[23px]">
             <TitleDesktop title={'МЕРОПРИЯТИЯ'} />
-            <div className="ml-[47px]  flex gap-[34px] overflow-x-auto scrollbar-custom">
+            <div className="ml-[47px]  flex gap-[34px] overflow-x-auto scrollbar_custom">
                 {content.map((item) => (
                     <ItemEventsDesktop image={item.image} title={item.title} date={item.date} key={item.id} />
                 ))}
