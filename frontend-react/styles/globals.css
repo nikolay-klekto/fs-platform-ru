@@ -82,7 +82,7 @@
         @apply bg-background text-foreground;
     }
 }
-
+/* стили для модального окна - заказать звонок desktop */
 .div-input-modal-desktop {
     display: flex;
     flex-direction: column;
@@ -115,3 +115,35 @@ height: 40px;
     margin-bottom: 10px;
 }
 
+/* стили для модального окна - заказать звонок mobi */
+.div-input-modal-mobi {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.label-modal-mobi {
+    font-size: 14px;
+    text-decoration: white;
+    margin-bottom: 5px;
+}
+
+.input-modal-mobi {
+border: solid 1px #878797;
+border-radius: 20px;
+padding: 10px;
+width: 100%;
+background: transparent;
+height: 40px;  
+}
+
+.input-modal-mobi::placeholder {
+    color: #353652;
+    opacity: 1;
+}
+
+.input-modal-error-mobi {
+    font-size: 15px;
+    text-decoration: red;
+    margin-bottom: 10px;
+}
