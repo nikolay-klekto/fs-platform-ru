@@ -11,14 +11,9 @@ import ModalCallDesktop from '@/components/desktop/layout/ModalCallDesktop/Modal
 
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
-    const [showModal, setShowModal] = useState(false)
     useEffect(() => {
         setIsClient(true)
     }, [])
-
-    const openModal = () => setShowModal(true)
-    const closeModal = () => setShowModal(false)
-
     const isDesktop = useMediaQuery({
         query: '(min-width: 768px)',
     })
@@ -35,7 +30,7 @@ export default function Home() {
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />
-                    {showModal && <ModalCallDesktop onClose={closeModal} />}
+                    <ModalCallDesktop />
                 </>
             ) : (
                 <>
