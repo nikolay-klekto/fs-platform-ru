@@ -14,15 +14,21 @@
     }
 
     .scrollbar_custom::-webkit-scrollbar-thumb {
-        background-color: #898997; /* Цвет и прозрачность ползунка */
-        border: 1px solid #898997;
+        background-color: #898997;
         border-radius: 4px;
     }
+
     .scrollbar_custom::-webkit-scrollbar-track {
-        background-color: #fff; /* Цвет фона скроллбара */
-        opacity: 0.9;
-        border: 1px solid #fff;
+        background-color: rgba(255, 255, 255, 0.1);
         border-radius: 4px;
+    }
+
+    .no-scrollbar_custom::-webkit-scrollbar {
+        display: none; /* Для браузеров на основе WebKit (Chrome, Safari) */
+    }
+    .no-scrollbar_custom {
+        -ms-overflow-style: none; /* Для Internet Explorer и Edge */
+        scrollbar-width: none; /* Для Firefox */
     }
 
     .navlink_desktop_custom {
