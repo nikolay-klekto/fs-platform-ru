@@ -1,18 +1,18 @@
 'use client'
+
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop'
-import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/HomePageDesktop'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi'
-import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
-export default function Home() {
+
+export default function Companies() {
     const [isClient, setIsClient] = useState(false)
 
     useEffect(() => {
         setIsClient(true)
-    }, [])
+    })
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 768px)',
@@ -26,17 +26,16 @@ export default function Home() {
             {isDesktop ? (
                 <>
                     <HeaderDesktop />
-                    <main className="bg-[#101030]">
-                        <HomePageDesktop />
+                    <main className="bg-[#101030] text-white">
+                        <h1>Companies</h1>
                     </main>
                     <FooterDesktop />
                 </>
             ) : (
                 <>
                     <HeaderMobi />
-                    <main className="bg-[#101030]">
-                        <button>Send</button>
-                        <HomePageMobi />
+                    <main className="bg-[#101030] text-white">
+                        <h1>Companies</h1>
                     </main>
                     <FooterMobi />
                 </>
