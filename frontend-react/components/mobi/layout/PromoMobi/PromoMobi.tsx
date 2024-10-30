@@ -21,12 +21,12 @@ const PromoMobi: React.FC = () => {
                 </p>
 
                 <div className="flex justify-center space-x-4 mt-8">
-                    <Button className="bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] font-semibold rounded-full px-4 py-2">
+                    <Button variant="registration_mobi" size="promo_mobi">
                         <span className="bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-transparent">
                             Зарегистрироваться
                         </span>
                     </Button>
-                    <Button className="bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] flex items-center justify-center rounded-full p-2">
+                    <Button variant="arrow_mobi" size="promo_mobi">
                         <Image src="/images/arrow-promo.svg" alt="arrow" width={24} height={24} />
                     </Button>
                 </div>

@@ -20,13 +20,13 @@ const PromoDesktop: React.FC = () => {
                     навыков
                 </p>
             </div>
-            <div className="flex space-x-4 justify-center lg:mt-10 xl:mt-10">
-                <Button className="bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] lg:text-9xl text-13xl font-semibold rounded-[45px] w-[500px] h-[95px]">
+            <div className="flex space-x-4 justify-center ml-8 lg:mt-10 xl:mt-10">
+                <Button variant="registration" size="four_xl">
                     <span className="bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-transparent">
                         Зарегистрироваться
                     </span>
                 </Button>
-                <Button className="bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] rounded-[45px] w-[95px] h-[95px]">
+                <Button variant="arrow" size="four_xl">
                     <Image src="/images/arrow-promo.svg" alt="arrow" width={54} height={54} />
                 </Button>
             </div>
