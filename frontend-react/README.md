@@ -7,7 +7,7 @@
 
 </p>
 
-## Project structure
+## Структура проекта
 
 -   components
     -   layout
@@ -18,24 +18,25 @@
 -   services
 -   utils
 
-## Installation and Running
+## Установка и запуск
 
-Please, checke your `node.js` version before project installation. It should be not older than **18.17.0**
+**Примечание:** Перед установкой убедитесь, что версия `node.js` не ниже **18.17.0**. Воспользуйтесь командой:
 
 ```js
 node - v
 ```
 
-1. Clone the repository
+1. Склонируйте репозиторий [по ссылке](https://github.com/nikolay-klekto/fs-platform-ru.git), используя команду
+   `git clone `
 2. `cd frontend-react`
 3. `npm install`
-4. Set up EsLint and Prettier in your code editor (installation in project no needed)
-5. `npm run lint` (errors in libs should be fixed)
+4. Настройте EsLint и Prettier форматтеры в своем редакторе кода (VS Code, Webstorm). Установка зависимостей в проект не требуется.
+5. `npm run lint` (убедитесь, что ошибки, относящиеся к библиотекам, отсутствуют)
 6. `npm run dev`
 
 ---
 
-## Stack
+## Стек разработки
 
 -   [Next](https://nextjs.org/) ([App router](https://nextjs.org/docs/app))
 -   [TS](https://www.typescriptlang.org/)
@@ -43,67 +44,71 @@ node - v
 -   [shadcn](https://ui.shadcn.com/)
 -   Eslint, Prettier
 
-## Project workflow
+## Рабочий процесс проекта
 
-1. Decompose tasks into subtasks
-2. Task distribution
-3. We discuss, ask questions, keep each other informed about problems and successes
-4. When the task is ready:
-    1. Pull changes from the main branch (currently is _dev-front-react_) to your task branch
-    2. Do a local merge
-    3. Check functionality
-        - insert your component on _page.tsx_ and check how it works
+1. Декомпозируйте задачи на подзадачи
+2. Распределейте задачи и время на их выполнение
+3. Мы обсуждаем, задаем вопросы, информируем друг друга и о проблемах, и об успехах.
+
+4. **Когда задача готова:**
+    1. Подтяните изменения из основной ветки _dev-front-react_ в свою ветку разработки (`git pull`)
+    2. Сделайте локальное слияние (`git merge`)
+    3. Проверьте корректность работы:
+        - вставьте свой компонент в _page.tsx_
         ```
         /app/page.tsx
         ```
-    4. Create a PR (pull request), this PR should not have conflicts with the working branch
-    5. The PR should include:
-        - PR name according to Jira task index (exambles provided below);
-        - content of the task at PR body part;
-        - pics (screenshots) of your result.
-    6. To check PR, attach the teamlead to conduct a code review, without their approval we do not merge this PR (except for emergency cases, which are discussed separately in the chat)
-    7. After approval, merge the feature branch into the working one, select **Squash and merge**
-    8. Delete the feature branch
+    4. В случае корректного отображения работы, создайте PR (pull request). Убедитесь, что ваш PR не имеет конфликтов с веткой _dev-front-react_
+    5. Ваш PR должен включать:
+        - Наззвание PR должно быть связано с кодировкой задач в таск-трекере Jira (см примеры ниже);
+        - Кратко опишите результат вашей работы;
+        - Прикрепите скрины, отображающие конечный результат.
+        - Убедитесь, что пустые строки и закомментированные участки кода отсутствуют.
+        - Убедитесь, что в PR отображаются только те файлы, которые вы меняли.
+    6. Чтобы получить одобрение на мердж, необходимо запросить проверку вашего PR у тимлида. Без его апрува, мерджить запрещено. (Конечно, существуют различные экстренные ситуацию, когда мердж делают без апрува, но такие ситуацию обговариваются в чате или другим любым удобным способом коммуникации)
+    7. После апрува тилида, можно мерджить, выбрав опцию **Squash and merge**
+    8. После успешного мерджа, удалите свою ветку.
 
 ```
-All correspondence in the repository, names of commits, PR, etc. provided in English.
+Все имена комитов и ПР прописываются на английском языке
 ```
 
 ---
 
-## Project structure
+## Структура проекта
 
 ### GIT:
 
--   The **main** branch - for sending code to product
--   The **dev-front-react** branch is a working branch, from which we create branches to perform our tasks
--   Feature branches are called like **FF-12-feat/task-name**
--   Other branches in the same style - **FF-12-fix/issue-name** (docs, refactor etc.)
--   PR name - **FF-12-feat Task name** e.g. **FF-12-feat Header button colors**
-    **Where number e.g. FF-12 or FF-30 is the same as task number at Jira.**
+-   **main** branch - продакшен
+-   **dev-front-react** branch - это текущая ветка разработки, с которой стягиваются текущие изменения и происходят ответвления для выполнения задач
+-   Правила наименования:
+    -   Ветки с созданием новых фитч **FF-12-feat/task-name**
+    -   Ветки с другим функционалом - **FF-12-fix/issue-name** (docs, refactor etc.)
+    -   PR - **FF-12-feat Task name**, например **FF-12-feat Header button colors**. Где номер, такой как **FF-12 или FF-30** должен совпадать с индексом задаче в Jira
+    -   Commit - следуем [commit convention](https://www.conventionalcommits.org/en/v1.0.0/) ([на русском здесь](https://gist.github.com/Voloshin-Sergei/ffbec67c6d9fcb32b0df014ababba0e9) ), например, `FF-12-feat: add submit button` или `FF-12-fix: some error`
 
-Commit names - follow [commit convention](https://www.conventionalcommits.org/en/v1.0.0/) ([Russian transation](https://gist.github.com/Voloshin-Sergei/ffbec67c6d9fcb32b0df014ababba0e9) of this convention), e.g. `FF-12-feat: add submit button` or `FF-12-fix: some error`
-
-p.s. We try to stick to this style. The main point is to have meaningful names.
+```
+P.S. Мы стараемся следовать предложенным рекомендациям, но главное задача любых наименований - это их ясность и отражение сути.
+```
 
 <br/>
 
-# Style Guide
+# Стилистика кода
 
-## Code Guidelines for the project
+## Общие принципы
 
-This document provides suggestions for writing code in the project, covering folder structure, naming conventions, and style management. The main goal of it is improve readability, and facilitate collaboration across the team.
+В этом документе содержатся рекомендации по написанию кода в рамках проекта, касающиеся структуры папок, соглашений об именовании и управления стилем. Основная цель этого документа - улучшить читаемость и облегчить совместную работу всей команды.
 
 https://nextjs.org/docs/app/building-your-application/routing/colocation
 
-## 1. Folder Structure
+## 1. Структура папок
 
-We have two different apps: desktop and mobile. Each component can be related only for one type:
+У нас есть два разных веб-приложения: десктоп и мобилка. Каждый разрабатываемый компонент может быть связан только с одним типом веб-приложения:
 
--   mobile (from 320px to 767px)
--   desktop (from 768px to 1920px)
+-   mobile (от 320px до 767px)
+-   desktop (от 768px до 1920px)
 
-_Note: **ui folder** is a list of figma's styled components. Please don't change them_
+_Примечание: в папке **ui** размещены общие переиспользуемые компоненты из дизайн макета figma. Редактирование допускается по согласованию с тимлидом_
 
 ```
 /frontend-react
@@ -113,10 +118,17 @@ _Note: **ui folder** is a list of figma's styled components. Please don't change
   ui
 ```
 
-We organize components in a structured manner:
+Логика размещения компонентов:
 
--   Main components are placed in the _/pageDesktop/layout_ (or /_pageMobi/layout_) folder.
--   Subcomponents are organized within their respective folders
+-   Главные (родительские) компоненты расположены в папках
+
+```
+/pageDesktop/layout
+    или
+/pageMobi/layout
+```
+
+-   Подкомпоненты размещаются в одноименных папках
 
 ```
 /components
@@ -131,48 +143,44 @@ We organize components in a structured manner:
       HowWeWorkDesktop.tsx
 ```
 
-### Next.js Specific Folder Structure
+## 2. Наименования (принципы)
 
-Following Next.js best practices, the app folder is strictly for pages, layouts, and routing. Other components or logical entities are placed out of app under appropriate directories, such as components.
-
-## 2. Naming Conventions
-
--   Component file names: **UpperCamelCase** (e.g., HowWeWorkDesktop.tsx).
--   Hook file names: **lowerCamelCase** (e.g., useSomething.tsx).
--   Other file names: **kebab-case**
-
-For more details, refer to this [common practice](https://medium.com/@hiro08gh/next-js-naming-conventions-are-checked-with-eslint-rules-946371d67882#:~:text=Component%20Naming%20Conventions,name%20of%20%20the%20folder%20path.).
+-   Компонента: **UpperCamelCase** (e.g., HowWeWorkDesktop.tsx).
+-   Хук: **lowerCamelCase** (e.g., useSomething.tsx).
+-   Другие файлы: **kebab-case**
 
 ---
 
-> **Important:** each component be named with a special suffix:
+> **ВАЖНО:** Название каждого компонента должно иметь специальное окончание:
 >
-> -   **Mobi** (for mobile components)
-> -   **Desktop** (for Desktop components)
+> -   **Mobi** (для mobile компонентов)
+> -   **Desktop** (для Desktop компонентов)
 >
->     Example:
+>     Примеры:
 >
 >     -   HowWeWork<mark>Desktop</mark>.tsx
 >     -   HomePage<mark>Mobi</mark>.tsx
 
----
+> Даже если у вас один и тот же компонент используется
+> без изменений в двух версиях, то его необходимо
+> продублировать, соблюдая правило наименования.
 
-## 3. TypeScript Naming Conventions
+## 3. TypeScript Наименования
 
 -   Classes, interfaces, types, enums, decorators, type parameters: **UpperCamelCase**.
 -   Variables, parameters, functions, methods, properties, module aliases: **lowerCamelCase**.
--   Global constants (including enum elements): **CONSTANT_CASE**.
+-   Global constants (включая enum elements): **CONSTANT_CASE**.
 
 ### Props Types
 
--   Props types are declared directly in the component file.
--   General or reusable types are placed in a dedicated constants directory.
+-   Props types объявляются напрямую в компоненте.
+-   Общие или повторно используемые типы помещаются в специальный каталог констант.
 
 ## 4. Tailwind CSS
 
-### 4.1. Classes for Reusable Styles
+### 4.1. Классы для переиспользуемых стилей
 
-You can create your own custom style classes to decrease lines of codes and make clear for reading and understanding.
+Вы можете создавать свои собственные классы стилей, чтобы сократить количество строк кода и сделать его понятным для чтения и понимания.
 `styles/customClasses/customClassElement.css`
 
 ```css
@@ -189,7 +197,7 @@ You can create your own custom style classes to decrease lines of codes and make
 }
 ```
 
-Also, you can add changes in config files in `/tailwind-config` folder. The available configs are described in `tailwind.config.ts`
+Также, вы можете добавить изменения в config files в папке `/tailwind-config`. Доступные конфиги описаны в `tailwind.config.ts`
 
 ```ts
         extend: {
@@ -203,9 +211,9 @@ Also, you can add changes in config files in `/tailwind-config` folder. The avai
             },
 ```
 
-### 4.2. Use of Variables
+### 4.2. Использование переменных
 
-Avoid "magic numbers." Use variables for colors (use HSV), spacing, and dimensions wherever possible. You can add your own variables in `/styles/globals.css` if it needed:
+Избегайте "магических чисел". По возможности используйте переменные для цветов (используйте HSV), интервалов и размеров. Вы можете добавлять свои собственные переменные в `/styles/globals.css`, если это необходимо:
 
 ```css
 :root {
@@ -226,7 +234,7 @@ Avoid "magic numbers." Use variables for colors (use HSV), spacing, and dimensio
 </p>
 ```
 
-### 4.3. Use these variables from `tailwind.config.ts` to determine screen sizes
+### 4.3. Брейкпоинты размеров экрана описаны в `tailwind.config.ts`
 
 ```ts
    screens: {
@@ -242,9 +250,9 @@ Avoid "magic numbers." Use variables for colors (use HSV), spacing, and dimensio
             },
 ```
 
-## 5. Images
+## 5. Изображения
 
-### 5.1. To insert any image, you should use the [Image component](https://nextjs.org/docs/pages/api-reference/components/image) from next.js:
+### 5.1. Используйте [Image component](https://nextjs.org/docs/pages/api-reference/components/image) от next.js, чтобы вставить любое изображение:
 
 ```js
 import Image from 'next/image'
@@ -256,7 +264,7 @@ export default function Page() {
 
 ### 5.2. SVG
 
-    use the custom component from `/components/assets/icons.tsx`
+    Для SVG используем кастомный компонент `/components/assets/icons.tsx`
 
 ```js
     import React from 'react'
@@ -272,7 +280,7 @@ export default function Page() {
     export default HomePageMobi
 ```
 
-### 5.3. Any images, pics, background
+### 5.3. Все остальные типы изображений, а также фон
 
 ```
     /public
