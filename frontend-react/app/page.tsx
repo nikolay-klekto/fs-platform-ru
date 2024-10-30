@@ -4,11 +4,9 @@ import { useMediaQuery } from 'react-responsive'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop'
 import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/HomePageDesktop'
-import PromoDesktop from '@/components/desktop/layout/PromoDesktop/PromoDesktop'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
-import PromoMobi from '@/components/mobi/layout/PromoMobi/PromoMobi'
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
 
@@ -30,7 +28,6 @@ export default function Home() {
                     <HeaderDesktop />
                     <main className="bg-[#101030]">
                         <HomePageDesktop />
-                        <PromoDesktop />
                     </main>
                     <FooterDesktop />
                 </>
@@ -40,7 +37,6 @@ export default function Home() {
                     <main className="bg-[#101030]">
                         <button>Send</button>
                         <HomePageMobi />
-                        <PromoMobi />
                     </main>
                     <FooterMobi />
                 </>

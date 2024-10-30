@@ -1,6 +1,6 @@
 import React from 'react'
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import { ArrowBtn } from '@/components/asssets/iconArrow'
 
 const PromoDesktop: React.FC = () => {
     return (
@@ -27,7 +27,7 @@ const PromoDesktop: React.FC = () => {
                     </span>
                 </Button>
                 <Button variant="arrow" size="four_xl">
-                    <Image src="/images/arrow-promo.svg" alt="arrow" width={54} height={54} />
+                    <ArrowBtn width={54} height={54} />
                 </Button>
             </div>
         </div>
