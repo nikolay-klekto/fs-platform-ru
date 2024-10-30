@@ -7,8 +7,7 @@ import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/Ho
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
-import ModalCallDesktop from '@/components/desktop/layout/ModalCallDesktop/ModalCallDesktop'
-import ModalCallMobi from '@/components/mobi/layout/ModalCallMobi/ModalCallMobi'
+
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
     useEffect(() => {
@@ -30,7 +29,6 @@ export default function Home() {
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />
-                    <ModalCallDesktop />
                 </>
             ) : (
                 <>
@@ -40,7 +38,6 @@ export default function Home() {
                         <HomePageMobi />
                     </main>
                     <FooterMobi />
-                    <ModalCallMobi />
                 </>
             )}
         </div>
