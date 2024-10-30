@@ -34,7 +34,10 @@ const config = {
             keyframes: keyframesConfig,
             animation: animationConfig,
             fontSize: fontSizeConfig,
-            backgroundImage: backgroundImageConfig,
+            //backgroundImage: backgroundImageConfig,
+            backgroundImage: {
+                'button-gradient': backgroundImageConfig['sub-title-gradient-mobi'],
+            },
         },
     },
     plugins: [require('tailwindcss-animate')],
