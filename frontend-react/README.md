@@ -31,6 +31,17 @@ node - v
 2. `cd frontend-react`
 3. `npm install`
 4. Настройте EsLint и Prettier форматтеры в своем редакторе кода (VS Code, Webstorm). Установка зависимостей в проект не требуется.
+    - _Пример для VS Code_:
+        - **ESLint**:
+            1. Зайдите в настройки (`CTRL + ,`)
+            2. Установите: **ESLint: Enable**
+        - **Prettier**:
+            1. Зайдите в настройки (`CTRL + ,`)
+            2. Введите в поиске: `format on save`
+            3. Установите: **Editor: Format On Save**
+            4. Введите в поиске (в том же окне): `default formatter`
+            5. Установите: **Editor: Default Formatter** в значение `esbent.prettier-vscode`
+        - Перезапустите редактор
 5. `npm run lint` (убедитесь, что ошибки, относящиеся к библиотекам, отсутствуют)
 6. `npm run dev`
 
