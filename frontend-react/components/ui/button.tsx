@@ -16,7 +16,8 @@ const buttonVariants = cva(
                 ghost: 'hover:bg-accent hover:text-accent-foreground',
                 link: 'text-primary underline-offset-4 hover:underline',
                 select_mobi: 'button-border-mobi rounded-[50px] border border-transparent bg-[#101030] text-white',
-                gradient: 'bg-button-gradient rounded-[50px] text-white',
+                header_desktop_btn_gradient:
+                    'bg-gradient-desktop rounded-[50px] text-white hover:bg-gradient-desktop-hover',
             },
             size: {
                 default: 'h-10 px-4 py-2',
@@ -24,7 +25,8 @@ const buttonVariants = cva(
                 lg: 'h-11 rounded-md px-8',
                 select_mobi: 'h-[40px] w-full max-w-[188px] ',
                 icon: 'size-10',
-                custom: 'h-[68px] px-[80px] py-[19px]', // добавила новое св-во!!!
+                header_btn:
+                    'px-[80px] py-[19px] text-7.5xl 4xl:text-6xl 3xl:text-5xl 4xl:px-[30px] 3xl:px-[40px] 3xl:py-[12px]',
             },
         },
         defaultVariants: {

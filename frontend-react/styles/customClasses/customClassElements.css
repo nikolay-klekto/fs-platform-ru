@@ -14,7 +14,7 @@
     }
 
     .navlink-text_desktop_custom {
-        @apply font-bold md:text-xs lg:text-sm xl:text-xl 2xl:text-3xl 3xl:text-4xl text-4xl leading-[22px] uppercase whitespace-nowrap md:px-2 md:py-1 lg:px-3 lg:py-1 xl:px-3 xl:py-2 2xl:px-5 2xl:py-3 3xl:px-6 3xl:py-4 4xl:px-10 4xl:py-5 px-14 py-5;
+        @apply font-bold md:text-xs lg:text-sm xl:text-xl 2xl:text-3xl 3xl:text-4xl text-4xl leading-[22px] uppercase whitespace-nowrap md:px-2 md:py-1 lg:px-3 lg:py-1 xl:px-3 xl:py-2 2xl:px-5 2xl:py-3 3xl:px-6 3xl:py-4 4xl:px-7 4xl:py-5 px-14 py-5;
     }
 
     .navlink-active_desktop_custom {

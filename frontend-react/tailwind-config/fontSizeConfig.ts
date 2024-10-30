@@ -10,7 +10,7 @@ const fontSizeConfig = {
     '5xl': '1.25rem', // 20px
     '6xl': '1.375rem', // 22px
     '7xl': '1.5rem', // 24px
-    '7.5xl': '1.5625rem', // 25px Добавила новый!!!
+    '7.5xl': '1.5625rem', // 25px
     '8xl': '1.625rem', // 26px
     '9xl': '1.75rem', // 28px
     '10xl': '1.875rem', // 30px
