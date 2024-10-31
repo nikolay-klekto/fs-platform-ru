@@ -1,6 +1,6 @@
 import React from 'react'
 
 const HomePageMobi: React.FC = () => {
-    return <>HomePageMobi</>
+    return <div>HomePageMobi</div>
 }
 export default HomePageMobi
