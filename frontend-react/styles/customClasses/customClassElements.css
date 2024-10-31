@@ -37,10 +37,6 @@
         @apply px-[3.75rem] pt-[8vw] pb-[10vw] 3xl:pt-[6vw] 3xl:pb-[8vw] 2xl:pt-[3.75rem] 2xl:pb-[3.75rem] xl:p-[2.5rem] lg:p-[2rem] flex justify-between;
     }
 
-    .button-accent-text_desktop_custom {
-        @apply bg-gradient-desktop bg-clip-text text-[25px] font-semibold text-transparent lg:text-[14px] xl:text-[20px] 2xl:text-[22px];
-    }
-
     .header-main_mobi_custom {
         @apply md:px-[10px] mx-auto flex h-[80vh] w-full flex-col rounded-b-[40px] pb-[20px] justify-end;
         background: linear-gradient(180deg, #0e0e28 0%, #10102ef4 21%, #14143ab0 53%, #211f5e 100%), url('/bgMobi.jpg');

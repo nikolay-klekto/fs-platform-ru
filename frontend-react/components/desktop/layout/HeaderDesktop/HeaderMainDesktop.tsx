@@ -31,7 +31,7 @@ const HeaderMainDesktop: React.FC = () => {
                             и навыков
                         </p>
                     </div>
-                    <Link href="/professions" passHref>
+                    <Link href="/professions">
                         <div
                             className="inline-flex items-center"
                             onMouseEnter={handleMouseEnter}
@@ -42,7 +42,9 @@ const HeaderMainDesktop: React.FC = () => {
                                 size="wide_desktop"
                                 className={`${isHovered ? 'button-shadow_around_desktop_custom' : ''}`}
                             >
-                                <span className="button-accent-text_desktop_custom">Выбрать профессию</span>
+                                <span className="bg-gradient-desktop bg-clip-text text-[25px] font-semibold text-transparent lg:text-[14px] xl:text-[20px] 2xl:text-[22px]">
+                                    Выбрать профессию
+                                </span>
                             </Button>
                             <Button
                                 variant="accent_desktop"

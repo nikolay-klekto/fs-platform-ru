@@ -14,7 +14,7 @@ const HeaderMainMobi: React.FC = () => {
                         В интересующей профессии и компании, независимо от наличия опыта и навыков
                     </p>
                 </div>
-                <Link href="/professions" passHref>
+                <Link href="/professions">
                     <div className="flex items-center justify-center">
                         <Button variant="accent_mobi" size="wide_mobi">
                             <span className="bg-gradient-desktop bg-clip-text text-[18px] font-semibold text-transparent">
