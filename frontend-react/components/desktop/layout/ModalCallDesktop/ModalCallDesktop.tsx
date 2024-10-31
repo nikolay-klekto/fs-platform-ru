@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal'
@@ -50,7 +51,6 @@ const ModalCallDesktop: React.FC = () => {
 
     return (
         <div>
-            <button onClick={handleOpenModal}>Открыть модальное окно</button>
             <Modal show={isModalOpen} onClose={handleCloseModal} size="medium" showCloseButton={false}>
                 <div>
                     <button
@@ -125,6 +125,18 @@ const ModalCallDesktop: React.FC = () => {
                             </label>
                         </div>
                         {errors.consent && <p className="input-modal-error-desktop">{errors.consent}</p>}
+                        <div className=" p-2 mx-auto">
+                            <p className="mt-2 text-2xl text-[#353652]">
+                                Защита от спама reCAPTCHA &nbsp; | &nbsp;
+                                <a href="#" className="text-2xl text-[#353652] no-underline hover:underline">
+                                    Конфиденциальность
+                                </a>{' '}
+                                и{' '}
+                                <a href="#" className="text-2xl text-[#353652] no-underline hover:underline">
+                                    Условия использования
+                                </a>
+                            </p>
+                        </div>
                         <Button
                             type="submit"
                             variant="secondary"
@@ -134,18 +146,6 @@ const ModalCallDesktop: React.FC = () => {
                             Оставить заявку
                         </Button>
                     </form>
-                    <div className="flex flex-col items-center p-8 rounded-lg text-center mx-auto">
-                        <p className="mt-4 text-2xl text-[#353652]">
-                            Защита от спама reCAPTCHA &nbsp; | &nbsp;
-                            <a href="google.com" className="text-2xl text-[#353652] no-underline hover:underline">
-                                Конфиденциальность
-                            </a>{' '}
-                            и{' '}
-                            <a href="google.com" className="text-2xl text-[#353652] no-underline hover:underline">
-                                Условия использования
-                            </a>
-                        </p>
-                    </div>
                 </div>
             </Modal>
         </div>
