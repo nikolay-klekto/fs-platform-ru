@@ -1,11 +1,6 @@
 import React from 'react'
-import HeaderNavigationDesktop from './HeaderNavigationDesktop'
 
 const HeaderDesktop: React.FC = () => {
-    return (
-        <header>
-            <HeaderNavigationDesktop />
-        </header>
-    )
+    return <header>HeaderDesktop</header>
 }
 export default HeaderDesktop

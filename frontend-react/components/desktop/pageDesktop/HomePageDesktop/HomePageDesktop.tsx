@@ -1,6 +1,6 @@
 import React from 'react'
 
 const HomePageDesktop: React.FC = () => {
-    return <>HeaderPageDesktop</>
+    return <>HomePageDesktop</>
 }
 export default HomePageDesktop

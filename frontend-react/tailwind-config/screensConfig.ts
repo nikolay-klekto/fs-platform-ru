@@ -1,6 +1,7 @@
 const screensConfig = {
     'sm': { max: '320px' },
-    'sm_l': { min: '321px', max: '375px' },
+    'sm_s': { min: '321px', max: '361px' },
+    'sm_l': { min: '362px', max: '375px' },
     'sm_xl': { min: '376px', max: '425px' },
     'md': { min: '426px', max: '768px' },
     'lg': { min: '769px', max: '1024px' },

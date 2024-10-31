@@ -17,6 +17,7 @@ const config = {
             padding: '2rem',
             screens: {
                 'sm': '320px',
+                'sm_s': '344px',
                 'sm_l': '375px',
                 'sm_xl': '375px',
                 'md': '768px',

@@ -1,11 +1,6 @@
 import React from 'react'
-import HeaderCardsMobi from '../../layout/HeaderCardsMobi/HeaderCardsMobi'
 
 const HomePageMobi: React.FC = () => {
-    return (
-        <>
-            <HeaderCardsMobi />
-        </>
-    )
+    return <>HomePageMobi</>
 }
 export default HomePageMobi
