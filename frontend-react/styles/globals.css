@@ -72,12 +72,6 @@
         background-origin: border-box;
         background-clip: padding-box, border-box;
     }
-    .bg-with-gradient {
-        background: linear-gradient(180deg, #0e0e28 0%, #10102ef4 21%, #14143ab0 53%, #211f5e 100%), url('/bgMobi.jpg');
-        background-size: cover, cover;
-        background-position: center, center;
-        background-repeat: no-repeat, no-repeat;
-    }
 }
 
 @layer base {
