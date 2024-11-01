@@ -16,13 +16,23 @@ const buttonVariants = cva(
                 ghost: 'hover:bg-accent hover:text-accent-foreground',
                 link: 'text-primary underline-offset-4 hover:underline',
                 select_mobi: 'button-border-mobi rounded-[50px] border border-transparent bg-[#101030] text-white',
+                registration:
+                    'bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] lg:text-9xl text-13xl font-semibold rounded-[45px] w-[500px]',
+                registration_mobi:
+                    'bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] font-semibold rounded-full px-4 py-2',
+                arrow: 'bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] rounded-[45px] w-[95px]',
+                arrow_mobi:
+                    'bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] flex items-center justify-center rounded-full p-2',
                 header_desktop_btn_gradient:
                     'bg-gradient-desktop rounded-[50px] text-white hover:bg-gradient-desktop-hover',
+
             },
             size: {
                 default: 'h-10 px-4 py-2',
                 sm: 'h-9 rounded-md px-3',
                 lg: 'h-11 rounded-md px-8',
+                four_xl: 'h-[95px]',
+                promo_mobi: 'h-[40px]',
                 select_mobi: 'h-[40px] w-full max-w-[188px] ',
                 icon: 'size-10',
                 header_btn:
