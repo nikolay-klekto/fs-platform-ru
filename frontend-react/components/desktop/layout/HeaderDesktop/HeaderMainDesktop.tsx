@@ -20,7 +20,7 @@ const HeaderMainDesktop: React.FC = () => {
     return (
         <>
             <div
-                className="header-main-desktop_custom"
+                className="paddings-desktop-custom flex justify-between"
                 style={{ backgroundImage: backgroundImageConfig['header-main-gradient-desktop'] }}
             >
                 <div className="flex w-[55vw] flex-col">
@@ -42,9 +42,7 @@ const HeaderMainDesktop: React.FC = () => {
                                 size="wide_desktop"
                                 className={`${isHovered ? 'button-shadow_around_desktop_custom' : ''}`}
                             >
-                                <span className="bg-gradient-desktop bg-clip-text text-[25px] font-semibold text-transparent lg:text-[14px] xl:text-[20px] 2xl:text-[22px]">
-                                    Выбрать профессию
-                                </span>
+                                <span className="gradient-text-mobi-custom">Выбрать профессию</span>
                             </Button>
                             <Button
                                 variant="accent_desktop"
