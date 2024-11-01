@@ -58,16 +58,17 @@
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
     }
-    .sub-title-mobi{
+    .sub-title-mobi {
         background-image: linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
         background-clip: text;
         -webkit-background-clip: text;
         color: transparent;
     }
-    .button-border-mobi{
+    .button-border-mobi {
         position: relative;
         border: double 1px transparent;
-        background-image: linear-gradient(#101030, #101030), linear-gradient(90deg, #8333F3 100%, #5F4AF3 100%, #3B51A8 100%);
+        background-image: linear-gradient(#101030, #101030),
+            linear-gradient(90deg, #8333f3 100%, #5f4af3 100%, #3b51a8 100%);
         background-origin: border-box;
         background-clip: padding-box, border-box;
     }

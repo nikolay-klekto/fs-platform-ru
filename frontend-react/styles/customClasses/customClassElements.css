@@ -27,4 +27,16 @@
     .navlink-active_mobi_custom {
         @apply text-white font-semibold sm:py-2 sm_l:py-3 sm_xl:py-[14px] py-[14px] sm:text-5xl sm_l:text-6xl sm_xl:text-7xl text-7xl leading-[29px];
     }
+    .button-shadow_around_desktop_custom {
+        @apply shadow-shadow-around-desktop-custom;
+    }
+    .button-shadow_right_desktop_custom {
+        @apply shadow-shadow-right-desktop-custom;
+    }
+    .paddings-desktop-custom {
+        @apply px-[3.75rem] pt-[8vw] pb-[10vw] 3xl:pt-[6vw] 3xl:pb-[8vw] 2xl:pt-[3.75rem] 2xl:pb-[3.75rem] xl:p-[2.5rem] lg:p-[2rem];
+    }
+    .gradient-text-mobi-custom {
+        @apply bg-gradient-desktop bg-clip-text text-[25px] font-semibold text-transparent lg:text-[14px] xl:text-[20px] 2xl:text-[22px];
+    }
 }

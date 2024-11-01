@@ -186,3 +186,49 @@ export const VkIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
         </svg>
     )
 }
+
+export const ForwardIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg
+            width={props.width || '29'}
+            height={props.height || '26'}
+            viewBox="0 0 31 27"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+        >
+            <path
+                d="M30.125 13.5L16.7188 0.703125V8.01562C3.88912 8.01562 0.875 17.2149 0.875 26.2969C4.57771 21.5559 7.85234 18.9844 16.7188 18.9844V26.2969L30.125 13.5Z"
+                fill="url(#paint0_linear_847_15423)"
+                stroke="url(#paint1_linear_847_15423)"
+                stroke-linejoin="round"
+            />
+            <defs>
+                <linearGradient
+                    id="paint0_linear_847_15423"
+                    x1="-1.50581"
+                    y1="13.7976"
+                    x2="30.125"
+                    y2="13.7976"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#8333F3" />
+                    <stop offset="0.485532" stop-color="#5F4AF3" />
+                    <stop offset="1" stop-color="#3B51A8" />
+                </linearGradient>
+                <linearGradient
+                    id="paint1_linear_847_15423"
+                    x1="-1.50581"
+                    y1="13.7976"
+                    x2="30.125"
+                    y2="13.7976"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#8333F3" />
+                    <stop offset="0.485532" stop-color="#5F4AF3" />
+                    <stop offset="1" stop-color="#3B51A8" />
+                </linearGradient>
+            </defs>
+        </svg>
+    )
+}
