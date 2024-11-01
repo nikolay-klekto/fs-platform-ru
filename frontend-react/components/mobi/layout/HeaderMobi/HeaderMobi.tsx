@@ -54,7 +54,7 @@ const HeaderMobi: React.FC = () => {
                         <div className="w-full h-[2px] border-b border-white-500 border-solid"></div>
                     </div>
                     <HeaderNavigationMobi />
-                    <Button variant="select_mobi" size="select_mobi" className="mt-[28px] hover:bg-gradient-mobi-menu">
+                    <Button variant="select_mobi" size="select_mobi_menu" className="mt-[28px]">
                         Заказать звонок
                     </Button>
                     <div className="flex gap-[18px] pt-[18px]">

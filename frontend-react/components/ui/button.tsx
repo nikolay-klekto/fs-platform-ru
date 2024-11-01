@@ -27,6 +27,7 @@ const buttonVariants = cva(
                 icon: 'size-10',
                 header_btn:
                     'px-[80px] py-[19px] text-7.5xl 4xl:text-6xl 3xl:text-4xl 2xl:text-3xl xl:text-xl lg:text-xs md:text-xs 4xl:px-[2vw] 3xl:px-[2vw] 3xl:py-[12px] 2xl:px-[2vw] 2xl:py-[12px] xl:px-[1.5vw] xl:py-[12px] lg:px-[1vw] lg:py-[9px]',
+                select_mobi_menu: 'h-[40px] w-full max-w-[188px] hover:bg-gradient-mobi-menu',
             },
         },
         defaultVariants: {
