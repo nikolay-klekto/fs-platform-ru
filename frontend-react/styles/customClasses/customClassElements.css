@@ -27,44 +27,5 @@
     .navlink-active_mobi_custom {
         @apply text-white font-semibold sm:py-2 sm_l:py-3 sm_xl:py-[14px] py-[14px] sm:text-5xl sm_l:text-6xl sm_xl:text-7xl text-7xl leading-[29px];
     }
-    /* стили для модального окна - заказать звонок desktop */
-    .div-input-modal-desktop {
-        @apply flex flex-col w-full;
-    }
 
-    .label-modal-desktop {
-        @apply mb-1 text-2xl text-white;
-    }
-    .input-modal-desktop {
-        @apply border border-[#878797] rounded-[20px] p-1 w-full bg-transparent h-10;
-    }
-    
-    .input-modal-desktop::placeholder {
-        @apply text-[#353652] opacity-100;
-    }
-    
-    .input-modal-error-desktop {
-        @apply mb-1 text-2xl text-red-500;
-    }
-    
-    /* стили для модального окна - заказать звонок mobi */
-    .div-input-modal-mobi {
-        @apply flex flex-col w-full;
-    }
-    
-    .label-modal-mobi {
-        @apply text-white text-xl mb-1;
-    }
-    
-    .input-modal-mobi {
-        @apply border border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-2;
-    }
-    
-    .input-modal-mobi::placeholder {
-        @apply text-[#353652] opacity-100;
-    }
-    
-    .input-modal-error-mobi {
-        @apply text-red-500 text-2xl mb-1;
-    }
-}
+  }
