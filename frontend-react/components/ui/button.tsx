@@ -16,6 +16,8 @@ const buttonVariants = cva(
                 ghost: 'hover:bg-accent hover:text-accent-foreground',
                 link: 'text-primary underline-offset-4 hover:underline',
                 select_mobi: 'button-border-mobi rounded-[50px] border border-transparent bg-[#101030] text-white',
+                header_desktop_btn_gradient:
+                    'bg-gradient-desktop rounded-[50px] text-white hover:bg-gradient-desktop-hover',
             },
             size: {
                 default: 'h-10 px-4 py-2',
@@ -25,6 +27,9 @@ const buttonVariants = cva(
                 btn_modal_desktop: 'h-12 max-w-[272px] rounded-md',
                 btn_modal_mobi: 'h-11 max-w-[272px] rounded-md',
                 icon: 'size-10',
+                header_btn:
+                    'px-[80px] py-[19px] text-7.5xl 4xl:text-6xl 3xl:text-4xl 2xl:text-3xl xl:text-xl lg:text-xs md:text-xs 4xl:px-[2vw] 3xl:px-[2vw] 3xl:py-[12px] 2xl:px-[2vw] 2xl:py-[12px] xl:px-[1.5vw] xl:py-[12px] lg:px-[1vw] lg:py-[9px]',
+                select_mobi_menu: 'h-[40px] w-full max-w-[188px] hover:bg-gradient-mobi-menu',
             },
         },
         defaultVariants: {
