@@ -16,6 +16,17 @@ const buttonVariants = cva(
                 ghost: 'hover:bg-accent hover:text-accent-foreground',
                 link: 'text-primary underline-offset-4 hover:underline',
                 select_mobi: 'button-border-mobi rounded-[50px] border border-transparent bg-[#101030] text-white',
+                accent_desktop: 'flex items-center rounded-[50px] bg-white',
+                accent_mobi: 'flex items-center rounded-[50px] bg-white',
+                registration:
+                    'bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] lg:text-9xl text-13xl font-semibold rounded-[45px] w-[500px]',
+                registration_mobi:
+                    'bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] font-semibold rounded-full px-4 py-2',
+                arrow: 'bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] rounded-[45px] w-[95px]',
+                arrow_mobi:
+                    'bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] flex items-center justify-center rounded-full p-2',
+                header_desktop_btn_gradient:
+                    'bg-gradient-desktop rounded-[50px] text-white hover:bg-gradient-desktop-hover',
                 circle: 'rounded-[50%] hover:bg-secondary/80 bg-card',
                 circleBlue: 'rounded-[50%] bg-[#382D90]',
             },
@@ -23,8 +34,17 @@ const buttonVariants = cva(
                 default: 'h-10 px-4 py-2',
                 sm: 'h-9 rounded-md px-3',
                 lg: 'h-11 rounded-md px-8',
+                four_xl: 'h-[95px]',
+                promo_mobi: 'h-[40px]',
                 select_mobi: 'h-[40px] w-full max-w-[188px] ',
                 icon: 'size-10',
+                wide_desktop: 'h-[68px] w-[358px] rounded-[50px] lg:h-[40px] lg:w-[200px] xl:h-[50px] xl:w-[280px]',
+                wide_mobi: 'h-[50px] sm_l:h-[45px] sm:h-[38px] w-[271px] sm_l:w-[250px] sm:w-[230px] rounded-[38px]',
+                circle_desktop: 'size-[68px] lg:size-[40px] xl:size-[50px]',
+                circle_mobi: 'size-[50px] sm_l:size-[45px] sm:size-[38px]',
+                header_btn:
+                    'px-[80px] py-[19px] text-7.5xl 4xl:text-6xl 3xl:text-4xl 2xl:text-3xl xl:text-xl lg:text-xs md:text-xs 4xl:px-[2vw] 3xl:px-[2vw] 3xl:py-[12px] 2xl:px-[2vw] 2xl:py-[12px] xl:px-[1.5vw] xl:py-[12px] lg:px-[1vw] lg:py-[9px]',
+                select_mobi_menu: 'h-[40px] w-full max-w-[188px] hover:bg-gradient-mobi-menu',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'size-[55px]',
             },

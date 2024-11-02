@@ -15,7 +15,7 @@ export default function Home() {
     }, [])
 
     const isDesktop = useMediaQuery({
-        query: '(min-width: 768px)',
+        query: '(min-width: 769px)',
     })
 
     if (!isClient) {
