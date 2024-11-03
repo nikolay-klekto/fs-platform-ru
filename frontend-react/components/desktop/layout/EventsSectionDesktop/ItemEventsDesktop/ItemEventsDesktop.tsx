@@ -29,15 +29,11 @@ const ItemEventsDesktop: React.FC<EventSectionDesktopProps> = ({ image, title, d
                     className="object-cover rounded-[50px] 3xl:rounded-[45px] 2xl:rounded-[45px] xl:rounded-[40px] lg:rounded-[35px] select-none pointer-events-none"
                 />
                 <div className="absolute right-[5%] top-[4%] aspect-[113/100] w-[114px] 4xl:w-[92px] 3xl:w-[85px] 2xl:w-[75px] xl:w-[60px] lg:w-[60px] rounded-[23px] 2xl:rounded-[20px] xl:rounded-[18px] lg:rounded-[16px] bg-white bg-opacity-80 flex flex-col justify-center items-center">
-                    <p className="text-9xl  4xl:text-7xl 3xl:text-6xl 2xl:text-5xl xl:text-2xl lg:text-sm font-semibold text-[#1f203f]">
-                        {day}
-                    </p>
-                    <p className="text-4xl  4xl:text-2xl 3xl:text-xl 2xl:text-lg xl:text-xs lg:text-xs font-medium text-[#878797]">
-                        {month}
-                    </p>
+                    <p className="text28px_desktop font-semibold text-[#1f203f]">{day}</p>
+                    <p className="text18px_desktop font-medium text-[#878797]">{month}</p>
                 </div>
             </div>
-            <p className="uppercase font-medium text-white pt-5 line-clamp-2 leading-[1.2] max-h-[calc(2*2.5rem)] overflow-hidden text-ellipsis text-9xl 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl xl:text-2xl lg:text-sm">
+            <p className="uppercase font-medium text-white pt-5 line-clamp-2 leading-[1.2] max-h-[calc(2*2.5rem)] overflow-hidden text-ellipsis text28px_desktop">
                 {title}
             </p>
         </div>

@@ -22,18 +22,14 @@ const ItemEventsMobi: React.FC<EventSectionMobiProps> = ({ image, title, date, a
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#232341] rounded-[25px]" />
                 <div className="absolute right-[14px] top-[14px] aspect-[87/100] w-[60px] sm_l:w-[55px] sm:w-[55px] rounded-[15px] bg-white bg-opacity-80 flex flex-col justify-center items-center">
-                    <p className="text-4xl md:text-4xl sm_xl:text-3xl sm_l:text-2xl sm:text-xl font-semibold text-[#1f203f]">
-                        {day}
-                    </p>
-                    <p className="text-base md:text-base sm_xl:text-sm sm_l:text-xs sm:text-xs leading-[15px] font-medium text-[#878797]">
-                        {month}
-                    </p>
+                    <p className="text18px_mobi font-semibold text-[#1f203f]">{day}</p>
+                    <p className="text12px_mobi leading-[15px] font-medium text-[#878797]">{month}</p>
                 </div>
                 <div className="absolute left-[14px] bottom-[14px] pr-[14px] inline-block">
-                    <p className="uppercase text-4xl md:text-4xl sm_xl:text-3xl sm_l:text-2xl sm:text-xl pb-[14px] font-semibold text-white min-h-[44px] max-h-[44px] flex items-end">
+                    <p className="uppercase text18px_mobi pb-[14px] font-semibold text-white min-h-[44px] max-h-[44px] flex items-end">
                         {title}
                     </p>
-                    <p className="text-base md:text-base sm_xl:text-sm sm_l:text-xs sm:text-xs font-medium text-[#878797] max-w-[85%] overflow-hidden whitespace-nowrap text-ellipsis">
+                    <p className="text12px_mobi font-medium text-[#878797] max-w-[85%] overflow-hidden whitespace-nowrap text-ellipsis">
                         {adress}
                     </p>
                 </div>

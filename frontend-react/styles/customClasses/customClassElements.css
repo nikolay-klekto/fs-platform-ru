@@ -24,11 +24,24 @@
     }
 
     .no-scrollbar_custom::-webkit-scrollbar {
-        display: none; /* Для браузеров на основе WebKit (Chrome, Safari) */
+        display: none;
     }
     .no-scrollbar_custom {
-        -ms-overflow-style: none; /* Для Internet Explorer и Edge */
-        scrollbar-width: none; /* Для Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .text28px_desktop {
+        @apply text-9xl 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl xl:text-2xl lg:text-sm;
+    }
+    .text18px_desktop {
+        @apply text-4xl  4xl:text-2xl 3xl:text-xl 2xl:text-lg xl:text-xs lg:text-xs;
+    }
+    .text18px_mobi {
+        @apply text-4xl md:text-4xl sm_xl:text-3xl sm_l:text-2xl sm:text-xl;
+    }
+    .text12px_mobi {
+        @apply text-base md:text-base sm_xl:text-sm sm_l:text-xs sm:text-xs;
     }
 
     .navlink_desktop_custom {
