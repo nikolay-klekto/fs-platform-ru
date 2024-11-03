@@ -13,7 +13,12 @@ const ItemEventsDesktop: React.FC<EventSectionDesktopProps> = ({ image, title, d
     return (
         <div className="pb-[100px]">
             <div className="relative min-h-[454px] min-w-[520px]">
-                <Image src={image} fill alt={title} className="object-cover rounded-[50px]" />
+                <Image
+                    src={image}
+                    fill
+                    alt={title}
+                    className="object-cover rounded-[50px] select-none pointer-events-none"
+                />
                 <div className="absolute right-[23px] top-[18px] w-[114px] h-[101px] rounded-[23px] bg-white bg-opacity-80 flex flex-col justify-center items-center">
                     <p className="text-9xl font-semibold text-[#1f203f]">{day}</p>
                     <p className="text-4xl font-medium text-[#878797]">{month}</p>

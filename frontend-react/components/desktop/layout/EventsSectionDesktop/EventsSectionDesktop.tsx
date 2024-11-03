@@ -19,11 +19,11 @@ const EventsSectionDesktop: React.FC = () => {
     }
     return (
         <div className="pb-[100px] pt-[23px]">
-            <TitleDesktop title={'МЕРОПРИЯТИЯ'} />
+            <TitleDesktop title={'МЕРОПРИЯТИЯ'} href="/profevents" />
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="ml-[47px]  flex gap-[34px] overflow-x-scroll no-scrollbar_custom"
+                className="ml-[47px]  flex gap-[34px] overflow-x-scroll no-scrollbar_custom select-none"
             >
                 {content.map((item) => (
                     <ItemEventsDesktop image={item.image} title={item.title} date={item.date} key={item.id} />
@@ -32,7 +32,7 @@ const EventsSectionDesktop: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="h-2 w-[60%] mx-auto overflow-x-scroll scrollbar_custom"
+                className="h-2 w-[60%] mx-auto overflow-x-scroll scrollbar_custom cursor-pointer"
             >
                 <div className="w-[250%] h-full"></div>
             </div>
