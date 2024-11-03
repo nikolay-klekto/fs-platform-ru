@@ -40,36 +40,7 @@ const config = {
             boxShadow: boxShadowConfig,
         },
     },
-    plugins: [
-        require('tailwindcss-animate'),
-        plugin(function ({ addUtilities }) {
-            addUtilities({
-                '.scrollbar-custom': {
-                    /* Для веб-китовских браузеров */
-                    '&::-webkit-scrollbar': {
-                        width: '12px',
-                        height: '12px',
-                    },
-                    '&::-webkit-scrollbar-track': {
-                        background: '#ac1313',
-                    },
-                    '&::-webkit-scrollbar-thumb': {
-                        background: '#888',
-                        borderRadius: '6px',
-                    },
-                    '&::-webkit-scrollbar-thumb:hover': {
-                        background: '#555',
-                    },
-                    '&::-webkit-scrollbar-button': {
-                        display: 'none' /* Убираем стрелочки */,
-                    },
-                    /* Для Firefox */
-                    'scrollbar-width': 'thin' /* Уменьшаем ширину скроллбара */,
-                    'scrollbar-color': '#888 #ac1313' /* Цвет скроллбара и трека */,
-                },
-            })
-        }),
-    ],
+    plugins: [require('tailwindcss-animate')],
 } satisfies Config
 
 export default config
