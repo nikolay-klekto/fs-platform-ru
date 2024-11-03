@@ -6,7 +6,7 @@ import HeaderCardsItemMobi from './HeaderCardsItemMobi'
 const HeaderCardsMobi: React.FC = () => {
     return (
         <>
-            <div className="sm_l:max-w-[95vw] sm_l:p-[0.5vw] m-auto flex max-w-[374px] flex-col gap-[20px] p-[14px] sm:px-[4vw] sm:w-auto">
+            <div className="sm_l:max-w-[95vw] sm_l:p-[0.5vw] m-auto flex max-w-[374px] flex-col gap-[20px] p-[14px] sm:px-[4vw] sm:w-auto md:flex-row md:flex-wrap">
                 <HeaderCardsItemMobi
                     textBlack="Стажировка"
                     textColor="наблюдателя"

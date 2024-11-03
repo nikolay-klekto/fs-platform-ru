@@ -27,7 +27,7 @@ const buttonVariants = cva(
                     'bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] flex items-center justify-center rounded-full p-2',
                 header_desktop_btn_gradient:
                     'bg-gradient-desktop rounded-[50px] text-white hover:bg-gradient-desktop-hover',
-                circle: 'rounded-[50%] hover:bg-secondary/80 bg-card',
+                circle: 'rounded-[50%] bg-card',
                 circleBlue: 'rounded-[50%] bg-[#382D90]',
             },
             size: {
