@@ -13,7 +13,7 @@ import {
     TelegramIcon,
     InstagramIcon,
     VkIcon,
-} from '@/components/asssets/icons'
+} from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
 const HeaderMobi: React.FC = () => {

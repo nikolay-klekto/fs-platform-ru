@@ -2,9 +2,9 @@
 
 import React from 'react'
 
-import { LogoIcon } from '@/components/asssets/icons'
+import { LogoIcon } from '@/components/assets/icons'
 import HeaderNavigationDesktop from './HeaderNavigationDesktop'
-import { ShoppingCartIcon, ProfileIcon } from '@/components/asssets/icons'
+import { ShoppingCartIcon, ProfileIcon } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
 const HeaderDesktop: React.FC = () => {
