@@ -9,6 +9,41 @@
         @apply bg-white shadow-md rounded-lg p-4;
     }
 
+    .scrollbar_custom::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .scrollbar_custom::-webkit-scrollbar-thumb {
+        background-color: #898997;
+        border-radius: 4px;
+    }
+
+    .scrollbar_custom::-webkit-scrollbar-track {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+    }
+
+    .no-scrollbar_custom::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar_custom {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .text28px_desktop {
+        @apply text-9xl 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl xl:text-2xl lg:text-sm;
+    }
+    .text18px_desktop {
+        @apply text-4xl  4xl:text-2xl 3xl:text-xl 2xl:text-lg xl:text-xs lg:text-xs;
+    }
+    .text18px_mobi {
+        @apply text-4xl md:text-4xl sm_xl:text-3xl sm_l:text-2xl sm:text-xl;
+    }
+    .text12px_mobi {
+        @apply text-base md:text-base sm_xl:text-sm sm_l:text-xs sm:text-xs;
+    }
+
     .navlink_desktop_custom {
         @apply bg-gradient-desktop hover:bg-gradient-desktop-hover bg-clip-text text-transparent flex justify-center items-center;
     }

@@ -6,6 +6,7 @@ import keyframesConfig from './tailwind-config/keyframesConfig'
 import animationConfig from './tailwind-config/animationConfig'
 import fontSizeConfig from './tailwind-config/fontSizeConfig'
 import backgroundImageConfig from './tailwind-config/backgroundImageConfig'
+import plugin from 'tailwindcss/plugin'
 import boxShadowConfig from './tailwind-config/boxShadowConfig'
 
 const config = {

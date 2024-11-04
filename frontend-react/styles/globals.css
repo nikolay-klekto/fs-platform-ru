@@ -73,7 +73,6 @@
         background-clip: padding-box, border-box;
     }
 }
-
 @layer base {
     * {
         @apply border-border;
