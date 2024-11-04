@@ -69,7 +69,7 @@
         @apply shadow-shadow-right-desktop-custom;
     }
     .paddings-desktop-custom {
-        @apply px-[3.75rem] pt-[8vw] pb-[10vw] 3xl:pt-[6vw] 3xl:pb-[8vw] 2xl:pt-[3.75rem] 2xl:pb-[3.75rem] xl:p-[2.5rem] lg:p-[2rem];
+        @apply px-[3.75rem] pt-[8vw] pb-[50px] 3xl:pt-[4vw] 2xl:pt-[3.75rem] 2xl:pb-[3.75rem] xl:p-[2.5rem] lg:p-[2rem];
     }
     .gradient-text-mobi-custom {
         @apply bg-gradient-desktop bg-clip-text text-[25px] font-semibold text-transparent lg:text-[14px] xl:text-[20px] 2xl:text-[22px];
