@@ -9,11 +9,9 @@ import FooterMobi from '@/components/mobi/layout/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
-
     useEffect(() => {
         setIsClient(true)
     }, [])
-
     const isDesktop = useMediaQuery({
         query: '(min-width: 769px)',
     })

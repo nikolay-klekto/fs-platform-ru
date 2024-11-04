@@ -37,6 +37,8 @@ const buttonVariants = cva(
                 four_xl: 'h-[95px]',
                 promo_mobi: 'h-[40px]',
                 select_mobi: 'h-[40px] w-full max-w-[188px] ',
+                btn_modal_desktop: 'h-12 max-w-[272px] rounded-md',
+                btn_modal_mobi: 'h-11 max-w-[272px] rounded-md',
                 icon: 'size-10',
                 wide_desktop: 'h-[68px] w-[358px] rounded-[50px] lg:h-[40px] lg:w-[200px] xl:h-[50px] xl:w-[280px]',
                 wide_mobi: 'h-[50px] sm_l:h-[45px] sm:h-[38px] w-[271px] sm_l:w-[250px] sm:w-[230px] rounded-[38px]',
