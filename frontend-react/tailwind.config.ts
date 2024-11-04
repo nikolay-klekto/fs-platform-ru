@@ -6,6 +6,7 @@ import keyframesConfig from './tailwind-config/keyframesConfig'
 import animationConfig from './tailwind-config/animationConfig'
 import fontSizeConfig from './tailwind-config/fontSizeConfig'
 import backgroundImageConfig from './tailwind-config/backgroundImageConfig'
+import boxShadowConfig from './tailwind-config/boxShadowConfig'
 
 const config = {
     darkMode: ['class'],
@@ -17,6 +18,7 @@ const config = {
             padding: '2rem',
             screens: {
                 'sm': '320px',
+                'sm_s': '344px',
                 'sm_l': '375px',
                 'sm_xl': '375px',
                 'md': '768px',
@@ -35,6 +37,7 @@ const config = {
             animation: animationConfig,
             fontSize: fontSizeConfig,
             backgroundImage: backgroundImageConfig,
+            boxShadow: boxShadowConfig,
         },
     },
     plugins: [require('tailwindcss-animate')],
