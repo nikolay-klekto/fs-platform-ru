@@ -1,12 +1,12 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 import HeaderNavigationMobi from './HeaderNavigationMobi'
 import {
     ShoppingCartIconMobi,
     ProfileIconMobi,
-    LogoIconMobi,
     PhoneIconMobi,
     BurgerMenuIconMobi,
     CrossIconMobi,
@@ -22,12 +22,11 @@ const HeaderMobi: React.FC = () => {
 
     return (
         <>
-            <header className="bg-[#101030]">
-                <div className="container max-w-[768px] flex items-center justify-between">
+            <header className="flex h-[48px] align-items center bg-[#101030]">
+                <div className="container max-w-[768px] flex items-center justify-between relative">
                     <PhoneIconMobi className="cursor-pointer" />
-                    <div className="flex flex-col justify-center items-center">
-                        <LogoIconMobi />
-                        <p className="text-white text-xs font-semibold whitespace-nowrap">FUN SCRUT</p>
+                    <div className="absolute left-1/2 transform -translate-x-1/2 top-8 -translate-y-1/2">
+                        <Image src="/images/logo.png" alt="logo" width={58} height={48} />
                     </div>
                     <div className="flex gap-[17px]">
                         <ShoppingCartIconMobi className="cursor-pointer flex-shrink-0" />
@@ -43,7 +42,7 @@ const HeaderMobi: React.FC = () => {
                     </div>
                     <div className="flex gap-[6px] flex-col items-center pt-[8px] pb-[26px] ">
                         <div className="flex items-center gap-[10px]">
-                            <ProfileIconMobi className="sm_l:w-[28px] sm_l:h-[28px] sm_s:w-[28px] sm_s:h-[28px] sm:w-[28px] sm:h-[28px]" />
+                            <ProfileIconMobi />
                             <p className="uppercase font-semibold whitespace-nowrap md:text-5xl sm_xl:text-5xl sm_l:text-4xl sm_s:text-4xl sm:text-4xl">
                                 Войти в профиль
                             </p>
@@ -64,4 +63,5 @@ const HeaderMobi: React.FC = () => {
         </>
     )
 }
+
 export default HeaderMobi
