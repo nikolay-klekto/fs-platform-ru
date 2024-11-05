@@ -22,8 +22,8 @@ const HeaderMobi: React.FC = () => {
 
     return (
         <>
-            <header className="bg-[#101030] pl-[12px] pr-[8px]">
-                <div className="max-w-[768px] flex items-center justify-between">
+            <header className="bg-[#101030]">
+                <div className="container max-w-[768px] flex items-center justify-between">
                     <PhoneIcon className="cursor-pointer" />
                     <div className="flex flex-col justify-center items-center">
                         <LogoIcon className="w-[34px] h-[34px]" />
@@ -46,8 +46,8 @@ const HeaderMobi: React.FC = () => {
                     </div>
                     <div className="flex gap-[6px] flex-col items-center pt-[8px] pb-[26px] ">
                         <div className="flex items-center gap-[10px]">
-                            <ProfileIcon className="md:w-[34px] md:h-[34px] sm_xl:w-[34px] sm_xl:h-[34px] sm_l:w-[28px] sm_l:h-[28px] sm:w-[28px] sm:h-[28px]" />
-                            <p className="uppercase font-semibold whitespace-nowrap md:text-5xl sm_xl:text-5xl sm_l:text-4xl sm:text-4xl">
+                            <ProfileIcon className="md:w-[34px] md:h-[34px] sm_xl:w-[34px] sm_xl:h-[34px] sm_l:w-[28px] sm_l:h-[28px] sm_s:w-[28px] sm_s:h-[28px] sm:w-[28px] sm:h-[28px]" />
+                            <p className="uppercase font-semibold whitespace-nowrap md:text-5xl sm_xl:text-5xl sm_l:text-4xl sm_s:text-4xl sm:text-4xl">
                                 Войти в профиль
                             </p>
                         </div>

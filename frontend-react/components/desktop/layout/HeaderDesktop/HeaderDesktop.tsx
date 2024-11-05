@@ -19,7 +19,7 @@ const HeaderDesktop: React.FC = () => {
             >
                 <div className="absolute inset-0 bg-[rgba(16,16,48,0.7)]"></div>
                 <div
-                    className="container max-w-screen-4xl flex justify-between items-center relative z-10 border border-red-500 border-solid"
+                    className="container flex justify-between items-center relative z-10"
                     style={{ paddingTop: 'clamp(15px, 2vw, 34px)', paddingBottom: 'clamp(15px, 2vw, 35px)' }}
                 >
                     <div className="flex flex-col justify-center items-center">
