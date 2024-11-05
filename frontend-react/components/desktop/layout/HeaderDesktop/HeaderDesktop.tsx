@@ -11,14 +11,17 @@ const HeaderDesktop: React.FC = () => {
     return (
         <>
             <header
-                className="relative flex justify-center pt-[34px] pb-[35px] px-[59px] bg-[rgba(16,16,48,0.7)]"
+                className="relative bg-[rgba(16,16,48,0.7)]"
                 style={{
                     backgroundImage: 'url(/background/colorBackground.png)',
                     backgroundSize: 'cover',
                 }}
             >
                 <div className="absolute inset-0 bg-[rgba(16,16,48,0.7)]"></div>
-                <div className="relative w-full max-w-[1800px] justify-between flex items-center z-10">
+                <div
+                    className="container max-w-screen-4xl flex justify-between items-center relative z-10 border border-red-500 border-solid"
+                    style={{ paddingTop: 'clamp(15px, 2vw, 34px)', paddingBottom: 'clamp(15px, 2vw, 35px)' }}
+                >
                     <div className="flex flex-col justify-center items-center">
                         <LogoIcon className="2xl:w-[46px] 2xl:h-[46px] xl:w-[46px] xl:h-[42px] lg:w-[46px] lg:h-[36px]" />
                         <p className="text-white text-4xl font-semibold whitespace-nowrap 4xl:text-2xl 3xl:text-xl 2xl:text-lg xl:text-xs lg:text-xs">
