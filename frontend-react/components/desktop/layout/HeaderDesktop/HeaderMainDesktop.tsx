@@ -37,7 +37,7 @@ const HeaderMainDesktop: React.FC = () => {
                             size="wide_desktop"
                             className={`${isHovered ? 'button-shadow_around_desktop_custom' : ''}`}
                         >
-                            <span className="gradient-text-mobi-custom">Выбрать профессию</span>
+                            <span className="gradient-text-desktop-custom">Выбрать профессию</span>
                         </Button>
                         <Button
                             variant="accent_desktop"
