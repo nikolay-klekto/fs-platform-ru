@@ -1,11 +1,11 @@
 'use client'
 
 import React, { useState } from 'react'
-import Image from 'next/image'
 
 import HeaderNavigationMobi from './HeaderNavigationMobi'
 import {
     ShoppingCartIconMobi,
+    LogoIconMobi,
     ProfileIconMobi,
     PhoneIconMobi,
     BurgerMenuIconMobi,
@@ -25,8 +25,8 @@ const HeaderMobi: React.FC = () => {
             <header className="flex h-[48px] align-items center bg-[#101030]">
                 <div className="container max-w-[768px] flex items-center justify-between relative">
                     <PhoneIconMobi className="cursor-pointer" />
-                    <div className="absolute left-1/2 transform -translate-x-1/2 top-8 -translate-y-1/2">
-                        <Image src="/images/logo.png" alt="logo" width={58} height={48} />
+                    <div className="absolute left-1/2 transform -translate-x-1/2 top-6 -translate-y-1/2">
+                        <LogoIconMobi />
                     </div>
                     <div className="flex gap-[17px]">
                         <ShoppingCartIconMobi className="cursor-pointer flex-shrink-0" />

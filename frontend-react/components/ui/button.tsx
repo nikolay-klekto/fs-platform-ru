@@ -45,7 +45,7 @@ const buttonVariants = cva(
                 circle_desktop: 'size-[68px] lg:size-[40px] xl:size-[50px]',
                 circle_mobi: 'size-[50px] sm_l:size-[45px] sm:size-[38px]',
                 header_btn:
-                    'px-[80px] py-[19px] text-7.5xl 4xl:text-6xl 3xl:text-4xl 2xl:text-3xl xl:text-xl lg:text-xs md:text-xs 4xl:px-[2vw] 3xl:px-[2vw] 3xl:py-[12px] 2xl:px-[2vw] 2xl:py-[12px] xl:px-[1.5vw] xl:py-[12px] lg:px-[1vw] lg:py-[9px]',
+                    'h-[68px] w-[379px] 4xl:w-[18vw] 3xl:w-[240px] 3xl:h-[64px] 2xl:w-[190px] 2xl:h-[56px] text-7.5xl 4xl:text-7xl 3xl:text-6xl 2xl:text-4xl',
                 select_mobi_menu: 'h-[40px] w-full max-w-[188px] hover:bg-gradient-mobi-menu',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'size-[55px]',
