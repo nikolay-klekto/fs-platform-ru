@@ -54,9 +54,15 @@ const HeaderMobi: React.FC = () => {
                         Заказать звонок
                     </Button>
                     <div className="flex gap-[18px] pt-[18px]">
-                        <TelegramIconMobi className="cursor-pointer" />
-                        <InstagramIconMobi className="cursor-pointer" />
-                        <VkIconMobi className="cursor-pointer" />
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <TelegramIconMobi className="cursor-pointer" />
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <InstagramIconMobi className="cursor-pointer" />
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <VkIconMobi className="cursor-pointer" />
+                        </a>
                     </div>
                 </div>
             )}
