@@ -50,7 +50,7 @@ const buttonVariants = cva(
                 header_btn:
                     'text-7.5xl 4xl:text-6xl 3xl:text-4xl 4xl:px-[2vw] 3xl:px-[2vw] 3xl:py-[12px] px-[80px] py-[19px] md:text-xs lg:px-[1vw] lg:py-[9px] lg:text-xs xl:px-[1.5vw] xl:py-[12px] xl:text-xl 2xl:px-[2vw] 2xl:py-[12px] 2xl:text-3xl',
                 select_mobi_menu: 'hover:bg-gradient-mobi-menu h-[40px] w-full max-w-[188px]',
-                gradient_border_btn: 'h-[64px] w-[272px]',
+                gradient_border_btn: 'h-[64px] w-[272px] 2xl:h-[58px] 2xl:w-[250px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'size-[55px]',
             },

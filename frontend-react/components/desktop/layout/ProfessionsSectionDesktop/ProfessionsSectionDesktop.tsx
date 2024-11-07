@@ -18,9 +18,7 @@ const ProfessionsSectionDesktop: React.FC<ProfessionsSectionDesktopProps> = ({ c
                 <TitleDesktop title={'Профессии'} href={'#'} />
             </div>
             <div className="flex items-center justify-between">
-                <p className="text-13xl 3xl:text-11xl font-medium uppercase text-white 2xl:text-9xl">
-                    Наиболее популярные профессии
-                </p>
+                <p className="text36px_desktop font-medium uppercase text-white ">Наиболее популярные профессии</p>
                 <Button variant={'select_desktop'} size={'gradient_border_btn'}>
                     Смотреть все
                 </Button>

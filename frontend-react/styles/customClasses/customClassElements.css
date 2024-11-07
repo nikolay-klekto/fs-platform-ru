@@ -31,19 +31,19 @@
         scrollbar-width: none;
     }
     .text36px_desktop {
-        @apply text-13xl 4xl:text-10xl 3xl:text-9xl 2xl:text-8xl;
+        @apply text-[36px] 4xl:text-10xl 3xl:text-9xl 2xl:text-8xl;
     }
     .text30px_desktop {
-        @apply text-10xl 4xl:text-9xl 3xl:text-8xl 2xl:text-6xl !important;
+        @apply text-[30px] 4xl:text-9xl 3xl:text-8xl 2xl:text-6xl !important;
     }
     .text28px_desktop {
-        @apply text-9xl 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl xl:text-2xl lg:text-sm;
+        @apply text-[28px] 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl xl:text-2xl lg:text-sm;
     }
     .text24px_desktop {
-        @apply text-7xl 4xl:text-6xl 2xl:text-5xl 3xl:text-6xl;
+        @apply text-[24px] 4xl:text-6xl 3xl:text-6xl 2xl:text-5xl;
     }
     .text18px_desktop {
-        @apply text-4xl  4xl:text-2xl 3xl:text-xl 2xl:text-lg xl:text-xs lg:text-xs;
+        @apply text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg xl:text-xs lg:text-xs;
     }
     .text18px_mobi {
         @apply text-4xl md:text-4xl sm_xl:text-3xl sm_l:text-2xl sm:text-xl;
