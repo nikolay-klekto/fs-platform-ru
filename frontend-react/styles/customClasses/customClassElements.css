@@ -74,4 +74,9 @@
     .gradient-text-desktop-custom {
         @apply bg-gradient-desktop bg-clip-text text-[1.5625rem] font-semibold text-transparent 2xl:text-[1.375rem];
     }
+    .ellipsis {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 }
