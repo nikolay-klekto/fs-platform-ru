@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/HomePageDesktop'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi'
