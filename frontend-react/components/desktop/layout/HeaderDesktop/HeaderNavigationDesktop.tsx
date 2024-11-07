@@ -6,37 +6,55 @@ import { usePathname } from 'next/navigation'
 
 const HeaderNavigationDesktop: React.FC = () => {
     const pathname = usePathname()
-
     const isActive = (path: string) => pathname === path
 
+    interface IHeaderNavigationDesktop {
+        title: string
+        link: string
+    }
+    const content: IHeaderNavigationDesktop[] = [
+        {
+            title: 'Главная',
+            link: '/',
+        },
+        {
+            title: 'Профессии',
+            link: '/professions',
+        },
+        {
+            title: 'Компании',
+            link: '/companies',
+        },
+        {
+            title: 'Мероприятия',
+            link: '/profevents',
+        },
+        {
+            title: 'Наши контакты',
+            link: '/contacts',
+        },
+    ]
+
     return (
-        <nav className="inline-block">
-            <ul className="inline-flex justify-evenly align-middle bg-white rounded-[50px] p-1">
-                <li className={isActive('/') ? 'navlink-active_desktop_custom' : 'navlink_desktop_custom'}>
-                    <Link href="/" className="navlink-text_desktop_custom">
-                        Главная
-                    </Link>
-                </li>
-                <li className={isActive('/professions') ? 'navlink-active_desktop_custom' : 'navlink_desktop_custom'}>
-                    <Link href="/professions" className="navlink-text_desktop_custom">
-                        Профессии
-                    </Link>
-                </li>
-                <li className={isActive('/companies') ? 'navlink-active_desktop_custom' : 'navlink_desktop_custom'}>
-                    <Link href="/companies" className="navlink-text_desktop_custom">
-                        Компании
-                    </Link>
-                </li>
-                <li className={isActive('/profevents') ? 'navlink-active_desktop_custom' : 'navlink_desktop_custom'}>
-                    <Link href="/profevents" className="navlink-text_desktop_custom">
-                        Мероприятия
-                    </Link>
-                </li>
-                <li className={isActive('/contacts') ? 'navlink-active_desktop_custom' : 'navlink_desktop_custom'}>
-                    <Link href="/contacts" className="navlink-text_desktop_custom">
-                        Наши контакты
-                    </Link>
-                </li>
+        <nav className="inline-block w-[54vw] max-w-[1036px] min-h-[45%] max-h-[68px]">
+            <ul className="flex justify-between align-middle w-full h-full bg-white p-1 rounded-[3.125rem] 4xl:rounded-[2.5rem] 3xl:rounded-[2.5rem] 2xl:rounded-[2rem]">
+                {content.map((item, index) => (
+                    <li
+                        key={index}
+                        className={
+                            isActive(item.link)
+                                ? 'flex items-center w-full h-full text-center text-white bg-gradient-desktop rounded-[3.125rem]'
+                                : 'flex items-center  w-full h-full text-center text-gradient_desktop_custom hover:bg-gradient-desktop-hover'
+                        }
+                    >
+                        <Link
+                            href={item.link}
+                            className="w-full font-bold uppercase whitespace-nowrap text-4xl 4xl:text-2xl 3xl:text-xl 2xl:text-base px-6"
+                        >
+                            {item.title}
+                        </Link>
+                    </li>
+                ))}
             </ul>
         </nav>
     )
