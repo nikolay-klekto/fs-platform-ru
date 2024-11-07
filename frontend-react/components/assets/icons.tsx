@@ -190,8 +190,8 @@ export const VkIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
 export const ForwardIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg
-            width={props.width || '29'}
-            height={props.height || '26'}
+            width={'100%'}
+            height={'100%'}
             viewBox="0 0 31 27"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
