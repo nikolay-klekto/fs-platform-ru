@@ -30,6 +30,9 @@ jobs:
       uses: gradle/gradle-build-action@v3
       # with:
       #   gradle-version: 7.4.2
+
+    - name: Add credentials.json
+      run: echo "${{ secrets.GOOGLE_CREDENTIALS_JSON }}" > backend/domain/ru-client/src/main/resources/credentials.json
         
     - name: Build with Gradle
       run: ./gradlew bootJar --console=plain
