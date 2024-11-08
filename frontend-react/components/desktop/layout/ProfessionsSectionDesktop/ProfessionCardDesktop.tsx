@@ -3,13 +3,13 @@
 import React from 'react'
 import { Card, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 
-interface ProfessionCardProps {
+interface ProfessionCardDesktopProps {
     profession: string
     image: string
     price: string
 }
 
-const ProfessionCardDesktop: React.FC<ProfessionCardProps> = ({ image, profession, price }) => {
+const ProfessionCardDesktop: React.FC<ProfessionCardDesktopProps> = ({ image, profession, price }) => {
     return (
         <>
             <Card

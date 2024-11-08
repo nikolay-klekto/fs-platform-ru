@@ -2,8 +2,6 @@ import React from 'react'
 import HeaderMainDesktop from '../../layout/HeaderDesktop/HeaderMainDesktop'
 import HeaderCardsDesktop from '../../layout/HeaderDesktop/HeaderCardsDesktop'
 import backgroundImageConfig from '@/tailwind-config/backgroundImageConfig'
-import ProfessionsSectionDesktop from '../../layout/ProfessionsSectionDesktop/ProfessionsSectionDesktop'
-
 const HomePageDesktop: React.FC = () => {
     return (
         <>
@@ -14,7 +12,6 @@ const HomePageDesktop: React.FC = () => {
                 <HeaderMainDesktop />
                 <HeaderCardsDesktop />
             </div>
-            <ProfessionsSectionDesktop />
         </>
     )
 }

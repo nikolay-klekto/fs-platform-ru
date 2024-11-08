@@ -20,20 +20,20 @@ const ItemEventsDesktop: React.FC<EventSectionDesktopProps> = ({ image, title, d
     }, [])
 
     return (
-        <div ref={itemRef} className="pb-[100px] 2xl:pb-[84px] xl:pb-[78px] lg:pb-[70px]">
-            <div className="relative aspect-[4/3] w-[520px] 4xl:w-[421px] 3xl:w-[389px] 2xl:w-[345px] xl:w-[276px] lg:w-[207px]">
+        <div ref={itemRef} className="pb-[100px] lg:pb-[70px] xl:pb-[78px] 2xl:pb-[84px]">
+            <div className="4xl:w-[421px] 3xl:w-[389px] relative aspect-[4/3] w-[520px] lg:w-[207px] xl:w-[276px] 2xl:w-[345px]">
                 <Image
                     src={image}
                     fill
                     alt={title}
-                    className="object-cover rounded-[50px] 3xl:rounded-[45px] 2xl:rounded-[45px] xl:rounded-[40px] lg:rounded-[35px] select-none pointer-events-none"
+                    className="3xl:rounded-[45px] pointer-events-none select-none rounded-[50px] object-cover lg:rounded-[35px] xl:rounded-[40px] 2xl:rounded-[45px]"
                 />
-                <div className="absolute right-[5%] top-[4%] aspect-[113/100] w-[114px] 4xl:w-[92px] 3xl:w-[85px] 2xl:w-[75px] xl:w-[60px] lg:w-[60px] rounded-[23px] 2xl:rounded-[20px] xl:rounded-[18px] lg:rounded-[16px] bg-white bg-opacity-80 flex flex-col justify-center items-center">
+                <div className="4xl:w-[92px] 3xl:w-[85px] absolute right-[5%] top-[4%] flex aspect-[113/100] w-[114px] flex-col items-center justify-center rounded-[23px] bg-white bg-opacity-80 lg:w-[60px] lg:rounded-[16px] xl:w-[60px] xl:rounded-[18px] 2xl:w-[75px] 2xl:rounded-[20px]">
                     <p className="text28px_desktop font-semibold text-[#1f203f]">{day}</p>
                     <p className="text18px_desktop font-medium text-[#878797]">{month}</p>
                 </div>
             </div>
-            <p className="uppercase font-medium text-white pt-5 line-clamp-2 leading-[1.2] max-h-[calc(2*2.5rem)] overflow-hidden text-ellipsis text28px_desktop">
+            <p className="text28px_desktop line-clamp-2 max-h-[calc(2*2.5rem)] overflow-hidden text-ellipsis pt-5 font-medium uppercase leading-[1.2] text-white">
                 {title}
             </p>
         </div>

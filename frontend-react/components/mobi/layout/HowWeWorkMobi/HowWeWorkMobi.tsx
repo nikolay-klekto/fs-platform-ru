@@ -9,7 +9,7 @@ const HowWeWorkMobi: React.FC = () => {
     return (
         <div className="container pb-[20px]">
             <div className="mb-[24px]">
-                <TitleMobi title={'Как мы работаем'} />
+                <TitleMobi title={'Как мы работаем'} href="#" />
             </div>
             <div className="relative">
                 <div className=" mb-[24px]">
