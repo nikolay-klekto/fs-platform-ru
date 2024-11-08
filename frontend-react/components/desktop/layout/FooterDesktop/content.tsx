@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { TelegramIcon, InstagramIcon, VkIcon } from '@/components/assets/icons'
 
 interface FooterIconLink {
-    icon?: ReactNode
+    name: ReactNode
     href: string
 }
 
@@ -48,9 +48,9 @@ export const content: FooterSection[] = [
             { name: 'abcd@mail.com', href: 'mailto:abcd@mail.com' },
         ],
         icons: [
-            { icon: <TelegramIcon />, href: '#' },
-            { icon: <InstagramIcon />, href: '#' },
-            { icon: <VkIcon />, href: '#' },
+            { name: <TelegramIcon />, href: '#' },
+            { name: <InstagramIcon />, href: '#' },
+            { name: <VkIcon />, href: '#' },
         ],
     },
     {
