@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import { PluginAPI } from 'tailwindcss/types/config'
 import colorsConfig from './tailwind-config/colorsConfig'
 import screensConfig from './tailwind-config/screensConfig'
 import borderRadiusConfig from './tailwind-config/borderRadiusConfig'
@@ -41,7 +42,17 @@ const config = {
             boxShadow: boxShadowConfig,
         },
     },
-    plugins: [require('tailwindcss-animate')],
+    plugins: [
+        require('tailwindcss-animate'),
+        function ({ addUtilities, theme }: PluginAPI) {
+            addUtilities({
+                '.container-no-right-padding': {
+                    padding: '4rem 0 4rem 4rem',
+                    maxWidth: theme('screens.4xl'),
+                },
+            })
+        },
+    ],
 } satisfies Config
 
 export default config

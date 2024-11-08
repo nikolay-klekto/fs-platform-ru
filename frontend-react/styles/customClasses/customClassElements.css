@@ -31,12 +31,6 @@
         scrollbar-width: none;
     }
 
-    .text28px_desktop {
-        @apply text-9xl 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl xl:text-2xl lg:text-sm;
-    }
-    .text18px_desktop {
-        @apply text-4xl  4xl:text-2xl 3xl:text-xl 2xl:text-lg xl:text-xs lg:text-xs;
-    }
     .text18px_mobi {
         @apply text-4xl md:text-4xl sm_xl:text-3xl sm_l:text-2xl sm:text-xl;
     }
@@ -44,24 +38,13 @@
         @apply text-base md:text-base sm_xl:text-sm sm_l:text-xs sm:text-xs;
     }
 
-    .navlink_desktop_custom {
-        @apply bg-gradient-desktop hover:bg-gradient-desktop-hover bg-clip-text text-transparent flex justify-center items-center;
+    .text-gradient_desktop_custom {
+        @apply bg-gradient-desktop bg-clip-text text-transparent;
+    }
+    .text-gradient_mobi_custom {
+        @apply bg-gradient-desktop bg-clip-text text-transparent;
     }
 
-    .navlink-text_desktop_custom {
-        @apply font-bold md:text-xs lg:text-xs xl:text-xl 2xl:text-3xl 3xl:text-4xl text-4xl leading-[22px] uppercase whitespace-nowrap md:px-2 md:py-1 lg:px-1 lg:py-1 xl:px-2 xl:py-2 2xl:px-5 2xl:py-3 3xl:px-6 3xl:py-4 4xl:px-7 4xl:py-5 px-14 py-5;
-    }
-
-    .navlink-active_desktop_custom {
-        @apply text-white bg-gradient-desktop rounded-[50px] flex justify-center items-center;
-    }
-
-    .navlink_mobi_custom {
-        @apply bg-sub-title-gradient-mobi hover:bg-sub-title-gradient-mobi-hover bg-clip-text text-transparent font-medium sm:py-2 sm_l:py-3 sm_xl:py-[14px] py-[14px] sm:text-3xl sm_l:text-4xl sm_xl:text-5xl text-5xl leading-[24px];
-    }
-    .navlink-active_mobi_custom {
-        @apply text-white font-semibold sm:py-2 sm_l:py-3 sm_xl:py-[14px] py-[14px] sm:text-5xl sm_l:text-6xl sm_xl:text-7xl text-7xl leading-[29px];
-    }
     .button-shadow_around_desktop_custom {
         @apply shadow-shadow-around-desktop-custom;
     }

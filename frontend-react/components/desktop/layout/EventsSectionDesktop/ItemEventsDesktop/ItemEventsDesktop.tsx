@@ -20,20 +20,22 @@ const ItemEventsDesktop: React.FC<EventSectionDesktopProps> = ({ image, title, d
     }, [])
 
     return (
-        <div ref={itemRef} className="pb-[100px] 2xl:pb-[84px] xl:pb-[78px] lg:pb-[70px]">
-            <div className="relative aspect-[4/3] w-[520px] 4xl:w-[421px] 3xl:w-[389px] 2xl:w-[345px] xl:w-[276px] lg:w-[207px]">
+        <div ref={itemRef}>
+            <div className="relative aspect-[4/3] w-[27vw] max-w-[520px] ">
                 <Image
                     src={image}
                     fill
                     alt={title}
-                    className="object-cover rounded-[50px] 3xl:rounded-[45px] 2xl:rounded-[45px] xl:rounded-[40px] lg:rounded-[35px] select-none pointer-events-none"
+                    className="object-cover rounded-[3.125rem] 4xl:rounded-[2.5rem] 3xl:rounded-[2.5rem] 2xl:rounded-[2rem] select-none pointer-events-none"
                 />
-                <div className="absolute right-[5%] top-[4%] aspect-[113/100] w-[114px] 4xl:w-[92px] 3xl:w-[85px] 2xl:w-[75px] xl:w-[60px] lg:w-[60px] rounded-[23px] 2xl:rounded-[20px] xl:rounded-[18px] lg:rounded-[16px] bg-white bg-opacity-80 flex flex-col justify-center items-center">
-                    <p className="text28px_desktop font-semibold text-[#1f203f]">{day}</p>
-                    <p className="text18px_desktop font-medium text-[#878797]">{month}</p>
+                <div className="absolute right-[5%] top-[4%] flex flex-col justify-center items-center aspect-[113/100] w-[22%] rounded-[1.5rem] 2xl:rounded-[1rem] bg-white bg-opacity-80">
+                    <p className="font-semibold text-[#1f203f] text-9xl 4xl:text-7xl 3xl:text-6xl 2xl:text-4xl">
+                        {day}
+                    </p>
+                    <p className="font-medium text-[#878797] text-4xl  4xl:text-2xl 3xl:text-xl 2xl:text-lg">{month}</p>
                 </div>
             </div>
-            <p className="uppercase font-medium text-white pt-5 line-clamp-2 leading-[1.2] max-h-[calc(2*2.5rem)] overflow-hidden text-ellipsis text28px_desktop">
+            <p className="uppercase font-medium text-white pt-5 line-clamp-2 leading-[1.2] max-h-[calc(2*2.5rem)] overflow-hidden text-ellipsis text-9xl 4xl:text-7xl 3xl:text-6xl 2xl:text-4xl">
                 {title}
             </p>
         </div>
