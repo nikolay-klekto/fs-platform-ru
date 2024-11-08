@@ -382,7 +382,7 @@ type Office {
 
 type Event {
     id: ID
-    date: LocalDateTime
+    date: LocalDate
     description: String
     isExpired: Boolean
     name: String

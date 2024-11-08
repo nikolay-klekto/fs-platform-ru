@@ -50,7 +50,7 @@ open class EventController(open val eventRepository: EventRepository) {
     }
 
     @MutationMapping
-    open fun addAllEvents(@Argument event: EventModel): Mono<ErrorModel<Long>> {
+    open fun addEvent(@Argument event: EventModel): Mono<ErrorModel<Long>> {
         return eventRepository.insertEvent(event)
             .onErrorResume {
                 return@onErrorResume Mono.just(ErrorModel(null, it.message))
