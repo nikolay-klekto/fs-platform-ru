@@ -5,7 +5,7 @@ import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDeskt
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/HomePageDesktop'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
-import FooterMobi from '@/components/mobi/layout/FooterMobi'
+import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
 
 export default function Home() {

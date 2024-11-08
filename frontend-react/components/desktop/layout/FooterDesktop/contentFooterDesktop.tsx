@@ -19,7 +19,7 @@ interface FooterSection {
     icons?: FooterIconLink[]
 }
 
-export const content: FooterSection[] = [
+export const contentFooterDesktop: FooterSection[] = [
     {
         id: 1,
         title: 'Информация',

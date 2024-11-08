@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-import { content } from './content'
+import { contentFooterDesktop } from './contentFooterDesktop'
 import { TelegramIcon } from '@/components/assets/icons'
 
 const FooterDesktop: React.FC = () => {
@@ -13,7 +13,7 @@ const FooterDesktop: React.FC = () => {
                 className="flex items-center h-[521px] border border-red-500 border-solid"
                 style={{
                     backgroundColor: 'rgb(16,16,48)',
-                    backgroundImage: `linear-gradient(rgba(16,16,48,0.5), rgba(16,16,48,0.5)), url(/background/footerBackground.png)`,
+                    backgroundImage: `linear-gradient(rgba(16,16,48,0.5), rgba(16,16,48,0.5)), url(/background/bgFooterDesktop.png)`,
                     backgroundSize: 'cover',
                 }}
             >
@@ -23,7 +23,7 @@ const FooterDesktop: React.FC = () => {
                     </div>
                     <div className="flex justify-center pl-28 pr-12 pb-10 border border-green-500 border-solid">
                         <div className="flex justify-between w-full max-w-[1190px] border border-red-500 border-solid">
-                            {content.map((section) => (
+                            {contentFooterDesktop.map((section) => (
                                 <div key={section.id}>
                                     <p className="text-white text-4xl font-bold pb-7">{section.title}</p>
                                     <ul>

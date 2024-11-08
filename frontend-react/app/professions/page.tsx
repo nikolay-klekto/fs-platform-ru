@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
-import FooterMobi from '@/components/mobi/layout/FooterMobi'
+import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 
 export default function Professions() {
     const [isClient, setIsClient] = useState(false)
