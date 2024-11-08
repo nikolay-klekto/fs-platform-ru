@@ -1,8 +1,9 @@
 package com.fs.client.controller
 
 import com.fs.client.repository.EventRepository
+import com.fs.client.ru.CityModel
+import com.fs.domain.jooq.tables.pojos.Event
 import com.fs.service.ru.EventModel
-import com.fs.service.ru.EventWithAddressModel
 import com.fs.service.ru.errors.ErrorModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
@@ -19,40 +20,45 @@ import reactor.core.publisher.Mono
 open class EventController(open val eventRepository: EventRepository) {
 
     @QueryMapping
-    open fun getEvent(@Argument eventId: Long): Mono<EventModel> {
+    open fun getEvent(@Argument eventId: Long): Mono<Event> {
         return eventRepository.getEventById(eventId)
     }
 
     @QueryMapping
-    open fun getAllEvents(): Flux<EventModel> {
+    open fun getAllEvents(): Flux<Event> {
         return eventRepository.getAllEvents()
     }
 
     @QueryMapping
-    open fun getAllActualEvents(): Flux<EventModel> {
+    open fun getAllActualEvents(): Flux<Event> {
         return eventRepository.getAllActualEvents()
     }
 
     @QueryMapping
-    open fun getFirstNActualEvents(@Argument eventQuantity: Long): Flux<EventModel> {
+    open fun getEventsAllAvailableCities(): Flux<CityModel> {
+        return eventRepository.getAllAvailableCities()
+    }
+
+    @QueryMapping
+    open fun getFirstNActualEvents(@Argument eventQuantity: Long): Flux<Event> {
         return eventRepository.getFirstNActualEvents(eventQuantity)
     }
 
     @QueryMapping
-    open fun getAllActualEventsByCityId(@Argument cityId: Long): Flux<EventModel> {
+    open fun getAllActualEventsByCityId(@Argument cityId: Long): Flux<Event> {
         return eventRepository.getAllActualEventsByCityId(cityId)
     }
 
     @MutationMapping
-    open fun addAllEvents(@Argument events: List<EventWithAddressModel>): Mono<ErrorModel<Boolean>> {
-        return eventRepository.insertAllEvents(events)
+    open fun addAllEvents(@Argument event: EventModel): Mono<ErrorModel<Long>> {
+        return eventRepository.insertEvent(event)
             .onErrorResume {
                 return@onErrorResume Mono.just(ErrorModel(null, it.message))
             }
     }
 
     @MutationMapping
-    open fun updateAllEvents(@Argument events: List<EventWithAddressModel>): Mono<ErrorModel<Boolean>> {
+    open fun updateAllEvents(@Argument events: List<EventModel>): Mono<ErrorModel<Boolean>> {
         return eventRepository.updateAllEventsModelsInfo(events)
             .onErrorResume {
                 return@onErrorResume Mono.just(ErrorModel(null, it.message))
@@ -82,7 +88,7 @@ open class EventController(open val eventRepository: EventRepository) {
     @MutationMapping
     open fun createGoogleCalendarEvent(
         @Argument clientEmail: String,
-        @Argument event: EventModel): Mono<Boolean>{
-        return eventRepository.createGoogleCalendarEvent(clientEmail, event)
+        @Argument eventId: Long): Mono<Boolean>{
+        return eventRepository.createGoogleCalendarEvent(clientEmail, eventId)
     }
 }

@@ -45,6 +45,23 @@ abstract class ProfessionRepository(
             .map(converter::toModel)
     }
 
+    fun getAllProfessionsCategories(): Flux<String> {
+        return Flux.from(
+            dsl.selectDistinct(PROFESSION.NAME).from(PROFESSION)
+        ).map { it.into(String::class.java) }
+    }
+
+    fun getAllExistingProfessions(): Flux<ProfessionModel> {
+        return Flux.from(
+            dsl.select(PROFESSION.asterisk()).from(PROFESSION)
+                .where(PROFESSION.ID.eq(
+                    dsl.selectDistinct(COMPANY_PROFESSION.PROFESSION_ID)
+                        .from(COMPANY_PROFESSION)
+                ))
+        ).map { it.into(Profession::class.java) }
+            .map(converter::toModel)
+    }
+
     fun getNMostPopularProfessions(quantity: Int): Flux<ProfessionModel> {
         return Flux.from(
             dsl.select(PROFESSION.asterisk()).from(PROFESSION)

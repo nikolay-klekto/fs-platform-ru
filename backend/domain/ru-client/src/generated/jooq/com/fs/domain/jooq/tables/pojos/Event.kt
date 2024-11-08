@@ -5,7 +5,7 @@ package com.fs.domain.jooq.tables.pojos
 
 
 import java.io.Serializable
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 
 /**
@@ -14,16 +14,17 @@ import java.time.LocalDateTime
 @Suppress("UNCHECKED_CAST")
 data class Event(
     var id: Long? = null,
-    var addressId: Long? = null,
-    var date: LocalDateTime? = null,
+    var date: LocalDate? = null,
     var description: String? = null,
     @set:JvmName("setIsExpired")
     var isExpired: Boolean? = null,
-    var mainGoal: String? = null,
     var name: String? = null,
-    var phoneNumber: String? = null,
     var publicPlaceName: String? = null,
-    var site: String? = null
+    var site: String? = null,
+    var cityId: Long? = null,
+    var time: String? = null,
+    var organizer: String? = null,
+    var eventCategoryId: Long? = null
 ): Serializable {
 
 
@@ -31,15 +32,16 @@ data class Event(
         val sb = StringBuilder("Event (")
 
         sb.append(id)
-        sb.append(", ").append(addressId)
         sb.append(", ").append(date)
         sb.append(", ").append(description)
         sb.append(", ").append(isExpired)
-        sb.append(", ").append(mainGoal)
         sb.append(", ").append(name)
-        sb.append(", ").append(phoneNumber)
         sb.append(", ").append(publicPlaceName)
         sb.append(", ").append(site)
+        sb.append(", ").append(cityId)
+        sb.append(", ").append(time)
+        sb.append(", ").append(organizer)
+        sb.append(", ").append(eventCategoryId)
 
         sb.append(")")
         return sb.toString()

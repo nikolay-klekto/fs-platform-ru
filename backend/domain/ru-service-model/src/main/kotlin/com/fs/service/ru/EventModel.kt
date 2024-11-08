@@ -1,16 +1,17 @@
 package com.fs.service.ru
 
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 data class EventModel(
     val id: Long?,
-    val addressId: Long?,
-    val date: LocalDateTime?,
+    val date: LocalDate?,
     val description: String?,
     val isExpired: Boolean?,
-    val mainGoal: String?,
     val name: String?,
-    val phoneNumber: String?,
     val publicPlaceName: String?,
-    val site: String?
+    val site: String?,
+    val cityName: String?,
+    val time: String?,
+    val organizer: String?,
+    val category: String?
 )

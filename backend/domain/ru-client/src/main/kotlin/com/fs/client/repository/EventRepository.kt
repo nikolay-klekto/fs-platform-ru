@@ -1,161 +1,151 @@
 package com.fs.client.repository
 
-import com.fs.client.repository.blocked.AddressBlockingRepository
+import com.fs.client.converter.CityModelConverter
 import com.fs.client.repository.blocked.EventBlockingRepository
-import com.fs.client.ru.AddressModel
 import com.fs.client.converter.DateTimeConverterService
 import com.fs.client.converter.EventModelConverter
-import com.fs.client.converter.EventModelConverter.Companion.defaultAddressModel
+import com.fs.client.ru.CityModel
 import com.fs.client.service.GoogleCalendarEventService
-import com.fs.domain.jooq.tables.Address.Companion.ADDRESS
+import com.fs.domain.jooq.tables.City.Companion.CITY
 import com.fs.domain.jooq.tables.Event.Companion.EVENT
+import com.fs.domain.jooq.tables.pojos.City
 import com.fs.domain.jooq.tables.pojos.Event
 import com.fs.service.ru.EventModel
-import com.fs.service.ru.EventWithAddressModel
 import com.fs.service.ru.errors.ErrorModel
 import org.apache.logging.log4j.LogManager
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 
 abstract class EventRepository(
     open val dsl: DSLContext,
     open val converter: EventModelConverter,
+    open val cityConverter: CityModelConverter,
     open val blockingEventRepository: EventBlockingRepository,
-    open val blockingAddressRepository: AddressBlockingRepository,
     open val googleCalendarService: GoogleCalendarEventService,
     open val dateTimeConverterService: DateTimeConverterService
 ) {
-    fun getEventById(id: Long): Mono<EventModel> {
+    fun getEventById(id: Long): Mono<Event> {
         return Mono.fromSupplier {
-            blockingEventRepository.getEventBlockingById(id)
+            blockingEventRepository.getEventById(id)
         }
     }
 
-    fun getAllEvents(): Flux<EventModel> {
+    fun getAllEvents(): Flux<Event> {
         return Flux.from(
             dsl.select(EVENT.asterisk()).from(EVENT)
         )
             .map { it.into(Event::class.java) }
-            .map(converter::toModel)
     }
 
-    fun getAllActualEvents(): Flux<EventModel> {
+    fun getAllActualEvents(): Flux<Event> {
         return Flux.from(
             dsl.select(EVENT.asterisk()).from(EVENT)
                 .where(EVENT.IS_EXPIRED.eq(ACTIVE_EXPIRED_STATUS))
         )
             .map { it.into(Event::class.java) }
-            .map(converter::toModel)
     }
 
-    fun getFirstNActualEvents(eventQuantity: Long): Flux<EventModel>{
+    fun getAllAvailableCities(): Flux<CityModel> {
+        return Flux.from(
+            dsl.select(CITY.asterisk()).from(CITY)
+                .where(
+                    CITY.ID.`in`(
+                        dsl.selectDistinct(EVENT.CITY_ID).from(EVENT)
+                    )
+                )
+        )
+            .map { it.into(City::class.java) }
+            .map(cityConverter::toModel)
+    }
+
+    fun getFirstNActualEvents(eventQuantity: Long): Flux<Event> {
         return Flux.from(
             dsl.select(EVENT.asterisk()).from(EVENT)
                 .where(EVENT.IS_EXPIRED.eq(ACTIVE_EXPIRED_STATUS))
                 .limit(eventQuantity)
-        ).map { it.into(EventModel::class.java) }
+        ).map { it.into(Event::class.java) }
     }
 
-    fun getAllActualEventsByCityId(cityId: Long): Flux<EventModel> {
+    fun getAllActualEventsByCityId(cityId: Long): Flux<Event> {
         return Flux.from(
             dsl.select(EVENT.asterisk()).from(EVENT)
                 .where(
                     EVENT.IS_EXPIRED.eq(ACTIVE_EXPIRED_STATUS)
-                        .and(
-                            EVENT.ADDRESS_ID.`in`(
-                                dsl.select(ADDRESS.CITY_ID).from(ADDRESS)
-                                    .where(ADDRESS.CITY_ID.eq(cityId))
-                            )
-                        )
+                        .and(CITY.ID.eq(cityId))
                 )
         )
             .map { it.into(Event::class.java) }
-            .map(converter::toModel)
     }
 
-    fun createGoogleCalendarEvent(clientEmail: String, event: EventModel): Mono<Boolean>{
+    fun createGoogleCalendarEvent(clientEmail: String, eventId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
+
+            val event = blockingEventRepository.getEventById(eventId)
+
+            val eventStartDateTime = event?.date!!.atStartOfDay()
+            val eventEndDateTime = event.date!!.atStartOfDay().plusHours(1)
+
             val googleEvent = com.google.api.services.calendar.model.Event()
                 .setSummary(event.name)
                 .setLocation(event.publicPlaceName)
                 .setDescription(event.description)
-                .setStart(dateTimeConverterService.convertToEventDateTime(event.date!!))
-                .setEnd(dateTimeConverterService.convertToEventDateTime(event.date!!.plusDays(2)))
-            googleCalendarService.addEventToCalendar(clientEmail,googleEvent)
+                .setStart(dateTimeConverterService.convertToEventDateTime(eventStartDateTime))
+                .setEnd(dateTimeConverterService.convertToEventDateTime(eventEndDateTime))
+            googleCalendarService.addEventToCalendar(clientEmail, googleEvent)
             return@fromSupplier true
         }
     }
 
-    fun insertAllEvents(events: List<EventWithAddressModel>): Mono<ErrorModel<Boolean>> {
-        return Flux.fromIterable(events)
+    fun insertEvent(event: EventModel): Mono<ErrorModel<Long>> {
+        return Mono.fromSupplier {
 
-            .map {
+            if (event.description == null || event.date == null || event.name == null
+                || event.cityName == null || event.category == null
+            ) {
 
-                if (it.description == null || it.date == null || it.name == null || it.cityId == null) {
-
-                    log.error("Some fields are empty")
-                    throw Exception("Пропущено заполнение обязательных полей!")
-                }
-
-                val newExpiredStatus: Boolean = if (it.date!!.isBefore(LocalDateTime.now())) {
-                    DEFAULT_EXPIRED_STATUS
-                } else {
-                    ACTIVE_EXPIRED_STATUS
-                }
-
-                println(newExpiredStatus)
-
-                val convertedAddressModel = converter.fromEventAddressToAddressModel(it)
-                val newAddressModel = blockingAddressRepository.create(convertedAddressModel)
-
-                if ((it.street == null || it.house == null) && it.publicPlaceName == null) {
-                    log.error("Address or publicPlaceName must be initialize!")
-                    throw Exception("Поля адреса, либо место проведения мероприятия должны быть заполнены!")
-                }
-
-                val newEventModel = converter.fromEventAddressToEventModel(it, newAddressModel?.id, newExpiredStatus)
-
-                val newEventRecord = dsl.newRecord(EVENT, newEventModel)
-                newEventRecord.apply { newEventRecord.reset(EVENT.ID) }
+                log.error("Some fields are empty")
+                throw Exception("Пропущено заполнение обязательных полей!")
             }
-            .map { r ->
-                dsl.insertQuery(EVENT)
-                    .apply { setRecord(r) }
+
+            val newExpiredStatus: Boolean = if (event.date!!.isBefore(LocalDate.now())) {
+                DEFAULT_EXPIRED_STATUS
+            } else {
+                ACTIVE_EXPIRED_STATUS
             }
-            .collectList()
-            .map {
-                return@map ErrorModel(
-                    dsl.batch(it)
-                        .execute().asList().isNotEmpty(), null
-                )
-            }
+
+            println(newExpiredStatus)
+
+            val newEventModel = converter.fromModel(event)
+            newEventModel.isExpired = newExpiredStatus
+
+            val newEventRecord = dsl.newRecord(EVENT, newEventModel)
+            newEventRecord.apply { newEventRecord.reset(EVENT.ID) }
+
+            newEventRecord.store()
+            return@fromSupplier ErrorModel(newEventRecord.id, null)
+        }
     }
 
-    fun updateAllEventsModelsInfo(events: List<EventWithAddressModel>): Mono<ErrorModel<Boolean>> {
+    fun updateAllEventsModelsInfo(events: List<EventModel>): Mono<ErrorModel<Boolean>> {
         return Flux.fromIterable(events)
             .map { eventModel ->
                 if (eventModel.id == null) {
                     log.error("Field id in event update end-point is empty!")
                     throw Exception("Проблемы в frontend части! Обратитесь пожалуйста в тех поддержку.")
                 }
-                val pastEventModel: EventModel? = blockingEventRepository.getEventBlockingById(eventModel.id!!)
+                val pastEventModel: Event? = blockingEventRepository.getEventById(eventModel.id!!)
                 if (pastEventModel == null) {
                     log.error("Updatable event doesn't exist! Check event id")
                     throw Exception("Проблемы в frontend части! Обратитесь пожалуйста в тех поддержку.")
                 }
 
-                val convertedAddressModel: AddressModel =
-                    converter.fromEventAddressToAddressModel(eventModel, pastEventModel.addressId)
-
-                if (convertedAddressModel != defaultAddressModel) {
-                    blockingAddressRepository.update(convertedAddressModel)
-                }
 
                 val newExpiredStatus: Boolean = if (eventModel.date != null) {
-                    if (eventModel.date!!.isBefore(LocalDateTime.now())) {
+                    if (eventModel.date!!.isBefore(LocalDate.now())) {
                         DEFAULT_EXPIRED_STATUS
                     } else {
                         ACTIVE_EXPIRED_STATUS
@@ -164,17 +154,21 @@ abstract class EventRepository(
                     pastEventModel.isExpired!!
                 }
 
+                val newEventModel = converter.fromModel(eventModel)
+
                 println(newExpiredStatus)
 
                 dsl.update(EVENT)
-                    .set(EVENT.DATE, eventModel.date ?: pastEventModel.date)
-                    .set(EVENT.DESCRIPTION, eventModel.description ?: pastEventModel.description)
+                    .set(EVENT.DATE, newEventModel.date ?: pastEventModel.date)
+                    .set(EVENT.DESCRIPTION, newEventModel.description ?: pastEventModel.description)
                     .set(EVENT.IS_EXPIRED, newExpiredStatus)
-                    .set(EVENT.MAIN_GOAL, eventModel.mainGoal ?: pastEventModel.mainGoal)
-                    .set(EVENT.NAME, eventModel.name ?: pastEventModel.name)
-                    .set(EVENT.PHONE_NUMBER, eventModel.phoneNumber ?: pastEventModel.phoneNumber)
-                    .set(EVENT.PUBLIC_PLACE_NAME, eventModel.publicPlaceName ?: pastEventModel.publicPlaceName)
-                    .set(EVENT.SITE, eventModel.site ?: pastEventModel.site)
+                    .set(EVENT.NAME, newEventModel.name ?: pastEventModel.name)
+                    .set(EVENT.PUBLIC_PLACE_NAME, newEventModel.publicPlaceName ?: pastEventModel.publicPlaceName)
+                    .set(EVENT.SITE, newEventModel.site ?: pastEventModel.site)
+                    .set(EVENT.CITY_ID, newEventModel.cityId ?: pastEventModel.cityId)
+                    .set(EVENT.TIME, newEventModel.time ?: pastEventModel.time)
+                    .set(EVENT.ORGANIZER, newEventModel.organizer ?: pastEventModel.organizer)
+                    .set(EVENT.EVENT_CATEGORY_ID, newEventModel.eventCategoryId ?: pastEventModel.eventCategoryId)
                     .where(EVENT.ID.eq(eventModel.id))
                     .execute() == 1
             }.collectList()
@@ -200,7 +194,7 @@ abstract class EventRepository(
                 .set(EVENT.IS_EXPIRED, DEFAULT_EXPIRED_STATUS)
                 .where(
                     EVENT.IS_EXPIRED.eq(ACTIVE_EXPIRED_STATUS).and(
-                        EVENT.DATE.ge(LocalDateTime.now())
+                        EVENT.DATE.ge(LocalDate.now())
                     )
                 ).execute() > 0
         }
