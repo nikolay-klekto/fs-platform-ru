@@ -31,13 +31,6 @@
         scrollbar-width: none;
     }
 
-    .text18px_mobi {
-        @apply text-4xl md:text-4xl sm_xl:text-3xl sm_l:text-2xl sm:text-xl;
-    }
-    .text12px_mobi {
-        @apply text-base md:text-base sm_xl:text-sm sm_l:text-xs sm:text-xs;
-    }
-
     .text-gradient_desktop_custom {
         @apply bg-gradient-desktop bg-clip-text text-transparent;
     }

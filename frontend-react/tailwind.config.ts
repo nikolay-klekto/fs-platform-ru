@@ -1,5 +1,4 @@
 import type { Config } from 'tailwindcss'
-import { PluginAPI } from 'tailwindcss/types/config'
 import colorsConfig from './tailwind-config/colorsConfig'
 import screensConfig from './tailwind-config/screensConfig'
 import borderRadiusConfig from './tailwind-config/borderRadiusConfig'
@@ -7,7 +6,6 @@ import keyframesConfig from './tailwind-config/keyframesConfig'
 import animationConfig from './tailwind-config/animationConfig'
 import fontSizeConfig from './tailwind-config/fontSizeConfig'
 import backgroundImageConfig from './tailwind-config/backgroundImageConfig'
-import plugin from 'tailwindcss/plugin'
 import boxShadowConfig from './tailwind-config/boxShadowConfig'
 
 const config = {
@@ -40,19 +38,12 @@ const config = {
             fontSize: fontSizeConfig,
             backgroundImage: backgroundImageConfig,
             boxShadow: boxShadowConfig,
+            padding: {
+                'no-right-padding': '2rem 0 2rem 2rem',
+            },
         },
     },
-    plugins: [
-        require('tailwindcss-animate'),
-        function ({ addUtilities, theme }: PluginAPI) {
-            addUtilities({
-                '.container-no-right-padding': {
-                    padding: '4rem 0 4rem 4rem',
-                    maxWidth: theme('screens.4xl'),
-                },
-            })
-        },
-    ],
+    plugins: [require('tailwindcss-animate')],
 } satisfies Config
 
 export default config
