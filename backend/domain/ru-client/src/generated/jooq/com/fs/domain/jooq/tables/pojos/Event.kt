@@ -5,6 +5,7 @@ package com.fs.domain.jooq.tables.pojos
 
 
 import java.io.Serializable
+import java.math.BigDecimal
 import java.time.LocalDate
 
 
@@ -24,7 +25,8 @@ data class Event(
     var cityId: Long? = null,
     var time: String? = null,
     var organizer: String? = null,
-    var eventCategoryId: Long? = null
+    var eventCategoryId: Long? = null,
+    var price: BigDecimal? = null
 ): Serializable {
 
 
@@ -42,6 +44,7 @@ data class Event(
         sb.append(", ").append(time)
         sb.append(", ").append(organizer)
         sb.append(", ").append(eventCategoryId)
+        sb.append(", ").append(price)
 
         sb.append(")")
         return sb.toString()

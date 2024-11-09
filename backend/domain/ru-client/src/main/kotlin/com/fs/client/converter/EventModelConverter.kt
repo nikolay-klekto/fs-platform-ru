@@ -27,7 +27,8 @@ class EventModelConverter(
             cityName = cityBlockingRepository.getCityNameById(rawObject.cityId),
             time = rawObject.time,
             organizer = rawObject.organizer,
-            category = eventBlockingRepository.getEventCategoryNameById(rawObject.eventCategoryId)
+            category = eventBlockingRepository.getEventCategoryNameById(rawObject.eventCategoryId),
+            price = rawObject.price
         )
     }
 
@@ -43,7 +44,8 @@ class EventModelConverter(
             cityBlockingRepository.getCityIdByName(modelObject.cityName),
             modelObject.time,
             modelObject.organizer,
-            eventBlockingRepository.getEventCategoryIdByName(modelObject.category)
+            eventBlockingRepository.getEventCategoryIdByName(modelObject.category),
+            modelObject.price
         )
     }
 

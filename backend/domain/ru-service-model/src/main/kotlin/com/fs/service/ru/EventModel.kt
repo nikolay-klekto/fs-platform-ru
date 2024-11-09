@@ -1,5 +1,6 @@
 package com.fs.service.ru
 
+import java.math.BigDecimal
 import java.time.LocalDate
 
 data class EventModel(
@@ -13,5 +14,6 @@ data class EventModel(
     val cityName: String?,
     val time: String?,
     val organizer: String?,
-    val category: String?
+    val category: String?,
+    val price: BigDecimal?
 )

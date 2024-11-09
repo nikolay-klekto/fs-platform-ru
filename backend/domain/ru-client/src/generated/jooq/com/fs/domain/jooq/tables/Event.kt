@@ -9,6 +9,7 @@ import com.fs.domain.jooq.keys.EVENT_PKEY
 import com.fs.domain.jooq.keys.EVENT__EVENT_EVENT_CATEGORY_ID_FKEY
 import com.fs.domain.jooq.tables.records.EventRecord
 
+import java.math.BigDecimal
 import java.time.LocalDate
 
 import kotlin.collections.List
@@ -18,7 +19,7 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
-import org.jooq.Row11
+import org.jooq.Row12
 import org.jooq.Schema
 import org.jooq.Table
 import org.jooq.TableField
@@ -118,6 +119,11 @@ open class Event(
      */
     val EVENT_CATEGORY_ID: TableField<EventRecord, Long?> = createField(DSL.name("event_category_id"), SQLDataType.BIGINT, this, "")
 
+    /**
+     * The column <code>public.event.price</code>.
+     */
+    val PRICE: TableField<EventRecord, BigDecimal?> = createField(DSL.name("price"), SQLDataType.NUMERIC(10, 2), this, "")
+
     private constructor(alias: Name, aliased: Table<EventRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<EventRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
@@ -168,7 +174,7 @@ open class Event(
     override fun rename(name: Name): Event = Event(name, null)
 
     // -------------------------------------------------------------------------
-    // Row11 type methods
+    // Row12 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row11<Long?, LocalDate?, String?, Boolean?, String?, String?, String?, Long?, String?, String?, Long?> = super.fieldsRow() as Row11<Long?, LocalDate?, String?, Boolean?, String?, String?, String?, Long?, String?, String?, Long?>
+    override fun fieldsRow(): Row12<Long?, LocalDate?, String?, Boolean?, String?, String?, String?, Long?, String?, String?, Long?, BigDecimal?> = super.fieldsRow() as Row12<Long?, LocalDate?, String?, Boolean?, String?, String?, String?, Long?, String?, String?, Long?, BigDecimal?>
 }

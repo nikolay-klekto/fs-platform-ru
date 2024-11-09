@@ -38,6 +38,11 @@ open class CityController(open val cityRepository: CityRepository) {
         return cityRepository.getAllCities()
     }
 
+    @QueryMapping
+    fun getCitiesEnumByCountryCode(@Argument code: Long): Flux<String> {
+        return cityRepository.getCitiesEnumByCountryCode(code)
+    }
+
     @MutationMapping
     fun addCity(@Argument city: CityModel): Mono<CityModel> {
         return cityRepository.insertCity(city)

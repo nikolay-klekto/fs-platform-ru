@@ -169,6 +169,7 @@ abstract class EventRepository(
                     .set(EVENT.TIME, newEventModel.time ?: pastEventModel.time)
                     .set(EVENT.ORGANIZER, newEventModel.organizer ?: pastEventModel.organizer)
                     .set(EVENT.EVENT_CATEGORY_ID, newEventModel.eventCategoryId ?: pastEventModel.eventCategoryId)
+                    .set(EVENT.PRICE, newEventModel.price ?: pastEventModel.price)
                     .where(EVENT.ID.eq(eventModel.id))
                     .execute() == 1
             }.collectList()
