@@ -26,7 +26,7 @@ const ItemEventsDesktop: React.FC<EventSectionDesktopProps> = ({ image, title, d
                     src={image}
                     fill
                     alt={title}
-                    className="object-cover rounded-[3.125rem] 4xl:rounded-[2.5rem] 3xl:rounded-[2.5rem] 2xl:rounded-[2rem] select-none pointer-events-none"
+                    className="object-cover rounded-[3.125rem] 2xl:rounded-[2rem] select-none pointer-events-none"
                 />
                 <div className="absolute right-[5%] top-[4%] flex flex-col justify-center items-center aspect-[113/100] w-[22%] rounded-[1.5rem] 2xl:rounded-[1rem] bg-white bg-opacity-80">
                     <p className="font-semibold text-[#1f203f] text-9xl 4xl:text-7xl 3xl:text-6xl 2xl:text-4xl">
