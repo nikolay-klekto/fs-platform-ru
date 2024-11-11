@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { ArrowBtn } from '@/components/asssets/iconArrow'
+import { ArrowBtn } from '@/components/assets/iconsMobi'
 
 const PromoMobi: React.FC = () => {
     return (
