@@ -37,7 +37,7 @@ const HeaderNavigationDesktop: React.FC = () => {
 
     return (
         <nav className="inline-block w-[54vw] max-w-[1036px] min-h-[45%] max-h-[68px]">
-            <ul className="flex justify-between align-middle w-full h-full bg-white p-1 rounded-[3.125rem] 4xl:rounded-[2.5rem] 3xl:rounded-[2.5rem] 2xl:rounded-[2rem]">
+            <ul className="flex justify-between align-middle w-full h-full bg-white p-1 rounded-[3.125rem]">
                 {content.map((item, index) => (
                     <li
                         key={index}

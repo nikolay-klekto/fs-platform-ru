@@ -47,8 +47,8 @@ const HeaderNavigationMobi: React.FC = () => {
                         key={index}
                         className={
                             isActive(item.link)
-                                ? 'text-white font-semibold text-7xl sm_l:text-5xl sm_s:text-5xl sm:text-5xl py-4 sm_l:py-3 sm_s:py-3 sm:py-3'
-                                : 'text-gradient_mobi_custom hover:bg-gradient-desktop-hover font-medium text-5xl sm_l:text-4xl sm_s:text-3xl sm:text-3xl py-4 sm_l:py-3 sm_s:py-3 sm:py-3'
+                                ? 'text-white font-semibold text-7xl sm_s:text-5xl sm:text-5xl py-4 sm_s:py-3 sm:py-3'
+                                : 'text-gradient_mobi_custom hover:bg-gradient-desktop-hover font-medium text-5xl sm_s:text-3xl sm:text-3xl py-4 sm_s:py-3 sm:py-3'
                         }
                     >
                         <Link href={item.link} className="uppercase">
