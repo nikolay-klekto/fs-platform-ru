@@ -21,7 +21,9 @@ const FooterMobi: React.FC = () => {
                     <div className="flex justify-between w-full border border-red-500 border-solid">
                         {contentFooterMobi.map((section) => (
                             <div key={section.id}>
-                                <p className="text-white text-3xl font-semibold pb-4">{section.title}</p>
+                                <p className="text-white text-4xl font-semibold pb-4 sm_xl:text-3xl sm_l:text-3xl sm_s:text-3xl sm:text-3xl">
+                                    {section.title}
+                                </p>
                                 <ul>
                                     {section.links.map((link, linkIndex) => (
                                         <li
