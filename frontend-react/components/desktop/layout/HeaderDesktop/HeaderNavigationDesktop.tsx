@@ -49,7 +49,7 @@ const HeaderNavigationDesktop: React.FC = () => {
                     >
                         <Link
                             href={item.link}
-                            className="w-full font-bold uppercase whitespace-nowrap text-4xl 4xl:text-2xl 3xl:text-xl 2xl:text-base px-6"
+                            className="w-full font-bold uppercase whitespace-nowrap text-4xl 4xl:text-2xl 3xl:text-xl 2xl:text-base px-6 2xl:px-4"
                         >
                             {item.title}
                         </Link>
