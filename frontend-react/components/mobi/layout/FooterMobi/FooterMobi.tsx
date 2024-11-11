@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
 
@@ -20,17 +22,23 @@ const FooterMobi: React.FC = () => {
                     <TelegramIcon className="w-[58px] h-[48px]" />
                     <div className="flex justify-between w-full border border-red-500 border-solid">
                         {contentFooterMobi.map((section) => (
-                            <div key={section.id}>
-                                <p className="text-white text-4xl font-semibold pb-4 sm_xl:text-3xl sm_l:text-3xl sm_s:text-3xl sm:text-3xl">
+                            <div className="pr-1 border border-red-500 border-solid" key={section.id}>
+                                <p className="text-white text-4xl font-semibold pb-4 sm_xl:text-3xl sm_l:text-3xl sm_s:text-2xl sm:text-2xl">
                                     {section.title}
                                 </p>
                                 <ul>
                                     {section.links.map((link, linkIndex) => (
                                         <li
                                             key={linkIndex}
-                                            className={`text-white text-base font-medium ${linkIndex !== section.links.length - 1 ? 'pb-4' : ''} `}
+                                            className={` text-white text-xl sm_xl:text-base sm_l:text-base sm_s:text-sm sm:text-sm font-medium ${linkIndex !== section.links.length - 1 ? 'pb-4' : ''}`}
                                         >
-                                            <Link href={link.href}>{link.name}</Link>
+                                            {link.href.startsWith('tel:') || link.href.startsWith('mailto:') ? (
+                                                <a href={link.href} className="whitespace-nowrap">
+                                                    {link.name}
+                                                </a>
+                                            ) : (
+                                                <Link href={link.href}>{link.name}</Link>
+                                            )}
                                         </li>
                                     ))}
                                 </ul>
