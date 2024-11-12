@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
-//добавить иконки в десктопную версию!!!!
-import { TelegramIcon, InstagramIcon, VkIcon } from '@/components/assets/icons'
+
+import { TelegramIconDesktop, InstagramIconDesktop, VkIconDesktop } from '@/components/assets/icons'
 
 interface FooterIconLink {
     name: ReactNode
@@ -48,9 +48,9 @@ export const contentFooterDesktop: FooterSection[] = [
             { name: 'abcd@mail.com', href: 'mailto:abcd@mail.com' },
         ],
         icons: [
-            { name: <TelegramIcon />, href: '#' },
-            { name: <InstagramIcon />, href: '#' },
-            { name: <VkIcon />, href: '#' },
+            { name: <TelegramIconDesktop />, href: '#' },
+            { name: <InstagramIconDesktop />, href: '#' },
+            { name: <VkIconDesktop />, href: '#' },
         ],
     },
     {
