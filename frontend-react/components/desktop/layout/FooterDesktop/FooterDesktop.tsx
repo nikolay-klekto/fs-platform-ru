@@ -85,11 +85,3 @@ const FooterDesktop: React.FC = () => {
     )
 }
 export default FooterDesktop
-
-/*
-<div className="w-[63px] h-[21px]">
-    <Image src="/images/white-02.png" alt="icon" width={63} height={21} />
-</div>
-*/
-
-//pl-28 pr-12
