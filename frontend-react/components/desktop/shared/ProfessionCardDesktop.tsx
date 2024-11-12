@@ -1,3 +1,4 @@
+//файл предыдущей разработки
 'use client'
 
 import React, { useState } from 'react'

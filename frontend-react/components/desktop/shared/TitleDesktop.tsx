@@ -1,18 +1,20 @@
 import React from 'react'
 import Link from 'next/link'
-interface PropsTitle {
+interface PropsTitleDesktop {
     title: string
     href: string
 }
 
-const TitleDesktop: React.FC<PropsTitle> = ({ title, href }) => {
+const TitleDesktop: React.FC<PropsTitleDesktop> = ({ title, href }) => {
     return (
         <div className="relative inline-block">
-            <h2 className="text-[10rem] 4xl:text-[8rem] 3xl:text-[7.5rem] 2xl:text-[6.5rem] leading-none text-white opacity-[0.030]">
+            <h2 className="4xl:text-[7.5rem] 3xl:bottom-[-8px] 3xl:text-[7rem] absolute bottom-[-7px] left-[-15px] z-0 text-[160px] font-semibold uppercase leading-none text-white opacity-[2%] 2xl:bottom-[-4px] 2xl:text-[96px]">
                 {title}
             </h2>
-            <Link href={href} className="absolute bottom-[7%] left-[1%] text-white hover:text-gradient_desktop_custom">
-                <h4 className="uppercase text-35xl 4xl:text-27xl 3xl:text-25xl 2xl:text-21xl leading-none">{title}</h4>
+            <Link href={href}>
+                <h2 className="4xl:text-27xl 3xl:text-25xl 2xl:text-21xl hover:bg-gradient-desktop relative left-[-7px] z-10 text-[80px] font-medium uppercase leading-none text-white hover:bg-clip-text hover:text-transparent">
+                    {title}
+                </h2>
             </Link>
         </div>
     )
