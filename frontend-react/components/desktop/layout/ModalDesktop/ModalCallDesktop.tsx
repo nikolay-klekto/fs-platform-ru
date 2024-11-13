@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal'
 import { X } from 'lucide-react'
+import ModalCallAcceptDesktop from '@/components/desktop/layout/ModalDesktop/ModalCallAcceptDesktop'
 
 interface FormData {
     name: string
@@ -19,9 +20,16 @@ const ModalCallDesktop: React.FC = () => {
         consent: false,
     })
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
-
+    const [isModalOpen, setModalOpen] = useState(false)
+    const [isAcceptModalOpen, setAcceptModalOpen] = useState(false)
     const handleOpenModal = () => setModalOpen(true)
     const handleCloseModal = () => setModalOpen(false)
+
+    const handleOpenAcceptModal = () => {
+        setAcceptModalOpen(true)
+        setModalOpen(false)
+    }
+    const handleCloseAcceptModal = () => setAcceptModalOpen(false)
 
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
@@ -48,12 +56,15 @@ const ModalCallDesktop: React.FC = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         if (validateForm()) {
-            console.log('Форма отправлена:', formData)
+            handleOpenAcceptModal()
         }
     }
 
     return (
         <div>
+            <button onClick={handleOpenModal} className="px-4 py-2 text-white bg-blue-500 rounded-lg">
+                Open Modal Call
+            </button>
             <Modal show={isModalOpen} onClose={handleCloseModal} size="medium" showCloseButton={false}>
                 <div>
                     <button onClick={handleCloseModal} className="absolute top-4 right-4">
@@ -154,6 +165,7 @@ const ModalCallDesktop: React.FC = () => {
                     </form>
                 </div>
             </Modal>
+            <ModalCallAcceptDesktop isOpen={isAcceptModalOpen} onClose={handleCloseAcceptModal} />
         </div>
     )
 }
