@@ -15,8 +15,10 @@ const buttonVariants = cva(
                 secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
                 ghost: 'hover:bg-accent hover:text-accent-foreground',
                 link: 'text-primary underline-offset-4 hover:underline',
+                select_desktop:
+                    'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white',
                 select_mobi: 'button-border-mobi rounded-[50px] border border-transparent bg-[#101030] text-white',
-                accent_desktop: 'flex items-center rounded-[50px] bg-white',
+                accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
                 accent_mobi: 'flex items-center rounded-[50px] bg-white',
                 registration:
                     'text-13xl w-[500px] rounded-[45px] bg-white font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] lg:text-9xl',
@@ -27,7 +29,7 @@ const buttonVariants = cva(
                     'flex items-center justify-center rounded-full bg-white p-2 hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 header_desktop_btn_gradient:
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
-                circle: 'bg-card rounded-[50%] hover:shadow-xl hover:shadow-[#FFFFFF]/10',
+                circle: 'bg-card rounded-[50%]',
                 circleBlue: 'rounded-[50%] bg-[#382D90]',
             },
             size: {
@@ -40,13 +42,15 @@ const buttonVariants = cva(
                 btn_modal_desktop: 'h-12 max-w-[272px] rounded-md',
                 btn_modal_mobi: 'h-11 max-w-[272px] rounded-md',
                 icon: 'size-10',
-                wide_desktop: 'h-[68px] w-[358px] rounded-[50px] lg:h-[40px] lg:w-[200px] xl:h-[50px] xl:w-[280px]',
-                wide_mobi: 'sm_l:h-[45px] sm_l:w-[250px] h-[50px] w-[271px] rounded-[38px] sm:h-[38px] sm:w-[230px]',
-                circle_desktop: 'size-[68px] lg:size-[40px] xl:size-[50px]',
-                circle_mobi: 'sm_l:size-[45px] size-[50px] sm:size-[38px]',
+                wide_desktop: '3xl:h-14 h-[4.25rem] px-[30px] 2xl:h-12',
+                wide_mobi: 'sm_l:h-[2.85rem] sm_s:h-[2.3rem] sm_xl:h-12 h-[3.125rem] rounded-[38px] sm:h-[2.375rem]',
+                circle_desktop: '3xl:h-14 3xl:p-[14px] aspect-square h-[4.25rem] p-[16px] 2xl:h-12 2xl:p-[12px]',
+                circle_mobi:
+                    'sm_l:h-[2.85rem] sm_s:h-[2.3rem] sm_xl:h-12 sm_s:p-[10px] aspect-square h-[3.125rem] p-[12px] sm:h-[2.375rem] sm:p-[10px]',
                 header_btn:
                     'text-7.5xl 4xl:text-6xl 3xl:text-4xl 4xl:px-[2vw] 3xl:px-[2vw] 3xl:py-[12px] px-[80px] py-[19px] md:text-xs lg:px-[1vw] lg:py-[9px] lg:text-xs xl:px-[1.5vw] xl:py-[12px] xl:text-xl 2xl:px-[2vw] 2xl:py-[12px] 2xl:text-3xl',
                 select_mobi_menu: 'hover:bg-gradient-mobi-menu h-[40px] w-full max-w-[188px]',
+                gradient_border_btn: 'h-[64px] w-[272px] 2xl:h-[58px] 2xl:w-[250px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'size-[55px]',
             },
