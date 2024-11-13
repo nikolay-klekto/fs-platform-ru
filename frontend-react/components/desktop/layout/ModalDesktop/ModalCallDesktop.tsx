@@ -62,9 +62,6 @@ const ModalCallDesktop: React.FC = () => {
 
     return (
         <div>
-            <button onClick={handleOpenModal} className="px-4 py-2 text-white bg-blue-500 rounded-lg">
-                Open Modal Call
-            </button>
             <Modal show={isModalOpen} onClose={handleCloseModal} size="medium" showCloseButton={false}>
                 <div>
                     <button onClick={handleCloseModal} className="absolute top-4 right-4">
