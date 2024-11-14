@@ -6,7 +6,7 @@ const EventsSectionDesktop: React.FC = () => {
     return (
         <div className="px-[14px] py-[60px] flex flex-col align-middle mx-auto">
             <TitleMobi title={'МЕРОПРИЯТИЯ'} href="/profevents" />
-            <div className="flex gap-8 pt-9 overflow-x-scroll scrollbar_custom cursor-pointer">
+            <div className="flex gap-8 pt-9 max-w-full overflow-x-scroll scrollbar_custom cursor-pointer">
                 {content.map((item) => (
                     <ItemEventsMobi
                         image={item.image}

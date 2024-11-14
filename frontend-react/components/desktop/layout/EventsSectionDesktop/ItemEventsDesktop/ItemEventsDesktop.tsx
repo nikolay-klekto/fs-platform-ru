@@ -20,8 +20,8 @@ const ItemEventsDesktop: React.FC<EventSectionDesktopProps> = ({ image, title, d
     }, [])
 
     return (
-        <div ref={itemRef}>
-            <div className="relative aspect-[4/3] w-[520px] 4xl:w-[421px] 3xl:w-[389px] 2xl:w-[345px]">
+        <div ref={itemRef} className="flex flex-col min-w-[27%] max-w-[27%]">
+            <div className="relative aspect-[4/3] w-full">
                 <Image
                     src={image}
                     fill
