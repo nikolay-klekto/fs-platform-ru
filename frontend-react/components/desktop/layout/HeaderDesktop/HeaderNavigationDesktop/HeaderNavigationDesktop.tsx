@@ -3,44 +3,18 @@
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { content } from '@/components/desktop/layout/HeaderDesktop/HeaderNavigationDesktop/content'
 
 const HeaderNavigationDesktop: React.FC = () => {
     const pathname = usePathname()
     const isActive = (path: string) => pathname === path
 
-    interface IHeaderNavigationDesktop {
-        title: string
-        link: string
-    }
-    const content: IHeaderNavigationDesktop[] = [
-        {
-            title: 'Главная',
-            link: '/',
-        },
-        {
-            title: 'Профессии',
-            link: '/professions',
-        },
-        {
-            title: 'Компании',
-            link: '/companies',
-        },
-        {
-            title: 'Мероприятия',
-            link: '/profevents',
-        },
-        {
-            title: 'Наши контакты',
-            link: '/contacts',
-        },
-    ]
-
     return (
         <nav className="inline-block w-[54vw] max-w-[1036px] min-h-[45%] max-h-[68px]">
             <ul className="flex justify-between align-middle w-full h-full bg-white p-1 rounded-[3.125rem]">
-                {content.map((item, index) => (
+                {content.map((item) => (
                     <li
-                        key={index}
+                        key={item.id}
                         className={
                             isActive(item.link)
                                 ? 'flex items-center w-full h-full text-center text-white bg-gradient-desktop rounded-[3.125rem]'
