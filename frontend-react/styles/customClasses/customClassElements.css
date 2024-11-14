@@ -33,6 +33,9 @@
     .text36px_desktop {
         @apply text-[36px] 4xl:text-10xl 3xl:text-9xl 2xl:text-8xl;
     }
+    .text32px_desktop {
+        @apply text-[32px] 4xl:text-10xl 3xl:text-6xl 2xl:text-6xl;
+    }
     .text30px_desktop {
         @apply text-[30px] 4xl:text-9xl 3xl:text-8xl 2xl:text-6xl !important;
     }
@@ -44,6 +47,9 @@
     }
     .text18px_desktop {
         @apply text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg xl:text-xs lg:text-xs;
+    }
+    .text28px_mobi {
+        @apply text-9xl sm:text-7xl;
     }
     .text22px_mobi {
         @apply md:text-6xl sm_xl:text-5xl sm_l:text-4xl sm_s:text-3xl sm:text-3xl !important;
@@ -76,7 +82,7 @@
         @apply shadow-shadow-right-desktop-custom;
     }
     .paddings-desktop-custom {
-        @apply pt-[5vw] pb-[50px] 3xl:pt-[4vw] 2xl:pt-[3.75rem] 2xl:pb-[3.75rem] xl:p-[2.5rem] lg:p-[2rem];
+        @apply pt-[10vw] pb-[50px] 3xl:pt-[7.5vw] 2xl:pt-[3.75rem] 2xl:pb-[3.75rem] xl:py-[2.5rem] lg:py-[2rem];
     }
     .gradient-text-desktop-custom {
         @apply bg-gradient-desktop bg-clip-text text-[1.5625rem] font-semibold text-transparent 2xl:text-[1.375rem];

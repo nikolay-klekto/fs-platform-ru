@@ -5,12 +5,11 @@ import backgroundImageConfig from '@/tailwind-config/backgroundImageConfig'
 const HomePageDesktop: React.FC = () => {
     return (
         <>
-            <div
-                className="paddings-desktop-custom flex justify-between"
-                style={{ backgroundImage: backgroundImageConfig['header-main-gradient-desktop'] }}
-            >
-                <HeaderMainDesktop />
-                <HeaderCardsDesktop />
+            <div style={{ backgroundImage: backgroundImageConfig['header-main-gradient-desktop'] }}>
+                <div className="paddings-desktop-custom container flex justify-between">
+                    <HeaderMainDesktop />
+                    <HeaderCardsDesktop />
+                </div>
             </div>
         </>
     )
