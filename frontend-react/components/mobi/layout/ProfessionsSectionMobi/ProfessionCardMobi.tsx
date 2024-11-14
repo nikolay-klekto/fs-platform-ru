@@ -1,27 +1,17 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { Card, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 
 interface ProfessionCardMobiProps {
     profession: string
     image: string
     price: string
-    onWidthChange: (width: number) => void
 }
 
-const ProfessionCardMobi: React.FC<ProfessionCardMobiProps> = ({ image, profession, price, onWidthChange }) => {
-    const cardRef = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-        if (cardRef.current) {
-            onWidthChange(cardRef.current.offsetWidth)
-        }
-    }, [])
-
+const ProfessionCardMobi: React.FC<ProfessionCardMobiProps> = ({ image, profession, price }) => {
     return (
         <Card
-            ref={cardRef}
             className="sm_xl:w-[320px] sm_l:w-[300px] sm_s:w-[280px] flex aspect-[5/6] w-[320px] shrink-0 grow-0 flex-col justify-between rounded-[38px] border-none bg-cover bg-center p-[20px] sm:w-[260px]"
             style={{ backgroundImage: `url(${image})` }}
         >
