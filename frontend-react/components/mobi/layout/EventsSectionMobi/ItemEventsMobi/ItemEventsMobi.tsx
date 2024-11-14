@@ -12,11 +12,8 @@ const ItemEventsMobi: React.FC<EventSectionMobiProps> = ({ image, title, date, a
     const [day, month] = date.split(' ')
 
     return (
-        <div className="pb-8">
-            <div
-                className="relative aspect-[4/3] w-[345px] sm_l:w-[295px] sm_s:w-[290px] sm:w-[290px]
-"
-            >
+        <div className="pb-8 flex min-w-full max-w-full sm_xl:min-w-[345px] sm_xl:max-w-[345px] md:min-w-[345px] md:max-w-[345px]">
+            <div className="relative aspect-[4/3] w-full">
                 <Image
                     src={image}
                     fill
@@ -28,11 +25,11 @@ const ItemEventsMobi: React.FC<EventSectionMobiProps> = ({ image, title, date, a
                     <p className="font-semibold text-[#1f203f] text-4xl">{day}</p>
                     <p className="leading-[15px] font-medium text-[#878797] text-base">{month}</p>
                 </div>
-                <div className="absolute left-[0.875rem] bottom-[0.875rem] pr-[0.875rem] inline-block">
-                    <p className="uppercase pb-[0.875rem] font-semibold text-white flex items-end text-4xl sm_l:text-2xl sm_s:text-2xl sm:text-2xl">
+                <div className="absolute left-[0.875rem] bottom-[0.875rem] flex flex-col items-start pr-[0.875rem] max-w-[85%]">
+                    <p className="uppercase pb-[0.875rem] font-semibold text-white  text-4xl sm_l:text-4xl sm_s:text-2xl sm:text-2xl max-w-full overflow-hidden">
                         {title}
                     </p>
-                    <p className="font-medium text-[#878797] max-w-[85%] overflow-hidden whitespace-nowrap text-ellipsis text-base">
+                    <p className="font-medium text-[#878797] max-w-full overflow-hidden whitespace-nowrap text-ellipsis text-base">
                         {adress}
                     </p>
                 </div>
