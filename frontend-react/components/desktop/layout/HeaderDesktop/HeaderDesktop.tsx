@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import HeaderNavigationDesktop from './HeaderNavigationDesktop'
+import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationDesktop'
 import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 

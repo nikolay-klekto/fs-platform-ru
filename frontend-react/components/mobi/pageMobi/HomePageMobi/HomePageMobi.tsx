@@ -5,8 +5,10 @@ import HeaderCardsMobi from '../../layout/HeaderMobi/HeaderCardsMobi'
 const HomePageMobi: React.FC = () => {
     return (
         <>
-            <HeaderMainMobi />
-            <HeaderCardsMobi />
+            <div>
+                <HeaderMainMobi />
+                <HeaderCardsMobi />
+            </div>
         </>
     )
 }
