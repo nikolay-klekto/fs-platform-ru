@@ -76,6 +76,10 @@
     }
 
     .custom-grey {
-        color: #898997;
+        color: #878797;
+    }
+
+    .bg-custom-grey {
+        background-color: #878797;
     }
 }
