@@ -33,7 +33,7 @@ const HeaderCardItemDesktop: React.FC<HeaderCardItemDesktop> = ({
             >
                 <div className="flex flex-1 flex-col justify-between gap-[17px]">
                     <div className="3xl:px-7 grow px-10 2xl:px-5">
-                        <div className="3xl:leading-[30px] 4xl:text-6xl 3xl:text-5xl text-justify text-[24px] font-medium leading-[40px] 2xl:text-4xl 2xl:leading-[24px]">
+                        <div className="3xl:leading-[30px] text24px_desktop text-justify font-medium leading-[40px] 2xl:leading-[24px]">
                             {textBlack}{' '}
                             <span
                                 className="bg-gradient-desktop font-bold  md:font-semibold"
