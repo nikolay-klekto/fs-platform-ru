@@ -29,6 +29,9 @@ const config = {
             fontSize: fontSizeConfig,
             backgroundImage: backgroundImageConfig,
             boxShadow: boxShadowConfig,
+            padding: {
+                'no-right-padding': '2rem 0 2rem 2rem',
+            },
         },
     },
     plugins: [require('tailwindcss-animate')],

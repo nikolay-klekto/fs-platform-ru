@@ -4,9 +4,9 @@ import ItemEventsMobi from '@/components/mobi/layout/EventsSectionMobi/ItemEvent
 import { content } from '@/components/mobi/layout/EventsSectionMobi/content'
 const EventsSectionDesktop: React.FC = () => {
     return (
-        <div className="mx-auto flex flex-col px-[14px] py-[60px] align-middle">
+        <div className="px-[14px] py-[60px] flex flex-col align-middle mx-auto">
             <TitleMobi title={'МЕРОПРИЯТИЯ'} href="/profevents" />
-            <div className="scrollbar_custom flex cursor-pointer gap-[34px] overflow-x-scroll pt-[36px]">
+            <div className="flex gap-8 pt-9 max-w-full overflow-x-scroll scrollbar_custom cursor-pointer">
                 {content.map((item) => (
                     <ItemEventsMobi
                         image={item.image}
