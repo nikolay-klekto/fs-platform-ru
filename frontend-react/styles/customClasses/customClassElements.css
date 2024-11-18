@@ -31,7 +31,7 @@
         scrollbar-width: none;
     }
     .text36px_desktop {
-        @apply text-[36px] 4xl:text-10xl 3xl:text-9xl 2xl:text-8xl;
+        @apply text-[36px] 4xl:text-10xl 3xl:text-9xl 2xl:text-7xl;
     }
     .text32px_desktop {
         @apply text-[32px] 4xl:text-10xl 3xl:text-6xl 2xl:text-6xl;
