@@ -20,20 +20,22 @@ const ItemEventsDesktop: React.FC<EventSectionDesktopProps> = ({ image, title, d
     }, [])
 
     return (
-        <div ref={itemRef} className="pb-[100px] lg:pb-[70px] xl:pb-[78px] 2xl:pb-[84px]">
-            <div className="4xl:w-[421px] 3xl:w-[389px] relative aspect-[4/3] w-[520px] lg:w-[207px] xl:w-[276px] 2xl:w-[345px]">
+        <div ref={itemRef} className="flex flex-col min-w-[27%] max-w-[27%]">
+            <div className="relative aspect-[4/3] w-full">
                 <Image
                     src={image}
                     fill
                     alt={title}
-                    className="3xl:rounded-[45px] pointer-events-none select-none rounded-[50px] object-cover lg:rounded-[35px] xl:rounded-[40px] 2xl:rounded-[45px]"
+                    className="object-cover rounded-[3.125rem] 2xl:rounded-[2rem] select-none pointer-events-none"
                 />
-                <div className="4xl:w-[92px] 3xl:w-[85px] absolute right-[5%] top-[4%] flex aspect-[113/100] w-[114px] flex-col items-center justify-center rounded-[23px] bg-white bg-opacity-80 lg:w-[60px] lg:rounded-[16px] xl:w-[60px] xl:rounded-[18px] 2xl:w-[75px] 2xl:rounded-[20px]">
-                    <p className="text28px_desktop font-semibold text-[#1f203f]">{day}</p>
-                    <p className="text18px_desktop font-medium text-[#878797]">{month}</p>
+                <div className="absolute right-[5%] top-[4%] flex flex-col justify-center items-center aspect-[113/100] w-[22%] rounded-[1.5rem] 2xl:rounded-[1rem] bg-white bg-opacity-80">
+                    <p className="font-semibold text-[#1f203f] text-9xl 4xl:text-7xl 3xl:text-6xl 2xl:text-4xl">
+                        {day}
+                    </p>
+                    <p className="font-medium text-[#878797] text-4xl  4xl:text-2xl 3xl:text-xl 2xl:text-lg">{month}</p>
                 </div>
             </div>
-            <p className="text28px_desktop line-clamp-2 max-h-[calc(2*2.5rem)] overflow-hidden text-ellipsis pt-5 font-medium uppercase leading-[1.2] text-white">
+            <p className="uppercase font-medium text-white pt-5 line-clamp-2 leading-[1.2] max-h-[calc(2*2.5rem)] overflow-hidden text-ellipsis text-9xl 4xl:text-7xl 3xl:text-6xl 2xl:text-4xl">
                 {title}
             </p>
         </div>

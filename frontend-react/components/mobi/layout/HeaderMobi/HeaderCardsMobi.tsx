@@ -6,14 +6,13 @@ import HeaderCardsItemMobi from './HeaderCardsItemMobi'
 const HeaderCardsMobi: React.FC = () => {
     return (
         <>
-            <div className="sm_l:max-w-[95vw] sm_l:p-[0.5vw] m-auto flex max-w-[374px] flex-col gap-[20px] p-[14px] sm:px-[4vw] sm:w-auto md:flex-row md:flex-wrap">
+            <div className="flex flex-row flex-wrap gap-[20px] px-[15px] pt-[20px]">
                 <HeaderCardsItemMobi
                     textBlack="Стажировка"
                     textColor="наблюдателя"
                     textBlackBr="для любой профессии"
                     price={123}
                     currency="BYN"
-                    time="неделя"
                 />
                 <HeaderCardsItemMobi
                     textBlack="Стажировка"
@@ -21,7 +20,6 @@ const HeaderCardsMobi: React.FC = () => {
                     textBlackBr="для любой профессии"
                     price={123}
                     currency="BYN"
-                    time="неделя"
                 />
             </div>
         </>

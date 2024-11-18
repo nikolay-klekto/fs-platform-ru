@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 
-import HeaderNavigationMobi from './HeaderNavigationMobi'
+import HeaderNavigationMobi from './HeaderNavigationMobi/HeaderNavigationMobi'
 import {
     ShoppingCartIconMobi,
     LogoIconMobi,
