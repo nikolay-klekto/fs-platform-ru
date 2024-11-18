@@ -17,7 +17,7 @@ const buttonVariants = cva(
                 link: 'text-primary underline-offset-4 hover:underline',
                 select_desktop:
                     'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white',
-                select_mobi: 'button-border-mobi rounded-[50px] border border-transparent bg-[#101030] text-white',
+                select_mobi: 'button-border-mobi rounded-[50px] border-2 border-transparent bg-[#101030] text-white',
                 accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
                 accent_mobi: 'flex items-center rounded-[50px] bg-white',
                 registration:
