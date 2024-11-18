@@ -1,37 +1,29 @@
 'use client'
 import React from 'react'
 import { content } from './content'
-
+import TitleDesktop from '../../shared/TitleDesktop'
 const HowWeWorkDesktop: React.FC = () => {
     return (
         <>
-            <div className="bg-bgblock px-16 py-24 ">
-                <h2 className="text-title-size  pb-[122px] text-left text-[88px] font-medium uppercase text-white md:text-[36px] lg:text-center lg:text-[55px]  ">
-                    как мы работаем
-                </h2>
-                <div className="flex flex-row flex-wrap items-center gap-10">
+            <div className="container py-[100px]">
+                <div className="mb-[122px]">
+                    <TitleDesktop title="Как мы работаем" href="#" />
+                </div>
+                <div className="flex flex-row items-center gap-10">
                     {content.map((item) => (
                         <div
                             key={item.id}
-                            className="relative flex min-h-64 min-w-[414px] flex-1 flex-col items-center rounded-[22px] bg-[#ffffff1a]  px-5  pt-[80px]  text-center sm_xl:min-w-[]"
+                            className="relative flex min-h-64 w-[414px] flex-col items-center rounded-[22px] bg-[#ffffff1a] px-5 pt-[80px] text-center"
                         >
-                            <div className="absolute top-[-40px] rounded-full border-[12px] border-[#101030]">
-                                <div className="bg-gradient-blue border-bgblock flex size-24 items-center justify-center rounded-full  border-[10px] bg-[#101030]">
+                            <div className="3xl:top-[-40px] absolute top-[-50px] rounded-full border-8 border-[#101030] 2xl:top-[-40px]">
+                                <div className="bg-gradient-desktop 3xl:size-[75px] flex size-[85px] items-center justify-center rounded-full bg-[#101030] 2xl:size-[70px]">
                                     {item.icon}
                                 </div>
                             </div>
-                            <h2
-                                className="relative mb-3 text-[28px] font-bold uppercase"
-                                style={{
-                                    background:
-                                        'linear-gradient(90deg, rgb(131, 51, 243), rgb(95, 74, 243), rgb(59, 81, 168))',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
-                                }}
-                            >
+                            <h3 className="text28px_desktop text-gradient_desktop_custom relative mb-[12px] font-medium uppercase">
                                 {item.title}
-                            </h2>
-                            <div className="text-center   text-sm leading-[22px] text-[#878797]">
+                            </h3>
+                            <div className="text18px_desktop text-center font-medium text-[#878797]">
                                 {item.description.map((item, index) => (
                                     <p key={index}>{item}</p>
                                 ))}

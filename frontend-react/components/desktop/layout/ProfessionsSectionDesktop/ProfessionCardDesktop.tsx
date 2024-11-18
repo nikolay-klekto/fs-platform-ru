@@ -13,7 +13,7 @@ const ProfessionCardDesktop: React.FC<ProfessionCardDesktopProps> = ({ image, pr
     return (
         <>
             <Card
-                className="3xl:px-[20px] hover:shadow_desktop_custom 3xl:py-[15px] flex cursor-pointer flex-col justify-between rounded-[50px] border-none bg-cover bg-center px-[30px] py-[20px] 2xl:px-[15px] 2xl:py-[10px]"
+                className="3xl:px-[20px] hover:button-shadow_around_desktop_custom 3xl:py-[15px] flex cursor-pointer flex-col justify-between rounded-[50px] border-none bg-cover bg-center px-[30px] py-[20px] 2xl:px-[15px] 2xl:py-[10px]"
                 style={{ backgroundImage: `url(${image})` }}
             >
                 <CardHeader className="pl-0 pt-3">
