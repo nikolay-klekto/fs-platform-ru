@@ -74,4 +74,12 @@
     .gradient-text-desktop-custom {
         @apply bg-gradient-desktop bg-clip-text text-[1.5625rem] font-semibold text-transparent 2xl:text-[1.375rem];
     }
+
+    .custom-grey {
+        color: #878797;
+    }
+
+    .bg-custom-grey {
+        background-color: #878797;
+    }
 }
