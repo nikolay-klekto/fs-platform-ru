@@ -53,6 +53,7 @@ const buttonVariants = cva(
                 gradient_border_btn: 'h-[64px] w-[272px] 2xl:h-[58px] 2xl:w-[250px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'sm_s:size-[52px] size-[55px] sm:size-[50px]',
+                contacts_btn: 'h-[65px] w-[262px]',
             },
         },
         defaultVariants: {
