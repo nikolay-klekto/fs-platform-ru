@@ -6,10 +6,11 @@ package com.fs.domain.jooq.tables
 
 import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.EVENT_PKEY
-import com.fs.domain.jooq.keys.EVENT__EVENT_ADDRESS_ID_FKEY
+import com.fs.domain.jooq.keys.EVENT__EVENT_EVENT_CATEGORY_ID_FKEY
 import com.fs.domain.jooq.tables.records.EventRecord
 
-import java.time.LocalDateTime
+import java.math.BigDecimal
+import java.time.LocalDate
 
 import kotlin.collections.List
 
@@ -18,7 +19,7 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
-import org.jooq.Row10
+import org.jooq.Row12
 import org.jooq.Schema
 import org.jooq.Table
 import org.jooq.TableField
@@ -69,14 +70,9 @@ open class Event(
     val ID: TableField<EventRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>public.event.address_id</code>.
-     */
-    val ADDRESS_ID: TableField<EventRecord, Long?> = createField(DSL.name("address_id"), SQLDataType.BIGINT, this, "")
-
-    /**
      * The column <code>public.event.date</code>.
      */
-    val DATE: TableField<EventRecord, LocalDateTime?> = createField(DSL.name("date"), SQLDataType.LOCALDATETIME(6), this, "")
+    val DATE: TableField<EventRecord, LocalDate?> = createField(DSL.name("date"), SQLDataType.LOCALDATE, this, "")
 
     /**
      * The column <code>public.event.description</code>.
@@ -89,19 +85,9 @@ open class Event(
     val IS_EXPIRED: TableField<EventRecord, Boolean?> = createField(DSL.name("is_expired"), SQLDataType.BOOLEAN, this, "")
 
     /**
-     * The column <code>public.event.main_goal</code>.
-     */
-    val MAIN_GOAL: TableField<EventRecord, String?> = createField(DSL.name("main_goal"), SQLDataType.VARCHAR, this, "")
-
-    /**
      * The column <code>public.event.name</code>.
      */
     val NAME: TableField<EventRecord, String?> = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "")
-
-    /**
-     * The column <code>public.event.phone_number</code>.
-     */
-    val PHONE_NUMBER: TableField<EventRecord, String?> = createField(DSL.name("phone_number"), SQLDataType.VARCHAR, this, "")
 
     /**
      * The column <code>public.event.public_place_name</code>.
@@ -112,6 +98,31 @@ open class Event(
      * The column <code>public.event.site</code>.
      */
     val SITE: TableField<EventRecord, String?> = createField(DSL.name("site"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.event.city_id</code>.
+     */
+    val CITY_ID: TableField<EventRecord, Long?> = createField(DSL.name("city_id"), SQLDataType.BIGINT, this, "")
+
+    /**
+     * The column <code>public.event.time</code>.
+     */
+    val TIME: TableField<EventRecord, String?> = createField(DSL.name("time"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.event.organizer</code>.
+     */
+    val ORGANIZER: TableField<EventRecord, String?> = createField(DSL.name("organizer"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.event.event_category_id</code>.
+     */
+    val EVENT_CATEGORY_ID: TableField<EventRecord, Long?> = createField(DSL.name("event_category_id"), SQLDataType.BIGINT, this, "")
+
+    /**
+     * The column <code>public.event.price</code>.
+     */
+    val PRICE: TableField<EventRecord, BigDecimal?> = createField(DSL.name("price"), SQLDataType.NUMERIC(10, 2), this, "")
 
     private constructor(alias: Name, aliased: Table<EventRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<EventRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
@@ -135,18 +146,19 @@ open class Event(
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<EventRecord, Long?> = super.getIdentity() as Identity<EventRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<EventRecord> = EVENT_PKEY
-    override fun getReferences(): List<ForeignKey<EventRecord, *>> = listOf(EVENT__EVENT_ADDRESS_ID_FKEY)
+    override fun getReferences(): List<ForeignKey<EventRecord, *>> = listOf(EVENT__EVENT_EVENT_CATEGORY_ID_FKEY)
 
-    private lateinit var _address: Address
+    private lateinit var _eventCategories: EventCategories
 
     /**
-     * Get the implicit join path to the <code>public.address</code> table.
+     * Get the implicit join path to the <code>public.event_categories</code>
+     * table.
      */
-    fun address(): Address {
-        if (!this::_address.isInitialized)
-            _address = Address(this, EVENT__EVENT_ADDRESS_ID_FKEY)
+    fun eventCategories(): EventCategories {
+        if (!this::_eventCategories.isInitialized)
+            _eventCategories = EventCategories(this, EVENT__EVENT_EVENT_CATEGORY_ID_FKEY)
 
-        return _address;
+        return _eventCategories;
     }
     override fun `as`(alias: String): Event = Event(DSL.name(alias), this)
     override fun `as`(alias: Name): Event = Event(alias, this)
@@ -162,7 +174,7 @@ open class Event(
     override fun rename(name: Name): Event = Event(name, null)
 
     // -------------------------------------------------------------------------
-    // Row10 type methods
+    // Row12 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row10<Long?, Long?, LocalDateTime?, String?, Boolean?, String?, String?, String?, String?, String?> = super.fieldsRow() as Row10<Long?, Long?, LocalDateTime?, String?, Boolean?, String?, String?, String?, String?, String?>
+    override fun fieldsRow(): Row12<Long?, LocalDate?, String?, Boolean?, String?, String?, String?, Long?, String?, String?, Long?, BigDecimal?> = super.fieldsRow() as Row12<Long?, LocalDate?, String?, Boolean?, String?, String?, String?, Long?, String?, String?, Long?, BigDecimal?>
 }
