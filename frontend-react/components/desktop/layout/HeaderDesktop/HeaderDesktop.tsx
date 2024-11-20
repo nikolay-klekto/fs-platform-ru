@@ -12,6 +12,7 @@ const HeaderDesktop: React.FC = () => {
             <header
                 className="flex h-[152px] align-items center 3xl:h-[124px] 2xl:h-[114px]"
                 style={{
+                    backgroundColor: 'rgb(16,16,48)',
                     backgroundImage: `linear-gradient(rgba(16,16,48,0.7), rgba(16,16,48,0.7)), url(/background/headerBackground.png)`,
                     backgroundSize: 'cover',
                 }}
