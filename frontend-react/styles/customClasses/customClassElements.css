@@ -88,4 +88,15 @@
     .bg-custom-grey {
         background-color: #878797;
     }
+    .title_desktop {
+        @apply text-white text-35xl 4xl:text-27xl 3xl:text-25xl 2xl:text-21xl font-semibold;
+    }
+    .radial-gradient_desktop {
+        @apply size-[852px] opacity-50 rounded-full absolute z-0;
+        background: radial-gradient(circle, #8917a5 0%, #30217b 100%);
+        filter: blur(500px);
+    }
+    .custom-outline:focus {
+        outline: 3px solid #878797 !important;
+    }
 }
