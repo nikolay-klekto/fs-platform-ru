@@ -5,7 +5,6 @@ interface PropsTitleMobi {
     href: string
 }
 
-//исправленный под макет
 const TitleMobi: React.FC<PropsTitleMobi> = ({ title, href }) => {
     return (
         <Link href={href}>
@@ -16,15 +15,3 @@ const TitleMobi: React.FC<PropsTitleMobi> = ({ title, href }) => {
     )
 }
 export default TitleMobi
-
-/*
-исходный вариант, несоответствует макету
-const TitleMobi: React.FC<PropsTitleMobi> = ({ title, href }) => {
-    return (
-        <Link href={href} className="text-white hover:text-gradient_mobi_custom">
-            <h2 className="text-11xl sm_l:text-8xl sm_s:text-8xl sm:text-8xl">{title}</h2>
-        </Link>
-    )
-}
-export default TitleMobi
-*/
