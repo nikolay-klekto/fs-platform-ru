@@ -56,7 +56,7 @@ export const contentSocialContactsDesktop: SocialContacts[] = [
     },
     {
         id: 2,
-        icon: <TelegramIconDesktop width={34} height={30} />,
+        icon: <TelegramIconDesktop width={44} height={40} />,
         name: 'Telegram канал с полезными статьями',
         href: '#',
     },

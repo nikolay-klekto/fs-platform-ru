@@ -54,6 +54,7 @@ const buttonVariants = cva(
                 circleDesk: 'size-[68px]',
                 circleMobi: 'sm_s:size-[52px] size-[55px] sm:size-[50px]',
                 contacts_btn: 'h-[65px] w-[262px]',
+                contacts_btn_send: 'h-[68.5px] w-[289px]',
             },
         },
         defaultVariants: {
