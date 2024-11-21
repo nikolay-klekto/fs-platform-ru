@@ -7,14 +7,14 @@ import { contentContactsDesktop, contentSocialContactsDesktop } from './contentC
 const ContactsDesktop: React.FC = () => {
     return (
         <>
-            <div className="flex justify-between pt-52 pb-[297px]">
-                <div className="flex flex-col gap-7 max-w-[541px] mr-24 3xl:mr-20 2xl:mr-20 border border-red-500">
-                    <h2 className="text-26xl font-semibold uppercase 3xl:text-23xl  2xl:text-22xl">Cвяжитесь с нами</h2>
+            <div className="flex justify-between pt-52 pb-[297px] 2xl:px-10 2xl:flex-col 2xl:items-center 2xl:pt-28 2xl:pb-36">
+                <div className="flex flex-col gap-7 max-w-[541px] mr-32 3xl:mr-20 2xl:self-start 2xl:max-w-none 2xl:mb-28 2xl:mr-0">
+                    <h2 className="text-26xl font-semibold uppercase 3xl:text-23xl">Cвяжитесь с нами</h2>
                     <Button variant="select_desktop" size="contacts_btn">
                         Хочу в команду
                     </Button>
                 </div>
-                <div className="w-[1020px] border border-red-500">
+                <div className="w-[1020px] 2xl:flex 2xl:flex-col  2xl:w-none 2xl:w-full">
                     <div className="flex justify-between">
                         <div className="flex flex-col">
                             {contentContactsDesktop.map((item) => (
@@ -67,7 +67,7 @@ const ContactsDesktop: React.FC = () => {
                                         type="text"
                                         id="name"
                                         placeholder="Имя*"
-                                        className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent"
+                                        className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent 2xl:w-[520px]"
                                         style={{ border: '2px solid #878797' }}
                                         required
                                     />
@@ -78,7 +78,7 @@ const ContactsDesktop: React.FC = () => {
                                         type="email"
                                         id="email"
                                         placeholder="E-mail*"
-                                        className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent"
+                                        className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent 2xl:w-[520px]"
                                         style={{ border: '2px solid #878797' }}
                                         required
                                     />
@@ -91,7 +91,7 @@ const ContactsDesktop: React.FC = () => {
                                         type="tel"
                                         id="tel"
                                         placeholder="Телефон*"
-                                        className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] 3xl:w-[452px] 2xl:w-[452px]"
+                                        className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] 3xl:w-[452px] 2xl:w-[520px]"
                                         required
                                     />
                                     <label htmlFor="role" className="sr-only">
@@ -101,7 +101,7 @@ const ContactsDesktop: React.FC = () => {
                                         type="text"
                                         id="role"
                                         placeholder="Клиент/партнер/соискатель"
-                                        className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] 3xl:w-[452px] 2xl:w-[452px]"
+                                        className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] 3xl:w-[452px] 2xl:w-[520px]"
                                         required
                                     />
                                 </div>
