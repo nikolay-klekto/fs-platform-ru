@@ -15,8 +15,7 @@ const buttonVariants = cva(
                 secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
                 ghost: 'hover:bg-accent hover:text-accent-foreground',
                 link: 'text-primary underline-offset-4 hover:underline',
-                select_desktop:
-                    'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white',
+                select_desktop: 'button-border-desktop rounded-[50px] text-[20px] font-semibold text-white',
                 select_mobi: 'button-border-mobi rounded-[50px] border border-transparent bg-[#101030] text-white',
                 accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
                 accent_mobi: 'flex items-center rounded-[50px] bg-white',
@@ -48,8 +47,8 @@ const buttonVariants = cva(
                 circle_mobi:
                     'sm_l:h-[2.85rem] sm_s:h-[2.3rem] sm_xl:h-12 sm_s:p-[10px] aspect-square h-[3.125rem] p-[12px] sm:h-[2.375rem] sm:p-[10px]',
                 header_btn:
-                    'text-7.5xl px-[80px] py-[16px] 4xl:text-6xl 4xl:px-[3vw] 4xl:py-[19px] 3xl:text-4xl 3xl:px-[2vw] 3xl:py-[15px] 2xl:text-3xl 2xl:px-[2vw] 2xl:py-[14px] md:text-xs lg:px-[1vw] lg:py-[9px] lg:text-xs xl:px-[1.5vw] xl:py-[12px] xl:text-xl',
-                select_mobi_menu: 'text-3xl hover:bg-gradient-mobi-menu h-[47px] w-full max-w-[195px]',
+                    'text-7.5xl 4xl:text-6xl 4xl:px-[3vw] 4xl:py-[19px] 3xl:text-4xl 3xl:px-[2vw] 3xl:py-[15px] px-[80px] py-[16px] md:text-xs lg:px-[1vw] lg:py-[9px] lg:text-xs xl:px-[1.5vw] xl:py-[12px] xl:text-xl 2xl:px-[2vw] 2xl:py-[14px] 2xl:text-3xl',
+                select_mobi_menu: 'hover:bg-gradient-mobi-menu h-[47px] w-full max-w-[195px] text-3xl',
                 gradient_border_btn: 'h-[64px] w-[272px] 2xl:h-[58px] 2xl:w-[250px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'sm_s:size-[52px] size-[55px] sm:size-[50px]',

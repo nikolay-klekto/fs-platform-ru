@@ -221,3 +221,61 @@ export const VkIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
         </svg>
     )
 }
+
+export const ChevronDownIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="27" height="15" viewBox="0 0 27 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M13.4997 14.7145C13.3311 14.7165 13.1639 14.6833 13.0089 14.6168C12.8539 14.5504 12.7145 14.4523 12.5997 14.3288L1.02829 2.75733C0.514007 2.24304 0.514007 1.4459 1.02829 0.931613C1.54258 0.417327 2.33972 0.417327 2.85401 0.931613L13.5254 11.603L24.1711 0.957327C24.6854 0.443041 25.4826 0.443041 25.9969 0.957327C26.5111 1.47161 26.5111 2.26876 25.9969 2.78304L14.4254 14.3545C14.1683 14.6116 13.834 14.7402 13.5254 14.7402L13.4997 14.7145Z"
+                fill="white"
+            />
+        </svg>
+    )
+}
+
+export const CheckedBoxIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M8.41016 9.48327L10.9353 12.0084L19.3524 3.59131"
+                stroke="url(#paint0_linear_423_22299)"
+                stroke-width="1.68342"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+            <path
+                d="M18.5101 10.3249V16.2168C18.5101 16.6633 18.3328 17.0915 18.0171 17.4072C17.7014 17.7229 17.2732 17.9003 16.8267 17.9003H5.04279C4.59632 17.9003 4.16814 17.7229 3.85244 17.4072C3.53673 17.0915 3.35938 16.6633 3.35938 16.2168V4.43293C3.35938 3.98646 3.53673 3.55827 3.85244 3.24257C4.16814 2.92687 4.59632 2.74951 5.04279 2.74951H14.3016"
+                stroke="url(#paint1_linear_423_22299)"
+                stroke-width="1.68342"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+            <defs>
+                <linearGradient
+                    id="paint0_linear_423_22299"
+                    x1="7.51951"
+                    y1="7.89772"
+                    x2="19.3524"
+                    y2="7.89772"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#8333F3" />
+                    <stop offset="0.485532" stop-color="#5F4AF3" />
+                    <stop offset="1" stop-color="#3B51A8" />
+                </linearGradient>
+                <linearGradient
+                    id="paint1_linear_423_22299"
+                    x1="2.12617"
+                    y1="10.5011"
+                    x2="18.5101"
+                    y2="10.5011"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#8333F3" />
+                    <stop offset="0.485532" stop-color="#5F4AF3" />
+                    <stop offset="1" stop-color="#3B51A8" />
+                </linearGradient>
+            </defs>
+        </svg>
+    )
+}
