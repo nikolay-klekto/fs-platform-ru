@@ -7,6 +7,7 @@ import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDeskt
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import ContactsPageDesktop from '@/components/desktop/pageDesktop/ContactsPageDesktop/ContactsPageDesktop'
+import ContactsPageMobi from '@/components/mobi/pageMobi/ContactsPageMobi/ContactsPageMobi'
 
 export default function Contacts() {
     const [isClient, setIsClient] = useState(false)
@@ -34,9 +35,9 @@ export default function Contacts() {
                 </>
             ) : (
                 <>
-                    <HeaderMobi />
-                    <main className="bg-[#101030] text-white">
-                        <h1>Contacts</h1>
+                    <main className="bg-[#101030] text-white pt-5">
+                        <HeaderMobi />
+                        <ContactsPageMobi />
                     </main>
                     <FooterMobi />
                 </>

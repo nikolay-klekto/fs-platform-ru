@@ -31,6 +31,7 @@ const buttonVariants = cva(
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
                 circle: 'bg-card rounded-[50%]',
                 circleBlue: 'rounded-[50%] bg-[#382D90]',
+                select_btn_mobi: 'button-border-mobi rounded-[50px] border-transparent bg-[#101030] text-white',
             },
             size: {
                 default: 'h-10 px-4 py-2',
@@ -53,8 +54,8 @@ const buttonVariants = cva(
                 gradient_border_btn: 'h-[64px] w-[272px] 2xl:h-[58px] 2xl:w-[250px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'sm_s:size-[52px] size-[55px] sm:size-[50px]',
-                contacts_btn: 'h-[65px] w-[262px]',
-                contacts_btn_send: 'h-[68.5px] w-[289px]',
+                contacts_btn_desktop: 'h-[65px] w-[262px]',
+                contacts_btn_send_desktop: 'h-[68.5px] w-[289px]',
             },
         },
         defaultVariants: {

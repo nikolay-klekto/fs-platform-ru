@@ -62,7 +62,7 @@ export const contentSocialContactsDesktop: SocialContacts[] = [
     },
     {
         id: 3,
-        icon: <LinkedInIconDesktop />,
+        icon: <LinkedInIconDesktop width={30} height={30} />,
         name: 'LinkedIn с открытыми вакансиями',
         href: '#',
     },
