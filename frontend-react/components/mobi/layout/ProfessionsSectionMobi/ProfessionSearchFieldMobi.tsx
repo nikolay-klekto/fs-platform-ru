@@ -6,7 +6,7 @@ import { ForwardIcon } from '@/components/assets/icons'
 const ProfessionSearchFieldMobi: React.FC = () => {
     return (
         <div className=" flex flex-col">
-            <p className=" sm_xl:text-4xl sm_l:text-3xl mx-auto mb-[30px] text-[20px] font-medium text-white md:text-5xl">
+            <p className=" sm_xl:text-4xl sm_l:text-3xl sm_s:text-3xl mx-auto mb-[30px] text-[20px] font-semibold text-white sm:text-3xl md:text-5xl">
                 Предложите, в какой ещё профессии вы бы ещё хотели попробовать себя
             </p>
             <div className="justify-bitween sm_xl:w-full sm_l:w-full sm_s:w-full mx-auto flex h-[44px] w-[70vw] items-center gap-[10px] sm:w-full md:w-[70vw]">
