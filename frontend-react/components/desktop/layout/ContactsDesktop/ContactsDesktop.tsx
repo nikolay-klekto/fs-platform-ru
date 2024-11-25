@@ -64,8 +64,7 @@ const ContactsDesktop: React.FC = () => {
                                         type="text"
                                         id="name"
                                         placeholder="Имя*"
-                                        className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent 2xl:w-[520px]"
-                                        style={{ border: '2px solid #878797' }}
+                                        className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 2xl:w-[520px]"
                                     />
                                     <label htmlFor="email" className="sr-only">
                                         E-mail
@@ -74,8 +73,7 @@ const ContactsDesktop: React.FC = () => {
                                         type="email"
                                         id="email"
                                         placeholder="E-mail*"
-                                        className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent 2xl:w-[520px]"
-                                        style={{ border: '2px solid #878797' }}
+                                        className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 2xl:w-[520px]"
                                     />
                                 </div>
                                 <div className="flex flex-col gap-[33px] pl-3">
@@ -86,7 +84,7 @@ const ContactsDesktop: React.FC = () => {
                                         type="tel"
                                         id="tel"
                                         placeholder="Телефон*"
-                                        className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] 3xl:w-[452px] 2xl:w-[520px]"
+                                        className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 3xl:w-[452px] 2xl:w-[520px]"
                                     />
                                     <label htmlFor="role" className="sr-only">
                                         Клиент/партнер/соискатель
@@ -95,7 +93,7 @@ const ContactsDesktop: React.FC = () => {
                                         type="text"
                                         id="role"
                                         placeholder="Клиент/партнер/соискатель"
-                                        className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] 3xl:w-[452px] 2xl:w-[520px]"
+                                        className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 3xl:w-[452px] 2xl:w-[520px]"
                                     />
                                 </div>
                             </div>
@@ -106,7 +104,7 @@ const ContactsDesktop: React.FC = () => {
                                 name="message"
                                 id="message"
                                 placeholder="Опишите свой вопрос*"
-                                className="h-60 w-full rounded-[33px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent focus:outline-none border-[2px] border-[#878797] placeholder:text-muted-foreground"
+                                className="h-60 w-full rounded-[33px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent focus:outline-none border-[2px] border-[#878797] focus:border-[3px] placeholder:text-muted-foreground"
                             />
                             <div className="flex justify-between pt-[60px]">
                                 <Button variant="select_desktop" size="contacts_btn_send_desktop">
