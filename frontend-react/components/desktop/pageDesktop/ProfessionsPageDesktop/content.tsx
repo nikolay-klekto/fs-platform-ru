@@ -31,7 +31,7 @@ export const content: IContent[] = [
     { profession: 'Программист', image: '/images/profession_3.jpg', price: 35, id: 10, category: 'IT-отрасль' },
     { profession: 'Программист', image: '/images/profession_4.jpg', price: 50, id: 11, category: 'IT-отрасль' },
     {
-        profession: 'Бизнес-аналитик, Программист',
+        profession: 'Бизнес-аналитик, программист',
         image: '/images/profession_2.jpg',
         price: 40,
         id: 12,

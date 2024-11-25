@@ -27,7 +27,7 @@ export default function Professions() {
             {isDesktop ? (
                 <>
                     <HeaderDesktop />
-                    <main className="container bg-[#101030] text-white">
+                    <main className="bg-[#101030] text-white">
                         <ProfessionsPageDesktop />
                     </main>
                     <FooterDesktop />

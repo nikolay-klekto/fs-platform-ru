@@ -5,18 +5,16 @@ import { Button } from '@/components/ui/button'
 interface SelectItemProps {
     value: string
     children: React.ReactNode
-    className?: string
     isChecked: boolean
     onClick: () => void
 }
 
-// Интерфейс для опций
 interface SelectOption {
     value: string
     label: string
 }
 
-const SelectDemo = () => {
+const ProfessionsSelectDesktop = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
 
@@ -40,7 +38,7 @@ const SelectDemo = () => {
     ]
 
     return (
-        <div className="relative">
+        <div className="relative z-[3]">
             <Button
                 variant={'select_desktop'}
                 onClick={handleSelectToggle}
@@ -75,12 +73,12 @@ const SelectDemo = () => {
 }
 
 const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
-    ({ children, className, isChecked, onClick, ...props }, forwardedRef) => {
+    ({ children, isChecked, onClick, ...props }, forwardedRef) => {
         return (
             <div
-                className={`flex cursor-pointer items-center gap-[14px] rounded-[18px] p-[15px] font-medium ${
+                className={`relative z-[3] flex cursor-pointer items-center gap-[14px] rounded-[18px] p-[15px] font-medium ${
                     isChecked ? 'bg-[#5F4AF30F] text-white' : 'bg-transparent text-[#878797]'
-                } ${className}`}
+                }`}
                 {...props}
                 ref={forwardedRef}
                 onClick={onClick}
@@ -113,7 +111,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
                         />
                     ) : (
                         <div
-                            className="absolute inset-0 rounded-[3px]"
+                            className="absolute inset-0 z-[3] rounded-[3px]"
                             style={{
                                 border: '2px solid #878797',
                                 background: 'transparent',
@@ -129,4 +127,4 @@ const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
 
 SelectItem.displayName = 'SelectItem'
 
-export default SelectDemo
+export default ProfessionsSelectDesktop

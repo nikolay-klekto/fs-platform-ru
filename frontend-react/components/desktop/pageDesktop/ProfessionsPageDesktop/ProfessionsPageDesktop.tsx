@@ -1,38 +1,74 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
+import ProfessionsSelectDesktop from './ProfessionsSelectDesktop'
+import ProfessionCardPageDesktop from './ProfessionCardPageDesktop'
+import ProfessionsPaginationDesktop from './ProfessionsPaginationDesktop'
+import ProfessionSearchDesktop from './ProfessionSearchDesktop'
+import { content } from './content'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
-import SelectDemo from './ProfessionsSelectDesktop'
 
 const ProfessionsPageDesktop: React.FC = () => {
+    const [isFocused, setIsFocused] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
+    const itemsPerPage = 12
+    const totalPages = Math.ceil(content.length / itemsPerPage)
+
+    const handlePageChange = (page: number): void => {
+        setCurrentPage(page)
+    }
+
     return (
-        <div className="relative overflow-hidden p-[76px_212px_200px_212px]">
-            <h1 className="title_desktop">Professions</h1>
-            <div className="radial-gradient_desktop top-[-330px]"></div>
-            <div className="flex items-center justify-between pt-[80px]">
-                <div
-                    className="relative h-[64px] w-[768px] rounded-[50px] p-[2px]"
-                    style={{
-                        background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
-                    }}
-                >
-                    <Input
-                        type="text"
-                        className="size-full rounded-full border-none bg-[#101030] pl-[20px] pr-[70px] text-5xl placeholder:font-semibold placeholder:text-[#353652]"
-                        placeholder="Поиск"
-                    />
-                    <Button
-                        variant="header_desktop_btn_gradient"
-                        className="absolute right-0 top-1/2 flex size-[60px] -translate-y-1/2 items-center justify-center rounded-full"
+        <>
+            <div className="container relative overflow-hidden p-[76px_152px_200px_152px]">
+                <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
+                <div className="radial-gradient_desktop right-[-212px] top-[933px]"></div>
+                <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
+                <h1 className="title80px_desktop relative z-[1]">Профессии</h1>
+                <div className="relative z-[1] flex items-center justify-between py-[80px]">
+                    <div
+                        className="relative h-[64px] w-[738px] rounded-[50px] p-[2px]"
+                        style={{
+                            background: isFocused ? '#878797' : 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
+                        }}
                     >
-                        <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
-                    </Button>
+                        <Input
+                            type="text"
+                            className="focus-visible:ring-ring relative size-full rounded-full border-none bg-[#101030] pl-[20px] pr-[70px] text-5xl placeholder:font-semibold placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                            placeholder="Поиск"
+                            onFocus={() => setIsFocused(true)}
+                            onBlur={() => setIsFocused(false)}
+                        />
+                        <Button
+                            variant="header_desktop_btn_gradient"
+                            className="absolute right-0 top-1/2 flex size-[60px] -translate-y-1/2 items-center justify-center rounded-full"
+                        >
+                            <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
+                        </Button>
+                    </div>
+                    <ProfessionsSelectDesktop />
                 </div>
-                <SelectDemo />
+                <div className="relative grid grid-cols-4 grid-rows-3 items-center gap-[45px] ">
+                    {content.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item) => (
+                        <ProfessionCardPageDesktop
+                            key={item.id}
+                            image={item.image}
+                            profession={item.profession}
+                            price={item.price.toString()}
+                        />
+                    ))}
+                </div>
+                <ProfessionsPaginationDesktop
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    onPageChange={handlePageChange}
+                />
+                <ProfessionSearchDesktop />
             </div>
-        </div>
+        </>
     )
 }
+
 export default ProfessionsPageDesktop
