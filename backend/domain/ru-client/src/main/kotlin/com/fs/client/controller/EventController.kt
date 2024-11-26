@@ -33,34 +33,40 @@ open class EventController(open val eventRepository: EventRepository) {
     @PostMapping("/upload")
     open fun uploadFile(@RequestParam("file") file: MultipartFile): ResponseEntity<String> {
         return try {
-            // Проверяем, что файл не пустой
+            println("Получен файл: ${file.originalFilename}, размер: ${file.size} байт")
+
             if (file.isEmpty) {
+                println("Файл пустой")
                 return ResponseEntity.badRequest().body("error: файл пустой!")
             }
 
-            val maxSize = 50 * 1024 * 1024 // 5 MB
+            val maxSize = 50 * 1024 * 1024 // 50 MB
             if (file.size > maxSize) {
+                println("Файл слишком большой: ${file.size}")
                 return ResponseEntity.badRequest().body("error: файл слишком большой! Максимальный размер: $maxSize байт.")
             }
 
             val uploadPath = Path.of(uploadDir)
+            println("Путь загрузки: $uploadPath")
 
-            // Убедимся, что директория существует
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath)
             }
 
-            // Сохраняем файл на диск
             val destFile = uploadPath.resolve(file.originalFilename)
             file.transferTo(destFile.toFile())
 
+            println("Файл успешно сохранён: ${destFile.toAbsolutePath()}")
             ResponseEntity.ok("success: файл успешно загружен в ${destFile.toAbsolutePath()}!")
         } catch (e: IOException) {
+            println("Ошибка ввода/вывода: ${e.message}")
             ResponseEntity.status(500).body("error: ошибка при загрузке файла! Причина: ${e.message}")
         } catch (e: Exception) {
+            println("Непредвиденная ошибка: ${e.message}")
             ResponseEntity.status(500).body("error: непредвиденная ошибка! Причина: ${e.message}")
         }
     }
+
 
     @QueryMapping
     open fun getEvent(@Argument eventId: Long): Mono<Event> {
