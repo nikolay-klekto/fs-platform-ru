@@ -22,14 +22,14 @@ const ProfessionsPageDesktop: React.FC = () => {
 
     return (
         <>
-            <div className="container relative overflow-hidden p-[76px_152px_200px_152px]">
+            <div className="3xl:p-[76px_130px_150px_130px] container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px]">
                 <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
                 <div className="radial-gradient_desktop right-[-212px] top-[933px]"></div>
                 <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
                 <h1 className="title80px_desktop relative z-[1]">Профессии</h1>
                 <div className="relative z-[1] flex items-center justify-between py-[80px]">
                     <div
-                        className="relative h-[64px] w-[738px] rounded-[50px] p-[2px]"
+                        className="4xl:max-w-[700px] 3xl:max-w-[50%] relative h-[64px] w-[738px] rounded-[50px] p-[2px] 2xl:max-w-[50%]"
                         style={{
                             background: isFocused ? '#878797' : 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
                         }}
@@ -50,7 +50,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                     </div>
                     <ProfessionsSelectDesktop />
                 </div>
-                <div className="relative grid grid-cols-4 grid-rows-3 items-center gap-[45px] ">
+                <div className="4xl:grid-cols-4 3xl:gap-[25px] 4xl:gap-[30px] grid grid-cols-4 grid-rows-3 justify-items-center gap-[45px] 2xl:gap-[20px]">
                     {content.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item) => (
                         <ProfessionCardPageDesktop
                             key={item.id}

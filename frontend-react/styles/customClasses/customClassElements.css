@@ -45,13 +45,13 @@
         @apply text-[30px] 4xl:text-9xl 3xl:text-8xl 2xl:text-6xl !important;
     }
     .text28px_desktop {
-        @apply text-[28px] 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl xl:text-2xl lg:text-sm;
+        @apply text-[28px] 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl;
     }
     .text24px_desktop {
         @apply text-[24px] 4xl:text-6xl 3xl:text-5xl 2xl:text-4xl;
     }
     .text18px_desktop {
-        @apply text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg xl:text-xs lg:text-xs;
+        @apply text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg;
     }
     .text28px_mobi {
         @apply text-9xl sm:text-7xl;

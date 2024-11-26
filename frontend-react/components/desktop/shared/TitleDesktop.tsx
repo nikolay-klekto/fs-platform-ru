@@ -7,7 +7,7 @@ interface PropsTitleDesktop {
 
 const TitleDesktop: React.FC<PropsTitleDesktop> = ({ title, href }) => {
     return (
-        <div className="relative inline-block">
+        <div className="relative">
             <h2 className="4xl:text-[7.5rem] 3xl:bottom-[-8px] 3xl:text-[7rem] absolute bottom-[-7px] left-[-15px] z-0 text-[160px] font-semibold uppercase leading-none text-white opacity-[2%] 2xl:bottom-[-4px] 2xl:text-[96px]">
                 {title}
             </h2>

@@ -21,7 +21,7 @@ const HeaderMainDesktop: React.FC = () => {
                         <Button
                             variant="accent_desktop"
                             size="wide_desktop"
-                            className="group-hover:shadow_desktop_custom"
+                            className="group-hover:button-shadow_around_desktop_custom"
                         >
                             <span className="gradient-text-desktop-custom textResponsive px-[30px] 2xl:px-[20px]">
                                 Выбрать профессию

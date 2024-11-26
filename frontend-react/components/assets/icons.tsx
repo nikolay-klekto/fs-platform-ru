@@ -224,7 +224,7 @@ export const VkIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
 
 export const ChevronDownIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
-        <svg width="27" height="15" viewBox="0 0 27 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <svg viewBox="0 0 27 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
                 d="M13.4997 14.7145C13.3311 14.7165 13.1639 14.6833 13.0089 14.6168C12.8539 14.5504 12.7145 14.4523 12.5997 14.3288L1.02829 2.75733C0.514007 2.24304 0.514007 1.4459 1.02829 0.931613C1.54258 0.417327 2.33972 0.417327 2.85401 0.931613L13.5254 11.603L24.1711 0.957327C24.6854 0.443041 25.4826 0.443041 25.9969 0.957327C26.5111 1.47161 26.5111 2.26876 25.9969 2.78304L14.4254 14.3545C14.1683 14.6116 13.834 14.7402 13.5254 14.7402L13.4997 14.7145Z"
                 fill="white"
@@ -276,6 +276,30 @@ export const CheckedBoxIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
                     <stop offset="1" stop-color="#3B51A8" />
                 </linearGradient>
             </defs>
+        </svg>
+    )
+}
+
+export const LessIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M14.98 14.84L0.644 9.176V6.424L14.98 0.759998V3.416L1.7 8.536V7.064L14.98 12.184V14.84Z"
+                fill="white"
+                fill-opacity="0.8"
+            />
+        </svg>
+    )
+}
+
+export const MoreIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M0.644 14.84V12.184L13.956 7.064V8.536L0.644 3.416V0.759998L14.98 6.424V9.176L0.644 14.84Z"
+                fill="white"
+                fill-opacity="0.8"
+            />
         </svg>
     )
 }

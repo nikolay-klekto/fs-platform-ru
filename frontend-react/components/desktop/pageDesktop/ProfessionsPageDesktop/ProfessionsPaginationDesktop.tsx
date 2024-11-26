@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { LessIcon, MoreIcon } from '@/components/assets/icons'
 
 interface ProfessionsPaginationDesktopProps {
     totalPages: number
@@ -14,22 +15,16 @@ const ProfessionsPaginationDesktop: React.FC<ProfessionsPaginationDesktopProps> 
     onPageChange,
 }) => {
     return (
-        <div className="flex items-center justify-center space-x-4 mt-8">
-            <button
-                className={`text-xl ${currentPage === 1 ? 'text-gray-500 cursor-not-allowed' : 'text-gray-300'}`}
-                onClick={() => currentPage > 1 && onPageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-            >
-                &lt;
-            </button>
+        <div className="mb-[88px] mt-[73px] flex items-center justify-center gap-5">
+            <LessIcon />
 
             {[...Array(totalPages)].map((_, index) => {
                 const pageNumber = index + 1
                 return (
                     <button
                         key={pageNumber}
-                        className={`text-xl ${
-                            currentPage === pageNumber ? 'text-purple-500 font-bold' : 'text-gray-300'
+                        className={`text-7xl font-medium text-[FFFFCC] ${
+                            currentPage === pageNumber ? 'text-gradient_desktop_custom' : ''
                         }`}
                         onClick={() => onPageChange(pageNumber)}
                     >
@@ -37,14 +32,7 @@ const ProfessionsPaginationDesktop: React.FC<ProfessionsPaginationDesktopProps> 
                     </button>
                 )
             })}
-
-            <button
-                className={`text-xl ${currentPage === totalPages ? 'text-gray-500 cursor-not-allowed' : 'text-gray-300'}`}
-                onClick={() => currentPage < totalPages && onPageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-            >
-                &gt;
-            </button>
+            <MoreIcon />
         </div>
     )
 }

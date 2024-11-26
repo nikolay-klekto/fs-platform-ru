@@ -42,14 +42,16 @@ const ProfessionsSelectDesktop = () => {
             <Button
                 variant={'select_desktop'}
                 onClick={handleSelectToggle}
-                className={`border-button-border-desktop flex h-[64px] w-[337px] items-center gap-[20px] rounded-full border-2 px-[30px] py-[20px] text-5xl font-semibold ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
+                className={`border-button-border-desktop 3xl:w-[300px] 3xl:w-fitt 2xl:w-fitt 3xl:text-4xl flex h-[64px] w-[337px] items-center gap-[20px] rounded-full border-2 px-[30px] py-[20px] text-5xl font-semibold 2xl:px-[20px] 2xl:text-3xl ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Отрасль профессии
-                <ChevronDownIcon className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                <ChevronDownIcon
+                    className={`h-[15px] w-[27px] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                />
             </Button>
             {isOpen && (
                 <div
-                    className="absolute top-[80px] z-50 w-[337px] rounded-[42px] p-[2px]"
+                    className="3xl:w-[300px] absolute top-[80px] z-50 w-[337px] rounded-[42px] p-[2px]"
                     style={{
                         background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
                     }}
