@@ -79,15 +79,6 @@
         background-origin: border-box;
         background-clip: padding-box, border-box;
     }
-    .input-border-desktop {
-        position: relative;
-        box-sizing: border-box;
-        border: 3px solid transparent;
-        border-radius: 50px;
-        background-image: linear-gradient(#101030, #101030), linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
-        background-origin: border-box;
-        background-clip: padding-box, border-box;
-    }
 }
 @layer base {
     * {

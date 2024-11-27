@@ -11,11 +11,16 @@ import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
 
 const ProfessionsPageDesktop: React.FC = () => {
+    const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
-    const itemsPerPage = 12
-    const totalPages = Math.ceil(content.length / itemsPerPage)
+    const cardsPerPage = 12
+    const totalPages = Math.ceil(content.length / cardsPerPage)
 
+    const handleSearch = () => {
+        console.log('Поиск профессий:', searchQuery)
+        setSearchQuery('')
+    }
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
@@ -31,27 +36,38 @@ const ProfessionsPageDesktop: React.FC = () => {
                     <div
                         className="4xl:max-w-[700px] 3xl:max-w-[50%] relative h-[64px] w-[738px] rounded-[50px] p-[2px] 2xl:max-w-[50%]"
                         style={{
-                            background: isFocused ? '#878797' : 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
+                            background: isFocused ? 'transparent' : 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
+                            border: isFocused ? '2px solid #878797' : 'none',
                         }}
                     >
                         <Input
                             type="text"
-                            className="focus-visible:ring-ring relative size-full rounded-full border-none bg-[#101030] pl-[20px] pr-[70px] text-5xl placeholder:font-semibold placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-                            placeholder="Поиск"
+                            value={searchQuery}
+                            onChange={(event) => setSearchQuery(event.target.value)}
+                            className={`placeholder="Поиск" relative 
+                            size-full
+                            rounded-[50px] border-0 px-[20px]
+                            py-0
+                            pr-[70px] text-5xl outline-none placeholder:font-semibold placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 ${
+                                isFocused ? 'bg-transparent' : 'bg-[#101030]'
+                            }
+                            `}
                             onFocus={() => setIsFocused(true)}
                             onBlur={() => setIsFocused(false)}
                         />
                         <Button
                             variant="header_desktop_btn_gradient"
-                            className="absolute right-0 top-1/2 flex size-[60px] -translate-y-1/2 items-center justify-center rounded-full"
+                            className={`absolute right-0 top-1/2 flex size-[60px] -translate-y-1/2 items-center justify-center rounded-full
+                            ${isFocused ? 'right-[-2px]' : ''}`}
+                            onClick={handleSearch}
                         >
                             <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
                         </Button>
                     </div>
                     <ProfessionsSelectDesktop />
                 </div>
-                <div className="4xl:grid-cols-4 3xl:gap-[25px] 4xl:gap-[30px] grid grid-cols-4 grid-rows-3 justify-items-center gap-[45px] 2xl:gap-[20px]">
-                    {content.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item) => (
+                <div className="3xl:gap-[25px] 4xl:gap-[30px] grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px]">
+                    {content.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
                         <ProfessionCardPageDesktop
                             key={item.id}
                             image={item.image}
