@@ -19,7 +19,7 @@ abstract class ClientBlockingRepository(
     open val orderRepository: OrderRepository
 ) {
 
-    fun getById(clientId: Long?): ClientModel? {
+    fun getById(clientId: String?): ClientModel? {
         return dsl.select(CLIENT.asterisk()).from(CLIENT)
             .where(CLIENT.ID.eq(clientId))
             .map { it.into(Client::class.java) }
@@ -156,7 +156,7 @@ abstract class ClientBlockingRepository(
 
     companion object {
 
-        private const val DEFAULT_CLIENT_ID: Long = 1
+        private const val DEFAULT_CLIENT_ID: String = "1"
         private val defaultClientRole = ClientRoleModel.CLIENT
         private const val DEFAULT_ACTIVE_STATUS: Boolean = false
     }

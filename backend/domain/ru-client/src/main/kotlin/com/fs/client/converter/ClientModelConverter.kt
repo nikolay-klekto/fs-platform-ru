@@ -31,7 +31,6 @@ class ClientModelConverter : ModelConverter<Client, ClientModel> {
 
     override fun fromModel(modelObject: ClientModel): Client {
         return Client(
-            modelObject.id,
             modelObject.basketId,
             modelObject.cityId,
             modelObject.activateStatus,
@@ -47,6 +46,7 @@ class ClientModelConverter : ModelConverter<Client, ClientModel> {
             modelObject.role,
             modelObject.telegramUsername,
             modelObject.username,
+            modelObject.id,
         )
     }
 }

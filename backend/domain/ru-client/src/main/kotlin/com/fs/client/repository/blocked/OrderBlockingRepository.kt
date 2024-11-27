@@ -28,7 +28,7 @@ abstract class OrderBlockingRepository(
             .firstOrNull()
     }
 
-    fun getAllByClientId(clientId: Long, orderStatus: OrderStatus): List<OrderModel> {
+    fun getAllByClientId(clientId: String, orderStatus: OrderStatus): List<OrderModel> {
         return dsl.selectFrom(ORDER)
             .where(
                 ORDER.BASKET_ID.eq(

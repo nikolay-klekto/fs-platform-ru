@@ -22,7 +22,7 @@ abstract class ClientRepository(
     open val passwordService: PasswordService
 ) {
 
-    fun getClintById(id: Long?): Mono<ClientModel> {
+    fun getClintById(id: String?): Mono<ClientModel> {
         return Mono.fromSupplier {
             return@fromSupplier clientBlockingRepository.getById(id)
         }
@@ -42,7 +42,7 @@ abstract class ClientRepository(
         }
     }
 
-    fun changeActiveStatus(id: Long, activeStatus: Boolean): Mono<Boolean> {
+    fun changeActiveStatus(id: String, activeStatus: Boolean): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.update(CLIENT)
                 .set(CLIENT.ACTIVATE_STATUS, activeStatus)
@@ -51,7 +51,7 @@ abstract class ClientRepository(
         }
     }
 
-    fun changePassword(id: Long, password: String): Mono<Boolean> {
+    fun changePassword(id: String, password: String): Mono<Boolean> {
         return Mono.fromSupplier {
             val passwordCredentials = passwordService.encodePassword(password)
             dsl.update(CLIENT)
@@ -95,7 +95,7 @@ abstract class ClientRepository(
         }
     }
 
-    fun verifyPassword(clientModel: ClientModel): Mono<ErrorModel<Long>>{
+    fun verifyPassword(clientModel: ClientModel): Mono<ErrorModel<String>>{
         return Mono.fromSupplier {
             if(clientModel.email == null || clientModel.password == null){
                 throw Exception("Введены не все поля!")
@@ -115,7 +115,7 @@ abstract class ClientRepository(
     }
 
 
-    fun deleteClientById(id: Long): Mono<Boolean> {
+    fun deleteClientById(id: String): Mono<Boolean> {
         return Mono.fromSupplier {
             val clientRecord: ClientRecord? = dsl.fetchOne(CLIENT, CLIENT.ID.eq(id))
             if (clientRecord != null) {

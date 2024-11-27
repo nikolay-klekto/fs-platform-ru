@@ -30,7 +30,7 @@ open class ReviewController(
     }
 
     @QueryMapping
-    open fun getAllReviewByClientId(@Argument clientId: Long): Flux<ReviewModel> {
+    open fun getAllReviewByClientId(@Argument clientId: String): Flux<ReviewModel> {
         return reviewRepository.getAllReviewByClientId(clientId)
     }
 

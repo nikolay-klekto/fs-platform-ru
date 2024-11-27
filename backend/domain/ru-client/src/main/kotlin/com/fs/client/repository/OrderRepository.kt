@@ -42,7 +42,7 @@ abstract class OrderRepository(
         }
     }
 
-    fun getAllOrdersByClientId(clientId: Long, orderStatus: OrderStatus): Flux<OrderModel> {
+    fun getAllOrdersByClientId(clientId: String, orderStatus: OrderStatus): Flux<OrderModel> {
         return Flux.fromIterable(
             orderBlockingRepository.getAllByClientId(clientId, orderStatus)
         )
@@ -128,7 +128,7 @@ abstract class OrderRepository(
         }
     }
 
-    fun deleteAllOrdersByClientId(clientId: Long, orderStatus: OrderStatus): Mono<Boolean> {
+    fun deleteAllOrdersByClientId(clientId: String, orderStatus: OrderStatus): Mono<Boolean> {
         return Mono.fromSupplier {
             dsl.deleteFrom(ORDER)
                 .where(

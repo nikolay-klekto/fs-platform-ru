@@ -29,7 +29,7 @@ open class OrderController(open val orderRepository: OrderRepository) {
 
     @QueryMapping
     fun getOrdersByClientId(
-        @Argument clientId: Long,
+        @Argument clientId: String,
         @Argument orderStatus: OrderStatus): Flux<OrderModel> {
         return orderRepository.getAllOrdersByClientId(clientId, orderStatus)
     }
@@ -64,7 +64,7 @@ open class OrderController(open val orderRepository: OrderRepository) {
 
     @MutationMapping
     fun deleteAllOrdersByClientId(
-        @Argument clientId: Long,
+        @Argument clientId: String,
         @Argument orderStatus: OrderStatus): Mono<Boolean> {
         return orderRepository.deleteAllOrdersByClientId(clientId, orderStatus)
     }

@@ -7,14 +7,14 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class ClientModel(
-    val id: Long?,
-    val basketId: Long?,
+    val id: String?,
+    var basketId: Long?,
     val cityId: Long?,
     val activateStatus: Boolean?,
     val birthday: LocalDate?,
-    val dateCreated: LocalDateTime?,
+    var dateCreated: LocalDateTime?,
     val educationStatus: EducationModel?,
-    val email: String?,
+    var email: String?,
     val employment: EmploymentModel?,
     val firstName: String?,
     val lastName: String?,

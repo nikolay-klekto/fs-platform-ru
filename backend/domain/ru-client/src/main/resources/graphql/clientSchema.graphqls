@@ -2,7 +2,7 @@ scalar LocalDateTime
 scalar LocalDate
 
 type Query {
-    getClintById(id: ID!): Client
+    getClintById(id: String!): Client
     getAllClients: [Client]
 
     getInternshipTypeById(id: ID!): InternshipType
@@ -10,7 +10,8 @@ type Query {
 
     getReviewById(id: ID!): Review
     getAllReviewsByCompany(id: ID!): [Review]
-    getAllReviewByClientId(clientId: ID!): [Review]
+    getAllReviewByClientId(clientId: String
+    !): [Review]
 
     getCity(id: ID!): City
     getCountryByCity(id: ID): Country
@@ -79,7 +80,7 @@ type Mutation {
     updateOrder(order: OrderInput!): Boolean
     deleteOrder(id: ID!): Boolean
     deleteAllOrdersByBasketId(basketId: ID!): Boolean
-    deleteAllOrdersByClientId(clientId: ID!, orderStatus: OrderStatus!): Boolean
+    deleteAllOrdersByClientId(clientId: String!, orderStatus: OrderStatus!): Boolean
 
     addCompany(company: CompanyInput!): Company
     addCompanyByPartner(partnerId: ID!, company: CompanyInput!): Company
@@ -104,10 +105,10 @@ type Mutation {
     updateBasket(basket: BasketInput!): Boolean
 
     updateClient(client: ClientUpdate!): Boolean
-    changePassword(clientId: ID!, password: String!): Boolean
+    changePassword(clientId: String!, password: String!): Boolean
     #    changeRole(clientId: ID!, role: ClientRoleEnum): Boolean     //Should to think how to realize this function
     addClient(client: ClientInsert): ErrorClientModel
-    deleteClient(id: ID!): Boolean
+    deleteClient(id: String!): Boolean
     verifyClientPassword(client: ClientInsert!): ErrorLongModel
 
     addCountry(country: CountryInput): Country

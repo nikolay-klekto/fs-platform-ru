@@ -32,7 +32,7 @@ abstract class ReviewRepository(
         }
     }
 
-    fun getAllReviewByClientId(clientId: Long): Flux<ReviewModel>{
+    fun getAllReviewByClientId(clientId: String): Flux<ReviewModel>{
         return Flux.from(
             dsl.select(REVIEW.asterisk()).from(REVIEW)
                 .where(REVIEW.CLIENT_ID.eq(clientId))

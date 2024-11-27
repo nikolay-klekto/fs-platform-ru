@@ -69,7 +69,7 @@ open class Partner(
     /**
      * The column <code>public.partner.client_id</code>.
      */
-    val CLIENT_ID: TableField<PartnerRecord, Long?> = createField(DSL.name("client_id"), SQLDataType.BIGINT, this, "")
+    val CLIENT_ID: TableField<PartnerRecord, String?> = createField(DSL.name("client_id"), SQLDataType.VARCHAR, this, "")
 
     /**
      * The column <code>public.partner.is_verified</code>.
@@ -127,5 +127,5 @@ open class Partner(
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row3<Long?, Long?, Boolean?> = super.fieldsRow() as Row3<Long?, Long?, Boolean?>
+    override fun fieldsRow(): Row3<Long?, String?, Boolean?> = super.fieldsRow() as Row3<Long?, String?, Boolean?>
 }

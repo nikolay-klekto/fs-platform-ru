@@ -20,7 +20,6 @@ import kotlin.collections.List
 
 import org.jooq.Field
 import org.jooq.ForeignKey
-import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
 import org.jooq.Row17
@@ -68,11 +67,6 @@ open class Client(
      * The class holding records for this type
      */
     override fun getRecordType(): Class<ClientRecord> = ClientRecord::class.java
-
-    /**
-     * The column <code>public.client.id</code>.
-     */
-    val ID: TableField<ClientRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.client.basket_id</code>.
@@ -154,6 +148,11 @@ open class Client(
      */
     val SALT: TableField<ClientRecord, String?> = createField(DSL.name("salt"), SQLDataType.VARCHAR, this, "")
 
+    /**
+     * The column <code>public.client.id</code>.
+     */
+    val ID: TableField<ClientRecord, String?> = createField(DSL.name("id"), SQLDataType.VARCHAR.nullable(false), this, "")
+
     private constructor(alias: Name, aliased: Table<ClientRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<ClientRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
@@ -174,7 +173,6 @@ open class Client(
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, ClientRecord>): this(Internal.createPathAlias(child, key), child, key, CLIENT, null)
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<ClientRecord, Long?> = super.getIdentity() as Identity<ClientRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ClientRecord> = CLIENT_PKEY
     override fun getReferences(): List<ForeignKey<ClientRecord, *>> = listOf(CLIENT__CLIENT_BASKET_ID_FKEY, CLIENT__CLIENT_CITY_ID_FKEY)
 
@@ -216,5 +214,5 @@ open class Client(
     // -------------------------------------------------------------------------
     // Row17 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?> = super.fieldsRow() as Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?>
+    override fun fieldsRow(): Row17<Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?, String?> = super.fieldsRow() as Row17<Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?, String?>
 }

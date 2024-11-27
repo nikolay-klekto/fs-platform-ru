@@ -77,7 +77,7 @@ open class Review(
     /**
      * The column <code>public.review.client_id</code>.
      */
-    val CLIENT_ID: TableField<ReviewRecord, Long?> = createField(DSL.name("client_id"), SQLDataType.BIGINT, this, "")
+    val CLIENT_ID: TableField<ReviewRecord, String?> = createField(DSL.name("client_id"), SQLDataType.VARCHAR, this, "")
 
     /**
      * The column <code>public.review.date_created</code>.
@@ -161,5 +161,5 @@ open class Review(
     // -------------------------------------------------------------------------
     // Row7 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row7<Long?, Long?, Long?, LocalDateTime?, String?, Long?, String?> = super.fieldsRow() as Row7<Long?, Long?, Long?, LocalDateTime?, String?, Long?, String?>
+    override fun fieldsRow(): Row7<Long?, Long?, String?, LocalDateTime?, String?, Long?, String?> = super.fieldsRow() as Row7<Long?, Long?, String?, LocalDateTime?, String?, Long?, String?>
 }

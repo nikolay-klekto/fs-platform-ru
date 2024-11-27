@@ -20,7 +20,7 @@ import java.lang.Error
 open class ClientController(open val clientRepository: ClientRepository) {
 
     @GetMapping("{id}")
-    fun getClientById(@PathVariable("id") clientAccountId: Long) =
+    fun getClientById(@PathVariable("id") clientAccountId: String) =
         clientRepository.getClintById(clientAccountId)
 
     @GetMapping
@@ -36,14 +36,14 @@ open class ClientController(open val clientRepository: ClientRepository) {
     @PutMapping("/status/{id}")
     fun updateClientActiveStatus(
         @RequestBody activeStatus: Boolean,
-        @PathVariable("id") id: Long
+        @PathVariable("id") id: String
     ) = clientRepository
         .changeActiveStatus(id, activeStatus)
 
     @PutMapping("/password/{id}")
     fun updateClientPassword(
         @RequestBody password: String,
-        @PathVariable("id") id: Long
+        @PathVariable("id") id: String
     ) = clientRepository
         .changePassword(id, password)
 
@@ -54,11 +54,11 @@ open class ClientController(open val clientRepository: ClientRepository) {
 //    ) = clientRepository
 //        .changeRole(id, role)
 
-    @DeleteMapping("{id}")
-    fun deleteClientByID(
-        @PathVariable("id") id: Long
-    ) =
-        clientRepository.deleteClientById(id)
+//    @DeleteMapping("{id}")
+//    fun deleteClientByID(
+//        @PathVariable("id") id: Long
+//    ) =
+//        clientRepository.deleteClientById(id)
 
 //    @PostMapping
 //    open fun insertClientModel(
@@ -70,16 +70,16 @@ open class ClientController(open val clientRepository: ClientRepository) {
 //            }
 //    }
 
-    @MutationMapping
-    open fun verifyClientPassword(@Argument client: ClientModel): Mono<ErrorModel<Long>>{
-        return clientRepository.verifyPassword(client)
-            .onErrorResume {
-                Mono.just(ErrorModel(null, it.message))
-            }
-    }
+//    @MutationMapping
+//    open fun verifyClientPassword(@Argument client: ClientModel): Mono<ErrorModel<Long>>{
+//        return clientRepository.verifyPassword(client)
+//            .onErrorResume {
+//                Mono.just(ErrorModel(null, it.message))
+//            }
+//    }
 
     @QueryMapping
-    open fun getClintById(@Argument id: Long): Mono<ClientModel> {
+    open fun getClintById(@Argument id: String): Mono<ClientModel> {
         return clientRepository.getClintById(id)
     }
 
@@ -95,7 +95,7 @@ open class ClientController(open val clientRepository: ClientRepository) {
 
     @MutationMapping
     open fun changePassword(
-        @Argument clientId: Long,
+        @Argument clientId: String,
         @Argument password: String
     ): Mono<Boolean> {
         return clientRepository.changePassword(clientId, password)
@@ -120,7 +120,7 @@ open class ClientController(open val clientRepository: ClientRepository) {
     }
 
     @MutationMapping
-    open fun deleteClient(@Argument id: Long): Mono<Boolean> {
+    open fun deleteClient(@Argument id: String): Mono<Boolean> {
         return clientRepository.deleteClientById(id)
     }
 

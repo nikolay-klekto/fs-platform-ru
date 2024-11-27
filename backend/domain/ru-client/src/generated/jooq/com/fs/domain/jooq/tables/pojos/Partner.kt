@@ -13,7 +13,7 @@ import java.io.Serializable
 @Suppress("UNCHECKED_CAST")
 data class Partner(
     var id: Long? = null,
-    var clientId: Long? = null,
+    var clientId: String? = null,
     @set:JvmName("setIsVerified")
     var isVerified: Boolean? = null
 ): Serializable {
