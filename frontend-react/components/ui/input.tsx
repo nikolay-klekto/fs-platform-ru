@@ -28,7 +28,7 @@ const inputVariants = cva(
 export interface EnhancedInputProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'>,
         VariantProps<typeof inputVariants> {
-    validate?: (value: string) => string | undefined
+    validate?: (value: string) => { textError: string; status: boolean } | undefined
     error?: string
     onChange?: (value: string) => void
     onFocus?: () => void
@@ -75,10 +75,12 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const newValue = e.target.value
             setInternalValue(newValue)
-
             if (validate) {
-                const validationError = validate(newValue)
-                setInternalError(validationError)
+                const validationResult = validate(newValue)
+                if (validationResult) {
+                    const { textError } = validationResult
+                    setInternalError(textError)
+                }
             }
 
             onChange?.(newValue)
@@ -89,12 +91,15 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             onFocus?.()
         }
 
-        const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
             if (validate) {
-                const validationError = validate(internalValue)
-                setInternalError(validationError)
+                const validationResult = validate(internalValue)
+                if (validationResult) {
+                    const { textError } = validationResult
+                    setInternalError(textError)
+                }
             }
         }
 
