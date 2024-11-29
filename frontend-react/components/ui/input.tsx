@@ -28,7 +28,7 @@ const inputVariants = cva(
 export interface EnhancedInputProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'>,
         VariantProps<typeof inputVariants> {
-    validate?: (value: string) => { textError: string; status: boolean } | undefined
+    validate?: (value: string) => { textError: string; status: boolean | null } | undefined
     error?: string
     onChange?: (value: string) => void
     onFocus?: () => void
@@ -36,6 +36,8 @@ export interface EnhancedInputProps
     label?: string
     helperText?: string
     wrapperClassName?: string
+    placeholder?: string
+    name?: string
 }
 
 const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
@@ -47,30 +49,22 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             size,
             rounded,
             validate,
-            error,
             onChange,
             onFocus,
             onBlur,
             label,
             helperText,
+            name,
             wrapperClassName,
+            placeholder,
             ...props
         },
         ref,
     ) => {
-        const [internalValue, setInternalValue] = React.useState<string>((props.value as string) || '')
-        const [internalError, setInternalError] = React.useState<string | undefined>(error)
+        const [internalValue, setInternalValue] = React.useState<string>('')
+        const [internalError, setInternalError] = React.useState('')
+        const [styleError, setStyleError] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
-
-        React.useEffect(() => {
-            if (props.value !== undefined) {
-                setInternalValue(props.value as string)
-            }
-        }, [props.value])
-
-        React.useEffect(() => {
-            setInternalError(error)
-        }, [error])
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const newValue = e.target.value
@@ -78,8 +72,17 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             if (validate) {
                 const validationResult = validate(newValue)
                 if (validationResult) {
-                    const { textError } = validationResult
-                    setInternalError(textError)
+                    const { textError, status } = validationResult
+                    if (!status) {
+                        if (textError) {
+                            setInternalError(textError)
+                        } else {
+                            setStyleError(true)
+                        }
+                    } else {
+                        setStyleError(false)
+                        setInternalError('')
+                    }
                 }
             }
 
@@ -97,8 +100,17 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             if (validate) {
                 const validationResult = validate(internalValue)
                 if (validationResult) {
-                    const { textError } = validationResult
-                    setInternalError(textError)
+                    const { textError, status } = validationResult
+                    if (!status) {
+                        if (textError) {
+                            setInternalError(textError)
+                        } else {
+                            setStyleError(true)
+                        }
+                    } else {
+                        setStyleError(false)
+                        setInternalError('')
+                    }
                 }
             }
         }
@@ -112,15 +124,18 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
                         inputVariants({ variant, size, rounded }),
                         isFocused && 'ring-2 ring-ring ring-offset-2',
                         className,
+                        styleError && 'custom_error_style_input',
                     )}
                     ref={ref}
+                    name={name}
+                    placeholder={placeholder}
                     value={internalValue}
                     onChange={handleChange}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     {...props}
                 />
-                {(helperText || internalError) && (
+                {(helperText || internalError !== '') && (
                     <span className={cn('text-xs', internalError ? 'text-destructive' : 'text-muted-foreground')}>
                         {internalError || helperText}
                     </span>
