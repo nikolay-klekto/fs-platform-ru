@@ -1,6 +1,8 @@
 import React from 'react'
 import HeaderMainDesktop from '../../layout/HeaderDesktop/HeaderMainDesktop'
 import HeaderCardsDesktop from '../../layout/HeaderDesktop/HeaderCardsDesktop'
+import ProfessionsSectionDesktop from '../../layout/ProfessionsSectionDesktop/ProfessionsSectionDesktop'
+import HowWeWorkDesktop from '../../layout/HowWeWorkDesktop/HowWeWorkDesktop'
 const HomePageDesktop: React.FC = () => {
     return (
         <>
@@ -9,6 +11,8 @@ const HomePageDesktop: React.FC = () => {
                     <HeaderMainDesktop />
                     <HeaderCardsDesktop />
                 </div>
+                <ProfessionsSectionDesktop />
+                <HowWeWorkDesktop />
             </div>
         </>
     )
