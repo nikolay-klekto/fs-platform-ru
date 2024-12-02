@@ -4,8 +4,6 @@
 package com.fs.domain.jooq.tables.pojos
 
 
-import com.fs.service.ru.enums.CompanyLegalCapacityStatus
-
 import java.io.Serializable
 
 
@@ -16,7 +14,7 @@ import java.io.Serializable
 data class Company(
     var id: Long? = null,
     var companyIndustry: String? = null,
-    var legalCapacityStatus: CompanyLegalCapacityStatus? = null,
+    var legalCapacityStatus: String? = null,
     var name: String? = null,
     var site: String? = null,
     var shortDescription: String? = null

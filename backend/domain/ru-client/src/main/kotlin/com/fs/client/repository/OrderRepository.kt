@@ -52,7 +52,7 @@ abstract class OrderRepository(
         return Flux.from(
             dsl.selectFrom(ORDER)
                 .where(ORDER.BASKET_ID.eq(basketId)
-                    .and(ORDER.ORDER_STATUS.eq(orderStatus)))
+                    .and(ORDER.ORDER_STATUS.eq(orderStatus.name)))
         ).map { it.into(Order::class.java) }
             .map(converter::toModel)
     }
@@ -81,7 +81,7 @@ abstract class OrderRepository(
     fun updateExpiredStatus() {
         log.info("Scheduler is working. The time is now {}", dateFormat.format(Date()))
         val expiredOrdersList: List<OrderModel> = dsl.selectFrom(ORDER).where(
-            ORDER.ORDER_STATUS.eq(OrderStatus.ACTUAL).and(
+            ORDER.ORDER_STATUS.eq(OrderStatus.ACTUAL.name).and(
                 ORDER.START_WORK_DATE.plus(ORDER.TOTAL_WORK_DAYS).ge(LocalDateTime.now())
             )
         ).map { it.into(OrderModel::class.java) }
@@ -92,9 +92,9 @@ abstract class OrderRepository(
             professionBlockingRepository.increaseClientsNumberByProfessionId(professionId)
         }
         dsl.update(ORDER)
-            .set(ORDER.ORDER_STATUS, OrderStatus.EXPIRED)
+            .set(ORDER.ORDER_STATUS, OrderStatus.EXPIRED.name)
             .where(
-                ORDER.ORDER_STATUS.eq(OrderStatus.ACTUAL).and(
+                ORDER.ORDER_STATUS.eq(OrderStatus.ACTUAL.name).and(
                     ORDER.START_WORK_DATE.plus(ORDER.TOTAL_WORK_DAYS).ge(LocalDateTime.now())
                 )
             )
@@ -102,7 +102,7 @@ abstract class OrderRepository(
         val temporaryExpiredOrders: List<OrderModel> =
             dsl.select(ORDER.asterisk()).from(ORDER)
                 .where(
-                    ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED)
+                    ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED.name)
                         .and(ORDER.DATE_CREATED.plus(TEMPORARY_ORDER_LIFE_TIME).ge(LocalDateTime.now()))
                 )
                 .map { it.into(OrderModel::class.java) }
@@ -136,7 +136,7 @@ abstract class OrderRepository(
                         dsl.select(CLIENT.BASKET_ID).from(CLIENT)
                             .where(
                                 CLIENT.ID.eq(clientId)
-                                .and(ORDER.ORDER_STATUS.eq(orderStatus)))
+                                .and(ORDER.ORDER_STATUS.eq(orderStatus.name)))
                     )
                 ).execute() >=0
 

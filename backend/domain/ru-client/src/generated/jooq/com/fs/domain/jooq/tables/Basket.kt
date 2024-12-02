@@ -8,13 +8,17 @@ import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.BASKET_PKEY
 import com.fs.domain.jooq.tables.records.BasketRecord
 
+import java.util.function.Function
+
 import org.jooq.Field
 import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
+import org.jooq.Records
 import org.jooq.Row2
 import org.jooq.Schema
+import org.jooq.SelectField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
@@ -92,6 +96,7 @@ open class Basket(
     override fun getPrimaryKey(): UniqueKey<BasketRecord> = BASKET_PKEY
     override fun `as`(alias: String): Basket = Basket(DSL.name(alias), this)
     override fun `as`(alias: Name): Basket = Basket(alias, this)
+    override fun `as`(alias: Table<*>): Basket = Basket(alias.getQualifiedName(), this)
 
     /**
      * Rename this table
@@ -103,8 +108,24 @@ open class Basket(
      */
     override fun rename(name: Name): Basket = Basket(name, null)
 
+    /**
+     * Rename this table
+     */
+    override fun rename(name: Table<*>): Basket = Basket(name.getQualifiedName(), null)
+
     // -------------------------------------------------------------------------
     // Row2 type methods
     // -------------------------------------------------------------------------
     override fun fieldsRow(): Row2<Long?, Double?> = super.fieldsRow() as Row2<Long?, Double?>
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     */
+    fun <U> mapping(from: (Long?, Double?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Class,
+     * Function)}.
+     */
+    fun <U> mapping(toType: Class<U>, from: (Long?, Double?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

@@ -25,71 +25,71 @@ import org.jooq.impl.UpdatableRecordImpl
 @Suppress("UNCHECKED_CAST")
 open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT), Record17<Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?, String?> {
 
-    var basketId: Long?
+    open var basketId: Long?
         set(value): Unit = set(0, value)
         get(): Long? = get(0) as Long?
 
-    var cityId: Long?
+    open var cityId: Long?
         set(value): Unit = set(1, value)
         get(): Long? = get(1) as Long?
 
-    var activateStatus: Boolean?
+    open var activateStatus: Boolean?
         set(value): Unit = set(2, value)
         get(): Boolean? = get(2) as Boolean?
 
-    var birthday: LocalDate?
+    open var birthday: LocalDate?
         set(value): Unit = set(3, value)
         get(): LocalDate? = get(3) as LocalDate?
 
-    var dateCreated: LocalDateTime?
+    open var dateCreated: LocalDateTime?
         set(value): Unit = set(4, value)
         get(): LocalDateTime? = get(4) as LocalDateTime?
 
-    var educationStatus: EducationModel?
+    open var educationStatus: EducationModel?
         set(value): Unit = set(5, value)
         get(): EducationModel? = get(5) as EducationModel?
 
-    var email: String?
+    open var email: String?
         set(value): Unit = set(6, value)
         get(): String? = get(6) as String?
 
-    var employment: EmploymentModel?
+    open var employment: EmploymentModel?
         set(value): Unit = set(7, value)
         get(): EmploymentModel? = get(7) as EmploymentModel?
 
-    var firstName: String?
+    open var firstName: String?
         set(value): Unit = set(8, value)
         get(): String? = get(8) as String?
 
-    var lastName: String?
+    open var lastName: String?
         set(value): Unit = set(9, value)
         get(): String? = get(9) as String?
 
-    var password: String?
+    open var password: String?
         set(value): Unit = set(10, value)
         get(): String? = get(10) as String?
 
-    var phoneNumber: String?
+    open var phoneNumber: String?
         set(value): Unit = set(11, value)
         get(): String? = get(11) as String?
 
-    var role: ClientRoleModel?
+    open var role: ClientRoleModel?
         set(value): Unit = set(12, value)
         get(): ClientRoleModel? = get(12) as ClientRoleModel?
 
-    var telegramUsername: String?
+    open var telegramUsername: String?
         set(value): Unit = set(13, value)
         get(): String? = get(13) as String?
 
-    var username: String?
+    open var username: String?
         set(value): Unit = set(14, value)
         get(): String? = get(14) as String?
 
-    var salt: String?
+    open var salt: String?
         set(value): Unit = set(15, value)
         get(): String? = get(15) as String?
 
-    var id: String?
+    open var id: String?
         set(value): Unit = set(16, value)
         get(): String? = get(16) as String?
 

@@ -75,7 +75,9 @@ open class EventController(open val eventRepository: EventRepository) {
 
     @QueryMapping
     open fun getAllEvents(): Flux<Event> {
-        return eventRepository.getAllEvents()
+        val events = eventRepository.getAllEvents()
+        println("Retrieved events: ${events.collectList().block()}")
+        return events
     }
 
     @QueryMapping

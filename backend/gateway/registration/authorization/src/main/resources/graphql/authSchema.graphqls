@@ -1,0 +1,29 @@
+
+type Query {
+    _: String
+}
+
+type Mutation {
+    register(client: AuthorizationClientModelInsert!): ErrorAuthModel!
+    login(client: AuthorizationClientModelInsert!): ErrorAuthModel!
+    refreshToken(refreshToken: String!): ErrorAuthModel!
+    logout(refreshToken: String!): Boolean
+}
+
+type AuthResponse {
+    accessToken: String!
+    refreshToken: String!
+    clientId: String!
+}
+
+input AuthorizationClientModelInsert {
+    basketId: ID,
+    email: String,
+    password: String,
+    phoneNumber: String
+}
+
+type ErrorAuthModel {
+    data: AuthResponse
+    errorMessage: String
+}

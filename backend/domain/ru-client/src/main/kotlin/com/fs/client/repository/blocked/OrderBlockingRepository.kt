@@ -34,7 +34,7 @@ abstract class OrderBlockingRepository(
                 ORDER.BASKET_ID.eq(
                     dsl.select(Client.CLIENT.BASKET_ID).from(Client.CLIENT)
                         .where(Client.CLIENT.ID.eq(clientId)
-                            .and(ORDER.ORDER_STATUS.eq(orderStatus)))
+                            .and(ORDER.ORDER_STATUS.eq(orderStatus.name)))
                 )
             )
             .map { it.into(Order::class.java) }
@@ -65,7 +65,7 @@ abstract class OrderBlockingRepository(
 
     private fun isPreOrdersInBasket(basketId: Long): Boolean {
         val preOrdersQuantity: Int = dsl.selectCount().from(ORDER)
-            .where(ORDER.BASKET_ID.eq(basketId).and(ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED)))
+            .where(ORDER.BASKET_ID.eq(basketId).and(ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED.name)))
             .map { it.into(Int::class.java) }
             .first()
         return preOrdersQuantity > 0
@@ -162,7 +162,7 @@ abstract class OrderBlockingRepository(
                 }
             }
         dsl.update(ORDER)
-            .set(ORDER.ORDER_STATUS, newOrderStatus)
+            .set(ORDER.ORDER_STATUS, newOrderStatus.name)
             .where(ORDER.ID.eq(orderId))
             .execute()
     }

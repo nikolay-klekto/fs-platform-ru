@@ -19,11 +19,11 @@ import org.jooq.impl.UpdatableRecordImpl
 @Suppress("UNCHECKED_CAST")
 open class EventCategoriesRecord() : UpdatableRecordImpl<EventCategoriesRecord>(EventCategories.EVENT_CATEGORIES), Record2<Long?, String?> {
 
-    var id: Long?
+    open var id: Long?
         set(value): Unit = set(0, value)
         get(): Long? = get(0) as Long?
 
-    var category: String?
+    open var category: String?
         set(value): Unit = set(1, value)
         get(): String? = get(1) as String?
 

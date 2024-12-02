@@ -14,6 +14,7 @@ import java.io.Serializable
 data class Partner(
     var id: Long? = null,
     var clientId: String? = null,
+    @Suppress("INAPPLICABLE_JVM_NAME")
     @set:JvmName("setIsVerified")
     var isVerified: Boolean? = null
 ): Serializable {

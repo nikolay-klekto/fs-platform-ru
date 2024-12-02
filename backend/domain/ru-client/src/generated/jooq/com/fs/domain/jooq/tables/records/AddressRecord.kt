@@ -19,27 +19,27 @@ import org.jooq.impl.UpdatableRecordImpl
 @Suppress("UNCHECKED_CAST")
 open class AddressRecord() : UpdatableRecordImpl<AddressRecord>(Address.ADDRESS), Record6<Long?, Long?, Long?, Long?, Long?, String?> {
 
-    var id: Long?
+    open var id: Long?
         set(value): Unit = set(0, value)
         get(): Long? = get(0) as Long?
 
-    var cityId: Long?
+    open var cityId: Long?
         set(value): Unit = set(1, value)
         get(): Long? = get(1) as Long?
 
-    var apartment: Long?
+    open var apartment: Long?
         set(value): Unit = set(2, value)
         get(): Long? = get(2) as Long?
 
-    var building: Long?
+    open var building: Long?
         set(value): Unit = set(3, value)
         get(): Long? = get(3) as Long?
 
-    var house: Long?
+    open var house: Long?
         set(value): Unit = set(4, value)
         get(): Long? = get(4) as Long?
 
-    var street: String?
+    open var street: String?
         set(value): Unit = set(5, value)
         get(): String? = get(5) as String?
 

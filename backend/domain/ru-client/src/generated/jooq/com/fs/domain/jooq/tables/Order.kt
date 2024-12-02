@@ -10,9 +10,9 @@ import com.fs.domain.jooq.keys.ORDER__ORDER_BASKET_ID_FKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_COMPANY_OFFICE_ID_FKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_COMPANY_PROFESSION_ID_FKEY
 import com.fs.domain.jooq.tables.records.OrderRecord
-import com.fs.service.ru.enums.OrderStatus
 
 import java.time.LocalDateTime
+import java.util.function.Function
 
 import kotlin.collections.List
 
@@ -21,14 +21,15 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
+import org.jooq.Records
 import org.jooq.Row10
 import org.jooq.Schema
+import org.jooq.SelectField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
 import org.jooq.UniqueKey
 import org.jooq.impl.DSL
-import org.jooq.impl.EnumConverter
 import org.jooq.impl.Internal
 import org.jooq.impl.SQLDataType
 import org.jooq.impl.TableImpl
@@ -105,7 +106,7 @@ open class Order(
     /**
      * The column <code>public.order.order_status</code>.
      */
-    val ORDER_STATUS: TableField<OrderRecord, OrderStatus?> = createField(DSL.name("order_status"), SQLDataType.VARCHAR, this, "", EnumConverter<String, OrderStatus>(String::class.java, OrderStatus::class.java))
+    val ORDER_STATUS: TableField<OrderRecord, String?> = createField(DSL.name("order_status"), SQLDataType.VARCHAR, this, "")
 
     /**
      * The column <code>public.order.date_created</code>.
@@ -155,6 +156,9 @@ open class Order(
         return _basket;
     }
 
+    val basket: Basket
+        get(): Basket = basket()
+
     /**
      * Get the implicit join path to the <code>public.office</code> table.
      */
@@ -164,6 +168,9 @@ open class Order(
 
         return _office;
     }
+
+    val office: Office
+        get(): Office = office()
 
     /**
      * Get the implicit join path to the <code>public.company_profession</code>
@@ -175,8 +182,12 @@ open class Order(
 
         return _companyProfession;
     }
+
+    val companyProfession: CompanyProfession
+        get(): CompanyProfession = companyProfession()
     override fun `as`(alias: String): Order = Order(DSL.name(alias), this)
     override fun `as`(alias: Name): Order = Order(alias, this)
+    override fun `as`(alias: Table<*>): Order = Order(alias.getQualifiedName(), this)
 
     /**
      * Rename this table
@@ -188,8 +199,24 @@ open class Order(
      */
     override fun rename(name: Name): Order = Order(name, null)
 
+    /**
+     * Rename this table
+     */
+    override fun rename(name: Table<*>): Order = Order(name.getQualifiedName(), null)
+
     // -------------------------------------------------------------------------
     // Row10 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row10<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, OrderStatus?, LocalDateTime?, Long?> = super.fieldsRow() as Row10<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, OrderStatus?, LocalDateTime?, Long?>
+    override fun fieldsRow(): Row10<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?> = super.fieldsRow() as Row10<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?>
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     */
+    fun <U> mapping(from: (Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Class,
+     * Function)}.
+     */
+    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

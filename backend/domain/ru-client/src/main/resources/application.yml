@@ -24,10 +24,9 @@ spring:
     driverClassName: org.postgresql.Driver
   graphql:
     enable: true
+    path: /graphql
     cors:
-      allowed-origins: true
-#    schema:
-#      locations: classpath:graphql/clientSchema.graphqls
+      allowed-origins: "*"
       printer:
         enabled: true
   application:
@@ -47,11 +46,11 @@ spring:
 #    password: 191220#destin
     schema: public
     driver: org.postgresql.Driver
-  liquibase:
-    enabled: false
-    drop-first: false
-    change-log: classpath:db/changelog/db.changelog-master.xml
-    default-schema: public
+#  liquibase:
+#    enabled: false
+#    drop-first: false
+#    change-log: classpath:db/changelog/db.changelog-master.xml
+#    default-schema: public
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
   devtools:
@@ -60,6 +59,10 @@ spring:
     multipart:
       max-file-size: 50MB
       max-request-size: 50MB
+  web:
+    cors:
+      allowed-origins: "*"
+      allowed-methods: "*"
 
 logging:
   level:
@@ -79,6 +82,9 @@ jooq:
   driver: org.postgresql.Driver
 
 management:
+  graphql:
+    metrics:
+      enabled: false
   endpoints:
     web:
       exposure:
@@ -90,6 +96,9 @@ management:
     distribution:
       percentiles-histogram:
         "[http.server.requests]": true
+
+jwt:
+  secret: N]Aw&)Cya(JAg!o_JU^/+\:H5@4tTxQ@RQA,~yEjg9*y&Ra7yqA.IdmtV^oZ,=;L39235
 
 #management:
 #  endpoints:

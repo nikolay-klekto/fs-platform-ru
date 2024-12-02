@@ -8,6 +8,7 @@ import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client
+import com.fs.domain.jooq.tables.ClientsRefreshTokens
 import com.fs.domain.jooq.tables.Company
 import com.fs.domain.jooq.tables.CompanyPartner
 import com.fs.domain.jooq.tables.CompanyProfession
@@ -61,6 +62,11 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
      * The table <code>public.client</code>.
      */
     val CLIENT: Client get() = Client.CLIENT
+
+    /**
+     * The table <code>public.clients_refresh_tokens</code>.
+     */
+    val CLIENTS_REFRESH_TOKENS: ClientsRefreshTokens get() = ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS
 
     /**
      * The table <code>public.company</code>.
@@ -134,6 +140,7 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
         Basket.BASKET,
         City.CITY,
         Client.CLIENT,
+        ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS,
         Company.COMPANY,
         CompanyPartner.COMPANY_PARTNER,
         CompanyProfession.COMPANY_PROFESSION,

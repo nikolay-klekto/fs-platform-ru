@@ -21,31 +21,31 @@ import org.jooq.impl.UpdatableRecordImpl
 @Suppress("UNCHECKED_CAST")
 open class ReviewRecord() : UpdatableRecordImpl<ReviewRecord>(Review.REVIEW), Record7<Long?, Long?, String?, LocalDateTime?, String?, Long?, String?> {
 
-    var id: Long?
+    open var id: Long?
         set(value): Unit = set(0, value)
         get(): Long? = get(0) as Long?
 
-    var companyId: Long?
+    open var companyId: Long?
         set(value): Unit = set(1, value)
         get(): Long? = get(1) as Long?
 
-    var clientId: String?
+    open var clientId: String?
         set(value): Unit = set(2, value)
         get(): String? = get(2) as String?
 
-    var dateCreated: LocalDateTime?
+    open var dateCreated: LocalDateTime?
         set(value): Unit = set(3, value)
         get(): LocalDateTime? = get(3) as LocalDateTime?
 
-    var description: String?
+    open var description: String?
         set(value): Unit = set(4, value)
         get(): String? = get(4) as String?
 
-    var rate: Long?
+    open var rate: Long?
         set(value): Unit = set(5, value)
         get(): Long? = get(5) as Long?
 
-    var username: String?
+    open var username: String?
         set(value): Unit = set(6, value)
         get(): String? = get(6) as String?
 

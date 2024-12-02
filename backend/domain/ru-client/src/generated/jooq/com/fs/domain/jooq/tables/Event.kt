@@ -11,6 +11,7 @@ import com.fs.domain.jooq.tables.records.EventRecord
 
 import java.math.BigDecimal
 import java.time.LocalDate
+import java.util.function.Function
 
 import kotlin.collections.List
 
@@ -19,8 +20,10 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
+import org.jooq.Records
 import org.jooq.Row12
 import org.jooq.Schema
+import org.jooq.SelectField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
@@ -160,8 +163,12 @@ open class Event(
 
         return _eventCategories;
     }
+
+    val eventCategories: EventCategories
+        get(): EventCategories = eventCategories()
     override fun `as`(alias: String): Event = Event(DSL.name(alias), this)
     override fun `as`(alias: Name): Event = Event(alias, this)
+    override fun `as`(alias: Table<*>): Event = Event(alias.getQualifiedName(), this)
 
     /**
      * Rename this table
@@ -173,8 +180,24 @@ open class Event(
      */
     override fun rename(name: Name): Event = Event(name, null)
 
+    /**
+     * Rename this table
+     */
+    override fun rename(name: Table<*>): Event = Event(name.getQualifiedName(), null)
+
     // -------------------------------------------------------------------------
     // Row12 type methods
     // -------------------------------------------------------------------------
     override fun fieldsRow(): Row12<Long?, LocalDate?, String?, Boolean?, String?, String?, String?, Long?, String?, String?, Long?, BigDecimal?> = super.fieldsRow() as Row12<Long?, LocalDate?, String?, Boolean?, String?, String?, String?, Long?, String?, String?, Long?, BigDecimal?>
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     */
+    fun <U> mapping(from: (Long?, LocalDate?, String?, Boolean?, String?, String?, String?, Long?, String?, String?, Long?, BigDecimal?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Class,
+     * Function)}.
+     */
+    fun <U> mapping(toType: Class<U>, from: (Long?, LocalDate?, String?, Boolean?, String?, String?, String?, Long?, String?, String?, Long?, BigDecimal?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

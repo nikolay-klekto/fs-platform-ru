@@ -21,19 +21,19 @@ import org.jooq.impl.UpdatableRecordImpl
 @Suppress("UNCHECKED_CAST")
 open class DatabasechangeloglockRecord() : UpdatableRecordImpl<DatabasechangeloglockRecord>(Databasechangeloglock.DATABASECHANGELOGLOCK), Record4<Int?, Boolean?, LocalDateTime?, String?> {
 
-    var id: Int?
+    open var id: Int?
         set(value): Unit = set(0, value)
         get(): Int? = get(0) as Int?
 
-    var locked: Boolean?
+    open var locked: Boolean?
         set(value): Unit = set(1, value)
         get(): Boolean? = get(1) as Boolean?
 
-    var lockgranted: LocalDateTime?
+    open var lockgranted: LocalDateTime?
         set(value): Unit = set(2, value)
         get(): LocalDateTime? = get(2) as LocalDateTime?
 
-    var lockedby: String?
+    open var lockedby: String?
         set(value): Unit = set(3, value)
         get(): String? = get(3) as String?
 

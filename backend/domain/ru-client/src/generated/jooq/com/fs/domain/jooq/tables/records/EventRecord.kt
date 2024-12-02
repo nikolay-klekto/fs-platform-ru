@@ -22,52 +22,53 @@ import org.jooq.impl.UpdatableRecordImpl
 @Suppress("UNCHECKED_CAST")
 open class EventRecord() : UpdatableRecordImpl<EventRecord>(Event.EVENT), Record12<Long?, LocalDate?, String?, Boolean?, String?, String?, String?, Long?, String?, String?, Long?, BigDecimal?> {
 
-    var id: Long?
+    open var id: Long?
         set(value): Unit = set(0, value)
         get(): Long? = get(0) as Long?
 
-    var date: LocalDate?
+    open var date: LocalDate?
         set(value): Unit = set(1, value)
         get(): LocalDate? = get(1) as LocalDate?
 
-    var description: String?
+    open var description: String?
         set(value): Unit = set(2, value)
         get(): String? = get(2) as String?
 
+    @Suppress("INAPPLICABLE_JVM_NAME")
     @set:JvmName("setIsExpired")
-    var isExpired: Boolean?
+    open var isExpired: Boolean?
         set(value): Unit = set(3, value)
         get(): Boolean? = get(3) as Boolean?
 
-    var name: String?
+    open var name: String?
         set(value): Unit = set(4, value)
         get(): String? = get(4) as String?
 
-    var publicPlaceName: String?
+    open var publicPlaceName: String?
         set(value): Unit = set(5, value)
         get(): String? = get(5) as String?
 
-    var site: String?
+    open var site: String?
         set(value): Unit = set(6, value)
         get(): String? = get(6) as String?
 
-    var cityId: Long?
+    open var cityId: Long?
         set(value): Unit = set(7, value)
         get(): Long? = get(7) as Long?
 
-    var time: String?
+    open var time: String?
         set(value): Unit = set(8, value)
         get(): String? = get(8) as String?
 
-    var organizer: String?
+    open var organizer: String?
         set(value): Unit = set(9, value)
         get(): String? = get(9) as String?
 
-    var eventCategoryId: Long?
+    open var eventCategoryId: Long?
         set(value): Unit = set(10, value)
         get(): Long? = get(10) as Long?
 
-    var price: BigDecimal?
+    open var price: BigDecimal?
         set(value): Unit = set(11, value)
         get(): BigDecimal? = get(11) as BigDecimal?
 

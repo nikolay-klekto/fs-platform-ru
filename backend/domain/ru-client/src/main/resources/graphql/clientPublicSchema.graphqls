@@ -1,26 +1,19 @@
-scalar LocalDateTime
-scalar LocalDate
 
 type Query {
-    getClintById(id: String!): Client
-    getAllClients: [Client]
+
 
     getInternshipTypeById(id: ID!): InternshipType
     getAllInternshipTypes: [InternshipType]
 
     getReviewById(id: ID!): Review
     getAllReviewsByCompany(id: ID!): [Review]
-    getAllReviewByClientId(clientId: String
-    !): [Review]
 
     getCity(id: ID!): City
     getCountryByCity(id: ID): Country
     getAllCities: [City]
     getCitiesEnumByCountryCode(code: ID): [String]
 
-    getOrderById(id: ID!): Order
-    getOrdersByClientId(clientId: ID, orderStatus: OrderStatus!): [Order]
-    getOrdersByBasketId(basketId: ID, orderStatus: OrderStatus!): [Order]
+
     getAllOrders: [Order]
 
     getCompanyById(id: ID!): Company
@@ -41,7 +34,7 @@ type Query {
     getAllPartners: [Partner]
     getPartnersByCompanyId(id: ID!): [Partner]
 
-    getBasketById(id: ID!): Basket
+
 
     getCountry(code: ID!): Country
     getCountryByName(name: CountryNameEnum): Country
@@ -69,18 +62,12 @@ type Mutation {
     updateInternshipTypeById(id: ID!, internshipType: InternshipTypeInput!): Boolean
     deleteInternshipTypeById(id: ID!): Boolean
 
-    addReview(review: ReviewInput!): ErrorReviewModel
-    updateReview(review: ReviewInput!): Boolean
-    deleteReviewById(id: ID!): Boolean
+
 
     addCity(city: CityInput!): City
     deleteCity(cityId: ID!): Boolean
 
-    addOrder(order: OrderInput!): Order
-    updateOrder(order: OrderInput!): Boolean
-    deleteOrder(id: ID!): Boolean
-    deleteAllOrdersByBasketId(basketId: ID!): Boolean
-    deleteAllOrdersByClientId(clientId: String!, orderStatus: OrderStatus!): Boolean
+
 
     addCompany(company: CompanyInput!): Company
     addCompanyByPartner(partnerId: ID!, company: CompanyInput!): Company
@@ -104,12 +91,6 @@ type Mutation {
     addBasket: Basket
     updateBasket(basket: BasketInput!): Boolean
 
-    updateClient(client: ClientUpdate!): Boolean
-    changePassword(clientId: String!, password: String!): Boolean
-    #    changeRole(clientId: ID!, role: ClientRoleEnum): Boolean     //Should to think how to realize this function
-    addClient(client: ClientInsert): ErrorClientModel
-    deleteClient(id: String!): Boolean
-    verifyClientPassword(client: ClientInsert!): ErrorLongModel
 
     addCountry(country: CountryInput): Country
     deleteCountry(countryCode: ID!): Boolean
@@ -162,11 +143,11 @@ input OrderInput {
     id: ID
     basketId: ID
     companyOfficeId: ID
-    dateCreated: LocalDateTime
+    dateCreated: String
     positionId: ID
     serviceId: ID
     orderStatus: OrderStatus
-    startWorkDate: LocalDateTime
+    startWorkDate: String
     totalWorkDays: Int
     price: Float
 }
@@ -196,9 +177,9 @@ input ClientInsert {
     cityId: ID,
     basketId: ID
     #    activateStatus: Boolean,
-    birthday: LocalDate,
+    birthday: String,
     #    birthday: String,
-    #    dateCreated: LocalDateTime,
+    #    dateCreated: String,
     #    dateCreated: String,
     educationStatus: EducationEnum,
     email: String,
@@ -216,9 +197,9 @@ input ClientUpdate {
     id: ID!,
     cityId: ID,
     activateStatus: Boolean,
-    birthday: LocalDate,
+    birthday: String,
     #    birthday: String,
-    #   dateCreated: LocalDateTime,
+    #   dateCreated: String,
     #    dateCreated: String,
     educationStatus: EducationEnum,
     email: String,
@@ -267,7 +248,7 @@ input CompanyAddressInput {
 
 input EventInput {
     id: ID
-    date: LocalDate
+    date: String
     description: String
     name: String
     publicPlaceName: String
@@ -283,7 +264,7 @@ type Review {
     id: ID
     companyId: ID
     clientId: ID
-    dateCreated: LocalDateTime
+    dateCreated: String
     #    dateCreated: String
     description: String
     rate: Int
@@ -294,10 +275,10 @@ type Order {
     id: ID
     basketId: ID
     office: Office
-    dateCreated: LocalDateTime
+    dateCreated: String
     companyProfession: CompanyProfession
     orderStatus: OrderStatus
-    startWorkDate: LocalDateTime
+    startWorkDate: String
     totalWorkDays: Int
     price: Float
 }
@@ -329,9 +310,9 @@ type Client {
     basketId: ID,
     city: City,
     activateStatus: Boolean,
-    #        birthday: LocalDate,
+    #        birthday: Date,
     birthday: String,
-    dateCreated: LocalDateTime,
+    dateCreated: String,
     #    dateCreated: String,
     educationStatus: EducationEnum,
     email: String,
@@ -385,7 +366,7 @@ type Office {
 
 type Event {
     id: ID
-    date: LocalDate
+    date: String
     description: String
     isExpired: Boolean
     name: String

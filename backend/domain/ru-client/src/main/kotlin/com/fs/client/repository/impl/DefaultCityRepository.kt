@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository
 open class DefaultCityRepository(
     dsl: DSLContext,
     cityConverter: CityModelConverter,
-) : CityRepository(dsl, cityConverter) {
+): CityRepository(dsl, cityConverter) {
 }

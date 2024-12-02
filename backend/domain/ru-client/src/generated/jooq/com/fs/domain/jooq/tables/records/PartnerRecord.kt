@@ -19,16 +19,17 @@ import org.jooq.impl.UpdatableRecordImpl
 @Suppress("UNCHECKED_CAST")
 open class PartnerRecord() : UpdatableRecordImpl<PartnerRecord>(Partner.PARTNER), Record3<Long?, String?, Boolean?> {
 
-    var id: Long?
+    open var id: Long?
         set(value): Unit = set(0, value)
         get(): Long? = get(0) as Long?
 
-    var clientId: String?
+    open var clientId: String?
         set(value): Unit = set(1, value)
         get(): String? = get(1) as String?
 
+    @Suppress("INAPPLICABLE_JVM_NAME")
     @set:JvmName("setIsVerified")
-    var isVerified: Boolean?
+    open var isVerified: Boolean?
         set(value): Unit = set(2, value)
         get(): Boolean? = get(2) as Boolean?
 

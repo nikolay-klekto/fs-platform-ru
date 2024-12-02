@@ -1,0 +1,79 @@
+server:
+  port: 8282
+  error:
+    include-stacktrace: never
+
+graphql:
+  datetime:
+    scalars:
+      local-date-time:
+        format: yyyy-MM-DD'T'HH:mm
+      local-date:
+        format: yyyy-MM-DD
+
+spring:
+  datasource:
+#    For docker
+    url: jdbc:postgresql://45.135.234.61:15432/fun_scrut
+    username: username
+    password: password
+    schema: public
+    driverClassName: org.postgresql.Driver
+  graphql:
+    enable: true
+    cors:
+      allowed-origins: true
+      printer:
+        enabled: true
+  application:
+    name: ru-auth
+  jooq:
+    url: jdbc:postresql://45.135.234.61:15432/fun_scrut
+    user: username
+    password: password
+    schema: public
+    driver: org.postgresql.Driver
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+  devtools:
+    add-properties: false
+
+logging:
+  level:
+    org:
+      jooq:
+        tools:
+          LoggerListener: debug
+
+jooq:
+  url: jdbc:postgresql://45.135.234.61:15432/fun_scrut
+  user: username
+  password: password
+#  url: jdbc:postgresql:FunScrut2
+#  user: postgres
+#  password: 191220#destin
+  schema: public
+  driver: org.postgresql.Driver
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'prometheus, health, info, metrics'
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+
+jwt:
+  secret: N]Aw&)Cya(JAg!o_JU^/+\:H5@4tTxQ@RQA,~yEjg9*y&Ra7yqA.IdmtV^oZ,=;L39235
+
+#management:
+#  endpoints:
+#    web.exposure.include: "*"
+#    metrics.enabled: true
+#    prometheus.enabled: true
+

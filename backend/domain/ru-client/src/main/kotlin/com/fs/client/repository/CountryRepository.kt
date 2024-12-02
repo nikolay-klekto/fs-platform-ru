@@ -29,7 +29,7 @@ abstract class CountryRepository(
     fun getCountryByName(countryName: CountryNameModel): Mono<CountryModel> {
         return Mono.from(
             dsl.select(COUNTRY.asterisk()).from(COUNTRY)
-                .where(COUNTRY.NAME.eq(countryName))
+                .where(COUNTRY.NAME.eq(countryName.name))
         )
             .map { it.into(Country::class.java) }
             .map(converter::toModel)

@@ -11,6 +11,7 @@ import com.fs.domain.jooq.keys.REVIEW__REVIEW_COMPANY_ID_FKEY
 import com.fs.domain.jooq.tables.records.ReviewRecord
 
 import java.time.LocalDateTime
+import java.util.function.Function
 
 import kotlin.collections.List
 
@@ -19,8 +20,10 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
+import org.jooq.Records
 import org.jooq.Row7
 import org.jooq.Schema
+import org.jooq.SelectField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
@@ -136,6 +139,9 @@ open class Review(
         return _company;
     }
 
+    val company: Company
+        get(): Company = company()
+
     /**
      * Get the implicit join path to the <code>public.client</code> table.
      */
@@ -145,8 +151,12 @@ open class Review(
 
         return _client;
     }
+
+    val client: Client
+        get(): Client = client()
     override fun `as`(alias: String): Review = Review(DSL.name(alias), this)
     override fun `as`(alias: Name): Review = Review(alias, this)
+    override fun `as`(alias: Table<*>): Review = Review(alias.getQualifiedName(), this)
 
     /**
      * Rename this table
@@ -158,8 +168,24 @@ open class Review(
      */
     override fun rename(name: Name): Review = Review(name, null)
 
+    /**
+     * Rename this table
+     */
+    override fun rename(name: Table<*>): Review = Review(name.getQualifiedName(), null)
+
     // -------------------------------------------------------------------------
     // Row7 type methods
     // -------------------------------------------------------------------------
     override fun fieldsRow(): Row7<Long?, Long?, String?, LocalDateTime?, String?, Long?, String?> = super.fieldsRow() as Row7<Long?, Long?, String?, LocalDateTime?, String?, Long?, String?>
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     */
+    fun <U> mapping(from: (Long?, Long?, String?, LocalDateTime?, String?, Long?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Class,
+     * Function)}.
+     */
+    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, String?, LocalDateTime?, String?, Long?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

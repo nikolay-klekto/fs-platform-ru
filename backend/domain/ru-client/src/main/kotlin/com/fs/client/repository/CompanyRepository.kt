@@ -15,6 +15,7 @@ import com.fs.service.ru.CompanyModel
 import com.fs.service.ru.enums.IndustryModel
 import io.micrometer.core.annotation.Timed
 import org.jooq.DSLContext
+import org.jooq.impl.DSL
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
@@ -135,22 +136,36 @@ abstract class CompanyRepository(
         return Mono.fromSupplier {
             val oldCompanyModel: CompanyModel = companyBlockingRepository.getById(companyModel.id!!)!!
 
-            dsl.update(COMPANY)
+            val rowsUpdated = dsl.update(COMPANY)
                 .set(
                     COMPANY.COMPANY_INDUSTRY,
-                    companyModel.companyIndustry ?: oldCompanyModel.companyIndustry
+                    DSL.value(companyModel.companyIndustry ?: oldCompanyModel.companyIndustry) // Оборачиваем значение в DSL.value
                 )
                 .set(
                     COMPANY.LEGAL_CAPACITY_STATUS,
-                    companyModel.legalCapacityStatus ?: oldCompanyModel.legalCapacityStatus
+                    DSL.value(companyModel.legalCapacityStatus ?: oldCompanyModel.legalCapacityStatus)
                 )
-                .set(COMPANY.NAME, companyModel.name ?: oldCompanyModel.name)
-                .set(COMPANY.SITE, companyModel.site ?: oldCompanyModel.site)
-                .set(COMPANY.SHORT_DESCRIPTION, companyModel.shortDescription ?: oldCompanyModel.shortDescription)
-                .where(COMPANY.ID.eq(companyModel.id))
-                .execute() == 1
+                .set(
+                    COMPANY.NAME,
+                    DSL.value(companyModel.name ?: oldCompanyModel.name)
+                )
+                .set(
+                    COMPANY.SITE,
+                    DSL.value(companyModel.site ?: oldCompanyModel.site)
+                )
+                .set(
+                    COMPANY.SHORT_DESCRIPTION,
+                    DSL.value(companyModel.shortDescription ?: oldCompanyModel.shortDescription)
+                )
+                .where(
+                    COMPANY.ID.eq(DSL.value(companyModel.id)) // Оборачиваем ID в DSL.value
+                )
+                .execute()
+
+            rowsUpdated == 1
         }
     }
+
 
     fun deleteCompany(companyId: Long): Mono<Boolean> {
         return Mono.fromSupplier {

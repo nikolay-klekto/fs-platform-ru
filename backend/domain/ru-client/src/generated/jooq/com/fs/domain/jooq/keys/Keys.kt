@@ -8,6 +8,7 @@ import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client
+import com.fs.domain.jooq.tables.ClientsRefreshTokens
 import com.fs.domain.jooq.tables.Company
 import com.fs.domain.jooq.tables.CompanyPartner
 import com.fs.domain.jooq.tables.CompanyProfession
@@ -25,6 +26,7 @@ import com.fs.domain.jooq.tables.records.AddressRecord
 import com.fs.domain.jooq.tables.records.BasketRecord
 import com.fs.domain.jooq.tables.records.CityRecord
 import com.fs.domain.jooq.tables.records.ClientRecord
+import com.fs.domain.jooq.tables.records.ClientsRefreshTokensRecord
 import com.fs.domain.jooq.tables.records.CompanyPartnerRecord
 import com.fs.domain.jooq.tables.records.CompanyProfessionRecord
 import com.fs.domain.jooq.tables.records.CompanyRecord
@@ -54,6 +56,7 @@ val ADDRESS_PKEY: UniqueKey<AddressRecord> = Internal.createUniqueKey(Address.AD
 val BASKET_PKEY: UniqueKey<BasketRecord> = Internal.createUniqueKey(Basket.BASKET, DSL.name("basket_pkey"), arrayOf(Basket.BASKET.ID), true)
 val CITY_PKEY: UniqueKey<CityRecord> = Internal.createUniqueKey(City.CITY, DSL.name("city_pkey"), arrayOf(City.CITY.ID), true)
 val CLIENT_PKEY: UniqueKey<ClientRecord> = Internal.createUniqueKey(Client.CLIENT, DSL.name("client_pkey"), arrayOf(Client.CLIENT.ID), true)
+val CLIENTS_REFRESH_TOKENS_PKEY: UniqueKey<ClientsRefreshTokensRecord> = Internal.createUniqueKey(ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS, DSL.name("clients_refresh_tokens_pkey"), arrayOf(ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS.ID), true)
 val COMPANY_PKEY: UniqueKey<CompanyRecord> = Internal.createUniqueKey(Company.COMPANY, DSL.name("company_pkey"), arrayOf(Company.COMPANY.ID), true)
 val COMPANY_PARTNER_PKEY: UniqueKey<CompanyPartnerRecord> = Internal.createUniqueKey(CompanyPartner.COMPANY_PARTNER, DSL.name("company_partner_pkey"), arrayOf(CompanyPartner.COMPANY_PARTNER.COMPANY_ID, CompanyPartner.COMPANY_PARTNER.PARTNER_ID), true)
 val COMPANY_PROFESSION_PKEY: UniqueKey<CompanyProfessionRecord> = Internal.createUniqueKey(CompanyProfession.COMPANY_PROFESSION, DSL.name("company_profession_pkey"), arrayOf(CompanyProfession.COMPANY_PROFESSION.ID), true)
@@ -76,6 +79,7 @@ val ADDRESS__ADDRESS_CITY_ID_FKEY: ForeignKey<AddressRecord, CityRecord> = Inter
 val CITY__CITY_COUNTRY_CODE_FKEY: ForeignKey<CityRecord, CountryRecord> = Internal.createForeignKey(City.CITY, DSL.name("city_country_code_fkey"), arrayOf(City.CITY.COUNTRY_CODE), com.fs.domain.jooq.keys.COUNTRY_PKEY, arrayOf(Country.COUNTRY.CODE), true)
 val CLIENT__CLIENT_BASKET_ID_FKEY: ForeignKey<ClientRecord, BasketRecord> = Internal.createForeignKey(Client.CLIENT, DSL.name("client_basket_id_fkey"), arrayOf(Client.CLIENT.BASKET_ID), com.fs.domain.jooq.keys.BASKET_PKEY, arrayOf(Basket.BASKET.ID), true)
 val CLIENT__CLIENT_CITY_ID_FKEY: ForeignKey<ClientRecord, CityRecord> = Internal.createForeignKey(Client.CLIENT, DSL.name("client_city_id_fkey"), arrayOf(Client.CLIENT.CITY_ID), com.fs.domain.jooq.keys.CITY_PKEY, arrayOf(City.CITY.ID), true)
+val CLIENTS_REFRESH_TOKENS__CLIENTS_REFRESH_TOKENS_CLIENT_ID_FKEY: ForeignKey<ClientsRefreshTokensRecord, ClientRecord> = Internal.createForeignKey(ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS, DSL.name("clients_refresh_tokens_client_id_fkey"), arrayOf(ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS.CLIENT_ID), com.fs.domain.jooq.keys.CLIENT_PKEY, arrayOf(Client.CLIENT.ID), true)
 val COMPANY_PARTNER__COMPANY_PARTNER_COMPANY_ID_FKEY: ForeignKey<CompanyPartnerRecord, CompanyRecord> = Internal.createForeignKey(CompanyPartner.COMPANY_PARTNER, DSL.name("company_partner_company_id_fkey"), arrayOf(CompanyPartner.COMPANY_PARTNER.COMPANY_ID), com.fs.domain.jooq.keys.COMPANY_PKEY, arrayOf(Company.COMPANY.ID), true)
 val COMPANY_PARTNER__COMPANY_PARTNER_PARTNER_ID_FKEY: ForeignKey<CompanyPartnerRecord, PartnerRecord> = Internal.createForeignKey(CompanyPartner.COMPANY_PARTNER, DSL.name("company_partner_partner_id_fkey"), arrayOf(CompanyPartner.COMPANY_PARTNER.PARTNER_ID), com.fs.domain.jooq.keys.PARTNER_PKEY, arrayOf(Partner.PARTNER.ID), true)
 val COMPANY_PROFESSION__COMPANY_PROFESSION_COMPANY_ID_FKEY: ForeignKey<CompanyProfessionRecord, CompanyRecord> = Internal.createForeignKey(CompanyProfession.COMPANY_PROFESSION, DSL.name("company_profession_company_id_fkey"), arrayOf(CompanyProfession.COMPANY_PROFESSION.COMPANY_ID), com.fs.domain.jooq.keys.COMPANY_PKEY, arrayOf(Company.COMPANY.ID), true)
