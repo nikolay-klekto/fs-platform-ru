@@ -1,12 +1,14 @@
 'use client'
 
-import React from 'react'
-
+import React, { useRef } from 'react'
+import RegistrationModalDesktop from '@/components/desktop/layout/RegistrationModalDesktop/RegistrationModalDesktop'
+import LoginModalDesktop from '@/components/desktop/layout/LoginModalDesktop/LoginModalDesktop'
 import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationDesktop'
 import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
 const HeaderDesktop: React.FC = () => {
+    const openRegistrationModal = useRef<(() => void) | null>(null)
     return (
         <>
             <header
@@ -29,10 +31,15 @@ const HeaderDesktop: React.FC = () => {
                         <ShoppingCartIconDesktop className="w-full h-auto cursor-pointer" />
                     </div>
                     <div className="max-w-[50px] 3xl:max-w-[36px] 2xl:max-w-[36px]">
-                        <ProfileIconDesktop className="w-full h-auto cursor-pointer" />
+                        <ProfileIconDesktop
+                            className="w-full h-auto cursor-pointer"
+                            onClick={() => openRegistrationModal.current?.()}
+                        />
                     </div>
                 </div>
             </header>
+            {/* <RegistrationModalDesktop triggerOpen={(openModal) => (openRegistrationModal.current = openModal)} /> */}
+            <LoginModalDesktop triggerOpen={(openModal) => (openRegistrationModal.current = openModal)} />
         </>
     )
 }
