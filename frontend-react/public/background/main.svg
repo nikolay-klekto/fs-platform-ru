@@ -1,0 +1,47 @@
+<svg width="1920" height="5945" viewBox="0 0 1920 5945" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_315_409)">
+<rect width="1920" height="5945" fill="#101030"/>
+<g filter="url(#filter0_f_315_409)">
+<path d="M2513 1914C2513 2149.27 2322.27 2340 2087 2340C1851.73 2340 1661 2149.27 1661 1914C1661 1678.73 1851.73 1488 2087 1488C2322.27 1488 2513 1678.73 2513 1914Z" fill="url(#paint0_radial_315_409)" fill-opacity="0.8"/>
+</g>
+<g filter="url(#filter1_f_315_409)">
+<path d="M1326 3273C1587.23 3273 1799 3482.53 1799 3741C1799 3999.47 1587.23 4209 1326 4209C1064.77 4209 853 3999.47 853 3741C853 3482.53 1064.77 3273 1326 3273Z" fill="url(#paint1_radial_315_409)" fill-opacity="0.5"/>
+</g>
+<g filter="url(#filter2_f_315_409)">
+<path d="M185.5 1689C444.245 1689 654 1898.53 654 2157C654 2415.47 444.245 2625 185.5 2625C-73.2454 2625 -283 2415.47 -283 2157C-283 1898.53 -73.2454 1689 185.5 1689Z" fill="url(#paint2_radial_315_409)" fill-opacity="0.5"/>
+</g>
+</g>
+<rect x="0.5" y="0.5" width="1919" height="5944" stroke="#101030"/>
+<defs>
+<filter id="filter0_f_315_409" x="1161" y="988" width="1852" height="1852" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_315_409"/>
+</filter>
+<filter id="filter1_f_315_409" x="353" y="2773" width="1946" height="1936" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_315_409"/>
+</filter>
+<filter id="filter2_f_315_409" x="-783" y="1189" width="1937" height="1936" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_315_409"/>
+</filter>
+<radialGradient id="paint0_radial_315_409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2087 1914) rotate(180) scale(247)">
+<stop stop-color="#631177"/>
+<stop offset="1" stop-color="#30217B"/>
+</radialGradient>
+<radialGradient id="paint1_radial_315_409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1326 3741) rotate(90) scale(271.352 274.251)">
+<stop stop-color="#8917A5"/>
+<stop offset="1" stop-color="#30217B"/>
+</radialGradient>
+<radialGradient id="paint2_radial_315_409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(185.5 2157) rotate(90) scale(271.352 271.642)">
+<stop stop-color="#8917A5"/>
+<stop offset="1" stop-color="#30217B"/>
+</radialGradient>
+<clipPath id="clip0_315_409">
+<rect width="1920" height="5945" fill="white"/>
+</clipPath>
+</defs>
+</svg>
