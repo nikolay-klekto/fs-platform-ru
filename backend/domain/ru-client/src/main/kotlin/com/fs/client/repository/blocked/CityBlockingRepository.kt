@@ -2,10 +2,9 @@ package com.fs.client.repository.blocked
 
 import com.fs.domain.jooq.tables.City.Companion.CITY
 import org.jooq.DSLContext
-import org.springframework.stereotype.Repository
 
-@Repository
-class CityBlockingRepository(
+
+abstract class CityBlockingRepository(
     open val dsl: DSLContext
 ) {
     fun getCityIdByName(name: String?): Long? {
