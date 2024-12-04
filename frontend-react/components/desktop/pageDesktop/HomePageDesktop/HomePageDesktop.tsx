@@ -8,7 +8,7 @@ import EventsSectionDesktop from '../../layout/EventsSectionDesktop/EventsSectio
 const HomePageDesktop: React.FC = () => {
     return (
         <>
-            <div className="bg-header-main-gradient-desktop">
+            <div>
                 <div className="paddings-desktop-custom container flex justify-between">
                     <HeaderMainDesktop />
                     <HeaderCardsDesktop />
