@@ -57,6 +57,21 @@ services:
     volumes:
       - /home/Nikolay/funScrut/photos/events:/app/uploads/events
 
+  appAuth:
+    image: ru-auth:latest
+    build:
+      context: .
+      dockerfile: Dockerfile-Auth
+    ports:
+      - "127.0.0.1:8282:8282"
+    depends_on:
+      - service-db
+    environment:
+      - SERVER_PORT= 8282
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+    networks:
+      - prometheus-grafana-network
+
   gateway:
     image: ru-gateway:latest
     build:

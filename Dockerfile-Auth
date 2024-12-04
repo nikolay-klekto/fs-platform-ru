@@ -1,0 +1,6 @@
+FROM openjdk:17-oracle
+ARG JAR_FILE=jar/authorization-0.0.3-SNAPSHOT.jar
+WORKDIR /opt/app
+COPY ${JAR_FILE} appAuth.jar
+EXPOSE 8282
+ENTRYPOINT ["java","-jar","appAuth.jar"]
