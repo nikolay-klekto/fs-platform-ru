@@ -1,16 +1,13 @@
 package com.fs.client.repository
 
-import com.fs.domain.jooq.tables.Company
 import com.fs.domain.jooq.tables.EventCategories.Companion.EVENT_CATEGORIES
 import com.fs.domain.jooq.tables.pojos.EventCategories
 import com.fs.domain.jooq.tables.records.EventCategoriesRecord
 import org.jooq.DSLContext
-import org.springframework.stereotype.Repository
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-@Repository
-class EventCategoriesRepository(
+abstract class EventCategoriesRepository(
     open val dsl: DSLContext
 ) {
 
