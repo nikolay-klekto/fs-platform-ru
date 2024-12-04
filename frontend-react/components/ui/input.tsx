@@ -3,18 +3,23 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const inputVariants = cva(
-    'flex w-full rounded-md border text-sm ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+    'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
     {
         variants: {
             variant: {
                 default:
-                    'border-input bg-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+                    'border-input bg-background focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2',
+                gradient:
+                    'flex border-0 text-5xl outline-none placeholder:font-semibold placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
             },
             size: {
                 default: 'h-10 px-3 py-2',
+                gradient_search: 'size-full py-[20px] pl-[20px] pr-[70px]',
+                gradient: 'size-full p-[20px]',
             },
             rounded: {
                 default: 'rounded-md',
+                full: 'rounded-full',
             },
         },
         defaultVariants: {
@@ -106,7 +111,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
 
         return (
             <div className={cn('flex flex-col gap-1.5', wrapperClassName)}>
-                {label && <label className="text-sm font-medium text-foreground">{label}</label>}
+                {label && <label className="text-foreground text-sm font-medium">{label}</label>}
                 <input
                     type={type}
                     className={cn(

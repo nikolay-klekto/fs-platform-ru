@@ -40,13 +40,14 @@ const ProfessionsSelectDesktop = () => {
     return (
         <div className="relative z-[3]">
             <Button
-                variant={'select_desktop'}
+                variant={'select_btn_desktop'}
+                size={'select_btn_desktop'}
                 onClick={handleSelectToggle}
-                className={`border-button-border-desktop 3xl:w-[300px] 3xl:text-4xl flex h-[64px] w-[337px] items-center gap-[20px] rounded-full border-2 px-[30px] py-[20px] text-5xl font-semibold 2xl:w-[270px] 2xl:px-[20px] 2xl:text-3xl ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
+                className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Отрасль профессии
                 <ChevronDownIcon
-                    className={`h-[15px] w-[27px] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                    className={`h-[15px] w-[27px] transition-transform  duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
                 />
             </Button>
             {isOpen && (
