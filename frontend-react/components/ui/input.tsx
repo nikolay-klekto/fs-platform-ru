@@ -103,7 +103,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-            validateComponent(internalValue)
+            internalValue && validateComponent(internalValue)
         }
 
         return (
