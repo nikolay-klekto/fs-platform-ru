@@ -80,7 +80,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
                         if (textError) {
                             setInternalError(textError)
                         }
-                        if (styleError) {
+                        if (!styleError) {
                             setStyleErrorClass(true)
                         }
                     } else {

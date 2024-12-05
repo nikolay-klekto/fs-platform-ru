@@ -1,28 +1,18 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
 import { EnhancedTextarea } from '../../shared/TextareaDesktop'
+import { validateNameDesktop } from '../../commonDesktop/validate/validateNameDesktop'
 import { validateEmailDesktop } from '../../commonDesktop/validate/validateEmailDesktop'
+import { validatePhoneNumberDesktop } from '../../commonDesktop/validate/validatePhoneNumberDesktop'
+import { validateTextareaDesktop } from '../../commonDesktop/validate/validateTextareaDesktop'
 import { contentContactsDesktop, contentSocialContactsDesktop } from './contentContactsDesktop'
 
-interface FormData {
-    name: string
-    email: string
-    role: string
-}
-
 const ContactsDesktop: React.FC = () => {
-    const [formData, setFormData] = useState<FormData>({
-        name: '',
-        email: '',
-        role: '',
-    })
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        console.log('Submitted data:', formData)
     }
 
     return (
@@ -76,7 +66,7 @@ const ContactsDesktop: React.FC = () => {
                         <h3 className="text-20xl font-semibold uppercase">Напишите нам</h3>
                         <form onSubmit={handleSubmit}>
                             <div className="flex justify-between pb-12 pt-14">
-                                <div className="flex flex-col gap-[33px]">
+                                <div className="flex flex-col gap-[23px]">
                                     <EnhancedInput
                                         type="text"
                                         id="name"
@@ -84,7 +74,8 @@ const ContactsDesktop: React.FC = () => {
                                         variant="contacts_page"
                                         size="contacts_page"
                                         rounded="contacts_page"
-                                        onChange={(value) => console.log('Имя:', value)}
+                                        validate={validateNameDesktop}
+                                        wrapperClassName={'h-[73px]'}
                                     />
                                     <EnhancedInput
                                         type="email"
@@ -93,18 +84,20 @@ const ContactsDesktop: React.FC = () => {
                                         variant="contacts_page"
                                         size="contacts_page"
                                         rounded="contacts_page"
-                                        error="Некорректный формат E-mail"
                                         validate={validateEmailDesktop}
+                                        wrapperClassName={'h-[73px]'}
                                     />
                                 </div>
-                                <div className="flex flex-col gap-[33px] pl-3">
+                                <div className="flex flex-col gap-[23px] pl-3">
                                     <EnhancedInput
                                         type="tel"
                                         id="tel"
-                                        placeholder="Телефон*"
+                                        placeholder="Тел* +375 (xx) xxx-xx-xx / +7 (xxx) xxx-xx-xx"
                                         variant="contacts_page"
                                         size="contacts_page_additional_info"
                                         rounded="contacts_page"
+                                        validate={validatePhoneNumberDesktop}
+                                        wrapperClassName={'h-[73px]'}
                                     />
                                     <EnhancedInput
                                         type="text"
@@ -113,12 +106,10 @@ const ContactsDesktop: React.FC = () => {
                                         variant="contacts_page"
                                         size="contacts_page_additional_info"
                                         rounded="contacts_page"
+                                        wrapperClassName={'h-[73px]'}
                                     />
                                 </div>
                             </div>
-                            <label htmlFor="message" className="sr-only">
-                                Опишите свой вопрос
-                            </label>
                             <EnhancedTextarea
                                 name="message"
                                 id="message"
@@ -126,8 +117,10 @@ const ContactsDesktop: React.FC = () => {
                                 variant="contacts_page"
                                 size="contacts_page"
                                 rounded="contacts_page"
+                                validate={validateTextareaDesktop}
+                                wrapperClassName={'h-64'}
                             />
-                            <div className="flex justify-between pt-[60px]">
+                            <div className="flex justify-between pt-[50px]">
                                 <Button variant="select_desktop" size="contacts_btn_send_desktop">
                                     Отправить
                                 </Button>
@@ -145,71 +138,3 @@ const ContactsDesktop: React.FC = () => {
 }
 
 export default ContactsDesktop
-
-/*http://localhost:3000/contacts*/
-/*
-<form>
-    <div className="flex justify-between pb-12 pt-14">
-        <div className="flex flex-col gap-[33px]">
-            <label htmlFor="name" className="sr-only">
-                Имя
-            </label>
-            <Input
-                type="text"
-                id="name"
-                placeholder="Имя*"
-                className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 2xl:w-[520px]"
-            />
-            <label htmlFor="email" className="sr-only">
-                E-mail
-            </label>
-            <Input
-                type="email"
-                id="email"
-                placeholder="E-mail*"
-                className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 2xl:w-[520px]"
-            />
-        </div>
-        <div className="flex flex-col gap-[33px] pl-3">
-            <label htmlFor="tel" className="sr-only">
-                Телефон
-            </label>
-            <Input
-                type="tel"
-                id="tel"
-                placeholder="Телефон*"
-                className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 3xl:w-[452px] 2xl:w-[520px]"
-            />
-            <label htmlFor="role" className="sr-only">
-                Клиент/партнер/соискатель
-            </label>
-            <Input
-                type="text"
-                id="role"
-                placeholder="Клиент/партнер/соискатель"
-                className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 3xl:w-[452px] 2xl:w-[520px]"
-            />
-        </div>
-    </div>
-    <label htmlFor="message" className="sr-only">
-        Опишите свой вопрос
-    </label>
-    <textarea
-        name="message"
-        id="message"
-        placeholder="Опишите свой вопрос*"
-        className="h-60 w-full rounded-[33px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent focus:outline-none border-[2px] border-[#878797] focus:border-[3px] placeholder:text-muted-foreground"
-    />
-    <div className="flex justify-between pt-[60px]">
-        <Button variant="select_desktop" size="contacts_btn_send_desktop">
-            Отправить
-        </Button>
-        <p className="max-w-[663px] pl-3 text-white/20 text-[17px] font-medium">
-            Нажимая кнопку “Отправить”, я даю согласие на обработку своих персональных данных и
-            соглашаюсь с Условиями использования и Политикой конфиденциальности
-        </p>
-    </div>
-</form>
-
-
-*/
