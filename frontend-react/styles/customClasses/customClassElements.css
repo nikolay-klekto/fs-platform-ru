@@ -88,4 +88,9 @@
     .bg-custom-grey {
         background-color: #878797;
     }
+
+    .modal-form-input-desktop-custom {
+        @apply mt-3 text-white border text18px_desktop border-[#878797] bg-[#101030] rounded-[50px] p-4 placeholder:text18px_desktop  placeholder:font-medium placeholder:text-[#353652] focus:border focus:border-[#878797] focus:outline-none
+  focus:bg-[#1f203f];
+    }
 }
