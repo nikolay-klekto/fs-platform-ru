@@ -1,11 +1,25 @@
-//package com.fs.client.config
-//import org.jooq.DSLContext
-//import org.jooq.impl.DefaultDSLContext
-//import org.springframework.beans.factory.annotation.Value
-//import org.springframework.boot.jdbc.DataSourceBuilder
-//import org.springframework.context.annotation.Bean
-//import org.springframework.context.annotation.Configuration
-//import javax.sql.DataSource
+package com.fs.client.config
+import org.jooq.DSLContext
+import org.jooq.impl.DefaultConfiguration
+import org.jooq.impl.DefaultDSLContext
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.jdbc.DataSourceBuilder
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import javax.sql.DataSource
+
+@Configuration
+open class JooqConfig {
+
+    @Bean
+    open fun dslContext(dataSource: DataSource): DSLContext {
+        val configuration = DefaultConfiguration()
+        configuration.set(dataSource) // Устанавливаем DataSource
+        configuration.set(org.jooq.SQLDialect.POSTGRES) // Указываем используемый SQL-драйвер
+        return DefaultDSLContext(configuration)
+    }
+}
+
 //
 //@Configuration
 //class JooqConfig {

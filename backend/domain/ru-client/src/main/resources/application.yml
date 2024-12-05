@@ -46,6 +46,7 @@ spring:
 #    password: 191220#destin
     schema: public
     driver: org.postgresql.Driver
+    sql-dialect: POSTGRES
 #  liquibase:
 #    enabled: false
 #    drop-first: false
