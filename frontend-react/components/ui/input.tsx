@@ -33,7 +33,7 @@ const inputVariants = cva(
 export interface EnhancedInputProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'>,
         VariantProps<typeof inputVariants> {
-    validate?: (value: string) => { textError: string; status: boolean | null } | undefined
+    validate?: (value: string) => { textError: string; status: boolean | null; styleError: boolean } | undefined
     error?: string
     onChange?: (value: string) => void
     onFocus?: () => void
@@ -68,29 +68,33 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
     ) => {
         const [internalValue, setInternalValue] = React.useState<string>('')
         const [internalError, setInternalError] = React.useState('')
-        const [styleError, setStyleError] = React.useState(false)
+        const [styleErrorClass, setStyleErrorClass] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
 
-        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-            const newValue = e.target.value
-            setInternalValue(newValue)
+        function validateComponent(newValue: string) {
             if (validate) {
                 const validationResult = validate(newValue)
                 if (validationResult) {
-                    const { textError, status } = validationResult
+                    const { textError, status, styleError } = validationResult
                     if (!status) {
                         if (textError) {
                             setInternalError(textError)
-                        } else {
-                            setStyleError(true)
+                        }
+                        if (styleError) {
+                            setStyleErrorClass(true)
                         }
                     } else {
-                        setStyleError(false)
+                        setStyleErrorClass(false)
                         setInternalError('')
                     }
                 }
             }
+        }
 
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            const newValue = e.target.value
+            setInternalValue(newValue)
+            validateComponent(newValue)
             onChange?.(newValue)
         }
 
@@ -102,22 +106,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-            if (validate) {
-                const validationResult = validate(internalValue)
-                if (validationResult) {
-                    const { textError, status } = validationResult
-                    if (!status) {
-                        if (textError) {
-                            setInternalError(textError)
-                        } else {
-                            setStyleError(true)
-                        }
-                    } else {
-                        setStyleError(false)
-                        setInternalError('')
-                    }
-                }
-            }
+            validateComponent(internalValue)
         }
 
         return (
@@ -129,7 +118,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
                         inputVariants({ variant, size, rounded }),
                         isFocused && 'ring-2 ring-ring ring-offset-2',
                         className,
-                        styleError && 'custom_error_style_input',
+                        styleErrorClass && 'custom_error_style_input',
                     )}
                     ref={ref}
                     name={name}
