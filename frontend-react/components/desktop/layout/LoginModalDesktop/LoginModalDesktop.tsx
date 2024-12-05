@@ -14,30 +14,22 @@ interface LoginFormData {
     password: string
 }
 
-interface LoginFormErrors {
-    email: boolean
-    password: boolean
+interface LoginModalDesktopProps {
+    closeModal: () => void
+    openRegistrationModal: () => void
 }
 
-interface LoginModalDesktopProps {
-    triggerOpen?: (openModal: () => void) => void
-}
-const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ triggerOpen }) => {
+const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openRegistrationModal }) => {
     const [formData, setFormData] = useState<LoginFormData>({
         email: '',
         password: '',
     })
-    const [errors, setErrors] = useState<LoginFormErrors>({
-        email: false,
-        password: false,
-    })
 
-    const [showModal, setShowModal] = useState(false)
+    // const [showModal, setShowModal] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true)
 
-    const handleOpen = () => setShowModal(true)
-    const handleClose = () => setShowModal(false)
+    // const handleOpen = () => setShowModal(true)
+    // const handleClose = () => setShowModal(false)
 
     const handleChange = (field: keyof LoginFormData, value: string | boolean) => {
         setFormData((prev) => ({
@@ -51,19 +43,14 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ triggerOpen }) =>
 
         // Валидацию добавить CЮДА!!!!
         console.log('Данные формы:', formData)
-        handleClose()
+        // handleClose()
+        closeModal()
     }
 
-    useEffect(() => {
-        if (triggerOpen) {
-            triggerOpen(handleOpen)
-        }
-    }, [triggerOpen])
-
     return (
-        <Modal show={showModal} onClose={handleClose} size="medium" showCloseButton={false}>
+        <Modal show={true} onClose={closeModal} size="medium" showCloseButton={false}>
             <div className="flex flex-col justify-center items-center pt-[40px] pb-[30px] w-[73%] mx-auto">
-                <button onClick={handleClose} className="absolute top-[5%] right-[5%] w-[7%]">
+                <button onClick={closeModal} className="absolute top-[5%] right-[5%] w-[7%]">
                     <X size={41} color="white" className="opacity-70 w-full" />
                 </button>
                 <h2 className="mb-7 text36px_desktop font-medium text-gradient_desktop_custom uppercase inline">
@@ -126,7 +113,10 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ triggerOpen }) =>
                 </form>
                 <div className="mt-5 flex justify-center text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base">
                     <p className="mr-2 text-[#878797] font-medium">Нет аккаунта?</p>
-                    <button className="underline bg-transparent border-transparent text-white font-medium">
+                    <button
+                        className="underline bg-transparent border-transparent text-white font-medium"
+                        onClick={openRegistrationModal}
+                    >
                         Зарегистрироваться
                     </button>
                 </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useState } from 'react'
 import RegistrationModalDesktop from '@/components/desktop/layout/RegistrationModalDesktop/RegistrationModalDesktop'
 import LoginModalDesktop from '@/components/desktop/layout/LoginModalDesktop/LoginModalDesktop'
 import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationDesktop'
@@ -8,7 +8,16 @@ import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/
 import { Button } from '@/components/ui/button'
 
 const HeaderDesktop: React.FC = () => {
-    const openRegistrationModal = useRef<(() => void) | null>(null)
+    const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
+
+    const openModal = (type: 'login' | 'registration') => {
+        setModalType(type)
+    }
+
+    const closeModal = () => {
+        setModalType(null)
+    }
+
     return (
         <>
             <header
@@ -33,13 +42,20 @@ const HeaderDesktop: React.FC = () => {
                     <div className="max-w-[50px] 3xl:max-w-[36px] 2xl:max-w-[36px]">
                         <ProfileIconDesktop
                             className="w-full h-auto cursor-pointer"
-                            onClick={() => openRegistrationModal.current?.()}
+                            onClick={() => openModal('login')}
                         />
                     </div>
                 </div>
             </header>
             {/* <RegistrationModalDesktop triggerOpen={(openModal) => (openRegistrationModal.current = openModal)} /> */}
-            <LoginModalDesktop triggerOpen={(openModal) => (openRegistrationModal.current = openModal)} />
+            {/* <LoginModalDesktop triggerOpen={(openModal) => (openRegistrationModal.current = openModal)} /> */}
+            {modalType === 'login' && (
+                <LoginModalDesktop closeModal={closeModal} openRegistrationModal={() => openModal('registration')} />
+            )}
+
+            {modalType === 'registration' && (
+                <RegistrationModalDesktop closeModal={closeModal} openLoginModal={() => openModal('login')} />
+            )}
         </>
     )
 }

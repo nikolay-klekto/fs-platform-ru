@@ -15,9 +15,11 @@ interface RegistrationFormData {
 }
 
 interface RegistrationModalDesktopProps {
-    triggerOpen?: (openModal: () => void) => void
+    // triggerOpen?: (openModal: () => void) => void
+    closeModal: () => void
+    openLoginModal: () => void
 }
-const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ triggerOpen }) => {
+const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ closeModal, openLoginModal }) => {
     const [formData, setFormData] = useState<RegistrationFormData>({
         email: '',
         phone: '',
@@ -48,18 +50,13 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ tri
         // }
 
         console.log('Данные формы:', formData)
-        handleClose()
+        // handleClose()
+        closeModal()
     }
-
-    useEffect(() => {
-        if (triggerOpen) {
-            triggerOpen(handleOpen)
-        }
-    }, [triggerOpen])
 
     return (
         <div className="flex justify-center">
-            <Modal show={showModal} onClose={handleClose} size="medium">
+            <Modal show={true} onClose={closeModal} size="medium">
                 <h2 className="mb-1 text-13xl font-medium bg-gradient-desktop bg-clip-text text-transparent uppercase">
                     Регистрация
                 </h2>
@@ -142,7 +139,9 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ tri
                 </form>
                 <div className="flex justify-center">
                     <p>Уже зарегистрированы?</p>
-                    <button className="underline bg-transparent border-transparent">Войти в аккаунт</button>
+                    <button className="underline bg-transparent border-transparent" onClick={openLoginModal}>
+                        Войти в аккаунт
+                    </button>
                     {/* <Link href="#" className="underline">
                         Войти в аккаунт
                     </Link> */}
