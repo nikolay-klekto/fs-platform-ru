@@ -2,7 +2,7 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
-const inputVariants = cva(
+const textareaVariants = cva(
     'flex w-full rounded-md border text-sm ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
     {
         variants: {
@@ -14,12 +14,11 @@ const inputVariants = cva(
             },
             size: {
                 default: 'h-10 px-3 py-2',
-                contacts_page: 'h-[53px] w-[453px] px-4 py-3.5 2xl:w-[520px]',
-                contacts_page_additional_info: 'h-[53px] w-[484px] px-4 py-3.5 3xl:w-[452px] 2xl:w-[520px]',
+                contacts_page: 'h-60 px-4 py-3.5',
             },
             rounded: {
                 default: 'rounded-md',
-                contacts_page: 'rounded-[53px]',
+                contacts_page: 'rounded-[33px]',
             },
         },
         defaultVariants: {
@@ -30,9 +29,9 @@ const inputVariants = cva(
     },
 )
 
-export interface EnhancedInputProps
-    extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'>,
-        VariantProps<typeof inputVariants> {
+export interface EnhancedTextareaProps
+    extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size' | 'onChange'>,
+        VariantProps<typeof textareaVariants> {
     validate?: (value: string) => { textError: string; status: boolean | null } | undefined
     error?: string
     onChange?: (value: string) => void
@@ -45,11 +44,10 @@ export interface EnhancedInputProps
     name?: string
 }
 
-const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
+const EnhancedTextarea = React.forwardRef<HTMLTextAreaElement, EnhancedTextareaProps>(
     (
         {
             className,
-            type,
             variant,
             size,
             rounded,
@@ -71,7 +69,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const [styleError, setStyleError] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
 
-        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
             const newValue = e.target.value
             setInternalValue(newValue)
             if (validate) {
@@ -94,7 +92,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             onChange?.(newValue)
         }
 
-        const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
             setIsFocused(true)
             onFocus?.()
         }
@@ -123,10 +121,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         return (
             <div className={cn('flex flex-col gap-1.5', wrapperClassName)}>
                 {label && <label className="text-sm font-medium text-foreground">{label}</label>}
-                <input
-                    type={type}
+                <textarea
                     className={cn(
-                        inputVariants({ variant, size, rounded }),
+                        textareaVariants({ variant, size, rounded }),
                         isFocused && 'ring-2 ring-ring ring-offset-2',
                         className,
                         styleError && 'custom_error_style_input',
@@ -150,6 +147,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
     },
 )
 
-EnhancedInput.displayName = 'EnhancedInput'
+EnhancedTextarea.displayName = 'EnhancedTextarea'
 
-export { EnhancedInput, inputVariants }
+export { EnhancedTextarea, textareaVariants }

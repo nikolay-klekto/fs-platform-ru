@@ -1,10 +1,30 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { EnhancedInput } from '@/components/ui/input'
+import { EnhancedTextarea } from '../../shared/TextareaDesktop'
+import { validateEmailDesktop } from '../../commonDesktop/validate/validateEmailDesktop'
 import { contentContactsDesktop, contentSocialContactsDesktop } from './contentContactsDesktop'
 
+interface FormData {
+    name: string
+    email: string
+    role: string
+}
+
 const ContactsDesktop: React.FC = () => {
+    const [formData, setFormData] = useState<FormData>({
+        name: '',
+        email: '',
+        role: '',
+    })
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        console.log('Submitted data:', formData)
+    }
+
     return (
         <>
             <div className="flex justify-between pt-52 pb-[297px] 2xl:max-w-[1190px] 2xl:flex-col 2xl:items-center 2xl:mx-auto 2xl:pt-28 2xl:pb-36">
@@ -54,57 +74,58 @@ const ContactsDesktop: React.FC = () => {
                     <div className="w-full h-[1px] bg-white/50 rounded-full mt-[99px] mb-[63px]"></div>
                     <div>
                         <h3 className="text-20xl font-semibold uppercase">Напишите нам</h3>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="flex justify-between pb-12 pt-14">
                                 <div className="flex flex-col gap-[33px]">
-                                    <label htmlFor="name" className="sr-only">
-                                        Имя
-                                    </label>
-                                    <Input
+                                    <EnhancedInput
                                         type="text"
                                         id="name"
                                         placeholder="Имя*"
-                                        className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 2xl:w-[520px]"
+                                        variant="contacts_page"
+                                        size="contacts_page"
+                                        rounded="contacts_page"
+                                        onChange={(value) => console.log('Имя:', value)}
                                     />
-                                    <label htmlFor="email" className="sr-only">
-                                        E-mail
-                                    </label>
-                                    <Input
+                                    <EnhancedInput
                                         type="email"
                                         id="email"
                                         placeholder="E-mail*"
-                                        className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 2xl:w-[520px]"
+                                        variant="contacts_page"
+                                        size="contacts_page"
+                                        rounded="contacts_page"
+                                        error="Некорректный формат E-mail"
+                                        validate={validateEmailDesktop}
                                     />
                                 </div>
                                 <div className="flex flex-col gap-[33px] pl-3">
-                                    <label htmlFor="tel" className="sr-only">
-                                        Телефон
-                                    </label>
-                                    <Input
+                                    <EnhancedInput
                                         type="tel"
                                         id="tel"
                                         placeholder="Телефон*"
-                                        className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 3xl:w-[452px] 2xl:w-[520px]"
+                                        variant="contacts_page"
+                                        size="contacts_page_additional_info"
+                                        rounded="contacts_page"
                                     />
-                                    <label htmlFor="role" className="sr-only">
-                                        Клиент/партнер/соискатель
-                                    </label>
-                                    <Input
+                                    <EnhancedInput
                                         type="text"
                                         id="role"
                                         placeholder="Клиент/партнер/соискатель"
-                                        className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 3xl:w-[452px] 2xl:w-[520px]"
+                                        variant="contacts_page"
+                                        size="contacts_page_additional_info"
+                                        rounded="contacts_page"
                                     />
                                 </div>
                             </div>
                             <label htmlFor="message" className="sr-only">
                                 Опишите свой вопрос
                             </label>
-                            <textarea
+                            <EnhancedTextarea
                                 name="message"
                                 id="message"
                                 placeholder="Опишите свой вопрос*"
-                                className="h-60 w-full rounded-[33px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent focus:outline-none border-[2px] border-[#878797] focus:border-[3px] placeholder:text-muted-foreground"
+                                variant="contacts_page"
+                                size="contacts_page"
+                                rounded="contacts_page"
                             />
                             <div className="flex justify-between pt-[60px]">
                                 <Button variant="select_desktop" size="contacts_btn_send_desktop">
@@ -124,3 +145,71 @@ const ContactsDesktop: React.FC = () => {
 }
 
 export default ContactsDesktop
+
+/*http://localhost:3000/contacts*/
+/*
+<form>
+    <div className="flex justify-between pb-12 pt-14">
+        <div className="flex flex-col gap-[33px]">
+            <label htmlFor="name" className="sr-only">
+                Имя
+            </label>
+            <Input
+                type="text"
+                id="name"
+                placeholder="Имя*"
+                className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 2xl:w-[520px]"
+            />
+            <label htmlFor="email" className="sr-only">
+                E-mail
+            </label>
+            <Input
+                type="email"
+                id="email"
+                placeholder="E-mail*"
+                className="h-[53px] w-[452px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 2xl:w-[520px]"
+            />
+        </div>
+        <div className="flex flex-col gap-[33px] pl-3">
+            <label htmlFor="tel" className="sr-only">
+                Телефон
+            </label>
+            <Input
+                type="tel"
+                id="tel"
+                placeholder="Телефон*"
+                className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 3xl:w-[452px] 2xl:w-[520px]"
+            />
+            <label htmlFor="role" className="sr-only">
+                Клиент/партнер/соискатель
+            </label>
+            <Input
+                type="text"
+                id="role"
+                placeholder="Клиент/партнер/соискатель"
+                className="h-[53px] w-[484px] rounded-[53px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent border-[2px] border-[#878797] focus:border-[3px] 3xl:w-[452px] 2xl:w-[520px]"
+            />
+        </div>
+    </div>
+    <label htmlFor="message" className="sr-only">
+        Опишите свой вопрос
+    </label>
+    <textarea
+        name="message"
+        id="message"
+        placeholder="Опишите свой вопрос*"
+        className="h-60 w-full rounded-[33px] px-4 py-3.5 text-5xl bg-transparent ring-offset-transparent focus:outline-none border-[2px] border-[#878797] focus:border-[3px] placeholder:text-muted-foreground"
+    />
+    <div className="flex justify-between pt-[60px]">
+        <Button variant="select_desktop" size="contacts_btn_send_desktop">
+            Отправить
+        </Button>
+        <p className="max-w-[663px] pl-3 text-white/20 text-[17px] font-medium">
+            Нажимая кнопку “Отправить”, я даю согласие на обработку своих персональных данных и
+            соглашаюсь с Условиями использования и Политикой конфиденциальности
+        </p>
+    </div>
+</form>
+
+
+*/

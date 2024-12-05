@@ -35,8 +35,8 @@ export default function Contacts() {
                 </>
             ) : (
                 <>
-                    <main className="bg-[#101030] text-white pt-5">
-                        <HeaderMobi />
+                    <HeaderMobi />
+                    <main className="bg-[#101030] text-white">
                         <ContactsPageMobi />
                     </main>
                     <FooterMobi />
