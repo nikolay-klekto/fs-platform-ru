@@ -38,14 +38,14 @@ spring:
       discovery:
         register: false
   jooq:
-    url: jdbc:postresql://45.135.234.61:15432/fun_scrut
-    user: username
-    password: password
-#    url: jdbc:postgresql:FunScrut2
-#    user: postgres
-#    password: 191220#destin
-    schema: public
-    driver: org.postgresql.Driver
+#    url: jdbc:postresql://45.135.234.61:15432/fun_scrut
+#    user: username
+#    password: password
+##    url: jdbc:postgresql:FunScrut2
+##    user: postgres
+##    password: 191220#destin
+#    schema: public
+#    driver: org.postgresql.Driver
     sql-dialect: POSTGRES
 #  liquibase:
 #    enabled: false
@@ -71,6 +71,7 @@ logging:
       jooq:
         tools:
           LoggerListener: debug
+      springframework.core.env: DEBUG
 
 jooq:
   url: jdbc:postgresql://45.135.234.61:15432/fun_scrut

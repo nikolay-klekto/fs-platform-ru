@@ -49,7 +49,7 @@ dependencies {
     // GraphQL
     implementation("org.springframework.boot:spring-boot-starter-graphql")
     implementation("com.graphql-java:graphql-java-extended-scalars:20.0")
-    implementation("com.tailrocks.graphql:graphql-datetime-spring-boot-starter:6.0.0")
+//    implementation("com.tailrocks.graphql:graphql-datetime-spring-boot-starter:6.0.0")
 
     // Spring Boot Starters
     implementation("org.springframework.boot:spring-boot-starter-web")

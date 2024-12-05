@@ -19,6 +19,7 @@ class JwtAuthenticationFilter(
 ) : Filter {
 
     override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
+//        val publicQueries = listOf("getAllEvents")
         val httpRequest = request as HttpServletRequest
         val httpResponse = response as HttpServletResponse
 
