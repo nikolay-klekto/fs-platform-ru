@@ -3,6 +3,7 @@ package com.fs.client.repository
 import com.fs.client.repository.blocked.ClientBlockingRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.converter.ClientModelConverter
+import com.fs.client.ru.AuthorizationClientModel
 import com.fs.client.service.PasswordService
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
@@ -59,6 +60,27 @@ abstract class ClientRepository(
                 .set(CLIENT.SALT, passwordCredentials.second)
                 .where(CLIENT.ID.eq(id))
                 .execute() == 1
+        }
+    }
+
+    fun verifyPassword(clientModel: AuthorizationClientModel): Mono<ErrorModel<Boolean>> {
+        return Mono.fromSupplier {
+            if (clientModel.email == null || clientModel.password == null) {
+                throw Exception("Введены не все поля!")
+            }
+
+            val possibleClient = clientBlockingRepository.getByEmail(clientModel.email!!)
+                ?: throw Exception("Данного пользователя не существует!")
+
+            if (passwordService.verifyPassword(
+                    clientModel.password!!,
+                    Pair(possibleClient.password!!, possibleClient.salt!!)
+                )
+            ) {
+                return@fromSupplier ErrorModel(true, null)
+            } else {
+                throw Exception("Пароль неверный!")
+            }
         }
     }
 

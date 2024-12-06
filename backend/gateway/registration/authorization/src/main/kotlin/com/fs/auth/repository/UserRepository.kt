@@ -20,16 +20,6 @@ abstract class UserRepository(
     open val userBlockingRepository: UserBlockingRepository,
     open val basketBlockingRepository: BasketBlockingRepository
 ) {
-    fun changePassword(id: String, password: String): Mono<Boolean> {
-        return Mono.fromSupplier {
-            val passwordCredentials = passwordService.encodePassword(password)
-            dsl.update(CLIENT)
-                .set(CLIENT.PASSWORD, passwordCredentials.first)
-                .set(CLIENT.SALT, passwordCredentials.second)
-                .where(CLIENT.ID.eq(id))
-                .execute() == 1
-        }
-    }
 
     fun verifyPassword(clientModel: AuthorizationClientModel): ClientModel {
         if (clientModel.email == null || clientModel.password == null) {
@@ -100,28 +90,6 @@ abstract class UserRepository(
         newClientRecord.store()
 
         return newClientRecord.into(ClientModel::class.java).id!!
-    }
-
-
-    fun update(newClientModel: ClientModel): Boolean {
-
-        val oldClientModel: ClientModel = userBlockingRepository.getById(newClientModel.id)!!
-
-        return dsl.update(CLIENT)
-            .set(CLIENT.CITY_ID, newClientModel.cityId ?: oldClientModel.cityId)
-            .set(CLIENT.BASKET_ID, newClientModel.basketId ?: oldClientModel.basketId)
-            .set(CLIENT.BIRTHDAY, newClientModel.birthday ?: oldClientModel.birthday)
-            .set(CLIENT.EDUCATION_STATUS, newClientModel.educationStatus ?: oldClientModel.educationStatus)
-            .set(CLIENT.EMAIL, newClientModel.email ?: oldClientModel.email)
-            .set(CLIENT.EMPLOYMENT, newClientModel.employment ?: oldClientModel.employment)
-            .set(CLIENT.FIRST_NAME, newClientModel.firstName ?: oldClientModel.firstName)
-            .set(CLIENT.LAST_NAME, newClientModel.lastName ?: oldClientModel.lastName)
-            .set(CLIENT.ROLE, newClientModel.role ?: oldClientModel.role)
-            .set(CLIENT.PHONE_NUMBER, newClientModel.phoneNumber ?: oldClientModel.phoneNumber)
-            .set(CLIENT.TELEGRAM_USERNAME, newClientModel.telegramUsername ?: oldClientModel.telegramUsername)
-            .set(CLIENT.USERNAME, newClientModel.username ?: oldClientModel.username)
-            .where(CLIENT.ID.eq(newClientModel.id))
-            .execute() == 1
     }
 
     companion object {

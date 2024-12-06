@@ -23,5 +23,6 @@ extend type Mutation{
     updateClient(client: ClientUpdate!): Boolean 
     changePassword(clientId: String!, password: String!): Boolean 
     addClient(client: ClientInsert): ErrorClientModel 
-    deleteClient(id: String!): Boolean 
+    deleteClient(id: String!): Boolean
+#    verifyPassword(clientModel: AuthorizationClientModelInsert): ErrorBooleanModel
 }

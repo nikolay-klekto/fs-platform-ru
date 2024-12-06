@@ -292,6 +292,13 @@ type Company {
     shortDescription: String
 }
 
+input AuthorizationClientModelInsert {
+    basketId: ID,
+    email: String,
+    password: String,
+    phoneNumber: String
+}
+
 type Profession {
     id: ID
     description: String

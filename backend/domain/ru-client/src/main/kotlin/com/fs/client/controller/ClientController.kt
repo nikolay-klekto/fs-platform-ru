@@ -1,6 +1,7 @@
 package com.fs.client.controller
 
 import com.fs.client.repository.ClientRepository
+import com.fs.client.ru.AuthorizationClientModel
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.PartnerModel
 import com.fs.service.ru.errors.ErrorModel
@@ -40,12 +41,12 @@ open class ClientController(open val clientRepository: ClientRepository) {
     ) = clientRepository
         .changeActiveStatus(id, activeStatus)
 
-    @PutMapping("/password/{id}")
-    fun updateClientPassword(
-        @RequestBody password: String,
-        @PathVariable("id") id: String
-    ) = clientRepository
-        .changePassword(id, password)
+//    @PutMapping("/password/{id}")
+//    fun updateClientPassword(
+//        @RequestBody password: String,
+//        @PathVariable("id") id: String
+//    ) = clientRepository
+//        .changePassword(id, password)
 
 //    @PutMapping("/role/{id}")
 //    fun updateClientRole(
@@ -99,6 +100,16 @@ open class ClientController(open val clientRepository: ClientRepository) {
         @Argument password: String
     ): Mono<Boolean> {
         return clientRepository.changePassword(clientId, password)
+    }
+
+    @MutationMapping
+    open fun verifyPassword(
+        @Argument clientModel: AuthorizationClientModel
+    ): Mono<ErrorModel<Boolean>> {
+        return clientRepository.verifyPassword(clientModel)
+            .onErrorResume {
+                Mono.just(ErrorModel(null, it.message))
+            }
     }
 
 
