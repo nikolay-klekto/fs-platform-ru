@@ -25,11 +25,7 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
         password: '',
     })
 
-    // const [showModal, setShowModal] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
-
-    // const handleOpen = () => setShowModal(true)
-    // const handleClose = () => setShowModal(false)
 
     const handleChange = (field: keyof LoginFormData, value: string | boolean) => {
         setFormData((prev) => ({
@@ -43,7 +39,6 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
 
         // Валидацию добавить CЮДА!!!!
         console.log('Данные формы:', formData)
-        // handleClose()
         closeModal()
     }
 
@@ -53,7 +48,7 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
                 <button onClick={closeModal} className="absolute top-[5%] right-[5%] w-[7%]">
                     <X size={41} color="white" className="opacity-70 w-full" />
                 </button>
-                <h2 className="mb-7 text36px_desktop font-medium text-gradient_desktop_custom uppercase inline">
+                <h2 className="mb-7 4xl:mb-6 3xl:mb-5 2xl:mb-4 text36px_desktop font-medium text-gradient_desktop_custom uppercase inline">
                     Вход
                 </h2>
                 <form onSubmit={handleSubmit} className="flex flex-col align-middle w-full">
@@ -68,7 +63,7 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
   focus:bg-[#1f203f]"
                         labelClassName="text-white text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base font-semibold"
                     />
-                    <div className="relative mt-5">
+                    <div className="relative mt-5 4xl:mt-4 3xl:mt-3 2xl:mt-2">
                         <EnhancedInput
                             label="Пароль"
                             type={showPassword ? 'text' : 'password'}
@@ -93,7 +88,7 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
                     <div className="w-[95%]">
                         <p className="mt-3 text-[#353652] font-medium text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base">
                             Защита от спама reCAPTCHA{' '}
-                            <Link href="/contacts" target="_blank" rel="noopener noreferrer" className="underline">
+                            <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
                                 Конфиденциальность
                             </Link>{' '}
                             и{' '}
