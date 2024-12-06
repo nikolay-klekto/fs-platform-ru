@@ -19,30 +19,16 @@ the<DependencyManagementExtension>().apply {
 val mainClassPath = "com.fs.client.ClientServiceAppKt"
 
 tasks.getByName<Jar>("jar") {
-    enabled = false
+    enabled = true
+    archiveClassifier.set("lib") // Указываем, что это библиотечный JAR
 }
 
 tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+    enabled = true
+    archiveClassifier.set("")
     archiveBaseName.set("ru-client")
-    archiveVersion.set("0.0.2-SNAPSHOT")
+    archiveVersion.set("0.0.2-SNAPSHOT")// Основной JAR будет исполняемым
 }
-
-//tasks.named<Jar>("jar") {
-//    isZip64 = true
-//    manifest {
-//        attributes["Main-Class"] = mainClassPath
-//    }
-//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-//    from(sourceSets.main.get().output)
-//    dependsOn(configurations.runtimeClasspath)
-//    from({
-//        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
-//    })
-//    archiveBaseName.set("ru-client")
-//    archiveVersion.set("0.0.2-SNAPSHOT")
-//    archiveClassifier.set("")
-//    destinationDirectory.set(file("$buildDir/libs"))
-//}
 
 group = "com.fs.platform.ru"
 version = "0.0.2-SNAPSHOT"

@@ -1,4 +1,3 @@
-
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -18,25 +17,14 @@ the<DependencyManagementExtension>().apply {
 
 val mainClassPath = "com.fs.auth.AuthServiceAppKt"
 
-tasks.named<Jar>("jar") {
-    isZip64 = true
-    manifest {
-        attributes["Main-Class"] = mainClassPath
-    }
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    from(sourceSets.main.get().output)
-    dependsOn(configurations.runtimeClasspath)
-    from({
-        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
-    })
-    archiveBaseName.set("ru-auth")
-    archiveVersion.set("0.0.3-SNAPSHOT")
-    archiveClassifier.set("")
-    destinationDirectory.set(file("$buildDir/libs"))
+tasks.getByName<Jar>("jar") {
+    enabled = false
 }
 
 tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
     dependsOn(":backend:domain:ru-client:bootJar")
+    archiveBaseName.set("ru-auth")
+    archiveVersion.set("0.0.3-SNAPSHOT")
 }
 
 group = "com.fs.platform.ru"
@@ -50,8 +38,13 @@ dependencies {
 
     implementation(project(":backend:domain:ru-client-model"))
     implementation(project(":backend:domain:ru-service-model"))
-    implementation(project(":backend:domain:ru-client"))
+    implementation(project(":backend:domain:ru-client")) {
+        artifact {
+            classifier = "lib" // Используем библиотечный JAR из ru-client
+        }
+    }
 //    runtimeOnly(project(":frontend"))
+    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-graphql")
     implementation("org.springframework.boot:spring-boot-starter-jooq")
