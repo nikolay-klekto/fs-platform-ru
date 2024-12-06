@@ -12,6 +12,7 @@ import { EyeOffPasswordDesktop } from '@/components/assets/icons'
 import { EyeOnPasswordDesktop } from '@/components/assets/icons'
 import { PasswordGeneratorDesktop } from '@/components/assets/icons'
 import { generatePassword } from '@/components/desktop/commonDesktop/generatePassword'
+import PhoneInputDesktop from '../../shared/PhoneInputDesktop'
 
 interface RegistrationFormData {
     email: string
@@ -88,12 +89,12 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
   focus:bg-[#1f203f]"
                         labelClassName="text-white text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base font-semibold"
                     />
-                    <EnhancedInput
-                        label="Номер телефона"
-                        type="tel"
-                        placeholder="+375(__)___-__-__"
+                    <PhoneInputDesktop
                         value={formData.phone}
                         onChange={(value) => handleChange('phone', value)}
+                        labelClassName="mt-5 4xl:mt-4 3xl:mt-3 2xl:mt-2 text-white text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base font-semibold"
+                        inputClassName="py-2 px-4 mt-1 text-white border text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg border-[#878797] bg-[#101030] rounded-[50px] placeholder:text18px_desktop  placeholder:font-medium placeholder:text-[#353652] focus:border focus:border-[#878797] focus:outline-none
+  focus:bg-[#1f203f]"
                     />
                     <div className="relative mt-5 4xl:mt-4 3xl:mt-3 2xl:mt-2">
                         <EnhancedInput
