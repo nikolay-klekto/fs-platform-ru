@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
@@ -7,12 +7,39 @@ import { EnhancedTextarea } from '../../shared/TextareaDesktop'
 import { validateNameDesktop } from '../../commonDesktop/validate/validateNameDesktop'
 import { validateEmailDesktop } from '../../commonDesktop/validate/validateEmailDesktop'
 import { validatePhoneNumberDesktop } from '../../commonDesktop/validate/validatePhoneNumberDesktop'
+import { validateRoleDesktop } from '../../commonDesktop/validate/validateRoleDesktop'
 import { validateTextareaDesktop } from '../../commonDesktop/validate/validateTextareaDesktop'
 import { contentContactsDesktop, contentSocialContactsDesktop } from './contentContactsDesktop'
 
+interface FormData {
+    name: string
+    email: string
+    tel: string
+    role?: string
+}
+
 const ContactsDesktop: React.FC = () => {
+    const [formData, setFormData] = useState<FormData>({
+        name: '',
+        email: '',
+        tel: '',
+        role: '',
+    })
+
+    const handleChange = (field: string, value: string) => {
+        setFormData((prev) => ({
+            ...prev,
+            [field]: value,
+        }))
+
+        console.log(formData)
+    }
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
+
+        //if (formData.role) validateRoleDesktop(formData.role)
+        console.log(formData)
     }
 
     return (
@@ -64,7 +91,7 @@ const ContactsDesktop: React.FC = () => {
                     <div className="w-full h-[1px] bg-white/50 rounded-full mt-[99px] mb-[63px]"></div>
                     <div>
                         <h3 className="text-20xl font-semibold uppercase">Напишите нам</h3>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit} noValidate>
                             <div className="flex justify-between pb-12 pt-14">
                                 <div className="flex flex-col gap-[23px]">
                                     <EnhancedInput
@@ -74,7 +101,9 @@ const ContactsDesktop: React.FC = () => {
                                         variant="contacts_page"
                                         size="contacts_page"
                                         rounded="contacts_page"
-                                        validate={validateNameDesktop}
+                                        value={formData.name}
+                                        onChange={(value) => handleChange('name', value)}
+                                        validate={(value) => validateNameDesktop(value)}
                                         wrapperClassName={'h-[73px]'}
                                     />
                                     <EnhancedInput
@@ -84,7 +113,9 @@ const ContactsDesktop: React.FC = () => {
                                         variant="contacts_page"
                                         size="contacts_page"
                                         rounded="contacts_page"
-                                        validate={validateEmailDesktop}
+                                        value={formData.email}
+                                        onChange={(value) => handleChange('email', value)}
+                                        validate={(value) => validateEmailDesktop(value)}
                                         wrapperClassName={'h-[73px]'}
                                     />
                                 </div>
@@ -96,7 +127,9 @@ const ContactsDesktop: React.FC = () => {
                                         variant="contacts_page"
                                         size="contacts_page_additional_info"
                                         rounded="contacts_page"
-                                        validate={validatePhoneNumberDesktop}
+                                        value={formData.tel}
+                                        onChange={(value) => handleChange('tel', value)}
+                                        validate={(value) => validatePhoneNumberDesktop(value)}
                                         wrapperClassName={'h-[73px]'}
                                     />
                                     <EnhancedInput
@@ -106,6 +139,9 @@ const ContactsDesktop: React.FC = () => {
                                         variant="contacts_page"
                                         size="contacts_page_additional_info"
                                         rounded="contacts_page"
+                                        value={formData.role}
+                                        onChange={(value) => handleChange('role', value)}
+                                        //validate={(value) => validateRoleDesktop(value)}
                                         wrapperClassName={'h-[73px]'}
                                     />
                                 </div>

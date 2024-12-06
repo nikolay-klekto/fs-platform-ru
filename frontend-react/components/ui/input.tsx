@@ -93,8 +93,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const newValue = e.target.value
+            console.log(newValue)
             setInternalValue(newValue)
-            validateComponent(newValue)
+            /*validateComponent(newValue)*/
             onChange?.(newValue)
         }
 
@@ -106,7 +107,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-            validateComponent(internalValue)
+            internalValue && validateComponent(internalValue)
         }
 
         return (

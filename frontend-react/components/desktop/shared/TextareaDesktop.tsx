@@ -92,7 +92,6 @@ const EnhancedTextarea = React.forwardRef<HTMLTextAreaElement, EnhancedTextareaP
         const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
             const newValue = e.target.value
             setInternalValue(newValue)
-            validateComponent(newValue)
             onChange?.(newValue)
         }
 
@@ -104,7 +103,7 @@ const EnhancedTextarea = React.forwardRef<HTMLTextAreaElement, EnhancedTextareaP
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-            validateComponent(internalValue)
+            internalValue && validateComponent(internalValue)
         }
 
         return (
