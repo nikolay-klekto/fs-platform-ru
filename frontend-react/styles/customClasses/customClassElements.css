@@ -1,0 +1,92 @@
+@tailwind components;
+
+@layer components {
+    .btn-custom {
+        @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+    }
+
+    .card_custom {
+        @apply bg-white shadow-md rounded-lg p-4;
+    }
+
+    .scrollbar_custom::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .scrollbar_custom::-webkit-scrollbar-thumb {
+        background-color: #898997;
+        border-radius: 4px;
+    }
+
+    .scrollbar_custom::-webkit-scrollbar-track {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+    }
+
+    .no-scrollbar_custom::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar_custom {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .text36px_desktop {
+        @apply text-[36px] 4xl:text-10xl 3xl:text-9xl 2xl:text-7xl;
+    }
+    .text32px_desktop {
+        @apply text-[32px] 4xl:text-10xl 3xl:text-6xl 2xl:text-6xl;
+    }
+    .text30px_desktop {
+        @apply text-[30px] 4xl:text-9xl 3xl:text-8xl 2xl:text-6xl !important;
+    }
+    .text28px_desktop {
+        @apply text-[28px] 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl xl:text-2xl lg:text-sm;
+    }
+    .text24px_desktop {
+        @apply text-[24px] 4xl:text-6xl 3xl:text-5xl 2xl:text-4xl;
+    }
+    .text18px_desktop {
+        @apply text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg xl:text-xs lg:text-xs;
+    }
+    .text28px_mobi {
+        @apply text-9xl sm:text-7xl;
+    }
+    .text22px_mobi {
+        @apply md:text-6xl sm_xl:text-5xl sm_l:text-4xl sm_s:text-3xl sm:text-3xl !important;
+    }
+    .text18px_mobi {
+        @apply text-4xl md:text-4xl sm_xl:text-3xl sm_l:text-2xl sm:text-xl;
+    }
+    .text12px_mobi {
+        @apply text-base md:text-base sm_xl:text-sm sm_l:text-xs sm:text-xs;
+    }
+
+    .text-gradient_desktop_custom {
+        @apply bg-gradient-desktop bg-clip-text text-transparent;
+    }
+    .text-gradient_mobi_custom {
+        @apply bg-gradient-desktop bg-clip-text text-transparent;
+    }
+
+    .button-shadow_around_desktop_custom {
+        @apply shadow-shadow-around-desktop-custom;
+    }
+    .button-shadow_right_desktop_custom {
+        @apply shadow-shadow-right-desktop-custom;
+    }
+    .paddings-desktop-custom {
+        @apply pt-[10vw] pb-[50px] 3xl:pt-[7.5vw] 2xl:pt-[3.75rem] 2xl:pb-[3.75rem] xl:py-[2.5rem] lg:py-[2rem];
+    }
+    .gradient-text-desktop-custom {
+        @apply bg-gradient-desktop bg-clip-text text-[1.5625rem] font-semibold text-transparent 2xl:text-[1.375rem];
+    }
+
+    .custom-grey {
+        color: #878797;
+    }
+
+    .bg-custom-grey {
+        background-color: #878797;
+    }
+
+}
