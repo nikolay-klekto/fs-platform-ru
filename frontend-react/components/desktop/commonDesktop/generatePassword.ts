@@ -1,4 +1,4 @@
-const generatePassword = (length: number = 12): string => {
+export const generatePassword = (length: number = 12): string => {
     if (length < 4) {
         throw new Error('Длина пароля должна быть не меньше 4 символов.')
     }

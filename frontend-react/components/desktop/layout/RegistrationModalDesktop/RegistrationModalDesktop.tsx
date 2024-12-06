@@ -11,6 +11,7 @@ import { validateEmailDesktop } from '../../commonDesktop/validate/validateEmail
 import { EyeOffPasswordDesktop } from '@/components/assets/icons'
 import { EyeOnPasswordDesktop } from '@/components/assets/icons'
 import { PasswordGeneratorDesktop } from '@/components/assets/icons'
+import { generatePassword } from '@/components/desktop/commonDesktop/generatePassword'
 
 interface RegistrationFormData {
     email: string
@@ -58,6 +59,14 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
         closeModal()
     }
 
+    const handleGeneratePassword = () => {
+        const generatedPassword = generatePassword()
+        setFormData((prev) => ({
+            ...prev,
+            password: generatedPassword,
+        }))
+    }
+
     return (
         <Modal show={true} onClose={closeModal} size="medium" showCloseButton={false}>
             <div className="flex flex-col justify-center items-center pt-[40px] pb-[30px] w-[73%] mx-auto">
@@ -103,6 +112,13 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             className="absolute bottom-[10%] right-4 flex items-center text-[#878797]"
                         >
                             {showPassword ? <EyeOnPasswordDesktop /> : <EyeOffPasswordDesktop />}
+                        </button>
+                        <button
+                            type="button"
+                            onClick={handleGeneratePassword}
+                            className="absolute bottom-[10%] right-[-10%] flex items-center text-[#878797]"
+                        >
+                            <PasswordGeneratorDesktop />
                         </button>
                     </div>
                     <div className="relative mt-5 4xl:mt-4 3xl:mt-3 2xl:mt-2">
