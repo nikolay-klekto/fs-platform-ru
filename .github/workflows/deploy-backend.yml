@@ -59,7 +59,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: my-app-jar-auth
-        path: backend/gateway/registration/authorization/build/libs/authorization-0.0.3-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+        path: backend/gateway/registration/authorization/build/libs/ru-auth-0.0.3-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
         
   deploy:
     runs-on: ubuntu-latest
