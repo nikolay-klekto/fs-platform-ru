@@ -36,6 +36,7 @@ export interface EnhancedInputProps
     label?: string
     helperText?: string
     wrapperClassName?: string
+    labelClassName?: string
     placeholder?: string
     name?: string
 }
@@ -56,6 +57,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             helperText,
             name,
             wrapperClassName,
+            labelClassName,
             placeholder,
             ...props
         },
@@ -106,7 +108,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
 
         return (
             <div className={cn('flex flex-col gap-1.5', wrapperClassName)}>
-                {label && <label className="text-sm font-medium text-foreground">{label}</label>}
+                {label && <label className={cn('text-sm font-medium text-foreground', labelClassName)}>{label}</label>}
                 <input
                     type={type}
                     className={cn(

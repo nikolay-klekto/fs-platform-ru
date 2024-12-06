@@ -4,6 +4,9 @@ import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal'
 import { X } from 'lucide-react'
 import Link from 'next/link'
+import { EnhancedInput } from '@/components/ui/input'
+import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
+import { validateNameDesktop } from '@/components/desktop/commonDesktop/validate/validateNameDesktop'
 
 interface FormData {
     name: string
@@ -25,16 +28,20 @@ const ModalCallDesktop: React.FC = () => {
     const handleCloseModal = () => setModalOpen(false)
 
     const [step, setStep] = useState<'form' | 'accepted' | null>('form')
+
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
-        if (!formData.name) newErrors.name = 'Введите Ваше имя'
-        else if (!/^[A-Za-zА-Яа-яЁё\s]+$/.test(formData.name)) {
-            newErrors.name = 'Введите Ваше имя'
+        if (!formData.consent) {
+            newErrors.consent = 'Подтвердите согласие на обработку данных'
         }
-        if (!formData.phone) newErrors.phone = 'Введите номер телефона'
-        else if (!/^\+375\s\(\d{2}\)\s\d{3}-\d{2}-\d{2}$/.test(formData.phone))
+        const nameValidation = validateNameDesktop(formData.name)
+        if (nameValidation) {
+            newErrors.name = 'Введите корректное имя'
+        }
+        const phoneValidation = validatePhoneDesktop(formData.phone)
+        if (phoneValidation) {
             newErrors.phone = 'Введите корректный номер телефона'
-        if (!formData.consent) newErrors.consent = 'Подтвердите согласие на обработку данных'
+        }
         setErrors(newErrors)
         return Object.keys(newErrors).length === 0
     }
@@ -76,34 +83,44 @@ const ModalCallDesktop: React.FC = () => {
                         </div>
                         <form className="flex flex-col items-start space-y-2 pl-5 pr-5 " onSubmit={handleSubmit}>
                             <div className="flex flex-col w-full">
-                                <label htmlFor="name" className="mb-1 text-2xl font-medium text-white">
-                                    Ваше имя*
-                                </label>
-                                <input
+                                <EnhancedInput
                                     type="text"
-                                    id="name"
                                     name="name"
                                     placeholder="Введите ваше имя"
                                     value={formData.name}
-                                    onChange={handleChange}
-                                    className="border border-[#878797] rounded-[20px] p-4 w-full bg-transparent h-10 placeholder:text-4xl  placeholder:font-medium placeholder:text-[#353652] placeholder:opacity-100"
+                                    validate={(value) =>
+                                        validateNameDesktop(value)
+                                            ? { textError: 'Введите корректное имя', status: false, styleError: true }
+                                            : { textError: '', status: true, styleError: false }
+                                    }
+                                    onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
+                                    className="border border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
+                                    label="Ваше имя*"
+                                    labelClassName="mb-1 text-2xl font-medium text-white"
+                                    wrapperClassName="w-full"
                                 />
-                                {errors.name && <p className="mb-1 mt-2 text-2xl text-[red]">{errors.name}</p>}
                             </div>
                             <div className="flex flex-col w-full">
-                                <label htmlFor="phone" className="mb-1 text-2xl font-medium text-white">
-                                    Номер телефона*
-                                </label>
-                                <input
+                                <EnhancedInput
                                     type="tel"
-                                    id="phone"
                                     name="phone"
                                     placeholder="+375 (__) ___-__-__"
                                     value={formData.phone}
-                                    onChange={handleChange}
-                                    className="border border-[#878797] rounded-[20px] p-4 w-full bg-transparent h-10 placeholder:text-4xl  placeholder:font-medium placeholder:text-[#353652] placeholder:opacity-100"
+                                    validate={(value) =>
+                                        validatePhoneDesktop(value)
+                                            ? {
+                                                  textError: 'Введите корректный номер телефона',
+                                                  status: false,
+                                                  styleError: true,
+                                              }
+                                            : { textError: '', status: true, styleError: false }
+                                    }
+                                    onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
+                                    className="border border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
+                                    label="Номер телефона*"
+                                    wrapperClassName="w-full"
+                                    labelClassName="mb-1 text-2xl font-medium text-white"
                                 />
-                                {errors.phone && <p className="mb-1 text-2xl mt-2 text-[red]">{errors.phone}</p>}
                             </div>
                             <div className="flex flex-col w-full">
                                 <label htmlFor="time" className="mb-1 text-2xl font-medium text-white">
@@ -137,7 +154,9 @@ const ModalCallDesktop: React.FC = () => {
                                     Я согласен(а) на обработку персональных данных
                                 </label>
                             </div>
-                            {errors.consent && <p className="mb-1 text-2xl text-[red]">{errors.consent}</p>}
+                            {errors.consent && (
+                                <p className="mb-1 text-sm text-[red] custom_error_style_input">{errors.consent}</p>
+                            )}
                             <div className="pl-1 mx-auto">
                                 <p className="text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
