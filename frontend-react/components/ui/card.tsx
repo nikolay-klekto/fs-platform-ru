@@ -1,9 +1,117 @@
 import * as React from 'react'
 
+import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
-const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('rounded-lg border bg-card text-card-foreground shadow-sm', className)} {...props} />
+const cardVariants = cva('rounded-full border-none', {
+    variants: {
+        variant: {
+            default: '',
+            profession_home_desktop:
+                'hover:button-shadow_around_desktop_custom flex cursor-pointer flex-col justify-between border-none bg-cover bg-center',
+            profession_home_mobi: '',
+            profession_page_desktop:
+                'hover:button-shadow_around_desktop_custom relative flex cursor-pointer flex-col justify-between border-none bg-cover bg-center',
+            profession_page_mobi: 'flex flex-col justify-between border-none bg-cover bg-center bg-no-repeat',
+        },
+        size: {
+            default: '',
+            profession_home_desktop: '3xl:px-[20px] 3xl:py-[15px] px-[30px] py-[20px] 2xl:px-[15px] 2xl:py-[10px]',
+            profession_home_mobi: '',
+            profession_page_desktop:
+                'aspect-[340/400] w-[340px] max-w-full  px-[20px] py-[25px] 2xl:px-[15px] 2xl:py-[20px]',
+            profession_page_mobi:
+                'aspect-[165/194] w-[165px] max-w-[210px] flex-shrink flex-grow overflow-hidden rounded-[24px] px-[10px] py-[12px] md:aspect-[165/194] md:w-[185px]',
+        },
+        rounded: {
+            default: 'rounded-[50px]',
+            none: 'rounded-none',
+            full: 'rounded-full',
+            rounded_50: 'rounded-[50px]',
+            rounded_24: 'rounded-[24px]',
+        },
+    },
+    defaultVariants: {
+        variant: 'default',
+        size: 'default',
+        rounded: 'default',
+    },
+})
+
+const cardTitleVariants = cva('font-medium', {
+    variants: {
+        variant: {
+            default: '',
+            profession_home_desktop:
+                'text30px_desktop bg-white bg-opacity-[70%] font-semibold tracking-normal text-[#101030]',
+            profession_home_mobi: '',
+            profession_page_desktop:
+                '4xl:text-6xl 3xl:text-5xl truncate bg-white bg-opacity-[70%] text-7xl font-medium text-[#101030] 2xl:text-4xl',
+            profession_page_mobi: 'bg-white bg-opacity-[70%] text-[12px] font-medium text-[#101030]',
+        },
+        size: {
+            default: 'text-[24px]',
+            profession_home_desktop: 'w-fit px-[20px] py-[10px]',
+            profession_home_mobi: '',
+            profession_page_desktop:
+                '3xl:px-[15px] 4xl:px-[15px] 4xl:max-w-full w-fit max-w-full  rounded-[25px] px-[20px] py-[2px] 2xl:px-[10px]',
+            profession_page_mobi: 'h-[20px] w-fit max-w-full truncate px-[10px]',
+        },
+        rounded: {
+            default: 'rounded-[50px]',
+            none: 'rounded-none',
+            full: 'rounded-full',
+            rounded_50: 'rounded-[50px]',
+            rounded_25: 'rounded-[25px]',
+            rounded_24: 'rounded-[24px]',
+            rounded_12: 'rounded-[12px]',
+        },
+    },
+    defaultVariants: {
+        variant: 'default',
+        size: 'default',
+        rounded: 'default',
+    },
+})
+
+const cardFooterVariants = cva('', {
+    variants: {
+        variant: {
+            default: '',
+            profession_home_desktop: 'whitespace-nowrap bg-white bg-opacity-[100] font-medium ',
+            profession_home_mobi: '',
+            profession_page_desktop: 'whitespace-nowrap bg-white font-medium',
+            profession_page_mobi: 'whitespace-nowrap bg-white font-medium',
+        },
+        size: {
+            default: 'p-0',
+            profession_home_desktop: 'w-fit px-[15px] py-[5px] pb-3 2xl:px-[10px]',
+            profession_home_mobi: '',
+            profession_page_desktop:
+                '4xl:px-[15px] 3xl:px-[15px] 4xl:py-[4px] 3xl:py-[2px] w-fit px-[20px] py-[5px] 2xl:px-[10px] 2xl:py-0',
+            profession_page_mobi: 'w-fit px-[10px] py-[2px]',
+        },
+        rounded: {
+            default: 'rounded-[50px]',
+            none: 'rounded-none',
+            full: 'rounded-full',
+            rounded_50: 'rounded-[50px]',
+            rounded_25: 'rounded-[25px]',
+            rounded_24: 'rounded-[24px]',
+            rounded_12: 'rounded-[12px]',
+        },
+    },
+    defaultVariants: {
+        variant: 'default',
+        size: 'default',
+        rounded: 'default',
+    },
+})
+
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardVariants> {}
+
+const Card = React.forwardRef<HTMLDivElement, CardProps>(({ className, variant, size, rounded, ...props }, ref) => (
+    <div ref={ref} className={cn(cardVariants({ variant, size, rounded }), className)} {...props} />
 ))
 Card.displayName = 'Card'
 
@@ -14,9 +122,13 @@ const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDiv
 )
 CardHeader.displayName = 'CardHeader'
 
-const CardTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(
-    ({ className, ...props }, ref) => (
-        <h3 ref={ref} className={cn('text-2xl font-semibold leading-none tracking-tight', className)} {...props} />
+export interface CardTitleProps
+    extends React.HTMLAttributes<HTMLHeadingElement>,
+        VariantProps<typeof cardTitleVariants> {}
+
+const CardTitle = React.forwardRef<HTMLParagraphElement, CardTitleProps>(
+    ({ className, variant, size, ...props }, ref) => (
+        <h3 ref={ref} className={cn(cardTitleVariants({ variant, size }), className)} {...props} />
     ),
 )
 CardTitle.displayName = 'CardTitle'
@@ -33,11 +145,13 @@ const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDi
 )
 CardContent.displayName = 'CardContent'
 
-const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-    ({ className, ...props }, ref) => (
-        <div ref={ref} className={cn('flex items-center p-6 pt-0', className)} {...props} />
-    ),
-)
+export interface CardFooterProps
+    extends React.HTMLAttributes<HTMLDivElement>,
+        VariantProps<typeof cardFooterVariants> {}
+
+const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(({ className, variant, size, ...props }, ref) => (
+    <div ref={ref} className={cn(cardFooterVariants({ variant, size }), className)} {...props} />
+))
 CardFooter.displayName = 'CardFooter'
 
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
