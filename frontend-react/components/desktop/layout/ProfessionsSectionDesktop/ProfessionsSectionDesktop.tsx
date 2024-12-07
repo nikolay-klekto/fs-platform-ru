@@ -26,7 +26,7 @@ const ProfessionsSectionDesktop: React.FC<ProfessionsSectionDesktopProps> = ({ c
                     </Button>
                 </Link>
             </div>
-            <div className="w-fill 3xl:gap-[28px] 4xl:h-[450px] 3xl:h-[420px] grid h-[520px] grid-cols-4 gap-[32px] 2xl:h-[370px] ">
+            <div className="w-fill grid grid-cols-4 gap-[clamp(28px,_5vw,_35px)]">
                 {content.slice(0, cardsToShow).map((item) => (
                     <ProfessionCardDesktop
                         key={item.id}

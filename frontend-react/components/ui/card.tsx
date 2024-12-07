@@ -16,7 +16,8 @@ const cardVariants = cva('rounded-full border-none', {
         },
         size: {
             default: '',
-            profession_home_desktop: '3xl:px-[20px] 3xl:py-[15px] px-[30px] py-[20px] 2xl:px-[15px] 2xl:py-[10px]',
+            profession_home_desktop:
+                'aspect-[426/520] 3xl:px-[20px] 3xl:py-[15px] px-[30px] py-[20px] 2xl:px-[15px] 2xl:py-[10px]',
             profession_home_mobi:
                 'sm_xl:w-[320px] sm_l:w-[300px] sm_s:w-[280px] aspect-[5/6] w-[320px] p-[20px] sm:w-[260px]',
             profession_page_desktop:
