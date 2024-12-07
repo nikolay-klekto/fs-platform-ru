@@ -52,6 +52,14 @@ abstract class CityRepository(
             .map(cityConverter::toModel)
     }
 
+    fun getCitiesEnumByCountryCode(code: Long): Flux<String> {
+        return Flux.from(
+            dsl.select(CITY.NAME).from(CITY)
+                .where(CITY.COUNTRY_CODE.eq(code))
+        )
+            .map { it.into(String::class.java) }
+    }
+
     fun insertCity(newCity: CityModel): Mono<CityModel> {
         return Mono.fromSupplier {
             val newCityRecord: CityRecord = dsl.newRecord(CITY)
