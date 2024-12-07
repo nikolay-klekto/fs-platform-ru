@@ -18,7 +18,7 @@ const ProfessionSearchFieldMobi: React.FC = () => {
             <p className=" sm_xl:text-4xl sm_l:text-3xl sm_s:text-3xl mx-auto mb-[30px] text-[20px] font-semibold text-white sm:text-3xl md:text-5xl">
                 Предложите, в какой ещё профессии вы бы ещё хотели попробовать себя
             </p>
-            <div className="mx-auto flex h-[44px] w-full gap-[7px] md:max-w-[470px]">
+            <div className="mx-auto flex w-full max-w-[450px] justify-bitween gap-[7px]">
                 <EnhancedInput
                     type="text"
                     value={useRequest}
@@ -26,7 +26,8 @@ const ProfessionSearchFieldMobi: React.FC = () => {
                     variant={'search_mobi'}
                     size={'send_mobi'}
                     rounded={'rounded_50'}
-                    wrapperClassName=" w-full md:max-w-[450px]"
+                    className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
+                    wrapperClassName={`w-full h-[44px] rounded-[50px] justify-bitween flex p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
                 />
