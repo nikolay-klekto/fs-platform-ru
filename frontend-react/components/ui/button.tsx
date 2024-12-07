@@ -50,6 +50,7 @@ const buttonVariants = cva(
                 wide_desktop: '3xl:h-14 h-[4.25rem] px-[30px] 2xl:h-12',
                 wide_mobi: 'sm_l:h-[2.85rem] sm_s:h-[2.3rem] sm_xl:h-12 h-[3.125rem] rounded-[38px] sm:h-[2.375rem]',
                 circle_desktop: '3xl:h-14 3xl:p-[14px] aspect-square h-[4.25rem] p-[16px] 2xl:h-12 2xl:p-[12px]',
+                gradient_circle_mobi: 'aspect-square size-[44px] p-[10px]',
                 circle_mobi:
                     'sm_l:h-[2.85rem] sm_s:h-[2.3rem] sm_xl:h-12 sm_s:p-[10px] aspect-square h-[3.125rem] p-[12px] sm:h-[2.375rem] sm:p-[10px]',
                 header_btn:

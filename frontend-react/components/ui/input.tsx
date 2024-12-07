@@ -12,17 +12,19 @@ const inputVariants = cva(
                 gradient_desktop:
                     'flex border-0 text-5xl text-[#878797] caret-[#878797] outline-none placeholder:font-semibold placeholder:text-[#353652]  focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
                 search_mobi:
-                    'flex border-2 border-[#878797] bg-transparent text-xl outline-none placeholder:text-[14px] placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
+                    'flex flex-1 border-2 border-[#878797] bg-transparent text-xl text-[#878797] outline-none placeholder:text-[14px] placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
             },
             size: {
                 default: 'h-10 px-3 py-2',
                 gradient_search_desktop: 'size-full py-[20px] pl-[20px] pr-[70px]',
                 gradient_desktop: 'size-full p-[20px]',
                 search_mobi: 'size-full py-[15px] pl-[20px] pr-[45px]',
+                send_mobi: 'size-full px-[20px]',
             },
             rounded: {
                 default: 'rounded-md',
                 full: 'rounded-full',
+                rounded_50: 'rounded-[50px]',
             },
         },
         defaultVariants: {
