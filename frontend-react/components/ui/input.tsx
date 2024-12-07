@@ -18,8 +18,8 @@ const inputVariants = cva(
                 default: 'h-10 px-3 py-2',
                 gradient_search_desktop: 'size-full py-[20px] pl-[20px] pr-[70px]',
                 gradient_desktop: 'size-full p-[20px]',
-                search_mobi: 'size-full py-[15px] pl-[20px] pr-[45px]',
-                send_mobi: 'size-full px-[20px]',
+                search_mobi: 'size-full py-[15px] pl-[10px] pr-[45px]',
+                send_mobi: 'size-full px-[10px]',
             },
             rounded: {
                 default: 'rounded-md',
