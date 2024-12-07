@@ -10,14 +10,16 @@ type Query {
 
     getReviewById(id: ID!): Review
     getAllReviewsByCompany(id: ID!): [Review]
+    getAllReviewByClientId(clientId: ID!): [Review]
 
     getCity(id: ID!): City
     getCountryByCity(id: ID): Country
     getAllCities: [City]
+    getCitiesEnumByCountryCode(code: ID): [String]
 
     getOrderById(id: ID!): Order
-    getOrdersByClientId(clientId: ID): [Order]
-    getOrdersByBasketId(basketId: ID): [Order]
+    getOrdersByClientId(clientId: ID, orderStatus: OrderStatus!): [Order]
+    getOrdersByBasketId(basketId: ID, orderStatus: OrderStatus!): [Order]
     getAllOrders: [Order]
 
     getCompanyById(id: ID!): Company
@@ -30,6 +32,8 @@ type Query {
     getProfessionById(id: ID!): Profession
     getAllProfessionsByCompanyId(id: ID!): [Profession]
     getAllProfessions: [Profession]
+    getAllExistingProfessions:[Profession]
+    getAllProfessionsCategories: [String]
     getNMostPopularProfessions(quantity: ID!): [Profession]
 
     getPartnerById(id: ID!): Partner
@@ -49,7 +53,11 @@ type Query {
     getAllEvents: [Event]
     getAllActualEvents: [Event]
     getAllActualEventsByCityId(cityId: ID!): [Event]
+    getEventsAllAvailableCities: [City]
     getFirstNActualEvents(eventQuantity: ID!): [Event]
+
+    getAllEventCategories: [String]
+    getAllEventCategoriesModels: [EventCategory]
 
     getLowestPriceByInternshipTypeId(internshipTypeId: ID): ID
 
@@ -71,6 +79,7 @@ type Mutation {
     updateOrder(order: OrderInput!): Boolean
     deleteOrder(id: ID!): Boolean
     deleteAllOrdersByBasketId(basketId: ID!): Boolean
+    deleteAllOrdersByClientId(clientId: ID!, orderStatus: OrderStatus!): Boolean
 
     addCompany(company: CompanyInput!): Company
     addCompanyByPartner(partnerId: ID!, company: CompanyInput!): Company
@@ -109,13 +118,16 @@ type Mutation {
     deleteAllOfficesByCompanyId(id: ID!): Boolean
     deleteOffice(id: ID!): Boolean
 
-    addAllEvents(events: [EventInput]): ErrorBooleanModel
+    addEvent(event: EventInput): ErrorLongModel
     updateAllEvents(events: [EventInput]): ErrorBooleanModel
     updateExpiredEventsStatus: Boolean
     deleteEvent(eventId: ID!): Boolean
     deleteAllEvents: Boolean
     deleteAllExpiredEvents: Boolean
-    createGoogleCalendarEvent(clientEmail: String!, event: EventInput!): Boolean
+    createGoogleCalendarEvent(clientEmail: String!, eventId: ID!): Boolean
+
+    addEventCategory(eventCategory: EventCategoryInput!): EventCategory
+    updateEventCategory(eventCategory: EventCategoryInput!): Boolean
 }
 
 input InternshipTypeInput {
@@ -254,18 +266,16 @@ input CompanyAddressInput {
 
 input EventInput {
     id: ID
-    cityId: ID
-    apartment: ID
-    building: ID
-    date: LocalDateTime
+    date: LocalDate
     description: String
-    house: ID
-    mainGoal: String
     name: String
-    phoneNumber: String
     publicPlaceName: String
     site: String
-    street: String
+    cityName: String
+    time: String
+    organizer: String
+    category: String
+    price: Float
 }
 
 type Review {
@@ -374,15 +384,27 @@ type Office {
 
 type Event {
     id: ID
-    address: Address
-    date: LocalDateTime
+    date: LocalDate
     description: String
     isExpired: Boolean
-    mainGoal: String
     name: String
-    phoneNumber: String
     publicPlaceName: String
     site: String
+    city: City
+    time: String
+    organizer: String
+    eventCategory: EventCategory
+    price: Float
+}
+
+type EventCategory{
+    id: ID
+    category: String
+}
+
+input EventCategoryInput{
+    id: ID
+    category: String
 }
 
 type ErrorBooleanModel {
