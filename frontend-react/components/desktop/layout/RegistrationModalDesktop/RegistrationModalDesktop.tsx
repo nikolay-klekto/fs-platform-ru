@@ -4,11 +4,10 @@ import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import Link from 'next/link'
-import { UncheckedBoxFormDesktop } from '@/components/assets/icons'
-import { CheckedBoxFormDesktop } from '@/components/assets/icons'
 import PhoneInputDesktop from '../../shared/formInput/PhoneInputDesktop'
 import EmailInputDesktop from '../../shared/formInput/EmailInputDesktop'
 import PasswordInputDesktop from '../../shared/formInput/PasswordInputDesktop'
+import CheckBoxInputDesktop from '../../shared/formInput/CheckBoxInputDesktop'
 
 interface RegistrationFormData {
     email: string
@@ -115,60 +114,25 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             inputNOERRAddStyle="border-[#878797]"
                             // externalError={errors.confirmPassword}
                         />
+                        {/* {errors.confirmPassword && (
+                            <p className="absolute text-red-500 text-sm mt-1">{errors.confirmPassword}</p>
+                        )} */}
                     </div>
-                    <div className="flex items-center gap-2 mb-3">
-                        <input
+                    <div className="mb-3">
+                        <CheckBoxInputDesktop
                             id="subscribe"
-                            type="checkbox"
                             checked={formData.subscribe}
-                            onChange={(e) => handleChange('subscribe', e.target.checked)}
-                            className="hidden peer"
+                            onChange={(checked) => handleChange('subscribe', checked)}
+                            label="Подписаться на рассылку"
                         />
-                        <div
-                            className="cursor-pointer flex items-center justify-center rounded transition-all"
-                            onClick={() => handleChange('subscribe', !formData.subscribe)}
-                        >
-                            {formData.subscribe ? (
-                                <CheckedBoxFormDesktop className="w-[20px]" />
-                            ) : (
-                                <UncheckedBoxFormDesktop className="w-[18px]" />
-                            )}
-                        </div>
-                        <label
-                            htmlFor="subscribe"
-                            className={`font-medium text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base ${
-                                formData.subscribe ? 'text-white' : 'text-[#878797]'
-                            }`}
-                        >
-                            Подписаться на рассылку
-                        </label>
                     </div>
-                    <div className="flex items-center gap-2 mb-3">
-                        <input
+                    <div className="mb-3">
+                        <CheckBoxInputDesktop
                             id="agree"
-                            type="checkbox"
                             checked={formData.agree}
-                            onChange={(e) => handleChange('agree', e.target.checked)}
-                            className="hidden peer"
+                            onChange={(checked) => handleChange('agree', checked)}
+                            label="Согласен с условиями использования"
                         />
-                        <div
-                            className="cursor-pointer flex items-center justify-center rounded transition-all"
-                            onClick={() => handleChange('agree', !formData.agree)}
-                        >
-                            {formData.agree ? (
-                                <CheckedBoxFormDesktop className="w-[20px]" />
-                            ) : (
-                                <UncheckedBoxFormDesktop className="w-[18px]" />
-                            )}
-                        </div>
-                        <label
-                            htmlFor="agree"
-                            className={`font-medium text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base ${
-                                formData.agree ? 'text-white' : 'text-[#878797]'
-                            }`}
-                        >
-                            Согласен с условиями использования
-                        </label>
                     </div>
                     <div className="w-[95%]">
                         <p className="text-[#353652] font-medium text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base">
@@ -192,7 +156,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                     </Button>
                 </form>
                 <div className="mt-5 flex justify-center text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base">
-                    <p className="mr-2 text-[#878797] font-medium">Уже зарегистрированы??</p>
+                    <p className="mr-2 text-[#878797] font-medium">Уже зарегистрированы?</p>
                     <button
                         className="underline bg-transparent border-transparent text-white font-medium"
                         onClick={openLoginModal}
