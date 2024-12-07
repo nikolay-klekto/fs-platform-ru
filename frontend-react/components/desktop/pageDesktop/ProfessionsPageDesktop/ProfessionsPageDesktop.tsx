@@ -48,9 +48,8 @@ const ProfessionsPageDesktop: React.FC = () => {
                             placeholder="Поиск"
                         />
                         <Button
-                            variant="circle_btn_gradient_desktop"
-                            className={`absolute right-0 top-1/2 flex size-[60px] -translate-y-1/2 items-center justify-center rounded-full
-                                ${isFocused ? 'right-[-2px]' : ''}`}
+                            variant={'circle_btn_gradient_desktop'}
+                            size={'circle_btn_gradient_desktop'}
                             onClick={handleSearch}
                         >
                             <Search color="white" width={37.5} height={37.5} strokeWidth={1} />

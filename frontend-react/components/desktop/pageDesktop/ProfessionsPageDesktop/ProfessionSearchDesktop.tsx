@@ -12,7 +12,7 @@ const ProfessionSearchDesktop: React.FC = () => {
         setUseRequest('')
     }
     return (
-        <div className="flex flex-col gap-[36px]">
+        <div className="relative z-[2] flex flex-col gap-[36px]">
             <div className="text36px_desktop mx-auto text-center font-medium uppercase">
                 <p>Вас интересуют другие профессии?</p>
                 <p>Напишите, и мы найдем стажировку ДЛЯ вас</p>

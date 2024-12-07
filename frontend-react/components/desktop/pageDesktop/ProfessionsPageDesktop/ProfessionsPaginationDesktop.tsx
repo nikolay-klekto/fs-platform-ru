@@ -15,7 +15,7 @@ const ProfessionsPaginationDesktop: React.FC<ProfessionsPaginationDesktopProps> 
     onPageChange,
 }) => {
     return (
-        <div className="mb-[88px] mt-[73px] flex items-center justify-center gap-5">
+        <div className="relative z-[2] mb-[88px] mt-[73px] flex items-center justify-center gap-5">
             <LessIcon />
 
             {[...Array(totalPages)].map((_, index) => {
