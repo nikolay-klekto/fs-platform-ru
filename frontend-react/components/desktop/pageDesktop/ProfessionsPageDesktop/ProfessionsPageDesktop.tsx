@@ -38,8 +38,8 @@ const ProfessionsPageDesktop: React.FC = () => {
                             type="text"
                             value={searchQuery}
                             onChange={(value) => setSearchQuery(value)}
-                            variant={'gradient'}
-                            size={'gradient_search'}
+                            variant={'gradient_desktop'}
+                            size={'gradient_search_desktop'}
                             rounded={'full'}
                             className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
                             wrapperClassName={`2xl:w-[600px] relative 4xl:max-w-[700px] 3xl:w-[650px] h-[64px] w-[741px] justify-bitween flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
@@ -48,7 +48,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                             placeholder="Поиск"
                         />
                         <Button
-                            variant="header_desktop_btn_gradient"
+                            variant="circle_btn_gradient_desktop"
                             className={`absolute right-0 top-1/2 flex size-[60px] -translate-y-1/2 items-center justify-center rounded-full
                                 ${isFocused ? 'right-[-2px]' : ''}`}
                             onClick={handleSearch}

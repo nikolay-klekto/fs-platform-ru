@@ -9,13 +9,16 @@ const inputVariants = cva(
             variant: {
                 default:
                     'border-input bg-background focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2',
-                gradient:
+                gradient_desktop:
                     'flex border-0 text-5xl outline-none placeholder:font-semibold placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
+                search_mobi:
+                    'flex border-2 border-[#878797] bg-transparent text-xl outline-none placeholder:text-[14px] placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
             },
             size: {
                 default: 'h-10 px-3 py-2',
-                gradient_search: 'size-full py-[20px] pl-[20px] pr-[70px]',
-                gradient: 'size-full p-[20px]',
+                gradient_search_desktop: 'size-full py-[20px] pl-[20px] pr-[70px]',
+                gradient_desktop: 'size-full p-[20px]',
+                search_mobi: 'size-full py-[15px] pl-[20px] pr-[45px]',
             },
             rounded: {
                 default: 'rounded-md',

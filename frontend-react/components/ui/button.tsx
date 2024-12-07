@@ -17,6 +17,9 @@ const buttonVariants = cva(
                 link: 'text-primary underline-offset-4 hover:underline',
                 send_btn_desktop:
                     'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white hover:border-0',
+                /*исправить для мобилки*/
+                send_btn_mobi:
+                    'button-border-mobi hover:bg-gradient-mobi rounded-[50px] text-[20px] font-semibold text-white hover:border-0',
                 select_mobi: 'button-border-mobi rounded-[50px] border-2 border-transparent bg-[#101030] text-white',
                 accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
                 accent_mobi: 'flex items-center rounded-[50px] bg-white',
@@ -29,8 +32,14 @@ const buttonVariants = cva(
                     'flex items-center justify-center rounded-full bg-white p-2 hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 header_desktop_btn_gradient:
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
+                circle_btn_gradient_desktop:
+                    'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
+                circle_btn_mobi: 'absolute right-0 top-1/2 -translate-y-1/2',
                 select_btn_desktop:
                     'button-border-desktop hover:bg-gradient-desktop 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] border-2 text-5xl font-semibold hover:border-0 2xl:text-3xl',
+                /*исправить для мобилки*/
+                select_btn_mobi:
+                    'button-border-mobi hover:bg-gradient-mobi 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] border-2 text-5xl font-semibold hover:border-0 2xl:text-3xl',
                 circle: 'bg-card rounded-[50%]',
                 circleBlue: 'rounded-[50%] bg-[#382D90]',
             },
@@ -53,8 +62,16 @@ const buttonVariants = cva(
                     'text-7.5xl 4xl:text-6xl 4xl:px-[3vw] 4xl:py-[19px] 3xl:text-4xl 3xl:px-[2vw] 3xl:py-[15px] px-[80px] py-[16px] md:text-xs lg:px-[1vw] lg:py-[9px] lg:text-xs xl:px-[1.5vw] xl:py-[12px] xl:text-xl 2xl:px-[2vw] 2xl:py-[14px] 2xl:text-3xl',
                 select_mobi_menu: 'hover:bg-gradient-mobi-menu h-[47px] w-full max-w-[195px] text-3xl',
                 send_btn_desktop: 'h-[64px] w-[272px] 2xl:w-[200px]',
+                /*исправить для мобилки*/
+                send_btn_mobi: 'h-[64px] w-[272px] 2xl:w-[200px]',
+                circle_btn_mobi: 'h-0 px-[11px] py-0',
                 gradient_btn_desktop: '3xl:w-[250px] h-[64px] w-[272px] 2xl:w-[250px]',
+                /*исправить для мобилки*/
+                gradient_btn_mobi: '3xl:w-[250px] h-[64px] w-[272px] 2xl:w-[250px]',
                 select_btn_desktop:
+                    '3xl:w-[300px] 3xl:px-[20px] h-[64px] w-[337px] px-[30px] py-[20px] 2xl:w-[270px] 2xl:px-[20px]',
+                /*исправить для мобилки*/
+                select_btn_mobi:
                     '3xl:w-[300px] 3xl:px-[20px] h-[64px] w-[337px] px-[30px] py-[20px] 2xl:w-[270px] 2xl:px-[20px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'sm_s:size-[52px] size-[55px] sm:size-[50px]',
