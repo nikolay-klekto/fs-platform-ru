@@ -4,15 +4,11 @@ import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import Link from 'next/link'
-import { EnhancedInput } from '@/components/ui/input'
 import { UncheckedBoxFormDesktop } from '@/components/assets/icons'
 import { CheckedBoxFormDesktop } from '@/components/assets/icons'
-import { validateEmailDesktop } from '../../commonDesktop/validate/validateEmailDesktop'
-import { EyeOffPasswordDesktop } from '@/components/assets/icons'
-import { EyeOnPasswordDesktop } from '@/components/assets/icons'
-import { PasswordGeneratorDesktop } from '@/components/assets/icons'
-import { generatePassword } from '@/components/desktop/commonDesktop/generatePassword'
-import PhoneInputDesktop from '../../shared/PhoneInputDesktop'
+import PhoneInputDesktop from '../../shared/formInput/PhoneInputDesktop'
+import EmailInputDesktop from '../../shared/formInput/EmailInputDesktop'
+import PasswordInputDesktop from '../../shared/formInput/PasswordInputDesktop'
 
 interface RegistrationFormData {
     email: string
@@ -37,9 +33,6 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
         agree: false,
     })
 
-    const [showPassword, setShowPassword] = useState(false)
-    const [showRepeatPassword, setShowRepeatPassword] = useState(false)
-
     const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
         setFormData((prev) => ({
             ...prev,
@@ -60,14 +53,6 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
         closeModal()
     }
 
-    const handleGeneratePassword = () => {
-        const generatedPassword = generatePassword()
-        setFormData((prev) => ({
-            ...prev,
-            password: generatedPassword,
-        }))
-    }
-
     return (
         <Modal show={true} onClose={closeModal} size="medium" showCloseButton={false}>
             <div className="flex flex-col justify-center items-center pt-[40px] pb-[30px] w-[73%] mx-auto">
@@ -78,70 +63,60 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                     Регистрация
                 </h2>
                 <form onSubmit={handleSubmit} className="flex flex-col align-middle w-full">
-                    <EnhancedInput
-                        label="Почта"
-                        type="email"
-                        placeholder="Почта"
-                        value={formData.email}
-                        onChange={(value) => handleChange('email', value)}
-                        validate={(value) => validateEmailDesktop(value)}
-                        className="mt-1 text-white border text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg border-[#878797] bg-[#101030] rounded-[50px] p-4 placeholder:text18px_desktop  placeholder:font-medium placeholder:text-[#353652] focus:border focus:border-[#878797] focus:outline-none
-  focus:bg-[#1f203f]"
-                        labelClassName="text-white text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base font-semibold"
-                    />
-                    <PhoneInputDesktop
-                        value={formData.phone}
-                        onChange={(value) => handleChange('phone', value)}
-                        labelClassName="mt-5 4xl:mt-4 3xl:mt-3 2xl:mt-2 text-white text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base font-semibold"
-                        inputClassName="py-2 px-4 mt-1 text-white border text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg border-[#878797] bg-[#101030] rounded-[50px] placeholder:text18px_desktop  placeholder:font-medium placeholder:text-[#353652] focus:border focus:border-[#878797] focus:outline-none
-  focus:bg-[#1f203f]"
-                    />
-                    <div className="relative mt-5 4xl:mt-4 3xl:mt-3 2xl:mt-2">
-                        <EnhancedInput
-                            label="Пароль"
-                            type={showPassword ? 'text' : 'password'}
-                            placeholder="Пароль"
+                    <div className="mb-5">
+                        <EmailInputDesktop
+                            value={formData.email}
+                            onChange={(value) => handleChange('email', value)}
+                            inputClassName="input-form-desktop-custom"
+                            labelClassName="label-form-desktop-custom"
+                            errorClassName="error-form-desktop-custom"
+                            inputERRAddStyle="border-[#bc8070]"
+                            inputNOERRAddStyle="border-[#878797]"
+                            // externalError={errors.email}
+                        />
+                    </div>
+                    <div className="mb-5">
+                        <PhoneInputDesktop
+                            value={formData.phone}
+                            onChange={(value) => handleChange('phone', value)}
+                            labelClassName="label-form-desktop-custom"
+                            inputClassName="input-form-desktop-custom"
+                            errorClassName="error-form-desktop-custom"
+                            inputERRAddStyle="border-[#bc8070]"
+                            inputNOERRAddStyle="border-[#878797]"
+                            // externalError={errors.phone}
+                        />
+                    </div>
+                    <div className="mb-5 relative">
+                        <PasswordInputDesktop
                             value={formData.password}
+                            label="Пароль"
+                            placeholder="Пароль"
                             onChange={(value) => handleChange('password', value)}
-                            className="mt-1 text-white border text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg border-[#878797] bg-[#101030] rounded-[50px] p-4 placeholder:text18px_desktop  placeholder:font-medium placeholder:text-[#353652] focus:border focus:border-[#878797] focus:outline-none
-  focus:bg-[#1f203f]"
-                            labelClassName="text-white text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base font-semibold"
+                            labelClassName="label-form-desktop-custom"
+                            inputClassName="input-form-desktop-custom"
+                            errorClassName="error-form-desktop-custom"
+                            inputERRAddStyle="border-[#bc8070]"
+                            inputNOERRAddStyle="border-[#878797]"
+                            showGenerateButton={true}
+                            // externalError={errors.password}
                         />
-                        <button
-                            type="button"
-                            onClick={() => setShowPassword((prev) => !prev)}
-                            className="absolute bottom-[10%] right-4 flex items-center text-[#878797]"
-                        >
-                            {showPassword ? <EyeOnPasswordDesktop /> : <EyeOffPasswordDesktop />}
-                        </button>
-                        <button
-                            type="button"
-                            onClick={handleGeneratePassword}
-                            className="absolute bottom-[10%] right-[-10%] flex items-center text-[#878797]"
-                        >
-                            <PasswordGeneratorDesktop />
-                        </button>
                     </div>
-                    <div className="relative mt-5 4xl:mt-4 3xl:mt-3 2xl:mt-2">
-                        <EnhancedInput
-                            label="Повторите пароль"
-                            type={showRepeatPassword ? 'text' : 'password'}
-                            placeholder="Повторите пароль"
+                    <div className="mb-7 4xl:mb-6 3xl:mb-5 2xl:mb-4">
+                        <PasswordInputDesktop
                             value={formData.confirmPassword}
+                            label="Повторите пароль"
+                            placeholder="Повторите пароль"
                             onChange={(value) => handleChange('confirmPassword', value)}
-                            className="mt-1 text-white border text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg border-[#878797] bg-[#101030] rounded-[50px] p-4 placeholder:text18px_desktop  placeholder:font-medium placeholder:text-[#353652] focus:border focus:border-[#878797] focus:outline-none
-  focus:bg-[#1f203f]"
-                            labelClassName="text-white text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base font-semibold"
+                            labelClassName="label-form-desktop-custom"
+                            inputClassName="input-form-desktop-custom"
+                            errorClassName="error-form-desktop-custom"
+                            inputERRAddStyle="border-[#bc8070]"
+                            inputNOERRAddStyle="border-[#878797]"
+                            // externalError={errors.confirmPassword}
                         />
-                        <button
-                            type="button"
-                            onClick={() => setShowRepeatPassword((prev) => !prev)}
-                            className="absolute bottom-[10%] right-4 flex items-center text-[#878797]"
-                        >
-                            {showRepeatPassword ? <EyeOnPasswordDesktop /> : <EyeOffPasswordDesktop />}
-                        </button>
                     </div>
-                    <div className="flex items-center gap-2 mb-3 mt-7 4xl:mt-6 3xl:mt-5 2xl:mt-4">
+                    <div className="flex items-center gap-2 mb-3">
                         <input
                             id="subscribe"
                             type="checkbox"
