@@ -63,7 +63,7 @@ const EmailInputDesktop: React.FC<EmailInputProps> = ({
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder="Введите почту"
-                className={`${inputClassName} ${hasError ? { inputERRAddStyle } : { inputNOERRAddStyle }}`}
+                className={`${inputClassName} ${hasError ? inputERRAddStyle : inputNOERRAddStyle}`}
             />
             {internalError && <p className={`${errorClassName}`}>{internalError}</p>}
         </div>

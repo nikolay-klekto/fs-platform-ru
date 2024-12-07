@@ -79,7 +79,7 @@ const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
                     value={value}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full ${inputClassName} ${hasError ? { inputERRAddStyle } : { inputNOERRAddStyle }}`}
+                    className={`w-full ${inputClassName} ${hasError ? inputERRAddStyle : inputNOERRAddStyle}`}
                 />
                 <button
                     type="button"

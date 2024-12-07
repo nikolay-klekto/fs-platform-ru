@@ -32,11 +32,41 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
         agree: false,
     })
 
+    const [errors, setErrors] = useState({
+        confirmPassword: '',
+    })
+
     const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
         setFormData((prev) => ({
             ...prev,
             [field]: value,
         }))
+
+        if (field === 'confirmPassword' && typeof value === 'string' && formData.password) {
+            const minLength = Math.min(value.length, formData.password.length)
+
+            for (let i = 0; i < minLength; i++) {
+                if (value[i] !== formData.password[i]) {
+                    setErrors((prev) => ({
+                        ...prev,
+                        confirmPassword: 'Пароли не совпадают',
+                    }))
+                    return
+                }
+            }
+
+            if (value.length === formData.password.length) {
+                setErrors((prev) => ({
+                    ...prev,
+                    confirmPassword: '',
+                }))
+            } else if (value.length < formData.password.length) {
+                setErrors((prev) => ({
+                    ...prev,
+                    confirmPassword: '',
+                }))
+            }
+        }
     }
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -69,8 +99,8 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             inputClassName="input-form-desktop-custom"
                             labelClassName="label-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
-                            inputERRAddStyle="border-[#bc8070]"
-                            inputNOERRAddStyle="border-[#878797]"
+                            inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
+                            inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             // externalError={errors.email}
                         />
                     </div>
@@ -81,8 +111,8 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
-                            inputERRAddStyle="border-[#bc8070]"
-                            inputNOERRAddStyle="border-[#878797]"
+                            inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
+                            inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             // externalError={errors.phone}
                         />
                     </div>
@@ -95,8 +125,8 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
-                            inputERRAddStyle="border-[#bc8070]"
-                            inputNOERRAddStyle="border-[#878797]"
+                            inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
+                            inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             showGenerateButton={true}
                             // externalError={errors.password}
                         />
@@ -110,13 +140,13 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
-                            inputERRAddStyle="border-[#bc8070]"
-                            inputNOERRAddStyle="border-[#878797]"
-                            // externalError={errors.confirmPassword}
+                            inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
+                            inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
+                            externalError={errors.confirmPassword}
                         />
-                        {/* {errors.confirmPassword && (
-                            <p className="absolute text-red-500 text-sm mt-1">{errors.confirmPassword}</p>
-                        )} */}
+                        {errors.confirmPassword && (
+                            <p className=" error-form-desktop-custom">{errors.confirmPassword}</p>
+                        )}
                     </div>
                     <div className="mb-3">
                         <CheckBoxInputDesktop

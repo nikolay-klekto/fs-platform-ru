@@ -76,7 +76,7 @@ const PhoneInputDesktop: React.FC<PhoneInputProps> = ({
                 value={value}
                 onChange={handlePhoneChange}
                 onBlur={handleBlur}
-                className={`${inputClassName} ${hasError ? { inputERRAddStyle } : { inputNOERRAddStyle }}`}
+                className={`${inputClassName} ${hasError ? inputERRAddStyle : inputNOERRAddStyle}`}
                 placeholder={'+375 (__) ___-__-__'}
             />
             {internalError && <p className={`${errorClassName}`}>{internalError}</p>}
