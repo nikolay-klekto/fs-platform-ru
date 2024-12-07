@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import ProfessionsSelectMobi from './ProfessionsSelectMobi'
 import ProfessionCardPageMobi from './ProfessionCardPageMobi'
 import ProfessionsPaginationMobi from './ProfessionsPaginationMobi'
-import ProfessionSearchMobi from './ProfessionSearchMobi'
+import ProfessionSearchMobi from './ProfessionSendMobi'
 import { content } from './content'
 import { EnhancedInput } from '@/components/ui/input'
 import { FiltersIcon } from '@/components/assets/icons'
@@ -38,7 +38,9 @@ const ProfessionsPageMobi: React.FC = () => {
                             variant={'search_mobi'}
                             size={'search_mobi'}
                             rounded={'full'}
-                            wrapperClassName={'relative h-[48px] flex-1 justify-bitween flex rounded-[50px]'}
+                            wrapperClassName={
+                                'relative h-[48px] border-[2px] border-[#878797] bg-transparent flex-1 justify-bitween flex rounded-[50px]'
+                            }
                             onFocus={() => setIsFocused(true)}
                             onBlur={() => setIsFocused(false)}
                             placeholder="Поиск"
