@@ -4,6 +4,7 @@ import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validat
 interface EmailInputProps {
     value: string
     onChange: (value: string) => void
+    onError: (error: string | null) => void
     externalError?: string | null
     inputClassName?: string
     labelClassName?: string
@@ -15,6 +16,7 @@ interface EmailInputProps {
 const EmailInputDesktop: React.FC<EmailInputProps> = ({
     value,
     onChange,
+    onError,
     externalError,
     inputClassName,
     labelClassName,
@@ -36,6 +38,7 @@ const EmailInputDesktop: React.FC<EmailInputProps> = ({
         if (!externalError) {
             const { textError } = validateEmailDesktop(value)
             setInternalError(textError)
+            onError(textError)
         }
     }
 
@@ -46,6 +49,7 @@ const EmailInputDesktop: React.FC<EmailInputProps> = ({
         if (touched && !externalError) {
             const { textError } = validateEmailDesktop(newValue)
             setInternalError(textError)
+            onError(textError)
         }
     }
 

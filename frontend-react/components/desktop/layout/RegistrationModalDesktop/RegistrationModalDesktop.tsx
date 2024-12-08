@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
@@ -32,9 +32,21 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
         agree: false,
     })
 
-    const [errors, setErrors] = useState({
+    const [errors, setErrors] = useState<{ [key: string]: string | null }>({
+        email: '',
+        phone: '',
+        password: '',
         confirmPassword: '',
+        subscribe: '',
+        agree: '',
     })
+
+    const handleError = (field: string, error: string | null) => {
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            [field]: error,
+        }))
+    }
 
     const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
         setFormData((prev) => ({
@@ -72,13 +84,24 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
-        // Валидацию добавить CЮДА!!!!
+        // const newErrors: { [key: string]: string | null } = {}
+
+        // // Проверка на пустые поля
+        // if (!formData.email) newErrors.email = 'Email обязателен'
+        // if (!formData.phone) newErrors.phone = 'Телефон обязателен'
+        // if (!formData.password) newErrors.password = 'Пароль обязателен'
+        // if (!formData.confirmPassword) newErrors.confirmPassword = 'Повторите пароль'
+        // if (!formData.agree) newErrors.agree = 'Необходимо согласие с условиями'
+
+        // // Проверка на совпадение паролей
         // if (formData.password !== formData.confirmPassword) {
-        //     alert('Пароли не совпадают');
-        //     return;
+        //     newErrors.confirmPassword = 'Пароли не совпадают'
         // }
 
-        console.log('Данные формы:', formData)
+        // setErrors(newErrors)
+
+        // Если ошибок нет, отправляем данные формы
+        console.log('Данные формы:', formData, errors)
         closeModal()
     }
 
@@ -96,24 +119,26 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                         <EmailInputDesktop
                             value={formData.email}
                             onChange={(value) => handleChange('email', value)}
+                            onError={(error) => handleError('email', error)}
                             inputClassName="input-form-desktop-custom"
                             labelClassName="label-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            // externalError={errors.email}
+                            externalError={errors.email}
                         />
                     </div>
                     <div className="mb-5">
                         <PhoneInputDesktop
                             value={formData.phone}
                             onChange={(value) => handleChange('phone', value)}
+                            onError={(error) => handleError('phone', error)}
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            // externalError={errors.phone}
+                            externalError={errors.phone}
                         />
                     </div>
                     <div className="mb-5 relative">
@@ -122,13 +147,14 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             label="Пароль"
                             placeholder="Пароль"
                             onChange={(value) => handleChange('password', value)}
+                            onError={(error) => handleError('password', error)}
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             showGenerateButton={true}
-                            // externalError={errors.password}
+                            externalError={errors.password}
                         />
                     </div>
                     <div className="mb-7 4xl:mb-6 3xl:mb-5 2xl:mb-4">
@@ -137,6 +163,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             label="Повторите пароль"
                             placeholder="Повторите пароль"
                             onChange={(value) => handleChange('confirmPassword', value)}
+                            onError={(error) => handleError('confirmPassword', error)}
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
@@ -163,9 +190,10 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             onChange={(checked) => handleChange('agree', checked)}
                             label="Согласен с условиями использования"
                         />
+                        {errors.agree && <p className="error-form-desktop-custom">{errors.agree}</p>}
                     </div>
                     <div className="w-[95%]">
-                        <p className="text-[#353652] font-medium text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base">
+                        <p className="text-[#353652] font-medium text15px_desktop">
                             Защита от спама reCAPTCHA{' '}
                             <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
                                 Конфиденциальность
@@ -180,12 +208,12 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                         type="submit"
                         variant="default"
                         size="btn_modal_desktop"
-                        className="mx-auto bg-gradient-desktop text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg font-semibold rounded-[50px] mt-6 hover:bg-gradient-desktop-hover w-[64%]"
+                        className="mx-auto bg-gradient-desktop text20px_desktop font-semibold rounded-[50px] mt-6 hover:bg-gradient-desktop-hover disabled:bg-[#878797] w-[64%]"
                     >
                         Зарегистрироваться
                     </Button>
                 </form>
-                <div className="mt-5 flex justify-center text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base">
+                <div className="mt-5 flex justify-center text15px_desktop">
                     <p className="mr-2 text-[#878797] font-medium">Уже зарегистрированы?</p>
                     <button
                         className="underline bg-transparent border-transparent text-white font-medium"

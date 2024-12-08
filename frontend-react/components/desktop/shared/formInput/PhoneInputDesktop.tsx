@@ -5,6 +5,7 @@ import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validat
 interface PhoneInputProps {
     value: string
     onChange: (value: string) => void
+    onError: (error: string | null) => void
     externalError?: string | null
     labelClassName?: string
     inputClassName?: string
@@ -16,6 +17,7 @@ interface PhoneInputProps {
 const PhoneInputDesktop: React.FC<PhoneInputProps> = ({
     value,
     onChange,
+    onError,
     externalError,
     labelClassName,
     inputClassName,
@@ -42,6 +44,7 @@ const PhoneInputDesktop: React.FC<PhoneInputProps> = ({
         if (touched && !externalError) {
             const { textError } = validatePhoneDesktop(cleanedValue)
             setInternalError(textError)
+            onError(textError)
         }
     }
 
@@ -51,6 +54,7 @@ const PhoneInputDesktop: React.FC<PhoneInputProps> = ({
         if (!externalError) {
             const { textError } = validatePhoneDesktop(value.replace(/\D/g, ''))
             setInternalError(textError)
+            onError(textError)
         }
 
         if (!value) {

@@ -6,6 +6,7 @@ import { generatePassword } from '@/components/desktop/commonDesktop/generatePas
 interface PasswordInputProps {
     value: string
     onChange: (value: string) => void
+    onError: (error: string | null) => void
     label: string
     placeholder: string
     externalError?: string | null
@@ -20,6 +21,7 @@ interface PasswordInputProps {
 const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
     value,
     onChange,
+    onError,
     label,
     placeholder,
     externalError,
@@ -51,6 +53,7 @@ const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
         if (!externalError) {
             const { textError } = validatePassword(value)
             setInternalError(textError)
+            onError(textError)
         }
     }
 
@@ -61,6 +64,7 @@ const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
         if (touched && !externalError) {
             const { textError } = validatePassword(newValue)
             setInternalError(textError)
+            onError(textError)
         }
     }
 
