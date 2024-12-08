@@ -6,6 +6,7 @@ import { generatePassword } from '@/components/desktop/commonDesktop/generatePas
 interface PasswordInputProps {
     value: string
     onChange: (value: string) => void
+    onError: (value: string) => void
     label: string
     placeholder: string
     externalError?: string | null
@@ -21,6 +22,7 @@ interface PasswordInputProps {
 const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
     value,
     onChange,
+    onError,
     label,
     placeholder,
     externalError,
@@ -36,12 +38,6 @@ const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
     const [internalError, setInternalError] = useState<string | null>(null)
     const [touched, setTouched] = useState(false)
 
-    useEffect(() => {
-        if (externalError) {
-            setInternalError(null)
-        }
-    }, [externalError])
-
     const handleGeneratePassword = () => {
         const newPassword = generatePassword()
         onChange(newPassword)
@@ -50,20 +46,19 @@ const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
 
     const handleBlur = () => {
         setTouched(true)
-        if (!externalError) {
-            const error =
-                required && !value.trim() ? 'Поле обязательно для заполнения' : validatePassword(value).textError
-            setInternalError(error)
-        }
+        const error = required && !value.trim() ? 'Поле обязательно для заполнения' : validatePassword(value).textError
+        setInternalError(error)
+        onError(error)
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value
         onChange(newValue)
 
-        if (touched && !externalError) {
+        if (touched) {
             const { textError } = validatePassword(newValue)
             setInternalError(textError)
+            onError(textError)
         }
     }
 

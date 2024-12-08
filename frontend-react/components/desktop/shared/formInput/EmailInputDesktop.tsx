@@ -4,6 +4,7 @@ import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validat
 interface EmailInputProps {
     value: string
     onChange: (value: string) => void
+    onError: (value: string) => void
     externalError?: string | null
     inputClassName?: string
     labelClassName?: string
@@ -16,6 +17,7 @@ interface EmailInputProps {
 const EmailInputDesktop: React.FC<EmailInputProps> = ({
     value,
     onChange,
+    onError,
     externalError,
     inputClassName,
     labelClassName,
@@ -34,6 +36,7 @@ const EmailInputDesktop: React.FC<EmailInputProps> = ({
             required && !value.trim() ? 'Поле обязательно для заполнения' : validateEmailDesktop(value).textError
 
         setInternalError(error)
+        onError(error)
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +50,7 @@ const EmailInputDesktop: React.FC<EmailInputProps> = ({
                     : validateEmailDesktop(newValue).textError
 
             setInternalError(error)
+            onError(error)
         }
     }
 
@@ -70,65 +74,5 @@ const EmailInputDesktop: React.FC<EmailInputProps> = ({
         </div>
     )
 }
-
-// const EmailInputDesktop: React.FC<EmailInputProps> = ({
-//     value,
-//     onChange,
-//     externalError,
-//     inputClassName,
-//     labelClassName,
-//     errorClassName,
-//     inputERRAddStyle,
-//     inputNOERRAddStyle,
-//     required = false,
-// }) => {
-//     const [internalError, setInternalError] = useState<string | null>(null)
-//     const [touched, setTouched] = useState(false)
-
-//     useEffect(() => {
-//         if (externalError) {
-//             setInternalError(null)
-//         }
-//     }, [externalError])
-
-//     const handleBlur = () => {
-//         setTouched(true)
-//         if (!externalError) {
-//             const error =
-//                 required && !value.trim() ? 'Поле обязательно для заполнения' : validateEmailDesktop(value).textError
-//             setInternalError(error)
-//         }
-//     }
-
-//     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//         const newValue = e.target.value
-//         onChange(newValue)
-
-//         if (touched && !externalError) {
-//             const { textError } = validateEmailDesktop(newValue)
-//             setInternalError(textError)
-//         }
-//     }
-
-//     const hasError = Boolean(externalError || internalError)
-
-//     return (
-//         <div className="flex flex-col">
-//             <label htmlFor="email-input" className={`${labelClassName}`}>
-//                 Почта
-//             </label>
-//             <input
-//                 id="email-input"
-//                 type="email"
-//                 value={value}
-//                 onChange={handleChange}
-//                 onBlur={handleBlur}
-//                 placeholder="Введите почту"
-//                 className={`${inputClassName} ${hasError ? inputERRAddStyle : inputNOERRAddStyle}`}
-//             />
-//             {internalError && <p className={`${errorClassName}`}>{internalError}</p>}
-//         </div>
-//     )
-// }
 
 export default EmailInputDesktop

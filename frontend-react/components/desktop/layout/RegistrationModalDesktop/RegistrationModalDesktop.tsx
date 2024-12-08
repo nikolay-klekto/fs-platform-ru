@@ -32,7 +32,13 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
         agree: false,
     })
 
+    const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
+        confirmPassword: '',
+        agree: '',
+    })
+
+    const [inputInternalErrors, setInputInternalErrors] = useState<{ [key: string]: string | null }>({
         email: '',
         phone: '',
         password: '',
@@ -41,44 +47,97 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
         agree: '',
     })
 
-    const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
-        setFormData((prev) => ({
-            ...prev,
-            [field]: value,
+    const handleError = (field: string, error: string | null) => {
+        setInputInternalErrors((prevErrors) => ({
+            ...prevErrors,
+            [field]: error,
         }))
+    }
 
-        if (field === 'confirmPassword' && typeof value === 'string' && formData.password) {
-            const minLength = Math.min(value.length, formData.password.length)
+    const validateForm = (): boolean => {
+        const hasEmptyFields =
+            formData.email === '' ||
+            formData.phone === '' ||
+            formData.password === '' ||
+            formData.confirmPassword === '' ||
+            formData.agree !== true
 
-            for (let i = 0; i < minLength; i++) {
-                if (value[i] !== formData.password[i]) {
-                    setErrors((prev) => ({
-                        ...prev,
+        const hasErrors = Object.values(errors).some((error) => error !== null && error !== '')
+        const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
+
+        return hasEmptyFields || hasErrors || hasInternalErrors
+    }
+
+    const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
+        setFormData((prev) => {
+            const updatedFormData = {
+                ...prev,
+                [field]: value,
+            }
+
+            if (field === 'confirmPassword' && typeof value === 'string') {
+                if (value !== updatedFormData.password) {
+                    setErrors((prevErrors) => ({
+                        ...prevErrors,
                         confirmPassword: 'Пароли не совпадают',
                     }))
-                    return
+                } else {
+                    setErrors((prevErrors) => ({
+                        ...prevErrors,
+                        confirmPassword: '',
+                    }))
                 }
             }
 
-            if (value.length === formData.password.length) {
-                setErrors((prev) => ({
-                    ...prev,
-                    confirmPassword: '',
-                }))
-            } else if (value.length < formData.password.length) {
-                setErrors((prev) => ({
-                    ...prev,
-                    confirmPassword: '',
-                }))
+            if (field === 'password' && typeof value === 'string') {
+                if (updatedFormData.confirmPassword && value !== updatedFormData.confirmPassword) {
+                    setErrors((prevErrors) => ({
+                        ...prevErrors,
+                        confirmPassword: 'Пароли не совпадают',
+                    }))
+                } else {
+                    setErrors((prevErrors) => ({
+                        ...prevErrors,
+                        confirmPassword: '',
+                    }))
+                }
             }
-        }
+
+            if (field === 'agree' && typeof value === 'boolean') {
+                if (!value) {
+                    setErrors((prevErrors) => ({
+                        ...prevErrors,
+                        agree: 'Необходимо согласиться с условиями использования',
+                    }))
+                } else {
+                    setErrors((prevErrors) => ({
+                        ...prevErrors,
+                        agree: '',
+                    }))
+                }
+            }
+
+            return updatedFormData
+        })
     }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        console.log('Данные формы:', formData)
-        closeModal()
+        if (validateForm()) {
+            setFormError(true)
+            console.log('Ошибка: Заполните все поля корректно или исправьте ошибки')
+        } else {
+            setFormError(false)
+            console.log('Форма отправлена:', formData)
+            closeModal()
+        }
     }
+
+    useEffect(() => {
+        if (!validateForm()) {
+            setFormError(false)
+        }
+    }, [formData, errors, inputInternalErrors])
 
     return (
         <Modal show={true} onClose={closeModal} size="medium" showCloseButton={false}>
@@ -94,12 +153,13 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                         <EmailInputDesktop
                             value={formData.email}
                             onChange={(value) => handleChange('email', value)}
+                            onError={(error) => handleError('email', error)}
                             inputClassName="input-form-desktop-custom"
                             labelClassName="label-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            externalError={errors.email}
+                            // externalError={errors.email}
                             required={true}
                         />
                     </div>
@@ -107,12 +167,13 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                         <PhoneInputDesktop
                             value={formData.phone}
                             onChange={(value) => handleChange('phone', value)}
+                            onError={(error) => handleError('email', error)}
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            externalError={errors.phone}
+                            // externalError={errors.phone}
                             required={true}
                         />
                     </div>
@@ -122,13 +183,14 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             label="Пароль"
                             placeholder="Пароль"
                             onChange={(value) => handleChange('password', value)}
+                            onError={(error) => handleError('email', error)}
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             showGenerateButton={true}
-                            externalError={errors.password}
+                            // externalError={errors.password}
                             required={true}
                         />
                     </div>
@@ -138,12 +200,13 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             label="Повторите пароль"
                             placeholder="Повторите пароль"
                             onChange={(value) => handleChange('confirmPassword', value)}
+                            onError={(error) => handleError('email', error)}
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            externalError={errors.confirmPassword}
+                            // externalError={errors.confirmPassword}
                             required={true}
                         />
                         {errors.confirmPassword && (
@@ -179,6 +242,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             </Link>
                         </p>
                     </div>
+                    {formError && <p className="error-form-desktop-custom">Заполните необходимые поля</p>}
                     <Button
                         type="submit"
                         variant="default"
