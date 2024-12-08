@@ -11,6 +11,8 @@ const textareaVariants = cva(
                     'border-input bg-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
                 contacts_page:
                     'text-5xl bg-transparent ring-offset-transparent border-2 border-[#878797] focus:border-[3px]',
+                contacts_page_error:
+                    'text-5xl bg-transparent ring-offset-transparent border-2 border-[#bc8070] focus:border-[3px]',
             },
             size: {
                 default: 'h-10 px-3 py-2',

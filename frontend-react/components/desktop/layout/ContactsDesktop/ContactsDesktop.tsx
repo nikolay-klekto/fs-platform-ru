@@ -1,5 +1,6 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import { cn } from '@/lib/utils'
 
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
@@ -16,30 +17,83 @@ interface FormData {
     email: string
     tel: string
     role?: string
+    message: string
 }
 
 const ContactsDesktop: React.FC = () => {
+    const formRef = useRef<HTMLFormElement>(null)
+
     const [formData, setFormData] = useState<FormData>({
         name: '',
         email: '',
         tel: '',
         role: '',
+        message: '',
     })
+
+    const [fieldErrors, setFieldErrors] = useState({
+        name: false,
+        email: false,
+        tel: false,
+        message: false,
+    })
+
+    const [formError, setFormError] = React.useState('')
 
     const handleChange = (field: string, value: string) => {
         setFormData((prev) => ({
             ...prev,
             [field]: value,
         }))
-
-        console.log(formData)
     }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
-        /*if (formData.role) validateRoleDesktop(formData.role)*/
-        console.log(formData)
+        setFormError('')
+        setFieldErrors({
+            name: false,
+            email: false,
+            tel: false,
+            message: false,
+        })
+
+        const formElement = formRef.current
+        if (formElement) {
+            let errors = Array.from(formElement.querySelectorAll('span.text-destructive'))
+
+            errors = errors.filter((error) => {
+                const previousElement = error.previousElementSibling
+                return !(
+                    previousElement &&
+                    previousElement instanceof HTMLInputElement &&
+                    previousElement.id === 'role' &&
+                    previousElement.value === ''
+                )
+            })
+
+            if (errors.length > 0) return
+        }
+
+        const newFieldErrors = {
+            name: formData.name.trim() === '',
+            email: formData.email.trim() === '',
+            tel: formData.tel.trim() === '',
+            message: formData.message.trim() === '',
+        }
+
+        setFieldErrors(newFieldErrors)
+
+        const hasErrors = Object.values(newFieldErrors).some((error) => error)
+        console.log('hasErrors ', hasErrors)
+
+        if (hasErrors) {
+            setFormError('Заполните обязательные поля')
+            return
+        }
+
+        setFormError('')
+        console.log('Форма отправлена:', formData)
     }
 
     return (
@@ -91,14 +145,14 @@ const ContactsDesktop: React.FC = () => {
                     <div className="w-full h-[1px] bg-white/50 rounded-full mt-[99px] mb-[63px]"></div>
                     <div>
                         <h3 className="text-20xl font-semibold uppercase">Напишите нам</h3>
-                        <form onSubmit={handleSubmit} noValidate>
+                        <form onSubmit={handleSubmit} ref={formRef} noValidate>
                             <div className="flex justify-between pb-12 pt-14">
                                 <div className="flex flex-col gap-[23px]">
                                     <EnhancedInput
                                         type="text"
                                         id="name"
                                         placeholder="Имя*"
-                                        variant="contacts_page"
+                                        variant={fieldErrors.name ? 'contacts_page_error' : 'contacts_page'}
                                         size="contacts_page"
                                         rounded="contacts_page"
                                         value={formData.name}
@@ -110,7 +164,7 @@ const ContactsDesktop: React.FC = () => {
                                         type="email"
                                         id="email"
                                         placeholder="E-mail*"
-                                        variant="contacts_page"
+                                        variant={fieldErrors.email ? 'contacts_page_error' : 'contacts_page'}
                                         size="contacts_page"
                                         rounded="contacts_page"
                                         value={formData.email}
@@ -124,7 +178,7 @@ const ContactsDesktop: React.FC = () => {
                                         type="tel"
                                         id="tel"
                                         placeholder="Телефон*"
-                                        variant="contacts_page"
+                                        variant={fieldErrors.tel ? 'contacts_page_error' : 'contacts_page'}
                                         size="contacts_page_additional_info"
                                         rounded="contacts_page"
                                         value={formData.tel}
@@ -150,12 +204,15 @@ const ContactsDesktop: React.FC = () => {
                                 name="message"
                                 id="message"
                                 placeholder="Опишите свой вопрос*"
-                                variant="contacts_page"
+                                variant={fieldErrors.message ? 'contacts_page_error' : 'contacts_page'}
                                 size="contacts_page"
                                 rounded="contacts_page"
-                                validate={validateTextareaDesktop}
+                                value={formData.message}
+                                onChange={(value) => handleChange('message', value)}
+                                validate={(value) => validateTextareaDesktop(value)}
                                 wrapperClassName={'h-64'}
                             />
+                            {formError && <p className={cn('text-xs', 'text-destructive')}>{formError}</p>}
                             <div className="flex justify-between pt-[50px]">
                                 <Button variant="select_desktop" size="contacts_btn_send_desktop">
                                     Отправить
