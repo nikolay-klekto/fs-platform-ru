@@ -88,4 +88,8 @@
     .bg-custom-grey {
         background-color: #878797;
     }
+
+    .custom_error_style_input {
+        border-color: #bc8070 !important;
+    }
 }
