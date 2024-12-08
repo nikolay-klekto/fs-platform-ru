@@ -41,13 +41,6 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
         agree: '',
     })
 
-    const handleError = (field: string, error: string | null) => {
-        setErrors((prevErrors) => ({
-            ...prevErrors,
-            [field]: error,
-        }))
-    }
-
     const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
         setFormData((prev) => ({
             ...prev,
@@ -83,25 +76,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-
-        // const newErrors: { [key: string]: string | null } = {}
-
-        // // Проверка на пустые поля
-        // if (!formData.email) newErrors.email = 'Email обязателен'
-        // if (!formData.phone) newErrors.phone = 'Телефон обязателен'
-        // if (!formData.password) newErrors.password = 'Пароль обязателен'
-        // if (!formData.confirmPassword) newErrors.confirmPassword = 'Повторите пароль'
-        // if (!formData.agree) newErrors.agree = 'Необходимо согласие с условиями'
-
-        // // Проверка на совпадение паролей
-        // if (formData.password !== formData.confirmPassword) {
-        //     newErrors.confirmPassword = 'Пароли не совпадают'
-        // }
-
-        // setErrors(newErrors)
-
-        // Если ошибок нет, отправляем данные формы
-        console.log('Данные формы:', formData, errors)
+        console.log('Данные формы:', formData)
         closeModal()
     }
 
@@ -119,26 +94,26 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                         <EmailInputDesktop
                             value={formData.email}
                             onChange={(value) => handleChange('email', value)}
-                            onError={(error) => handleError('email', error)}
                             inputClassName="input-form-desktop-custom"
                             labelClassName="label-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             externalError={errors.email}
+                            required={true}
                         />
                     </div>
                     <div className="mb-5">
                         <PhoneInputDesktop
                             value={formData.phone}
                             onChange={(value) => handleChange('phone', value)}
-                            onError={(error) => handleError('phone', error)}
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             externalError={errors.phone}
+                            required={true}
                         />
                     </div>
                     <div className="mb-5 relative">
@@ -147,7 +122,6 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             label="Пароль"
                             placeholder="Пароль"
                             onChange={(value) => handleChange('password', value)}
-                            onError={(error) => handleError('password', error)}
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
@@ -155,6 +129,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             showGenerateButton={true}
                             externalError={errors.password}
+                            required={true}
                         />
                     </div>
                     <div className="mb-7 4xl:mb-6 3xl:mb-5 2xl:mb-4">
@@ -163,13 +138,13 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             label="Повторите пароль"
                             placeholder="Повторите пароль"
                             onChange={(value) => handleChange('confirmPassword', value)}
-                            onError={(error) => handleError('confirmPassword', error)}
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             externalError={errors.confirmPassword}
+                            required={true}
                         />
                         {errors.confirmPassword && (
                             <p className=" error-form-desktop-custom">{errors.confirmPassword}</p>
