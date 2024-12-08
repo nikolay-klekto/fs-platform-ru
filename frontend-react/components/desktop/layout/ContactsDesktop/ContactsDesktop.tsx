@@ -38,7 +38,7 @@ const ContactsDesktop: React.FC = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
-        //if (formData.role) validateRoleDesktop(formData.role)
+        /*if (formData.role) validateRoleDesktop(formData.role)*/
         console.log(formData)
     }
 
@@ -123,7 +123,7 @@ const ContactsDesktop: React.FC = () => {
                                     <EnhancedInput
                                         type="tel"
                                         id="tel"
-                                        placeholder="Тел* +375 (xx) xxx-xx-xx / +7 (xxx) xxx-xx-xx"
+                                        placeholder="Телефон*"
                                         variant="contacts_page"
                                         size="contacts_page_additional_info"
                                         rounded="contacts_page"
@@ -141,7 +141,7 @@ const ContactsDesktop: React.FC = () => {
                                         rounded="contacts_page"
                                         value={formData.role}
                                         onChange={(value) => handleChange('role', value)}
-                                        //validate={(value) => validateRoleDesktop(value)}
+                                        validate={(value) => validateRoleDesktop(value)}
                                         wrapperClassName={'h-[73px]'}
                                     />
                                 </div>

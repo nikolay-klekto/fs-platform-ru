@@ -4,7 +4,7 @@ export function validatePhoneNumberDesktop(phone: string) {
 
     return {
         status: isValid,
-        textError: isValid ? '' : 'Введите корректный номер телефона',
+        textError: isValid ? '' : 'Введите номер телефона в формате +375 (xx) xxx-xx-xx / +7 (xxx) xxx-xx-xx',
         styleError: !isValid,
     }
 }
