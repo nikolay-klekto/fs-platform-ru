@@ -11,6 +11,7 @@ export const generatePassword = (length: number = 12): string => {
     const mandatoryCharacters: string[] = [
         upperCaseLetters[Math.floor(Math.random() * upperCaseLetters.length)],
         symbols[Math.floor(Math.random() * symbols.length)],
+        numbers[Math.floor(Math.random() * numbers.length)],
     ]
 
     const allCharacters = upperCaseLetters + lowerCaseLetters + numbers + symbols
