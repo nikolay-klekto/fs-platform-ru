@@ -11,6 +11,7 @@ import com.fs.domain.jooq.tables.pojos.Review
 import com.fs.domain.jooq.tables.records.ReviewRecord
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.ReviewModel
+import com.fs.service.ru.enums.OrderStatus
 import com.fs.service.ru.errors.ErrorModel
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux
@@ -29,6 +30,14 @@ abstract class ReviewRepository(
         return Mono.fromSupplier {
             reviewBlockingRepository.getById(id)
         }
+    }
+
+    fun getAllReviewByClientId(clientId: Long): Flux<ReviewModel>{
+        return Flux.from(
+            dsl.select(REVIEW.asterisk()).from(REVIEW)
+                .where(REVIEW.CLIENT_ID.eq(clientId))
+        ).map { it.into(Review::class.java) }
+            .map(converter::toModel)
     }
 
     fun getAllReviewByCompanyId(id: Long): Flux<ReviewModel> {
@@ -61,7 +70,7 @@ abstract class ReviewRepository(
             }
 
             val allClientOrders: List<OrderModel> =
-                blockingOrderRepository.getAllByClientId(reviewModel.clientId!!)
+                blockingOrderRepository.getAllByClientId(reviewModel.clientId!!, OrderStatus.EXPIRED)
 
             var isCurrentUserWorkInThisCompany = false
 

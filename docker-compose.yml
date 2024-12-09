@@ -16,6 +16,8 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
     networks:
       - prometheus-grafana-network
+    volumes:
+      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
 
   app2:
     image: ru-client:latest
@@ -33,6 +35,8 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
     networks:
       - prometheus-grafana-network
+    volumes:
+      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
 
   app3:
     image: ru-client:latest
@@ -50,6 +54,8 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
     networks:
       - prometheus-grafana-network
+    volumes:
+      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
 
   gateway:
     image: ru-gateway:latest
