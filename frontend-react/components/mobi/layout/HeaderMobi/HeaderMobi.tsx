@@ -15,6 +15,8 @@ import {
     VkIconBurgerMobi,
 } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
+import RegistrationModalMobi from '@/components/mobi/layout/RegistrationModalMobi/RegistrationModalMobi'
+import LoginModalMobi from '@/components/mobi/layout/LoginModalMobi/LoginModalMobi'
 
 interface HeaderMobiProps {
     disableBackground?: boolean
@@ -34,6 +36,16 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
             document.body.style.overflow = ''
         }
     }, [isMenuOpen])
+
+    const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
+
+    const openModal = (type: 'login' | 'registration') => {
+        setModalType(type)
+    }
+
+    const closeModal = () => {
+        setModalType(null)
+    }
 
     return (
         <>
@@ -69,7 +81,7 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                             <CrossIconMobi onClick={toggleMenu} />
                         </div>
                         <div className="flex gap-2.5 flex-col items-center pt-1 pb-12 sm_s:pb-10 sm:pb-10">
-                            <div className="flex items-center gap-3.5">
+                            <div className="flex items-center gap-3.5" onClick={() => openModal('login')}>
                                 <ProfileIconBurgerMobi />
                                 <p className="uppercase custom-grey text-4xl font-semibold whitespace-nowrap ">
                                     Войти в профиль
@@ -93,6 +105,16 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                             </a>
                         </div>
                     </div>
+                    {modalType === 'login' && (
+                        <LoginModalMobi
+                            closeModal={closeModal}
+                            openRegistrationModal={() => openModal('registration')}
+                        />
+                    )}
+
+                    {modalType === 'registration' && (
+                        <RegistrationModalMobi closeModal={closeModal} openLoginModal={() => openModal('login')} />
+                    )}
                 </>
             )}
         </>
