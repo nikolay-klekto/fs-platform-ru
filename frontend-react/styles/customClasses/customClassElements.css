@@ -62,10 +62,16 @@
         @apply md:text-6xl sm_xl:text-5xl sm_l:text-4xl sm_s:text-3xl sm:text-3xl !important;
     }
     .text18px_mobi {
-        @apply text-4xl md:text-4xl sm_xl:text-3xl sm_l:text-2xl sm:text-xl;
+        @apply text-4xl md:text-4xl sm_xl:text-4xl sm_l:text-3xl sm_s:text-2xl sm:text-2xl;
+    }
+    .text16px_mobi {
+        @apply text-[16px] md:text-[16px] sm_xl:text-[16px] sm_l:text-base sm_s:text-base sm:text-base;
+    }
+    .text14px_mobi {
+        @apply text-[14px] md:text-[14px] sm_xl:text-[14px] sm_l:text-xs sm_s:text-xs sm:text-xs;
     }
     .text12px_mobi {
-        @apply text-base md:text-base sm_xl:text-sm sm_l:text-xs sm:text-xs;
+        @apply text-base md:text-base sm_xl:text-sm sm_l:text-xs sm_s:text-xs sm:text-xs;
     }
 
     .text-gradient_desktop_custom {
@@ -105,5 +111,16 @@
     }
     .error-form-desktop-custom {
         @apply mt-1 text-[#bc8070] text15px_desktop font-medium;
+    }
+
+    .input-form-mobi-custom {
+        @apply py-2 px-4 mt-1 text-white border text14px_mobi border-[#878797] bg-[#101030] rounded-[50px] placeholder:text14px_mobi  placeholder:font-medium placeholder:text-[#353652] focus:border focus:border-[#878797] focus:outline-none
+        focus:bg-[#1f203f];
+    }
+    .label-form-mobi-custom {
+        @apply text-white text14px_mobi font-medium;
+    }
+    .error-form-mobi-custom {
+        @apply mt-1 text-[#bc8070] text12px_mobi font-medium;
     }
 }

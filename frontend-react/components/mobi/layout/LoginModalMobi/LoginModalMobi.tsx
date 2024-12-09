@@ -1,23 +1,23 @@
 'use client'
+
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
-import Modal from '@/components/ui/modal'
 import Link from 'next/link'
-import EmailInputDesktop from '../../shared/formInput/EmailInputDesktop'
-import PasswordInputDesktop from '../../shared/formInput/PasswordInputDesktop'
+import EmailInputMobi from '../../shared/formInput/EmailInputMobi'
+import PasswordInputMobi from '../../shared/formInput/PasswordInputMobi'
 
 interface LoginFormData {
     email: string
     password: string
 }
 
-interface LoginModalDesktopProps {
+interface LoginModalMobiProps {
     closeModal: () => void
     openRegistrationModal: () => void
 }
 
-const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openRegistrationModal }) => {
+const LoginModalDesktop: React.FC<LoginModalMobiProps> = ({ closeModal, openRegistrationModal }) => {
     const [formData, setFormData] = useState<LoginFormData>({
         email: '',
         password: '',
@@ -71,72 +71,63 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
     }, [formData, inputInternalErrors])
 
     return (
-        <Modal show={true} onClose={closeModal} size="medium" showCloseButton={false}>
-            <div className="flex flex-col justify-center items-center pt-[40px] pb-[30px] w-[73%] mx-auto">
-                <button onClick={closeModal} className="absolute top-[5%] right-[5%] w-[7%]">
-                    <X size={41} color="white" className="opacity-70 w-full" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
+            <div className="relative rounded-[50px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat flex flex-col items-center w-[90%] max-w-[500px]">
+                <button
+                    onClick={closeModal}
+                    className="absolute -top-1 -right-1 rounded-[50px] bg-[#101030] bg-opacity-80"
+                >
+                    <X size={30} color="#878797" />
                 </button>
-                <h2 className="mb-7 4xl:mb-6 3xl:mb-5 2xl:mb-4 text36px_desktop font-medium text-gradient_desktop_custom uppercase inline">
+                <h1 className="text18px_mobi font-semibold bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-1 mx-auto uppercase inline">
                     Вход
-                </h2>
-                <form onSubmit={handleSubmit} className="flex flex-col align-middle w-full">
-                    <div className="mb-5">
-                        <EmailInputDesktop
+                </h1>
+                <form onSubmit={handleSubmit} className="flex flex-col align-middle w-[80%]">
+                    <div className="mb-2">
+                        <EmailInputMobi
                             value={formData.email}
                             onChange={(value) => handleChange('email', value)}
                             onError={(error) => handleError('email', error)}
-                            inputClassName="input-form-desktop-custom"
-                            labelClassName="label-form-desktop-custom"
-                            errorClassName="error-form-desktop-custom"
+                            inputClassName="input-form-mobi-custom"
+                            labelClassName="label-form-mobi-custom"
+                            errorClassName="error-form-mobi-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             // externalError={errors.email}
                             required={true}
                         />
                     </div>
-                    <div className="mb-5 relative">
-                        <PasswordInputDesktop
+                    <div className="mb-2 relative">
+                        <PasswordInputMobi
                             value={formData.password}
                             label="Пароль"
                             placeholder="Пароль"
                             onChange={(value) => handleChange('password', value)}
                             onError={(error) => handleError('email', error)}
-                            labelClassName="label-form-desktop-custom"
-                            inputClassName="input-form-desktop-custom"
-                            errorClassName="error-form-desktop-custom"
+                            labelClassName="label-form-mobi-custom"
+                            inputClassName="input-form-mobi-custom"
+                            errorClassName="error-form-mobi-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             // externalError={errors.password}
                             required={true}
                         />
                     </div>
-                    <button className="bg-transparent border-transparent self-end text-[#878797] font-semibold text15px_desktop">
+                    <button className="underline bg-transparent border-transparent self-end text-[#878797] font-semibold text14px_mobi">
                         Забыли пароль?
                     </button>
-                    <div className="w-[95%]">
-                        <p className="mt-3 text-[#353652] font-medium text15px_desktop">
-                            Защита от спама reCAPTCHA{' '}
-                            <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
-                                Конфиденциальность
-                            </Link>{' '}
-                            и{' '}
-                            <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
-                                Условия использования
-                            </Link>
-                        </p>
-                    </div>
-                    {formError && <p className="error-form-desktop-custom">Заполните необходимые поля</p>}
+                    {formError && <p className="error-form-mobi-custom">Заполните необходимые поля</p>}
                     <Button
                         type="submit"
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="mx-auto bg-gradient-desktop text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg font-semibold rounded-[50px] mt-6 hover:bg-gradient-desktop-hover w-[64%]"
+                        className="mx-auto bg-gradient-desktop text-4xl md:text-4xl sm_xl:text-3xl sm_l:text-2xl sm_s:text-xl sm:text-xl font-medium rounded-[50px] mt-6 hover:bg-gradient-desktop-hover w-[80%]"
                     >
                         Войти
                     </Button>
                 </form>
-                <div className="mt-5 flex justify-center text15px_desktop">
+                <div className="mt-5 mb-6 flex justify-center text14px_mobi">
                     <p className="mr-2 text-[#878797] font-medium">Нет аккаунта?</p>
                     <button
                         className="underline bg-transparent border-transparent text-white font-medium"
@@ -146,7 +137,7 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
                     </button>
                 </div>
             </div>
-        </Modal>
+        </div>
     )
 }
 

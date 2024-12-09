@@ -47,8 +47,6 @@ const HeaderDesktop: React.FC = () => {
                     </div>
                 </div>
             </header>
-            {/* <RegistrationModalDesktop triggerOpen={(openModal) => (openRegistrationModal.current = openModal)} /> */}
-            {/* <LoginModalDesktop triggerOpen={(openModal) => (openRegistrationModal.current = openModal)} /> */}
             {modalType === 'login' && (
                 <LoginModalDesktop closeModal={closeModal} openRegistrationModal={() => openModal('registration')} />
             )}
