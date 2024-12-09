@@ -92,4 +92,10 @@
     .custom_error_style_input {
         border-color: #bc8070 !important;
     }
+
+    .radial-gradient_desktop {
+        @apply size-[852px] opacity-30 rounded-full absolute z-[0];
+        background: radial-gradient(circle, #8917a5 0%, #30217b 100%);
+        filter: blur(100px);
+    }
 }

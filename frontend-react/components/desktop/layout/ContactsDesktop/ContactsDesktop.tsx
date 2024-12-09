@@ -98,14 +98,16 @@ const ContactsDesktop: React.FC = () => {
 
     return (
         <>
-            <div className="flex justify-between pt-52 pb-[297px] 2xl:max-w-[1190px] 2xl:flex-col 2xl:items-center 2xl:mx-auto 2xl:pt-28 2xl:pb-36">
-                <div className="flex flex-col gap-7 max-w-[541px] mr-32 3xl:mr-20 2xl:self-start 2xl:max-w-none 2xl:mb-28 2xl:mr-0">
+            <div className="flex justify-between pt-52 pb-[297px] relative overflow-hidden 2xl:max-w-[1190px] 2xl:flex-col 2xl:items-center 2xl:mx-auto 2xl:pt-28 2xl:pb-36">
+                <div className="radial-gradient_desktop left-[120px] top-[-386px] 3xl:left-[40px] 3xl:top-[-420px] 2xl:left-[60px] 2xl:top-[-480px]"></div>
+                <div className="radial-gradient_desktop right-[50px] top-[310px] 3xl:top-[410px] 2xl:top-[560px]"></div>
+                <div className="flex flex-col gap-7 max-w-[541px] mr-32 relative z-[1] 3xl:mr-20 2xl:self-start 2xl:max-w-none 2xl:mb-28 2xl:mr-0">
                     <h2 className="text-26xl font-semibold uppercase 3xl:text-23xl">Cвяжитесь с нами</h2>
                     <Button variant="select_desktop" size="contacts_btn_desktop">
                         Хочу в команду
                     </Button>
                 </div>
-                <div className="w-[1020px] 2xl:flex 2xl:flex-col  2xl:w-none 2xl:w-full">
+                <div className="w-[1020px] relative z-[1] 2xl:flex 2xl:flex-col  2xl:w-none 2xl:w-full">
                     <div className="flex justify-between">
                         <div className="flex flex-col">
                             {contentContactsDesktop.map((item) => (
