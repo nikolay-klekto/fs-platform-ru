@@ -1,6 +1,9 @@
 'use client'
 import React, { useState } from 'react'
 import { X } from 'lucide-react'
+import { EnhancedInput } from '@/components/ui/input'
+import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
+import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validateNameMobi'
 
 interface FormData {
     name: string
@@ -16,34 +19,11 @@ const ModalCallMobi: React.FC = () => {
         time: '',
         consent: false,
     })
-    const [errors, setErrors] = useState<{ [key: string]: string }>({})
-    const [step, setStep] = useState<'form' | 'accepted' | null>('form')
-    const validateForm = () => {
-        const newErrors: { [key: string]: string } = {}
-        if (!formData.name) newErrors.name = 'Введите ваше имя'
-        else if (!/^[A-Za-zА-Яа-яЁё\s]+$/.test(formData.name)) {
-            newErrors.name = 'Введите корректное имя'
-        }
-        if (!formData.phone) newErrors.phone = 'Введите номер телефона'
-        else if (!/^\+375\s\(\d{2}\)\s\d{3}-\d{2}-\d{2}$/.test(formData.phone)) {
-            newErrors.phone = 'Введите корректный номер телефона'
-        }
-        if (!formData.consent) newErrors.consent = 'Подтвердите согласие на обработку данных'
-        setErrors(newErrors)
-        return Object.keys(newErrors).length === 0
-    }
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value, type, checked } = e.target
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: type === 'checkbox' ? checked : value,
-        }))
-    }
+    const [step, setStep] = useState<'form' | 'accepted' | null>(null)
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        if (validateForm()) {
+        if (formData.name && formData.phone && formData.consent) {
             setStep('accepted')
         }
     }
@@ -72,34 +52,44 @@ const ModalCallMobi: React.FC = () => {
 
                         <form className="flex flex-col items-start pl-2 pr-1" onSubmit={handleSubmit}>
                             <div className="w-full flex flex-col mb-3 p-0.5">
-                                <label htmlFor="name" className="text-white text-xl font-medium mb-1">
-                                    Ваше имя
-                                </label>
-                                <input
+                                <EnhancedInput
                                     type="text"
-                                    id="name"
                                     name="name"
                                     placeholder="Введите ваше имя"
                                     value={formData.name}
-                                    onChange={handleChange}
+                                    validate={(value) =>
+                                        validateNameMobi(value)
+                                            ? { textError: 'Введите корректное имя', status: false, styleError: true }
+                                            : { textError: '', status: true, styleError: false }
+                                    }
+                                    onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
                                     className="border border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
+                                    label="Ваше имя"
+                                    labelClassName="text-white text-xl font-medium mb-1"
+                                    wrapperClassName="w-full"
                                 />
-                                {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
                             </div>
                             <div className="w-full flex flex-col mb-3 p-0.5">
-                                <label htmlFor="phone" className="text-white text-xl font-medium mb-1">
-                                    Номер телефона
-                                </label>
-                                <input
+                                <EnhancedInput
                                     type="tel"
-                                    id="phone"
                                     name="phone"
                                     placeholder="+375 (__) ___-__-__"
                                     value={formData.phone}
-                                    onChange={handleChange}
+                                    validate={(value) =>
+                                        validatePhoneMobi(value)
+                                            ? {
+                                                  textError: 'Введите корректный номер телефона',
+                                                  status: false,
+                                                  styleError: true,
+                                              }
+                                            : { textError: '', status: true, styleError: false }
+                                    }
+                                    onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
                                     className="border border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
+                                    label="Номер телефона"
+                                    wrapperClassName="w-full"
+                                    labelClassName="text-white text-xl font-medium mb-1"
                                 />
-                                {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
                             </div>
                             <div className="w-full flex flex-col mb-3 p-0.5">
                                 <label htmlFor="time" className="text-white text-xl mb-1">
@@ -109,10 +99,10 @@ const ModalCallMobi: React.FC = () => {
                                     type="text"
                                     id="time"
                                     name="time"
-                                    placeholder="Введите удобное время для звонка"
+                                    placeholder="Введите удобное время"
                                     value={formData.time}
-                                    onChange={handleChange}
-                                    className="border border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
+                                    onChange={(e) => setFormData((prev) => ({ ...prev, time: e.target.value }))}
+                                    className="border rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
                                 />
                             </div>
                             <div className="flex items-center mb-2">
@@ -121,14 +111,13 @@ const ModalCallMobi: React.FC = () => {
                                     id="consent"
                                     name="consent"
                                     checked={formData.consent}
-                                    onChange={handleChange}
+                                    onChange={(e) => setFormData((prev) => ({ ...prev, consent: e.target.checked }))}
                                     className="mr-2"
                                 />
                                 <label htmlFor="consent" className="text-xs font-medium text-[#878797]">
                                     Я согласен(а) на обработку персональных данных
                                 </label>
                             </div>
-                            {errors.consent && <p className="text-red-500 text-sm">{errors.consent}</p>}
                             <button
                                 type="submit"
                                 className="w-4/5 h-12 mx-auto mt-3 bg-sub-title-gradient-mobi rounded-[50px] text-3xl font-semibold text-white"
