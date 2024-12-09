@@ -1,25 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { EnhancedInput } from '@/components/ui/input'
 import { ForwardIcon } from '@/components/assets/icons'
 
 const ProfessionSearchFieldMobi: React.FC = () => {
+    const [isFocused, setIsFocused] = useState(false)
+    /*для отправки запроса профессии*/
+    const [useRequest, setUseRequest] = useState('')
+
+    const handleSendRequest = () => {
+        console.log('Отправка запроса на профессию:', useRequest)
+        setUseRequest('')
+    }
+
     return (
         <div className=" flex flex-col">
             <p className=" sm_xl:text-4xl sm_l:text-3xl sm_s:text-3xl mx-auto mb-[30px] text-[20px] font-semibold text-white sm:text-3xl md:text-5xl">
                 Предложите, в какой ещё профессии вы бы ещё хотели попробовать себя
             </p>
-            <div className="justify-bitween sm_xl:w-full sm_l:w-full sm_s:w-full mx-auto flex h-[44px] w-[70vw] items-center gap-[10px] sm:w-full md:w-[70vw]">
-                <Input
+            <div className="mx-auto flex w-full max-w-[450px] justify-bitween gap-[7px]">
+                <EnhancedInput
                     type="text"
-                    className="rounded-[50px] bg-transparent px-[20px] py-0 text-[#878797] caret-[#878797] ring-offset-transparent"
-                    style={{ border: '2px solid #878797' }}
+                    value={useRequest}
+                    onChange={(value) => setUseRequest(value)}
+                    variant={'search_mobi'}
+                    size={'send_mobi'}
+                    rounded={'rounded_50'}
+                    className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
+                    wrapperClassName={`w-full h-[44px] rounded-[50px] justify-bitween flex p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
                 />
-                <div>
-                    <Button variant={'select_mobi'} className="h-[44px] border-2" size={'circle_mobi'}>
-                        <ForwardIcon />
-                    </Button>
-                </div>
+                <Button variant={'select_mobi'} size={'gradient_circle_mobi'}>
+                    <ForwardIcon />
+                </Button>
             </div>
         </div>
     )
