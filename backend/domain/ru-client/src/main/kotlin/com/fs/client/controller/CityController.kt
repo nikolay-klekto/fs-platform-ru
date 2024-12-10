@@ -4,8 +4,6 @@ import com.fs.client.repository.CityRepository
 import com.fs.client.ru.AddressModel
 import com.fs.client.ru.CityModel
 import com.fs.client.ru.ClientModel
-import com.fs.domain.jooq.tables.pojos.Event
-import com.fs.service.ru.EventModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -38,11 +36,6 @@ open class CityController(open val cityRepository: CityRepository) {
         return cityRepository.getAllCities()
     }
 
-    @QueryMapping
-    fun getCitiesEnumByCountryCode(@Argument code: Long): Flux<String> {
-        return cityRepository.getCitiesEnumByCountryCode(code)
-    }
-
     @MutationMapping
     fun addCity(@Argument city: CityModel): Mono<CityModel> {
         return cityRepository.insertCity(city)
@@ -61,10 +54,5 @@ open class CityController(open val cityRepository: CityRepository) {
     @SchemaMapping(typeName = "Address", field = "city")
     fun getCityForAddress(address: AddressModel): Mono<CityModel?> {
         return cityRepository.getCityById(address.cityId!!)
-    }
-
-    @SchemaMapping(typeName = "Event", field = "city")
-    fun getCityForEvent(event: Event): Mono<CityModel?> {
-        return cityRepository.getCityById(event.cityId)
     }
 }

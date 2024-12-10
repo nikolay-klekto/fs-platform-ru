@@ -1,32 +1,19 @@
 package com.fs.client.repository.blocked
 
 import com.fs.client.converter.EventModelConverter
-import com.fs.domain.jooq.tables.Event.Companion.EVENT
-import com.fs.domain.jooq.tables.EventCategories.Companion.EVENT_CATEGORIES
-import com.fs.domain.jooq.tables.pojos.Event
+import com.fs.domain.jooq.tables.Event
+import com.fs.service.ru.EventModel
 import org.jooq.DSLContext
 
 abstract class EventBlockingRepository(
-    open val dsl: DSLContext
+    open val dsl: DSLContext,
+    open val converter: EventModelConverter
 ) {
-    fun getEventById(id: Long): Event? {
-        return dsl.select(EVENT.asterisk()).from(EVENT)
-            .where(EVENT.ID.eq(id))
-            .map { it.into(Event::class.java) }
+    fun getEventBlockingById(id: Long): EventModel? {
+        return dsl.select(Event.EVENT.asterisk()).from(Event.EVENT)
+            .where(Event.EVENT.ID.eq(id))
+            .map { it.into(com.fs.domain.jooq.tables.pojos.Event::class.java) }
+            .map(converter::toModel)
             .firstOrNull()
-    }
-
-    fun getEventCategoryNameById(eventCategoryId: Long?): String?{
-        return dsl.select(EVENT_CATEGORIES.CATEGORY).from(EVENT_CATEGORIES)
-            .where(EVENT_CATEGORIES.ID.eq(eventCategoryId))
-            .firstOrNull()
-            ?.map { it.into(String::class.java) }
-    }
-
-    fun getEventCategoryIdByName(categoryName: String?): Long?{
-        return dsl.select(EVENT_CATEGORIES.ID).from(EVENT_CATEGORIES)
-            .where(EVENT_CATEGORIES.CATEGORY.equalIgnoreCase(categoryName))
-            .firstOrNull()
-            ?.map { it.into(Long::class.java) }
     }
 }

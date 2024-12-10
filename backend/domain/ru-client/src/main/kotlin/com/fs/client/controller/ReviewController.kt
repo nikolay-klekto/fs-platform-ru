@@ -29,11 +29,6 @@ open class ReviewController(
         return reviewRepository.getAllReviewByCompanyId(id)
     }
 
-    @QueryMapping
-    open fun getAllReviewByClientId(@Argument clientId: Long): Flux<ReviewModel> {
-        return reviewRepository.getAllReviewByClientId(clientId)
-    }
-
     @MutationMapping
     open fun updateReview(@Argument review: ReviewModel): Mono<Boolean> {
         return reviewRepository.updateReview(review)

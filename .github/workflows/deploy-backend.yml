@@ -30,9 +30,6 @@ jobs:
       uses: gradle/gradle-build-action@v3
       # with:
       #   gradle-version: 7.4.2
-
-    - name: Add credentials.json
-      run: echo "${{ secrets.GOOGLE_CREDENTIALS_JSON }}" > backend/domain/ru-client/src/main/resources/credentials.json
         
     - name: Build with Gradle
       run: ./gradlew bootJar --console=plain
@@ -53,13 +50,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: docker-compose-file
-        path: docker-compose.yml  # Путь к файлу Docker Compose
-
-    - name: Upload JAR registration artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: my-app-jar-registration
-        path: backend/gateway/registration/build/libs/registration-auth-0.0.1-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+        path: docker-compose.yml  # Путь к файлу Docker Compose      
         
   deploy:
     runs-on: ubuntu-latest
@@ -78,12 +69,6 @@ jobs:
         name: docker-compose-file
         path: ./artifact
 
-    - name: Download JAR registration artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: my-app-jar-registration
-        path: ./artifact
-
     - name: Copy files via SCP
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -93,7 +78,6 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         scp -o StrictHostKeyChecking=no ./artifact/ru-client-0.0.2-SNAPSHOT.jar root@${{ secrets.IP_DOMAIN }}:${{ secrets.DESTINATION_BACKEND_JAR_FOLDER }}
         scp -o StrictHostKeyChecking=no ./artifact/docker-compose.yml root@${{ secrets.IP_DOMAIN }}:${{ secrets.DESTINATION_BASE_FOLDER }}
-        scp -o StrictHostKeyChecking=no ./artifact/registration-auth-0.0.1-SNAPSHOT.jar root@${{ secrets.IP_DOMAIN }}:${{ secrets.DESTINATION_BACKEND_JAR_FOLDER }}
         
     - name: Restart Docker Compose
       env:

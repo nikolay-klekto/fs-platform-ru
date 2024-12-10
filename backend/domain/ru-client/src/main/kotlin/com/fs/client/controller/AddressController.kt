@@ -45,4 +45,9 @@ open class AddressController(open val addressRepository: AddressRepository) {
     fun getAddressForOffice(office: OfficeModel): Mono<AddressModel> {
         return addressRepository.getAddressById(office.addressId!!)
     }
+
+    @SchemaMapping(typeName = "Event", field = "address")
+    fun getAddressForEvent(event: EventModel): Mono<AddressModel> {
+        return addressRepository.getAddressById(event.addressId!!)
+    }
 }
