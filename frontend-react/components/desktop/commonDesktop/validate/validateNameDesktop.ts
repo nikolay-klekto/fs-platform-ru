@@ -4,7 +4,7 @@ export function validateNameDesktop(name: string) {
 
     return {
         status: isValid,
-        textError: isValid ? '' : 'Введите имя на кириллице или на латинице',
+        textError: isValid ? '' : 'Введите корректное имя',
         styleError: !isValid,
     }
 }

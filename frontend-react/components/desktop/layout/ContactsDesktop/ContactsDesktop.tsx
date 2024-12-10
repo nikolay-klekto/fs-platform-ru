@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
 
 import { Button } from '@/components/ui/button'
@@ -21,8 +21,6 @@ interface FormData {
 }
 
 const ContactsDesktop: React.FC = () => {
-    const formRef = useRef<HTMLFormElement>(null)
-
     const [formData, setFormData] = useState<FormData>({
         name: '',
         email: '',
@@ -35,45 +33,44 @@ const ContactsDesktop: React.FC = () => {
         name: false,
         email: false,
         tel: false,
+        role: false,
+        message: false,
+    })
+
+    const [emptyFields, setEmptyFields] = useState({
+        name: false,
+        email: false,
+        tel: false,
         message: false,
     })
 
     const [formError, setFormError] = React.useState('')
 
-    const handleChange = (field: string, value: string) => {
+    const handleChange = (field: keyof FormData, value: string) => {
         setFormData((prev) => ({
             ...prev,
             [field]: value,
+        }))
+
+        setFieldErrors((prev) => ({
+            ...prev,
+            [field]: false,
+        }))
+    }
+
+    const updateFieldError = (field: keyof FormData, hasError: boolean) => {
+        setFieldErrors((prev) => ({
+            ...prev,
+            [field]: hasError,
         }))
     }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-
         setFormError('')
-        setFieldErrors({
-            name: false,
-            email: false,
-            tel: false,
-            message: false,
-        })
 
-        const formElement = formRef.current
-        if (formElement) {
-            let errors = Array.from(formElement.querySelectorAll('span.text-destructive'))
-
-            errors = errors.filter((error) => {
-                const previousElement = error.previousElementSibling
-                return !(
-                    previousElement &&
-                    previousElement instanceof HTMLInputElement &&
-                    previousElement.id === 'role' &&
-                    previousElement.value === ''
-                )
-            })
-
-            if (errors.length > 0) return
-        }
+        const hasErrors = Object.values(fieldErrors).some((error) => error)
+        if (hasErrors) return
 
         const newFieldErrors = {
             name: formData.name.trim() === '',
@@ -81,13 +78,10 @@ const ContactsDesktop: React.FC = () => {
             tel: formData.tel.trim() === '',
             message: formData.message.trim() === '',
         }
+        setEmptyFields(newFieldErrors)
 
-        setFieldErrors(newFieldErrors)
-
-        const hasErrors = Object.values(newFieldErrors).some((error) => error)
-        console.log('hasErrors ', hasErrors)
-
-        if (hasErrors) {
+        const hasEmptyField = Object.values(newFieldErrors).some((error) => error)
+        if (hasEmptyField) {
             setFormError('Заполните обязательные поля')
             return
         }
@@ -147,31 +141,39 @@ const ContactsDesktop: React.FC = () => {
                     <div className="w-full h-[1px] bg-white/50 rounded-full mt-[99px] mb-[63px]"></div>
                     <div>
                         <h3 className="text-20xl font-semibold uppercase">Напишите нам</h3>
-                        <form onSubmit={handleSubmit} ref={formRef} noValidate>
+                        <form onSubmit={handleSubmit} noValidate>
                             <div className="flex justify-between pb-12 pt-14">
                                 <div className="flex flex-col gap-[23px]">
                                     <EnhancedInput
                                         type="text"
                                         id="name"
                                         placeholder="Имя*"
-                                        variant={fieldErrors.name ? 'contacts_page_error' : 'contacts_page'}
+                                        variant={emptyFields.name ? 'contacts_page_error' : 'contacts_page'}
                                         size="contacts_page"
                                         rounded="contacts_page"
                                         value={formData.name}
                                         onChange={(value) => handleChange('name', value)}
-                                        validate={(value) => validateNameDesktop(value)}
+                                        validate={(value) => {
+                                            const validation = validateNameDesktop(value)
+                                            updateFieldError('name', !validation.status)
+                                            return validation
+                                        }}
                                         wrapperClassName={'h-[73px]'}
                                     />
                                     <EnhancedInput
                                         type="email"
                                         id="email"
                                         placeholder="E-mail*"
-                                        variant={fieldErrors.email ? 'contacts_page_error' : 'contacts_page'}
+                                        variant={emptyFields.email ? 'contacts_page_error' : 'contacts_page'}
                                         size="contacts_page"
                                         rounded="contacts_page"
                                         value={formData.email}
                                         onChange={(value) => handleChange('email', value)}
-                                        validate={(value) => validateEmailDesktop(value)}
+                                        validate={(value) => {
+                                            const validation = validateEmailDesktop(value)
+                                            updateFieldError('email', !validation.status)
+                                            return validation
+                                        }}
                                         wrapperClassName={'h-[73px]'}
                                     />
                                 </div>
@@ -180,12 +182,16 @@ const ContactsDesktop: React.FC = () => {
                                         type="tel"
                                         id="tel"
                                         placeholder="Телефон*"
-                                        variant={fieldErrors.tel ? 'contacts_page_error' : 'contacts_page'}
+                                        variant={emptyFields.tel ? 'contacts_page_error' : 'contacts_page'}
                                         size="contacts_page_additional_info"
                                         rounded="contacts_page"
                                         value={formData.tel}
                                         onChange={(value) => handleChange('tel', value)}
-                                        validate={(value) => validatePhoneNumberDesktop(value)}
+                                        validate={(value) => {
+                                            const validation = validatePhoneNumberDesktop(value)
+                                            updateFieldError('tel', !validation.status)
+                                            return validation
+                                        }}
                                         wrapperClassName={'h-[73px]'}
                                     />
                                     <EnhancedInput
@@ -197,7 +203,11 @@ const ContactsDesktop: React.FC = () => {
                                         rounded="contacts_page"
                                         value={formData.role}
                                         onChange={(value) => handleChange('role', value)}
-                                        validate={(value) => validateRoleDesktop(value)}
+                                        validate={(value) => {
+                                            const validation = validateRoleDesktop(value)
+                                            updateFieldError('role', !validation.status)
+                                            return validation
+                                        }}
                                         wrapperClassName={'h-[73px]'}
                                     />
                                 </div>
@@ -206,12 +216,16 @@ const ContactsDesktop: React.FC = () => {
                                 name="message"
                                 id="message"
                                 placeholder="Опишите свой вопрос*"
-                                variant={fieldErrors.message ? 'contacts_page_error' : 'contacts_page'}
+                                variant={emptyFields.message ? 'contacts_page_error' : 'contacts_page'}
                                 size="contacts_page"
                                 rounded="contacts_page"
                                 value={formData.message}
                                 onChange={(value) => handleChange('message', value)}
-                                validate={(value) => validateTextareaDesktop(value)}
+                                validate={(value) => {
+                                    const validation = validateTextareaDesktop(value)
+                                    updateFieldError('message', !validation.status)
+                                    return validation
+                                }}
                                 wrapperClassName={'h-64'}
                             />
                             {formError && <p className={cn('text-xs', 'text-destructive')}>{formError}</p>}
