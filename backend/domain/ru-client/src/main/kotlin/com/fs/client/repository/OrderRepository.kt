@@ -5,8 +5,6 @@ import com.fs.client.repository.blocked.BasketBlockingRepository
 import com.fs.client.repository.blocked.CompanyProfessionBlockingRepository
 import com.fs.client.repository.blocked.OrderBlockingRepository
 import com.fs.client.repository.blocked.ProfessionBlockingRepository
-import com.fs.domain.jooq.tables.Client
-import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.service.ru.OrderModel
@@ -42,17 +40,16 @@ abstract class OrderRepository(
         }
     }
 
-    fun getAllOrdersByClientId(clientId: Long, orderStatus: OrderStatus): Flux<OrderModel> {
+    fun getAllOrdersByClientId(clientId: Long): Flux<OrderModel> {
         return Flux.fromIterable(
-            orderBlockingRepository.getAllByClientId(clientId, orderStatus)
+            orderBlockingRepository.getAllByClientId(clientId)
         )
     }
 
-    fun getAllOrdersByBasketID(basketId: Long, orderStatus: OrderStatus): Flux<OrderModel> {
+    fun getAllOrdersByBasketID(basketId: Long): Flux<OrderModel> {
         return Flux.from(
             dsl.selectFrom(ORDER)
-                .where(ORDER.BASKET_ID.eq(basketId)
-                    .and(ORDER.ORDER_STATUS.eq(orderStatus)))
+                .where(ORDER.BASKET_ID.eq(basketId))
         ).map { it.into(Order::class.java) }
             .map(converter::toModel)
     }
@@ -125,21 +122,6 @@ abstract class OrderRepository(
         return Mono.fromSupplier {
             dsl.deleteFrom(ORDER).where(ORDER.BASKET_ID.eq(basketId))
                 .execute() > 0
-        }
-    }
-
-    fun deleteAllOrdersByClientId(clientId: Long, orderStatus: OrderStatus): Mono<Boolean> {
-        return Mono.fromSupplier {
-            dsl.deleteFrom(ORDER)
-                .where(
-                    ORDER.BASKET_ID.eq(
-                        dsl.select(CLIENT.BASKET_ID).from(CLIENT)
-                            .where(
-                                CLIENT.ID.eq(clientId)
-                                .and(ORDER.ORDER_STATUS.eq(orderStatus)))
-                    )
-                ).execute() >=0
-
         }
     }
 

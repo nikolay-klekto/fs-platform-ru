@@ -14,7 +14,6 @@ import com.fs.domain.jooq.tables.CompanyProfession
 import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.Databasechangeloglock
 import com.fs.domain.jooq.tables.Event
-import com.fs.domain.jooq.tables.EventCategories
 import com.fs.domain.jooq.tables.InternshipType
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.Order
@@ -93,11 +92,6 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     val EVENT: Event get() = Event.EVENT
 
     /**
-     * The table <code>public.event_categories</code>.
-     */
-    val EVENT_CATEGORIES: EventCategories get() = EventCategories.EVENT_CATEGORIES
-
-    /**
      * The table <code>public.internship_type</code>.
      */
     val INTERNSHIP_TYPE: InternshipType get() = InternshipType.INTERNSHIP_TYPE
@@ -140,7 +134,6 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
         Country.COUNTRY,
         Databasechangeloglock.DATABASECHANGELOGLOCK,
         Event.EVENT,
-        EventCategories.EVENT_CATEGORIES,
         InternshipType.INTERNSHIP_TYPE,
         Office.OFFICE,
         Order.ORDER,
