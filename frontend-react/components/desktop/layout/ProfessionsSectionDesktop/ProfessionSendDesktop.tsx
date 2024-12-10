@@ -20,7 +20,7 @@ const ProfessionSendDesktop: React.FC = () => {
                 <EnhancedInput
                     type="text"
                     value={useRequest}
-                    onChange={(value) => setUseRequest(value)}
+                    onChange={(e) => setUseRequest(e.target.value)}
                     variant={'gradient_desktop'}
                     size={'gradient_desktop'}
                     rounded={'full'}
@@ -29,11 +29,9 @@ const ProfessionSendDesktop: React.FC = () => {
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
                 />
-                <div>
-                    <Button variant={'send_btn_desktop'} size={'send_btn_desktop'} onClick={handleSendRequest}>
-                        Отправить
-                    </Button>
-                </div>
+                <Button variant={'send_btn_desktop'} size={'send_btn_desktop'} onClick={handleSendRequest}>
+                    Отправить
+                </Button>
             </div>
         </div>
     )
