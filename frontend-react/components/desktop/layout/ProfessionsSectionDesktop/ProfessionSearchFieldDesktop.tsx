@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { EnhancedInput } from '@/components/ui/input'
 
 const ProfessionSearchFieldDesktop: React.FC = () => {
     return (
@@ -9,7 +9,7 @@ const ProfessionSearchFieldDesktop: React.FC = () => {
                 В какой ещё профессии вы бы хотели попробовать себя?
             </p>
             <div className="justify-bitween mx-auto flex items-center gap-[45px]">
-                <Input
+                <EnhancedInput
                     type="text"
                     className=" text-11xl h-[64px] w-[800px] rounded-[50px] bg-transparent px-[20px] py-0 text-[#878797] caret-[#878797] ring-offset-transparent 2xl:h-[58px] 2xl:w-[600px]"
                     style={{ border: '3px solid #878797' }}
