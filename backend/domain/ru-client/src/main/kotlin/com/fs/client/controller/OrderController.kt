@@ -2,7 +2,6 @@ package com.fs.client.controller
 
 import com.fs.client.repository.OrderRepository
 import com.fs.service.ru.OrderModel
-import com.fs.service.ru.enums.OrderStatus
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -28,18 +27,13 @@ open class OrderController(open val orderRepository: OrderRepository) {
     }
 
     @QueryMapping
-    fun getOrdersByClientId(
-        @Argument clientId: Long,
-        @Argument orderStatus: OrderStatus): Flux<OrderModel> {
-        return orderRepository.getAllOrdersByClientId(clientId, orderStatus)
+    fun getOrdersByClientId(@Argument clientId: Long): Flux<OrderModel> {
+        return orderRepository.getAllOrdersByClientId(clientId)
     }
 
     @QueryMapping
-    fun getOrdersByBasketId(
-        @Argument basketId: Long,
-        @Argument orderStatus: OrderStatus
-    ): Flux<OrderModel> {
-        return orderRepository.getAllOrdersByBasketID(basketId, orderStatus)
+    fun getOrdersByBasketId(@Argument basketId: Long): Flux<OrderModel> {
+        return orderRepository.getAllOrdersByBasketID(basketId)
     }
 
     @MutationMapping
@@ -60,12 +54,5 @@ open class OrderController(open val orderRepository: OrderRepository) {
     @MutationMapping
     fun deleteAllOrdersByBasketId(@Argument basketId: Long): Mono<Boolean> {
         return orderRepository.deleteAllOrdersByBasketId(basketId)
-    }
-
-    @MutationMapping
-    fun deleteAllOrdersByClientId(
-        @Argument clientId: Long,
-        @Argument orderStatus: OrderStatus): Mono<Boolean> {
-        return orderRepository.deleteAllOrdersByClientId(clientId, orderStatus)
     }
 }

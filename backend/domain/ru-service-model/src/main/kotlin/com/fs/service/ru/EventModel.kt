@@ -1,19 +1,16 @@
 package com.fs.service.ru
 
-import java.math.BigDecimal
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 data class EventModel(
     val id: Long?,
-    val date: LocalDate?,
+    val addressId: Long?,
+    val date: LocalDateTime?,
     val description: String?,
     val isExpired: Boolean?,
+    val mainGoal: String?,
     val name: String?,
+    val phoneNumber: String?,
     val publicPlaceName: String?,
-    val site: String?,
-    val cityName: String?,
-    val time: String?,
-    val organizer: String?,
-    val category: String?,
-    val price: BigDecimal?
+    val site: String?
 )

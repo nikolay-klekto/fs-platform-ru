@@ -28,13 +28,12 @@ abstract class OrderBlockingRepository(
             .firstOrNull()
     }
 
-    fun getAllByClientId(clientId: Long, orderStatus: OrderStatus): List<OrderModel> {
+    fun getAllByClientId(clientId: Long): List<OrderModel> {
         return dsl.selectFrom(ORDER)
             .where(
                 ORDER.BASKET_ID.eq(
                     dsl.select(Client.CLIENT.BASKET_ID).from(Client.CLIENT)
-                        .where(Client.CLIENT.ID.eq(clientId)
-                            .and(ORDER.ORDER_STATUS.eq(orderStatus)))
+                        .where(Client.CLIENT.ID.eq(clientId))
                 )
             )
             .map { it.into(Order::class.java) }

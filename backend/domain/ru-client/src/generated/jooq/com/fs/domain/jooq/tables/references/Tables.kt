@@ -14,7 +14,6 @@ import com.fs.domain.jooq.tables.CompanyProfession
 import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.Databasechangeloglock
 import com.fs.domain.jooq.tables.Event
-import com.fs.domain.jooq.tables.EventCategories
 import com.fs.domain.jooq.tables.InternshipType
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.Order
@@ -73,11 +72,6 @@ val DATABASECHANGELOGLOCK: Databasechangeloglock = Databasechangeloglock.DATABAS
  * The table <code>public.event</code>.
  */
 val EVENT: Event = Event.EVENT
-
-/**
- * The table <code>public.event_categories</code>.
- */
-val EVENT_CATEGORIES: EventCategories = EventCategories.EVENT_CATEGORIES
 
 /**
  * The table <code>public.internship_type</code>.
