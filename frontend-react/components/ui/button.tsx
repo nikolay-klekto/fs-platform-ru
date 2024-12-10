@@ -15,8 +15,8 @@ const buttonVariants = cva(
                 secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
                 ghost: 'hover:bg-accent hover:text-accent-foreground',
                 link: 'text-primary underline-offset-4 hover:underline',
-                select_desktop:
-                    'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white',
+                send_btn_desktop:
+                    'button-border-desktop hover:bg-gradient-desktop 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white hover:border-0 2xl:text-3xl',
                 select_mobi: 'button-border-mobi rounded-[50px] border-2 border-transparent bg-[#101030] text-white',
                 accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
                 accent_mobi: 'flex items-center rounded-[50px] bg-white',
@@ -29,6 +29,11 @@ const buttonVariants = cva(
                     'flex items-center justify-center rounded-full bg-white p-2 hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 header_desktop_btn_gradient:
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
+                circle_btn_gradient_desktop:
+                    'bg-gradient-desktop hover:bg-gradient-desktop-hover absolute flex items-center justify-center rounded-[50px] text-white',
+                circle_btn_mobi: 'absolute right-0 top-1/2 -translate-y-1/2',
+                select_btn_desktop:
+                    'button-border-desktop hover:bg-gradient-desktop 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] border-2 text-5xl font-semibold hover:border-0 2xl:text-3xl',
                 circle: 'bg-card rounded-[50%]',
                 circleBlue: 'rounded-[50%] bg-[#382D90]',
             },
@@ -39,18 +44,25 @@ const buttonVariants = cva(
                 four_xl: 'h-[95px]',
                 promo_mobi: 'h-[40px]',
                 select_mobi: 'h-[40px] w-full max-w-[188px] ',
+                gradient_circle_mobi: 'aspect-square size-[44px] p-[10px]',
                 btn_modal_desktop: 'h-12 max-w-[272px] rounded-md',
                 btn_modal_mobi: 'h-11 max-w-[272px] rounded-md',
                 icon: 'size-10',
                 wide_desktop: '3xl:h-14 h-[4.25rem] px-[30px] 2xl:h-12',
                 wide_mobi: 'sm_l:h-[2.85rem] sm_s:h-[2.3rem] sm_xl:h-12 h-[3.125rem] rounded-[38px] sm:h-[2.375rem]',
                 circle_desktop: '3xl:h-14 3xl:p-[14px] aspect-square h-[4.25rem] p-[16px] 2xl:h-12 2xl:p-[12px]',
+                gradient_circle_mobi: 'aspect-square size-[44px] p-[10px]',
                 circle_mobi:
                     'sm_l:h-[2.85rem] sm_s:h-[2.3rem] sm_xl:h-12 sm_s:p-[10px] aspect-square h-[3.125rem] p-[12px] sm:h-[2.375rem] sm:p-[10px]',
                 header_btn:
-                    'text-7.5xl px-[80px] py-[16px] 4xl:text-6xl 4xl:px-[3vw] 4xl:py-[19px] 3xl:text-4xl 3xl:px-[2vw] 3xl:py-[15px] 2xl:text-3xl 2xl:px-[2vw] 2xl:py-[14px] md:text-xs lg:px-[1vw] lg:py-[9px] lg:text-xs xl:px-[1.5vw] xl:py-[12px] xl:text-xl',
-                select_mobi_menu: 'text-3xl hover:bg-gradient-mobi-menu h-[47px] w-full max-w-[195px]',
-                gradient_border_btn: 'h-[64px] w-[272px] 2xl:h-[58px] 2xl:w-[250px]',
+                    'text-7.5xl 4xl:text-6xl 4xl:px-[3vw] 4xl:py-[19px] 3xl:text-4xl 3xl:px-[2vw] 3xl:py-[15px] px-[80px] py-[16px] md:text-xs lg:px-[1vw] lg:py-[9px] lg:text-xs xl:px-[1.5vw] xl:py-[12px] xl:text-xl 2xl:px-[2vw] 2xl:py-[14px] 2xl:text-3xl',
+                select_mobi_menu: 'hover:bg-gradient-mobi-menu h-[47px] w-full max-w-[195px] text-3xl',
+                send_btn_desktop: 'h-[64px] w-[272px] 2xl:w-[200px]',
+                circle_btn_gradient_desktop: 'right-0 top-1/2 size-[60px] -translate-y-1/2 rounded-full',
+                circle_btn_mobi: 'h-0 px-[11px] py-0',
+                gradient_btn_desktop: '3xl:w-[250px] h-[64px] w-[272px] 2xl:w-[250px]',
+                select_btn_desktop:
+                    '3xl:w-[300px] 3xl:px-[20px] h-[64px] w-[337px] px-[30px] py-[20px] 2xl:w-[270px] 2xl:px-[20px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'sm_s:size-[52px] size-[55px] sm:size-[50px]',
             },
