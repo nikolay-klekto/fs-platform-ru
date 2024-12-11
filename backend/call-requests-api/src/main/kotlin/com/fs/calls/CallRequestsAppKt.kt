@@ -1,4 +1,4 @@
-package com.fs.auth
+package com.fs.calls
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.builder.SpringApplicationBuilder
@@ -7,17 +7,17 @@ import org.springframework.boot.runApplication
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.transaction.annotation.EnableTransactionManagement
+
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableConfigurationProperties
-@EnableScheduling
-open class AuthServiceApp : SpringBootServletInitializer() {
+open class CallRequestsAppKt : SpringBootServletInitializer() {
 
     override fun configure(builder: SpringApplicationBuilder): SpringApplicationBuilder {
-        return builder.sources(AuthServiceApp::class.java)
+        return builder.sources(CallRequestsAppKt::class.java)
     }
 }
 
 fun main(args: Array<String>) {
-    runApplication<AuthServiceApp>(*args)
+    runApplication<CallRequestsAppKt>(*args)
 }

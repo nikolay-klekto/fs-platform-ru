@@ -7,5 +7,6 @@ include(":backend:domain:ru-client-model")
 include(":backend:domain:ru-service-model")
 include(":backend:suggestions-api")
 include(":backend:gateway:registration:authorization")
+include(":backend:call-requests-api")
 //include(":backend:payment:ru-payment")
 

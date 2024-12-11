@@ -21,6 +21,7 @@ import java.io.File
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
+import java.time.LocalDate
 
 @Tag(name = "Event")
 @RestController
@@ -86,7 +87,7 @@ open class EventController(open val eventRepository: EventRepository) {
     }
 
     @QueryMapping
-    open fun getEventsAllAvailableCities(): Flux<CityModel> {
+    open fun getEventsAvailableCities(): Flux<CityModel> {
         return eventRepository.getAllAvailableCities()
     }
 
@@ -98,6 +99,13 @@ open class EventController(open val eventRepository: EventRepository) {
     @QueryMapping
     open fun getAllActualEventsByCityId(@Argument cityId: Long): Flux<Event> {
         return eventRepository.getAllActualEventsByCityId(cityId)
+    }
+
+    @QueryMapping
+    open fun getEventsByTimeRange(
+        @Argument from: LocalDate?,
+        @Argument to: LocalDate?): Flux<Event> {
+        return eventRepository.getEventsByTimeRange(from, to)
     }
 
     @MutationMapping

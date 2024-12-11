@@ -23,6 +23,11 @@ class JwtAuthenticationFilter(
         val httpRequest = request as HttpServletRequest
         val httpResponse = response as HttpServletResponse
 
+        if (httpRequest.requestURI.startsWith("/actuator")) {
+            chain.doFilter(request, response)
+            return
+        }
+
         val cachedBody = cacheRequestBody(httpRequest)
         val wrappedRequest = ResettableStreamHttpServletRequest(httpRequest, cachedBody)
 

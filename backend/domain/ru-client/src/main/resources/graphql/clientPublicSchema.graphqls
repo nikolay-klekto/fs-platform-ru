@@ -47,8 +47,9 @@ type Query {
     getAllEvents: [Event]
     getAllActualEvents: [Event]
     getAllActualEventsByCityId(cityId: ID!): [Event]
-    getEventsAllAvailableCities: [City]
+    getEventsAvailableCities: [City]
     getFirstNActualEvents(eventQuantity: ID!): [Event]
+    getEventsByTimeRange(from: String, to: String): [Event]
 
     getAllEventCategories: [String]
     getAllEventCategoriesModels: [EventCategory]

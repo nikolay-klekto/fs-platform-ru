@@ -13,7 +13,9 @@ import com.fs.domain.jooq.tables.pojos.Event
 import com.fs.service.ru.EventModel
 import com.fs.service.ru.errors.ErrorModel
 import org.apache.logging.log4j.LogManager
+import org.jooq.Condition
 import org.jooq.DSLContext
+import org.jooq.impl.DSL
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import java.time.LocalDate
@@ -76,6 +78,22 @@ abstract class EventRepository(
                 .where(
                     EVENT.IS_EXPIRED.eq(ACTIVE_EXPIRED_STATUS)
                         .and(CITY.ID.eq(cityId))
+                )
+        )
+            .map { it.into(Event::class.java) }
+    }
+
+    fun getEventsByTimeRange(from: LocalDate?, to: LocalDate?): Flux<Event> {
+        return Flux.from(
+            dsl.select(EVENT.asterisk())
+                .from(EVENT)
+                .where(
+                    listOfNotNull(
+                        from?.let { EVENT.DATE.ge(it) },
+                        to?.let { EVENT.DATE.le(it) }
+                    ).takeIf { it.isNotEmpty() }
+                        ?.reduce(Condition::and) // Объединяем условия с помощью and
+                        ?: DSL.trueCondition()   // Если список пуст, возвращаем trueCondition
                 )
         )
             .map { it.into(Event::class.java) }

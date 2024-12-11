@@ -1,0 +1,18 @@
+
+type Query {
+    _: String
+}
+
+type Mutation {
+    insertCallRequest(callRequest: CallRequestsModelInsert): Boolean
+    updateExpiredCallRequestsStatuses: Boolean
+}
+
+input CallRequestsModelInsert {
+    id: ID,
+    name: String,
+    phoneNum: String,
+    isActive: Boolean
+    dateCreated: String
+    callTime: String
+}
