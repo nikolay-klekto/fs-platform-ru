@@ -5,7 +5,6 @@ import { ForwardIcon } from '@/components/assets/icons'
 
 const ProfessionSendMobi: React.FC = () => {
     const [isFocused, setIsFocused] = useState(false)
-    /*для отправки запроса профессии*/
     const [useRequest, setUseRequest] = useState('')
 
     const handleSendRequest = () => {
@@ -18,11 +17,11 @@ const ProfessionSendMobi: React.FC = () => {
             <p className=" sm_xl:text-4xl sm_l:text-3xl sm_s:text-3xl mx-auto mb-[30px] text-[20px] font-semibold text-white sm:text-3xl md:text-5xl">
                 Предложите, в какой ещё профессии вы бы ещё хотели попробовать себя
             </p>
-            <div className="mx-auto flex w-full max-w-[450px] justify-bitween gap-[7px]">
+            <div className="justify-bitween mx-auto flex w-full max-w-[450px] gap-[7px]">
                 <EnhancedInput
                     type="text"
                     value={useRequest}
-                    onChange={(value) => setUseRequest(value)}
+                    onChange={(e) => setUseRequest(e.target.value)}
                     variant={'search_mobi'}
                     size={'send_mobi'}
                     rounded={'rounded_50'}
@@ -30,7 +29,7 @@ const ProfessionSendMobi: React.FC = () => {
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
                 />
-                <Button variant={'select_mobi'} size={'gradient_circle_mobi'}>
+                <Button variant={'select_mobi'} size={'gradient_circle_mobi'} onClick={handleSendRequest}>
                     <ForwardIcon />
                 </Button>
             </div>
