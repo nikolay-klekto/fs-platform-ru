@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { EnhancedInput } from '@/components/ui/input'
 import { ForwardIcon } from '@/components/assets/icons'
 
 const ProfessionSearchFieldMobi: React.FC = () => {
@@ -10,7 +10,7 @@ const ProfessionSearchFieldMobi: React.FC = () => {
                 Предложите, в какой ещё профессии вы бы ещё хотели попробовать себя
             </p>
             <div className="justify-bitween sm_xl:w-full sm_l:w-full sm_s:w-full mx-auto flex h-[44px] w-[70vw] items-center gap-[10px] sm:w-full md:w-[70vw]">
-                <Input
+                <EnhancedInput
                     type="text"
                     className="rounded-[50px] bg-transparent px-[20px] py-0 text-[#878797] caret-[#878797] ring-offset-transparent"
                     style={{ border: '2px solid #878797' }}
