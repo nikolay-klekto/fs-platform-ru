@@ -52,6 +52,11 @@ const ContactsDesktop: React.FC = () => {
             [field]: value,
         }))
 
+        setEmptyFields((prev) => ({
+            ...prev,
+            [field]: false,
+        }))
+
         setFieldErrors((prev) => ({
             ...prev,
             [field]: false,
@@ -69,9 +74,6 @@ const ContactsDesktop: React.FC = () => {
         e.preventDefault()
         setFormError('')
 
-        const hasErrors = Object.values(fieldErrors).some((error) => error)
-        if (hasErrors) return
-
         const newFieldErrors = {
             name: formData.name.trim() === '',
             email: formData.email.trim() === '',
@@ -85,6 +87,9 @@ const ContactsDesktop: React.FC = () => {
             setFormError('Заполните обязательные поля')
             return
         }
+
+        const hasErrors = Object.values(fieldErrors).some((error) => error)
+        if (hasErrors) return
 
         setFormError('')
         console.log('Форма отправлена:', formData)
@@ -158,7 +163,7 @@ const ContactsDesktop: React.FC = () => {
                                             updateFieldError('name', !validation.status)
                                             return validation
                                         }}
-                                        wrapperClassName={'h-[73px]'}
+                                        wrapperClassName={'h-[76px]'}
                                     />
                                     <EnhancedInput
                                         type="email"
@@ -174,7 +179,7 @@ const ContactsDesktop: React.FC = () => {
                                             updateFieldError('email', !validation.status)
                                             return validation
                                         }}
-                                        wrapperClassName={'h-[73px]'}
+                                        wrapperClassName={'h-[76px]'}
                                     />
                                 </div>
                                 <div className="flex flex-col gap-[23px] pl-3">
@@ -192,7 +197,7 @@ const ContactsDesktop: React.FC = () => {
                                             updateFieldError('tel', !validation.status)
                                             return validation
                                         }}
-                                        wrapperClassName={'h-[73px]'}
+                                        wrapperClassName={'h-[76px]'}
                                     />
                                     <EnhancedInput
                                         type="text"
@@ -208,7 +213,7 @@ const ContactsDesktop: React.FC = () => {
                                             updateFieldError('role', !validation.status)
                                             return validation
                                         }}
-                                        wrapperClassName={'h-[73px]'}
+                                        wrapperClassName={'h-[76px]'}
                                     />
                                 </div>
                             </div>
@@ -226,17 +231,19 @@ const ContactsDesktop: React.FC = () => {
                                     updateFieldError('message', !validation.status)
                                     return validation
                                 }}
-                                wrapperClassName={'h-64'}
+                                wrapperClassName={'h-[272px]'}
                             />
-                            {formError && <p className={cn('text-xs', 'text-destructive')}>{formError}</p>}
-                            <div className="flex justify-between pt-[50px]">
-                                <Button variant="select_desktop" size="contacts_btn_send_desktop">
-                                    Отправить
-                                </Button>
-                                <p className="max-w-[663px] pl-3 text-white/20 text-[17px] font-medium">
-                                    Нажимая кнопку “Отправить”, я даю согласие на обработку своих персональных данных и
-                                    соглашаюсь с Условиями использования и Политикой конфиденциальности
-                                </p>
+                            <div className="flex flex-col justify-between h-[130px]">
+                                {formError && <p className={cn('text-2xl', 'text-destructive')}>{formError}</p>}
+                                <div className="mt-auto flex justify-between items-center">
+                                    <Button variant="select_desktop" size="contacts_btn_send_desktop">
+                                        Отправить
+                                    </Button>
+                                    <p className="max-w-[663px] pl-3 text-white/20 text-[17px] font-medium">
+                                        Нажимая кнопку “Отправить”, я даю согласие на обработку своих персональных
+                                        данных и соглашаюсь с Условиями использования и Политикой конфиденциальности
+                                    </p>
+                                </div>
                             </div>
                         </form>
                     </div>

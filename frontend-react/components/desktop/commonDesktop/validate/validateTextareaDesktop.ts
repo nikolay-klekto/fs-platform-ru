@@ -4,7 +4,7 @@ export function validateTextareaDesktop(text: string) {
 
     return {
         status: isValid,
-        textError: isValid ? '' : 'Введите текст, содержащий буквы',
+        textError: isValid ? '' : 'Введите текст',
         styleError: !isValid,
     }
 }

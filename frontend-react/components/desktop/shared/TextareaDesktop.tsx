@@ -10,9 +10,9 @@ const textareaVariants = cva(
                 default:
                     'border-input bg-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
                 contacts_page:
-                    'text-5xl bg-transparent ring-offset-transparent border-2 border-[#878797] focus:border-[3px]',
+                    'text-5xl bg-transparent ring-offset-transparent border-2 border-[#878797] focus:border-[3px] focus:ring-transparent',
                 contacts_page_error:
-                    'text-5xl bg-transparent ring-offset-transparent border-2 border-[#bc8070] focus:border-[3px]',
+                    'text-5xl bg-transparent ring-offset-transparent border-2 border-[#bc8070] focus:border-[3px] focus:ring-transparent',
             },
             size: {
                 default: 'h-10 px-3 py-2',
@@ -128,7 +128,7 @@ const EnhancedTextarea = React.forwardRef<HTMLTextAreaElement, EnhancedTextareaP
                     {...props}
                 />
                 {(helperText || internalError !== '') && (
-                    <span className={cn('text-xs', internalError ? 'text-destructive' : 'text-muted-foreground')}>
+                    <span className={cn('text-2xl', internalError ? 'text-destructive' : 'text-muted-foreground')}>
                         {internalError || helperText}
                     </span>
                 )}
