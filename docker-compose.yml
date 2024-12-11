@@ -72,6 +72,21 @@ services:
     networks:
       - prometheus-grafana-network
 
+  appCallRequest:
+    image: ru-call-requests:latest
+    build:
+      context: .
+      dockerfile: Dockerfile-Call-Request
+    ports:
+      - "127.0.0.1:8383:8383"
+    depends_on:
+      - service-db
+    environment:
+      - SERVER_PORT= 8383
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+    networks:
+      - prometheus-grafana-network
+
   gateway:
     image: ru-gateway:latest
     build:
