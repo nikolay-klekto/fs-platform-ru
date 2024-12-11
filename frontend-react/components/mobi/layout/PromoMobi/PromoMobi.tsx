@@ -6,7 +6,7 @@ const PromoMobi: React.FC = () => {
     return (
         <div
             style={{
-                backgroundImage: 'url(/background/background-promo.jpg)',
+                backgroundImage: 'url(/background/background-promo.webp)',
                 height: '400px',
                 backgroundSize: 'cover',
             }}

@@ -26,7 +26,7 @@ export default function Home() {
             {isDesktop ? (
                 <>
                     <HeaderDesktop />
-                    <main className="bg-[url('/background/main.svg')] bg-cover bg-no-repeat">
+                    <main className="bg-[url('/background/main.webp')] bg-cover bg-no-repeat">
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />

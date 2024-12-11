@@ -6,7 +6,7 @@ const PromoDesktop: React.FC = () => {
     return (
         <div
             style={{
-                backgroundImage: 'url(/background/background-promo.svg)',
+                backgroundImage: 'url(/background/background-promo.webp)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}
