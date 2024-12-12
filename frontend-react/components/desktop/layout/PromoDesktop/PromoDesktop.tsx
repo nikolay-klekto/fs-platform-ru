@@ -10,7 +10,7 @@ const PromoDesktop: React.FC = () => {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}
-            className="w-full h-[650px] flex items-center justify-center"
+            className="w-full h-[508px] flex items-center justify-center"
         >
             <div className="container flex items-center lg:flex-col xl:flex-col p-6">
                 <div className="max-w-[68rem]">
