@@ -5,7 +5,6 @@ import com.fs.client.repository.blocked.BasketBlockingRepository
 import com.fs.client.repository.blocked.CompanyProfessionBlockingRepository
 import com.fs.client.repository.blocked.OrderBlockingRepository
 import com.fs.client.repository.blocked.ProfessionBlockingRepository
-import com.fs.domain.jooq.tables.Client
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
@@ -13,6 +12,8 @@ import com.fs.service.ru.OrderModel
 import com.fs.service.ru.enums.OrderStatus
 import org.apache.logging.log4j.LogManager
 import org.jooq.DSLContext
+import org.jooq.impl.DSL
+import org.jooq.impl.SQLDataType
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import java.text.SimpleDateFormat
@@ -80,9 +81,16 @@ abstract class OrderRepository(
 
     fun updateExpiredStatus() {
         log.info("Scheduler is working. The time is now {}", dateFormat.format(Date()))
+
+        // Выбираем истекшие заказы
         val expiredOrdersList: List<OrderModel> = dsl.selectFrom(ORDER).where(
             ORDER.ORDER_STATUS.eq(OrderStatus.ACTUAL.name).and(
-                ORDER.START_WORK_DATE.plus(ORDER.TOTAL_WORK_DAYS).ge(LocalDateTime.now())
+                ORDER.START_WORK_DATE.le(
+                    DSL.currentLocalDateTime().minus(
+                        DSL.cast(ORDER.TOTAL_WORK_DAYS, SQLDataType.INTEGER)
+                            .mul(DSL.field("INTERVAL '1 day'", SQLDataType.INTERVAL))
+                    )
+                )
             )
         ).map { it.into(OrderModel::class.java) }
 
@@ -91,29 +99,45 @@ abstract class OrderRepository(
             val professionId = companyProfessionBlockingRepository.getProfessionIdById(order.companyProfessionId!!)
             professionBlockingRepository.increaseClientsNumberByProfessionId(professionId)
         }
+
+        // Обновляем статус заказов
         dsl.update(ORDER)
             .set(ORDER.ORDER_STATUS, OrderStatus.EXPIRED.name)
             .where(
                 ORDER.ORDER_STATUS.eq(OrderStatus.ACTUAL.name).and(
-                    ORDER.START_WORK_DATE.plus(ORDER.TOTAL_WORK_DAYS).ge(LocalDateTime.now())
+                    ORDER.START_WORK_DATE.le(
+                        DSL.currentLocalDateTime().minus(
+                            DSL.cast(ORDER.TOTAL_WORK_DAYS, SQLDataType.INTEGER)
+                                .mul(DSL.field("INTERVAL '1 day'", SQLDataType.INTERVAL))
+                        )
+                    )
                 )
             )
 
+        // Временные заказы
         val temporaryExpiredOrders: List<OrderModel> =
             dsl.select(ORDER.asterisk()).from(ORDER)
                 .where(
                     ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED.name)
-                        .and(ORDER.DATE_CREATED.plus(TEMPORARY_ORDER_LIFE_TIME).ge(LocalDateTime.now()))
+                        .and(
+                            ORDER.DATE_CREATED.le(
+                                DSL.currentLocalDateTime().minus(
+                                    DSL.field("INTERVAL '1 day'", SQLDataType.INTERVAL)
+                                        .mul(DSL.cast(TEMPORARY_ORDER_LIFE_TIME, SQLDataType.INTEGER))
+                                )
+                            )
+                        )
                 )
                 .map { it.into(OrderModel::class.java) }
 
-        temporaryExpiredOrders.stream().map { orderModel ->
+        temporaryExpiredOrders.forEach { orderModel ->
             deleteOrderById(orderModel.id!!)
             if (orderBlockingRepository.isBasketEmpty(orderModel.basketId!!)) {
                 basketBlockingRepository.delete(orderModel.basketId!!)
             }
         }
     }
+
 
     fun deleteOrderById(orderId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
