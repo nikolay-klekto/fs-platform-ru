@@ -20,9 +20,6 @@ const ModalCallDesktop: React.FC = () => {
         consent: false,
     })
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
-    const [isModalOpen, setModalOpen] = useState(false)
-    const handleOpenModal = () => setModalOpen(true)
-    const handleCloseModal = () => setModalOpen(false)
 
     const [step, setStep] = useState<'form' | 'accepted' | null>('form')
     const validateForm = () => {
@@ -61,7 +58,7 @@ const ModalCallDesktop: React.FC = () => {
     return (
         <>
             {step === 'form' && (
-                <Modal show={isModalOpen} onClose={handleCloseModal} size="medium" showCloseButton={false}>
+                <Modal show={isModalOpen} onClose={handleCloseModal} size="medium" showCloseButton={true}>
                     <div>
                         <button onClick={handleCloseModal} className="absolute top-4 right-4">
                             <X size={35} color="white" className="opacity-70" />
