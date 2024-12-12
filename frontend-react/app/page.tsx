@@ -9,8 +9,12 @@ import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
 import ModalCallMobi from '@/components/mobi/layout/ModalMobi/ModalCallMobi'
 import ModalCallDesktop from '@/components/desktop/layout/ModalDesktop/ModalCallDesktop'
+
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
+    const [isModalOpen, setModalOpen] = useState(false)
+    const handleOpenModal = () => setModalOpen(true)
+    const handleCloseModal = () => setModalOpen(false)
     useEffect(() => {
         setIsClient(true)
     }, [])
@@ -25,12 +29,12 @@ export default function Home() {
         <div>
             {isDesktop ? (
                 <>
-                    <HeaderDesktop />
+                    <HeaderDesktop onOpenModalCallDesktop={handleOpenModal} />
                     <main className="bg-[url('/background/main.svg')] bg-cover bg-no-repeat">
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />
-                    <ModalCallDesktop />
+                    <ModalCallDesktop isOpen={isModalOpen} onClose={handleCloseModal} />
                 </>
             ) : (
                 <>

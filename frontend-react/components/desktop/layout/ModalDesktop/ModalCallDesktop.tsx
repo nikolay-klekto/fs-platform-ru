@@ -12,7 +12,11 @@ interface FormData {
     consent: boolean
 }
 
-const ModalCallDesktop: React.FC = () => {
+interface ModalCallDesktopProps {
+    isOpen: boolean
+    onClose: () => void
+}
+const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         phone: '',
@@ -20,7 +24,6 @@ const ModalCallDesktop: React.FC = () => {
         consent: false,
     })
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
-
     const [step, setStep] = useState<'form' | 'accepted' | null>('form')
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
@@ -51,16 +54,12 @@ const ModalCallDesktop: React.FC = () => {
         }
     }
 
-    const handleClose = () => {
-        setStep(null)
-    }
-
     return (
         <>
             {step === 'form' && (
-                <Modal show={isModalOpen} onClose={handleCloseModal} size="medium" showCloseButton={true}>
+                <Modal show={isOpen} onClose={onClose} size="medium" showCloseButton={false}>
                     <div>
-                        <button onClick={handleCloseModal} className="absolute top-4 right-4">
+                        <button onClick={onClose} className="absolute top-4 right-4">
                             <X size={35} color="white" className="opacity-70" />
                         </button>
                         <div className="flex flex-col p-3 rounded-lg max-w-md mx-auto">
@@ -160,9 +159,9 @@ const ModalCallDesktop: React.FC = () => {
                 </Modal>
             )}
             {step === 'accepted' && (
-                <Modal show={isModalOpen} onClose={handleCloseModal} size="medium" showCloseButton={false}>
+                <Modal show={isOpen} onClose={onClose} size="medium" showCloseButton={false}>
                     <div>
-                        <button onClick={handleClose} className="absolute top-4 right-4">
+                        <button onClick={onClose} className="absolute top-4 right-4">
                             <X size={35} color="white" className="opacity-70" />
                         </button>
                         <div className="flex flex-col p-3 rounded-lg max-w-md mx-auto">
