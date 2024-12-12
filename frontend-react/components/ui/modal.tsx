@@ -30,7 +30,7 @@ const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium',
     return ReactDOM.createPortal(
         <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50" onClick={onClose}>
             <div
-                className={`relative bg-[#1a1a2e] p-6 rounded-[50px] w-full ${getSizeClass()} text-white`}
+                className={`relative bg-[#101030] rounded-[50px] w-full ${getSizeClass()} text-white`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {showCloseButton && (
