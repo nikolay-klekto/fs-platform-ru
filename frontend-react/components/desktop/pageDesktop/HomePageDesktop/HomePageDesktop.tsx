@@ -5,6 +5,7 @@ import ProfessionsSectionDesktop from '../../layout/ProfessionsSectionDesktop/Pr
 import HowWeWorkDesktop from '../../layout/HowWeWorkDesktop/HowWeWorkDesktop'
 import PromoDesktop from '../../layout/PromoDesktop/PromoDesktop'
 import EventsSectionDesktop from '../../layout/EventsSectionDesktop/EventsSectionDesktop'
+import Profile from '../../layout/ProfileDesktop/ProfileDesktop'
 const HomePageDesktop: React.FC = () => {
     return (
         <>
@@ -17,6 +18,7 @@ const HomePageDesktop: React.FC = () => {
                 <ProfessionsSectionDesktop />
                 <PromoDesktop />
                 <EventsSectionDesktop />
+                <Profile />
             </div>
         </>
     )
