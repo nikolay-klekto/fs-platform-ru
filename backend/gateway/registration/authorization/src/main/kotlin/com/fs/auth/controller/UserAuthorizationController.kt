@@ -1,12 +1,12 @@
 package com.fs.auth.controller
 
+import com.fs.auth.jooq.tables.pojos.ClientsRefreshTokens
 import com.fs.auth.repository.UserRepository
 import com.fs.auth.repository.blocked.OrderBlockingRepository
 import com.fs.auth.repository.blocked.RefreshTokenBlockingRepository
 import com.fs.auth.service.JwtService
 import com.fs.client.ru.AuthResponse
 import com.fs.client.ru.AuthorizationClientModel
-import com.fs.domain.jooq.tables.pojos.ClientsRefreshTokens
 import com.fs.service.ru.errors.ErrorModel
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping

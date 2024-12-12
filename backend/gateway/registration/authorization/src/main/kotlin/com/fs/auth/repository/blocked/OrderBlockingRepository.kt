@@ -1,9 +1,8 @@
 package com.fs.auth.repository.blocked
 
-import com.fs.client.repository.blocked.OrderBlockingRepository
-import com.fs.domain.jooq.tables.Basket
-import com.fs.domain.jooq.tables.Order
-import com.fs.domain.jooq.tables.records.OrderRecord
+import com.fs.auth.jooq.tables.Basket.Companion.BASKET
+import com.fs.auth.jooq.tables.Order.Companion.ORDER
+import com.fs.auth.jooq.tables.records.OrderRecord
 import com.fs.service.ru.BasketModel
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.enums.OrderStatus
@@ -19,8 +18,8 @@ abstract class OrderBlockingRepository(
 
     fun copyAllOrdersToMainBasket(temporaryBasketId: Long, activeBasketId: Long) {
         val allTemporaryOrders: List<OrderModel> =
-            dsl.select(Order.ORDER.asterisk()).from(Order.ORDER)
-                .where(Order.ORDER.BASKET_ID.eq(temporaryBasketId))
+            dsl.select(ORDER.asterisk()).from(ORDER)
+                .where(ORDER.BASKET_ID.eq(temporaryBasketId))
                 .map { it.into(OrderModel::class.java) }
 
 
@@ -46,7 +45,7 @@ abstract class OrderBlockingRepository(
     }
 
     fun isBasketEmpty(basketId: Long): Boolean {
-        val ordersWithCurrentBasket: Int = dsl.selectCount().from(Order.ORDER).where(Order.ORDER.BASKET_ID.eq(basketId))
+        val ordersWithCurrentBasket: Int = dsl.selectCount().from(ORDER).where(ORDER.BASKET_ID.eq(basketId))
             .first()
             .map { it.into(Int::class.java) }
         return ordersWithCurrentBasket == 0
@@ -54,14 +53,14 @@ abstract class OrderBlockingRepository(
 
     fun deleteById(orderId: Long): Boolean {
         decreaseBasketTotalPriceByOrderId(orderId)
-        return dsl.deleteFrom(Order.ORDER)
-            .where(Order.ORDER.ID.eq(orderId))
+        return dsl.deleteFrom(ORDER)
+            .where(ORDER.ID.eq(orderId))
             .execute() == 1
     }
 
     fun decreaseBasketTotalPriceByOrderId(orderId: Long) {
-        val basketTotalPrice: Double? = dsl.select(Basket.BASKET.TOTAL_PRICE).from(Basket.BASKET)
-            .where(Basket.BASKET.ID.eq(dsl.select(Order.ORDER.BASKET_ID).from(Order.ORDER).where(Order.ORDER.ID.eq(orderId))))
+        val basketTotalPrice: Double? = dsl.select(BASKET.TOTAL_PRICE).from(BASKET)
+            .where(BASKET.ID.eq(dsl.select(ORDER.BASKET_ID).from(ORDER).where(ORDER.ID.eq(orderId))))
             .map { it.into(Double::class.java) }.firstOrNull()
 
         val currentOrder: OrderModel? = getById(orderId)
@@ -74,8 +73,8 @@ abstract class OrderBlockingRepository(
     }
 
     fun getById(orderId: Long): OrderModel? {
-        return dsl.select(Order.ORDER.asterisk()).from(Order.ORDER)
-            .where(Order.ORDER.ID.eq(orderId))
+        return dsl.select(ORDER.asterisk()).from(ORDER)
+            .where(ORDER.ID.eq(orderId))
             .map { it.into(OrderModel::class.java) }
             .firstOrNull()
     }
@@ -140,16 +139,16 @@ abstract class OrderBlockingRepository(
             price = newOrderPrice,
             companyProfessionId = orderModel.companyProfessionId
         )
-        val newOrderRecord: OrderRecord = dsl.newRecord(Order.ORDER)
+        val newOrderRecord: OrderRecord = dsl.newRecord(ORDER)
         newOrderRecord.from(newOrderModel)
-        newOrderRecord.reset(Order.ORDER.ID)
+        newOrderRecord.reset(ORDER.ID)
         newOrderRecord.store()
         return newOrderRecord.into(OrderModel::class.java)
     }
 
     private fun isPreOrdersInBasket(basketId: Long): Boolean {
-        val preOrdersQuantity: Int = dsl.selectCount().from(Order.ORDER)
-            .where(Order.ORDER.BASKET_ID.eq(basketId).and(Order.ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED.name)))
+        val preOrdersQuantity: Int = dsl.selectCount().from(ORDER)
+            .where(ORDER.BASKET_ID.eq(basketId).and(ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED.name)))
             .map { it.into(Int::class.java) }
             .first()
         return preOrdersQuantity > 0

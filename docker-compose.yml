@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile-Client
     ports:
-      - "127.0.0.1:8183:8183"
+      - "8183:8183"
     #    container_name: app
     depends_on:
       - service-db
@@ -19,43 +19,43 @@ services:
     volumes:
       - /home/Nikolay/funScrut/photos/events:/app/uploads/events
 
-  app2:
-    image: ru-client:latest
-    build:
-      context: .
-      dockerfile: Dockerfile-Client
-    ports:
-      - "127.0.0.1:8184:8183"
-    #    container_name: app
-    depends_on:
-      - service-db
-    #       condition: service_healthy
-    environment:
-      - SERVER_PORT= 8183
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
-    networks:
-      - prometheus-grafana-network
-    volumes:
-      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
-
-  app3:
-    image: ru-client:latest
-    build:
-      context: .
-      dockerfile: Dockerfile-Client
-    ports:
-      - "127.0.0.1:8185:8183"
-    #    container_name: app
-    depends_on:
-      - service-db
-#       condition: service_healthy
-    environment:
-      - SERVER_PORT= 8183
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
-    networks:
-      - prometheus-grafana-network
-    volumes:
-      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
+#  app2:
+#    image: ru-client:latest
+#    build:
+#      context: .
+#      dockerfile: Dockerfile-Client
+#    ports:
+#      - "127.0.0.1:8184:8183"
+#    #    container_name: app
+#    depends_on:
+#      - service-db
+#    #       condition: service_healthy
+#    environment:
+#      - SERVER_PORT= 8183
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+#    networks:
+#      - prometheus-grafana-network
+#    volumes:
+#      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
+#
+#  app3:
+#    image: ru-client:latest
+#    build:
+#      context: .
+#      dockerfile: Dockerfile-Client
+#    ports:
+#      - "127.0.0.1:8185:8183"
+#    #    container_name: app
+#    depends_on:
+#      - service-db
+##       condition: service_healthy
+#    environment:
+#      - SERVER_PORT= 8183
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+#    networks:
+#      - prometheus-grafana-network
+#    volumes:
+#      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
 
   appAuth:
     image: ru-auth:latest
@@ -63,7 +63,7 @@ services:
       context: .
       dockerfile: Dockerfile-Auth
     ports:
-      - "127.0.0.1:8282:8282"
+      - "8282:8282"
     depends_on:
       - service-db
     environment:
@@ -78,7 +78,7 @@ services:
       context: .
       dockerfile: Dockerfile-Call-Request
     ports:
-      - "127.0.0.1:8383:8383"
+      - "8383:8383"
     depends_on:
       - service-db
     environment:

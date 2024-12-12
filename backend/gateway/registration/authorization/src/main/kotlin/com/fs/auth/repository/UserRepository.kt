@@ -1,14 +1,14 @@
 package com.fs.auth.repository
 
+import com.fs.auth.jooq.tables.Client.Companion.CLIENT
+import com.fs.auth.jooq.tables.pojos.Client
+import com.fs.auth.jooq.tables.records.ClientRecord
 import com.fs.auth.repository.blocked.BasketBlockingRepository
 import com.fs.auth.repository.blocked.UserBlockingRepository
 import com.fs.auth.service.PasswordService
 import com.fs.client.ru.AuthorizationClientModel
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.enums.ClientRoleModel
-import com.fs.domain.jooq.tables.Client
-import com.fs.domain.jooq.tables.Client.Companion.CLIENT
-import com.fs.domain.jooq.tables.records.ClientRecord
 import com.github.f4b6a3.ulid.UlidCreator
 import org.jooq.DSLContext
 import reactor.core.publisher.Mono
@@ -65,7 +65,7 @@ abstract class UserRepository(
         // Создаем запись клиента
         val newClientRecord: ClientRecord = dsl.newRecord(CLIENT)
 
-        val newClientModel = com.fs.domain.jooq.tables.pojos.Client(
+        val newClientModel = Client(
             basketId = clientModel.basketId,
             cityId = null,
             activateStatus = DEFAULT_ACTIVE_STATUS,

@@ -1,6 +1,6 @@
 package com.fs.auth.repository.blocked
 
-import com.fs.domain.jooq.tables.CompanyProfession
+import com.fs.auth.jooq.tables.CompanyProfession.Companion.COMPANY_PROFESSION
 import org.jooq.DSLContext
 
 abstract class CompanyProfessionBlockingRepository(
@@ -8,9 +8,9 @@ abstract class CompanyProfessionBlockingRepository(
 ) {
 
     fun getPricePerDayById(companyProfessionId: Long): Double {
-        return dsl.select(CompanyProfession.COMPANY_PROFESSION.PRICE_PER_DAY)
-            .from(CompanyProfession.COMPANY_PROFESSION)
-            .where(CompanyProfession.COMPANY_PROFESSION.ID.eq(companyProfessionId))
+        return dsl.select(COMPANY_PROFESSION.PRICE_PER_DAY)
+            .from(COMPANY_PROFESSION)
+            .where(COMPANY_PROFESSION.ID.eq(companyProfessionId))
             .first()
             .map { it.into(Double::class.java) }
     }

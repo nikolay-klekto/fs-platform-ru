@@ -1,8 +1,8 @@
 package com.fs.auth.repository.blocked
 
-import com.fs.domain.jooq.tables.ClientsRefreshTokens.Companion.CLIENTS_REFRESH_TOKENS
-import com.fs.domain.jooq.tables.pojos.ClientsRefreshTokens
-import com.fs.domain.jooq.tables.records.ClientsRefreshTokensRecord
+import com.fs.auth.jooq.tables.ClientsRefreshTokens.Companion.CLIENTS_REFRESH_TOKENS
+import com.fs.auth.jooq.tables.pojos.ClientsRefreshTokens
+import com.fs.auth.jooq.tables.records.ClientsRefreshTokensRecord
 import org.jooq.DSLContext
 
 abstract class RefreshTokenBlockingRepository(

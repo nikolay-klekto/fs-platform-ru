@@ -1,7 +1,7 @@
 package com.fs.auth.repository.blocked
 
+import com.fs.auth.jooq.tables.Client.Companion.CLIENT
 import com.fs.client.ru.ClientModel
-import com.fs.domain.jooq.tables.Client
 import org.jooq.DSLContext
 
 abstract class UserBlockingRepository(
@@ -9,14 +9,14 @@ abstract class UserBlockingRepository(
 ) {
 
     fun getByEmail(clientEmail: String): ClientModel? {
-        return dsl.selectFrom(Client.CLIENT).where(Client.CLIENT.EMAIL.eq(clientEmail))
+        return dsl.selectFrom(CLIENT).where(CLIENT.EMAIL.eq(clientEmail))
             .map { it.into(ClientModel::class.java) }
             .firstOrNull()
     }
 
     fun getById(clientId: String?): ClientModel? {
-        return dsl.select(Client.CLIENT.asterisk()).from(Client.CLIENT)
-            .where(Client.CLIENT.ID.eq(clientId))
+        return dsl.select(CLIENT.asterisk()).from(CLIENT)
+            .where(CLIENT.ID.eq(clientId))
             .map { it.into(ClientModel::class.java) }
             .firstOrNull()
     }
