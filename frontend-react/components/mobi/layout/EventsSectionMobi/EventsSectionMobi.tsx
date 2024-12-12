@@ -2,7 +2,7 @@ import React from 'react'
 import TitleMobi from '@/components/mobi/shared/TitleMobi'
 import ItemEventsMobi from '@/components/mobi/layout/EventsSectionMobi/ItemEventsMobi/ItemEventsMobi'
 import { content } from '@/components/mobi/layout/EventsSectionMobi/content'
-const EventsSectionDesktop: React.FC = () => {
+const EventsSectionMobi: React.FC = () => {
     return (
         <div className="px-[14px] py-[60px] flex flex-col align-middle mx-auto">
             <TitleMobi title={'МЕРОПРИЯТИЯ'} href="/profevents" />
@@ -20,4 +20,4 @@ const EventsSectionDesktop: React.FC = () => {
         </div>
     )
 }
-export default EventsSectionDesktop
+export default EventsSectionMobi
