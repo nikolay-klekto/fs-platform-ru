@@ -1,13 +1,24 @@
 'use client'
 
-import React from 'react'
-
+import React, { useState } from 'react'
+import RegistrationModalDesktop from '@/components/desktop/layout/RegistrationModalDesktop/RegistrationModalDesktop'
+import LoginModalDesktop from '@/components/desktop/layout/LoginModalDesktop/LoginModalDesktop'
 import Link from 'next/link'
 import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationDesktop'
 import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
 const HeaderDesktop: React.FC = () => {
+    const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
+
+    const openModal = (type: 'login' | 'registration') => {
+        setModalType(type)
+    }
+
+    const closeModal = () => {
+        setModalType(null)
+    }
+
     return (
         <>
             <header
@@ -31,11 +42,21 @@ const HeaderDesktop: React.FC = () => {
                     </div>
                     <div className="max-w-[50px] 3xl:max-w-[36px] 2xl:max-w-[36px]">
                         <Link href="/profile">
-                            <ProfileIconDesktop className="w-full h-auto cursor-pointer" />
+                            <ProfileIconDesktop
+                                className="w-full h-auto cursor-pointer"
+                                onClick={() => openModal('login')}
+                            />
                         </Link>
                     </div>
                 </div>
             </header>
+            {modalType === 'login' && (
+                <LoginModalDesktop closeModal={closeModal} openRegistrationModal={() => openModal('registration')} />
+            )}
+
+            {modalType === 'registration' && (
+                <RegistrationModalDesktop closeModal={closeModal} openLoginModal={() => openModal('login')} />
+            )}
         </>
     )
 }
