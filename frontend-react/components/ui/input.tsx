@@ -48,6 +48,7 @@ export interface EnhancedInputProps
     wrapperClassName?: string
     placeholder?: string
     name?: string
+    labelClassName?: string
 }
 
 const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
@@ -66,6 +67,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             helperText,
             name,
             wrapperClassName,
+            labelClassName,
             placeholder,
             ...props
         },
@@ -99,7 +101,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const newValue = e.target.value
             setInternalValue(newValue)
-            validateComponent(newValue)
+            // validateComponent(newValue)
             onChange?.(newValue)
         }
 
@@ -111,12 +113,12 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-            validateComponent(internalValue)
+            internalValue && validateComponent(internalValue)
         }
 
         return (
             <div className={cn('flex flex-col gap-1.5', wrapperClassName)}>
-                {label && <label className="text-foreground text-sm font-medium">{label}</label>}
+                {label && <label className={cn('text-sm font-medium text-foreground', labelClassName)}>{label}</label>}
                 <input
                     type={type}
                     className={cn(
