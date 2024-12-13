@@ -39,6 +39,7 @@ export interface EnhancedInputProps
     labelClassName?: string
     placeholder?: string
     name?: string
+    labelClassName?: string
 }
 
 const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
@@ -91,7 +92,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const newValue = e.target.value
             setInternalValue(newValue)
-            validateComponent(newValue)
+            // validateComponent(newValue)
             onChange?.(newValue)
         }
 
@@ -103,7 +104,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-            validateComponent(internalValue)
+            internalValue && validateComponent(internalValue)
         }
 
         return (
