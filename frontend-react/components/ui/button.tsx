@@ -23,7 +23,7 @@ const buttonVariants = cva(
                 registration:
                     'w-[500px] rounded-[45px] bg-white text-13xl font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] lg:text-9xl',
                 registration_mobi:
-                    'h-[51px] w-[269px] rounded-[38px] bg-white font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
+                    'h-[51px] rounded-[38px] bg-white font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 arrow: 'w-[95px] rounded-[45px] bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 arrow_mobi:
                     'flex size-[51px] items-center justify-center rounded-full bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
