@@ -309,3 +309,22 @@ export const PasswordGeneratorDesktop: React.FC<SVGProps<SVGSVGElement>> = (prop
         </svg>
     )
 }
+export const ModalIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg
+            width={'29px'}
+            height={'100%'}
+            viewBox="0 0 31 27"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+        >
+            <path
+                d="M30.125 13.5L16.7188 0.703125V8.01562C3.88912 8.01562 0.875 17.2149 0.875 26.2969C4.57771 21.5559 7.85234 18.9844 16.7188 18.9844V26.2969L30.125 13.5Z"
+                fill="#FFFFFF"
+                stroke="#FFFFFF"
+                strokeLinejoin="round"
+            />
+        </svg>
+    );
+}
