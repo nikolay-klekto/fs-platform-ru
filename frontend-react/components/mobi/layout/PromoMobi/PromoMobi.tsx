@@ -12,7 +12,7 @@ const PromoMobi: React.FC = () => {
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                 }}
-                className="mx-auto h-[496px] w-full rounded-[40px] px-[15px] pb-[15px] pt-[84px]"
+                className="mx-auto h-[496px] w-full rounded-[40px] px-[13px] pb-[14px] pt-[84px]"
             >
                 <h3 className="m-0 w-[320px] text-9xl font-medium leading-tight text-white">
                     РЕГИСТРИРУЙСЯ, ВЫБИРАЙ ПРОФЕССИЮ И&nbsp;КОМПАНИЮ, ПОЛУЧАЙ НОВЫЕ ЗНАНИЯ И ОПЫТ
