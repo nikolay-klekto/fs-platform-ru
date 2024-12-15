@@ -10,12 +10,14 @@ const ModalFeedbackDesktop: React.FC = () => {
     const handleOpenModal = () => setModalOpen(true)
     const handleCloseModal = () => setModalOpen(false)
     const [error, setError] = useState<string | null>(null)
+    const [isTyping, setIsTyping] = useState<boolean>(false)
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const value = e.target.value
         if (value.length <= 500) {
             setFormData(value)
             setError(null)
+            setIsTyping(value.length > 0)
         }
     }
 
@@ -26,24 +28,27 @@ const ModalFeedbackDesktop: React.FC = () => {
             return
         }
         setFormData('')
+        setIsTyping(false)
         handleCloseModal()
     }
-
+    const borderColor =
+        error || formData.length === 500 || formData.length === 0 ? 'border-[#BC8070]' : 'border-[#878797]'
+    const counterColor = error || formData.length === 500 || formData.length === 0 ? '#BC8070' : '#878797'
     return (
         <>
             <Modal show={isModalOpen} onClose={handleCloseModal} size="semilarge" showCloseButton={false}>
                 <div>
-                    <button onClick={handleCloseModal} className="absolute top-4 right-4">
-                        <X size={35} color="white" className="opacity-70" />
+                    <button onClick={handleCloseModal} className="absolute top-6 right-[23px]">
+                        <X size={41} color="white" className="opacity-70" />
                     </button>
                 </div>
-                <div className="flex flex-col rounded-lg max-w-lg mx-auto items-start  min-w-[578px] mt-[46px]">
-                    <h1 className="text-13xl font-medium bg-gradient-desktop bg-clip-text text-transparent ">
+                <div className="flex flex-col rounded-lg max-w-lg mx-auto items-start  min-w-[578px] mt-[60px]">
+                    <h2 className="text-[36px] font-medium bg-gradient-desktop bg-clip-text text-transparent leading-[44px]">
                         ОТЗЫВ О СТАЖИРОВКЕ
-                    </h1>
-                    <p className="text-7xl font-medium text-[#fff] shadow-md ">Программист в компании EPAM</p>
-                    <p className="text-xl font-medium text-[#878797] shadow-md pt-2.5">
-                        25.10.2023 -18.10.2023, Стажировка наблюдателя
+                    </h2>
+                    <p className="text-[24px] font-medium text-[#fff]  ">Программист в компании EPAM</p>
+                    <p className="text-[15px] font-medium text-[#878797]  pt-2.5">
+                        25.10.2023 - 18.10.2023, Стажировка наблюдателя
                     </p>
                 </div>
                 <form onSubmit={handleSubmit} className="flex flex-col items-center pl-5 pr-5 mt-5">
@@ -54,12 +59,20 @@ const ModalFeedbackDesktop: React.FC = () => {
                             value={formData}
                             onChange={handleChange}
                             maxLength={500}
-                            className="rounded-3xl min-w-[578px] min-h-[192px] px-4 py-5 bg-transparent border border-[#878797]  outline-[#878797] "
+                            className={`rounded-3xl min-w-[578px] min-h-[192px] px-[15px] py-[15px] bg-transparent border-[2px] ${borderColor} text-[#878797] text-[15px] overflow-hidden outline-none`}
+                            style={{ backgroundColor: isTyping ? '#1f203f' : 'transparent' }}
                         />
-                        <span className="absolute bottom-4 right-4 text-sm text-gray-500">{formData.length}/500</span>
+                        <span className="absolute bottom-[15px] right-5 text-[10px]" style={{ color: counterColor }}>
+                            {formData.length}/500
+                        </span>
                     </div>
-                    {error && <p className="mb-3 text-2xl text-[red] self-center">{error}</p>}
-                    <Button type="submit" variant={'select_desktop'} size={'gradient_border_btn'} className="mb-4">
+                    {/* {error && <p className="mb-3 text-2xl text-[red] self-center">{error}</p>} */}
+                    <Button
+                        type="submit"
+                        variant={'select_desktop'}
+                        size={'gradient_border_btn'}
+                        className="mb-10 hover:border"
+                    >
                         Сохранить отзыв
                     </Button>
                 </form>
