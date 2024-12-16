@@ -34,7 +34,6 @@ export default function Home() {
             ) : (
                 <>
                     <main className="bg-[#101030]">
-                        <button>Send</button>
                         <HomePageMobi />
                     </main>
                     <FooterMobi />

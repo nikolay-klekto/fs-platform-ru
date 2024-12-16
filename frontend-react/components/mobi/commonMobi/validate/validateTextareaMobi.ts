@@ -1,4 +1,4 @@
-export function validateTextareaDesktop(text: string) {
+export function validateTextareaMobi(text: string) {
     const textRegex = /^(?=.*[a-zA-Zа-яА-Я])[a-zA-Zа-яА-Я0-9!@#$%^&*(),.?":{}|<>_\-\s]*$/
     const isValid = textRegex.test(text)
 

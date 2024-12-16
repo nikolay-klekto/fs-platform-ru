@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
-import { EnhancedTextarea } from '../../shared/TextareaDesktop'
+import { EnhancedTextareaDesktop } from '../../shared/TextareaDesktop'
 import { validateNameDesktop } from '../../commonDesktop/validate/validateNameDesktop'
 import { validateEmailDesktop } from '../../commonDesktop/validate/validateEmailDesktop'
 import { validatePhoneDesktop } from '../../commonDesktop/validate/validatePhoneDesktop'
@@ -102,11 +102,11 @@ const ContactsDesktop: React.FC = () => {
                 <div className="radial-gradient_desktop right-[50px] top-[310px] 3xl:top-[410px] 2xl:top-[560px]"></div>
                 <div className="flex flex-col gap-7 max-w-[541px] mr-32 relative z-[1] 3xl:mr-20 2xl:self-start 2xl:max-w-none 2xl:mb-28 2xl:mr-0">
                     <h2 className="text-26xl font-semibold uppercase 3xl:text-23xl">Cвяжитесь с нами</h2>
-                    <Button variant="select_desktop" size="contacts_btn_desktop">
+                    <Button variant="send_btn_desktop" size="contacts_btn_desktop">
                         Хочу в команду
                     </Button>
                 </div>
-                <div className="w-[1020px] relative z-[1] 2xl:flex 2xl:flex-col  2xl:w-none 2xl:w-full">
+                <div className="w-[1020px] relative z-[1] 2xl:flex 2xl:flex-col 2xl:w-none 2xl:w-full">
                     <div className="flex justify-between">
                         <div className="flex flex-col">
                             {contentContactsDesktop.map((item) => (
@@ -153,9 +153,11 @@ const ContactsDesktop: React.FC = () => {
                                         type="text"
                                         id="name"
                                         placeholder="Имя*"
-                                        variant={emptyFields.name ? 'contacts_page_error' : 'contacts_page'}
-                                        size="contacts_page"
-                                        rounded="contacts_page"
+                                        variant={
+                                            emptyFields.name ? 'contacts_page_error_desktop' : 'contacts_page_desktop'
+                                        }
+                                        size="contacts_page_desktop"
+                                        rounded="rounded_53"
                                         value={formData.name}
                                         onChange={(value) => handleChange('name', value)}
                                         validate={(value) => {
@@ -169,9 +171,11 @@ const ContactsDesktop: React.FC = () => {
                                         type="email"
                                         id="email"
                                         placeholder="E-mail*"
-                                        variant={emptyFields.email ? 'contacts_page_error' : 'contacts_page'}
-                                        size="contacts_page"
-                                        rounded="contacts_page"
+                                        variant={
+                                            emptyFields.email ? 'contacts_page_error_desktop' : 'contacts_page_desktop'
+                                        }
+                                        size="contacts_page_desktop"
+                                        rounded="rounded_53"
                                         value={formData.email}
                                         onChange={(value) => handleChange('email', value)}
                                         validate={(value) => {
@@ -187,9 +191,11 @@ const ContactsDesktop: React.FC = () => {
                                         type="tel"
                                         id="tel"
                                         placeholder="Телефон*"
-                                        variant={emptyFields.tel ? 'contacts_page_error' : 'contacts_page'}
-                                        size="contacts_page_additional_info"
-                                        rounded="contacts_page"
+                                        variant={
+                                            emptyFields.tel ? 'contacts_page_error_desktop' : 'contacts_page_desktop'
+                                        }
+                                        size="contacts_page_info_desktop"
+                                        rounded="rounded_53"
                                         value={formData.tel}
                                         onChange={(value) => handleChange('tel', value)}
                                         validate={(value) => {
@@ -203,9 +209,9 @@ const ContactsDesktop: React.FC = () => {
                                         type="text"
                                         id="role"
                                         placeholder="Клиент/партнер/соискатель"
-                                        variant="contacts_page"
-                                        size="contacts_page_additional_info"
-                                        rounded="contacts_page"
+                                        variant="contacts_page_desktop"
+                                        size="contacts_page_info_desktop"
+                                        rounded="rounded_53"
                                         value={formData.role}
                                         onChange={(value) => handleChange('role', value)}
                                         validate={(value) => {
@@ -217,13 +223,13 @@ const ContactsDesktop: React.FC = () => {
                                     />
                                 </div>
                             </div>
-                            <EnhancedTextarea
+                            <EnhancedTextareaDesktop
                                 name="message"
                                 id="message"
                                 placeholder="Опишите свой вопрос*"
-                                variant={emptyFields.message ? 'contacts_page_error' : 'contacts_page'}
-                                size="contacts_page"
-                                rounded="contacts_page"
+                                variant={emptyFields.message ? 'contacts_page_error_desktop' : 'contacts_page_desktop'}
+                                size="contacts_page_desktop"
+                                rounded="rounded_33"
                                 value={formData.message}
                                 onChange={(value) => handleChange('message', value)}
                                 validate={(value) => {
@@ -234,9 +240,9 @@ const ContactsDesktop: React.FC = () => {
                                 wrapperClassName={'h-[272px]'}
                             />
                             <div className="flex flex-col justify-between h-[130px]">
-                                {formError && <p className={cn('text-2xl', 'text-destructive')}>{formError}</p>}
-                                <div className="mt-auto flex justify-between items-center">
-                                    <Button variant="select_desktop" size="contacts_btn_send_desktop">
+                                {formError && <p className={cn('text-xs', 'text-destructive')}>{formError}</p>}
+                                <div className="mt-auto flex justify-between items-center 2xl:justify-start 2xl:gap-10">
+                                    <Button variant="send_btn_desktop" size="contacts_btn_send_desktop">
                                         Отправить
                                     </Button>
                                     <p className="max-w-[663px] pl-3 text-white/20 text-[17px] font-medium">

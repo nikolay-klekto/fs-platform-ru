@@ -9,18 +9,20 @@ const textareaVariants = cva(
             variant: {
                 default:
                     'border-input bg-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-                contacts_page_desktop:
+                contacts_page:
                     'text-5xl bg-transparent ring-offset-transparent border-2 border-[#878797] focus:border-[3px] focus:ring-transparent',
-                contacts_page_error_desktop:
-                    'text-5xl bg-transparent ring-offset-transparent border-2 border-[#bc8070] focus:border-[3px] focus:ring-transparent',
+                contacts_page_error_mobi:
+                    'text-xs placeholder:font-medium bg-transparent ring-offset-transparent border-[1.18px] border-[#bc8070] focus:border-2 focus:ring-transparent',
+                contacts_page_mobi:
+                    'text-xs placeholder:font-medium bg-transparent ring-offset-transparent border-[1.18px] border-[#878797] focus:border-2 focus:ring-transparent',
             },
             size: {
                 default: 'h-10 px-3 py-2',
-                contacts_page_desktop: 'h-60 px-4 py-3.5',
+                contacts_page_mobi: 'h-[82px] max-w-[446px] px-4 py-2',
             },
             rounded: {
                 default: 'rounded-md',
-                rounded_33: 'rounded-[33px]',
+                rounded_11: 'rounded-[11px]',
             },
         },
         defaultVariants: {
@@ -46,7 +48,7 @@ export interface EnhancedTextareaProps
     name?: string
 }
 
-const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTextareaProps>(
+const EnhancedTextareaMobi = React.forwardRef<HTMLTextAreaElement, EnhancedTextareaProps>(
     (
         {
             className,
@@ -137,6 +139,6 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
     },
 )
 
-EnhancedTextareaDesktop.displayName = 'EnhancedTextarea'
+EnhancedTextareaMobi.displayName = 'EnhancedTextarea'
 
-export { EnhancedTextareaDesktop, textareaVariants }
+export { EnhancedTextareaMobi, textareaVariants }
