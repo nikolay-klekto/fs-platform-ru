@@ -30,6 +30,14 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
+
+    .title80px_desktop {
+        @apply text-white text-35xl 4xl:text-27xl 3xl:text-25xl 2xl:text-21xl font-semibold uppercase;
+    }
+    .title28px_mobi_custom {
+        @apply text-white text-9xl font-medium uppercase;
+    }
+
     .text36px_desktop {
         @apply text-[36px] 4xl:text-10xl 3xl:text-9xl 2xl:text-7xl;
     }
@@ -40,13 +48,13 @@
         @apply text-[30px] 4xl:text-9xl 3xl:text-8xl 2xl:text-6xl !important;
     }
     .text28px_desktop {
-        @apply text-[28px] 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl xl:text-2xl lg:text-sm;
+        @apply text-[28px] 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl;
     }
     .text24px_desktop {
         @apply text-[24px] 4xl:text-6xl 3xl:text-5xl 2xl:text-4xl;
     }
     .text18px_desktop {
-        @apply text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg xl:text-xs lg:text-xs;
+        @apply text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg;
     }
     .text20px_desktop {
         @apply text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg;
@@ -84,6 +92,9 @@
     .button-shadow_around_desktop_custom {
         @apply shadow-shadow-around-desktop-custom;
     }
+    .button-shadow_around_mobi_custom {
+        @apply shadow-shadow-around-mobi-custom;
+    }
     .button-shadow_right_desktop_custom {
         @apply shadow-shadow-right-desktop-custom;
     }
@@ -100,6 +111,12 @@
 
     .bg-custom-grey {
         background-color: #878797;
+    }
+
+    .radial-gradient_desktop {
+        @apply size-[852px] opacity-30 rounded-full absolute z-[0];
+        background: radial-gradient(circle, #8917a5 0%, #30217b 100%);
+        filter: blur(100px);
     }
 
     .input-form-desktop-custom {
