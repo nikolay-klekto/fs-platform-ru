@@ -2,8 +2,8 @@
 import React, { useState } from 'react'
 import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
-import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validateNameMobi'
+import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
 
 interface FormData {
     name: string
@@ -20,10 +20,34 @@ const ModalCallMobi: React.FC = () => {
         consent: false,
     })
     const [step, setStep] = useState<'form' | 'accepted' | null>(null)
+    const [errors, setErrors] = useState<{ [key: string]: string }>({})
+    const [ModalOpen, setModalOpen] = useState(false)
+
+    const handleOpenModal = () => {
+        setModalOpen(true)
+        setStep('form')
+    }
+
+    const handleCloseModal = () => setModalOpen(false)
+
+    const validateForm = () => {
+        const newErrors: { [key: string]: string } = {}
+        if (!formData.name.trim()) {
+            newErrors.name = 'Поле обязательно для заполнения'
+        }
+        if (!formData.phone.trim()) {
+            newErrors.phone = 'Поле обязательно для заполнения'
+        }
+        if (!formData.consent) {
+            newErrors.consent = 'Необходимо согласие'
+        }
+        setErrors(newErrors)
+        return Object.keys(newErrors).length === 0
+    }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        if (formData.name && formData.phone && formData.consent) {
+        if (validateForm()) {
             setStep('accepted')
         }
     }
@@ -34,6 +58,7 @@ const ModalCallMobi: React.FC = () => {
 
     return (
         <>
+            <button onClick={handleOpenModal}>открыть</button>
             {step === 'form' && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
                     <div className="relative rounded-[50px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat p-2">
@@ -57,52 +82,45 @@ const ModalCallMobi: React.FC = () => {
                                     name="name"
                                     placeholder="Введите ваше имя"
                                     value={formData.name}
-                                    validate={(value) =>
-                                        validateNameMobi(value)
-                                            ? { textError: 'Введите корректное имя', status: false, styleError: true }
-                                            : { textError: '', status: true, styleError: false }
-                                    }
+                                    validate={(value) => validateNameMobi(value)}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
-                                    className="border border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
+                                    className={`border ${
+                                        errors.name ? 'border-red-500' : 'border-[#878797]'
+                                    } rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white`}
                                     label="Ваше имя"
                                     labelClassName="text-white text-xl font-medium mb-1"
                                     wrapperClassName="w-full"
+                                    externalError={errors.name} // добавляем отображение ошибки
                                 />
+                                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                            </div>
+                            <div className="w-full flex flex-col mb-3 p-0.5">
+                                <PhoneInputMobi
+                                    value={formData.phone}
+                                    onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
+                                    onError={(error) => setErrors((prev) => ({ ...prev, phone: error }))}
+                                    externalError={errors.phone}
+                                    inputClassName={`border ${
+                                        errors.phone ? 'border-red-500' : 'border-[#878797]'
+                                    } rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white`}
+                                    inputERRAddStyle="border-red-500"
+                                    inputNOERRAddStyle="border-[#878797]"
+                                    labelClassName="text-white text-xl font-medium mb-1"
+                                />
+                                {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
                             </div>
                             <div className="w-full flex flex-col mb-3 p-0.5">
                                 <EnhancedInput
-                                    type="tel"
-                                    name="phone"
-                                    placeholder="+375 (__) ___-__-__"
-                                    value={formData.phone}
-                                    validate={(value) =>
-                                        validatePhoneMobi(value)
-                                            ? {
-                                                  textError: 'Введите корректный номер телефона',
-                                                  status: false,
-                                                  styleError: true,
-                                              }
-                                            : { textError: '', status: true, styleError: false }
-                                    }
-                                    onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
-                                    className="border border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
-                                    label="Номер телефона"
-                                    wrapperClassName="w-full"
-                                    labelClassName="text-white text-xl font-medium mb-1"
-                                />
-                            </div>
-                            <div className="w-full flex flex-col mb-3 p-0.5">
-                                <label htmlFor="time" className="text-white text-xl mb-1">
-                                    Удобное время для звонка
-                                </label>
-                                <input
                                     type="text"
                                     id="time"
                                     name="time"
-                                    placeholder="Введите удобное время"
+                                    placeholder="Удобное время для звонка"
                                     value={formData.time}
-                                    onChange={(e) => setFormData((prev) => ({ ...prev, time: e.target.value }))}
-                                    className="border rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
+                                    onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
+                                    className="border border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
+                                    label="Удобное время для звонка"
+                                    labelClassName="text-white text-xl mb-1"
+                                    wrapperClassName="w-full"
                                 />
                             </div>
                             <div className="flex items-center mb-2">
@@ -117,6 +135,7 @@ const ModalCallMobi: React.FC = () => {
                                 <label htmlFor="consent" className="text-xs font-medium text-[#878797]">
                                     Я согласен(а) на обработку персональных данных
                                 </label>
+                                {errors.consent && <p className="text-red-500 text-sm mt-1">{errors.consent}</p>}
                             </div>
                             <button
                                 type="submit"

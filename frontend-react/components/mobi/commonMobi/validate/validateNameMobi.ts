@@ -1,9 +1,20 @@
-export const validateNameMobi = (name: string): string | null => {
+export const validateNameMobi = (name: string): { status: boolean; textError: string; styleError: boolean } => {
     if (!name) {
-        return 'Введите ваше имя'
+        return {
+            status: false, 
+            textError: 'Введите ваше имя',
+            styleError: true,
+        }
+    } else if (!/^[а-яА-ЯёЁ\s]+$/.test(name)) {
+        return {
+            status: false,
+            textError: 'Введите корректное имя',
+            styleError: true,
+        }
     }
-    if (!/^[а-яА-ЯёЁ\s]+$/.test(name)) {
-        return 'Введите корректное имя'
+    return {
+        status: true,
+        textError: 'Обязательное поле для ввода',
+        styleError: false,
     }
-    return null
 }
