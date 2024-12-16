@@ -3,18 +3,28 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const inputVariants = cva(
-    'flex w-full rounded-md border text-sm ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+    'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
     {
         variants: {
             variant: {
                 default:
-                    'border-input bg-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+                    'border-input bg-background focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2',
+                gradient_desktop:
+                    'flex border-0 text-5xl text-[#878797] caret-[#878797] outline-none placeholder:font-semibold placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
+                search_mobi:
+                    'flex border-0 bg-transparent text-xl text-[#878797] outline-none placeholder:text-[14px] placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
             },
             size: {
                 default: 'h-10 px-3 py-2',
+                gradient_search_desktop: 'size-full py-[20px] pl-[20px] pr-[70px]',
+                gradient_desktop: 'size-full p-[20px]',
+                search_mobi: 'size-full py-[15px] pl-[10px] pr-[45px]',
+                send_mobi: 'size-full px-[10px]',
             },
             rounded: {
                 default: 'rounded-md',
+                full: 'rounded-full',
+                rounded_50: 'rounded-[50px]',
             },
         },
         defaultVariants: {
