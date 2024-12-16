@@ -31,8 +31,7 @@ const ModalFeedbackDesktop: React.FC = () => {
         setIsTyping(false)
         handleCloseModal()
     }
-    const borderColor =
-        error || formData.length === 500 || formData.length === 0 ? 'border-[#BC8070]' : 'border-[#878797]'
+    const borderColor = error || formData.length === 500 ? 'border-[#BC8070]' : 'border-[#878797]'
     const counterColor = error || formData.length === 500 || formData.length === 0 ? '#BC8070' : '#878797'
     return (
         <>
