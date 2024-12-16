@@ -33,12 +33,18 @@ class GraphQLConfig {
         val schemaGenerator = SchemaGenerator()
         val graphQLSchema = schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring())
 
-        return extractQueriesFromSchema(graphQLSchema)
+        // Извлечение полей из query и mutation
+        val queries = extractFieldNamesFromSchema(graphQLSchema.queryType)
+        val mutations = extractFieldNamesFromSchema(graphQLSchema.mutationType)
+
+        // Объединение query и mutation
+        return queries + mutations
     }
 
-    private fun extractQueriesFromSchema(schema: graphql.schema.GraphQLSchema): Set<String> {
-        val queryType = schema.queryType
-        return queryType.fieldDefinitions.map { it.name }.toSet()
+
+    private fun extractFieldNamesFromSchema(type: graphql.schema.GraphQLObjectType?): Set<String> {
+        // Если тип отсутствует, возвращаем пустое множество
+        return type?.fieldDefinitions?.map { it.name }?.toSet() ?: emptySet()
     }
 
 //    @Bean

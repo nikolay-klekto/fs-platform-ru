@@ -128,7 +128,9 @@ class JwtAuthenticationFilter(
             val objectMapper = ObjectMapper()
             val rootNode = objectMapper.readTree(query)
             val queryText = rootNode.get("query")?.asText() ?: return null
-            val regex = Regex("""query\s*\{\s*(\w+)""")
+
+            // Регулярное выражение для поиска первого метода в запросе
+            val regex = Regex("""(?:query|mutation)\s*\{\s*(\w+)""")
             regex.find(queryText)?.groupValues?.get(1)
         } catch (e: Exception) {
             println("JwtAuthenticationFilter: Error extracting field name: ${e.message}")

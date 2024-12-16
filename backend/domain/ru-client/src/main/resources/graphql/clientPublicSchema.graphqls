@@ -18,6 +18,7 @@ type Query {
 
     getCompanyById(id: ID!): Company
     getAllCompanies: [Company]
+    getAllAvailableCompanies: [Company]
     getAllCompaniesIndustries: [String]
     getAllCompaniesByPositionId(id: ID!): [Company]
     getAllCompaniesByCountryCode(code: ID!): [Company]
@@ -51,8 +52,8 @@ type Query {
     getFirstNActualEvents(eventQuantity: ID!): [Event]
     getEventsByTimeRange(from: String, to: String): [Event]
 
-    getAllEventCategories: [String]
-    getAllEventCategoriesModels: [EventCategory]
+    getAllEventCategoriesNames: [String]
+    getAllEventCategories: [EventCategory]
 
     getLowestPriceByInternshipTypeId(internshipTypeId: ID): ID
 
@@ -390,6 +391,7 @@ type Event {
 type EventCategory{
     id: ID
     category: String
+    description: String
 }
 
 input EventCategoryInput{

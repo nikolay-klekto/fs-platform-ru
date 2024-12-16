@@ -12,6 +12,7 @@ import com.fs.domain.jooq.tables.records.CompanyRecord
 import com.fs.domain.jooq.tables.references.CITY
 import com.fs.domain.jooq.tables.references.COMPANY_PARTNER
 import com.fs.service.ru.CompanyModel
+import com.fs.service.ru.enums.CompanyLegalCapacityStatus
 import com.fs.service.ru.enums.IndustryModel
 import io.micrometer.core.annotation.Timed
 import org.jooq.DSLContext
@@ -44,6 +45,14 @@ abstract class CompanyRepository(
     open fun getAllCompanies(): Flux<CompanyModel> {
         return Flux.from(
             dsl.select(COMPANY.asterisk()).from(COMPANY)
+        ).map { it.into(Company::class.java) }
+            .map(converter::toModel)
+    }
+
+    open fun getAllAvailableCompanies(): Flux<CompanyModel> {
+        return Flux.from(
+            dsl.select(COMPANY.asterisk()).from(COMPANY)
+                .where(COMPANY.LEGAL_CAPACITY_STATUS.eq(CompanyLegalCapacityStatus.CLOSED.name))
         ).map { it.into(Company::class.java) }
             .map(converter::toModel)
     }

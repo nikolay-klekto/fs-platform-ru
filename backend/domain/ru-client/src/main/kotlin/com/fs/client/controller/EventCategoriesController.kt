@@ -18,12 +18,12 @@ open class EventCategoriesController(
     open val eventCategoriesRepository: EventCategoriesRepository
 ) {
     @QueryMapping
-    fun getAllEventCategories(): Flux<String>{
+    fun getAllEventCategoriesNames(): Flux<String>{
         return eventCategoriesRepository.getAllEventCategories()
     }
 
     @QueryMapping
-    fun getAllEventCategoriesModels(): Flux<EventCategories>{
+    fun getAllEventCategories(): Flux<EventCategories>{
         return eventCategoriesRepository.getAllEventCategoriesModels()
     }
 

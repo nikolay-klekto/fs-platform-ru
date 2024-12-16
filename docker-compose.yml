@@ -18,6 +18,14 @@ services:
       - prometheus-grafana-network
     volumes:
       - /home/Nikolay/funScrut/photos/events:/app/uploads/events
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+          cpus: '1.0'
+        reservations:
+          memory: 512m
 
 #  app2:
 #    image: ru-client:latest
@@ -71,6 +79,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
     networks:
       - prometheus-grafana-network
+    restart: always
 
   appCallRequest:
     image: ru-call-requests:latest
@@ -86,6 +95,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
     networks:
       - prometheus-grafana-network
+    restart: always
 
   gateway:
     image: ru-gateway:latest

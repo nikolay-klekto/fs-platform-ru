@@ -13,7 +13,8 @@ import java.io.Serializable
 @Suppress("UNCHECKED_CAST")
 data class EventCategories(
     var id: Long? = null,
-    var category: String? = null
+    var category: String? = null,
+    var description: String? = null
 ): Serializable {
 
 
@@ -22,6 +23,7 @@ data class EventCategories(
 
         sb.append(id)
         sb.append(", ").append(category)
+        sb.append(", ").append(description)
 
         sb.append(")")
         return sb.toString()
