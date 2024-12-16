@@ -72,7 +72,6 @@ const ModalCallDesktop: React.FC = () => {
 
     return (
         <>
-            <button onClick={handleOpenModal}>открыть</button>
             {step === 'form' && (
                 <Modal show={ModalOpen} onClose={handleCloseModal} size="medium" showCloseButton={false}>
                     <div>

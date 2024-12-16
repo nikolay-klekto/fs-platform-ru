@@ -58,7 +58,6 @@ const ModalCallMobi: React.FC = () => {
 
     return (
         <>
-            <button onClick={handleOpenModal}>открыть</button>
             {step === 'form' && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
                     <div className="relative rounded-[50px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat p-2">
