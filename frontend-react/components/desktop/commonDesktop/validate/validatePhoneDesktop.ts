@@ -1,4 +1,4 @@
-export function validatePhoneNumberDesktop(phone: string) {
+export const validatePhoneDesktop = (phone: string) => {
     const cleanedValue = phone.replace(/\D/g, '')
     const isValid = /^375\d{9}$|^7\d{10}$/.test(cleanedValue)
 

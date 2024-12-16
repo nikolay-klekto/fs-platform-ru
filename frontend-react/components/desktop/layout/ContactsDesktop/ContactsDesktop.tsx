@@ -7,7 +7,7 @@ import { EnhancedInput } from '@/components/ui/input'
 import { EnhancedTextarea } from '../../shared/TextareaDesktop'
 import { validateNameDesktop } from '../../commonDesktop/validate/validateNameDesktop'
 import { validateEmailDesktop } from '../../commonDesktop/validate/validateEmailDesktop'
-import { validatePhoneNumberDesktop } from '../../commonDesktop/validate/validatePhoneNumberDesktop'
+import { validatePhoneDesktop } from '../../commonDesktop/validate/validatePhoneDesktop'
 import { validateRoleDesktop } from '../../commonDesktop/validate/validateRoleDesktop'
 import { validateTextareaDesktop } from '../../commonDesktop/validate/validateTextareaDesktop'
 import { contentContactsDesktop, contentSocialContactsDesktop } from './contentContactsDesktop'
@@ -193,7 +193,7 @@ const ContactsDesktop: React.FC = () => {
                                         value={formData.tel}
                                         onChange={(value) => handleChange('tel', value)}
                                         validate={(value) => {
-                                            const validation = validatePhoneNumberDesktop(value)
+                                            const validation = validatePhoneDesktop(value)
                                             updateFieldError('tel', !validation.status)
                                             return validation
                                         }}
