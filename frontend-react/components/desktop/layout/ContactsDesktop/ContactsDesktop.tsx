@@ -146,7 +146,7 @@ const ContactsDesktop: React.FC = () => {
                     <div className="w-full h-[1px] bg-white/50 rounded-full mt-[99px] mb-[63px]"></div>
                     <div>
                         <h3 className="text-20xl font-semibold uppercase">Напишите нам</h3>
-                        <form onSubmit={handleSubmit} noValidate>
+                        <form onSubmit={handleSubmit}>
                             <div className="flex justify-between pb-12 pt-14">
                                 <div className="flex flex-col gap-[23px]">
                                     <EnhancedInput
