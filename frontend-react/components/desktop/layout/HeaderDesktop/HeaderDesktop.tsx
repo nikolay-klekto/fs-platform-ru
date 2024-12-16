@@ -7,7 +7,10 @@ import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationD
 import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
-const HeaderDesktop: React.FC = ({ onOpenModalCallDesktop }) => {
+interface HeaderDesktopProps {
+    onOpenModalCallDesktop: () => void
+}
+const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ onOpenModalCallDesktop }) => {
     const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
 
     const openModal = (type: 'login' | 'registration') => {
