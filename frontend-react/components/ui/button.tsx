@@ -65,8 +65,8 @@ const buttonVariants = cva(
                     '3xl:w-[300px] 3xl:px-[20px] h-[64px] w-[337px] px-[30px] py-[20px] 2xl:w-[270px] 2xl:px-[20px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'sm_s:size-[52px] size-[55px] sm:size-[50px]',
-                contacts_btn_desktop: 'h-[65px] w-[262px]',
-                contacts_btn_send_desktop: 'h-[68.5px] w-[289px]',
+                contacts_btn_desktop: 'h-[65px] w-[262px] 3xl:h-[62px] 3xl:w-[256px] 2xl:h-[59px] 2xl:w-[250px]',
+                contacts_btn_send_desktop: 'h-[68.5px] w-[289px] 3xl:h-[65px] 3xl:w-[283px] 2xl:h-[62px] 2xl:w-[277px]',
             },
         },
         defaultVariants: {

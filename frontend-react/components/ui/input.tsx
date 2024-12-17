@@ -16,11 +16,11 @@ const inputVariants = cva(
                 contacts_page_desktop:
                     'text-5xl placeholder:font-medium bg-transparent ring-offset-transparent border-2 border-[#878797] focus:border-[3px] focus:ring-transparent',
                 contacts_page_error_desktop:
-                    'bg-transparent ring-offset-transparent border-2 border-[#bc8070] focus:border-[3px] focus:ring-transparent',
+                    'text-5xl placeholder:font-medium bg-transparent ring-offset-transparent border-2 border-[#bc8070] focus:border-[3px] focus:ring-transparent',
                 contacts_page_mobi:
                     'text-xl placeholder:text-xs placeholder:font-medium bg-transparent ring-offset-transparent border-[1.18px] border-[#878797] focus:border-2 focus:ring-transparent',
                 contacts_page_error_mobi:
-                    'bg-transparent ring-offset-transparent border-[1.18px] border-[#bc8070] focus:border-2 focus:ring-transparent',
+                    'text-xl placeholder:text-xs placeholder:font-medium bg-transparent ring-offset-transparent border-[1.18px] border-[#bc8070] focus:border-2 focus:ring-transparent',
             },
             size: {
                 default: 'h-10 px-3 py-2',
