@@ -1,6 +1,7 @@
 package com.fs.client.controller
 
 import com.fs.client.repository.ProfessionRepository
+import com.fs.domain.jooq.tables.pojos.CompanyProfession
 import com.fs.service.ru.CompanyProfessionModel
 import com.fs.service.ru.ProfessionModel
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -57,18 +58,15 @@ open class ProfessionController(
 
     @MutationMapping
     open fun addCompanyProfession(
-        @Argument companyId: Long,
+        @Argument companyProfession: CompanyProfession,
         @Argument profession: ProfessionModel
     ): Mono<ProfessionModel> {
-        return professionRepository.initCompanyProfession(companyId, profession)
+        return professionRepository.initCompanyProfession(companyProfession, profession)
     }
 
     @MutationMapping
-    open fun addExistingProfessionToCompany(
-        @Argument companyId: Long,
-        @Argument professionId: Long
-    ): Mono<Boolean> {
-        return professionRepository.initExistingProfessionToCompany(companyId, professionId)
+    open fun addExistingProfessionToCompany(@Argument companyProfession: CompanyProfession): Mono<Boolean> {
+        return professionRepository.initExistingProfessionToCompany(companyProfession)
     }
 
     @MutationMapping

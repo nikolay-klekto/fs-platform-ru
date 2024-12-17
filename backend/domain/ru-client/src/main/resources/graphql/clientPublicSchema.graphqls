@@ -77,8 +77,8 @@ type Mutation {
     deleteCompany(id: ID!): Boolean
 
     addProfession(profession: ProfessionInput!): Profession
-    addCompanyProfession(companyId: ID!, profession: ProfessionInput!): Profession
-    addExistingProfessionToCompany(companyId: ID!, positionId: ID!): Boolean
+    addCompanyProfession(companyProfession: CompanyProfessionInput!, profession: ProfessionInput!): Profession
+    addExistingProfessionToCompany(companyProfession: CompanyProfessionInput!): Boolean
     updateProfession(profession: ProfessionInput!): Boolean
     deleteProfession(id: ID!): Boolean
 
@@ -168,6 +168,15 @@ input ProfessionInput {
     description: String,
     name: String,
     clientsNumber: Int
+    professionIndustry: String
+}
+
+input CompanyProfessionInput {
+    id: ID
+    companyId: Int,
+    internshipTypeId: Int,
+    pricePerDay: Float
+    professionId: Int
 }
 
 input PartnerInput {
@@ -306,6 +315,7 @@ type Profession {
     description: String
     name: String
     clientsNumber: Int
+    professionIndustry: String
 }
 
 type InternshipType {

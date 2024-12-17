@@ -4,6 +4,7 @@ import com.fs.client.repository.blocked.ProfessionBlockingRepository
 import com.fs.client.converter.ProfessionModelConverter
 import com.fs.domain.jooq.tables.CompanyProfession.Companion.COMPANY_PROFESSION
 import com.fs.domain.jooq.tables.Profession.Companion.PROFESSION
+import com.fs.domain.jooq.tables.pojos.CompanyProfession
 import com.fs.domain.jooq.tables.pojos.Profession
 import com.fs.domain.jooq.tables.records.CompanyProfessionRecord
 import com.fs.domain.jooq.tables.records.ProfessionRecord
@@ -41,13 +42,14 @@ abstract class ProfessionRepository(
     fun getAllProfessions(): Flux<ProfessionModel> {
         return Flux.from(
             dsl.select(PROFESSION.asterisk()).from(PROFESSION)
+                .orderBy(PROFESSION.CLIENTS_NUMBER.desc())
         ).map { it.into(Profession::class.java) }
             .map(converter::toModel)
     }
 
     fun getAllProfessionsCategories(): Flux<String> {
         return Flux.from(
-            dsl.selectDistinct(PROFESSION.NAME).from(PROFESSION)
+            dsl.selectDistinct(PROFESSION.PROFESSION_INDUSTRY).from(PROFESSION)
         ).map { it.into(String::class.java) }
     }
 
@@ -58,6 +60,7 @@ abstract class ProfessionRepository(
                     dsl.selectDistinct(COMPANY_PROFESSION.PROFESSION_ID)
                         .from(COMPANY_PROFESSION)
                 ))
+                .orderBy(PROFESSION.CLIENTS_NUMBER.desc())
         ).map { it.into(Profession::class.java) }
             .map(converter::toModel)
     }
@@ -82,7 +85,7 @@ abstract class ProfessionRepository(
             .map(converter::toModel)
     }
 
-    fun initCompanyProfession(companyId: Long, professionModel: ProfessionModel): Mono<ProfessionModel> {
+    fun initCompanyProfession(companyProfession: CompanyProfession, professionModel: ProfessionModel): Mono<ProfessionModel> {
         return Mono.fromSupplier {
             val newProfessionRecord = dsl.newRecord(PROFESSION)
             newProfessionRecord.from(professionModel)
@@ -91,7 +94,7 @@ abstract class ProfessionRepository(
 
             val newCompaniesProfessionRecord: CompanyProfessionRecord = dsl.newRecord(COMPANY_PROFESSION)
             newCompaniesProfessionRecord.professionId = newProfessionRecord.id
-            newCompaniesProfessionRecord.companyId = companyId
+            newCompaniesProfessionRecord.companyId = companyProfession.companyId
             dsl.insertInto(COMPANY_PROFESSION)
                 .set(newCompaniesProfessionRecord)
                 .execute()
@@ -101,11 +104,11 @@ abstract class ProfessionRepository(
             .map(converter::toModel)
     }
 
-    fun initExistingProfessionToCompany(companyId: Long, professionId: Long): Mono<Boolean> {
+    fun initExistingProfessionToCompany(companyProfession: CompanyProfession): Mono<Boolean> {
         return Mono.fromSupplier {
             val newCompaniesProfessionRecord = dsl.newRecord(COMPANY_PROFESSION)
-            newCompaniesProfessionRecord.professionId = professionId
-            newCompaniesProfessionRecord.companyId = companyId
+            newCompaniesProfessionRecord.from(companyProfession)
+            newCompaniesProfessionRecord.reset(COMPANY_PROFESSION.ID)
             dsl.insertInto(COMPANY_PROFESSION)
                 .set(newCompaniesProfessionRecord)
                 .execute() == 1
@@ -119,6 +122,7 @@ abstract class ProfessionRepository(
             dsl.update(PROFESSION)
                 .set(PROFESSION.DESCRIPTION, professionModel.description ?: oldPosition?.description)
                 .set(PROFESSION.NAME, professionModel.name ?: oldPosition?.name)
+                .set(PROFESSION.PROFESSION_INDUSTRY, professionModel.professionIndustry ?: oldPosition?.professionIndustry)
                 .where(PROFESSION.ID.eq(professionModel.id))
                 .execute() == 1
         }
