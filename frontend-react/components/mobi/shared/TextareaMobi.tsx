@@ -18,7 +18,7 @@ const textareaVariants = cva(
             },
             size: {
                 default: 'h-10 px-3 py-2',
-                contacts_page_mobi: 'h-[82px] max-w-[446px] px-4 py-2',
+                contacts_page_mobi: 'h-[82px] max-w-[446px] px-4 py-2 md:h-[86px]',
             },
             rounded: {
                 default: 'rounded-md',
@@ -131,7 +131,7 @@ const EnhancedTextareaMobi = React.forwardRef<HTMLTextAreaElement, EnhancedTexta
                 />
                 {(helperText || internalError !== '') && (
                     <span className={cn('text-xs', internalError ? 'text-destructive' : 'text-muted-foreground')}>
-                        {internalError || helperText}
+                    {internalError || helperText}
                     </span>
                 )}
             </div>

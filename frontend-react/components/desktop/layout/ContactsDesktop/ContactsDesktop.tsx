@@ -240,7 +240,7 @@ const ContactsDesktop: React.FC = () => {
                                 wrapperClassName={'h-[272px]'}
                             />
                             <div className="flex flex-col justify-between h-[130px]">
-                                {formError && <p className={cn('text-base', 'text-destructive')}>{formError}</p>}
+                                {formError && <p className={cn('text-xs', 'text-destructive')}>{formError}</p>}
                                 <div className="mt-auto flex justify-between items-center 2xl:justify-start 2xl:gap-10">
                                     <Button variant="send_btn_desktop" size="contacts_btn_send_desktop">
                                         Отправить

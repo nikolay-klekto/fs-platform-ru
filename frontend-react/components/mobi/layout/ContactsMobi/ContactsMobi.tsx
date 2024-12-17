@@ -263,16 +263,3 @@ const ContactsMobi: React.FC = () => {
 }
 
 export default ContactsMobi
-
-/*
-<div className="mt-auto flex items-center gap-5 md:gap-7 sm_s:flex-col sm_s:justify-between sm_s:items-start sm_s:gap-2 sm:flex-col sm:justify-between sm:items-start sm:gap-2">
-                                <Button variant="select_btn_mobi" size="contacts_btn_send_mobi">
-                                    Отправить
-                                </Button>
-                                <p className="w-full text-white/20 text-[8px] font-medium md:max-w-[60%] md:text-xs sm_xl:max-w-[170px] sm_l:max-w-[170px]">
-                                    Нажимая кнопку “Отправить”, я даю согласие на обработку своих персональных данных и
-                                    соглашаюсь с Условиями использования и Политикой конфиденциальности
-                                </p>
-                            </div>
-
-*/

@@ -18,9 +18,9 @@ const inputVariants = cva(
                 contacts_page_error_desktop:
                     'text-5xl placeholder:font-medium bg-transparent ring-offset-transparent border-2 border-[#bc8070] focus:border-[3px] focus:ring-transparent',
                 contacts_page_mobi:
-                    'text-xl placeholder:text-xs placeholder:font-medium bg-transparent ring-offset-transparent border-[1.18px] border-[#878797] focus:border-2 focus:ring-transparent',
+                    'text-xl placeholder:text-xs placeholder:font-medium bg-transparent ring-offset-transparent border-[1.18px] border-[#878797] focus:border-2 focus:ring-transparent md:placeholder:text-base',
                 contacts_page_error_mobi:
-                    'text-xl placeholder:text-xs placeholder:font-medium bg-transparent ring-offset-transparent border-[1.18px] border-[#bc8070] focus:border-2 focus:ring-transparent',
+                    'text-xl placeholder:text-xs placeholder:font-medium bg-transparent ring-offset-transparent border-[1.18px] border-[#bc8070] focus:border-2 focus:ring-transparent md:placeholder:text-base',
             },
             size: {
                 default: 'h-10 px-3 py-2',
@@ -30,7 +30,7 @@ const inputVariants = cva(
                 send_mobi: 'size-full px-[10px]',
                 contacts_page_desktop: 'h-[53px] w-[453px] px-4 py-3.5 2xl:w-[520px]',
                 contacts_page_info_desktop: 'h-[53px] w-[484px] px-4 py-3.5 3xl:w-[452px] 2xl:w-[520px]',
-                contacts_page_mobi: 'h-[28.5px] max-w-[346px] px-4 py-2',
+                contacts_page_mobi: 'h-[28.5px] max-w-[346px] px-4 py-2 md:h-[32px]',
             },
             rounded: {
                 default: 'rounded-md',
