@@ -104,11 +104,9 @@ const ContactsMobi: React.FC = () => {
             <div className="pt-10 px-[15px]">
                 <div className="flex flex-col gap-4 pb-10">
                     <h2 className="text-9xl font-medium uppercase">Cвяжитесь с нами</h2>
-                    <div className="w-[159px]">
-                        <Button variant="select_btn_mobi" size="select_mobi">
-                            Хочу в команду
-                        </Button>
-                    </div>
+                    <Button variant="select_btn_mobi" size="contacts_btn_mobi">
+                        Хочу в команду
+                    </Button>
                 </div>
                 <div className="flex justify-between w-full">
                     <div className="flex flex-col">
@@ -137,7 +135,7 @@ const ContactsMobi: React.FC = () => {
                 <div className="pt-[58px]">
                     <h3 className="text-9xl font-medium uppercase">Напишите нам</h3>
                     <form onSubmit={handleSubmit} noValidate>
-                        <div className="flex flex-col gap-2.5 pt-5 pb-2.5">
+                        <div className="flex flex-col gap-2.5 pt-5 pb-0.5">
                             <EnhancedInput
                                 type="text"
                                 id="name"
@@ -219,15 +217,13 @@ const ContactsMobi: React.FC = () => {
                                 wrapperClassName={'h-[104px]'}
                             />
                         </div>
-                        <div className="flex flex-col justify-between h-[74px]">
+                        <div className="flex flex-col justify-between h-[70px] sm_s:h-[108px] sm:h-[108px]">
                             {formError && <p className={cn('text-xs', 'text-destructive')}>{formError}</p>}
-                            <div className="mt-auto flex items-center gap-5 md:gap-9 sm_s:flex-col sm_s:justify-between sm_s:items-start sm_s:gap-2 sm:flex-col sm:justify-between sm:items-start sm:gap-2">
-                                <div className="w-[147px]">
-                                    <Button variant="select_btn_mobi" size="select_mobi">
-                                        Отправить
-                                    </Button>
-                                </div>
-                                <p className="w-full text-white/20 text-[8px] font-medium md:max-w-[60%] md:text-xs sm_xl:max-w-[170px] sm_l:max-w-[170px]">
+                            <div className="mt-auto flex items-center gap-[19px] md:gap-7  sm_s:flex-col sm_s:justify-between sm_s:items-start sm_s:gap-2 sm:flex-col sm:justify-between sm:items-start sm:gap-2">
+                                <Button variant="select_btn_mobi" size="contacts_btn_send_mobi">
+                                    Отправить
+                                </Button>
+                                <p className="w-full text-white/20 text-[8px] font-medium md:max-w-[60%] md:text-xs  ">
                                     Нажимая кнопку “Отправить”, я даю согласие на обработку своих персональных данных и
                                     соглашаюсь с Условиями использования и Политикой конфиденциальности
                                 </p>
@@ -267,3 +263,16 @@ const ContactsMobi: React.FC = () => {
 }
 
 export default ContactsMobi
+
+/*
+<div className="mt-auto flex items-center gap-5 md:gap-7 sm_s:flex-col sm_s:justify-between sm_s:items-start sm_s:gap-2 sm:flex-col sm:justify-between sm:items-start sm:gap-2">
+                                <Button variant="select_btn_mobi" size="contacts_btn_send_mobi">
+                                    Отправить
+                                </Button>
+                                <p className="w-full text-white/20 text-[8px] font-medium md:max-w-[60%] md:text-xs sm_xl:max-w-[170px] sm_l:max-w-[170px]">
+                                    Нажимая кнопку “Отправить”, я даю согласие на обработку своих персональных данных и
+                                    соглашаюсь с Условиями использования и Политикой конфиденциальности
+                                </p>
+                            </div>
+
+*/
