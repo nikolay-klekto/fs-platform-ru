@@ -136,7 +136,7 @@ const ContactsMobi: React.FC = () => {
                 </div>
                 <div className="pt-[58px]">
                     <h3 className="text-9xl font-medium uppercase">Напишите нам</h3>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} noValidate>
                         <div className="flex flex-col gap-2.5 pt-5 pb-2.5">
                             <EnhancedInput
                                 type="text"
