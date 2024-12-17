@@ -9,6 +9,7 @@ import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
 import ModalCallMobi from '@/components/mobi/layout/ModalMobi/ModalCallMobi'
 import ModalCallDesktop from '@/components/desktop/layout/ModalDesktop/ModalCallDesktop'
+import ProfileDesktop from '@/components/desktop/pageDesktop/ProfilePageDesktop/ProfileDesktop'
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
     useEffect(() => {
@@ -28,6 +29,7 @@ export default function Home() {
                     <HeaderDesktop />
                     <main className="bg-[url('/background/main.svg')] bg-cover bg-no-repeat">
                         <HomePageDesktop />
+                        <ProfileDesktop />
                     </main>
                     <FooterDesktop />
                     <ModalCallDesktop />
