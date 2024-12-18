@@ -1,10 +1,20 @@
-export function validateNameDesktop(name: string) {
-    const nameRegex = /^[a-zA-Zа-яА-ЯёЁ\s'-]+$/
-    const isValid = nameRegex.test(name)
-
+export const validateNameDesktop = (name: string): { status: boolean; textError: string; styleError: boolean } => {
+    if (!name) {
+        return {
+            status: false,
+            textError: 'Введите ваше имя',
+            styleError: true,
+        }
+    } else if (!/^[а-яА-ЯёЁ\s]+$/.test(name)) {
+        return {
+            status: false,
+            textError: 'Введите корректное имя',
+            styleError: true,
+        }
+    }
     return {
-        status: isValid,
-        textError: isValid ? '' : 'Введите корректное имя',
-        styleError: !isValid,
+        status: true,
+        textError: 'Обязательное поле для ввода',
+        styleError: false,
     }
 }

@@ -140,4 +140,8 @@
     .error-form-mobi-custom {
         @apply mt-1 text-[#bc8070] text12px_mobi font-medium;
     }
+
+    .custom_error_style_input {
+        @apply border-red-500;
+    }
 }
