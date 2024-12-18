@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { X } from 'lucide-react'
 
@@ -11,6 +11,24 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium', showCloseButton = true }) => {
+    const lockScroll = () => {
+        document.body.style.overflow = 'hidden'
+    }
+    const unlockScroll = () => {
+        document.body.style.overflow = ''
+    }
+
+    useEffect(() => {
+        if (show) {
+            lockScroll()
+        } else {
+            unlockScroll()
+        }
+        return () => {
+            unlockScroll()
+        }
+    }, [show])
+
     if (!show) return null
 
     const getSizeClass = () => {
