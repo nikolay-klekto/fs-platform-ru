@@ -1,7 +1,7 @@
 export const validateNameMobi = (name: string): { status: boolean; textError: string; styleError: boolean } => {
     if (!name) {
         return {
-            status: false, 
+            status: false,
             textError: 'Введите ваше имя',
             styleError: true,
         }
