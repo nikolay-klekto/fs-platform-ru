@@ -83,7 +83,7 @@ const ModalCallDesktop: React.FC = () => {
                                     type="text"
                                     id="name"
                                     name="name"
-                                    placeholder="Введите ваше имя"
+                                    placeholder="Ваше имя"
                                     value={formData.name}
                                     onChange={handleChange}
                                     className="border border-[#878797] rounded-[20px] p-4 w-full bg-transparent h-10 placeholder:text-4xl  placeholder:font-medium placeholder:text-[#353652] placeholder:opacity-100"
