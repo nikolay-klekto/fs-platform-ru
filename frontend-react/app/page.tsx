@@ -8,6 +8,7 @@ import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
 import ModalCallMobi from '@/components/mobi/layout/ModalMobi/ModalCallMobi'
 import ModalCallDesktop from '@/components/desktop/layout/ModalDesktop/ModalCallDesktop'
+import ModalCookieDesktop from '@/components/desktop/layout/ModalDesktop/ModalCookieDesktop'
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
     useEffect(() => {
@@ -40,6 +41,7 @@ export default function Home() {
                     <ModalCallMobi />
                 </>
             )}
+            <ModalCookieDesktop />
         </div>
     )
 }
