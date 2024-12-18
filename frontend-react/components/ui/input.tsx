@@ -46,9 +46,9 @@ export interface EnhancedInputProps
     label?: string
     helperText?: string
     wrapperClassName?: string
+    labelClassName?: string
     placeholder?: string
     name?: string
-    labelClassName?: string
 }
 
 const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
