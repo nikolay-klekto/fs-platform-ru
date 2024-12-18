@@ -24,7 +24,7 @@ const HeaderCardsItemMobi: React.FC<HeaderCardItemDesktop> = ({
             <div
                 className="sm_s:min-h-[192px] sm_xl:h-[226px] sm_xl:w-fit m-auto flex min-h-[212px] w-[346px] items-center justify-center rounded-[41px] drop-shadow-[0_3.26px_3.26px_rgba(0,0,0,0.25)] sm:min-h-[176px]"
                 style={{
-                    backgroundImage: "url('/background/subtract_mobi.svg')",
+                    backgroundImage: "url('/background/subtract_mobi.webp')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat, no-repeat',
