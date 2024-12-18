@@ -1,23 +1,23 @@
 'use client'
 
-import React, { useState } from 'react';
-import Modal from '@/components/ui/modal';
-import { contentModalEvents } from './content';
-import ModalEventsCardDesktop from './ModalEventsCardDesktop';
-import { Button } from '@/components/ui/button';
-import { ModalIcon } from '@/components/assets/icons';
-import { MapPin, CalendarCheck, Calendar, Clock4, Users, Ellipsis, Banknote, X} from 'lucide-react';
+import React, { useState } from 'react'
+import Modal from '@/components/ui/modal'
+import { contentModalEvents } from './content'
+import ModalEventsCardDesktop from './ModalEventsCardDesktop'
+import { Button } from '@/components/ui/button'
+import { ForwardIcon } from '@/components/assets/icons'
+import { MapPin, CalendarCheck, Calendar, Clock4, Users, Ellipsis, Banknote, X} from 'lucide-react'
 
 const ModalEventsDesktop: React.FC = () => {
-    const [showModal, setShowModal] = useState(true);
+    const [showModal, setShowModal] = useState(true)
 
     const handleOpenModal = () => {
-        setShowModal(true);
-    };
+        setShowModal(true)
+    }
 
     const handleCloseModal = () => {
-        setShowModal(false);
-    };
+        setShowModal(false)
+    }
 
     return (
         <>
@@ -27,16 +27,16 @@ const ModalEventsDesktop: React.FC = () => {
                 <Modal
                     show={showModal}
                     onClose={handleCloseModal}
-                    size="large-"
+                    size="large-width-884"
                     showCloseButton={false}
                 >
                     {contentModalEvents.map((event) => (
                         <div 
                             key={event.id} 
-                            className="flex flex-col pt-[50px] px-[20px] pb-[20px]">
+                            className="flex flex-col pt-[50px] px-[20px] pb-[20px] max-h-[100vh] overflow-auto scrollbar_custom">
                             <button 
                                 onClick={handleCloseModal}
-                                className="absolute top-4 right-4">
+                                className="absolute top-4 right-4 z-10">
                                 <X size={41} color="white" className="opacity-70" />
                             </button>
                             <img 
@@ -46,7 +46,7 @@ const ModalEventsDesktop: React.FC = () => {
                             />
                             
                             <div className="flex flex-col p-[20px] rounded-[25px] bg-[#1F203F] mt-[16px] mb-[10px]">
-                                <h3 className="text-[36px] mb-[10px] text-gradient_desktop_custom font-medium uppercase">
+                                <h3 className="text36px_desktop mb-[10px] text-gradient_desktop_custom font-medium uppercase">
                                     {event.title}
                                 </h3>
                                 <p className="text-[18px] text-[#878797] text-left font-medium leading-[22px]">
@@ -60,7 +60,7 @@ const ModalEventsDesktop: React.FC = () => {
                                         <MapPin color="#878797" size={24} />
                                     }
                                     title="МЕСТО"
-                                    info={`${event.location.city}, ул. ${event.location.street} ${event.location.number}`}
+                                    info={event.location}
                                 />
                                 <ModalEventsCardDesktop 
                                     icon={
@@ -92,6 +92,7 @@ const ModalEventsDesktop: React.FC = () => {
                                     info={`${event.time.begin} - ${event.time.end}`}
                                 />
                                 <ModalEventsCardDesktop
+                                    className="modal-bg-desk-custom"
                                     icon={
                                         <CalendarCheck color="#878797" size={24} />
                                     }
@@ -100,32 +101,26 @@ const ModalEventsDesktop: React.FC = () => {
                                         <div className="relative bg-[#101030] rounded-[20px]">
                                             <Button
                                                 variant="accent_desktop"
-                                                size="circleModalDesk"
+                                                size="circle_modal_desk"
                                                 className="bg-[#ffffff1a] hover:shadow-lg hover:shadow-[#3B51A8] absolute right-0 bottom-[-40px]"
                                             >
                                                 <a href={event.googleCalendarLink} target="_blank" rel="noopener noreferrer">
-                                                    <ModalIcon />
+                                                    <ForwardIcon fill="white" stroke="white" width={'29px'}/>
                                                 </a>
                                             </Button>
                                         </div>
                                     }
-                                    style={{
-                                        backgroundImage: "url('/background/subtract_events_modal.svg')",
-                                        backgroundSize: 'contain, cover',
-                                        backgroundPosition: 'center, center',
-                                        backgroundRepeat: 'no-repeat, no-repeat',
-                                        backgroundColor: 'transparent',
-                                    }}
                                 />
                                 <ModalEventsCardDesktop
+                                    className="padding-modal-desk-custom"
                                     icon={
-                                        <div style={{ alignSelf: 'flex-start' }}>
+                                        <div>
                                             <Ellipsis color="#878797" size={24} />
                                         </div>
                                     }
                                     title={
                                         <a 
-                                            className="text-[28px] text-[white] font-medium hover:text-[#382D90] transition-colors duration-300" 
+                                            className="text28px_desktop text-[white] font-medium hover:text-[#382D90] transition-colors duration-300" 
                                             href={event.moreInfoLink} 
                                             target="_blank" 
                                             rel="noopener noreferrer"
@@ -133,7 +128,6 @@ const ModalEventsDesktop: React.FC = () => {
                                                 ПОДРОБНЕЕ
                                         </a>
                                     }
-                                    style={{ padding: '64px 20px' }}
                                 />
                             </div>
                         </div>
@@ -141,7 +135,7 @@ const ModalEventsDesktop: React.FC = () => {
                 </Modal>
             )}
         </>
-    );
-};
+    )
+}
 
-export default ModalEventsDesktop;
+export default ModalEventsDesktop
