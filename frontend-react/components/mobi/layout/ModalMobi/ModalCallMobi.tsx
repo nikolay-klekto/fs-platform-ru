@@ -63,7 +63,7 @@ const ModalCallMobi: React.FC = () => {
                     <div className="relative rounded-[35px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat px-3 py-10 md:px-4 md:py-10 w-11/12 max-w-lg mx-auto">
                         <button
                             onClick={handleClose}
-                            className="absolute -top-0 -right-0 rounded-full bg-[#101030] bg-opacity-80 p-1.5"
+                            className="absolute -top-0 -right-0 rounded-full bg-[#101030] bg-opacity-80 p-1.5 sm_xl:p-0.5"
                         >
                             <X size={24} color="#878797" />
                         </button>
@@ -85,7 +85,7 @@ const ModalCallMobi: React.FC = () => {
                                     onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
                                     className={`border-2 ${
                                         errors.name ? 'border-red-500' : 'border-[#878797]'
-                                    } rounded-[20px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
+                                    } rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
                                     label="Ваше имя"
                                     labelClassName="text-white text-xl font-medium mb-1"
                                     wrapperClassName="w-full"
@@ -101,7 +101,7 @@ const ModalCallMobi: React.FC = () => {
                                     externalError={errors.phone}
                                     inputClassName={`border-2 ${
                                         errors.phone ? 'border-red-500' : 'border-[#878797]'
-                                    } rounded-[20px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
+                                    } rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
                                     inputERRAddStyle="border-red-500"
                                     inputNOERRAddStyle="border-[#878797]"
                                     labelClassName="text-white text-xl font-medium mb-1"
@@ -116,7 +116,7 @@ const ModalCallMobi: React.FC = () => {
                                     placeholder="Удобное время для звонка"
                                     value={formData.time}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                    className="border-2 border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]"
+                                    className="border-2 border-[#878797] rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]"
                                     label="Удобное время для звонка"
                                     labelClassName="text-white text-xl mb-1"
                                     wrapperClassName="w-full"
@@ -161,9 +161,9 @@ const ModalCallMobi: React.FC = () => {
                     >
                         <button
                             onClick={handleClose}
-                            className="absolute -top-0 -rigth-0 rounded-full bg-[#101030] bg-opacity-80 p-1.5"
+                            className="absolute -top-0 -rigth-0 rounded-full bg-[#101030] bg-opacity-80 p-1.5 sm_xl:p-0.5"
                         >
-                            <X size={30} color="#878797" />
+                            <X size={24} color="#878797" />
                         </button>
                         <h1 className="text-3xl md:text-4xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-3">
                             ЗАЯВКА ПРИНЯТА
