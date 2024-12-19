@@ -5,12 +5,14 @@ interface ModalEventsCardDesktopProps {
     title: string | React.ReactElement
     info?: string | React.ReactElement
     link?: string
+    style?: React.CSSProperties
     className?: string
 }
 const ModalEventsCardDesktop: React.FC<ModalEventsCardDesktopProps> 
-= ({ icon, title, info, link, className }) => (
+= ({ icon, title, info, link, style, className }) => (
         <div 
-            className={`flex items-center gap-[20px] relative max-w-[417px] max-h-[162px] rounded-[25px] bg-[#1F203F] pt-[40px] pb-[46px] pl-[20px] ${className}`}  
+            className={`flex gap-[20px] relative max-w-[417px] max-h-[162px] rounded-[25px] bg-[#1F203F] pt-[40px] pb-[46px] pl-[20px] ${className}`} 
+            style={style} 
             >
             <div>
                 {icon}

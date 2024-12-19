@@ -144,15 +144,18 @@
     .custom_error_style_input {
         @apply border-red-500;
     }
-    .modal-bg-desk-custom {
-        background-image: url('/background/subtract_events_modal.svg');
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-color: transparent !important;
+    .scrollbar-modal_custom {
+        overflow-y: auto;
+        cursor: grab;
     }
-    .padding-modal-desk-custom {
-        padding: 64px 20px !important;
-        align-items: start !important;
+    .scrollbar-modal_custom::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-modal_custom {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scrollbar-modal_custom:hover {
+        cursor: grabbing;
     }
 }
