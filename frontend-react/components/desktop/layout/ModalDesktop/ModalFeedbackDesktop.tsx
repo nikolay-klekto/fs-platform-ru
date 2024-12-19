@@ -32,7 +32,7 @@ const ModalFeedbackDesktop: React.FC = () => {
         handleCloseModal()
     }
     const borderColor = error || formData.length === 500 ? 'border-[#BC8070]' : 'border-[#878797]'
-    const counterColor = error || formData.length === 500 || formData.length === 0 ? '#BC8070' : '#878797'
+    const counterColor = error || formData.length === 500 ? '#BC8070' : '#878797'
     return (
         <>
             <Modal show={isModalOpen} onClose={handleCloseModal} size="semilarge" showCloseButton={false}>
