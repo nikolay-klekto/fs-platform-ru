@@ -13,27 +13,26 @@ export default function ModalCookieDesktop() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogPortal>
-                <div className="font-montserrat fixed bottom-4 right-4 z-50 box-border flex h-[204px] w-[596px] flex-col justify-between overflow-hidden rounded-[50px] border border-transparent bg-[#101030E6] px-6 py-4 shadow-lg drop-shadow-2xl">
-                    <div className="mb-1 break-words text-[17.41px] leading-snug text-white">
+                <div className="fixed bottom-5 right-5 z-50 box-border flex h-[204px] w-[596px] flex-col justify-between overflow-hidden rounded-[50px] border border-transparent bg-[#101030E6] px-6 py-4 shadow-lg drop-shadow-2xl">
+                    <div className="mb-1 mt-4 break-words text-[17.41px] font-medium leading-snug text-white">
                         Разрешите нам использовать cookie-файлы, чтобы при вашем следующем визите не вводить пароль
                         повторно
+                        <Link href="#" className="my-2 mt-1 block text-[17.41px] text-[#878797]">
+                            Подробнее...
+                        </Link>
                     </div>
 
-                    <Link href="#" className="my-2 inline-block  text-[17.41px] text-[#878797]">
-                        Подробнее...
-                    </Link>
-
-                    <div className="flex items-center justify-end space-x-4">
+                    <div className="mr-4 flex items-center justify-end gap-0 space-x-4">
                         <Button
                             variant="ghost"
-                            className="box-border rounded-[50px] bg-transparent p-2 text-[17.41px] text-[#878797] underline"
+                            className="box-border flex h-[53.55px] w-[237px] rounded-[41.94px] bg-transparent p-2 text-[16.77px] font-medium text-[#878797] underline"
                             onClick={handleClose}
                         >
                             Отклонить
                         </Button>
 
                         <Button
-                            className="box-border flex h-[53.55px] w-[237px] rounded-[41.94px] border border-purple-300 bg-transparent p-2 text-[16.77px] font-semibold text-purple-300 hover:border-purple-200 hover:text-purple-200"
+                            className="button-border-desktop flex h-[53.55px] w-[237px] rounded-[41.94px] px-4 py-2 text-[16.77px] font-semibold"
                             onClick={handleClose}
                         >
                             Облегчить мне задачу
