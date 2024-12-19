@@ -6,6 +6,8 @@ import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDeskt
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
+import ContactsPageDesktop from '@/components/desktop/pageDesktop/ContactsPageDesktop/ContactsPageDesktop'
+import ContactsPageMobi from '@/components/mobi/pageMobi/ContactsPageMobi/ContactsPageMobi'
 
 export default function Contacts() {
     const [isClient, setIsClient] = useState(false)
@@ -27,7 +29,7 @@ export default function Contacts() {
                 <>
                     <HeaderDesktop />
                     <main className="bg-[#101030] text-white">
-                        <h1>Contacts</h1>
+                        <ContactsPageDesktop />
                     </main>
                     <FooterDesktop />
                 </>
@@ -35,7 +37,7 @@ export default function Contacts() {
                 <>
                     <HeaderMobi />
                     <main className="bg-[#101030] text-white">
-                        <h1>Contacts</h1>
+                        <ContactsPageMobi />
                     </main>
                     <FooterMobi />
                 </>
