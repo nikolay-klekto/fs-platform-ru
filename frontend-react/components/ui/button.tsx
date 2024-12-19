@@ -64,8 +64,7 @@ const buttonVariants = cva(
                 circle_btn_gradient_desktop: 'right-0 top-1/2 size-[60px] -translate-y-1/2 rounded-full',
                 circle_btn_mobi: 'h-0 px-[11px] py-0',
                 gradient_btn_desktop: '3xl:w-[250px] h-[64px] w-[272px] 2xl:w-[250px]',
-                select_btn_desktop_events:
-                    '3xl:w-[300px] 3xl:px-[20px] h-[64px] w-[289px] px-[30px] py-[20px] 2xl:w-[270px] 2xl:px-[20px]',
+                select_btn_desktop_events: '3xl:px-[20px] h-[64px] px-[40px] py-[20px] 2xl:px-[20px]',
             },
         },
         defaultVariants: {

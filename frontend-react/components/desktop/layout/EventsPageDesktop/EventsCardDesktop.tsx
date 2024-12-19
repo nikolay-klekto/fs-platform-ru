@@ -36,7 +36,7 @@ const EventsCardDesktop: React.FC<EventsCardDesktop> = ({
                 className="flex min-h-[657px] max-w-[474px] items-center justify-center rounded-[3.125rem] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
                 style={{
                     backgroundImage: "url('/background/subtract-events.png')",
-                    backgroundSize: 'cover',
+                    backgroundSize: 'contain',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                 }}
@@ -52,7 +52,7 @@ const EventsCardDesktop: React.FC<EventsCardDesktop> = ({
                             />
                         </div>
 
-                        <div className="text28px_desktop text-gradient_desktop_custom pb-[4px] uppercase">{title}</div>
+                        <div className="text28px_events text-gradient_desktop_custom pb-[4px] uppercase">{title}</div>
                         <div className="text18px_desktop flex gap-[15px]">
                             <Map /> {date} ({week}) в {time}
                         </div>
