@@ -4,7 +4,6 @@ import { useMediaQuery } from 'react-responsive'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/HomePageDesktop'
-import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
 import ModalCallMobi from '@/components/mobi/layout/ModalMobi/ModalCallMobi'
@@ -26,7 +25,7 @@ export default function Home() {
             {isDesktop ? (
                 <>
                     <HeaderDesktop />
-                    <main className="bg-[#101030]">
+                    <main className="bg-[url('/background/main.svg')] bg-cover bg-no-repeat">
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />
@@ -35,7 +34,6 @@ export default function Home() {
             ) : (
                 <>
                     <main className="bg-[#101030]">
-                        <button>Send</button>
                         <HomePageMobi />
                     </main>
                     <FooterMobi />
