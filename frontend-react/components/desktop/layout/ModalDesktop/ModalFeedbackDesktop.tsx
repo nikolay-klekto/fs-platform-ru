@@ -58,7 +58,7 @@ const ModalFeedbackDesktop: React.FC = () => {
                             value={formData}
                             onChange={handleChange}
                             maxLength={500}
-                            className={`rounded-3xl min-w-[578px] min-h-[192px] px-[15px] py-[15px] bg-transparent border-[2px] ${borderColor} text-[#878797] text-[15px] overflow-hidden outline-none`}
+                            className={`rounded-3xl min-w-[578px] min-h-[192px] px-[15px] py-[15px] bg-transparent border-[2px] ${borderColor} text-[#878797] text-[15px] font-medium leading-[18px] overflow-hidden outline-none`}
                             style={{ backgroundColor: isTyping ? '#1f203f' : 'transparent' }}
                         />
                         <span className="absolute bottom-[15px] right-5 text-[10px]" style={{ color: counterColor }}>
@@ -68,8 +68,8 @@ const ModalFeedbackDesktop: React.FC = () => {
                     {/* {error && <p className="mb-3 text-2xl text-[red] self-center">{error}</p>} */}
                     <Button
                         type="submit"
-                        variant={'select_desktop'}
-                        size={'gradient_border_btn'}
+                        variant={'send_btn_desktop'}
+                        size={'gradient_btn_desktop'}
                         className="mb-10 hover:border"
                     >
                         Сохранить отзыв
