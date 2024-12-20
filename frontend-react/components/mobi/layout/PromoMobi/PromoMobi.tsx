@@ -1,5 +1,4 @@
 import React from 'react'
-// eslint-disable-next-line import/namespace
 import { Button } from '@/components/ui/button'
 import { ArrowBtn } from '@/components/assets/iconsMobi'
 
