@@ -63,7 +63,7 @@ const ModalCallMobi: React.FC = () => {
                     <div className="relative rounded-[35px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat px-3 py-10 md:px-4 md:py-10 w-11/12 max-w-lg mx-auto">
                         <button
                             onClick={handleClose}
-                            className="absolute -top-0 -right-0 rounded-full bg-[#101030] bg-opacity-80 p-1.5 sm_xl:p-0.5"
+                            className="absolute -top-0 -right-0 rounded-full bg-[#101030] bg-opacity-80 sm:top-2 sm:right-2 sm:p-0.5 sm_s:top-2.5 sm_s:right-2.5 sm_l:top-0.5 sm_l:right-0 sm_l:p-0.5 sm_xl:p-0.5 sm_xl:top-1 sm_xl:right-1 md:-top-0 md:-right-0 md:p-1.5"
                         >
                             <X size={24} color="#878797" />
                         </button>
@@ -161,7 +161,7 @@ const ModalCallMobi: React.FC = () => {
                     >
                         <button
                             onClick={handleClose}
-                            className="absolute -top-0 -rigth-0 rounded-full bg-[#101030] bg-opacity-80 p-1.5 sm_xl:p-0.5"
+                            className="absolute -top-0 -right-0 rounded-full bg-[#101030] bg-opacity-80 sm:top-2 sm:right-2 sm:p-0.5 sm_s:top-1 sm_s:right-1 sm_l:top-0.5 sm_l:right-0 sm_l:p-0.5 sm_xl:p-0.5 sm_xl:top-1 sm_xl:right-1 md:-top-0 md:-right-0 md:p-1.5"
                         >
                             <X size={24} color="#878797" />
                         </button>
