@@ -21,16 +21,14 @@ const ModalEventsDesktop: React.FC = () => {
 
     return (
         <>
-        <div>
             {eventsModalOpen && (
                 <Modal
                     show={eventsModalOpen}
                     onClose={handleCloseEventsModal}
                     size="large-width-884"
                     showCloseButton={false}
-                    customClass="mt-[68px] mb-[26px]"
                 >   
-                    <div className="scrollbar-modal_desktop_custom 2xl:max-h-[85vh]">
+                    <div className="scrollbar-modal_desktop_custom">
                         {contentModalEvents.map((event) => (
                             <div 
                                 key={event.id} 
@@ -145,7 +143,6 @@ const ModalEventsDesktop: React.FC = () => {
                     </div>
                 </Modal>
             )}
-            </div>
         </>
     )
 }

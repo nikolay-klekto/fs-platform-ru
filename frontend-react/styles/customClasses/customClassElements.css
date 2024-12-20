@@ -146,6 +146,7 @@
     }
     .scrollbar-modal_desktop_custom {
         overflow-y: auto;
+        max-height: 95vh;
         cursor: grab;
     }
     .scrollbar-modal_desktop_custom::-webkit-scrollbar {

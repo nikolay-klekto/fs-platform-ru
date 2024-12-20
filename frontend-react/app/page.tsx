@@ -8,6 +8,7 @@ import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
 import ModalCallMobi from '@/components/mobi/layout/ModalMobi/ModalCallMobi'
 import ModalCallDesktop from '@/components/desktop/layout/ModalDesktop/ModalCallDesktop'
+import ModalEventsDesktop from '@/components/desktop/layout/ModalDesktop/ModalEventsDesktop/ModalEventsDesktop'
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
     useEffect(() => {
@@ -30,6 +31,7 @@ export default function Home() {
                     </main>
                     <FooterDesktop />
                     <ModalCallDesktop />
+                    <ModalEventsDesktop/>
                 </>
             ) : (
                 <>
