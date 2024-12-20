@@ -39,7 +39,7 @@ const HeaderMainMobi: React.FC = () => {
                             </Link>
                             <Link href="/professions">
                                 <Button variant="accent_mobi" size="circle_mobi">
-                                    <ForwardIcon />
+                                    <ForwardIcon fill="url(#paint0_linear_847_15423)" stroke="url(#paint1_linear_847_15423)"/>
                                 </Button>
                             </Link>
                         </div>

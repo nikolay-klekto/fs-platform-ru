@@ -64,7 +64,7 @@ const HeaderCardItemDesktop: React.FC<HeaderCardItemDesktop> = ({
                         size="circle_desktop"
                         className="absolute bottom-0 right-0 hover:shadow-lg hover:shadow-[#3B51A8]"
                     >
-                        <ForwardIcon />
+                        <ForwardIcon fill="url(#paint0_linear_847_15423)" stroke="url(#paint1_linear_847_15423)"/>
                     </Button>
                 </div>
             </div>
