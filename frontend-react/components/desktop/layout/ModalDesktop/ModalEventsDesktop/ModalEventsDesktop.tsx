@@ -9,34 +9,34 @@ import { ForwardIcon } from '@/components/assets/icons'
 import { MapPin, CalendarCheck, Calendar, Clock4, Users, Ellipsis, Banknote, X} from 'lucide-react'
 
 const ModalEventsDesktop: React.FC = () => {
-    const [showModal, setShowModal] = useState(true)
+    const [eventsModalOpen, setEventsModalOpen] = useState(true)
 
-    const handleOpenModal = () => {
-        setShowModal(true)
+    const handleOpenEventsModal = () => {
+        setEventsModalOpen(true)
     }
 
-    const handleCloseModal = () => {
-        setShowModal(false)
+    const handleCloseEventsModal = () => {
+        setEventsModalOpen(false)
     }
 
     return (
         <>
-            <button onClick={handleOpenModal}>Открыть модальное окно</button>
-
-            {showModal && (
+        <div>
+            {eventsModalOpen && (
                 <Modal
-                    show={showModal}
-                    onClose={handleCloseModal}
+                    show={eventsModalOpen}
+                    onClose={handleCloseEventsModal}
                     size="large-width-884"
                     showCloseButton={false}
+                    customClass="mt-[68px] mb-[26px]"
                 >   
-                    <div className="scrollbar-modal_custom 4xl:max-h-[94vh] 2xl:max-h-[86vh]">
+                    <div className="scrollbar-modal_desktop_custom 2xl:max-h-[85vh]">
                         {contentModalEvents.map((event) => (
                             <div 
                                 key={event.id} 
                                 className="flex flex-col pt-[50px] px-[20px] pb-[20px]">
                                 <button 
-                                    onClick={handleCloseModal}
+                                    onClick={handleCloseEventsModal}
                                     className="absolute top-4 right-4 z-10">
                                     <X size={41} color="white" className="hover:opacity-100 opacity-70 transition-opacity duration-300" />
                                 </button>
@@ -100,7 +100,7 @@ const ModalEventsDesktop: React.FC = () => {
                                     <ModalEventsCardDesktop
                                         className="bg-transparent bg-no-repeat bg-center items-center"
                                         style={{
-                                            backgroundImage: "url('/background/subtract_events_modal.svg')",
+                                            backgroundImage: "url('/background/subtract_events_modal.webp')",
                                             backgroundSize: 'contain'
                                         }}
                                         icon={
@@ -145,6 +145,7 @@ const ModalEventsDesktop: React.FC = () => {
                     </div>
                 </Modal>
             )}
+            </div>
         </>
     )
 }

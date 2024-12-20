@@ -144,18 +144,18 @@
     .custom_error_style_input {
         @apply border-red-500;
     }
-    .scrollbar-modal_custom {
+    .scrollbar-modal_desktop_custom {
         overflow-y: auto;
         cursor: grab;
     }
-    .scrollbar-modal_custom::-webkit-scrollbar {
+    .scrollbar-modal_desktop_custom::-webkit-scrollbar {
         display: none;
     }
-    .scrollbar-modal_custom {
+    .scrollbar-modal_desktop_custom {
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
-    .scrollbar-modal_custom:hover {
+    .scrollbar-modal_desktop_custom:hover {
         cursor: grabbing;
     }
 }

@@ -8,9 +8,10 @@ interface ModalProps {
     onClose: () => void
     size?: 'small' | 'medium' | 'large' | 'large-width-884'
     showCloseButton?: boolean
+    customClass: string
 }
 
-const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium', showCloseButton = true }) => {
+const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium', showCloseButton = true, customClass }) => {
     if (!show) return null
 
     const getSizeClass = () => {
@@ -28,7 +29,7 @@ const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium',
     }
 
     return ReactDOM.createPortal(
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50" onClick={onClose}>
+        <div className={`fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 ${customClass || ''}`} onClick={onClose}>
             <div
                 className={`relative bg-[#101030] rounded-[50px] w-full ${getSizeClass()} text-white`}
                 onClick={(e) => e.stopPropagation()}
