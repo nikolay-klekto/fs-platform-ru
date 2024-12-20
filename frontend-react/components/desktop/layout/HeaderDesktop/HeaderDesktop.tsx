@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import RegistrationModalDesktop from '@/components/desktop/layout/RegistrationModalDesktop/RegistrationModalDesktop'
 import LoginModalDesktop from '@/components/desktop/layout/LoginModalDesktop/LoginModalDesktop'
 import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationDesktop'
@@ -9,6 +10,7 @@ import { Button } from '@/components/ui/button'
 
 const HeaderDesktop: React.FC = () => {
     const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
+    const router = useRouter()
 
     const openModal = (type: 'login' | 'registration') => {
         setModalType(type)
@@ -16,6 +18,11 @@ const HeaderDesktop: React.FC = () => {
 
     const closeModal = () => {
         setModalType(null)
+    }
+
+    const handleLoginSuccess = () => {
+        closeModal()
+        router.push('/profile')
     }
 
     return (
@@ -48,7 +55,11 @@ const HeaderDesktop: React.FC = () => {
                 </div>
             </header>
             {modalType === 'login' && (
-                <LoginModalDesktop closeModal={closeModal} openRegistrationModal={() => openModal('registration')} />
+                <LoginModalDesktop
+                    closeModal={closeModal}
+                    openRegistrationModal={() => openModal('registration')}
+                    onLoginSuccess={handleLoginSuccess}
+                />
             )}
 
             {modalType === 'registration' && (
