@@ -62,6 +62,9 @@
     .text15px_desktop {
         @apply text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base;
     }
+    .text46px_desktop {
+        @apply text-18xl 3xl:text-17xl 2xl:text-16xl;
+    }
 
     .text28px_mobi {
         @apply text-9xl sm:text-7xl;

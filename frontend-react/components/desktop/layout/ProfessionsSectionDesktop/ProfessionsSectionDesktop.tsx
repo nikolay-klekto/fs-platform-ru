@@ -15,6 +15,9 @@ interface ProfessionsSectionDesktopProps {
 
 const ProfessionsSectionDesktop: React.FC<ProfessionsSectionDesktopProps> = ({ cardsToShow = 4 }) => {
     const [openModal, setOpenModal] = useState<boolean>(false)
+    const [selectedProfession, setSelectedProfession] = useState<string>('')
+    const [selectedIdProfession, setSelectedIdProfession] = useState<number | null>(null)
+
     const closeModal = () => {
         setOpenModal(false)
     }
@@ -39,12 +42,22 @@ const ProfessionsSectionDesktop: React.FC<ProfessionsSectionDesktopProps> = ({ c
                         image={item.image}
                         profession={item.profession}
                         price={item.price.toString()}
-                        onClick={() => setOpenModal(true)}
+                        onClick={() => {
+                            setSelectedProfession(item.profession)
+                            setSelectedIdProfession(item.id)
+                            setOpenModal(true)
+                        }}
                     />
                 ))}
             </div>
             <ProfessionSendDesktop />
-            {openModal && <ProfessionModalDesktop closeModal={closeModal} />}
+            {openModal && (
+                <ProfessionModalDesktop
+                    closeModal={closeModal}
+                    profession={selectedProfession}
+                    professionId={selectedIdProfession}
+                />
+            )}
         </div>
     )
 }
