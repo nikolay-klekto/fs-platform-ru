@@ -54,7 +54,6 @@ const ModalFeedbackDesktop: React.FC = () => {
                     <div className="relative flex flex-col mb-5">
                         <textarea
                             name="text"
-                            id=""
                             value={formData}
                             onChange={handleChange}
                             maxLength={500}
@@ -65,7 +64,6 @@ const ModalFeedbackDesktop: React.FC = () => {
                             {formData.length}/500
                         </span>
                     </div>
-                    {/* {error && <p className="mb-3 text-2xl text-[red] self-center">{error}</p>} */}
                     <Button
                         type="submit"
                         variant={'send_btn_desktop'}
