@@ -11,9 +11,9 @@ import ModalCallDesktop from '@/components/desktop/layout/ModalDesktop/ModalCall
 
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
-    const [isModalOpen, setModalOpen] = useState(false)
-    const handleOpenModal = () => setModalOpen(true)
-    const handleCloseModal = () => setModalOpen(false)
+    const [isModalCallDesktopOpen, setModalCallDesktopOpen] = useState(false)
+    const handleOpenModalCallDesktop = () => setModalCallDesktopOpen(true)
+    const handleCloseModalCallDesktop = () => setModalCallDesktopOpen(false)
     useEffect(() => {
         setIsClient(true)
     }, [])
@@ -28,12 +28,12 @@ export default function Home() {
         <div>
             {isDesktop ? (
                 <>
-                    <HeaderDesktop onOpenModalCallDesktop={handleOpenModal} />
+                    <HeaderDesktop onOpenModalCallDesktop={handleOpenModalCallDesktop} />
                     <main className="bg-[url('/background/main.svg')] bg-cover bg-no-repeat">
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />
-                    <ModalCallDesktop isOpen={isModalOpen} onClose={handleCloseModal} />
+                    <ModalCallDesktop isOpen={isModalCallDesktopOpen} onClose={handleCloseModalCallDesktop} />
                 </>
             ) : (
                 <>
