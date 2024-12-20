@@ -7,15 +7,17 @@ interface ProfessionCardDesktopProps {
     profession: string
     image: string
     price: string
+    onClick?: () => void
 }
 
-const ProfessionCardDesktop: React.FC<ProfessionCardDesktopProps> = ({ image, profession, price }) => {
+const ProfessionCardDesktop: React.FC<ProfessionCardDesktopProps> = ({ image, profession, price, onClick }) => {
     return (
         <>
             <Card
                 variant={'profession_home_desktop'}
                 size={'profession_home_desktop'}
                 style={{ backgroundImage: `url(${image})` }}
+                onClick={onClick}
             >
                 <CardHeader className="pl-0 pt-3">
                     <CardTitle variant={'profession_home_desktop'} size={'profession_home_desktop'}>
