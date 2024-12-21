@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChevronDownIcon, CheckedBoxIcon } from '@/components/assets/icons'
+import { ChevronDownIconDesktop, CheckedBoxIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
 interface SelectItemProps {
@@ -46,7 +46,7 @@ const ProfessionsSelectDesktop = () => {
                 className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Отрасль профессии
-                <ChevronDownIcon
+                <ChevronDownIconDesktop
                     className={`h-[15px] w-[27px] transition-transform  duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
                 />
             </Button>
@@ -105,7 +105,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
                         className="absolute inset-0 size-full cursor-pointer opacity-0"
                     />
                     {isChecked ? (
-                        <CheckedBoxIcon
+                        <CheckedBoxIconDesktop
                             style={{
                                 position: 'absolute',
                                 width: '30px',
