@@ -25,14 +25,14 @@ export default function ModalCookieDesktop() {
                     <div className="mr-4 flex items-center justify-end gap-0 space-x-4">
                         <Button
                             variant="ghost"
-                            className="box-border flex h-[53.55px] w-[237px] rounded-[41.94px] bg-transparent p-2 text-[16.77px] font-medium text-[#878797] underline"
+                            className="box-border flex h-[53.55px] w-[237px] rounded-[41.94px] bg-transparent p-2 text-[16.77px] font-medium text-[#878797] underline hover:bg-transparent hover:text-[#FFFFFF]"
                             onClick={handleClose}
                         >
                             Отклонить
                         </Button>
 
                         <Button
-                            className="button-border-desktop flex h-[53.55px] w-[237px] rounded-[41.94px] px-4 py-2 text-[16.77px] font-semibold"
+                            className="button-border-desktop flex h-[53.55px] w-[237px] rounded-[41.94px] px-4 py-2 text-[16.77px] font-semibold hover:bg-gradient-to-r hover:from-[#8333f3] hover:via-[#5f4af3] hover:to-[#3b51a8]"
                             onClick={handleClose}
                         >
                             Облегчить мне задачу
