@@ -15,7 +15,7 @@ const ProfessionsPageMobi: React.FC = () => {
     const [isFocused, setIsFocused] = useState(false)
     const [isFilterActive, setIsFilterActive] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
-    const cardsPerPage = 12
+    const cardsPerPage = 6
     const totalPages = Math.ceil(content.length / cardsPerPage)
 
     const handleSearch = () => {
@@ -69,7 +69,11 @@ const ProfessionsPageMobi: React.FC = () => {
                         />
                     ))}
                 </div>
-                <ProfessionsPaginationMobi />
+                <ProfessionsPaginationMobi
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    onPageChange={handlePageChange}
+                />
             </div>
         </>
     )

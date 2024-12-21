@@ -16,15 +16,15 @@ const ProfessionsPaginationMobi: React.FC<ProfessionsPaginationMobiProps> = ({
 }) => {
     return (
         <div className="mb-[88px] mt-[73px] flex items-center justify-center gap-5">
-            <LessIcon />
+            <LessIcon className="text-[#FFFFFFCC]" />
 
             {[...Array(totalPages)].map((_, index) => {
                 const pageNumber = index + 1
                 return (
                     <button
                         key={pageNumber}
-                        className={`text-7xl font-medium text-[FFFFCC] ${
-                            currentPage === pageNumber ? 'text-gradient_mobi_custom' : ''
+                        className={`text-7xl font-medium ${
+                            currentPage === pageNumber ? 'text-gradient_mobi_custom' : 'text-[#FFFFFFCC]'
                         }`}
                         onClick={() => onPageChange(pageNumber)}
                     >
@@ -32,7 +32,7 @@ const ProfessionsPaginationMobi: React.FC<ProfessionsPaginationMobiProps> = ({
                     </button>
                 )
             })}
-            <MoreIcon />
+            <MoreIcon className="text-[#FFFFFFCC]" />
         </div>
     )
 }

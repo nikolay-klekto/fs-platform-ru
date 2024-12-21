@@ -285,8 +285,7 @@ export const LessIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
                 d="M14.98 14.84L0.644 9.176V6.424L14.98 0.759998V3.416L1.7 8.536V7.064L14.98 12.184V14.84Z"
-                fill="white"
-                fill-opacity="0.8"
+                fill="currentColor"
             />
         </svg>
     )
@@ -297,8 +296,7 @@ export const MoreIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
                 d="M0.644 14.84V12.184L13.956 7.064V8.536L0.644 3.416V0.759998L14.98 6.424V9.176L0.644 14.84Z"
-                fill="white"
-                fill-opacity="0.8"
+                fill="currentColor"
             />
         </svg>
     )
