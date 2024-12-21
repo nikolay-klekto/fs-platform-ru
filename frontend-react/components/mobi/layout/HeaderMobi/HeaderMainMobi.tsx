@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ForwardIcon } from '@/components/assets/icons'
+import { ForwardIconMobi } from '@/components/assets/icons'
 import HeaderMobi from './HeaderMobi'
 
 const HeaderMainMobi: React.FC = () => {
@@ -39,7 +39,7 @@ const HeaderMainMobi: React.FC = () => {
                             </Link>
                             <Link href="/professions">
                                 <Button variant="accent_mobi" size="circle_mobi">
-                                    <ForwardIcon />
+                                    <ForwardIconMobi />
                                 </Button>
                             </Link>
                         </div>

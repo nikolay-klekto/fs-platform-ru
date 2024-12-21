@@ -1,12 +1,11 @@
 'use client'
 import React, { useState } from 'react'
-import ProfessionsSelectMobi from './ProfessionsSelectMobi'
 import ProfessionCardPageMobi from './ProfessionCardPageMobi'
 import ProfessionsPaginationMobi from './ProfessionsPaginationMobi'
-import ProfessionSearchMobi from './ProfessionSendMobi'
+import ProfessionSendMobi from './ProfessionSendMobi'
 import { content } from './content'
 import { EnhancedInput } from '@/components/ui/input'
-import { FiltersIcon } from '@/components/assets/icons'
+import { FiltersIconMobi } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
 
@@ -54,7 +53,7 @@ const ProfessionsPageMobi: React.FC = () => {
                             <Search color="#878797" width={24} height={24} strokeWidth={2} />
                         </Button>
                     </div>
-                    <FiltersIcon
+                    <FiltersIconMobi
                         className={`size-[32px] ${isFilterActive ? 'text-white' : 'text-[#878797]'}`}
                         onClick={handleFilterIconClick}
                     />
@@ -74,6 +73,7 @@ const ProfessionsPageMobi: React.FC = () => {
                     currentPage={currentPage}
                     onPageChange={handlePageChange}
                 />
+                <ProfessionSendMobi />
             </div>
         </>
     )

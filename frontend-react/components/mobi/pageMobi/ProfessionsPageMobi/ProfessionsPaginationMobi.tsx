@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { LessIcon, MoreIcon } from '@/components/assets/icons'
+import { LessIconMobi, MoreIconMobi } from '@/components/assets/icons'
 
 interface ProfessionsPaginationMobiProps {
     totalPages: number
@@ -32,7 +32,7 @@ const ProfessionsPaginationMobi: React.FC<ProfessionsPaginationMobiProps> = ({
 
     return (
         <div className="mx-auto mb-[30px] mt-[25px] flex w-[150px] items-center justify-between">
-            <LessIcon
+            <LessIconMobi
                 width={'10'}
                 height={'19'}
                 className={visibleStart === 1 ? 'text-[#878797]' : 'text-[#FFFFFFCC]'}
@@ -55,7 +55,7 @@ const ProfessionsPaginationMobi: React.FC<ProfessionsPaginationMobiProps> = ({
                         </button>
                     )
                 })}
-            <MoreIcon
+            <MoreIconMobi
                 width={'10'}
                 height={'19'}
                 className={visibleEnd >= totalPages ? 'text-[#878797]' : 'text-[#FFFFFFCC]'}

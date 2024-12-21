@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { LessIcon, MoreIcon } from '@/components/assets/icons'
+import { LessIconDesktop, MoreIconDesktop } from '@/components/assets/icons'
 
 interface ProfessionsPaginationDesktopProps {
     totalPages: number
@@ -32,7 +32,7 @@ const ProfessionsPaginationDesktop: React.FC<ProfessionsPaginationDesktopProps> 
 
     return (
         <div className="relative z-[2] mb-[88px] mt-[73px] flex items-center justify-center gap-5">
-            <LessIcon
+            <LessIconDesktop
                 className={visibleStart === 1 ? 'cursor-not-allowed text-[#878797]' : 'cursor-pointer text-[#FFFFFFCC]'}
                 onClick={visibleStart > 1 ? handleLessClick : undefined}
             />
@@ -51,7 +51,7 @@ const ProfessionsPaginationDesktop: React.FC<ProfessionsPaginationDesktopProps> 
                     </button>
                 )
             })}
-            <MoreIcon
+            <MoreIconDesktop
                 className={
                     visibleEnd >= totalPages ? 'cursor-not-allowed text-[#878797]' : 'cursor-pointer text-[#FFFFFFCC]'
                 }

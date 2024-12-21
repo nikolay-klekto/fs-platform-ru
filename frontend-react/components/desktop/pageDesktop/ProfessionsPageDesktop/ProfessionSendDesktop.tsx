@@ -15,7 +15,7 @@ const ProfessionSendDesktop: React.FC = () => {
         <div className="relative z-[2] flex flex-col gap-[36px]">
             <div className="text36px_desktop mx-auto text-center font-medium uppercase">
                 <p>Вас интересуют другие профессии?</p>
-                <p>Напишите, и мы найдем стажировку ДЛЯ вас</p>
+                <p>Напишите, и мы найдем стажировку для вас</p>
             </div>
             <div className="justify-bitween mx-auto flex items-center gap-[45px]">
                 <EnhancedInput

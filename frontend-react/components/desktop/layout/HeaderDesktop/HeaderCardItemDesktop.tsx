@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { ForwardIcon } from '@/components/assets/icons'
+import { ForwardIconDesktop } from '@/components/assets/icons'
 
 interface HeaderCardItemDesktop {
     textBlack: string
@@ -64,7 +64,7 @@ const HeaderCardItemDesktop: React.FC<HeaderCardItemDesktop> = ({
                         size="circle_desktop"
                         className="absolute bottom-0 right-0 hover:shadow-lg hover:shadow-[#3B51A8]"
                     >
-                        <ForwardIcon />
+                        <ForwardIconDesktop />
                     </Button>
                 </div>
             </div>

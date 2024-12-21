@@ -141,7 +141,53 @@ export const LogoIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const ForwardIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
+export const ForwardIconDesktop: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg
+            width={'100%'}
+            height={'100%'}
+            viewBox="0 0 31 27"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+        >
+            <path
+                d="M30.125 13.5L16.7188 0.703125V8.01562C3.88912 8.01562 0.875 17.2149 0.875 26.2969C4.57771 21.5559 7.85234 18.9844 16.7188 18.9844V26.2969L30.125 13.5Z"
+                fill="url(#paint0_linear_847_15423)"
+                stroke="url(#paint1_linear_847_15423)"
+                strokeLinejoin="round"
+            />
+            <defs>
+                <linearGradient
+                    id="paint0_linear_847_15423"
+                    x1="-1.50581"
+                    y1="13.7976"
+                    x2="30.125"
+                    y2="13.7976"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stopColor="#8333F3" />
+                    <stop offset="0.485532" stopColor="#5F4AF3" />
+                    <stop offset="1" stopColor="#3B51A8" />
+                </linearGradient>
+                <linearGradient
+                    id="paint1_linear_847_15423"
+                    x1="-1.50581"
+                    y1="13.7976"
+                    x2="30.125"
+                    y2="13.7976"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stopColor="#8333F3" />
+                    <stop offset="0.485532" stopColor="#5F4AF3" />
+                    <stop offset="1" stopColor="#3B51A8" />
+                </linearGradient>
+            </defs>
+        </svg>
+    )
+}
+
+export const ForwardIconMobi: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg
             width={'100%'}
@@ -222,7 +268,7 @@ export const VkIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const ChevronDownIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const ChevronDownIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg viewBox="0 0 27 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -233,7 +279,7 @@ export const ChevronDownIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const CheckedBoxIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const CheckedBoxIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -280,7 +326,7 @@ export const CheckedBoxIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const LessIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LessIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -291,7 +337,7 @@ export const LessIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const MoreIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const MoreIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -302,7 +348,29 @@ export const MoreIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const FiltersIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LessIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M14.98 14.84L0.644 9.176V6.424L14.98 0.759998V3.416L1.7 8.536V7.064L14.98 12.184V14.84Z"
+                fill="currentColor"
+            />
+        </svg>
+    )
+}
+
+export const MoreIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M0.644 14.84V12.184L13.956 7.064V8.536L0.644 3.416V0.759998L14.98 6.424V9.176L0.644 14.84Z"
+                fill="currentColor"
+            />
+        </svg>
+    )
+}
+
+export const FiltersIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -426,6 +494,44 @@ export const PhoneIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
                 d="M30.0335 21.0454L23.7767 18.2418L23.7595 18.2338C23.4346 18.0949 23.0803 18.0391 22.7285 18.0716C22.3767 18.1041 22.0386 18.2237 21.7447 18.4197C21.7101 18.4426 21.6768 18.4674 21.6451 18.4941L18.4124 21.25C16.3645 20.2552 14.2501 18.1568 13.2553 16.1354L16.0152 12.8536C16.0417 12.8204 16.067 12.7872 16.0909 12.7513C16.2827 12.4582 16.3991 12.1222 16.4297 11.7732C16.4602 11.4243 16.4041 11.0732 16.2662 10.7511V10.7352L13.4545 4.46779C13.2722 4.04712 12.9588 3.6967 12.561 3.46882C12.1631 3.24095 11.7023 3.14785 11.2472 3.20341C9.44755 3.44023 7.79564 4.32404 6.6 5.68979C5.40436 7.05554 4.74676 8.80981 4.75001 10.625C4.75001 21.1703 13.3297 29.75 23.875 29.75C25.6902 29.7532 27.4445 29.0956 28.8102 27.9C30.1759 26.7043 31.0598 25.0524 31.2966 23.2528C31.3522 22.7979 31.2593 22.3371 31.0317 21.9393C30.8041 21.5415 30.4539 21.228 30.0335 21.0454ZM23.875 27.625C19.3678 27.6201 15.0467 25.8274 11.8596 22.6404C8.67258 19.4533 6.87993 15.1321 6.87501 10.625C6.87002 9.32805 7.33727 8.07364 8.18951 7.09602C9.04174 6.1184 10.2207 5.48442 11.5062 5.31248C11.5057 5.31777 11.5057 5.32311 11.5062 5.32841L14.2952 11.5706L11.55 14.8564C11.5221 14.8884 11.4968 14.9226 11.4743 14.9586C11.2744 15.2653 11.1572 15.6185 11.1339 15.9838C11.1107 16.3491 11.1822 16.7142 11.3415 17.0438C12.5448 19.5048 15.0244 21.9658 17.512 23.1678C17.8439 23.3256 18.2112 23.3947 18.5778 23.3681C18.9445 23.3416 19.298 23.2204 19.6038 23.0164C19.6379 22.9935 19.6707 22.9687 19.702 22.942L22.9307 20.1875L29.1729 22.9832H29.1875C29.0177 24.2705 28.3846 25.4518 27.4068 26.3062C26.429 27.1605 25.1735 27.6294 23.875 27.625Z"
                 fill="white"
             />
+        </svg>
+    )
+}
+
+export const SendIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <circle cx="17" cy="17" r="16.2917" stroke="url(#paint0_linear_1854_21403)" stroke-width="1.41667" />
+            <path
+                d="M6 16.2917C5.6088 16.2917 5.29167 16.6088 5.29167 17C5.29167 17.3912 5.6088 17.7083 6 17.7083L6 16.2917ZM27.7509 17.5009C28.0275 17.2242 28.0275 16.7758 27.7509 16.4991L23.2431 11.9913C22.9664 11.7147 22.5179 11.7147 22.2413 11.9913C21.9647 12.268 21.9647 12.7164 22.2413 12.9931L26.2483 17L22.2413 21.0069C21.9647 21.2836 21.9647 21.7321 22.2413 22.0087C22.5179 22.2853 22.9664 22.2853 23.2431 22.0087L27.7509 17.5009ZM6 17.7083L27.25 17.7083L27.25 16.2917L6 16.2917L6 17.7083Z"
+                fill="url(#paint1_linear_1854_21403)"
+            />
+            <defs>
+                <linearGradient
+                    id="paint0_linear_1854_21403"
+                    x1="-2.76744"
+                    y1="17.3954"
+                    x2="34"
+                    y2="17.3954"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#8333F3" />
+                    <stop offset="0.485532" stop-color="#5F4AF3" />
+                    <stop offset="1" stop-color="#3B51A8" />
+                </linearGradient>
+                <linearGradient
+                    id="paint1_linear_1854_21403"
+                    x1="4.27035"
+                    y1="17.5116"
+                    x2="27.25"
+                    y2="17.5116"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#8333F3" />
+                    <stop offset="0.485532" stop-color="#5F4AF3" />
+                    <stop offset="1" stop-color="#3B51A8" />
+                </linearGradient>
+            </defs>
         </svg>
     )
 }
