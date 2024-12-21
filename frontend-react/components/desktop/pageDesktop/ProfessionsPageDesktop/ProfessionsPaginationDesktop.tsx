@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { LessIcon, MoreIcon } from '@/components/assets/icons'
 
 interface ProfessionsPaginationDesktopProps {
@@ -14,9 +14,28 @@ const ProfessionsPaginationDesktop: React.FC<ProfessionsPaginationDesktopProps> 
     currentPage,
     onPageChange,
 }) => {
+    const [visibleStart, setVisibleStart] = useState(1)
+    const visibleEnd = visibleStart + 2
+
+    const handleLessClick = () => {
+        if (visibleStart > 1) {
+            setVisibleStart(visibleStart - 1)
+            onPageChange(visibleStart - 1)
+        }
+    }
+    const handleMoreClick = () => {
+        if (visibleEnd < totalPages) {
+            setVisibleStart(visibleStart + 1)
+            onPageChange(visibleStart + 1)
+        }
+    }
+
     return (
         <div className="relative z-[2] mb-[88px] mt-[73px] flex items-center justify-center gap-5">
-            <LessIcon className="text-[#FFFFFFCC]" />
+            <LessIcon
+                className={visibleStart === 1 ? 'cursor-not-allowed text-[#878797]' : 'cursor-pointer text-[#FFFFFFCC]'}
+                onClick={visibleStart > 1 ? handleLessClick : undefined}
+            />
 
             {[...Array(totalPages)].map((_, index) => {
                 const pageNumber = index + 1
@@ -32,7 +51,12 @@ const ProfessionsPaginationDesktop: React.FC<ProfessionsPaginationDesktopProps> 
                     </button>
                 )
             })}
-            <MoreIcon className="text-[#FFFFFFCC]" />
+            <MoreIcon
+                className={
+                    visibleEnd >= totalPages ? 'cursor-not-allowed text-[#878797]' : 'cursor-pointer text-[#FFFFFFCC]'
+                }
+                onClick={visibleEnd < totalPages ? handleMoreClick : undefined}
+            />
         </div>
     )
 }
