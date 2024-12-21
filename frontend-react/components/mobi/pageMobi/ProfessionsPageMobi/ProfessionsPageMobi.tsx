@@ -58,7 +58,7 @@ const ProfessionsPageMobi: React.FC = () => {
                         onClick={handleFilterIconClick}
                     />
                 </div>
-                <div className=" flex flex-wrap justify-center gap-[17px]">
+                <div className="sm_xl:gap-[15px] flex flex-wrap justify-center gap-[20px]">
                     {content.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
                         <ProfessionCardPageMobi
                             key={item.id}
