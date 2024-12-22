@@ -21,7 +21,7 @@ const ModalCallMobi: React.FC = () => {
     })
     const [step, setStep] = useState<'form' | 'accepted' | null>(null)
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
-    const [ModalOpen, setModalOpen] = useState(false)
+    const [ModalOpen, setModalOpen] = useState(false) 
 
     const handleOpenModal = () => {
         setModalOpen(true)
@@ -59,128 +59,128 @@ const ModalCallMobi: React.FC = () => {
     return (
         <>
             {step === 'form' && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-                    <div className="relative rounded-[35px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat px-3 py-10 md:px-4 md:py-10 w-11/12 max-w-lg mx-auto">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
+                    <div className="relative">
                         <button
                             onClick={handleClose}
-                            className="absolute -top-0 -right-0 rounded-full bg-[#101030] bg-opacity-80 sm:top-2 sm:right-2 sm:p-0.5 sm_s:top-2.5 sm_s:right-2.5 sm_l:top-0.5 sm_l:-right-1 sm_l:p-0.5 sm_xl:p-0.5 sm_xl:-top-0.3 sm_xl:-right-0.3 md:-top-0 md:-right-0 md:p-1.5"
+                            className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
                             <X size={24} color="#878797" />
                         </button>
-                        <p className="text-4xl md:text-5xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-1">
-                            ЗАКАЗАТЬ ЗВОНОК
-                        </p>
-                        <p className="mb-1 pl-3 text-base md:text-lg font-medium text-[#878797]">
-                            Заполните поля – и мы с вами свяжемся
-                        </p>
+                        <div className=" rounded-[50px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat p-2">
+                            <p className="text-4xl md:text-5xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-1">
+                                ЗАКАЗАТЬ ЗВОНОК
+                            </p>
+                            <p className="mb-1 pl-3 text-base md:text-lg font-medium text-[#878797]">
+                                Заполните поля – и мы с вами свяжемся
+                            </p>
 
-                        <form className="flex flex-col items-start pl-2 pr-1" onSubmit={handleSubmit}>
-                            <div className="w-full flex flex-col mb-3 p-0.5">
-                                <EnhancedInput
-                                    type="text"
-                                    name="name"
-                                    placeholder="Ваше имя"
-                                    value={formData.name}
-                                    validate={(value) => validateNameMobi(value)}
-                                    onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
-                                    className={`border-2 ${
-                                        errors.name ? 'border-red-500' : 'border-[#878797]'
-                                    } rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
-                                    label="Ваше имя"
-                                    labelClassName="text-white text-xl font-medium mb-1"
-                                    wrapperClassName="w-full"
-                                    externalError={errors.name} // добавляем отображение ошибки
-                                />
-                                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-                            </div>
-                            <div className="w-full flex flex-col mb-3 p-0.5">
-                                <PhoneInputMobi
-                                    value={formData.phone}
-                                    onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
-                                    onError={(error) => setErrors((prev) => ({ ...prev, phone: error }))}
-                                    externalError={errors.phone}
-                                    inputClassName={`border-2 ${
-                                        errors.phone ? 'border-red-500' : 'border-[#878797]'
-                                    } rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
-                                    inputERRAddStyle="border-red-500"
-                                    inputNOERRAddStyle="border-[#878797]"
-                                    labelClassName="text-white text-xl font-medium mb-1"
-                                />
-                                {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
-                            </div>
-                            <div className="w-full flex flex-col mb-3 p-0.5">
-                                <EnhancedInput
-                                    type="text"
-                                    id="time"
-                                    name="time"
-                                    placeholder="Удобное время для звонка"
-                                    value={formData.time}
-                                    onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                    className="border-2 border-[#878797] rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]"
-                                    label="Удобное время для звонка"
-                                    labelClassName="text-white text-xl mb-1"
-                                    wrapperClassName="w-full"
-                                />
-                            </div>
-                            <div className="flex items-center mb-2">
-                                <input
-                                    type="checkbox"
-                                    id="consent"
-                                    name="consent"
-                                    checked={formData.consent}
-                                    onChange={(e) => setFormData((prev) => ({ ...prev, consent: e.target.checked }))}
-                                    className="hidden"
-                                />
-                                <label htmlFor="consent" className="flex items-center">
-                                    <span className="w-4 h-4 inline-block mr-2 border-2 rounded-[2px] border-[#878797] bg-transparent"></span>
-                                    <span className="text-xs md:text-sm font-medium text-[#878797] ml-1">
-                                        Я согласен(а) на обработку персональных данных
-                                    </span>
-                                </label>
-                                {errors.consent && <p className="text-red-500 text-sm mt-1">{errors.consent}</p>}
-                            </div>
-                            <button
-                                type="submit"
-                                className="w-4/5 h-12 mx-auto mt-3 bg-sub-title-gradient-mobi rounded-[50px] text-3xl md:text-4xl font-semibold text-white"
-                            >
-                                Отправить заявку
-                            </button>
-                        </form>
+                            <form className="flex flex-col items-start pl-2 pr-1" onSubmit={handleSubmit}>
+                                <div className="w-full flex flex-col mb-3 p-0.5">
+                                    <EnhancedInput
+                                        type="text"
+                                        name="name"
+                                        placeholder="Ваше имя"
+                                        value={formData.name}
+                                        validate={(value) => validateNameMobi(value)}
+                                        onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
+                                        className={`border-2 ${
+                                            errors.name ? 'border-red-500' : 'border-[#878797]'
+                                        } rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
+                                        label="Ваше имя"
+                                        labelClassName="text-white text-xl font-medium mb-1"
+                                        wrapperClassName="w-full"
+                                        externalError={errors.name} // добавляем отображение ошибки
+                                    />
+                                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                                </div>
+                                <div className="w-full flex flex-col mb-3 p-0.5">
+                                    <PhoneInputMobi
+                                        value={formData.phone}
+                                        onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
+                                        onError={(error) => setErrors((prev) => ({ ...prev, phone: error }))}
+                                        externalError={errors.phone}
+                                        inputClassName={`border-2 ${
+                                            errors.phone ? 'border-red-500' : 'border-[#878797]'
+                                        } rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
+                                        inputERRAddStyle="border-red-500"
+                                        inputNOERRAddStyle="border-[#878797]"
+                                        labelClassName="text-white text-xl font-medium mb-1"
+                                    />
+                                    {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+                                </div>
+                                <div className="w-full flex flex-col mb-3 p-0.5">
+                                    <EnhancedInput
+                                        type="text"
+                                        id="time"
+                                        name="time"
+                                        placeholder="Удобное время для звонка"
+                                        value={formData.time}
+                                        onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
+                                        className="border-2 border-[#878797] rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]"
+                                        label="Удобное время для звонка"
+                                        labelClassName="text-white text-xl mb-1"
+                                        wrapperClassName="w-full"
+                                    />
+                                </div>
+                                <div className="flex items-center mb-2">
+                                    <input
+                                        type="checkbox"
+                                        id="consent"
+                                        name="consent"
+                                        checked={formData.consent}
+                                        onChange={(e) =>
+                                            setFormData((prev) => ({ ...prev, consent: e.target.checked }))
+                                        }
+                                        className="hidden"
+                                    />
+                                    <label htmlFor="consent" className="flex items-center">
+                                        <span className="w-4 h-4 inline-block mr-2 border-2 rounded-[2px] border-[#878797] bg-transparent"></span>
+                                        <span className="text-xs md:text-sm font-medium text-[#878797] ml-1">
+                                            Я согласен(а) на обработку персональных данных
+                                        </span>
+                                    </label>
+                                    {errors.consent && <p className="text-red-500 text-sm mt-1">{errors.consent}</p>}
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="w-4/5 h-12 mx-auto mt-3 bg-sub-title-gradient-mobi rounded-[50px] text-3xl md:text-4xl font-semibold text-white"
+                                >
+                                    Отправить заявку
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             )}
 
             {step === 'accepted' && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-                    <div
-                        className="relative rounded-[20px] bg-[url('/images/Subtract_modallCallAccept.png')] bg-cover bg-no-repeat px-2
-                        sm_s:mx-2 
-                        sm_l:mx-4 
-                        sm_xl:mx-10 
-                        md:px-4 md:mx-15"
-                    >
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
+                    <div className="relative">
                         <button
                             onClick={handleClose}
-                            className="absolute -top-0 -right-0 rounded-full bg-[#101030] bg-opacity-80 sm:top-2 sm:right-2 sm:p-0.5 sm_s:top-1 sm_s:right-1 sm_l:top-0.5 sm_l:-right-1 sm_l:p-0.5 sm_xl:p-0.5 sm_xl:-top-0.3 sm_xl:-right-0.3 md:-top-0 md:-right-0 md:p-1.5"
+                            className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
                             <X size={24} color="#878797" />
                         </button>
-                        <h1 className="text-3xl md:text-4xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-3">
-                            ЗАЯВКА ПРИНЯТА
-                        </h1>
-                        <p className="mb-1 pl-3 text-base md:text-lg font-medium text-[#878797]">
-                            Мы с вами свяжемся в ближайшее время,
-                            <br />а пока вы можете ознакомиться с нашими
-                            <br />
-                            услугами на сайте.
-                        </p>
-                        <div className="flex justify-center items-center w-4/5 mx-auto p-[3px] rounded-[50px] bg-sub-title-gradient-mobi mb-2 mt-2">
-                            <button
-                                type="button"
-                                className="w-full h-12 bg-[#101030] rounded-[55px] text-3xl font-semibold text-white"
-                            >
-                                Смотреть
-                            </button>
+                        <div className="rounded-[50px] bg-[url('/images/Subtract_modallCallAccept.png')] bg-cover bg-no-repeat p-2">
+                            <h1 className="text-3xl md:text-4xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-3">
+                                ЗАЯВКА ПРИНЯТА
+                            </h1>
+                            <p className="mb-1 pl-3 text-base md:text-lg font-medium text-[#878797]">
+                                Мы с вами свяжемся в ближайшее время,
+                                <br />а пока вы можете ознакомиться с нашими
+                                <br />
+                                услугами на сайте.
+                            </p>
+                            <div className="flex justify-center items-center w-4/5 mx-auto p-[3px] rounded-[50px] bg-sub-title-gradient-mobi mb-2 mt-2">
+                                <button
+                                    type="button"
+                                    className="w-full h-12 bg-[#101030] rounded-[55px] text-3xl font-semibold text-white"
+                                >
+                                    Смотреть
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
