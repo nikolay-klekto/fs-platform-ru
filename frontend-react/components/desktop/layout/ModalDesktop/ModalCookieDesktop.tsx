@@ -23,12 +23,12 @@ export default function ModalCookieDesktop() {
                     </div>
 
                     <div className="mr-4 flex items-center justify-end gap-[50px] space-x-4">
-                        <Button
+                        <button
                             className="text-[17px] font-medium text-[#878797] underline hover:text-[#FFFFFF]"
                             onClick={handleClose}
                         >
                             Отклонить
-                        </Button>
+                        </button>
 
                         <Button
                             variant={'send_btn_desktop'}
