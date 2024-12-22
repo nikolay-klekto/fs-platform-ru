@@ -65,6 +65,9 @@
     .text46px_desktop {
         @apply text-18xl 3xl:text-17xl 2xl:text-16xl;
     }
+    .text18px_modal_text_desktop {
+        @apply font-medium custom-grey text-4xl 3xl:text-3xl 2xl:text-2xl;
+    }
 
     .text28px_mobi {
         @apply text-9xl sm:text-7xl;
@@ -146,5 +149,18 @@
 
     .custom_error_style_input {
         @apply border-red-500;
+    }
+
+    .custom_modal_large_padding_desktop {
+        padding-left: clamp(180px, 14vw, 277px);
+        padding-right: clamp(180px, 14vw, 277px);
+    }
+    .custom_modal_large_padding_content_desktop {
+        padding-top: clamp(32px, 2.6vw, 50px);
+        padding-bottom: clamp(33px, 2.6vw, 51px);
+        padding-left: clamp(56px, 4.6vw, 88px);
+    }
+    .custom_modal_large_margin_content_desktop {
+        margin-right: clamp(56px, 4.6vw, 88px);
     }
 }
