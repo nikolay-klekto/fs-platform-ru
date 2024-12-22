@@ -31,6 +31,7 @@ export default function Home() {
                     </main>
                     <FooterDesktop />
                     <ModalCallDesktop />
+                    <ModalCookieDesktop />
                 </>
             ) : (
                 <>
@@ -41,7 +42,6 @@ export default function Home() {
                     <ModalCallMobi />
                 </>
             )}
-            <ModalCookieDesktop />
         </div>
     )
 }
