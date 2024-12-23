@@ -19,7 +19,7 @@ const ModalCallMobi: React.FC = () => {
         time: '',
         consent: false,
     })
-    const [step, setStep] = useState<'form' | 'accepted' | null>(null)
+    const [step, setStep] = useState<'form' | 'accepted' | null>(null) 
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
     const [ModalOpen, setModalOpen] = useState(false) 
 
@@ -67,7 +67,7 @@ const ModalCallMobi: React.FC = () => {
                         >
                             <X size={24} color="#878797" />
                         </button>
-                        <div className=" rounded-[50px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat p-2">
+                        <div className=" rounded-[50px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat p-4 py-18 px-3">
                             <p className="text-4xl md:text-5xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-1">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </p>
@@ -159,11 +159,11 @@ const ModalCallMobi: React.FC = () => {
                     <div className="relative">
                         <button
                             onClick={handleClose}
-                            className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
+                            className="absolute top-2 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
                             <X size={24} color="#878797" />
                         </button>
-                        <div className="rounded-[50px] bg-[url('/images/Subtract_modallCallAccept.png')] bg-cover bg-no-repeat p-2">
+                        <div className="rounded-[50px] bg-[url('/images/Subtract_modallCallAccept.png')] bg-cover bg-no-repeat p-4 py-18 px-3">
                             <h1 className="text-3xl md:text-4xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-3">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
