@@ -58,6 +58,7 @@ const buttonVariants = cva(
                     'text-7.5xl 4xl:text-6xl 4xl:px-[3vw] 4xl:py-[19px] 3xl:text-4xl 3xl:px-[2vw] 3xl:py-[15px] px-[80px] py-[16px] md:text-xs lg:px-[1vw] lg:py-[9px] lg:text-xs xl:px-[1.5vw] xl:py-[12px] xl:text-xl 2xl:px-[2vw] 2xl:py-[14px] 2xl:text-3xl',
                 select_mobi_menu: 'h-[47px] w-full max-w-[195px] text-3xl',
                 send_btn_desktop: 'h-[64px] w-[272px] 2xl:w-[200px]',
+                cookie_btn_desktop: 'h-[64px] w-[237px] 3xl:w-[250px]',
                 circle_btn_gradient_desktop: 'right-0 top-1/2 size-[60px] -translate-y-1/2 rounded-full',
                 circle_btn_mobi: 'h-0 px-[11px] py-0',
                 gradient_btn_desktop: '3xl:w-[250px] h-[64px] w-[272px] 2xl:w-[250px]',
