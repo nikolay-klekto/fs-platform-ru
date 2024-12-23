@@ -32,7 +32,7 @@ export default function ModalCookieDesktop() {
 
                         <Button
                             variant={'send_btn_desktop'}
-                            size={'send_btn_desktop'}
+                            size={'cookie_btn_desktop'}
                             className="text-[17px]"
                             onClick={handleClose}
                         >
