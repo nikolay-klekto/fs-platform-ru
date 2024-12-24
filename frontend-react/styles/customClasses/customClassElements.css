@@ -69,7 +69,7 @@
         @apply font-medium text-white text-9xl 3xl:text-8xl 2xl:text-7xl;
     }
     .text18px_modal_desktop {
-        @apply font-medium custom-grey text-4xl 3xl:text-3xl 2xl:text-2xl;
+        @apply font-medium text-4xl 3xl:text-3xl 2xl:text-2xl;
     }
 
     .text28px_mobi {

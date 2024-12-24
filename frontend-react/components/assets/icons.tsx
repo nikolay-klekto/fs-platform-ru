@@ -431,3 +431,44 @@ export const PhoneIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
         </svg>
     )
 }
+
+export const AvatarIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="60" height="61" viewBox="0 0 60 61" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <rect width="60" height="61" rx="30" fill="#878797" />
+            <g clipPath="url(#clip0_400_19214)" filter="url(#filter0_d_400_19214)"></g>
+            <path
+                d="M29.9979 32.2196C34.05 32.2196 37.7351 33.4129 40.446 35.0927C41.799 35.9352 42.9557 36.9238 43.7912 37.9984C44.6131 39.0575 45.2185 40.323 45.2185 41.6761C45.2185 43.129 44.5234 44.2741 43.5223 45.0908C42.5752 45.8645 41.3254 46.3769 39.9979 46.7345C37.3292 47.4515 33.7676 48.1851 29.9979 48.1851C26.2283 48.1851 22.6667 47.4532 19.998 46.7345C18.6704 46.3769 17.4207 45.8645 16.4736 45.0908C15.4707 44.2724 14.7773 43.129 14.7773 41.6761C14.7773 40.323 15.3828 39.0575 16.2047 37.9984C17.0401 36.9238 18.1952 35.9352 19.5498 35.0927C22.2608 33.4129 25.9476 32.2196 29.9979 32.2196ZM29.9979 13.3066C32.2406 13.3066 34.3914 14.2124 35.9771 15.8246C37.5629 17.4368 38.4538 19.6234 38.4538 21.9035C38.4538 24.1835 37.5629 26.3701 35.9771 27.9823C34.3914 29.5945 32.2406 30.5003 29.9979 30.5003C27.7553 30.5003 25.6045 29.5945 24.0187 27.9823C22.4329 26.3701 21.542 24.1835 21.542 21.9035C21.542 19.6234 22.4329 17.4368 24.0187 15.8246C25.6045 14.2124 27.7553 13.3066 29.9979 13.3066Z"
+                fill="#353652"
+            />
+            <defs>
+                <filter
+                    id="filter0_d_400_19214"
+                    x="5.70312"
+                    y="9.86816"
+                    width="48.5879"
+                    height="49.2646"
+                    filterUnits="userSpaceOnUse"
+                    colorInterpolationFilters="sRGB"
+                >
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                    />
+                    <feOffset dy="4" />
+                    <feGaussianBlur stdDeviation="2" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_400_19214" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_400_19214" result="shape" />
+                </filter>
+                <clipPath id="clip0_400_19214">
+                    <rect width="40.5882" height="41.2647" fill="white" transform="translate(9.70312 9.86816)" />
+                </clipPath>
+            </defs>
+        </svg>
+    )
+}
