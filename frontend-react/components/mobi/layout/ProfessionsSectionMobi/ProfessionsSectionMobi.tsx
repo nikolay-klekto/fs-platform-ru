@@ -5,8 +5,16 @@ import TitleMobi from '@/components/mobi/shared/TitleMobi'
 import ProfessionCardMobi from './ProfessionCardMobi'
 import ProfessionSendMobi from './ProfessionSendMobi'
 import { content } from '@/components/desktop/layout/ProfessionsSectionDesktop/content'
+import ProfessionModalMobi from '../ProfessionModalMobi/ProfessionModalMobi'
 
 const ProfessionsSectionMobi: React.FC = () => {
+    const [openModal, setOpenModal] = useState<boolean>(false)
+    const [selectedProfession, setSelectedProfession] = useState<string>('')
+    const [selectedIdProfession, setSelectedIdProfession] = useState<number | null>(null)
+    const closeModal = () => {
+        setOpenModal(false)
+    }
+
     return (
         <div className="sm_l:gap-[20px] sm_s:gap-[20px] flex max-w-full flex-col gap-[30px] px-[15px] py-[60px] sm:gap-[15px] sm:pt-[15px]">
             <TitleMobi title={'Профессии'} href={'/professions'} />
@@ -22,11 +30,23 @@ const ProfessionsSectionMobi: React.FC = () => {
                         image={item.image}
                         profession={item.profession}
                         price={item.price.toString()}
+                        onClick={() => {
+                            setSelectedProfession(item.profession)
+                            setSelectedIdProfession(item.id)
+                            setOpenModal(true)
+                        }}
                     />
                 ))}
             </div>
 
             <ProfessionSendMobi />
+            {openModal && (
+                <ProfessionModalMobi
+                    closeModal={closeModal}
+                    profession={selectedProfession}
+                    professionId={selectedIdProfession}
+                />
+            )}
         </div>
     )
 }

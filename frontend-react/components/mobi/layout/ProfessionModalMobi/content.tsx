@@ -3,7 +3,7 @@ interface ProfessionAbout {
     text: string
 }
 
-export const contentProfessionAboutDesktop: ProfessionAbout[] = [
+export const contentProfessionAboutMobi: ProfessionAbout[] = [
     {
         id: 1,
         text: 'Программист создаёт компьютерные программы, сайты, веб-сервисы и мобильные приложения с помощью различных языков программирования — Python, C, C++, Go, Java, JS, Swift и других.',
@@ -18,79 +18,71 @@ interface InternshipCompanies {
         width: number
         height: number
     }
-    price: number
 }
 
-export const contentInternshipCompaniesDesktop: InternshipCompanies[] = [
+export const contentInternshipCompaniesMobi: InternshipCompanies[] = [
     {
         id: 1,
         image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
-            width: 104,
-            height: 40,
+            width: 53,
+            height: 20,
         },
-        price: 24,
     },
     {
         id: 2,
         image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
-            width: 104,
-            height: 40,
+            width: 53,
+            height: 20,
         },
-        price: 36,
     },
     {
         id: 3,
         image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
-            width: 104,
-            height: 40,
+            width: 53,
+            height: 20,
         },
-        price: 40,
     },
     {
         id: 4,
         image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
-            width: 104,
-            height: 40,
+            width: 53,
+            height: 20,
         },
-        price: 26,
     },
     {
         id: 5,
         image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
-            width: 104,
-            height: 40,
+            width: 53,
+            height: 20,
         },
-        price: 30,
     },
     {
         id: 6,
         image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
-            width: 104,
-            height: 40,
+            width: 53,
+            height: 20,
         },
-        price: 35,
     },
     {
         id: 7,
         image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
-            width: 104,
-            height: 40,
+            width: 53,
+            height: 20,
         },
-        price: 46,
     },
 ]
 
@@ -100,7 +92,7 @@ interface Reviews {
     answer: string
 }
 
-export const contentReviewsDesktop: Reviews[] = [
+export const contentReviewsMobi: Reviews[] = [
     {
         id: 1,
         question: 'Необычные моменты произошедшие с Вами в процессе работы?',

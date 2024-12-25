@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useRef, useState } from 'react'
-import { contentInternshipCompanies } from './content'
+import { contentInternshipCompaniesDesktop } from './content'
 import ItemCompaniesDesktop from './ItemCompaniesDesktop'
 
-const InternshipCompaniesScrollDesktop: React.FC = () => {
+const InternshipCompaniesModalDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [itemWidth, setItemWidth] = useState<number>(0)
@@ -21,7 +21,7 @@ const InternshipCompaniesScrollDesktop: React.FC = () => {
         }
     }
 
-    const scrollbarWidth = `${((contentInternshipCompanies.length * itemWidth) / (contentRef.current?.offsetWidth || window.innerWidth)) * 150}%`
+    const scrollbarWidth = `${((contentInternshipCompaniesDesktop.length * itemWidth) / (contentRef.current?.offsetWidth || window.innerWidth)) * 150}%`
     console.log('scrollbarWidth: ', scrollbarWidth)
 
     /*const visibleWidth = contentRef.current?.offsetWidth || window.innerWidth
@@ -32,13 +32,13 @@ const InternshipCompaniesScrollDesktop: React.FC = () => {
     console.log('scrollbarWidth: ', scrollbarWidth)*/
 
     return (
-        <div className="border border-yellow-500">
+        <>
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="w-full flex gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll no-scrollbar_custom select-none border border-red-500"
+                className="w-full flex gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll no-scrollbar_custom select-none"
             >
-                {contentInternshipCompanies.map((item) => (
+                {contentInternshipCompaniesDesktop.map((item) => (
                     <ItemCompaniesDesktop
                         key={item.id}
                         image={item.image}
@@ -50,12 +50,12 @@ const InternshipCompaniesScrollDesktop: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="relative h-[14px] w-[65%] mx-auto mt-[clamp(25px,_2vw,_40px)] overflow-x-scroll scrollbar_custom cursor-pointer border border-red-500"
+                className="relative h-[14px] w-[65%] mx-auto mt-[clamp(25px,_2vw,_40px)] overflow-x-scroll scrollbar_custom cursor-pointer"
             >
-                <div className="absolute h-2 border border-red-500" style={{ width: scrollbarWidth }}></div>
+                <div className="absolute h-2" style={{ width: scrollbarWidth }}></div>
             </div>
-        </div>
+        </>
     )
 }
 
-export default InternshipCompaniesScrollDesktop
+export default InternshipCompaniesModalDesktop

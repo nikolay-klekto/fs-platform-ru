@@ -37,9 +37,9 @@ const ItemCompaniesDesktop: React.FC<ItemCompaniesDesktopProps> = ({ image, pric
             ref={itemRef}
             className="flex justify-center items-end flex-shrink-0 w-[clamp(150px,_14vw,_228px)] h-[clamp(92px,_8vw,_142px)] pb-[clamp(16px,_1.6vw,_31px)] border-2 border-[#878797] rounded-[25px] "
         >
-            <div className="flex flex-col items-center gap-[clamp(6px,_0.4vw,_13px)] w-full  border border-red-500">
+            <div className="flex flex-col items-center gap-[clamp(6px,_0.4vw,_13px)] w-full">
                 <div
-                    className="border border-red-500 flex justify-center"
+                    className="flex justify-center"
                     style={{
                         maxWidth: `${image.width}px`,
                         aspectRatio: `${image.width} / ${image.height}`,
