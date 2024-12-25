@@ -19,7 +19,7 @@ const ModalCallMobi: React.FC = () => {
         time: '',
         consent: false,
     })
-    const [step, setStep] = useState<'form' | 'accepted' | null>(null) 
+    const [step, setStep] = useState<'form' | 'accepted' | null>(null)
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
     const [ModalOpen, setModalOpen] = useState(false) 
 
@@ -60,18 +60,18 @@ const ModalCallMobi: React.FC = () => {
         <>
             {step === 'form' && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="relative">
+                    <div className="relative max-w-md w-full mx-4">
                         <button
                             onClick={handleClose}
-                            className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
+                            className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
                         >
                             <X size={24} color="#878797" />
                         </button>
-                        <div className=" rounded-[50px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat p-4 py-18 px-3">
-                            <p className="text-4xl md:text-5xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-1">
+                        <div className=" rounded-[50px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat pb-[40px] pt-[40px] px-3">
+                            <p className="text-4xl md:text-5xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent pb-4">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </p>
-                            <p className="mb-1 pl-3 text-base md:text-lg font-medium text-[#878797]">
+                            <p className="pb-4 pl-3 text-base md:text-lg font-medium text-[#878797]">
                                 Заполните поля – и мы с вами свяжемся
                             </p>
 
@@ -134,7 +134,7 @@ const ModalCallMobi: React.FC = () => {
                                         }
                                         className="hidden"
                                     />
-                                    <label htmlFor="consent" className="flex items-center">
+                                    <label htmlFor="consent" className="flex items-center pt-4">
                                         <span className="w-4 h-4 inline-block mr-2 border-2 rounded-[2px] border-[#878797] bg-transparent"></span>
                                         <span className="text-xs md:text-sm font-medium text-[#878797] ml-1">
                                             Я согласен(а) на обработку персональных данных
@@ -144,7 +144,7 @@ const ModalCallMobi: React.FC = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-4/5 h-12 mx-auto mt-3 bg-sub-title-gradient-mobi rounded-[50px] text-3xl md:text-4xl font-semibold text-white"
+                                    className="w-4/5 h-12 mx-auto mt-[30px] bg-sub-title-gradient-mobi rounded-[50px] text-3xl md:text-4xl font-semibold text-white"
                                 >
                                     Отправить заявку
                                 </button>
@@ -156,18 +156,18 @@ const ModalCallMobi: React.FC = () => {
 
             {step === 'accepted' && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="relative">
+                    <div className="relative max-w-md w-full mx-4">
                         <button
                             onClick={handleClose}
-                            className="absolute top-2 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
+                            className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
                         >
                             <X size={24} color="#878797" />
                         </button>
-                        <div className="rounded-[50px] bg-[url('/images/Subtract_modallCallAccept.png')] bg-cover bg-no-repeat p-4 py-18 px-3">
+                        <div className="rounded-[50px] bg-[url('/images/Subtract_modallCallAccept.png')] bg-cover bg-no-repeat pt-[40px] pb-[40px]">
                             <h1 className="text-3xl md:text-4xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-3">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
-                            <p className="mb-1 pl-3 text-base md:text-lg font-medium text-[#878797]">
+                            <p className="mb-1 pl-[27px] pb-[18px] text-base md:text-lg font-medium text-[#878797]">
                                 Мы с вами свяжемся в ближайшее время,
                                 <br />а пока вы можете ознакомиться с нашими
                                 <br />
@@ -176,7 +176,7 @@ const ModalCallMobi: React.FC = () => {
                             <div className="flex justify-center items-center w-4/5 mx-auto p-[3px] rounded-[50px] bg-sub-title-gradient-mobi mb-2 mt-2">
                                 <button
                                     type="button"
-                                    className="w-full h-12 bg-[#101030] rounded-[55px] text-3xl font-semibold text-white"
+                                    className="w-full h-12 bg-[#101030] rounded-[50px] text-3xl font-semibold text-white"
                                 >
                                     Смотреть
                                 </button>
