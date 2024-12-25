@@ -39,7 +39,7 @@
     }
 
     .text46px_desktop {
-        @apply text-[46px] 4xl:text-10xl 3xl:text-9xl 2xl:text-8xl;
+        @apply text-[46px] 4xl:text-18xl 3xl:text-9xl 2xl:text-8xl;
     }
 
     .text36px_desktop {
