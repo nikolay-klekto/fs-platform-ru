@@ -27,8 +27,9 @@ const ModalEventsDesktop: React.FC = () => {
                     onClose={handleCloseEventsModal}
                     size="large-width-884"
                     showCloseButton={false}
-                >   
-                    <div className="scrollbar-modal_desktop_custom">
+                    paddingClass="pt-[68px]"
+                > 
+                    <div className="scrollbar-modal_desktop_custom rounded-[50px]">
                         {contentModalEvents.map((event) => (
                             <div 
                                 key={event.id} 
@@ -99,7 +100,7 @@ const ModalEventsDesktop: React.FC = () => {
                                         className="bg-transparent bg-no-repeat bg-center items-center"
                                         style={{
                                             backgroundImage: "url('/background/subtract_events_modal.webp')",
-                                            backgroundSize: 'contain'
+                                            backgroundSize: "contain"
                                         }}
                                         icon={
                                             <CalendarCheck color="#878797" size={24} />
