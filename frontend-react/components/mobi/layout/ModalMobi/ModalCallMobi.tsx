@@ -67,7 +67,7 @@ const ModalCallMobi: React.FC = () => {
                         >
                             <X size={24} color="#878797" />
                         </button>
-                        <div className=" rounded-[50px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat pb-[40px] pt-[40px] px-3">
+                        <div className=" rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat py-[40px] px-3">
                             <p className="text-4xl md:text-5xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent pb-4">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </p>
@@ -163,15 +163,13 @@ const ModalCallMobi: React.FC = () => {
                         >
                             <X size={24} color="#878797" />
                         </button>
-                        <div className="rounded-[50px] bg-[url('/images/Subtract_modallCallAccept.png')] bg-cover bg-no-repeat pt-[40px] pb-[40px]">
+                        <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat py-[40px]">
                             <h1 className="text-3xl md:text-4xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-3">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
-                            <p className="mb-1 pl-[27px] pb-[18px] text-base md:text-lg font-medium text-[#878797]">
-                                Мы с вами свяжемся в ближайшее время,
-                                <br />а пока вы можете ознакомиться с нашими
-                                <br />
-                                услугами на сайте.
+                            <p className="mb-1 px-3 pb-[18px] text-justify md:text-lg font-medium text-[#878797]">
+                                Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
+                                сайте.
                             </p>
                             <div className="flex justify-center items-center w-4/5 mx-auto p-[3px] rounded-[50px] bg-sub-title-gradient-mobi mb-2 mt-2">
                                 <button
