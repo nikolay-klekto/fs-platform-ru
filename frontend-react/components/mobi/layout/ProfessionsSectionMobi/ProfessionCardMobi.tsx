@@ -7,15 +7,17 @@ interface ProfessionCardMobiProps {
     profession: string
     image: string
     price: string
+    onClick?: () => void
 }
 
-const ProfessionCardMobi: React.FC<ProfessionCardMobiProps> = ({ image, profession, price }) => {
+const ProfessionCardMobi: React.FC<ProfessionCardMobiProps> = ({ image, profession, price, onClick }) => {
     return (
         <Card
             variant={'profession_home_mobi'}
             size={'profession_home_mobi'}
             rounded={'rounded_38'}
             style={{ backgroundImage: `url(${image})` }}
+            onClick={onClick}
         >
             <CardHeader className="p-0">
                 <CardTitle variant={'profession_home_mobi'} size={'profession_home_mobi'} rounded={'rounded_38'}>
