@@ -6,11 +6,12 @@ interface ModalProps {
     children: ReactNode
     show: boolean
     onClose: () => void
-    size?: 'small' | 'medium' | 'large'
+    size?: 'small' | 'medium' | 'large' | 'large-width-882'
     showCloseButton?: boolean
+    paddingClass?: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium', showCloseButton = true }) => {
+const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium', showCloseButton = true, paddingClass = '' }) => {
     if (!show) return null
 
     const getSizeClass = () => {
@@ -19,6 +20,8 @@ const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium',
                 return 'max-w-xs'
             case 'large':
                 return 'max-w-4xl'
+            case 'large-width-882':
+                return '2xl:w-[830px] max-w-[882px]'
             case 'medium':
             default:
                 return 'max-w-lg'
@@ -26,7 +29,7 @@ const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium',
     }
 
     return ReactDOM.createPortal(
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50" onClick={onClose}>
+        <div className={`fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 ${paddingClass}`} onClick={onClose}>
             <div
                 className={`relative bg-[#101030] rounded-[50px] w-full ${getSizeClass()} text-white`}
                 onClick={(e) => e.stopPropagation()}

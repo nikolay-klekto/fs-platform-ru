@@ -141,7 +141,12 @@ export const LogoIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const ForwardIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
+interface ForwardIconProps extends React.SVGProps<SVGSVGElement> {
+    fill?: string;
+    stroke?: string;
+}
+
+export const ForwardIcon: React.FC<ForwardIconProps> = ({ fill = 'currentColor', stroke = 'currentColor', ...props }) => {
     return (
         <svg
             width={'100%'}
@@ -153,8 +158,8 @@ export const ForwardIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
         >
             <path
                 d="M30.125 13.5L16.7188 0.703125V8.01562C3.88912 8.01562 0.875 17.2149 0.875 26.2969C4.57771 21.5559 7.85234 18.9844 16.7188 18.9844V26.2969L30.125 13.5Z"
-                fill="url(#paint0_linear_847_15423)"
-                stroke="url(#paint1_linear_847_15423)"
+                fill={fill}
+                stroke={stroke}
                 strokeLinejoin="round"
             />
             <defs>
