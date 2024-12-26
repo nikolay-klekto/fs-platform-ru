@@ -21,7 +21,7 @@ const ModalCallMobi: React.FC = () => {
     })
     const [step, setStep] = useState<'form' | 'accepted' | null>(null)
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
-    const [ModalOpen, setModalOpen] = useState(false) 
+    const [ModalOpen, setModalOpen] = useState(false)
 
     const handleOpenModal = () => {
         setModalOpen(true)
@@ -88,7 +88,7 @@ const ModalCallMobi: React.FC = () => {
                                             errors.name ? 'border-red-500' : 'border-[#878797]'
                                         } rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
                                         label="Ваше имя"
-                                        labelClassName="text-white text-xl font-medium mb-1"
+                                        labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
                                         externalError={errors.name} // добавляем отображение ошибки
                                     />
@@ -119,7 +119,7 @@ const ModalCallMobi: React.FC = () => {
                                         onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
                                         className="border-2 border-[#878797] rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]"
                                         label="Удобное время для звонка"
-                                        labelClassName="text-white text-xl mb-1"
+                                        labelClassName="text-white text-xl"
                                         wrapperClassName="w-full"
                                     />
                                 </div>
