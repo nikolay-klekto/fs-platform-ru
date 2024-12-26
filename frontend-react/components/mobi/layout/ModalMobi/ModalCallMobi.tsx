@@ -86,7 +86,7 @@ const ModalCallMobi: React.FC = () => {
                                         onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
                                         className={`border-2 ${
                                             errors.name ? 'border-red-500' : 'border-[#878797]'
-                                        } rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
+                                        } text-[#878797] font-medium text-xl rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
                                         label="Ваше имя"
                                         labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
@@ -102,7 +102,7 @@ const ModalCallMobi: React.FC = () => {
                                         externalError={errors.phone}
                                         inputClassName={`border-2 ${
                                             errors.phone ? 'border-red-500' : 'border-[#878797]'
-                                        } rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
+                                        } text-[#878797] font-medium text-xl rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
                                         inputERRAddStyle="border-red-500"
                                         inputNOERRAddStyle="border-[#878797]"
                                         labelClassName="text-white text-xl font-medium mb-1"
@@ -117,13 +117,13 @@ const ModalCallMobi: React.FC = () => {
                                         placeholder="Удобное время для звонка"
                                         value={formData.time}
                                         onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                        className="border-2 border-[#878797] rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]"
+                                        className="border-2 border-[#878797] rounded-[50px] w-full bg-transparent h-10 p-4 text-[#878797] font-medium text-xl placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]"
                                         label="Удобное время для звонка"
                                         labelClassName="text-white text-xl"
                                         wrapperClassName="w-full"
                                     />
                                 </div>
-                                <div className="flex items-center mb-2">
+                                <div className="flex items-center mb-2 pt-4">
                                     <input
                                         type="checkbox"
                                         id="consent"
@@ -132,13 +132,13 @@ const ModalCallMobi: React.FC = () => {
                                         onChange={(e) =>
                                             setFormData((prev) => ({ ...prev, consent: e.target.checked }))
                                         }
-                                        className="hidden"
+                                        className="appearance-none checked:bg-[#878797] checked:border-transparent border-2 border-[#878797] rounded-[2px] w-4 h-4 mr-2 inline-block"
                                     />
-                                    <label htmlFor="consent" className="flex items-center pt-4">
-                                        <span className="w-4 h-4 inline-block mr-2 border-2 rounded-[2px] border-[#878797] bg-transparent"></span>
-                                        <span className="text-xs md:text-sm font-medium text-[#878797] ml-1">
-                                            Я согласен(а) на обработку персональных данных
-                                        </span>
+                                    <label
+                                        htmlFor="consent"
+                                        className="font-medium text-[#878797] cursor-pointer text-xs md:text-sm font-medium ml-1"
+                                    >
+                                        Я согласен(а) на обработку персональных данных
                                     </label>
                                     {errors.consent && <p className="text-red-500 text-sm mt-1">{errors.consent}</p>}
                                 </div>
