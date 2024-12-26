@@ -37,13 +37,7 @@ const ItemCompaniesMobi: React.FC<ItemCompaniesMobiProps> = ({ image, onWidthCha
             ref={itemRef}
             className="flex justify-center items-center flex-shrink-0 w-[116px] h-[45px] sm_s:[99px] sm_s:h-[38px] sm:[99px] sm:h-[38px] border-2 border-[#878797] rounded-[16px] "
         >
-            <Image
-                src={image.src}
-                alt={image.alt}
-                width={image.width}
-                height={image.height}
-                className="object-contain"
-            />
+            <Image src={image.src} alt={image.alt} width={image.width} height={image.height} />
         </div>
     )
 }

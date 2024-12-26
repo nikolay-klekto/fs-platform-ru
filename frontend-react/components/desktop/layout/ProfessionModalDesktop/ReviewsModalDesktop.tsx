@@ -8,7 +8,7 @@ const ReviewsModalDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [itemWidth, setItemWidth] = useState<number>(0)
-    console.log('itemWidth ', itemWidth)
+
     const handleScroll = () => {
         if (contentRef.current && scrollbarRef.current) {
             scrollbarRef.current.scrollLeft = contentRef.current.scrollLeft
@@ -21,8 +21,12 @@ const ReviewsModalDesktop: React.FC = () => {
         }
     }
 
-    const scrollbarWidth = `${((contentReviewsDesktop.length * itemWidth) / (contentRef.current?.offsetWidth || window.innerWidth)) * 150}%`
-    console.log('scrollbarWidth: ', scrollbarWidth)
+    const calculateScrollbarWidth = () => {
+        if (!contentRef.current || !scrollbarRef.current) return 0
+        const visibleContentWidth = contentRef.current.offsetWidth
+        const visibleScrollBarWidth = scrollbarRef.current.offsetWidth
+        return contentRef.current.scrollWidth - (visibleContentWidth - visibleScrollBarWidth)
+    }
 
     return (
         <div>
@@ -45,7 +49,7 @@ const ReviewsModalDesktop: React.FC = () => {
                 onScroll={handleScrollbarScroll}
                 className="relative h-[14px] w-[65%] mx-auto mt-[clamp(25px,_2vw,_40px)] overflow-x-scroll scrollbar_custom cursor-pointer"
             >
-                <div className="absolute h-2" style={{ width: scrollbarWidth }}></div>
+                <div className="absolute h-2" style={{ width: `${calculateScrollbarWidth()}px` }}></div>
             </div>
         </div>
     )

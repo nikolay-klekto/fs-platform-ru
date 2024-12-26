@@ -159,4 +159,21 @@
         padding-bottom: clamp(33px, 2.6vw, 51px);
         padding-left: clamp(56px, 4.6vw, 88px);
     }
+
+    .modal-scrollable {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    .modal-scrollable::-webkit-scrollbar {
+        width: 5.2px;
+    }
+    .modal-scrollable::-webkit-scrollbar-thumb {
+        background-color: #898997;
+        border-radius: 4px;
+    }
+    .modal-scrollable::-webkit-scrollbar-track {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        margin: 60px 0;
+    }
 }

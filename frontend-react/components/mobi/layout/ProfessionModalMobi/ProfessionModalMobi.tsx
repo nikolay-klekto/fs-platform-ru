@@ -26,12 +26,12 @@ const ProfessionModalMobi: React.FC<ProfessionModalMobiProps> = ({ closeModal, p
                         </p>
                     ))}
                 </div>
-                <div className="flex flex-col gap-6 sm_s:gap-5 sm:gap-5">
-                    <h3 className="pl-3 text18px_mobi font-semibold text-white uppercase">компании для стажировки:</h3>
+                <div className="flex flex-col pl-3 gap-6 sm_s:gap-5 sm:gap-5">
+                    <h3 className="text18px_mobi font-semibold text-white uppercase">компании для стажировки:</h3>
                     <InternshipCompaniesModalMobi />
                 </div>
-                <div className="flex flex-col gap-6 sm_s:gap-5 sm:gap-5">
-                    <h3 className="pl-3 text18px_mobi font-semibold text-white uppercase">отзывы о профессии</h3>
+                <div className="flex flex-col pl-3 gap-6 sm_s:gap-5 sm:gap-5">
+                    <h3 className="text18px_mobi font-semibold text-white uppercase">отзывы о профессии</h3>
                     <ReviewsModalMobi />
                 </div>
             </div>

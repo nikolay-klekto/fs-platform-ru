@@ -30,7 +30,7 @@ export const contentInternshipCompaniesDesktop: InternshipCompanies[] = [
             width: 104,
             height: 40,
         },
-        price: 24,
+        price: 10,
     },
     {
         id: 2,
@@ -40,7 +40,7 @@ export const contentInternshipCompaniesDesktop: InternshipCompanies[] = [
             width: 104,
             height: 40,
         },
-        price: 36,
+        price: 20,
     },
     {
         id: 3,
@@ -50,7 +50,7 @@ export const contentInternshipCompaniesDesktop: InternshipCompanies[] = [
             width: 104,
             height: 40,
         },
-        price: 40,
+        price: 30,
     },
     {
         id: 4,
@@ -60,7 +60,7 @@ export const contentInternshipCompaniesDesktop: InternshipCompanies[] = [
             width: 104,
             height: 40,
         },
-        price: 26,
+        price: 40,
     },
     {
         id: 5,
@@ -70,7 +70,7 @@ export const contentInternshipCompaniesDesktop: InternshipCompanies[] = [
             width: 104,
             height: 40,
         },
-        price: 30,
+        price: 50,
     },
     {
         id: 6,
@@ -80,7 +80,7 @@ export const contentInternshipCompaniesDesktop: InternshipCompanies[] = [
             width: 104,
             height: 40,
         },
-        price: 35,
+        price: 60,
     },
     {
         id: 7,
@@ -90,7 +90,67 @@ export const contentInternshipCompaniesDesktop: InternshipCompanies[] = [
             width: 104,
             height: 40,
         },
-        price: 46,
+        price: 70,
+    },
+    {
+        id: 8,
+        image: {
+            src: '/images/epamLogo.png',
+            alt: 'company-logo',
+            width: 104,
+            height: 40,
+        },
+        price: 80,
+    },
+    {
+        id: 9,
+        image: {
+            src: '/images/epamLogo.png',
+            alt: 'company-logo',
+            width: 104,
+            height: 40,
+        },
+        price: 90,
+    },
+    {
+        id: 10,
+        image: {
+            src: '/images/epamLogo.png',
+            alt: 'company-logo',
+            width: 104,
+            height: 40,
+        },
+        price: 100,
+    },
+    {
+        id: 11,
+        image: {
+            src: '/images/epamLogo.png',
+            alt: 'company-logo',
+            width: 104,
+            height: 40,
+        },
+        price: 110,
+    },
+    {
+        id: 12,
+        image: {
+            src: '/images/epamLogo.png',
+            alt: 'company-logo',
+            width: 104,
+            height: 40,
+        },
+        price: 120,
+    },
+    {
+        id: 13,
+        image: {
+            src: '/images/epamLogo.png',
+            alt: 'company-logo',
+            width: 104,
+            height: 40,
+        },
+        price: 130,
     },
 ]
 

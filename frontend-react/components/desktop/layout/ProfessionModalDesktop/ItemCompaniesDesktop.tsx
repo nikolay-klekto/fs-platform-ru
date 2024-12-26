@@ -35,28 +35,15 @@ const ItemCompaniesDesktop: React.FC<ItemCompaniesDesktopProps> = ({ image, pric
     return (
         <div
             ref={itemRef}
-            className="flex justify-center items-end flex-shrink-0 w-[clamp(150px,_14vw,_228px)] h-[clamp(92px,_8vw,_142px)] pb-[clamp(16px,_1.6vw,_31px)] border-2 border-[#878797] rounded-[25px] "
+            className="flex justify-center items-end flex-shrink-0 w-[clamp(160px,_14vw,_228px)] h-[clamp(100px,_8vw,_142px)] pb-[clamp(16px,_1.5vw,_28px)] px-2 pt-6 border-2 border-[#878797] rounded-[25px] "
         >
             <div className="flex flex-col items-center gap-[clamp(6px,_0.4vw,_13px)] w-full">
-                <div
-                    className="flex justify-center"
-                    style={{
-                        maxWidth: `${image.width}px`,
-                        aspectRatio: `${image.width} / ${image.height}`,
-                    }}
-                >
-                    <Image
-                        src={image.src}
-                        alt={image.alt}
-                        width={image.width}
-                        height={image.height}
-                        className="object-contain"
-                    />
+                <div className="flex justify-center">
+                    <Image src={image.src} alt={image.alt} width={image.width} height={image.height} />
                 </div>
-
                 <p className="text-[#878797] text-[19px] 3xl:text-4xl 2xl:text-3xl">
                     от{' '}
-                    <span className="bg-gradient-desktop text-6xl 3xl:text-5xl 2xl:text-4xl bg-clip-text text-transparent">
+                    <span className="bg-gradient-desktop text-6xl 3xl:text-5xl 2xl:text-3xl bg-clip-text text-transparent">
                         {price} BYN/
                     </span>
                     неделя
@@ -67,20 +54,3 @@ const ItemCompaniesDesktop: React.FC<ItemCompaniesDesktopProps> = ({ image, pric
 }
 
 export default ItemCompaniesDesktop
-
-/*
-<div
-    ref={itemRef}
-    className="flex flex-col items-center flex-shrink-0 w-[clamp(150px,_14vw,_228px)] h-[clamp(92px,_8vw,_142px)] pb-[clamp(20px,_1.6vw,_31px)] gap-[clamp(8px,_0.7vw,_13px)]  border-2 border-[#878797] rounded-[25px] "
->
-
-
-<div
-            ref={itemRef}
-            className="flex justify-center items-end flex-shrink-0 w-[clamp(150px,_14vw,_228px)] h-[clamp(92px,_8vw,_142px)] pb-[clamp(20px,_1.6vw,_31px)] border-2 border-[#878797] rounded-[25px] "
-        >
-            <div className="flex flex-col items-center gap-[clamp(8px,_0.7vw,_13px)] w-full  border border-red-500">
-
-
-<div className="border border-red-500 h-auto flex justify-center 3xl:w-[50%] 2xl:w-[50%]">
-*/

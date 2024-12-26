@@ -9,8 +9,7 @@ const ReviewsModalMobi: React.FC = () => {
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [itemWidth, setItemWidth] = useState<number>(0)
 
-    const gapWidth = 8
-    const contentWidth = contentReviewsMobi.length * itemWidth + (contentReviewsMobi.length - 1) * gapWidth
+    const contentWidth = contentRef.current?.scrollWidth
 
     const handleScroll = () => {
         if (contentRef.current && scrollbarRef.current) {
@@ -29,7 +28,7 @@ const ReviewsModalMobi: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="pl-3 flex gap-2 overflow-x-scroll no-scrollbar_custom select-none"
+                className="flex gap-2 overflow-x-scroll no-scrollbar_custom select-none"
             >
                 {contentReviewsMobi.map((item) => (
                     <ItemReviewsMobi
@@ -43,7 +42,7 @@ const ReviewsModalMobi: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="relative h-2 w-[93.6%] mx-auto mt-6 sm_s:mt-5 sm:mt-5 overflow-x-scroll scrollbar_custom cursor-pointer"
+                className="relative h-2 w-[97%] mx-auto mt-6 sm_s:mt-5 sm:mt-5 overflow-x-scroll scrollbar_custom cursor-pointer"
             >
                 <div className="h-full" style={{ width: `${contentWidth}px` }}></div>
             </div>

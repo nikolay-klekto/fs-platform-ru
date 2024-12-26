@@ -29,7 +29,7 @@ const ItemReviewsDesktop: React.FC<ItemReviewsDesktopProps> = ({ question, answe
 
     return (
         <div ref={itemRef} className="flex flex-shrink-0">
-            <div className="mr-[9px] max-w-[60px] 3xl:max-w-[50px]">
+            <div className="mr-[9px] max-w-[60px] 3xl:max-w-[50px] 2xl:max-w-[50px]">
                 <AvatarIconDesktop className="w-full h-auto" />
             </div>
             <div className="w-[clamp(251px,_20vw,_389px)]">

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { X } from 'lucide-react'
 
@@ -41,7 +41,7 @@ const Modal: React.FC<ModalProps> = ({
             onClick={onClose}
         >
             <div
-                className={`relative bg-[#101030] rounded-[50px] w-full ${getSizeClass()} text-white`}
+                className={`relative bg-[#101030] rounded-[50px] w-full ${getSizeClass()} text-white modal-scrollable`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {showCloseButton && (
