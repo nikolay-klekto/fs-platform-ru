@@ -11,36 +11,35 @@ const PersonalAccountDesktop: React.FC = () => {
                     <h2 className="text46px_desktop  font-medium text-white">ЛИЧНЫЙ КАБИНЕТ</h2>
                     <Link
                         href="#"
-                        className="text18px_desktop text-[#878797] font-medium relative 
-                             hover:bg-gradient-desktop hover:bg-clip-text hover:text-transparent"
+                        className="text18px_desktop text-[#878797] font-medium hover:underline decoration-2 decoration-transparent hover:decoration-[#8333F3] hover:bg-gradient-desktop hover:from-[#5F4AF3]hover:[#3B51A8] hover:bg-clip-text hover:text-transparent hover:underline-offset-8"
                     >
                         КОРЗИНА
                     </Link>
 
                     <Link
                         href="#"
-                        className="text18px_desktop text-[#878797] font-medium hover:bg-gradient-desktop hover:bg-clip-text hover:text-transparent"
+                        className="text18px_desktop text-[#878797] font-medium hover:underline decoration-2 decoration-transparent hover:decoration-[#8333F3] hover:bg-gradient-desktop hover:from-[#5F4AF3]hover:[#3B51A8] hover:bg-clip-text hover:text-transparent hover:underline-offset-8"
                     >
                         ТРЕБУЮЩИЕ ОПЛАТЫ
                     </Link>
 
                     <Link
                         href="#"
-                        className="text18px_desktop text-[#878797] font-medium hover:bg-gradient-desktop hover:bg-clip-text hover:text-transparent"
+                        className="text18px_desktop text-[#878797] font-medium hover:underline decoration-2 decoration-transparent hover:decoration-[#8333F3] hover:bg-gradient-desktop hover:from-[#5F4AF3]hover:[#3B51A8] hover:bg-clip-text hover:text-transparent hover:underline-offset-8"
                     >
                         ПРЕДСТОЯЩИЕ СТАЖИРОВКИ
                     </Link>
 
                     <Link
                         href="#"
-                        className="text18px_desktop text-[#878797] font-medium hover:underline hover:bg-gradient-desktop hover:bg-clip-text hover:text-transparent"
+                        className="text18px_desktop text-[#878797] font-medium hover:underline decoration-2 decoration-transparent hover:decoration-[#8333F3] hover:bg-gradient-desktop hover:from-[#5F4AF3]hover:[#3B51A8] hover:bg-clip-text hover:text-transparent hover:underline-offset-8"
                     >
                         АРХИВ
                     </Link>
 
                     <Link
                         href="#"
-                        className="text18px_desktop text-[#878797] font-medium hover:underline hover:bg-gradient-desktop hover:bg-clip-text hover:text-transparent"
+                        className="text18px_desktop text-[#878797] font-medium hover:underline decoration-2 decoration-transparent hover:decoration-[#8333F3] hover:bg-gradient-desktop hover:from-[#5F4AF3]hover:[#3B51A8] hover:bg-clip-text hover:text-transparent hover:underline-offset-8"
                     >
                         МОЙ ПРОФИЛЬ
                     </Link>
