@@ -29,17 +29,14 @@ open class OrderController(open val orderRepository: OrderRepository) {
 
     @QueryMapping
     fun getOrdersByClientId(
-        @Argument clientId: String,
-        @Argument orderStatus: OrderStatus): Flux<OrderModel> {
-        return orderRepository.getAllOrdersByClientId(clientId, orderStatus)
+        @Argument clientId: String): Flux<OrderModel> {
+        return orderRepository.getAllOrdersByClientId(clientId)
     }
 
     @QueryMapping
     fun getOrdersByBasketId(
-        @Argument basketId: Long,
-        @Argument orderStatus: OrderStatus
-    ): Flux<OrderModel> {
-        return orderRepository.getAllOrdersByBasketID(basketId, orderStatus)
+        @Argument basketId: Long): Flux<OrderModel> {
+        return orderRepository.getAllOrdersByBasketID(basketId)
     }
 
     @MutationMapping
@@ -58,8 +55,11 @@ open class OrderController(open val orderRepository: OrderRepository) {
     }
 
     @MutationMapping
-    fun deleteAllOrdersByBasketId(@Argument basketId: Long): Mono<Boolean> {
-        return orderRepository.deleteAllOrdersByBasketId(basketId)
+    fun deleteAllOrdersByBasketId(
+        @Argument basketId: Long,
+        @Argument orderStatus: OrderStatus
+    ): Mono<Boolean> {
+        return orderRepository.deleteAllOrdersByBasketId(basketId, orderStatus)
     }
 
     @MutationMapping

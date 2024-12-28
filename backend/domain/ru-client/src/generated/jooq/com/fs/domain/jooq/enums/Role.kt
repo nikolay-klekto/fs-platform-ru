@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.enums
 
 
-import com.fs.domain.jooq.Public
+import com.fs.domain.jooq.DefaultSchema
 
 import org.jooq.Catalog
 import org.jooq.EnumType
@@ -20,7 +20,7 @@ enum class Role(@get:JvmName("literal") public val literal: String) : EnumType {
     PARTNER("PARTNER"),
     ADMIN("ADMIN");
     override fun getCatalog(): Catalog? = schema.catalog
-    override fun getSchema(): Schema = Public.PUBLIC
+    override fun getSchema(): Schema = DefaultSchema.DEFAULT_SCHEMA
     override fun getName(): String = "role"
     override fun getLiteral(): String = literal
 }

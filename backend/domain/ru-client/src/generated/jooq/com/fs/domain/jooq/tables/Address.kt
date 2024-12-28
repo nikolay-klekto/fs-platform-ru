@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.Public
+import com.fs.domain.jooq.DefaultSchema
 import com.fs.domain.jooq.keys.ADDRESS_PKEY
 import com.fs.domain.jooq.keys.ADDRESS__ADDRESS_CITY_ID_FKEY
 import com.fs.domain.jooq.tables.records.AddressRecord
@@ -19,7 +19,7 @@ import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
 import org.jooq.Records
-import org.jooq.Row6
+import org.jooq.Row5
 import org.jooq.Schema
 import org.jooq.SelectField
 import org.jooq.Table
@@ -44,7 +44,7 @@ open class Address(
     parameters: Array<Field<*>?>?
 ): TableImpl<AddressRecord>(
     alias,
-    Public.PUBLIC,
+    DefaultSchema.DEFAULT_SCHEMA,
     child,
     path,
     aliased,
@@ -55,7 +55,7 @@ open class Address(
     companion object {
 
         /**
-         * The reference instance of <code>public.address</code>
+         * The reference instance of <code>address</code>
          */
         val ADDRESS: Address = Address()
     }
@@ -66,55 +66,50 @@ open class Address(
     override fun getRecordType(): Class<AddressRecord> = AddressRecord::class.java
 
     /**
-     * The column <code>public.address.id</code>.
+     * The column <code>address.id</code>.
      */
     val ID: TableField<AddressRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>public.address.city_id</code>.
+     * The column <code>address.city_id</code>.
      */
     val CITY_ID: TableField<AddressRecord, Long?> = createField(DSL.name("city_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.address.apartment</code>.
-     */
-    val APARTMENT: TableField<AddressRecord, Long?> = createField(DSL.name("apartment"), SQLDataType.BIGINT, this, "")
-
-    /**
-     * The column <code>public.address.building</code>.
-     */
-    val BUILDING: TableField<AddressRecord, Long?> = createField(DSL.name("building"), SQLDataType.BIGINT, this, "")
-
-    /**
-     * The column <code>public.address.house</code>.
-     */
-    val HOUSE: TableField<AddressRecord, Long?> = createField(DSL.name("house"), SQLDataType.BIGINT, this, "")
-
-    /**
-     * The column <code>public.address.street</code>.
+     * The column <code>address.street</code>.
      */
     val STREET: TableField<AddressRecord, String?> = createField(DSL.name("street"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>address.house</code>.
+     */
+    val HOUSE: TableField<AddressRecord, String?> = createField(DSL.name("house"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>address.office_number</code>.
+     */
+    val OFFICE_NUMBER: TableField<AddressRecord, String?> = createField(DSL.name("office_number"), SQLDataType.VARCHAR, this, "")
 
     private constructor(alias: Name, aliased: Table<AddressRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<AddressRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>public.address</code> table reference
+     * Create an aliased <code>address</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>public.address</code> table reference
+     * Create an aliased <code>address</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>public.address</code> table reference
+     * Create a <code>address</code> table reference
      */
     constructor(): this(DSL.name("address"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, AddressRecord>): this(Internal.createPathAlias(child, key), child, key, ADDRESS, null)
-    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
+    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
     override fun getIdentity(): Identity<AddressRecord, Long?> = super.getIdentity() as Identity<AddressRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<AddressRecord> = ADDRESS_PKEY
     override fun getReferences(): List<ForeignKey<AddressRecord, *>> = listOf(ADDRESS__ADDRESS_CITY_ID_FKEY)
@@ -153,18 +148,18 @@ open class Address(
     override fun rename(name: Table<*>): Address = Address(name.getQualifiedName(), null)
 
     // -------------------------------------------------------------------------
-    // Row6 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row6<Long?, Long?, Long?, Long?, Long?, String?> = super.fieldsRow() as Row6<Long?, Long?, Long?, Long?, Long?, String?>
+    override fun fieldsRow(): Row5<Long?, Long?, String?, String?, String?> = super.fieldsRow() as Row5<Long?, Long?, String?, String?, String?>
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    fun <U> mapping(from: (Long?, Long?, Long?, Long?, Long?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+    fun <U> mapping(from: (Long?, Long?, String?, String?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, Long?, Long?, Long?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
+    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, String?, String?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

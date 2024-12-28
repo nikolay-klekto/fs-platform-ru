@@ -43,17 +43,16 @@ abstract class OrderRepository(
         }
     }
 
-    fun getAllOrdersByClientId(clientId: String, orderStatus: OrderStatus): Flux<OrderModel> {
+    fun getAllOrdersByClientId(clientId: String): Flux<OrderModel> {
         return Flux.fromIterable(
-            orderBlockingRepository.getAllByClientId(clientId, orderStatus)
+            orderBlockingRepository.getAllByClientId(clientId)
         )
     }
 
-    fun getAllOrdersByBasketID(basketId: Long, orderStatus: OrderStatus): Flux<OrderModel> {
+    fun getAllOrdersByBasketID(basketId: Long): Flux<OrderModel> {
         return Flux.from(
             dsl.selectFrom(ORDER)
-                .where(ORDER.BASKET_ID.eq(basketId)
-                    .and(ORDER.ORDER_STATUS.eq(orderStatus.name)))
+                .where(ORDER.BASKET_ID.eq(basketId))
         ).map { it.into(Order::class.java) }
             .map(converter::toModel)
     }
@@ -69,12 +68,13 @@ abstract class OrderRepository(
             val oldOrderModel: OrderModel = orderBlockingRepository.getById(newOrderModel.id!!)!!
 
             val result = dsl.update(ORDER)
-                .set(ORDER.START_WORK_DATE, newOrderModel.startWorkDate ?: oldOrderModel.startWorkDate)
-                .set(ORDER.TOTAL_WORK_DAYS, newOrderModel.totalWorkDays ?: oldOrderModel.totalWorkDays)
+                .set(ORDER.ORDER_STATUS, newOrderModel.orderStatus?.name ?: oldOrderModel.orderStatus?.name)
+//                .set(ORDER.START_WORK_DATE, newOrderModel.startWorkDate ?: oldOrderModel.startWorkDate)
+//                .set(ORDER.TOTAL_WORK_DAYS, newOrderModel.totalWorkDays ?: oldOrderModel.totalWorkDays)
                 .where(ORDER.ID.eq(newOrderModel.id))
                 .execute() == 1
 
-            orderBlockingRepository.checkAndUpdateOrderStatus(newOrderModel.id!!)
+//            orderBlockingRepository.checkAndUpdateOrderStatus(newOrderModel.id!!)
             return@fromSupplier result
         }
     }
@@ -119,6 +119,7 @@ abstract class OrderRepository(
             dsl.select(ORDER.asterisk()).from(ORDER)
                 .where(
                     ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED.name)
+                        .or(ORDER.ORDER_STATUS.eq(OrderStatus.BASKET.name))
                         .and(
                             ORDER.DATE_CREATED.le(
                                 DSL.currentLocalDateTime().minus(
@@ -145,10 +146,20 @@ abstract class OrderRepository(
         }
     }
 
-    fun deleteAllOrdersByBasketId(basketId: Long): Mono<Boolean> {
+    fun deleteAllOrdersByBasketId(basketId: Long, orderStatus: OrderStatus): Mono<Boolean> {
         return Mono.fromSupplier {
-            dsl.deleteFrom(ORDER).where(ORDER.BASKET_ID.eq(basketId))
-                .execute() > 0
+            val orderList = dsl.select(ORDER.ID).from(ORDER)
+                .where(
+                ORDER.BASKET_ID.eq(basketId)
+                    .and(ORDER.ORDER_STATUS.eq(orderStatus.name))
+            ).map { it.into(Long::class.java) }
+            var result = false
+            orderList.forEach { orderId ->
+                if(orderBlockingRepository.deleteById(orderId)){
+                    result = true
+                }
+            }
+            return@fromSupplier result
         }
     }
 

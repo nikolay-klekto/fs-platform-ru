@@ -28,13 +28,12 @@ abstract class OrderBlockingRepository(
             .firstOrNull()
     }
 
-    fun getAllByClientId(clientId: String, orderStatus: OrderStatus): List<OrderModel> {
+    fun getAllByClientId(clientId: String): List<OrderModel> {
         return dsl.selectFrom(ORDER)
             .where(
                 ORDER.BASKET_ID.eq(
                     dsl.select(Client.CLIENT.BASKET_ID).from(Client.CLIENT)
-                        .where(Client.CLIENT.ID.eq(clientId)
-                            .and(ORDER.ORDER_STATUS.eq(orderStatus.name)))
+                        .where(Client.CLIENT.ID.eq(clientId))
                 )
             )
             .map { it.into(Order::class.java) }
@@ -63,13 +62,13 @@ abstract class OrderBlockingRepository(
         return ordersWithCurrentBasket == 0
     }
 
-    private fun isPreOrdersInBasket(basketId: Long): Boolean {
-        val preOrdersQuantity: Int = dsl.selectCount().from(ORDER)
-            .where(ORDER.BASKET_ID.eq(basketId).and(ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED.name)))
-            .map { it.into(Int::class.java) }
-            .first()
-        return preOrdersQuantity > 0
-    }
+//    private fun isPreOrdersInBasket(basketId: Long): Boolean {
+//        val preOrdersQuantity: Int = dsl.selectCount().from(ORDER)
+//            .where(ORDER.BASKET_ID.eq(basketId).and(ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED.name)))
+//            .map { it.into(Int::class.java) }
+//            .first()
+//        return preOrdersQuantity > 0
+//    }
 
     fun deleteById(orderId: Long): Boolean {
         decreaseBasketTotalPriceByOrderId(orderId)
@@ -84,30 +83,21 @@ abstract class OrderBlockingRepository(
         ) {
             throw Exception("Необходимо заполнить все обязательные поля!")
         }
-        var newOrderStatus: OrderStatus? = null
+        var newOrderStatus: OrderStatus? = OrderStatus.BASKET
         var basketId: Long? = orderModel.basketId
-        var isBasketTemporary = false
-
-        if (orderModel.basketId != null) {
-            isBasketTemporary = isPreOrdersInBasket(orderModel.basketId!!)
-            if (isBasketTemporary) {
-                newOrderStatus = OrderStatus.PRE_ORDERED
-            }
-        }
 
         if (orderModel.basketId == null) {
             val newBasketModel: BasketModel = basketBlockingRepository.insert()
             basketId = newBasketModel.id
         } else {
-            if (!isBasketTemporary) {
                 newOrderStatus = if (orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!)
                         .isBefore(LocalDateTime.now())
                 ) {
                     OrderStatus.EXPIRED
                 } else {
-                    OrderStatus.ACTUAL
+                    OrderStatus.BASKET
                 }
-            }
+
         }
 
         val pastTotalPrice: Double? =
@@ -132,7 +122,7 @@ abstract class OrderBlockingRepository(
             companyOfficeId = orderModel.companyOfficeId,
             dateCreated = LocalDateTime.now(),
             isExpired = orderModel.isExpired,
-            orderStatus = newOrderStatus ?: orderModel.orderStatus,
+            orderStatus = orderModel.orderStatus ?: newOrderStatus,
             startWorkDate = orderModel.startWorkDate,
             totalWorkDays = orderModel.totalWorkDays,
             price = newOrderPrice,
@@ -150,15 +140,15 @@ abstract class OrderBlockingRepository(
 
         val oldOrderModel = getById(orderId)
         newOrderStatus =
-            if (oldOrderModel?.orderStatus != null && oldOrderModel.orderStatus == OrderStatus.PRE_ORDERED) {
-                OrderStatus.PRE_ORDERED
+            if (oldOrderModel?.orderStatus != null && oldOrderModel.orderStatus == OrderStatus.BASKET) {
+                OrderStatus.BASKET
             } else {
                 if (oldOrderModel?.startWorkDate!!.plusDays(oldOrderModel.totalWorkDays!!)
                         .isBefore(LocalDateTime.now())
                 ) {
                     OrderStatus.EXPIRED
                 } else {
-                    OrderStatus.ACTUAL
+                    OrderStatus.BASKET
                 }
             }
         dsl.update(ORDER)

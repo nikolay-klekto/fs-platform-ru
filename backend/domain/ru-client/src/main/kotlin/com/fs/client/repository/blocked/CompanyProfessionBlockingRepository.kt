@@ -5,8 +5,8 @@ import com.fs.domain.jooq.tables.CompanyProfession.Companion.COMPANY_PROFESSION
 import org.jooq.DSLContext
 
 abstract class CompanyProfessionBlockingRepository(
-    private val dsl: DSLContext,
-    private val companyProfessionConverter: CompanyProfessionConverter
+    open val dsl: DSLContext,
+    open val companyProfessionConverter: CompanyProfessionConverter
 ) {
 
     fun getPricePerDayById(companyProfessionId: Long):Double{

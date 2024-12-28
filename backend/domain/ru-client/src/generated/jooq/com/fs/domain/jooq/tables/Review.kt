@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.Public
+import com.fs.domain.jooq.DefaultSchema
 import com.fs.domain.jooq.keys.REVIEW_PKEY
 import com.fs.domain.jooq.keys.REVIEW__REVIEW_CLIENT_ID_FKEY
 import com.fs.domain.jooq.keys.REVIEW__REVIEW_COMPANY_ID_FKEY
@@ -46,7 +46,7 @@ open class Review(
     parameters: Array<Field<*>?>?
 ): TableImpl<ReviewRecord>(
     alias,
-    Public.PUBLIC,
+    DefaultSchema.DEFAULT_SCHEMA,
     child,
     path,
     aliased,
@@ -57,7 +57,7 @@ open class Review(
     companion object {
 
         /**
-         * The reference instance of <code>public.review</code>
+         * The reference instance of <code>review</code>
          */
         val REVIEW: Review = Review()
     }
@@ -68,37 +68,37 @@ open class Review(
     override fun getRecordType(): Class<ReviewRecord> = ReviewRecord::class.java
 
     /**
-     * The column <code>public.review.id</code>.
+     * The column <code>review.id</code>.
      */
     val ID: TableField<ReviewRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>public.review.company_id</code>.
+     * The column <code>review.company_id</code>.
      */
     val COMPANY_ID: TableField<ReviewRecord, Long?> = createField(DSL.name("company_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.review.client_id</code>.
+     * The column <code>review.client_id</code>.
      */
     val CLIENT_ID: TableField<ReviewRecord, String?> = createField(DSL.name("client_id"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.review.date_created</code>.
+     * The column <code>review.date_created</code>.
      */
     val DATE_CREATED: TableField<ReviewRecord, LocalDateTime?> = createField(DSL.name("date_created"), SQLDataType.LOCALDATETIME(6), this, "")
 
     /**
-     * The column <code>public.review.description</code>.
+     * The column <code>review.description</code>.
      */
     val DESCRIPTION: TableField<ReviewRecord, String?> = createField(DSL.name("description"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.review.rate</code>.
+     * The column <code>review.rate</code>.
      */
     val RATE: TableField<ReviewRecord, Long?> = createField(DSL.name("rate"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.review.username</code>.
+     * The column <code>review.username</code>.
      */
     val USERNAME: TableField<ReviewRecord, String?> = createField(DSL.name("username"), SQLDataType.VARCHAR, this, "")
 
@@ -106,22 +106,22 @@ open class Review(
     private constructor(alias: Name, aliased: Table<ReviewRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>public.review</code> table reference
+     * Create an aliased <code>review</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>public.review</code> table reference
+     * Create an aliased <code>review</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>public.review</code> table reference
+     * Create a <code>review</code> table reference
      */
     constructor(): this(DSL.name("review"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, ReviewRecord>): this(Internal.createPathAlias(child, key), child, key, REVIEW, null)
-    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
+    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
     override fun getIdentity(): Identity<ReviewRecord, Long?> = super.getIdentity() as Identity<ReviewRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ReviewRecord> = REVIEW_PKEY
     override fun getReferences(): List<ForeignKey<ReviewRecord, *>> = listOf(REVIEW__REVIEW_COMPANY_ID_FKEY, REVIEW__REVIEW_CLIENT_ID_FKEY)

@@ -2,8 +2,10 @@ package com.fs.client.repository
 
 import com.fs.client.repository.blocked.BasketBlockingRepository
 import com.fs.client.converter.BasketModelConverter
+import com.fs.domain.jooq.tables.Basket.Companion.BASKET
 import com.fs.service.ru.BasketModel
 import org.jooq.DSLContext
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 abstract class BasketRepository(
@@ -15,6 +17,12 @@ abstract class BasketRepository(
         return Mono.fromSupplier {
             basketBlockingRepository.getById(id)
         }
+    }
+
+    fun getAllBaskets(): Flux<BasketModel> {
+        return Flux.from(
+            dsl.selectFrom(BASKET)
+        ).map { it.into(BasketModel::class.java) }
     }
 
     fun updateBasket(basket: BasketModel): Mono<Boolean> {

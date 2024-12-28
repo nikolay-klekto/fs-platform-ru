@@ -44,11 +44,29 @@ class JooqConfig {
 
     @Bean
     fun dslContext(dataSource: DataSource): DSLContext {
+        val settings = org.jooq.conf.Settings()
+            .withRenderQuotedNames(org.jooq.conf.RenderQuotedNames.ALWAYS) // Всегда использовать кавычки
+            .withRenderMapping(
+                org.jooq.conf.RenderMapping()
+                    .withSchemata(
+                        listOf(
+                            org.jooq.conf.MappedSchema()
+                                .withInput("public") // Укажите вашу схему
+                                .withOutput(null)    // Убирает схему из запросов
+                        )
+                    )
+            )
+
         val configuration = DefaultConfiguration()
         configuration.set(dataSource)
+        configuration.set(org.jooq.SQLDialect.POSTGRES)
+        configuration.set(settings)
+
         return DefaultDSLContext(configuration)
     }
+
 }
+
 
 //    @Bean
 //    fun jooqConfiguration(): DefaultConfiguration {

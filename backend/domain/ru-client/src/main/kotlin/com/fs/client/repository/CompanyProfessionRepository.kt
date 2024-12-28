@@ -4,22 +4,27 @@ import com.fs.client.converter.CompanyProfessionConverter
 import com.fs.domain.jooq.tables.CompanyProfession.Companion.COMPANY_PROFESSION
 import com.fs.domain.jooq.tables.pojos.CompanyProfession
 import com.fs.service.ru.CompanyProfessionModel
+import com.fs.service.ru.InternshipPricesModel
 import org.jooq.DSLContext
+import org.jooq.impl.DSL
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 abstract class CompanyProfessionRepository(
-    private val dsl: DSLContext,
-    private val converter: CompanyProfessionConverter
+    open val dsl: DSLContext,
+    open val converter: CompanyProfessionConverter
 ) {
 
-    fun getLowestPriceByInternshipTypeId(id: Long): Mono<Double> {
-        return Mono.fromSupplier {
-            dsl.select(COMPANY_PROFESSION.PRICE_PER_DAY)
+    fun getLowestPricesByInternshipTypes(): Flux<InternshipPricesModel> {
+        return Flux.from(
+            dsl.select(
+                COMPANY_PROFESSION.INTERNSHIP_TYPE_ID,
+                DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5).`as`("price_per_week")
+            )
                 .from(COMPANY_PROFESSION)
-                .where(COMPANY_PROFESSION.INTERNSHIP_TYPE_ID.eq(id))
-                .min()
-                .map { it.into(Double::class.java) * 5 }
-        }
+                .groupBy(COMPANY_PROFESSION.INTERNSHIP_TYPE_ID)
+        )
+            .map {it.into(InternshipPricesModel::class.java)}
     }
 
     fun getCompanyProfessionById(companyProfessionId: Long): Mono<CompanyProfessionModel> {

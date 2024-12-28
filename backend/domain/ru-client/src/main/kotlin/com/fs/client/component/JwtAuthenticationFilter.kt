@@ -97,7 +97,18 @@ class JwtAuthenticationFilter(
             return null
         }
 
-        val claims = jwtService.validateToken(token)
+        val claims = try {
+            jwtService.validateToken(token)
+        } catch (e: IllegalArgumentException) {
+            // Ловим исключения из validateToken
+            println("JwtAuthenticationFilter: Token validation error - ${e.message}")
+            if (!httpResponse.isCommitted) {
+                httpResponse.status = HttpServletResponse.SC_UNAUTHORIZED
+                httpResponse.writer.write("Unauthorized: ${e.message}")
+            }
+            return null
+        }
+
         if (claims == null) {
             println("JwtAuthenticationFilter: Invalid token")
             if (!httpResponse.isCommitted) {
@@ -121,6 +132,7 @@ class JwtAuthenticationFilter(
         println("JwtAuthenticationFilter: Retrieved clientId = $clientId")
         return clientId
     }
+
 
 
     private fun extractFieldNameFromQuery(query: String): String? {

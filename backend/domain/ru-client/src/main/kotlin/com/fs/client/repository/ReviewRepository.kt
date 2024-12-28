@@ -70,7 +70,8 @@ abstract class ReviewRepository(
             }
 
             val allClientOrders: List<OrderModel> =
-                blockingOrderRepository.getAllByClientId(reviewModel.clientId!!, OrderStatus.EXPIRED)
+                blockingOrderRepository.getAllByClientId(reviewModel.clientId!!)
+                    .filter { it.orderStatus!!.name == OrderStatus.EXPIRED.name }
 
             var isCurrentUserWorkInThisCompany = false
 

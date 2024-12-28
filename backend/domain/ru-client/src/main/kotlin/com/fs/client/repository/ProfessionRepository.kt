@@ -1,7 +1,7 @@
 package com.fs.client.repository
 
-import com.fs.client.repository.blocked.ProfessionBlockingRepository
 import com.fs.client.converter.ProfessionModelConverter
+import com.fs.client.repository.blocked.ProfessionBlockingRepository
 import com.fs.domain.jooq.tables.CompanyProfession.Companion.COMPANY_PROFESSION
 import com.fs.domain.jooq.tables.Profession.Companion.PROFESSION
 import com.fs.domain.jooq.tables.pojos.CompanyProfession
@@ -10,6 +10,7 @@ import com.fs.domain.jooq.tables.records.CompanyProfessionRecord
 import com.fs.domain.jooq.tables.records.ProfessionRecord
 import com.fs.service.ru.ProfessionModel
 import org.jooq.DSLContext
+import org.jooq.impl.DSL
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
@@ -53,25 +54,128 @@ abstract class ProfessionRepository(
         ).map { it.into(String::class.java) }
     }
 
+//    fun getAllExistingProfessions(): Flux<ProfessionModel> {
+//        return Flux.from(
+//            dsl.select(PROFESSION.asterisk()).from(PROFESSION)
+//                .where(PROFESSION.ID.eq(
+//                    dsl.selectDistinct(COMPANY_PROFESSION.PROFESSION_ID)
+//                        .from(COMPANY_PROFESSION)
+//                ))
+//                .orderBy(PROFESSION.CLIENTS_NUMBER.desc())
+//        ).map { it.into(Profession::class.java) }
+//            .map(converter::toModel)
+//    }
+
     fun getAllExistingProfessions(): Flux<ProfessionModel> {
         return Flux.from(
-            dsl.select(PROFESSION.asterisk()).from(PROFESSION)
-                .where(PROFESSION.ID.eq(
-                    dsl.selectDistinct(COMPANY_PROFESSION.PROFESSION_ID)
-                        .from(COMPANY_PROFESSION)
-                ))
-                .orderBy(PROFESSION.CLIENTS_NUMBER.desc())
-        ).map { it.into(Profession::class.java) }
-            .map(converter::toModel)
+            dsl.select()
+                .from(
+                    dsl.select(
+                        PROFESSION.ID,
+                        PROFESSION.NAME,
+                        PROFESSION.DESCRIPTION,
+                        PROFESSION.CLIENTS_NUMBER,
+                        PROFESSION.PROFESSION_INDUSTRY,
+                        (DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5)).`as`("price_per_week"),
+                        DSL.rowNumber()
+                            .over(
+                                DSL.partitionBy(PROFESSION.NAME)
+                                    .orderBy(DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5).asc())
+                            ).`as`("row_number")
+                    )
+                        .from(PROFESSION)
+                        .leftJoin(COMPANY_PROFESSION)
+                        .on(PROFESSION.ID.eq(COMPANY_PROFESSION.PROFESSION_ID))
+                        .groupBy(
+                            PROFESSION.ID,
+                            PROFESSION.NAME,
+                            PROFESSION.DESCRIPTION,
+                            PROFESSION.CLIENTS_NUMBER,
+                            PROFESSION.PROFESSION_INDUSTRY
+                        )
+                )
+                .where(DSL.field("row_number").eq(1)) // Берем первую запись
+                .orderBy(DSL.field("clients_number").desc()) // Используем clients_number из промежуточного результата
+        ).map { record ->
+            ProfessionModel(
+                id = record.get(PROFESSION.ID),
+                name = record.get(PROFESSION.NAME),
+                description = record.get(PROFESSION.DESCRIPTION),
+                clientsNumber = record.get(PROFESSION.CLIENTS_NUMBER),
+                professionIndustry = record.get(PROFESSION.PROFESSION_INDUSTRY),
+                pricePerWeek = record.get("price_per_week", Double::class.java)
+            )
+        }
     }
+
+//    fun getNMostPopularProfessions(quantity: Int): Flux<ProfessionModel> {
+//        return Flux.from(
+//            dsl.select(PROFESSION.asterisk()).from(PROFESSION)
+//                .orderBy(PROFESSION.CLIENTS_NUMBER.desc()) // Сортировка по полю clientsNumber по убыванию
+//                .limit(quantity) // Лимитируем количество записей
+//        ).map { it.into(Profession::class.java) }
+//            .map(converter::toModel)
+//    }
+
+//    fun getNMostPopularProfessions(quantity: Int): Flux<ProfessionModel> {
+//        return Flux.from(
+//            dsl.select(PROFESSION.asterisk())
+//                .from(PROFESSION)
+//                .where(
+//                    DSL.row(PROFESSION.NAME).`in`(
+//                        dsl.select(PROFESSION.NAME)
+//                            .from(PROFESSION)
+//                            .groupBy(PROFESSION.NAME)
+//                            .orderBy(DSL.max(PROFESSION.CLIENTS_NUMBER).desc())
+//                            .limit(quantity)
+//                    )
+//                )
+//                .orderBy(PROFESSION.CLIENTS_NUMBER.desc())
+//        )
+//            .map { it.into(ProfessionModel::class.java) }
+//    }
 
     fun getNMostPopularProfessions(quantity: Int): Flux<ProfessionModel> {
         return Flux.from(
-            dsl.select(PROFESSION.asterisk()).from(PROFESSION)
-                .orderBy(PROFESSION.CLIENTS_NUMBER.desc()) // Сортировка по полю clientsNumber по убыванию
-                .limit(quantity) // Лимитируем количество записей
-        ).map { it.into(Profession::class.java) }
-            .map(converter::toModel)
+            dsl.select()
+                .from(
+                    dsl.select(
+                        PROFESSION.ID,
+                        PROFESSION.NAME,
+                        PROFESSION.DESCRIPTION,
+                        PROFESSION.CLIENTS_NUMBER,
+                        PROFESSION.PROFESSION_INDUSTRY,
+                        (DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5)).`as`("price_per_week"),
+                        DSL.rowNumber()
+                            .over(
+                                DSL.partitionBy(PROFESSION.NAME)
+                                    .orderBy(DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5).asc())
+                            ).`as`("row_number")
+                    )
+                        .from(PROFESSION)
+                        .leftJoin(COMPANY_PROFESSION)
+                        .on(PROFESSION.ID.eq(COMPANY_PROFESSION.PROFESSION_ID))
+                        .groupBy(
+                            PROFESSION.ID,
+                            PROFESSION.NAME,
+                            PROFESSION.DESCRIPTION,
+                            PROFESSION.CLIENTS_NUMBER,
+                            PROFESSION.PROFESSION_INDUSTRY
+                        )
+                )
+                .where(DSL.field("row_number").eq(1)) // Берем первую запись
+                .orderBy(DSL.field("clients_number").desc()) // Используем clients_number из промежуточного результата
+                .limit(quantity)
+        ).map { record ->
+            ProfessionModel(
+                id = record.get(PROFESSION.ID),
+                name = record.get(PROFESSION.NAME),
+                description = record.get(PROFESSION.DESCRIPTION),
+                clientsNumber = record.get(PROFESSION.CLIENTS_NUMBER),
+                professionIndustry = record.get(PROFESSION.PROFESSION_INDUSTRY),
+                pricePerWeek = record.get("price_per_week", Double::class.java)
+            )
+        }
     }
 
     fun insertProfession(professionModel: ProfessionModel): Mono<ProfessionModel> {
@@ -85,7 +189,10 @@ abstract class ProfessionRepository(
             .map(converter::toModel)
     }
 
-    fun initCompanyProfession(companyProfession: CompanyProfession, professionModel: ProfessionModel): Mono<ProfessionModel> {
+    fun initCompanyProfession(
+        companyProfession: CompanyProfession,
+        professionModel: ProfessionModel
+    ): Mono<ProfessionModel> {
         return Mono.fromSupplier {
             val newProfessionRecord = dsl.newRecord(PROFESSION)
             newProfessionRecord.from(professionModel)
@@ -93,11 +200,10 @@ abstract class ProfessionRepository(
             newProfessionRecord.store()
 
             val newCompaniesProfessionRecord: CompanyProfessionRecord = dsl.newRecord(COMPANY_PROFESSION)
-            newCompaniesProfessionRecord.professionId = newProfessionRecord.id
-            newCompaniesProfessionRecord.companyId = companyProfession.companyId
-            dsl.insertInto(COMPANY_PROFESSION)
-                .set(newCompaniesProfessionRecord)
-                .execute()
+            companyProfession.professionId = newProfessionRecord.id
+            newCompaniesProfessionRecord.from(companyProfession)
+            newCompaniesProfessionRecord.reset(COMPANY_PROFESSION.ID)
+            newCompaniesProfessionRecord.store()
 
             return@fromSupplier newProfessionRecord.into(Profession::class.java)
         }
@@ -122,7 +228,10 @@ abstract class ProfessionRepository(
             dsl.update(PROFESSION)
                 .set(PROFESSION.DESCRIPTION, professionModel.description ?: oldPosition?.description)
                 .set(PROFESSION.NAME, professionModel.name ?: oldPosition?.name)
-                .set(PROFESSION.PROFESSION_INDUSTRY, professionModel.professionIndustry ?: oldPosition?.professionIndustry)
+                .set(
+                    PROFESSION.PROFESSION_INDUSTRY,
+                    professionModel.professionIndustry ?: oldPosition?.professionIndustry
+                )
                 .where(PROFESSION.ID.eq(professionModel.id))
                 .execute() == 1
         }

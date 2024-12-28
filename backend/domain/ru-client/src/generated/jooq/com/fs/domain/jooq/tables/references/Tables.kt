@@ -26,91 +26,91 @@ import com.fs.domain.jooq.tables.Review
 
 
 /**
- * The table <code>public.address</code>.
+ * The table <code>address</code>.
  */
 val ADDRESS: Address = Address.ADDRESS
 
 /**
- * The table <code>public.basket</code>.
+ * The table <code>basket</code>.
  */
 val BASKET: Basket = Basket.BASKET
 
 /**
- * The table <code>public.city</code>.
+ * The table <code>city</code>.
  */
 val CITY: City = City.CITY
 
 /**
- * The table <code>public.client</code>.
+ * The table <code>client</code>.
  */
 val CLIENT: Client = Client.CLIENT
 
 /**
- * The table <code>public.clients_refresh_tokens</code>.
+ * The table <code>clients_refresh_tokens</code>.
  */
 val CLIENTS_REFRESH_TOKENS: ClientsRefreshTokens = ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS
 
 /**
- * The table <code>public.company</code>.
+ * The table <code>company</code>.
  */
 val COMPANY: Company = Company.COMPANY
 
 /**
- * The table <code>public.company_partner</code>.
+ * The table <code>company_partner</code>.
  */
 val COMPANY_PARTNER: CompanyPartner = CompanyPartner.COMPANY_PARTNER
 
 /**
- * The table <code>public.company_profession</code>.
+ * The table <code>company_profession</code>.
  */
 val COMPANY_PROFESSION: CompanyProfession = CompanyProfession.COMPANY_PROFESSION
 
 /**
- * The table <code>public.country</code>.
+ * The table <code>country</code>.
  */
 val COUNTRY: Country = Country.COUNTRY
 
 /**
- * The table <code>public.databasechangeloglock</code>.
+ * The table <code>databasechangeloglock</code>.
  */
 val DATABASECHANGELOGLOCK: Databasechangeloglock = Databasechangeloglock.DATABASECHANGELOGLOCK
 
 /**
- * The table <code>public.event</code>.
+ * The table <code>event</code>.
  */
 val EVENT: Event = Event.EVENT
 
 /**
- * The table <code>public.event_categories</code>.
+ * The table <code>event_categories</code>.
  */
 val EVENT_CATEGORIES: EventCategories = EventCategories.EVENT_CATEGORIES
 
 /**
- * The table <code>public.internship_type</code>.
+ * The table <code>internship_type</code>.
  */
 val INTERNSHIP_TYPE: InternshipType = InternshipType.INTERNSHIP_TYPE
 
 /**
- * The table <code>public.office</code>.
+ * The table <code>office</code>.
  */
 val OFFICE: Office = Office.OFFICE
 
 /**
- * The table <code>public.order</code>.
+ * The table <code>order</code>.
  */
 val ORDER: Order = Order.ORDER
 
 /**
- * The table <code>public.partner</code>.
+ * The table <code>partner</code>.
  */
 val PARTNER: Partner = Partner.PARTNER
 
 /**
- * The table <code>public.profession</code>.
+ * The table <code>profession</code>.
  */
 val PROFESSION: Profession = Profession.PROFESSION
 
 /**
- * The table <code>public.review</code>.
+ * The table <code>review</code>.
  */
 val REVIEW: Review = Review.REVIEW

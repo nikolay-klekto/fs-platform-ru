@@ -37,8 +37,7 @@ abstract class AddressBlockingRepository(
         val oldAddressModel: AddressModel = getById(address.id!!) ?: return false
         return dsl.update(ADDRESS)
             .set(ADDRESS.CITY_ID, address.cityId ?: oldAddressModel.cityId)
-            .set(ADDRESS.APARTMENT, address.apartment ?: oldAddressModel.apartment)
-            .set(ADDRESS.BUILDING, address.building ?: oldAddressModel.building)
+            .set(ADDRESS.OFFICE_NUMBER, address.officeNumber ?: oldAddressModel.officeNumber)
             .set(ADDRESS.HOUSE, address.house ?: oldAddressModel.house)
             .set(ADDRESS.STREET, address.street ?: oldAddressModel.street)
             .where(ADDRESS.ID.eq(address.id))

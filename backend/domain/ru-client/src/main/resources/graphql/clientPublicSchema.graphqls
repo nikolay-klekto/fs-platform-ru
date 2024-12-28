@@ -13,9 +13,6 @@ type Query {
     getAllCities: [City]
     getCitiesEnumByCountryCode(code: ID): [String]
 
-
-    getAllOrders: [Order]
-
     getCompanyById(id: ID!): Company
     getAllCompanies: [Company]
     getAllAvailableCompanies: [Company]
@@ -55,7 +52,7 @@ type Query {
     getAllEventCategoriesNames: [String]
     getAllEventCategories: [EventCategory]
 
-    getLowestPriceByInternshipTypeId(internshipTypeId: ID): ID
+    getLowestPricesByInternshipTypes: [InternshipPricesModel]
 
 }
 
@@ -146,12 +143,11 @@ input OrderInput {
     basketId: ID
     companyOfficeId: ID
     dateCreated: String
-    positionId: ID
-    serviceId: ID
     orderStatus: OrderStatus
     startWorkDate: String
     totalWorkDays: Int
     price: Float
+    companyProfessionId: Int
 }
 
 input CompanyInput {
@@ -232,10 +228,9 @@ input BasketInput {
 input AddressInput {
     id: ID
     cityId: ID
-    apartment: Int
-    building: Int
-    house: Int
     street: String
+    house: String
+    officeNumber: String
 }
 
 input OfficeInput {
@@ -250,11 +245,10 @@ input CompanyAddressInput {
     cityId: ID
     companyId: ID
     officeId: ID
-    apartment: Int
-    building: Int
-    house: Int
-    phoneNumber: String
     street: String
+    house: String
+    officeNumber: String
+    phoneNumber: String
 }
 
 input EventInput {
@@ -316,12 +310,18 @@ type Profession {
     name: String
     clientsNumber: Int
     professionIndustry: String
+    pricePerWeek: ID
 }
 
 type InternshipType {
     id: ID
     name: String
     description: String
+}
+
+type InternshipPricesModel {
+    internshipTypeId: ID
+    pricePerWeek: ID
 }
 
 type Client {
@@ -370,10 +370,9 @@ type Partner {
 type Address {
     id: ID
     cityId: ID
-    apartment: Int
-    building: Int
-    house: Int
     street: String
+    house: String
+    officeNumber: String
 }
 
 type Office {
@@ -513,4 +512,5 @@ enum OrderStatus {
     EXPIRED
     ACTUAL
     PRE_ORDERED
+    BASKET
 }

@@ -44,21 +44,21 @@ abstract class OrderBlockingRepository(
         }
     }
 
-    fun isBasketEmpty(basketId: Long): Boolean {
+    private fun isBasketEmpty(basketId: Long): Boolean {
         val ordersWithCurrentBasket: Int = dsl.selectCount().from(ORDER).where(ORDER.BASKET_ID.eq(basketId))
             .first()
             .map { it.into(Int::class.java) }
         return ordersWithCurrentBasket == 0
     }
 
-    fun deleteById(orderId: Long): Boolean {
+    private fun deleteById(orderId: Long): Boolean {
         decreaseBasketTotalPriceByOrderId(orderId)
         return dsl.deleteFrom(ORDER)
             .where(ORDER.ID.eq(orderId))
             .execute() == 1
     }
 
-    fun decreaseBasketTotalPriceByOrderId(orderId: Long) {
+    private fun decreaseBasketTotalPriceByOrderId(orderId: Long) {
         val basketTotalPrice: Double? = dsl.select(BASKET.TOTAL_PRICE).from(BASKET)
             .where(BASKET.ID.eq(dsl.select(ORDER.BASKET_ID).from(ORDER).where(ORDER.ID.eq(orderId))))
             .map { it.into(Double::class.java) }.firstOrNull()
@@ -72,43 +72,34 @@ abstract class OrderBlockingRepository(
         basketBlockingRepository.update(BasketModel(currentOrder.basketId!!, totalBasketPrice))
     }
 
-    fun getById(orderId: Long): OrderModel? {
+    private fun getById(orderId: Long): OrderModel? {
         return dsl.select(ORDER.asterisk()).from(ORDER)
             .where(ORDER.ID.eq(orderId))
             .map { it.into(OrderModel::class.java) }
             .firstOrNull()
     }
 
-    fun insert(orderModel: OrderModel): OrderModel {
+    private fun insert(orderModel: OrderModel): OrderModel {
         if (orderModel.companyProfessionId == null || orderModel.companyOfficeId == null ||
             orderModel.startWorkDate == null || orderModel.totalWorkDays == null
         ) {
             throw Exception("Необходимо заполнить все обязательные поля!")
         }
-        var newOrderStatus: OrderStatus? = null
+        var newOrderStatus: OrderStatus? = OrderStatus.BASKET
         var basketId: Long? = orderModel.basketId
-        var isBasketTemporary = false
-
-        if (orderModel.basketId != null) {
-            isBasketTemporary = isPreOrdersInBasket(orderModel.basketId!!)
-            if (isBasketTemporary) {
-                newOrderStatus = OrderStatus.PRE_ORDERED
-            }
-        }
 
         if (orderModel.basketId == null) {
             val newBasketModel: BasketModel = basketBlockingRepository.insert()
             basketId = newBasketModel.id
         } else {
-            if (!isBasketTemporary) {
-                newOrderStatus = if (orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!)
-                        .isBefore(LocalDateTime.now())
-                ) {
-                    OrderStatus.EXPIRED
-                } else {
-                    OrderStatus.ACTUAL
-                }
+            newOrderStatus = if (orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!)
+                    .isBefore(LocalDateTime.now())
+            ) {
+                OrderStatus.EXPIRED
+            } else {
+                OrderStatus.BASKET
             }
+
         }
 
         val pastTotalPrice: Double? =
@@ -133,7 +124,7 @@ abstract class OrderBlockingRepository(
             companyOfficeId = orderModel.companyOfficeId,
             dateCreated = LocalDateTime.now(),
             isExpired = orderModel.isExpired,
-            orderStatus = newOrderStatus ?: orderModel.orderStatus,
+            orderStatus = orderModel.orderStatus ?: newOrderStatus,
             startWorkDate = orderModel.startWorkDate,
             totalWorkDays = orderModel.totalWorkDays,
             price = newOrderPrice,
@@ -146,13 +137,13 @@ abstract class OrderBlockingRepository(
         return newOrderRecord.into(OrderModel::class.java)
     }
 
-    private fun isPreOrdersInBasket(basketId: Long): Boolean {
-        val preOrdersQuantity: Int = dsl.selectCount().from(ORDER)
-            .where(ORDER.BASKET_ID.eq(basketId).and(ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED.name)))
-            .map { it.into(Int::class.java) }
-            .first()
-        return preOrdersQuantity > 0
-    }
+//    private fun isPreOrdersInBasket(basketId: Long): Boolean {
+//        val preOrdersQuantity: Int = dsl.selectCount().from(ORDER)
+//            .where(ORDER.BASKET_ID.eq(basketId).and(ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED.name)))
+//            .map { it.into(Int::class.java) }
+//            .first()
+//        return preOrdersQuantity > 0
+//    }
 
     companion object {
         private const val DEFAULT_ORDER_ID: Long = 1

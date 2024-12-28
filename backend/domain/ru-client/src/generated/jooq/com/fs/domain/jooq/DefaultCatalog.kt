@@ -25,12 +25,12 @@ open class DefaultCatalog : CatalogImpl("") {
     }
 
     /**
-     * The schema <code>public</code>.
+     * The schema <code>DEFAULT_SCHEMA</code>.
      */
-    val PUBLIC: Public get(): Public = Public.PUBLIC
+    val DEFAULT_SCHEMA: DefaultSchema get(): DefaultSchema = DefaultSchema.DEFAULT_SCHEMA
 
     override fun getSchemas(): List<Schema> = listOf(
-        Public.PUBLIC
+        DefaultSchema.DEFAULT_SCHEMA
     )
 
     /**

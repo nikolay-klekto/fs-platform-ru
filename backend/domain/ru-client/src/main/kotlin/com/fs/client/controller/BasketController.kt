@@ -7,6 +7,7 @@ import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Tag(name = "Basket")
@@ -30,6 +31,11 @@ open class BasketController(
     @QueryMapping
     open fun getBasketById(@Argument id: Long): Mono<BasketModel> {
         return basketRepository.getBasketById(id)
+    }
+
+    @QueryMapping
+    open fun getAllBaskets(): Flux<BasketModel> {
+        return basketRepository.getAllBaskets()
     }
 
     @MutationMapping

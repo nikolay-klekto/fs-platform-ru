@@ -132,6 +132,7 @@ jooq {
                     database.apply {
                         name = "org.jooq.meta.postgres.PostgresDatabase"
                         inputSchema = "public"
+                        isOutputSchemaToDefault = true
                         forcedTypes = listOf(
                             ForcedType().apply {
                                 isEnumConverter = true

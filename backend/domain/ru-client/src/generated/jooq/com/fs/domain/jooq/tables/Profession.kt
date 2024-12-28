@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.Public
+import com.fs.domain.jooq.DefaultSchema
 import com.fs.domain.jooq.keys.PROFESSION_PKEY
 import com.fs.domain.jooq.tables.records.ProfessionRecord
 
@@ -41,7 +41,7 @@ open class Profession(
     parameters: Array<Field<*>?>?
 ): TableImpl<ProfessionRecord>(
     alias,
-    Public.PUBLIC,
+    DefaultSchema.DEFAULT_SCHEMA,
     child,
     path,
     aliased,
@@ -52,7 +52,7 @@ open class Profession(
     companion object {
 
         /**
-         * The reference instance of <code>public.profession</code>
+         * The reference instance of <code>profession</code>
          */
         val PROFESSION: Profession = Profession()
     }
@@ -63,27 +63,27 @@ open class Profession(
     override fun getRecordType(): Class<ProfessionRecord> = ProfessionRecord::class.java
 
     /**
-     * The column <code>public.profession.id</code>.
+     * The column <code>profession.id</code>.
      */
     val ID: TableField<ProfessionRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>public.profession.name</code>.
+     * The column <code>profession.name</code>.
      */
     val NAME: TableField<ProfessionRecord, String?> = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.profession.description</code>.
+     * The column <code>profession.description</code>.
      */
     val DESCRIPTION: TableField<ProfessionRecord, String?> = createField(DSL.name("description"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.profession.clients_number</code>.
+     * The column <code>profession.clients_number</code>.
      */
     val CLIENTS_NUMBER: TableField<ProfessionRecord, Int?> = createField(DSL.name("clients_number"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field("0", SQLDataType.INTEGER)), this, "")
 
     /**
-     * The column <code>public.profession.profession_industry</code>.
+     * The column <code>profession.profession_industry</code>.
      */
     val PROFESSION_INDUSTRY: TableField<ProfessionRecord, String?> = createField(DSL.name("profession_industry"), SQLDataType.VARCHAR.nullable(false).defaultValue(DSL.field("'Другое'::character varying", SQLDataType.VARCHAR)), this, "")
 
@@ -91,22 +91,22 @@ open class Profession(
     private constructor(alias: Name, aliased: Table<ProfessionRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>public.profession</code> table reference
+     * Create an aliased <code>profession</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>public.profession</code> table reference
+     * Create an aliased <code>profession</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>public.profession</code> table reference
+     * Create a <code>profession</code> table reference
      */
     constructor(): this(DSL.name("profession"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, ProfessionRecord>): this(Internal.createPathAlias(child, key), child, key, PROFESSION, null)
-    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
+    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
     override fun getIdentity(): Identity<ProfessionRecord, Long?> = super.getIdentity() as Identity<ProfessionRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ProfessionRecord> = PROFESSION_PKEY
     override fun `as`(alias: String): Profession = Profession(DSL.name(alias), this)

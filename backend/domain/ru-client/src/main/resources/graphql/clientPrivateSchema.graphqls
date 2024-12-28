@@ -1,11 +1,13 @@
 extend type Query {
     getClintById(id: String!): Client 
     getAllClients: [Client] 
-    getAllReviewByClientId(clientId: String!): [Review] 
+    getAllReviewByClientId(clientId: String!): [Review]
+    getAllOrders: [Order]
     getOrderById(id: ID!): Order 
-    getOrdersByClientId(clientId: ID, orderStatus: OrderStatus!): [Order] 
-    getOrdersByBasketId(basketId: ID, orderStatus: OrderStatus!): [Order] 
-    getBasketById(id: ID!): Basket 
+    getOrdersByClientId(clientId: ID): [Order]
+    getOrdersByBasketId(basketId: ID): [Order]
+    getBasketById(id: ID!): Basket
+    getAllBaskets: [Basket]
     
 }
 
@@ -17,7 +19,7 @@ extend type Mutation{
     addOrder(order: OrderInput!): Order 
     updateOrder(order: OrderInput!): Boolean 
     deleteOrder(id: ID!): Boolean 
-    deleteAllOrdersByBasketId(basketId: ID!): Boolean 
+    deleteAllOrdersByBasketId(basketId: ID!, orderStatus: OrderStatus!): Boolean
     deleteAllOrdersByClientId(clientId: String!, orderStatus: OrderStatus!): Boolean 
 
     updateClient(client: ClientUpdate!): Boolean 

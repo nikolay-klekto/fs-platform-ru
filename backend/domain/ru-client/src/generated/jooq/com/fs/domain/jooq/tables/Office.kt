@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.Public
+import com.fs.domain.jooq.DefaultSchema
 import com.fs.domain.jooq.keys.OFFICE_PKEY
 import com.fs.domain.jooq.keys.OFFICE__OFFICE_ADDRESS_ID_FKEY
 import com.fs.domain.jooq.keys.OFFICE__OFFICE_COMPANY_ID_FKEY
@@ -45,7 +45,7 @@ open class Office(
     parameters: Array<Field<*>?>?
 ): TableImpl<OfficeRecord>(
     alias,
-    Public.PUBLIC,
+    DefaultSchema.DEFAULT_SCHEMA,
     child,
     path,
     aliased,
@@ -56,7 +56,7 @@ open class Office(
     companion object {
 
         /**
-         * The reference instance of <code>public.office</code>
+         * The reference instance of <code>office</code>
          */
         val OFFICE: Office = Office()
     }
@@ -67,22 +67,22 @@ open class Office(
     override fun getRecordType(): Class<OfficeRecord> = OfficeRecord::class.java
 
     /**
-     * The column <code>public.office.id</code>.
+     * The column <code>office.id</code>.
      */
     val ID: TableField<OfficeRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>public.office.address_id</code>.
+     * The column <code>office.address_id</code>.
      */
     val ADDRESS_ID: TableField<OfficeRecord, Long?> = createField(DSL.name("address_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.office.company_id</code>.
+     * The column <code>office.company_id</code>.
      */
     val COMPANY_ID: TableField<OfficeRecord, Long?> = createField(DSL.name("company_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.office.phone_number</code>.
+     * The column <code>office.phone_number</code>.
      */
     val PHONE_NUMBER: TableField<OfficeRecord, String?> = createField(DSL.name("phone_number"), SQLDataType.VARCHAR, this, "")
 
@@ -90,22 +90,22 @@ open class Office(
     private constructor(alias: Name, aliased: Table<OfficeRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>public.office</code> table reference
+     * Create an aliased <code>office</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>public.office</code> table reference
+     * Create an aliased <code>office</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>public.office</code> table reference
+     * Create a <code>office</code> table reference
      */
     constructor(): this(DSL.name("office"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, OfficeRecord>): this(Internal.createPathAlias(child, key), child, key, OFFICE, null)
-    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
+    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
     override fun getIdentity(): Identity<OfficeRecord, Long?> = super.getIdentity() as Identity<OfficeRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<OfficeRecord> = OFFICE_PKEY
     override fun getReferences(): List<ForeignKey<OfficeRecord, *>> = listOf(OFFICE__OFFICE_ADDRESS_ID_FKEY, OFFICE__OFFICE_COMPANY_ID_FKEY)

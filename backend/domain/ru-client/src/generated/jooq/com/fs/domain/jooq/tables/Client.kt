@@ -7,7 +7,7 @@ package com.fs.domain.jooq.tables
 import com.fs.client.ru.enums.ClientRoleModel
 import com.fs.client.ru.enums.EducationModel
 import com.fs.client.ru.enums.EmploymentModel
-import com.fs.domain.jooq.Public
+import com.fs.domain.jooq.DefaultSchema
 import com.fs.domain.jooq.keys.CLIENT_PKEY
 import com.fs.domain.jooq.keys.CLIENT__CLIENT_BASKET_ID_FKEY
 import com.fs.domain.jooq.keys.CLIENT__CLIENT_CITY_ID_FKEY
@@ -50,7 +50,7 @@ open class Client(
     parameters: Array<Field<*>?>?
 ): TableImpl<ClientRecord>(
     alias,
-    Public.PUBLIC,
+    DefaultSchema.DEFAULT_SCHEMA,
     child,
     path,
     aliased,
@@ -61,7 +61,7 @@ open class Client(
     companion object {
 
         /**
-         * The reference instance of <code>public.client</code>
+         * The reference instance of <code>client</code>
          */
         val CLIENT: Client = Client()
     }
@@ -72,87 +72,87 @@ open class Client(
     override fun getRecordType(): Class<ClientRecord> = ClientRecord::class.java
 
     /**
-     * The column <code>public.client.basket_id</code>.
+     * The column <code>client.basket_id</code>.
      */
     val BASKET_ID: TableField<ClientRecord, Long?> = createField(DSL.name("basket_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.client.city_id</code>.
+     * The column <code>client.city_id</code>.
      */
     val CITY_ID: TableField<ClientRecord, Long?> = createField(DSL.name("city_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.client.activate_status</code>.
+     * The column <code>client.activate_status</code>.
      */
     val ACTIVATE_STATUS: TableField<ClientRecord, Boolean?> = createField(DSL.name("activate_status"), SQLDataType.BOOLEAN, this, "")
 
     /**
-     * The column <code>public.client.birthday</code>.
+     * The column <code>client.birthday</code>.
      */
     val BIRTHDAY: TableField<ClientRecord, LocalDate?> = createField(DSL.name("birthday"), SQLDataType.LOCALDATE, this, "")
 
     /**
-     * The column <code>public.client.date_created</code>.
+     * The column <code>client.date_created</code>.
      */
     val DATE_CREATED: TableField<ClientRecord, LocalDateTime?> = createField(DSL.name("date_created"), SQLDataType.LOCALDATETIME(6), this, "")
 
     /**
-     * The column <code>public.client.education_status</code>.
+     * The column <code>client.education_status</code>.
      */
     val EDUCATION_STATUS: TableField<ClientRecord, EducationModel?> = createField(DSL.name("education_status"), SQLDataType.VARCHAR, this, "", EnumConverter<String, EducationModel>(String::class.java, EducationModel::class.java))
 
     /**
-     * The column <code>public.client.email</code>.
+     * The column <code>client.email</code>.
      */
     val EMAIL: TableField<ClientRecord, String?> = createField(DSL.name("email"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.client.employment</code>.
+     * The column <code>client.employment</code>.
      */
     val EMPLOYMENT: TableField<ClientRecord, EmploymentModel?> = createField(DSL.name("employment"), SQLDataType.VARCHAR, this, "", EnumConverter<String, EmploymentModel>(String::class.java, EmploymentModel::class.java))
 
     /**
-     * The column <code>public.client.first_name</code>.
+     * The column <code>client.first_name</code>.
      */
     val FIRST_NAME: TableField<ClientRecord, String?> = createField(DSL.name("first_name"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.client.last_name</code>.
+     * The column <code>client.last_name</code>.
      */
     val LAST_NAME: TableField<ClientRecord, String?> = createField(DSL.name("last_name"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.client.password</code>.
+     * The column <code>client.password</code>.
      */
     val PASSWORD: TableField<ClientRecord, String?> = createField(DSL.name("password"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.client.phone_number</code>.
+     * The column <code>client.phone_number</code>.
      */
     val PHONE_NUMBER: TableField<ClientRecord, String?> = createField(DSL.name("phone_number"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.client.role</code>.
+     * The column <code>client.role</code>.
      */
     val ROLE: TableField<ClientRecord, ClientRoleModel?> = createField(DSL.name("role"), SQLDataType.VARCHAR, this, "", EnumConverter<String, ClientRoleModel>(String::class.java, ClientRoleModel::class.java))
 
     /**
-     * The column <code>public.client.telegram_username</code>.
+     * The column <code>client.telegram_username</code>.
      */
     val TELEGRAM_USERNAME: TableField<ClientRecord, String?> = createField(DSL.name("telegram_username"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.client.username</code>.
+     * The column <code>client.username</code>.
      */
     val USERNAME: TableField<ClientRecord, String?> = createField(DSL.name("username"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.client.salt</code>.
+     * The column <code>client.salt</code>.
      */
     val SALT: TableField<ClientRecord, String?> = createField(DSL.name("salt"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.client.id</code>.
+     * The column <code>client.id</code>.
      */
     val ID: TableField<ClientRecord, String?> = createField(DSL.name("id"), SQLDataType.VARCHAR.nullable(false), this, "")
 
@@ -160,22 +160,22 @@ open class Client(
     private constructor(alias: Name, aliased: Table<ClientRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>public.client</code> table reference
+     * Create an aliased <code>client</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>public.client</code> table reference
+     * Create an aliased <code>client</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>public.client</code> table reference
+     * Create a <code>client</code> table reference
      */
     constructor(): this(DSL.name("client"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, ClientRecord>): this(Internal.createPathAlias(child, key), child, key, CLIENT, null)
-    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
+    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
     override fun getPrimaryKey(): UniqueKey<ClientRecord> = CLIENT_PKEY
     override fun getReferences(): List<ForeignKey<ClientRecord, *>> = listOf(CLIENT__CLIENT_BASKET_ID_FKEY, CLIENT__CLIENT_CITY_ID_FKEY)
 

@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.Public
+import com.fs.domain.jooq.DefaultSchema
 import com.fs.domain.jooq.keys.EVENT_PKEY
 import com.fs.domain.jooq.keys.EVENT__EVENT_EVENT_CATEGORY_ID_FKEY
 import com.fs.domain.jooq.tables.records.EventRecord
@@ -46,7 +46,7 @@ open class Event(
     parameters: Array<Field<*>?>?
 ): TableImpl<EventRecord>(
     alias,
-    Public.PUBLIC,
+    DefaultSchema.DEFAULT_SCHEMA,
     child,
     path,
     aliased,
@@ -57,7 +57,7 @@ open class Event(
     companion object {
 
         /**
-         * The reference instance of <code>public.event</code>
+         * The reference instance of <code>event</code>
          */
         val EVENT: Event = Event()
     }
@@ -68,62 +68,62 @@ open class Event(
     override fun getRecordType(): Class<EventRecord> = EventRecord::class.java
 
     /**
-     * The column <code>public.event.id</code>.
+     * The column <code>event.id</code>.
      */
     val ID: TableField<EventRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>public.event.date</code>.
+     * The column <code>event.date</code>.
      */
     val DATE: TableField<EventRecord, LocalDate?> = createField(DSL.name("date"), SQLDataType.LOCALDATE, this, "")
 
     /**
-     * The column <code>public.event.description</code>.
+     * The column <code>event.description</code>.
      */
     val DESCRIPTION: TableField<EventRecord, String?> = createField(DSL.name("description"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.event.is_expired</code>.
+     * The column <code>event.is_expired</code>.
      */
     val IS_EXPIRED: TableField<EventRecord, Boolean?> = createField(DSL.name("is_expired"), SQLDataType.BOOLEAN, this, "")
 
     /**
-     * The column <code>public.event.name</code>.
+     * The column <code>event.name</code>.
      */
     val NAME: TableField<EventRecord, String?> = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.event.public_place_name</code>.
+     * The column <code>event.public_place_name</code>.
      */
     val PUBLIC_PLACE_NAME: TableField<EventRecord, String?> = createField(DSL.name("public_place_name"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.event.site</code>.
+     * The column <code>event.site</code>.
      */
     val SITE: TableField<EventRecord, String?> = createField(DSL.name("site"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.event.city_id</code>.
+     * The column <code>event.city_id</code>.
      */
     val CITY_ID: TableField<EventRecord, Long?> = createField(DSL.name("city_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.event.time</code>.
+     * The column <code>event.time</code>.
      */
     val TIME: TableField<EventRecord, String?> = createField(DSL.name("time"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.event.organizer</code>.
+     * The column <code>event.organizer</code>.
      */
     val ORGANIZER: TableField<EventRecord, String?> = createField(DSL.name("organizer"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.event.event_category_id</code>.
+     * The column <code>event.event_category_id</code>.
      */
     val EVENT_CATEGORY_ID: TableField<EventRecord, Long?> = createField(DSL.name("event_category_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.event.price</code>.
+     * The column <code>event.price</code>.
      */
     val PRICE: TableField<EventRecord, BigDecimal?> = createField(DSL.name("price"), SQLDataType.NUMERIC(10, 2), this, "")
 
@@ -131,22 +131,22 @@ open class Event(
     private constructor(alias: Name, aliased: Table<EventRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>public.event</code> table reference
+     * Create an aliased <code>event</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>public.event</code> table reference
+     * Create an aliased <code>event</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>public.event</code> table reference
+     * Create a <code>event</code> table reference
      */
     constructor(): this(DSL.name("event"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, EventRecord>): this(Internal.createPathAlias(child, key), child, key, EVENT, null)
-    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
+    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
     override fun getIdentity(): Identity<EventRecord, Long?> = super.getIdentity() as Identity<EventRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<EventRecord> = EVENT_PKEY
     override fun getReferences(): List<ForeignKey<EventRecord, *>> = listOf(EVENT__EVENT_EVENT_CATEGORY_ID_FKEY)

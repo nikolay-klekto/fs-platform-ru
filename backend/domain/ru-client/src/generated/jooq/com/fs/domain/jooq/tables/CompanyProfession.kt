@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.Public
+import com.fs.domain.jooq.DefaultSchema
 import com.fs.domain.jooq.keys.COMPANY_PROFESSION_PKEY
 import com.fs.domain.jooq.keys.COMPANY_PROFESSION__COMPANY_PROFESSION_COMPANY_ID_FKEY
 import com.fs.domain.jooq.keys.COMPANY_PROFESSION__COMPANY_PROFESSION_INTERNSHIP_TYPE_ID_FKEY
@@ -46,7 +46,7 @@ open class CompanyProfession(
     parameters: Array<Field<*>?>?
 ): TableImpl<CompanyProfessionRecord>(
     alias,
-    Public.PUBLIC,
+    DefaultSchema.DEFAULT_SCHEMA,
     child,
     path,
     aliased,
@@ -57,7 +57,7 @@ open class CompanyProfession(
     companion object {
 
         /**
-         * The reference instance of <code>public.company_profession</code>
+         * The reference instance of <code>company_profession</code>
          */
         val COMPANY_PROFESSION: CompanyProfession = CompanyProfession()
     }
@@ -68,27 +68,27 @@ open class CompanyProfession(
     override fun getRecordType(): Class<CompanyProfessionRecord> = CompanyProfessionRecord::class.java
 
     /**
-     * The column <code>public.company_profession.id</code>.
+     * The column <code>company_profession.id</code>.
      */
     val ID: TableField<CompanyProfessionRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>public.company_profession.company_id</code>.
+     * The column <code>company_profession.company_id</code>.
      */
     val COMPANY_ID: TableField<CompanyProfessionRecord, Long?> = createField(DSL.name("company_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.company_profession.internship_type_id</code>.
+     * The column <code>company_profession.internship_type_id</code>.
      */
     val INTERNSHIP_TYPE_ID: TableField<CompanyProfessionRecord, Long?> = createField(DSL.name("internship_type_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>public.company_profession.price_per_day</code>.
+     * The column <code>company_profession.price_per_day</code>.
      */
     val PRICE_PER_DAY: TableField<CompanyProfessionRecord, Double?> = createField(DSL.name("price_per_day"), SQLDataType.DOUBLE, this, "")
 
     /**
-     * The column <code>public.company_profession.profession_id</code>.
+     * The column <code>company_profession.profession_id</code>.
      */
     val PROFESSION_ID: TableField<CompanyProfessionRecord, Long?> = createField(DSL.name("profession_id"), SQLDataType.BIGINT, this, "")
 
@@ -96,22 +96,22 @@ open class CompanyProfession(
     private constructor(alias: Name, aliased: Table<CompanyProfessionRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>public.company_profession</code> table reference
+     * Create an aliased <code>company_profession</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>public.company_profession</code> table reference
+     * Create an aliased <code>company_profession</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>public.company_profession</code> table reference
+     * Create a <code>company_profession</code> table reference
      */
     constructor(): this(DSL.name("company_profession"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, CompanyProfessionRecord>): this(Internal.createPathAlias(child, key), child, key, COMPANY_PROFESSION, null)
-    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
+    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
     override fun getIdentity(): Identity<CompanyProfessionRecord, Long?> = super.getIdentity() as Identity<CompanyProfessionRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<CompanyProfessionRecord> = COMPANY_PROFESSION_PKEY
     override fun getReferences(): List<ForeignKey<CompanyProfessionRecord, *>> = listOf(COMPANY_PROFESSION__COMPANY_PROFESSION_COMPANY_ID_FKEY, COMPANY_PROFESSION__COMPANY_PROFESSION_INTERNSHIP_TYPE_ID_FKEY, COMPANY_PROFESSION__COMPANY_PROFESSION_PROFESSION_ID_FKEY)

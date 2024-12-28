@@ -53,10 +53,9 @@ class EventModelConverter(
         return AddressModel(
             addressId ?: defaultAddressModel.id,
             eventWithAddress.cityId,
-            eventWithAddress.apartment,
-            eventWithAddress.building,
+            eventWithAddress.street,
             eventWithAddress.house,
-            eventWithAddress.street
+            eventWithAddress.officeNumber
         )
     }
 
@@ -65,7 +64,7 @@ class EventModelConverter(
         private const val DEFAULT_EXPIRED_STATUS: Boolean = true
 
         public val defaultAddressModel =
-            AddressModel(1, null, null, null, null, null)
+            AddressModel(1, null, null, null, null)
 
     }
 }

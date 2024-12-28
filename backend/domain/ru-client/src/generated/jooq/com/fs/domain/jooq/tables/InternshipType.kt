@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.Public
+import com.fs.domain.jooq.DefaultSchema
 import com.fs.domain.jooq.keys.INTERNSHIP_TYPE_PKEY
 import com.fs.domain.jooq.tables.records.InternshipTypeRecord
 
@@ -41,7 +41,7 @@ open class InternshipType(
     parameters: Array<Field<*>?>?
 ): TableImpl<InternshipTypeRecord>(
     alias,
-    Public.PUBLIC,
+    DefaultSchema.DEFAULT_SCHEMA,
     child,
     path,
     aliased,
@@ -52,7 +52,7 @@ open class InternshipType(
     companion object {
 
         /**
-         * The reference instance of <code>public.internship_type</code>
+         * The reference instance of <code>internship_type</code>
          */
         val INTERNSHIP_TYPE: InternshipType = InternshipType()
     }
@@ -63,17 +63,17 @@ open class InternshipType(
     override fun getRecordType(): Class<InternshipTypeRecord> = InternshipTypeRecord::class.java
 
     /**
-     * The column <code>public.internship_type.id</code>.
+     * The column <code>internship_type.id</code>.
      */
     val ID: TableField<InternshipTypeRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>public.internship_type.name</code>.
+     * The column <code>internship_type.name</code>.
      */
     val NAME: TableField<InternshipTypeRecord, String?> = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.internship_type.description</code>.
+     * The column <code>internship_type.description</code>.
      */
     val DESCRIPTION: TableField<InternshipTypeRecord, String?> = createField(DSL.name("description"), SQLDataType.VARCHAR, this, "")
 
@@ -81,22 +81,22 @@ open class InternshipType(
     private constructor(alias: Name, aliased: Table<InternshipTypeRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>public.internship_type</code> table reference
+     * Create an aliased <code>internship_type</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>public.internship_type</code> table reference
+     * Create an aliased <code>internship_type</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>public.internship_type</code> table reference
+     * Create a <code>internship_type</code> table reference
      */
     constructor(): this(DSL.name("internship_type"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, InternshipTypeRecord>): this(Internal.createPathAlias(child, key), child, key, INTERNSHIP_TYPE, null)
-    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
+    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
     override fun getIdentity(): Identity<InternshipTypeRecord, Long?> = super.getIdentity() as Identity<InternshipTypeRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<InternshipTypeRecord> = INTERNSHIP_TYPE_PKEY
     override fun `as`(alias: String): InternshipType = InternshipType(DSL.name(alias), this)

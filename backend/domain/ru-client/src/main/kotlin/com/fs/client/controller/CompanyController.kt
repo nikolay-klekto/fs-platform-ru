@@ -2,7 +2,9 @@ package com.fs.client.controller
 
 import com.fs.client.repository.CompanyRepository
 import com.fs.client.ru.OfficeModel
+import com.fs.domain.jooq.tables.pojos.CompanyProfession
 import com.fs.service.ru.CompanyModel
+import com.fs.service.ru.CompanyProfessionModel
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.enums.IndustryModel
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -88,5 +90,10 @@ open class CompanyController(
     @SchemaMapping(typeName = "Office", field = "company")
     fun getCompanyForOffice(office: OfficeModel): Mono<CompanyModel> {
         return companyRepository.getCompanyById(office.companyId!!)
+    }
+
+    @SchemaMapping(typeName = "CompanyProfession", field = "company")
+    fun getCompanyForCompanyProfession(companyProfession: CompanyProfessionModel): Mono<CompanyModel> {
+        return companyRepository.getCompanyById(companyProfession.companyId!!)
     }
 }

@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.Public
+import com.fs.domain.jooq.DefaultSchema
 import com.fs.domain.jooq.keys.COMPANY_PKEY
 import com.fs.domain.jooq.tables.records.CompanyRecord
 
@@ -41,7 +41,7 @@ open class Company(
     parameters: Array<Field<*>?>?
 ): TableImpl<CompanyRecord>(
     alias,
-    Public.PUBLIC,
+    DefaultSchema.DEFAULT_SCHEMA,
     child,
     path,
     aliased,
@@ -52,7 +52,7 @@ open class Company(
     companion object {
 
         /**
-         * The reference instance of <code>public.company</code>
+         * The reference instance of <code>company</code>
          */
         val COMPANY: Company = Company()
     }
@@ -63,32 +63,32 @@ open class Company(
     override fun getRecordType(): Class<CompanyRecord> = CompanyRecord::class.java
 
     /**
-     * The column <code>public.company.id</code>.
+     * The column <code>company.id</code>.
      */
     val ID: TableField<CompanyRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>public.company.company_industry</code>.
+     * The column <code>company.company_industry</code>.
      */
     val COMPANY_INDUSTRY: TableField<CompanyRecord, String?> = createField(DSL.name("company_industry"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.company.legal_capacity_status</code>.
+     * The column <code>company.legal_capacity_status</code>.
      */
     val LEGAL_CAPACITY_STATUS: TableField<CompanyRecord, String?> = createField(DSL.name("legal_capacity_status"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.company.name</code>.
+     * The column <code>company.name</code>.
      */
     val NAME: TableField<CompanyRecord, String?> = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.company.site</code>.
+     * The column <code>company.site</code>.
      */
     val SITE: TableField<CompanyRecord, String?> = createField(DSL.name("site"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.company.short_description</code>.
+     * The column <code>company.short_description</code>.
      */
     val SHORT_DESCRIPTION: TableField<CompanyRecord, String?> = createField(DSL.name("short_description"), SQLDataType.VARCHAR, this, "")
 
@@ -96,22 +96,22 @@ open class Company(
     private constructor(alias: Name, aliased: Table<CompanyRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>public.company</code> table reference
+     * Create an aliased <code>company</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>public.company</code> table reference
+     * Create an aliased <code>company</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>public.company</code> table reference
+     * Create a <code>company</code> table reference
      */
     constructor(): this(DSL.name("company"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, CompanyRecord>): this(Internal.createPathAlias(child, key), child, key, COMPANY, null)
-    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
+    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
     override fun getIdentity(): Identity<CompanyRecord, Long?> = super.getIdentity() as Identity<CompanyRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<CompanyRecord> = COMPANY_PKEY
     override fun `as`(alias: String): Company = Company(DSL.name(alias), this)

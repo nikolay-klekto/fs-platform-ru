@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.Public
+import com.fs.domain.jooq.DefaultSchema
 import com.fs.domain.jooq.keys.COUNTRY_PKEY
 import com.fs.domain.jooq.tables.records.CountryRecord
 
@@ -41,7 +41,7 @@ open class Country(
     parameters: Array<Field<*>?>?
 ): TableImpl<CountryRecord>(
     alias,
-    Public.PUBLIC,
+    DefaultSchema.DEFAULT_SCHEMA,
     child,
     path,
     aliased,
@@ -52,7 +52,7 @@ open class Country(
     companion object {
 
         /**
-         * The reference instance of <code>public.country</code>
+         * The reference instance of <code>country</code>
          */
         val COUNTRY: Country = Country()
     }
@@ -63,17 +63,17 @@ open class Country(
     override fun getRecordType(): Class<CountryRecord> = CountryRecord::class.java
 
     /**
-     * The column <code>public.country.code</code>.
+     * The column <code>country.code</code>.
      */
     val CODE: TableField<CountryRecord, Long?> = createField(DSL.name("code"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>public.country.currency</code>.
+     * The column <code>country.currency</code>.
      */
     val CURRENCY: TableField<CountryRecord, String?> = createField(DSL.name("currency"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.country.name</code>.
+     * The column <code>country.name</code>.
      */
     val NAME: TableField<CountryRecord, String?> = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "")
 
@@ -81,22 +81,22 @@ open class Country(
     private constructor(alias: Name, aliased: Table<CountryRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>public.country</code> table reference
+     * Create an aliased <code>country</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>public.country</code> table reference
+     * Create an aliased <code>country</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>public.country</code> table reference
+     * Create a <code>country</code> table reference
      */
     constructor(): this(DSL.name("country"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, CountryRecord>): this(Internal.createPathAlias(child, key), child, key, COUNTRY, null)
-    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
+    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
     override fun getIdentity(): Identity<CountryRecord, Long?> = super.getIdentity() as Identity<CountryRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<CountryRecord> = COUNTRY_PKEY
     override fun `as`(alias: String): Country = Country(DSL.name(alias), this)

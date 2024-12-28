@@ -13,7 +13,8 @@ class ProfessionModelConverter : ModelConverter<Profession, ProfessionModel> {
             description = rawObject.description,
             name = rawObject.name,
             clientsNumber = rawObject.clientsNumber,
-            professionIndustry = rawObject.professionIndustry
+            professionIndustry = rawObject.professionIndustry,
+            pricePerWeek = null
         )
     }
 
