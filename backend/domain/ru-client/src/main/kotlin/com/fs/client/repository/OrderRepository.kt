@@ -17,7 +17,6 @@ import org.jooq.impl.SQLDataType
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 import java.util.*
 
 abstract class OrderRepository(
@@ -123,7 +122,7 @@ abstract class OrderRepository(
                 .map { it.into(OrderModel::class.java) }
 
         temporaryExpiredOrders.forEach { orderModel ->
-            deleteOrderById(orderModel.id!!)
+            deleteFinalOrderById(orderModel.id!!)
             if (orderBlockingRepository.isBasketEmpty(orderModel.basketId!!)) {
                 basketBlockingRepository.delete(orderModel.basketId!!)
             }
@@ -131,9 +130,20 @@ abstract class OrderRepository(
     }
 
 
-    fun deleteOrderById(orderId: Long): Mono<Boolean> {
+    fun deleteFinalOrderById(orderId: Long): Mono<Boolean> {
         return Mono.fromSupplier {
-            orderBlockingRepository.deleteById(orderId)
+            orderBlockingRepository.deleteFinalById(orderId)
+        }
+    }
+
+    fun deleteOrderById(orderId: Long, orderStatus: OrderStatus): Mono<Boolean> {
+        return Mono.fromSupplier {
+            if(orderStatus == OrderStatus.BASKET){
+                return@fromSupplier orderBlockingRepository.updateOrderStatus(orderId, OrderStatus.DELETED_FROM_BASKET)
+            }else if(orderStatus == OrderStatus.PRE_ORDERED){
+                return@fromSupplier orderBlockingRepository.updateOrderStatus(orderId, OrderStatus.TERMINATE_CONTRACT)
+            }
+            return@fromSupplier false
         }
     }
 
@@ -197,7 +207,7 @@ abstract class OrderRepository(
                 companyProfessionId = temporaryOrder.companyProfessionId
             )
             orderBlockingRepository.insert(updatableOrderModel)
-            orderBlockingRepository.deleteById(temporaryOrder.id!!)
+            orderBlockingRepository.deleteFinalById(temporaryOrder.id!!)
             if (orderBlockingRepository.isBasketEmpty(temporaryBasketId)) {
                 basketBlockingRepository.delete(temporaryBasketId)
             }

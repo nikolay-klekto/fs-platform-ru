@@ -50,8 +50,16 @@ open class OrderController(open val orderRepository: OrderRepository) {
     }
 
     @MutationMapping
-    fun deleteOrder(@Argument id: Long): Mono<Boolean> {
-        return orderRepository.deleteOrderById(id)
+    fun deleteFinalOrderById(@Argument id: Long): Mono<Boolean> {
+        return orderRepository.deleteFinalOrderById(id)
+    }
+
+    @MutationMapping
+    fun deleteOrderById(
+        @Argument id: Long,
+        @Argument orderStatus: OrderStatus
+    ): Mono<Boolean> {
+        return orderRepository.deleteOrderById(id, orderStatus)
     }
 
     @MutationMapping

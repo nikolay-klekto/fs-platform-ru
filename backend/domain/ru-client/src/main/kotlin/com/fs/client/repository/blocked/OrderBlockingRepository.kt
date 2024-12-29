@@ -10,7 +10,6 @@ import com.fs.service.ru.BasketModel
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.enums.OrderStatus
 import org.jooq.DSLContext
-import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
 abstract class OrderBlockingRepository(
@@ -43,17 +42,22 @@ abstract class OrderBlockingRepository(
     }
 
     fun decreaseBasketTotalPriceByOrderId(orderId: Long) {
-        val basketTotalPrice: Double? = dsl.select(BASKET.TOTAL_PRICE).from(BASKET)
-            .where(BASKET.ID.eq(dsl.select(ORDER.BASKET_ID).from(ORDER).where(ORDER.ID.eq(orderId))))
-            .map { it.into(Double::class.java) }.firstOrNull()
-
         val currentOrder: OrderModel? = getById(orderId)
+        val orderStatus = currentOrder?.orderStatus
+        if(orderStatus == OrderStatus.BASKET ||
+            orderStatus == OrderStatus.PRE_ORDERED ||
+            orderStatus == OrderStatus.ACTUAL) {
+            val basketTotalPrice: Double? = dsl.select(BASKET.TOTAL_PRICE).from(BASKET)
+                .where(BASKET.ID.eq(dsl.select(ORDER.BASKET_ID).from(ORDER).where(ORDER.ID.eq(orderId))))
+                .map { it.into(Double::class.java) }.firstOrNull()
 
-        val currentOrderPrice = currentOrder?.price
 
-        val totalBasketPrice = basketTotalPrice!! - currentOrderPrice!!
+            val currentOrderPrice = currentOrder.price
 
-        basketBlockingRepository.update(BasketModel(currentOrder.basketId!!, totalBasketPrice))
+            val totalBasketPrice = basketTotalPrice!! - currentOrderPrice!!
+
+            basketBlockingRepository.update(BasketModel(currentOrder.basketId!!, totalBasketPrice))
+        }
     }
 
     fun isBasketEmpty(basketId: Long): Boolean {
@@ -71,7 +75,7 @@ abstract class OrderBlockingRepository(
 //        return preOrdersQuantity > 0
 //    }
 
-    fun deleteById(orderId: Long): Boolean {
+    fun deleteFinalById(orderId: Long): Boolean {
         decreaseBasketTotalPriceByOrderId(orderId)
         return dsl.deleteFrom(ORDER)
             .where(ORDER.ID.eq(orderId))
