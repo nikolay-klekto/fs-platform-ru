@@ -65,16 +65,7 @@ abstract class OrderRepository(
 
     fun updateOrder(newOrderModel: OrderModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldOrderModel: OrderModel = orderBlockingRepository.getById(newOrderModel.id!!)!!
-
-            val result = dsl.update(ORDER)
-                .set(ORDER.ORDER_STATUS, newOrderModel.orderStatus?.name ?: oldOrderModel.orderStatus?.name)
-//                .set(ORDER.START_WORK_DATE, newOrderModel.startWorkDate ?: oldOrderModel.startWorkDate)
-//                .set(ORDER.TOTAL_WORK_DAYS, newOrderModel.totalWorkDays ?: oldOrderModel.totalWorkDays)
-                .where(ORDER.ID.eq(newOrderModel.id))
-                .execute() == 1
-
-//            orderBlockingRepository.checkAndUpdateOrderStatus(newOrderModel.id!!)
+            val result =orderBlockingRepository.updateOrder(newOrderModel)
             return@fromSupplier result
         }
     }
@@ -150,14 +141,22 @@ abstract class OrderRepository(
         return Mono.fromSupplier {
             val orderList = dsl.select(ORDER.ID).from(ORDER)
                 .where(
-                ORDER.BASKET_ID.eq(basketId)
-                    .and(ORDER.ORDER_STATUS.eq(orderStatus.name))
-            ).map { it.into(Long::class.java) }
+                    ORDER.BASKET_ID.eq(basketId)
+                        .and(ORDER.ORDER_STATUS.eq(orderStatus.name))
+                ).map { it.into(Long::class.java) }
             var result = false
-            orderList.forEach { orderId ->
-                if(orderBlockingRepository.deleteById(orderId)){
-                    result = true
-                }
+                orderList.forEach { orderId ->
+                    if (orderStatus == OrderStatus.BASKET) {
+                    if (orderBlockingRepository.updateOrderStatus(orderId, OrderStatus.DELETED_FROM_BASKET)) {
+                        result = true
+                    }
+                }else if(orderStatus == OrderStatus.PRE_ORDERED){
+                        if(orderBlockingRepository.updateOrderStatus(orderId, OrderStatus.TERMINATE_CONTRACT)){
+                            result = true
+                        }
+                    }else{
+                        result = false
+                    }
             }
             return@fromSupplier result
         }
@@ -174,7 +173,6 @@ abstract class OrderRepository(
                                 .and(ORDER.ORDER_STATUS.eq(orderStatus.name)))
                     )
                 ).execute() >=0
-
         }
     }
 

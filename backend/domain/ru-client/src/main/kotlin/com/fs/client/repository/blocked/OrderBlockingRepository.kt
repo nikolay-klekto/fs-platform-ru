@@ -10,6 +10,7 @@ import com.fs.service.ru.BasketModel
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.enums.OrderStatus
 import org.jooq.DSLContext
+import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
 abstract class OrderBlockingRepository(
@@ -155,6 +156,23 @@ abstract class OrderBlockingRepository(
             .set(ORDER.ORDER_STATUS, newOrderStatus.name)
             .where(ORDER.ID.eq(orderId))
             .execute()
+    }
+
+    fun updateOrder(newOrderModel: OrderModel): Boolean {
+            val oldOrderModel: OrderModel = getById(newOrderModel.id!!)!!
+
+            return dsl.update(ORDER)
+                .set(ORDER.ORDER_STATUS, newOrderModel.orderStatus?.name ?: oldOrderModel.orderStatus?.name)
+                .where(ORDER.ID.eq(newOrderModel.id))
+                .execute() == 1
+    }
+
+    fun updateOrderStatus(orderId: Long, orderStatus: OrderStatus): Boolean {
+        decreaseBasketTotalPriceByOrderId(orderId)
+        return dsl.update(ORDER)
+            .set(ORDER.ORDER_STATUS, orderStatus.name)
+            .where(ORDER.ID.eq(orderId))
+            .execute() == 1
     }
 
     companion object {

@@ -369,7 +369,7 @@ type Partner {
 
 type Address {
     id: ID
-    cityId: ID
+    city: City
     street: String
     house: String
     officeNumber: String
@@ -513,4 +513,6 @@ enum OrderStatus {
     ACTUAL
     PRE_ORDERED
     BASKET
+    TERMINATE_CONTRACT
+    DELETED_FROM_BASKET
 }
