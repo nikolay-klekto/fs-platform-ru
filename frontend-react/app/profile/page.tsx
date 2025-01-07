@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import ProfileDesktop from '@/components/desktop/pageDesktop/ProfilePageDesktop/ProfileDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
@@ -15,7 +16,7 @@ export default function Profile() {
     })
 
     const isDesktop = useMediaQuery({
-        query: '(min-width: 768px)',
+        query: '(min-width: 1240px)',
     })
 
     if (!isClient) {
@@ -27,7 +28,7 @@ export default function Profile() {
                 <>
                     <HeaderDesktop />
                     <main className="bg-[#101030] text-white">
-                        <h1>Личный профиль</h1>
+                        <ProfileDesktop />
                     </main>
                     <FooterDesktop />
                 </>
