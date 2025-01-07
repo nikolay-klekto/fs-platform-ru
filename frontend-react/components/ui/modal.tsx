@@ -8,9 +8,9 @@ interface ModalProps {
     onClose: () => void
     size?: 'small' | 'medium' | 'semilarge' | 'large'
     showCloseButton?: boolean
+    paddingClass?: string;
 }
-
-const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium', showCloseButton = true }) => {
+const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium', showCloseButton = true, paddingClass = '' }) => {
     const lockScroll = () => {
         document.body.style.overflow = 'hidden'
     }
@@ -41,13 +41,16 @@ const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium',
                 return 'max-w-2xl'
             case 'large':
                 return 'max-w-4xl'
+            case 'large-width-882':
+                return '2xl:w-[830px] max-w-[882px]'
+            case 'medium':
             default:
                 return 'max-w-lg'
         }
     }
 
     return ReactDOM.createPortal(
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50" onClick={onClose}>
+        <div className={`fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 ${paddingClass}`} onClick={onClose}>
             <div
                 className={`relative bg-[#101030] rounded-[50px] w-full ${getSizeClass()} text-white`}
                 onClick={(e) => e.stopPropagation()}
