@@ -91,7 +91,7 @@ const ModalCallDesktop: React.FC = () => {
                                 <EnhancedInput
                                     type="text"
                                     name="name"
-                                    placeholder="Введите ваше имя"
+                                    placeholder="Ваше имя"
                                     value={formData.name}
                                     validate={(value) => validateNameDesktop(value)}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
