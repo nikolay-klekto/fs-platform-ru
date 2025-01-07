@@ -28,8 +28,8 @@ export default function Home() {
         <div>
             {isDesktop ? (
                 <>
-                    <HeaderDesktop onOpenModalCallDesktop={handleOpenModalCallDesktop} />
-                    <main className="bg-[url('/background/main.svg')] bg-cover bg-no-repeat">
+                    <HeaderDesktop />
+                    <main className="bg-[url('/background/main.webp')] bg-cover bg-no-repeat">
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />
