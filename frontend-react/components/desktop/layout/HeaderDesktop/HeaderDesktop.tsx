@@ -1,14 +1,19 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import RegistrationModalDesktop from '@/components/desktop/layout/RegistrationModalDesktop/RegistrationModalDesktop'
 import LoginModalDesktop from '@/components/desktop/layout/LoginModalDesktop/LoginModalDesktop'
 import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationDesktop'
 import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
-const HeaderDesktop: React.FC = () => {
+interface HeaderDesktopProps {
+    onOpenModalCallDesktop: () => void
+}
+const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ onOpenModalCallDesktop }) => {
     const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
+    const router = useRouter()
 
     const openModal = (type: 'login' | 'registration') => {
         setModalType(type)
@@ -16,6 +21,11 @@ const HeaderDesktop: React.FC = () => {
 
     const closeModal = () => {
         setModalType(null)
+    }
+
+    const handleLoginSuccess = () => {
+        closeModal()
+        router.push('/profile')
     }
 
     return (
@@ -32,7 +42,11 @@ const HeaderDesktop: React.FC = () => {
                     <LogoIconDesktop className="flex-shrink-0 3xl:w-[82px] 3xl:h-auto 2xl:w-[75px] 2xl:h-auto" />
                     <div className="flex gap-[32px] px-[14px] 3xl:gap-[22px] 3xl:px-[12px] 2xl:gap-[16px] 2xl:px-[10px]">
                         <HeaderNavigationDesktop />
-                        <Button variant="header_desktop_btn_gradient" size="header_btn">
+                        <Button
+                            variant="header_desktop_btn_gradient"
+                            size="header_btn"
+                            onClick={onOpenModalCallDesktop}
+                        >
                             Заказать звонок
                         </Button>
                     </div>
@@ -48,7 +62,11 @@ const HeaderDesktop: React.FC = () => {
                 </div>
             </header>
             {modalType === 'login' && (
-                <LoginModalDesktop closeModal={closeModal} openRegistrationModal={() => openModal('registration')} />
+                <LoginModalDesktop
+                    closeModal={closeModal}
+                    openRegistrationModal={() => openModal('registration')}
+                    onLoginSuccess={handleLoginSuccess}
+                />
             )}
 
             {modalType === 'registration' && (

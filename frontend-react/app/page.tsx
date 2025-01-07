@@ -8,13 +8,17 @@ import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
 import ModalCallMobi from '@/components/mobi/layout/ModalMobi/ModalCallMobi'
 import ModalCallDesktop from '@/components/desktop/layout/ModalDesktop/ModalCallDesktop'
+
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
+    const [isModalCallDesktopOpen, setModalCallDesktopOpen] = useState(false)
+    const handleOpenModalCallDesktop = () => setModalCallDesktopOpen(true)
+    const handleCloseModalCallDesktop = () => setModalCallDesktopOpen(false)
     useEffect(() => {
         setIsClient(true)
     }, [])
     const isDesktop = useMediaQuery({
-        query: '(min-width: 769px)',
+        query: '(min-width: 1240px)',
     })
 
     if (!isClient) {
@@ -29,7 +33,7 @@ export default function Home() {
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />
-                    <ModalCallDesktop />
+                    <ModalCallDesktop isOpen={isModalCallDesktopOpen} onClose={handleCloseModalCallDesktop} />
                 </>
             ) : (
                 <>

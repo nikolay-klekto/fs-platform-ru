@@ -15,7 +15,11 @@ interface FormData {
     consent: boolean
 }
 
-const ModalCallDesktop: React.FC = () => {
+interface ModalCallDesktopProps {
+    isOpen: boolean
+    onClose: () => void
+}
+const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         phone: '',
@@ -23,10 +27,6 @@ const ModalCallDesktop: React.FC = () => {
         consent: false,
     })
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
-    const [ModalOpen, setModalOpen] = useState(false)
-    const handleOpenModal = () => setModalOpen(true)
-    const handleCloseModal = () => setModalOpen(false)
-
     const [step, setStep] = useState<'form' | 'accepted' | null>('form')
 
     const validateForm = () => {
@@ -66,16 +66,12 @@ const ModalCallDesktop: React.FC = () => {
         }
     }
 
-    const handleClose = () => {
-        setStep(null)
-    }
-
     return (
         <>
             {step === 'form' && (
-                <Modal show={ModalOpen} onClose={handleCloseModal} size="medium" showCloseButton={false}>
+                <Modal show={isOpen} onClose={onClose} size="medium" showCloseButton={false}>
                     <div>
-                        <button onClick={handleCloseModal} className="absolute top-4 right-4">
+                        <button onClick={onClose} className="absolute top-4 right-4">
                             <X size={35} color="white" className="opacity-70" />
                         </button>
                         <div className="flex flex-col rounded-lg max-w-md mx-auto mt-8">
@@ -91,7 +87,7 @@ const ModalCallDesktop: React.FC = () => {
                                 <EnhancedInput
                                     type="text"
                                     name="name"
-                                    placeholder="Введите ваше имя"
+                                    placeholder="Ваше имя"
                                     value={formData.name}
                                     validate={(value) => validateNameDesktop(value)}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
@@ -138,7 +134,8 @@ const ModalCallDesktop: React.FC = () => {
                                     name="consent"
                                     checked={formData.consent}
                                     onChange={handleChange}
-                                    className="mr-2 w-4 h-4"
+                                    className="mr-2 appearance-none size-4 bg-transparent border-2 border-gray-600 rounded-sm checked:bg-blue-500 focus:outline-none focus:ring-0 checked:border-blue-500
+                                 checked:before:content-['✔'] checked:before:text-white checked:before:text-lg checked:before:flex checked:before:justify-center checked:before:items-center"
                                 />
 
                                 <label htmlFor="consent" className="text-2xl font-medium text-[#878797]">
@@ -174,9 +171,9 @@ const ModalCallDesktop: React.FC = () => {
                 </Modal>
             )}
             {step === 'accepted' && (
-                <Modal show={isModalOpen} onClose={handleCloseModal} size="medium" showCloseButton={false}>
+                <Modal show={isOpen} onClose={onClose} size="medium" showCloseButton={false}>
                     <div>
-                        <button onClick={handleClose} className="absolute top-4 right-4">
+                        <button onClick={onClose} className="absolute top-4 right-4">
                             <X size={35} color="white" className="opacity-70" />
                         </button>
                         <div className="flex flex-col p-3 rounded-lg max-w-md mx-auto">

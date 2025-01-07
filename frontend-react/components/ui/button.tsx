@@ -70,6 +70,7 @@ const buttonVariants = cva(
                 contacts_btn_send_desktop: 'h-[68.5px] w-[289px] 2xl:h-[62px] 2xl:w-[277px] 3xl:h-[65px] 3xl:w-[283px]',
                 contacts_btn_mobi: 'h-[39.5px] w-[159px] flex-shrink-0 sm:w-[152px] sm_s:w-[156px]',
                 contacts_btn_send_mobi: 'h-[35px] w-[145px] flex-shrink-0 sm:w-[136px] sm_s:w-[140px]',
+
             },
         },
         defaultVariants: {
