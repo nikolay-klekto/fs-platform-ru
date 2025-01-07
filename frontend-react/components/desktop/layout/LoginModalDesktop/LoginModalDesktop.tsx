@@ -15,9 +15,10 @@ interface LoginFormData {
 interface LoginModalDesktopProps {
     closeModal: () => void
     openRegistrationModal: () => void
+    onLoginSuccess: () => void
 }
 
-const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openRegistrationModal }) => {
+const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openRegistrationModal, onLoginSuccess }) => {
     const [formData, setFormData] = useState<LoginFormData>({
         email: '',
         password: '',
@@ -61,6 +62,7 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
             setFormError(false)
             console.log('Форма входа отправлена:', formData)
             closeModal()
+            onLoginSuccess()
         }
     }
 
