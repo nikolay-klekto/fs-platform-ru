@@ -38,6 +38,10 @@
         @apply text-white text-9xl font-medium uppercase;
     }
 
+    .text46px_desktop {
+        @apply text-[46px] 4xl:text-18xl 3xl:text-9xl 2xl:text-8xl;
+    }
+
     .text36px_desktop {
         @apply text-[36px] 4xl:text-10xl 3xl:text-9xl 2xl:text-7xl;
     }
@@ -143,5 +147,19 @@
 
     .custom_error_style_input {
         @apply border-red-500;
+    }
+    .scrollbar-modal_desktop_custom {
+        overflow-y: auto;
+        cursor: grab;
+    }
+    .scrollbar-modal_desktop_custom::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-modal_desktop_custom {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scrollbar-modal_desktop_custom:hover {
+        cursor: grabbing;
     }
 }

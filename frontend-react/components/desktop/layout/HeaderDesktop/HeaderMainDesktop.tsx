@@ -34,7 +34,10 @@ const HeaderMainDesktop: React.FC = () => {
                             size="circle_desktop"
                             className="group-hover:button-shadow_right_desktop_custom"
                         >
-                            <ForwardIconDesktop />
+                            <ForwardIconDesktop
+                                fill="url(#paint0_linear_847_15423)"
+                                stroke="url(#paint1_linear_847_15423)"
+                            />
                         </Button>
                     </Link>
                 </div>

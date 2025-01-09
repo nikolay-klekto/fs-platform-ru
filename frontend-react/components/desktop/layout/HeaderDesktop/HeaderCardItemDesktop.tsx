@@ -25,7 +25,7 @@ const HeaderCardItemDesktop: React.FC<HeaderCardItemDesktop> = ({
             <div
                 className="3xl:min-h-[210px] 3xl:max-w-[346px] flex min-h-[260px] max-w-[426px] items-center justify-center rounded-[50px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] 2xl:min-h-[188px] 2xl:max-w-[308px]"
                 style={{
-                    backgroundImage: "url('/background/subtract_desk.svg')",
+                    backgroundImage: "url('/background/subtract_desk.webp')",
                     backgroundSize: 'contain, cover',
                     backgroundPosition: 'center, center',
                     backgroundRepeat: 'no-repeat, no-repeat',
@@ -64,7 +64,10 @@ const HeaderCardItemDesktop: React.FC<HeaderCardItemDesktop> = ({
                         size="circle_desktop"
                         className="absolute bottom-0 right-0 hover:shadow-lg hover:shadow-[#3B51A8]"
                     >
-                        <ForwardIconDesktop />
+                        <ForwardIconDesktop
+                            fill="url(#paint0_linear_847_15423)"
+                            stroke="url(#paint1_linear_847_15423)"
+                        />
                     </Button>
                 </div>
             </div>
