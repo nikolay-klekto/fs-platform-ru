@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import FunscrutLogo from './FunscrutLogo'
 import { Button } from '@/components/ui/button'
-import { ForwardIcon } from '@/components/assets/icons'
+import { ForwardIconDesktop } from '@/components/assets/icons'
 
 const HeaderMainDesktop: React.FC = () => {
     return (
@@ -34,7 +34,10 @@ const HeaderMainDesktop: React.FC = () => {
                             size="circle_desktop"
                             className="group-hover:button-shadow_right_desktop_custom"
                         >
-                            <ForwardIcon />
+                            <ForwardIconDesktop
+                                fill="url(#paint0_linear_847_15423)"
+                                stroke="url(#paint1_linear_847_15423)"
+                            />
                         </Button>
                     </Link>
                 </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
-import { ForwardIcon } from '@/components/assets/icons'
+import { ForwardIconMobi } from '@/components/assets/icons'
 
 const ProfessionSendMobi: React.FC = () => {
     const [isFocused, setIsFocused] = useState(false)
@@ -14,14 +14,14 @@ const ProfessionSendMobi: React.FC = () => {
 
     return (
         <div className=" flex flex-col">
-            <p className=" sm_xl:text-4xl sm_l:text-3xl sm_s:text-3xl mx-auto mb-[30px] text-[20px] font-semibold text-white sm:text-3xl md:text-5xl">
+            <p className="sm_l:text-3xl sm_s:text-3xl mx-auto mb-[20px] text-[18px] font-semibold text-white sm:text-3xl md:text-5xl">
                 Предложите, в какой ещё профессии вы бы ещё хотели попробовать себя
             </p>
-            <div className="justify-bitween mx-auto flex w-full max-w-[450px] gap-[7px]">
+            <div className="justify-bitween mx-auto flex w-full max-w-[450px] gap-[10px]">
                 <EnhancedInput
                     type="text"
                     value={useRequest}
-                    onChange={(e) => setUseRequest(e.target.value)}
+                    onChange={(value) => setUseRequest(value)}
                     variant={'search_mobi'}
                     size={'send_mobi'}
                     rounded={'rounded_50'}
@@ -30,7 +30,7 @@ const ProfessionSendMobi: React.FC = () => {
                     onBlur={() => setIsFocused(false)}
                 />
                 <Button variant={'select_mobi'} size={'gradient_circle_mobi'} onClick={handleSendRequest}>
-                    <ForwardIcon />
+                    <ForwardIconMobi />
                 </Button>
             </div>
         </div>
