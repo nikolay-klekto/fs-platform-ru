@@ -38,6 +38,9 @@ const buttonVariants = cva(
                 circleBlue: 'rounded-[50%] bg-[#382D90]',
                 select_btn_mobi: 'button-border-mobi rounded-[50px] border-transparent bg-[#101030] text-white',
                 circleDarkBlue: 'rounded-[50%] bg-[#272744]',
+                select_day: 'bg-gradient-desktop rounded-[90px] text-white',
+                hover_button_date:
+                    'bg-[#1F203F] hover:bg-[#28295B] rounded-[50px] border border-[#878797] hover:button-border-desktop-date',
             },
             size: {
                 default: 'h-10 px-4 py-2',
@@ -71,6 +74,8 @@ const buttonVariants = cva(
                 contacts_btn_mobi: 'h-[39.5px] w-[159px] sm_s:w-[156px] sm:w-[152px] flex-shrink-0',
                 contacts_btn_send_mobi: 'h-[35px] w-[145px] sm_s:w-[140px] sm:w-[136px] flex-shrink-0',
                 select_btn_desktop_events: '3xl:px-[20px] h-[64px] px-[40px] py-[20px] 2xl:px-[20px]',
+                hover_button_date_desktop:
+                    '3xl:w-[270px] 3xl:px-[20px] h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px]',
             },
         },
         defaultVariants: {

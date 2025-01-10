@@ -21,6 +21,7 @@ const inputVariants = cva(
                     'text-xl placeholder:text-xs placeholder:font-medium bg-transparent ring-offset-transparent border-[1.18px] border-[#878797] focus:border-2 focus:ring-transparent md:placeholder:text-base',
                 contacts_page_error_mobi:
                     'text-xl placeholder:text-xs placeholder:font-medium bg-transparent ring-offset-transparent border-[1.18px] border-[#bc8070] focus:border-2 focus:ring-transparent md:placeholder:text-base',
+                events_date_desktop: 'bg-transparent border-none outline-none placeholder-gray-500 h-[22px]',
             },
             size: {
                 default: 'h-10 px-3 py-2',

@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Map, Calendar, User, ForwardIconWhite } from '@/components/assets/icons'
+import { Map, CalendarIcons, User, ForwardIconWhite } from '@/components/assets/icons'
 import Image from 'next/image'
 import React from 'react'
 
@@ -57,7 +57,7 @@ const EventsCardDesktop: React.FC<EventsCardDesktop> = ({
                             <Map /> {date} ({week}) в {time}
                         </div>
                         <div className="text18px_desktop flex gap-[15px]">
-                            <Calendar /> {city}, {place}
+                            <CalendarIcons /> {city}, {place}
                         </div>
                         <div className="text18px_desktop flex gap-[15px]">
                             <User /> {company}
