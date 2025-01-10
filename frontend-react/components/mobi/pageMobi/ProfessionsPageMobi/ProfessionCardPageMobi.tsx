@@ -15,13 +15,13 @@ const ProfessionCardPageMobi: React.FC<ProfessionCardMobiProps> = ({ image, prof
             <Card
                 variant={'profession_page_mobi'}
                 size={'profession_page_mobi'}
-                rounded={'rounded_24px'}
+                rounded={'rounded_24'}
                 style={{ backgroundImage: `url(${image})` }}
             >
-                <CardTitle variant={'profession_page_mobi'} size={'profession_page_mobi'} rounded={'rounded_12px'}>
+                <CardTitle variant={'profession_page_mobi'} size={'profession_page_mobi'} rounded={'rounded_12'}>
                     {profession}
                 </CardTitle>
-                <CardFooter variant={'profession_page_mobi'} size={'profession_page_mobi'} rounded={'rounded_12px'}>
+                <CardFooter variant={'profession_page_mobi'} size={'profession_page_mobi'} rounded={'rounded_12'}>
                     <p className="bg-gradient-mobi w-fit bg-clip-text  text-xl text-transparent">
                         {price} BYN/
                         <span className="text-base text-[#878797]">неделя</span>

@@ -23,7 +23,7 @@ const cardVariants = cva('border-none', {
             profession_page_desktop:
                 'aspect-[340/400] w-[340px] max-w-full  px-[20px] py-[25px] 2xl:px-[15px] 2xl:py-[20px]',
             profession_page_mobi:
-                'aspect-[165/194] w-[165px] max-w-[210px] flex-shrink flex-grow overflow-hidden rounded-[24px] px-[10px] py-[12px] md:aspect-[165/194] md:w-[185px]',
+                'aspect-[164/193] w-[164px] max-w-[210px] flex-shrink flex-grow overflow-hidden rounded-[24px] px-[10px] py-[12px] md:aspect-[164/193] md:w-[185px]',
         },
         rounded: {
             default: 'rounded-[50px]',
@@ -50,7 +50,7 @@ const cardTitleVariants = cva('font-medium', {
                 'text22px_mobi bg-white bg-opacity-[70%] font-semibold tracking-normal text-[#101030]',
             profession_page_desktop:
                 '4xl:text-6xl 3xl:text-5xl truncate bg-white bg-opacity-[70%] text-7xl font-medium text-[#101030] 2xl:text-4xl',
-            profession_page_mobi: 'bg-white bg-opacity-[70%] text-[12px] font-medium text-[#101030]',
+            profession_page_mobi: 'bg-white bg-opacity-[70%] text-[13px] font-medium text-[#101030]',
         },
         size: {
             default: 'text-[24px]',
@@ -58,7 +58,7 @@ const cardTitleVariants = cva('font-medium', {
             profession_home_mobi: 'w-fit px-[15px] py-[10px] ',
             profession_page_desktop:
                 '3xl:px-[15px] 4xl:px-[15px] 4xl:max-w-full w-fit max-w-full  rounded-[25px] px-[20px] py-[2px] 2xl:px-[10px]',
-            profession_page_mobi: 'h-[20px] w-fit max-w-full truncate px-[10px]',
+            profession_page_mobi: 'w-fit max-w-full truncate px-[10px] py-[3px]',
         },
         rounded: {
             default: 'rounded-[50px]',
