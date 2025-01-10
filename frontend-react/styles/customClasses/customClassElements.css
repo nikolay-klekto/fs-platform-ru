@@ -66,6 +66,15 @@
     .text15px_desktop {
         @apply text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base;
     }
+    .text46px_desktop {
+        @apply text-18xl 3xl:text-17xl 2xl:text-16xl;
+    }
+    .text28px_modal_desktop {
+        @apply font-medium text-white text-9xl 3xl:text-8xl 2xl:text-7xl;
+    }
+    .text18px_modal_desktop {
+        @apply font-medium text-4xl 3xl:text-3xl 2xl:text-2xl;
+    }
 
     .text28px_mobi {
         @apply text-9xl sm:text-7xl;
@@ -148,6 +157,30 @@
     .custom_error_style_input {
         @apply border-red-500;
     }
+
+    .modal-padding-content-lg-dsk {
+        padding-top: clamp(32px, 2.6vw, 50px);
+        padding-bottom: clamp(33px, 2.6vw, 51px);
+        padding-left: clamp(56px, 4.6vw, 88px);
+    }
+
+    .modal-scrollable {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    .modal-scrollable::-webkit-scrollbar {
+        width: 5.2px;
+    }
+    .modal-scrollable::-webkit-scrollbar-thumb {
+        background-color: #898997;
+        border-radius: 4px;
+    }
+    .modal-scrollable::-webkit-scrollbar-track {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        margin: 60px 0;
+    }
+
     .scrollbar-modal_desktop_custom {
         overflow-y: auto;
         cursor: grab;

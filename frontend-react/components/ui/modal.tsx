@@ -6,11 +6,20 @@ interface ModalProps {
     children: ReactNode
     show: boolean
     onClose: () => void
-    size?: 'small' | 'medium' | 'semilarge' | 'large'
+    size?: 'small' | 'medium' | 'semilarge' | 'large' | 'large-l'
     showCloseButton?: boolean
-    paddingClass?: string;
+    paddingClass?: string
+    className?: string
 }
-const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium', showCloseButton = true, paddingClass = '' }) => {
+const Modal: React.FC<ModalProps> = ({
+    children,
+    show,
+    onClose,
+    size = 'medium',
+    showCloseButton = true,
+    paddingClass = '',
+    className,
+}) => {
     const lockScroll = () => {
         document.body.style.overflow = 'hidden'
     }
@@ -41,6 +50,8 @@ const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium',
                 return 'max-w-2xl'
             case 'large':
                 return 'max-w-4xl'
+            case 'large-l':
+                return 'max-w-[1366px]'
             case 'large-width-882':
                 return '2xl:w-[830px] max-w-[882px]'
             case 'medium':
@@ -50,9 +61,12 @@ const Modal: React.FC<ModalProps> = ({ children, show, onClose, size = 'medium',
     }
 
     return ReactDOM.createPortal(
-        <div className={`fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 ${paddingClass}`} onClick={onClose}>
+        <div
+            className={`fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 ${paddingClass} ${className}`}
+            onClick={onClose}
+        >
             <div
-                className={`relative bg-[#101030] rounded-[50px] w-full ${getSizeClass()} text-white`}
+                className={`relative bg-[#101030] rounded-[50px] w-full ${getSizeClass()} text-white modal-scrollable`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {showCloseButton && (
