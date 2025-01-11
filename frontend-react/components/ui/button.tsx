@@ -40,7 +40,7 @@ const buttonVariants = cva(
                 circleDarkBlue: 'rounded-[50%] bg-[#272744]',
                 select_day: 'bg-gradient-desktop rounded-[90px] text-white',
                 hover_button_date:
-                    'bg-[#1F203F] hover:bg-[#28295B] rounded-[50px] border border-[#878797] hover:button-border-desktop-date text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg',
+                    'bg-[#1F203F] hover:bg-[#28295B] rounded-[90px] border border-[#878797] hover:button-border-desktop-date text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg',
             },
             size: {
                 default: 'h-10 px-4 py-2',

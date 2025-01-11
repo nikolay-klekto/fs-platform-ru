@@ -130,7 +130,7 @@ const EventsSelectSearchDateDesktop = () => {
                                         placeholder="__.__.____"
                                         onChange={(e) => handleInputChange('from', e.target.value)}
                                         onFocus={() => setOpenCalendars((prev) => ({ ...prev, from: true }))}
-                                        className="bg-transparent border-none outline-none placeholder-gray-500 w-[81px] 2xl:w-[75px] text16px 2xl:text12px 2xl:text10px"
+                                        className="bg-transparent border-none outline-none placeholder-gray-500 w-[81px] 2xl:w-[75px] text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg"
                                     />
                                 </div>
                                 {openCalendars.from && (
@@ -168,7 +168,7 @@ const EventsSelectSearchDateDesktop = () => {
                                         placeholder="__.__.____"
                                         onChange={(e) => handleInputChange('to', e.target.value)}
                                         onFocus={() => setOpenCalendars((prev) => ({ ...prev, from: true }))}
-                                        className="bg-transparent border-none outline-none placeholder-gray-500 w-[81px] 2xl:w-[60px] text18px"
+                                        className="bg-transparent border-none outline-none placeholder-gray-500 w-[81px] 2xl:w-[75px] text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg"
                                     />
                                 </div>
                                 {openCalendars.to && (
