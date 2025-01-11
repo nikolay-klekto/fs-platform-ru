@@ -14,13 +14,13 @@ const inputVariants = cva(
                 search_mobi:
                     'flex border-0 bg-transparent text-xl text-[#878797] outline-none placeholder:text-[14px] placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
                 contacts_page_desktop:
-                    'text-5xl placeholder:font-medium bg-transparent ring-offset-transparent border-2 border-[#878797] focus:border-[3px] focus:ring-transparent',
+                    'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent placeholder:font-medium focus:border-[3px] focus:ring-transparent',
                 contacts_page_error_desktop:
-                    'text-5xl placeholder:font-medium bg-transparent ring-offset-transparent border-2 border-[#bc8070] focus:border-[3px] focus:ring-transparent',
+                    'border-2 border-[#bc8070] bg-transparent text-5xl ring-offset-transparent placeholder:font-medium focus:border-[3px] focus:ring-transparent',
                 contacts_page_mobi:
-                    'text-xl placeholder:text-xs placeholder:font-medium bg-transparent ring-offset-transparent border-[1.18px] border-[#878797] focus:border-2 focus:ring-transparent md:placeholder:text-base',
+                    'border-[1.18px] border-[#878797] bg-transparent text-xl ring-offset-transparent placeholder:text-xs placeholder:font-medium focus:border-2 focus:ring-transparent md:placeholder:text-base',
                 contacts_page_error_mobi:
-                    'text-xl placeholder:text-xs placeholder:font-medium bg-transparent ring-offset-transparent border-[1.18px] border-[#bc8070] focus:border-2 focus:ring-transparent md:placeholder:text-base',
+                    'border-[1.18px] border-[#bc8070] bg-transparent text-xl ring-offset-transparent placeholder:text-xs placeholder:font-medium focus:border-2 focus:ring-transparent md:placeholder:text-base',
                 events_date_desktop: 'bg-transparent border-none outline-none placeholder-gray-500 h-[22px]',
             },
             size: {
@@ -30,7 +30,7 @@ const inputVariants = cva(
                 search_mobi: 'size-full py-[15px] pl-[10px] pr-[45px]',
                 send_mobi: 'size-full px-[10px]',
                 contacts_page_desktop: 'h-[53px] w-[453px] px-4 py-3.5 2xl:w-[520px]',
-                contacts_page_info_desktop: 'h-[53px] w-[484px] px-4 py-3.5 3xl:w-[452px] 2xl:w-[520px]',
+                contacts_page_info_desktop: '3xl:w-[452px] h-[53px] w-[484px] px-4 py-3.5 2xl:w-[520px]',
                 contacts_page_mobi: 'h-[28.5px] max-w-[346px] px-4 py-2 md:h-[32px]',
             },
             rounded: {
@@ -39,6 +39,7 @@ const inputVariants = cva(
                 rounded_50: 'rounded-[50px]',
                 rounded_53: 'rounded-[53px]',
                 rounded_30: 'rounded-[30px]',
+                rounded_20: 'rounded-[20px]',
             },
         },
         defaultVariants: {

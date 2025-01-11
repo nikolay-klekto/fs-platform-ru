@@ -16,7 +16,7 @@ export default function Professions() {
     })
 
     const isDesktop = useMediaQuery({
-        query: '(min-width: 768px)',
+        query: '(min-width: 1240px)',
     })
 
     if (!isClient) {
@@ -34,6 +34,7 @@ export default function Professions() {
                 </>
             ) : (
                 <>
+                    <div className="h-[20px] bg-[#101030]"></div>
                     <HeaderMobi />
                     <main className="bg-[#101030] text-white">
                         <ProfessionsPageMobi />

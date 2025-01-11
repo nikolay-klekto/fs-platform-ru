@@ -1,18 +1,27 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
 import ProfessionCardDesktop from '@/components/desktop/layout/ProfessionsSectionDesktop/ProfessionCardDesktop'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import ProfessionSendDesktop from './ProfessionSendDesktop'
 import { content } from '@/components/desktop/layout/ProfessionsSectionDesktop/content'
+import ProfessionModalDesktop from '../ProfessionModalDesktop/ProfessionModalDesktop'
 
 interface ProfessionsSectionDesktopProps {
     cardsToShow?: number
 }
 
 const ProfessionsSectionDesktop: React.FC<ProfessionsSectionDesktopProps> = ({ cardsToShow = 4 }) => {
+    const [openModal, setOpenModal] = useState<boolean>(false)
+    const [selectedProfession, setSelectedProfession] = useState<string>('')
+    const [selectedIdProfession, setSelectedIdProfession] = useState<number | null>(null)
+
+    const closeModal = () => {
+        setOpenModal(false)
+    }
+
     return (
         <div className="container flex flex-col gap-[80px] py-[100px]">
             <div className="mb-35xl">
@@ -33,10 +42,22 @@ const ProfessionsSectionDesktop: React.FC<ProfessionsSectionDesktopProps> = ({ c
                         image={item.image}
                         profession={item.profession}
                         price={item.price.toString()}
+                        onClick={() => {
+                            setSelectedProfession(item.profession)
+                            setSelectedIdProfession(item.id)
+                            setOpenModal(true)
+                        }}
                     />
                 ))}
             </div>
             <ProfessionSendDesktop />
+            {openModal && (
+                <ProfessionModalDesktop
+                    closeModal={closeModal}
+                    profession={selectedProfession}
+                    professionId={selectedIdProfession}
+                />
+            )}
         </div>
     )
 }
