@@ -16,11 +16,6 @@ export const content: IHeaderNavigationDesktop[] = [
         id: '2',
     },
     {
-        title: 'Компании',
-        link: '/companies',
-        id: '3',
-    },
-    {
         title: 'Мероприятия',
         link: '/profevents',
         id: '4',
