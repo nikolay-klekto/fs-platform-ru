@@ -29,12 +29,12 @@ export default function Home() {
         <div>
             {isDesktop ? (
                 <>
-                    <HeaderDesktop />
+                    <HeaderDesktop onOpenModalCallDesktop={handleOpenModalCallDesktop} />
                     <main className="bg-[url('/background/main.webp')] bg-cover bg-no-repeat">
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />
-                    <ModalCallDesktop />
+                    <ModalCallDesktop isOpen={isModalCallDesktopOpen} onClose={handleCloseModalCallDesktop} />
                     <ModalCookieDesktop />
                 </>
             ) : (
