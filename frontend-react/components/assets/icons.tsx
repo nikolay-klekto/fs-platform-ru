@@ -405,7 +405,7 @@ export const EyeOffPasswordDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
-                <path d="M1 1L23 23" stroke="#878797" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M1 1L23 23" stroke="#878797" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round" />
             </g>
             <defs>
                 <clipPath id="clip0_908_1788">
@@ -440,7 +440,7 @@ export const EyeOnPasswordDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) =
 export const CheckedBoxFormDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-            <path d="M9 11L12 14L22 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 11L12 14L22 4" stroke="white" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round" />
             <path
                 d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16"
                 stroke="white"
@@ -469,8 +469,8 @@ export const UncheckedBoxFormDesktop: React.FC<SVGProps<SVGSVGElement>> = (props
 export const PasswordGeneratorDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-            <path d="M1 4V10H7" stroke="#878797" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M23 20V14H17" stroke="#878797" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M1 4V10H7" stroke="#878797" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M23 20V14H17" stroke="#878797" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round" />
             <path
                 d="M20.49 9.00008C19.9828 7.56686 19.1209 6.28548 17.9845 5.27549C16.8482 4.26551 15.4745 3.55984 13.9917 3.22433C12.5089 2.88883 10.9652 2.93442 9.50481 3.35685C8.04437 3.77928 6.71475 4.56479 5.64 5.64008L1 10.0001M23 14.0001L18.36 18.3601C17.2853 19.4354 15.9556 20.2209 14.4952 20.6433C13.0348 21.0657 11.4911 21.1113 10.0083 20.7758C8.52547 20.4403 7.1518 19.7346 6.01547 18.7247C4.87913 17.7147 4.01717 16.4333 3.51 15.0001"
                 stroke="#878797"
@@ -555,7 +555,7 @@ export const AvatarIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
 export const SendIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-            <circle cx="17" cy="17" r="16.2917" stroke="url(#paint0_linear_1854_21403)" stroke-width="1.41667" />
+            <circle cx="17" cy="17" r="16.2917" stroke="url(#paint0_linear_1854_21403)" strokeWidth="1.41667" />
             <path
                 d="M6 16.2917C5.6088 16.2917 5.29167 16.6088 5.29167 17C5.29167 17.3912 5.6088 17.7083 6 17.7083L6 16.2917ZM27.7509 17.5009C28.0275 17.2242 28.0275 16.7758 27.7509 16.4991L23.2431 11.9913C22.9664 11.7147 22.5179 11.7147 22.2413 11.9913C21.9647 12.268 21.9647 12.7164 22.2413 12.9931L26.2483 17L22.2413 21.0069C21.9647 21.2836 21.9647 21.7321 22.2413 22.0087C22.5179 22.2853 22.9664 22.2853 23.2431 22.0087L27.7509 17.5009ZM6 17.7083L27.25 17.7083L27.25 16.2917L6 16.2917L6 17.7083Z"
                 fill="url(#paint1_linear_1854_21403)"
@@ -586,6 +586,177 @@ export const SendIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
                     <stop offset="1" stop-color="#3B51A8" />
                 </linearGradient>
             </defs>
+        </svg>
+    )
+}
+
+export const Map: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M12 23C12 23 21 17 21 10C21 7.61305 20.0518 5.32387 18.364 3.63604C16.6761 1.94821 14.3869 1 12 1C9.61305 1 7.32387 1.94821 5.63604 3.63604C3.94821 5.32387 3 7.61305 3 10C3 17 12 23 12 23Z"
+                stroke="#858C8E"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z"
+                stroke="#858C8E"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}
+
+export const User: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+                stroke="#858C8E"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"
+                stroke="#858C8E"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}
+
+export const CalendarIcons: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
+                stroke="#858C8E"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path d="M16 2V6" stroke="#858C8E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M8 2V6" stroke="#858C8E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M3 10H21" stroke="#858C8E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    )
+}
+
+export const ForwardIconWhite: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="33" height="29" viewBox="0 0 33 29" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M31.125 14.5L17.7188 1.70312V9.01562C4.88912 9.01562 1.875 18.2149 1.875 27.2969C5.57771 22.5559 8.85234 19.9844 17.7188 19.9844V27.2969L31.125 14.5Z"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}
+
+export const LessIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M14.98 14.84L0.644 9.176V6.424L14.98 0.759998V3.416L1.7 8.536V7.064L14.98 12.184V14.84Z"
+                fill="white"
+                fillOpacity="0.8"
+            />
+        </svg>
+    )
+}
+export const MoreIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M0.644 14.84V12.184L13.956 7.064V8.536L0.644 3.416V0.759998L14.98 6.424V9.176L0.644 14.84Z"
+                fill="white"
+                fillOpacity="0.8"
+            />
+        </svg>
+    )
+}
+
+export const ChevronDownIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg viewBox="0 0 27 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M13.4997 14.7145C13.3311 14.7165 13.1639 14.6833 13.0089 14.6168C12.8539 14.5504 12.7145 14.4523 12.5997 14.3288L1.02829 2.75733C0.514007 2.24304 0.514007 1.4459 1.02829 0.931613C1.54258 0.417327 2.33972 0.417327 2.85401 0.931613L13.5254 11.603L24.1711 0.957327C24.6854 0.443041 25.4826 0.443041 25.9969 0.957327C26.5111 1.47161 26.5111 2.26876 25.9969 2.78304L14.4254 14.3545C14.1683 14.6116 13.834 14.7402 13.5254 14.7402L13.4997 14.7145Z"
+                fill="white"
+            />
+        </svg>
+    )
+}
+export const CheckedBoxIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M8.41016 9.48327L10.9353 12.0084L19.3524 3.59131"
+                stroke="url(#paint0_linear_423_22299)"
+                strokeWidth="1.68342"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M18.5101 10.3249V16.2168C18.5101 16.6633 18.3328 17.0915 18.0171 17.4072C17.7014 17.7229 17.2732 17.9003 16.8267 17.9003H5.04279C4.59632 17.9003 4.16814 17.7229 3.85244 17.4072C3.53673 17.0915 3.35938 16.6633 3.35938 16.2168V4.43293C3.35938 3.98646 3.53673 3.55827 3.85244 3.24257C4.16814 2.92687 4.59632 2.74951 5.04279 2.74951H14.3016"
+                stroke="url(#paint1_linear_423_22299)"
+                strokeWidth="1.68342"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <defs>
+                <linearGradient
+                    id="paint0_linear_423_22299"
+                    x1="7.51951"
+                    y1="7.89772"
+                    x2="19.3524"
+                    y2="7.89772"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#8333F3" />
+                    <stop offset="0.485532" stop-color="#5F4AF3" />
+                    <stop offset="1" stop-color="#3B51A8" />
+                </linearGradient>
+                <linearGradient
+                    id="paint1_linear_423_22299"
+                    x1="2.12617"
+                    y1="10.5011"
+                    x2="18.5101"
+                    y2="10.5011"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#8333F3" />
+                    <stop offset="0.485532" stop-color="#5F4AF3" />
+                    <stop offset="1" stop-color="#3B51A8" />
+                </linearGradient>
+            </defs>
+        </svg>
+    )
+}
+
+export const QuestionMark: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M8.46009 11.7503C8.73717 11.7503 8.97151 11.6646 9.16309 11.4932C9.35467 11.3218 9.4502 11.1124 9.44967 10.8649C9.44967 10.617 9.35415 10.4073 9.16309 10.2359C8.97204 10.0645 8.7377 9.97902 8.46009 9.97949C8.18301 9.97949 7.94894 10.0652 7.75788 10.2366C7.56683 10.408 7.47104 10.6175 7.47051 10.8649C7.47051 11.1128 7.5663 11.3225 7.75788 11.4939C7.94947 11.6653 8.18354 11.7508 8.46009 11.7503ZM8.49967 14.5837C7.40454 14.5837 6.37537 14.3976 5.41217 14.0255C4.44898 13.6534 3.61113 13.1488 2.89863 12.5118C2.18613 11.8743 1.6222 11.1246 1.20684 10.2628C0.79148 9.40102 0.583536 8.48019 0.583008 7.50033C0.583008 6.52046 0.790952 5.59963 1.20684 4.73783C1.62273 3.87602 2.18666 3.12637 2.89863 2.48887C3.61113 1.85137 4.44898 1.3468 5.41217 0.975159C6.37537 0.60352 7.40454 0.417464 8.49967 0.416992C9.59481 0.416992 10.624 0.603048 11.5872 0.975159C12.5504 1.34727 13.3882 1.85184 14.1007 2.48887C14.8132 3.12637 15.3774 3.87602 15.7933 4.73783C16.2092 5.59963 16.4169 6.52046 16.4163 7.50033C16.4163 8.48019 16.2084 9.40102 15.7925 10.2628C15.3766 11.1246 14.8127 11.8743 14.1007 12.5118C13.3882 13.1493 12.5504 13.6541 11.5872 14.0262C10.624 14.3983 9.59481 14.5841 8.49967 14.5837ZM8.49967 13.167C10.2677 13.167 11.7653 12.618 12.9924 11.5201C14.2195 10.4222 14.833 9.08227 14.833 7.50033C14.833 5.91838 14.2195 4.57845 12.9924 3.48053C11.7653 2.38262 10.2677 1.83366 8.49967 1.83366C6.73162 1.83366 5.23405 2.38262 4.00697 3.48053C2.77988 4.57845 2.16634 5.91838 2.16634 7.50033C2.16634 9.08227 2.77988 10.4222 4.00697 11.5201C5.23405 12.618 6.73162 13.167 8.49967 13.167ZM8.57884 4.45449C8.9087 4.45449 9.19581 4.54894 9.44017 4.73783C9.68454 4.92671 9.80645 5.16283 9.80592 5.44616C9.80592 5.70588 9.71699 5.93609 9.53913 6.13678C9.36127 6.33748 9.15992 6.52637 8.93509 6.70345C8.63162 6.93956 8.36456 7.19928 8.13392 7.48262C7.90329 7.76595 7.7877 8.0847 7.78717 8.43887C7.78717 8.60415 7.85658 8.74298 7.99538 8.85537C8.13419 8.96776 8.29569 9.02371 8.47988 9.02324C8.6778 9.02324 8.84616 8.96421 8.98497 8.84616C9.12377 8.7281 9.2127 8.58053 9.25176 8.40345C9.30453 8.15553 9.42328 7.93406 9.60801 7.73903C9.79273 7.54401 9.99065 7.35819 10.2018 7.18158C10.5052 6.92185 10.766 6.63852 10.9839 6.33158C11.2019 6.02463 11.3106 5.68227 11.3101 5.30449C11.3101 4.70241 11.0362 4.20965 10.4883 3.8262C9.94051 3.44276 9.30401 3.2508 8.57884 3.25033C8.07745 3.25033 7.59929 3.34477 7.14434 3.53366C6.6894 3.72255 6.34291 4.01178 6.10488 4.40137C6.01252 4.54303 5.9827 4.69367 6.01542 4.85328C6.04815 5.01289 6.13734 5.13378 6.28301 5.21595C6.46773 5.31039 6.65905 5.33991 6.85697 5.30449C7.05488 5.26907 7.21981 5.16873 7.35176 5.00345C7.4969 4.82637 7.67845 4.6906 7.89642 4.59616C8.1144 4.50171 8.34187 4.45449 8.57884 4.45449Z"
+                fill="#353652"
+            />
+        </svg>
+    )
+}
+
+export const LineDate: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="22" height="2" viewBox="0 0 18 2" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path d="M1 1H21" stroke="#878797" strokeWidth="2" strokeLinecap="round" />
         </svg>
     )
 }

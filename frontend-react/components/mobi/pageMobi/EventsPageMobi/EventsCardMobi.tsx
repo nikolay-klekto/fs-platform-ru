@@ -5,7 +5,7 @@ import { Map, CalendarIcons, User, ForwardIconWhite } from '@/components/assets/
 import Image from 'next/image'
 import React from 'react'
 
-interface EventsCardDesktop {
+interface EventsCardMobi {
     title: string
     category: string
     image: string
@@ -18,7 +18,7 @@ interface EventsCardDesktop {
     id: number
 }
 
-const EventsCardDesktop: React.FC<EventsCardDesktop> = ({
+const EventsCardMobi: React.FC<EventsCardMobi> = ({
     title,
     category,
     image,
@@ -72,4 +72,4 @@ const EventsCardDesktop: React.FC<EventsCardDesktop> = ({
     )
 }
 
-export default EventsCardDesktop
+export default EventsCardMobi

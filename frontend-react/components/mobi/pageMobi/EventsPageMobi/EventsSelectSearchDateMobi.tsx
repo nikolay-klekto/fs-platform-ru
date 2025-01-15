@@ -12,7 +12,7 @@ interface SelectItemProps {
     onClick: () => void
 }
 
-const EventsSelectSearchDateDesktop = () => {
+const EventsSelectSearchDateMobi = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [openCalendars, setOpenCalendars] = useState<{ from: boolean; to: boolean }>({
         from: false,
@@ -279,4 +279,4 @@ const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
 
 SelectItem.displayName = 'SelectItem'
 
-export default EventsSelectSearchDateDesktop
+export default EventsSelectSearchDateMobi

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChevronDownIcon, LineDate, CalendarIcons } from '@/components/assets/icons'
+import { ChevronDownIconDesktop, LineDate, CalendarIcons } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 import { CheckedBoxIcon } from '@/components/assets/icons'
 
@@ -96,7 +96,7 @@ const EventsSelectSearchDateDesktop = () => {
                 className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Дата
-                <ChevronDownIcon
+                <ChevronDownIconDesktop
                     className={`h-[15px] w-[27px] transition-transform  duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
                 />
             </Button>

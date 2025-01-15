@@ -14,7 +14,7 @@ interface SelectOption {
     label: string
 }
 
-const EventsSelectSearchDesktop = () => {
+const EventsSelectSearchMobi = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
 
@@ -135,4 +135,4 @@ const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
 
 SelectItem.displayName = 'SelectItem'
 
-export default EventsSelectSearchDesktop
+export default EventsSelectSearchMobi

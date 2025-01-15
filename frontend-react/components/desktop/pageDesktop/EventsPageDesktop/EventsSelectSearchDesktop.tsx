@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChevronDownIcon, CheckedBoxIcon, QuestionMark } from '@/components/assets/icons'
+import { ChevronDownIconDesktop, CheckedBoxIcon, QuestionMark } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
 interface SelectItemProps {
@@ -46,7 +46,7 @@ const EventsSelectSearchDesktop = () => {
                 className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Мероприятия
-                <ChevronDownIcon
+                <ChevronDownIconDesktop
                     className={`h-[15px] w-[27px] transition-transform  duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
                 />
             </Button>

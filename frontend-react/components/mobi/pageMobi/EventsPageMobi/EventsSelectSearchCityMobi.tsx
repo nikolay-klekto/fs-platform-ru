@@ -16,7 +16,7 @@ const cities = [
     { value: 'mogilev', label: 'Могилев' },
 ]
 
-const EventsSelectSearchDateDesktop = () => {
+const EventsSelectSearchCityMobi = () => {
     const [open, setOpen] = useState(false) // Управляет открытием Popover
     const [search, setSearch] = useState('') // Поле для ввода текста поиска
     const [selectedCity, setSelectedCity] = useState<string | null>(null) // Выбранный город
@@ -82,4 +82,4 @@ const EventsSelectSearchDateDesktop = () => {
     )
 }
 
-export default EventsSelectSearchDateDesktop
+export default EventsSelectSearchCityMobi

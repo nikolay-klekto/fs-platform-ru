@@ -3,17 +3,13 @@
 import React from 'react'
 import { LessIcon, MoreIcon } from '@/components/assets/icons'
 
-interface ProfessionsPaginationDesktopProps {
+interface ProfessionsPaginationMobiProps {
     totalPages: number
     currentPage: number
     onPageChange: (page: number) => void
 }
 
-const EventsPaginationDesktop: React.FC<ProfessionsPaginationDesktopProps> = ({
-    totalPages,
-    currentPage,
-    onPageChange,
-}) => {
+const EventsPaginationMobi: React.FC<ProfessionsPaginationMobiProps> = ({ totalPages, currentPage, onPageChange }) => {
     return (
         <div className="relative z-[2] mb-[88px] mt-[73px] flex items-center justify-center gap-5">
             <LessIcon />
@@ -40,4 +36,4 @@ const EventsPaginationDesktop: React.FC<ProfessionsPaginationDesktopProps> = ({
     )
 }
 
-export default EventsPaginationDesktop
+export default EventsPaginationMobi

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChevronDownIcon } from '@/components/assets/icons'
+import { ChevronDownIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
 import { Check } from 'lucide-react'
@@ -35,7 +35,7 @@ const EventsSelectSearchDateDesktop = () => {
                     aria-expanded={open}
                 >
                     {selectedCity ? cities.find((city) => city.value === selectedCity)?.label : 'Город'}
-                    <ChevronDownIcon className="h-[15px] w-[27px] ml-2 transition-transform duration-200" />
+                    <ChevronDownIconDesktop className="h-[15px] w-[27px] ml-2 transition-transform duration-200" />
                 </Button>
             </PopoverTrigger>
             <PopoverContent
