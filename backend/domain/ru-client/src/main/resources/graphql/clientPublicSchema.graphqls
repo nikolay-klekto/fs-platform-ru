@@ -54,6 +54,8 @@ type Query {
 
     getLowestPricesByInternshipTypes: [InternshipPricesModel]
 
+    getDaysForPayOrder: Int
+
 }
 
 type Mutation {
@@ -66,7 +68,7 @@ type Mutation {
     addCity(city: CityInput!): City
     deleteCity(cityId: ID!): Boolean
 
-
+    changePassword(clientId: String!, password: String!): Boolean
 
     addCompany(company: CompanyInput!): Company
     addCompanyByPartner(partnerId: ID!, company: CompanyInput!): Company
@@ -109,6 +111,11 @@ type Mutation {
 
     addEventCategory(eventCategory: EventCategoryInput!): EventCategory
     updateEventCategory(eventCategory: EventCategoryInput!): Boolean
+
+    resetClientPassword(email: String): ErrorBooleanModel
+    checkResetCode(clientPasswordModel: ClientsResetPasswords): ErrorStringModel
+
+    addUnAuthorizeOrder(order: UnAuthorizeOrderModelInput): Order
 }
 
 input InternshipTypeInput {
@@ -117,13 +124,24 @@ input InternshipTypeInput {
     description: String
 }
 
+input UnAuthorizeOrderModelInput{
+    id: ID
+    companyOfficeId: ID
+    dateCreated: String
+    orderStatus: OrderStatus
+    startWorkDate: String
+    totalWorkDays: Int
+    price: Float
+    companyProfessionId: Int
+    contractNumber: String
+}
+
 input ReviewInput {
     id: ID
-    companyId: ID!
-    clientId: ID!
-    description: String!,
-    rate: Int!
-    username: String!
+    orderId: ID
+    clientId: ID
+    description: String,
+    rate: Int
 }
 
 input CityInput {
@@ -148,6 +166,7 @@ input OrderInput {
     totalWorkDays: Int
     price: Float
     companyProfessionId: Int
+    contractNumber: String
 }
 
 input CompanyInput {
@@ -197,27 +216,19 @@ input ClientInsert {
     phoneNumber: String,
     role: ClientRoleEnum,
     telegramUsername: String,
-    username: String
 }
 
 input ClientUpdate {
     id: ID!,
-    cityId: ID,
-    activateStatus: Boolean,
+    city: String,
     birthday: String,
-    #    birthday: String,
-    #   dateCreated: String,
-    #    dateCreated: String,
     educationStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,
     firstName: String,
     lastName: String,
-    #    password: String,
     phoneNumber: String,
-    role: ClientRoleEnum,
     telegramUsername: String,
-    username: String
 }
 
 input BasketInput {
@@ -267,13 +278,11 @@ input EventInput {
 
 type Review {
     id: ID
-    companyId: ID
+    orderId: ID
     clientId: ID
     dateCreated: String
-    #    dateCreated: String
     description: String
     rate: Int
-    username: String
 }
 
 type Order {
@@ -286,6 +295,13 @@ type Order {
     startWorkDate: String
     totalWorkDays: Int
     price: Float
+    contractNumber: String
+}
+
+input ClientsResetPasswords{
+    id: ID
+    clientEmail: String!
+    code: Int!
 }
 
 type Company {
@@ -342,7 +358,6 @@ type Client {
     phoneNumber: String,
     role: ClientRoleEnum,
     telegramUsername: String,
-    username: String
 }
 
 type Basket {
@@ -413,6 +428,11 @@ type ErrorBooleanModel {
     errorMessage: String
 }
 
+type ErrorStringModel{
+    data: String
+    errorMessage: String
+}
+
 type ErrorClientModel {
     data: Client
     errorMessage: String
@@ -475,12 +495,14 @@ enum CurrencyEnum {
     EUR
     RUB
     PLN
+    UNKNOWN
 }
 
 enum CountryNameEnum {
     BELARUS
     RUSSIA
     POLAND
+    UNKNOWN
 }
 
 enum CompanyIndustryEnum {
@@ -515,4 +537,7 @@ enum OrderStatus {
     BASKET
     TERMINATE_CONTRACT
     DELETED_FROM_BASKET
+    ALARM_TERMINATE_CURRENT_ORDER
+    NEED_TO_APPROVE_FROM_BASKET
+    PRE_ORDERED_DECLINED
 }

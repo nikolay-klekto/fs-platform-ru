@@ -45,8 +45,30 @@ open class OrderController(open val orderRepository: OrderRepository) {
     }
 
     @MutationMapping
+    fun addUnAuthorizeOrder(@Argument order: OrderModel): Mono<OrderModel> {
+        return orderRepository.insertOrder(order)
+    }
+
+    @MutationMapping
     fun updateOrder(@Argument order: OrderModel): Mono<Boolean> {
         return orderRepository.updateOrder(order)
+    }
+
+    @MutationMapping
+    fun placeOrder(@Argument orderId: Long): Mono<Boolean> {
+        return orderRepository.confirmOrder(orderId)
+    }
+
+    @MutationMapping
+    fun changeOrderStatusAfterPay(
+        @Argument orderId: Long,
+        @Argument isPaySuccess: Boolean): Mono<Boolean> {
+        return orderRepository.changeOrderStatusAfterPay(orderId, isPaySuccess)
+    }
+
+    @MutationMapping
+    fun updateOrderContractNumber(@Argument order: OrderModel): Mono<Boolean> {
+        return orderRepository.updateOrderContractNumber(order)
     }
 
     @MutationMapping

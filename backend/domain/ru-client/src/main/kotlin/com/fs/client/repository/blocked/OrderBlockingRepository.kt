@@ -131,7 +131,8 @@ abstract class OrderBlockingRepository(
             startWorkDate = orderModel.startWorkDate,
             totalWorkDays = orderModel.totalWorkDays,
             price = newOrderPrice,
-            companyProfessionId = orderModel.companyProfessionId
+            companyProfessionId = orderModel.companyProfessionId,
+            contractNumber = orderModel.contractNumber
         )
         val newOrderRecord: OrderRecord = dsl.newRecord(ORDER)
         newOrderRecord.from(newOrderModel)

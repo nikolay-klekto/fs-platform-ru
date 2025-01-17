@@ -4,6 +4,8 @@ import com.fs.client.repository.blocked.ClientBlockingRepository
 import com.fs.client.ru.ClientModel
 import com.fs.client.converter.ClientModelConverter
 import com.fs.client.ru.AuthorizationClientModel
+import com.fs.client.ru.ClientInputModel
+import com.fs.client.service.EmailService
 import com.fs.client.service.PasswordService
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
@@ -20,8 +22,7 @@ abstract class ClientRepository(
     open val dsl: DSLContext,
     open val converter: ClientModelConverter,
     open val clientBlockingRepository: ClientBlockingRepository,
-    open val passwordService: PasswordService
-) {
+    open val passwordService: PasswordService) {
 
     fun getClintById(id: String?): Mono<ClientModel> {
         return Mono.fromSupplier {
@@ -37,7 +38,7 @@ abstract class ClientRepository(
             .map(converter::toModel)
     }
 
-    fun updateClientInfo(newClientModel: ClientModel): Mono<Boolean> {
+    fun updateClientInfo(newClientModel: ClientInputModel): Mono<Boolean> {
         return Mono.fromSupplier {
             clientBlockingRepository.update(newClientModel)
         }
@@ -111,11 +112,11 @@ abstract class ClientRepository(
 //        }
 //    }
 
-    fun insertClient(clientModel: ClientModel): Mono<ErrorModel<ClientModel>> {
-        return Mono.fromSupplier {
-            ErrorModel(clientBlockingRepository.insert(clientModel), null)
-        }
-    }
+//    fun insertClient(clientModel: ClientModel): Mono<ErrorModel<ClientModel>> {
+//        return Mono.fromSupplier {
+//            ErrorModel(clientBlockingRepository.insert(clientModel), null)
+//        }
+//    }
 
     fun verifyPassword(clientModel: ClientModel): Mono<ErrorModel<String>>{
         return Mono.fromSupplier {

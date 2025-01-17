@@ -81,15 +81,15 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT), Re
         set(value): Unit = set(13, value)
         get(): String? = get(13) as String?
 
-    open var username: String?
+    open var salt: String?
         set(value): Unit = set(14, value)
         get(): String? = get(14) as String?
 
-    open var salt: String?
+    open var id: String?
         set(value): Unit = set(15, value)
         get(): String? = get(15) as String?
 
-    open var id: String?
+    open var username: String?
         set(value): Unit = set(16, value)
         get(): String? = get(16) as String?
 
@@ -119,9 +119,9 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT), Re
     override fun field12(): Field<String?> = Client.CLIENT.PHONE_NUMBER
     override fun field13(): Field<ClientRoleModel?> = Client.CLIENT.ROLE
     override fun field14(): Field<String?> = Client.CLIENT.TELEGRAM_USERNAME
-    override fun field15(): Field<String?> = Client.CLIENT.USERNAME
-    override fun field16(): Field<String?> = Client.CLIENT.SALT
-    override fun field17(): Field<String?> = Client.CLIENT.ID
+    override fun field15(): Field<String?> = Client.CLIENT.SALT
+    override fun field16(): Field<String?> = Client.CLIENT.ID
+    override fun field17(): Field<String?> = Client.CLIENT.USERNAME
     override fun component1(): Long? = basketId
     override fun component2(): Long? = cityId
     override fun component3(): Boolean? = activateStatus
@@ -136,9 +136,9 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT), Re
     override fun component12(): String? = phoneNumber
     override fun component13(): ClientRoleModel? = role
     override fun component14(): String? = telegramUsername
-    override fun component15(): String? = username
-    override fun component16(): String? = salt
-    override fun component17(): String? = id
+    override fun component15(): String? = salt
+    override fun component16(): String? = id
+    override fun component17(): String? = username
     override fun value1(): Long? = basketId
     override fun value2(): Long? = cityId
     override fun value3(): Boolean? = activateStatus
@@ -153,9 +153,9 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT), Re
     override fun value12(): String? = phoneNumber
     override fun value13(): ClientRoleModel? = role
     override fun value14(): String? = telegramUsername
-    override fun value15(): String? = username
-    override fun value16(): String? = salt
-    override fun value17(): String? = id
+    override fun value15(): String? = salt
+    override fun value16(): String? = id
+    override fun value17(): String? = username
 
     override fun value1(value: Long?): ClientRecord {
         this.basketId = value
@@ -228,17 +228,17 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT), Re
     }
 
     override fun value15(value: String?): ClientRecord {
-        this.username = value
-        return this
-    }
-
-    override fun value16(value: String?): ClientRecord {
         this.salt = value
         return this
     }
 
-    override fun value17(value: String?): ClientRecord {
+    override fun value16(value: String?): ClientRecord {
         this.id = value
+        return this
+    }
+
+    override fun value17(value: String?): ClientRecord {
+        this.username = value
         return this
     }
 
@@ -266,7 +266,7 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT), Re
     /**
      * Create a detached, initialised ClientRecord
      */
-    constructor(basketId: Long? = null, cityId: Long? = null, activateStatus: Boolean? = null, birthday: LocalDate? = null, dateCreated: LocalDateTime? = null, educationStatus: EducationModel? = null, email: String? = null, employment: EmploymentModel? = null, firstName: String? = null, lastName: String? = null, password: String? = null, phoneNumber: String? = null, role: ClientRoleModel? = null, telegramUsername: String? = null, username: String? = null, salt: String? = null, id: String? = null): this() {
+    constructor(basketId: Long? = null, cityId: Long? = null, activateStatus: Boolean? = null, birthday: LocalDate? = null, dateCreated: LocalDateTime? = null, educationStatus: EducationModel? = null, email: String? = null, employment: EmploymentModel? = null, firstName: String? = null, lastName: String? = null, password: String? = null, phoneNumber: String? = null, role: ClientRoleModel? = null, telegramUsername: String? = null, salt: String? = null, id: String? = null, username: String? = null): this() {
         this.basketId = basketId
         this.cityId = cityId
         this.activateStatus = activateStatus
@@ -281,9 +281,9 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT), Re
         this.phoneNumber = phoneNumber
         this.role = role
         this.telegramUsername = telegramUsername
-        this.username = username
         this.salt = salt
         this.id = id
+        this.username = username
     }
 
     /**
@@ -305,9 +305,9 @@ open class ClientRecord() : UpdatableRecordImpl<ClientRecord>(Client.CLIENT), Re
             this.phoneNumber = value.phoneNumber
             this.role = value.role
             this.telegramUsername = value.telegramUsername
-            this.username = value.username
             this.salt = value.salt
             this.id = value.id
+            this.username = value.username
         }
     }
 }

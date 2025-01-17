@@ -9,9 +9,11 @@ import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client
 import com.fs.domain.jooq.tables.ClientsRefreshTokens
+import com.fs.domain.jooq.tables.ClientsResetPasswords
 import com.fs.domain.jooq.tables.Company
 import com.fs.domain.jooq.tables.CompanyPartner
 import com.fs.domain.jooq.tables.CompanyProfession
+import com.fs.domain.jooq.tables.Constants
 import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.Databasechangeloglock
 import com.fs.domain.jooq.tables.Event
@@ -27,9 +29,11 @@ import com.fs.domain.jooq.tables.records.BasketRecord
 import com.fs.domain.jooq.tables.records.CityRecord
 import com.fs.domain.jooq.tables.records.ClientRecord
 import com.fs.domain.jooq.tables.records.ClientsRefreshTokensRecord
+import com.fs.domain.jooq.tables.records.ClientsResetPasswordsRecord
 import com.fs.domain.jooq.tables.records.CompanyPartnerRecord
 import com.fs.domain.jooq.tables.records.CompanyProfessionRecord
 import com.fs.domain.jooq.tables.records.CompanyRecord
+import com.fs.domain.jooq.tables.records.ConstantsRecord
 import com.fs.domain.jooq.tables.records.CountryRecord
 import com.fs.domain.jooq.tables.records.DatabasechangeloglockRecord
 import com.fs.domain.jooq.tables.records.EventCategoriesRecord
@@ -57,9 +61,11 @@ val BASKET_PKEY: UniqueKey<BasketRecord> = Internal.createUniqueKey(Basket.BASKE
 val CITY_PKEY: UniqueKey<CityRecord> = Internal.createUniqueKey(City.CITY, DSL.name("city_pkey"), arrayOf(City.CITY.ID), true)
 val CLIENT_PKEY: UniqueKey<ClientRecord> = Internal.createUniqueKey(Client.CLIENT, DSL.name("client_pkey"), arrayOf(Client.CLIENT.ID), true)
 val CLIENTS_REFRESH_TOKENS_PKEY: UniqueKey<ClientsRefreshTokensRecord> = Internal.createUniqueKey(ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS, DSL.name("clients_refresh_tokens_pkey"), arrayOf(ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS.ID), true)
+val CLIENTS_RESET_PASSWORDS_PKEY: UniqueKey<ClientsResetPasswordsRecord> = Internal.createUniqueKey(ClientsResetPasswords.CLIENTS_RESET_PASSWORDS, DSL.name("clients_reset_passwords_pkey"), arrayOf(ClientsResetPasswords.CLIENTS_RESET_PASSWORDS.ID), true)
 val COMPANY_PKEY: UniqueKey<CompanyRecord> = Internal.createUniqueKey(Company.COMPANY, DSL.name("company_pkey"), arrayOf(Company.COMPANY.ID), true)
 val COMPANY_PARTNER_PKEY: UniqueKey<CompanyPartnerRecord> = Internal.createUniqueKey(CompanyPartner.COMPANY_PARTNER, DSL.name("company_partner_pkey"), arrayOf(CompanyPartner.COMPANY_PARTNER.COMPANY_ID, CompanyPartner.COMPANY_PARTNER.PARTNER_ID), true)
 val COMPANY_PROFESSION_PKEY: UniqueKey<CompanyProfessionRecord> = Internal.createUniqueKey(CompanyProfession.COMPANY_PROFESSION, DSL.name("company_profession_pkey"), arrayOf(CompanyProfession.COMPANY_PROFESSION.ID), true)
+val CONSTANTS_PKEY: UniqueKey<ConstantsRecord> = Internal.createUniqueKey(Constants.CONSTANTS, DSL.name("constants_pkey"), arrayOf(Constants.CONSTANTS.ID), true)
 val COUNTRY_PKEY: UniqueKey<CountryRecord> = Internal.createUniqueKey(Country.COUNTRY, DSL.name("country_pkey"), arrayOf(Country.COUNTRY.CODE), true)
 val DATABASECHANGELOGLOCK_PKEY: UniqueKey<DatabasechangeloglockRecord> = Internal.createUniqueKey(Databasechangeloglock.DATABASECHANGELOGLOCK, DSL.name("databasechangeloglock_pkey"), arrayOf(Databasechangeloglock.DATABASECHANGELOGLOCK.ID), true)
 val EVENT_PKEY: UniqueKey<EventRecord> = Internal.createUniqueKey(Event.EVENT, DSL.name("event_pkey"), arrayOf(Event.EVENT.ID), true)
@@ -93,4 +99,4 @@ val ORDER__ORDER_COMPANY_OFFICE_ID_FKEY: ForeignKey<OrderRecord, OfficeRecord> =
 val ORDER__ORDER_COMPANY_PROFESSION_ID_FKEY: ForeignKey<OrderRecord, CompanyProfessionRecord> = Internal.createForeignKey(Order.ORDER, DSL.name("order_company_profession_id_fkey"), arrayOf(Order.ORDER.COMPANY_PROFESSION_ID), com.fs.domain.jooq.keys.COMPANY_PROFESSION_PKEY, arrayOf(CompanyProfession.COMPANY_PROFESSION.ID), true)
 val PARTNER__PARTNER_CLIENT_ID_FKEY: ForeignKey<PartnerRecord, ClientRecord> = Internal.createForeignKey(Partner.PARTNER, DSL.name("partner_client_id_fkey"), arrayOf(Partner.PARTNER.CLIENT_ID), com.fs.domain.jooq.keys.CLIENT_PKEY, arrayOf(Client.CLIENT.ID), true)
 val REVIEW__REVIEW_CLIENT_ID_FKEY: ForeignKey<ReviewRecord, ClientRecord> = Internal.createForeignKey(Review.REVIEW, DSL.name("review_client_id_fkey"), arrayOf(Review.REVIEW.CLIENT_ID), com.fs.domain.jooq.keys.CLIENT_PKEY, arrayOf(Client.CLIENT.ID), true)
-val REVIEW__REVIEW_COMPANY_ID_FKEY: ForeignKey<ReviewRecord, CompanyRecord> = Internal.createForeignKey(Review.REVIEW, DSL.name("review_company_id_fkey"), arrayOf(Review.REVIEW.COMPANY_ID), com.fs.domain.jooq.keys.COMPANY_PKEY, arrayOf(Company.COMPANY.ID), true)
+val REVIEW__REVIEW_ORDER_ID_FKEY: ForeignKey<ReviewRecord, OrderRecord> = Internal.createForeignKey(Review.REVIEW, DSL.name("review_order_id_fkey"), arrayOf(Review.REVIEW.ORDER_ID), com.fs.domain.jooq.keys.ORDER_PKEY, arrayOf(Order.ORDER.ID), true)

@@ -22,7 +22,7 @@ import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
 import org.jooq.Records
-import org.jooq.Row10
+import org.jooq.Row11
 import org.jooq.Schema
 import org.jooq.SelectField
 import org.jooq.Table
@@ -118,6 +118,11 @@ open class Order(
      */
     val COMPANY_PROFESSION_ID: TableField<OrderRecord, Long?> = createField(DSL.name("company_profession_id"), SQLDataType.BIGINT, this, "")
 
+    /**
+     * The column <code>order.contract_number</code>.
+     */
+    val CONTRACT_NUMBER: TableField<OrderRecord, String?> = createField(DSL.name("contract_number"), SQLDataType.VARCHAR, this, "")
+
     private constructor(alias: Name, aliased: Table<OrderRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<OrderRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
@@ -205,18 +210,18 @@ open class Order(
     override fun rename(name: Table<*>): Order = Order(name.getQualifiedName(), null)
 
     // -------------------------------------------------------------------------
-    // Row10 type methods
+    // Row11 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row10<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?> = super.fieldsRow() as Row10<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?>
+    override fun fieldsRow(): Row11<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?, String?> = super.fieldsRow() as Row11<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?, String?>
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    fun <U> mapping(from: (Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+    fun <U> mapping(from: (Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
+    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

@@ -9,9 +9,11 @@ import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client
 import com.fs.domain.jooq.tables.ClientsRefreshTokens
+import com.fs.domain.jooq.tables.ClientsResetPasswords
 import com.fs.domain.jooq.tables.Company
 import com.fs.domain.jooq.tables.CompanyPartner
 import com.fs.domain.jooq.tables.CompanyProfession
+import com.fs.domain.jooq.tables.Constants
 import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.Databasechangeloglock
 import com.fs.domain.jooq.tables.Event
@@ -51,6 +53,11 @@ val CLIENT: Client = Client.CLIENT
 val CLIENTS_REFRESH_TOKENS: ClientsRefreshTokens = ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS
 
 /**
+ * The table <code>clients_reset_passwords</code>.
+ */
+val CLIENTS_RESET_PASSWORDS: ClientsResetPasswords = ClientsResetPasswords.CLIENTS_RESET_PASSWORDS
+
+/**
  * The table <code>company</code>.
  */
 val COMPANY: Company = Company.COMPANY
@@ -64,6 +71,11 @@ val COMPANY_PARTNER: CompanyPartner = CompanyPartner.COMPANY_PARTNER
  * The table <code>company_profession</code>.
  */
 val COMPANY_PROFESSION: CompanyProfession = CompanyProfession.COMPANY_PROFESSION
+
+/**
+ * The table <code>constants</code>.
+ */
+val CONSTANTS: Constants = Constants.CONSTANTS
 
 /**
  * The table <code>country</code>.

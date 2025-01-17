@@ -23,7 +23,8 @@ class OrderModelConverter : ModelConverter<Order, OrderModel> {
             totalWorkDays = rawObject.totalWorkDays,
             price = rawObject.price,
             isExpired = rawObject.isExpired,
-            companyProfessionId = rawObject.companyProfessionId
+            companyProfessionId = rawObject.companyProfessionId,
+            contractNumber = rawObject.contractNumber
         )
     }
 
@@ -38,7 +39,8 @@ class OrderModelConverter : ModelConverter<Order, OrderModel> {
             modelObject.price,
             modelObject.orderStatus?.name,
             modelObject.dateCreated,
-            modelObject.companyProfessionId
+            modelObject.companyProfessionId,
+            modelObject.contractNumber
         )
     }
 }

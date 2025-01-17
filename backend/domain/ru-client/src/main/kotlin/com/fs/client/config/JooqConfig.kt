@@ -8,18 +8,6 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import javax.sql.DataSource
 
-//@Configuration
-//open class JooqConfig {
-//
-//    @Bean
-//    open fun dslContext(dataSource: DataSource): DSLContext {
-//        val configuration = DefaultConfiguration()
-//        configuration.set(dataSource) // Устанавливаем DataSource
-//        configuration.set(org.jooq.SQLDialect.POSTGRES) // Указываем используемый SQL-драйвер
-//        return DefaultDSLContext(configuration)
-//    }
-//}
-
 
 @Configuration
 class JooqConfig {
@@ -36,7 +24,7 @@ class JooqConfig {
     @Bean
     fun dataSource(): DataSource {
         return DataSourceBuilder.create()
-            .url(url)
+            .url(url) // Убедитесь, что эти параметры добавлены
             .username(username)
             .password(password)
             .build()
@@ -62,21 +50,13 @@ class JooqConfig {
         configuration.set(org.jooq.SQLDialect.POSTGRES)
         configuration.set(settings)
 
-        return DefaultDSLContext(configuration)
+        val dslContext = DefaultDSLContext(configuration)
+
+        // Проверочный запрос для убедительности
+        val encoding = dslContext.fetchValue("SHOW CLIENT_ENCODING")
+        println("Client encoding: $encoding")
+
+        return dslContext
     }
 
 }
-
-
-//    @Bean
-//    fun jooqConfiguration(): DefaultConfiguration {
-//        val configuration = DefaultConfiguration()
-//        configuration.set(converterProvider())
-//        return configuration
-//    }
-//
-//    @Bean
-//    fun converterProvider(): CustomConverterProvider {
-//        return CustomConverterProvider()
-//    }
-

@@ -34,7 +34,8 @@ abstract class OrderBlockingRepository(
                 startWorkDate = temporaryOrder.startWorkDate,
                 totalWorkDays = temporaryOrder.totalWorkDays,
                 price = temporaryOrder.price,
-                companyProfessionId = temporaryOrder.companyProfessionId
+                companyProfessionId = temporaryOrder.companyProfessionId,
+                contractNumber = temporaryOrder.contractNumber
             )
             insert(updatableOrderModel)
             deleteById(temporaryOrder.id!!)
@@ -128,7 +129,8 @@ abstract class OrderBlockingRepository(
             startWorkDate = orderModel.startWorkDate,
             totalWorkDays = orderModel.totalWorkDays,
             price = newOrderPrice,
-            companyProfessionId = orderModel.companyProfessionId
+            companyProfessionId = orderModel.companyProfessionId,
+            contractNumber = orderModel.contractNumber
         )
         val newOrderRecord: OrderRecord = dsl.newRecord(ORDER)
         newOrderRecord.from(newOrderModel)

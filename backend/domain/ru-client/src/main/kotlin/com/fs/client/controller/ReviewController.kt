@@ -1,7 +1,7 @@
 package com.fs.client.controller
 
 import com.fs.client.repository.ReviewRepository
-import com.fs.service.ru.ReviewModel
+import com.fs.domain.jooq.tables.pojos.Review
 import com.fs.service.ru.errors.ErrorModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
@@ -20,27 +20,27 @@ open class ReviewController(
 ) {
 
     @QueryMapping
-    open fun getReviewById(@Argument id: Long): Mono<ReviewModel> {
+    open fun getReviewById(@Argument id: Long): Mono<Review> {
         return reviewRepository.getReviewById(id)
     }
 
-    @QueryMapping
-    open fun getAllReviewsByCompany(@Argument id: Long): Flux<ReviewModel> {
-        return reviewRepository.getAllReviewByCompanyId(id)
-    }
+//    @QueryMapping
+//    open fun getAllReviewsByCompany(@Argument id: Long): Flux<Review> {
+//        return reviewRepository.getAllReviewByCompanyId(id)
+//    }
 
     @QueryMapping
-    open fun getAllReviewByClientId(@Argument clientId: String): Flux<ReviewModel> {
+        open fun getAllReviewByClientId(@Argument clientId: String): Flux<Review> {
         return reviewRepository.getAllReviewByClientId(clientId)
     }
 
     @MutationMapping
-    open fun updateReview(@Argument review: ReviewModel): Mono<Boolean> {
+    open fun updateReview(@Argument review: Review): Mono<Boolean> {
         return reviewRepository.updateReview(review)
     }
 
     @MutationMapping
-    open fun addReview(@Argument review: ReviewModel): Mono<ErrorModel<ReviewModel>> {
+    open fun addReview(@Argument review: Review): Mono<ErrorModel<Review>> {
         return reviewRepository.insertReview(review)
             .onErrorResume {
                 return@onErrorResume Mono.just(ErrorModel(null, it.message))

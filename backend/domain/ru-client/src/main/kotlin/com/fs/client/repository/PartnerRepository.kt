@@ -49,47 +49,46 @@ abstract class PartnerRepository(
             .map(converter::toModel)
     }
 
-    fun insertPartner(clientModel: ClientModel): Mono<ErrorModel<PartnerModel>> {
-        return Mono.fromSupplier {
-            var newClientModel = ClientModel(
-                clientModel.id,
-                clientModel.basketId,
-                clientModel.cityId,
-                clientModel.activateStatus,
-                clientModel.birthday,
-                clientModel.dateCreated,
-                clientModel.educationStatus,
-                clientModel.email,
-                clientModel.employment,
-                clientModel.firstName,
-                clientModel.lastName,
-                clientModel.password,
-                clientModel.phoneNumber,
-                clientModel.salt,
-                ClientRoleModel.PARTNER,
-                clientModel.telegramUsername,
-                clientModel.username
-            )
-            if (newClientModel.id == null) {
-                newClientModel = clientBlockingRepository.insert(newClientModel)
-            }
-            val partnerModel = PartnerModel(
-                id = 0,
-                clientId = newClientModel.id!!,
-                isVerified = DEFAULT_PARTNER_VERIFIED_STATUS
-
-            )
-            val newPartnerRecord: PartnerRecord = dsl.newRecord(PARTNER)
-            newPartnerRecord.from(partnerModel)
-            newPartnerRecord.reset(PARTNER.ID)
-            newPartnerRecord.store()
-            converter.toModel(newPartnerRecord.into(Partner::class.java))
-
-            return@fromSupplier ErrorModel(
-                converter.toModel(newPartnerRecord.into(Partner::class.java)),
-                null)
-        }
-    }
+//    fun insertPartner(clientModel: ClientModel): Mono<ErrorModel<PartnerModel>> {
+//        return Mono.fromSupplier {
+//            var newClientModel = ClientModel(
+//                clientModel.id,
+//                clientModel.basketId,
+//                clientModel.cityId,
+//                clientModel.activateStatus,
+//                clientModel.birthday,
+//                clientModel.dateCreated,
+//                clientModel.educationStatus,
+//                clientModel.email,
+//                clientModel.employment,
+//                clientModel.firstName,
+//                clientModel.lastName,
+//                clientModel.password,
+//                clientModel.phoneNumber,
+//                clientModel.salt,
+//                ClientRoleModel.PARTNER,
+//                clientModel.telegramUsername,
+//            )
+//            if (newClientModel.id == null) {
+//                newClientModel = clientBlockingRepository.insert(newClientModel)
+//            }
+//            val partnerModel = PartnerModel(
+//                id = 0,
+//                clientId = newClientModel.id!!,
+//                isVerified = DEFAULT_PARTNER_VERIFIED_STATUS
+//
+//            )
+//            val newPartnerRecord: PartnerRecord = dsl.newRecord(PARTNER)
+//            newPartnerRecord.from(partnerModel)
+//            newPartnerRecord.reset(PARTNER.ID)
+//            newPartnerRecord.store()
+//            converter.toModel(newPartnerRecord.into(Partner::class.java))
+//
+//            return@fromSupplier ErrorModel(
+//                converter.toModel(newPartnerRecord.into(Partner::class.java)),
+//                null)
+//        }
+//    }
 
     fun verifyPartnerStatus(partnerId: Long): Mono<Boolean> {
         return Mono.fromSupplier {

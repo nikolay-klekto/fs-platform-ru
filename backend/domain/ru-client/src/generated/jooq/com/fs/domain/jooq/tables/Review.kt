@@ -7,7 +7,7 @@ package com.fs.domain.jooq.tables
 import com.fs.domain.jooq.DefaultSchema
 import com.fs.domain.jooq.keys.REVIEW_PKEY
 import com.fs.domain.jooq.keys.REVIEW__REVIEW_CLIENT_ID_FKEY
-import com.fs.domain.jooq.keys.REVIEW__REVIEW_COMPANY_ID_FKEY
+import com.fs.domain.jooq.keys.REVIEW__REVIEW_ORDER_ID_FKEY
 import com.fs.domain.jooq.tables.records.ReviewRecord
 
 import java.time.LocalDateTime
@@ -21,7 +21,7 @@ import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
 import org.jooq.Records
-import org.jooq.Row7
+import org.jooq.Row6
 import org.jooq.Schema
 import org.jooq.SelectField
 import org.jooq.Table
@@ -73,9 +73,9 @@ open class Review(
     val ID: TableField<ReviewRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>review.company_id</code>.
+     * The column <code>review.order_id</code>.
      */
-    val COMPANY_ID: TableField<ReviewRecord, Long?> = createField(DSL.name("company_id"), SQLDataType.BIGINT, this, "")
+    val ORDER_ID: TableField<ReviewRecord, Long?> = createField(DSL.name("order_id"), SQLDataType.BIGINT, this, "")
 
     /**
      * The column <code>review.client_id</code>.
@@ -96,11 +96,6 @@ open class Review(
      * The column <code>review.rate</code>.
      */
     val RATE: TableField<ReviewRecord, Long?> = createField(DSL.name("rate"), SQLDataType.BIGINT, this, "")
-
-    /**
-     * The column <code>review.username</code>.
-     */
-    val USERNAME: TableField<ReviewRecord, String?> = createField(DSL.name("username"), SQLDataType.VARCHAR, this, "")
 
     private constructor(alias: Name, aliased: Table<ReviewRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<ReviewRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
@@ -124,23 +119,23 @@ open class Review(
     override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
     override fun getIdentity(): Identity<ReviewRecord, Long?> = super.getIdentity() as Identity<ReviewRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ReviewRecord> = REVIEW_PKEY
-    override fun getReferences(): List<ForeignKey<ReviewRecord, *>> = listOf(REVIEW__REVIEW_COMPANY_ID_FKEY, REVIEW__REVIEW_CLIENT_ID_FKEY)
+    override fun getReferences(): List<ForeignKey<ReviewRecord, *>> = listOf(REVIEW__REVIEW_ORDER_ID_FKEY, REVIEW__REVIEW_CLIENT_ID_FKEY)
 
-    private lateinit var _company: Company
+    private lateinit var _order: Order
     private lateinit var _client: Client
 
     /**
-     * Get the implicit join path to the <code>public.company</code> table.
+     * Get the implicit join path to the <code>public.order</code> table.
      */
-    fun company(): Company {
-        if (!this::_company.isInitialized)
-            _company = Company(this, REVIEW__REVIEW_COMPANY_ID_FKEY)
+    fun order(): Order {
+        if (!this::_order.isInitialized)
+            _order = Order(this, REVIEW__REVIEW_ORDER_ID_FKEY)
 
-        return _company;
+        return _order;
     }
 
-    val company: Company
-        get(): Company = company()
+    val order: Order
+        get(): Order = order()
 
     /**
      * Get the implicit join path to the <code>public.client</code> table.
@@ -174,18 +169,18 @@ open class Review(
     override fun rename(name: Table<*>): Review = Review(name.getQualifiedName(), null)
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row6 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row7<Long?, Long?, String?, LocalDateTime?, String?, Long?, String?> = super.fieldsRow() as Row7<Long?, Long?, String?, LocalDateTime?, String?, Long?, String?>
+    override fun fieldsRow(): Row6<Long?, Long?, String?, LocalDateTime?, String?, Long?> = super.fieldsRow() as Row6<Long?, Long?, String?, LocalDateTime?, String?, Long?>
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    fun <U> mapping(from: (Long?, Long?, String?, LocalDateTime?, String?, Long?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+    fun <U> mapping(from: (Long?, Long?, String?, LocalDateTime?, String?, Long?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, String?, LocalDateTime?, String?, Long?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
+    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, String?, LocalDateTime?, String?, Long?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

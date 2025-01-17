@@ -24,7 +24,8 @@ data class Order(
     var price: Double? = null,
     var orderStatus: String? = null,
     var dateCreated: LocalDateTime? = null,
-    var companyProfessionId: Long? = null
+    var companyProfessionId: Long? = null,
+    var contractNumber: String? = null
 ): Serializable {
 
 
@@ -41,6 +42,7 @@ data class Order(
         sb.append(", ").append(orderStatus)
         sb.append(", ").append(dateCreated)
         sb.append(", ").append(companyProfessionId)
+        sb.append(", ").append(contractNumber)
 
         sb.append(")")
         return sb.toString()

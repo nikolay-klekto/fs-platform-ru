@@ -35,13 +35,13 @@ open class PartnerController(
         return partnerRepository.getPartnerByCompanyId(id)
     }
 
-    @MutationMapping
-    open fun addPartner(@Argument client: ClientModel): Mono<ErrorModel<PartnerModel>> {
-        return partnerRepository.insertPartner(client)
-            .onErrorResume {
-                Mono.just(ErrorModel(null, it.message))
-            }
-    }
+//    @MutationMapping
+//    open fun addPartner(@Argument client: ClientModel): Mono<ErrorModel<PartnerModel>> {
+//        return partnerRepository.insertPartner(client)
+//            .onErrorResume {
+//                Mono.just(ErrorModel(null, it.message))
+//            }
+//    }
 
     @MutationMapping
     open fun deletePartner(@Argument id: Long): Mono<Boolean> {

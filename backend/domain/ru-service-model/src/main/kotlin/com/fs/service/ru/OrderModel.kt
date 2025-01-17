@@ -15,5 +15,6 @@ data class OrderModel(
     val startWorkDate: LocalDateTime?,
     val totalWorkDays: Long?,
     val price: Double?,
-    val companyProfessionId: Long?
+    val companyProfessionId: Long?,
+    val contractNumber: String?
 )

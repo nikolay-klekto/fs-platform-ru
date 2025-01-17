@@ -18,14 +18,16 @@ extend type Mutation{
 
     addOrder(order: OrderInput!): Order 
     updateOrder(order: OrderInput!): Boolean
+    updateOrderContractNumber(order: OrderInput!): Boolean
     deleteOrderById(id: ID!, orderStatus: OrderStatus!): Boolean
     deleteFinalOrderById(id: ID!): Boolean
     deleteAllOrdersByBasketId(basketId: ID!, orderStatus: OrderStatus!): Boolean
-    deleteAllOrdersByClientId(clientId: String!, orderStatus: OrderStatus!): Boolean 
+    deleteAllOrdersByClientId(clientId: String!, orderStatus: OrderStatus!): Boolean
+    placeOrder(orderId: ID!): Boolean
+    changeOrderStatusAfterPay(orderId: ID!, isPaySuccess: Boolean!): Boolean
 
     updateClient(client: ClientUpdate!): Boolean 
-    changePassword(clientId: String!, password: String!): Boolean 
-    addClient(client: ClientInsert): ErrorClientModel 
+#    addClient(client: ClientInsert): ErrorClientModel
     deleteClient(id: String!): Boolean
 #    verifyPassword(clientModel: AuthorizationClientModelInsert): ErrorBooleanModel
 }

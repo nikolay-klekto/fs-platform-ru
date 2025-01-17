@@ -9,9 +9,11 @@ import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client
 import com.fs.domain.jooq.tables.ClientsRefreshTokens
+import com.fs.domain.jooq.tables.ClientsResetPasswords
 import com.fs.domain.jooq.tables.Company
 import com.fs.domain.jooq.tables.CompanyPartner
 import com.fs.domain.jooq.tables.CompanyProfession
+import com.fs.domain.jooq.tables.Constants
 import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.Databasechangeloglock
 import com.fs.domain.jooq.tables.Event
@@ -69,6 +71,11 @@ open class DefaultSchema : SchemaImpl("", DefaultCatalog.DEFAULT_CATALOG) {
     val CLIENTS_REFRESH_TOKENS: ClientsRefreshTokens get() = ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS
 
     /**
+     * The table <code>clients_reset_passwords</code>.
+     */
+    val CLIENTS_RESET_PASSWORDS: ClientsResetPasswords get() = ClientsResetPasswords.CLIENTS_RESET_PASSWORDS
+
+    /**
      * The table <code>company</code>.
      */
     val COMPANY: Company get() = Company.COMPANY
@@ -82,6 +89,11 @@ open class DefaultSchema : SchemaImpl("", DefaultCatalog.DEFAULT_CATALOG) {
      * The table <code>company_profession</code>.
      */
     val COMPANY_PROFESSION: CompanyProfession get() = CompanyProfession.COMPANY_PROFESSION
+
+    /**
+     * The table <code>constants</code>.
+     */
+    val CONSTANTS: Constants get() = Constants.CONSTANTS
 
     /**
      * The table <code>country</code>.
@@ -141,9 +153,11 @@ open class DefaultSchema : SchemaImpl("", DefaultCatalog.DEFAULT_CATALOG) {
         City.CITY,
         Client.CLIENT,
         ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS,
+        ClientsResetPasswords.CLIENTS_RESET_PASSWORDS,
         Company.COMPANY,
         CompanyPartner.COMPANY_PARTNER,
         CompanyProfession.COMPANY_PROFESSION,
+        Constants.CONSTANTS,
         Country.COUNTRY,
         Databasechangeloglock.DATABASECHANGELOGLOCK,
         Event.EVENT,

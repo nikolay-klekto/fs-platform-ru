@@ -93,6 +93,8 @@ dependencies {
     implementation("com.google.api-client:google-api-client:2.2.0")
     implementation("com.google.apis:google-api-services-calendar:v3-rev411-1.25.0")
     implementation("com.google.oauth-client:google-oauth-client-jetty:1.35.0")
+    implementation("org.springframework.boot:spring-boot-starter-mail")
+
 
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -2,6 +2,7 @@ package com.fs.client.controller
 
 import com.fs.client.repository.ClientRepository
 import com.fs.client.ru.AuthorizationClientModel
+import com.fs.client.ru.ClientInputModel
 import com.fs.client.ru.ClientModel
 import com.fs.client.ru.PartnerModel
 import com.fs.service.ru.errors.ErrorModel
@@ -28,11 +29,11 @@ open class ClientController(open val clientRepository: ClientRepository) {
     fun getAllClientModels() =
         clientRepository.getAllClients()
 
-    @PutMapping("{id}")
-    fun updateClientByID(
-        @RequestBody clientModel: ClientModel
-    ) = clientRepository
-        .updateClientInfo(clientModel)
+//    @PutMapping("{id}")
+//    fun updateClientByID(
+//        @RequestBody clientModel: ClientModel
+//    ) = clientRepository
+//        .updateClientInfo(clientModel)
 
     @PutMapping("/status/{id}")
     fun updateClientActiveStatus(
@@ -90,7 +91,7 @@ open class ClientController(open val clientRepository: ClientRepository) {
     }
 
     @MutationMapping
-    open fun updateClient(@Argument client: ClientModel): Mono<Boolean> {
+    open fun updateClient(@Argument client: ClientInputModel): Mono<Boolean> {
         return clientRepository.updateClientInfo(client)
     }
 
@@ -122,13 +123,13 @@ open class ClientController(open val clientRepository: ClientRepository) {
 //        return clientRepository.changeRole(clientId, role)
 //    }
 
-    @MutationMapping
-    open fun addClient(@Argument client: ClientModel): Mono<ErrorModel<ClientModel>> {
-        return clientRepository.insertClient(client)
-            .onErrorResume {
-                return@onErrorResume Mono.just(ErrorModel(null, it.message))
-            }
-    }
+//    @MutationMapping
+//    open fun addClient(@Argument client: ClientModel): Mono<ErrorModel<ClientModel>> {
+//        return clientRepository.insertClient(client)
+//            .onErrorResume {
+//                return@onErrorResume Mono.just(ErrorModel(null, it.message))
+//            }
+//    }
 
     @MutationMapping
     open fun deleteClient(@Argument id: String): Mono<Boolean> {

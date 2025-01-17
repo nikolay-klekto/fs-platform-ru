@@ -142,11 +142,6 @@ open class Client(
     val TELEGRAM_USERNAME: TableField<ClientRecord, String?> = createField(DSL.name("telegram_username"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>client.username</code>.
-     */
-    val USERNAME: TableField<ClientRecord, String?> = createField(DSL.name("username"), SQLDataType.VARCHAR, this, "")
-
-    /**
      * The column <code>client.salt</code>.
      */
     val SALT: TableField<ClientRecord, String?> = createField(DSL.name("salt"), SQLDataType.VARCHAR, this, "")
@@ -155,6 +150,11 @@ open class Client(
      * The column <code>client.id</code>.
      */
     val ID: TableField<ClientRecord, String?> = createField(DSL.name("id"), SQLDataType.VARCHAR.nullable(false), this, "")
+
+    /**
+     * The column <code>client.username</code>.
+     */
+    val USERNAME: TableField<ClientRecord, String?> = createField(DSL.name("username"), SQLDataType.VARCHAR, this, "")
 
     private constructor(alias: Name, aliased: Table<ClientRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<ClientRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)

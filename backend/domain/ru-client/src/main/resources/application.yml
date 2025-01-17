@@ -64,6 +64,17 @@ spring:
     cors:
       allowed-origins: "*"
       allowed-methods: "*"
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: funscrut@gmail.com
+    password: fyriezkydylqtupr
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 logging:
   level:

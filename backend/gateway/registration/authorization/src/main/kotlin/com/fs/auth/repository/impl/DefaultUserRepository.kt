@@ -10,6 +10,6 @@ open class DefaultUserRepository(
     dsl: DSLContext,
     passwordService: PasswordService,
     userBlockingRepository: DefaultUserBlockingRepository,
-    basketBlockingRepository: DefaultBasketBlockingRepository
+    basketBlockingRepository: DefaultBasketBlockingRepository,
 ): UserRepository(dsl, passwordService, userBlockingRepository, basketBlockingRepository) {
 }

@@ -11,7 +11,6 @@ import com.fs.client.ru.ClientModel
 import com.fs.client.ru.enums.ClientRoleModel
 import com.github.f4b6a3.ulid.UlidCreator
 import org.jooq.DSLContext
-import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
 abstract class UserRepository(
@@ -27,7 +26,7 @@ abstract class UserRepository(
         }
 
         val possibleClient = userBlockingRepository.getByEmail(clientModel.email!!)
-            ?: throw Exception("Данного пользователя не существует!")
+            ?: throw Exception("Аккаунт не найден, проверьте вводимые данные")
 
         if (passwordService.verifyPassword(
                 clientModel.password!!,
@@ -36,7 +35,7 @@ abstract class UserRepository(
         ) {
             return possibleClient
         } else {
-            throw Exception("Пароль неверный!")
+            throw Exception("Неверно введён пароль")
         }
 
     }
@@ -111,7 +110,6 @@ abstract class UserRepository(
             salt = null,
             role = null,
             telegramUsername = null,
-            username = null
 
         )
         private val defaultClientRole = ClientRoleModel.CLIENT

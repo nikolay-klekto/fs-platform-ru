@@ -69,6 +69,50 @@ abstract class OrderRepository(
         }
     }
 
+    fun confirmOrder(orderId: Long): Mono<Boolean> {
+        return Mono.fromSupplier {
+            val oldOrderModel = orderBlockingRepository.getById(orderId)
+            if (oldOrderModel!!.orderStatus == OrderStatus.BASKET) {
+                return@fromSupplier orderBlockingRepository.updateOrderStatus(
+                    orderId,
+                    OrderStatus.NEED_TO_APPROVE_FROM_BASKET
+                )
+            } else {
+                return@fromSupplier false
+            }
+        }
+    }
+
+    fun changeOrderStatusAfterPay(orderId: Long, isPaySuccess: Boolean): Mono<Boolean> {
+        return Mono.fromSupplier {
+            val oldOrderModel = orderBlockingRepository.getById(orderId)
+            val orderStatus = oldOrderModel!!.orderStatus
+            if (orderStatus == OrderStatus.PRE_ORDERED || orderStatus == OrderStatus.PRE_ORDERED_DECLINED) {
+                if(isPaySuccess) {
+                    return@fromSupplier orderBlockingRepository.updateOrderStatus(
+                        orderId, OrderStatus.ACTUAL
+                    )
+                }else{
+                    return@fromSupplier orderBlockingRepository.updateOrderStatus(
+                        orderId, OrderStatus.PRE_ORDERED_DECLINED
+                    )
+                }
+            } else {
+                return@fromSupplier false
+            }
+        }
+    }
+
+    fun updateOrderContractNumber(orderModel: OrderModel): Mono<Boolean> {
+        return Mono.fromSupplier {
+            dsl.update(ORDER)
+                .set(ORDER.CONTRACT_NUMBER, orderModel.contractNumber)
+                .where(ORDER.ID.eq(orderModel.id))
+                .execute() == 1
+
+        }
+    }
+
     fun updateExpiredStatus() {
         log.info("Scheduler is working. The time is now {}", dateFormat.format(Date()))
 
@@ -138,12 +182,18 @@ abstract class OrderRepository(
 
     fun deleteOrderById(orderId: Long, orderStatus: OrderStatus): Mono<Boolean> {
         return Mono.fromSupplier {
-            if(orderStatus == OrderStatus.BASKET){
-                return@fromSupplier orderBlockingRepository.updateOrderStatus(orderId, OrderStatus.DELETED_FROM_BASKET)
-            }else if(orderStatus == OrderStatus.PRE_ORDERED){
-                return@fromSupplier orderBlockingRepository.updateOrderStatus(orderId, OrderStatus.TERMINATE_CONTRACT)
+            when (orderStatus) {
+                OrderStatus.BASKET -> {
+                    return@fromSupplier orderBlockingRepository.updateOrderStatus(orderId, OrderStatus.DELETED_FROM_BASKET)
+                }
+                OrderStatus.PRE_ORDERED -> {
+                    return@fromSupplier orderBlockingRepository.updateOrderStatus(orderId, OrderStatus.TERMINATE_CONTRACT)
+                }
+                OrderStatus.ACTUAL -> {
+                    return@fromSupplier orderBlockingRepository.updateOrderStatus(orderId, OrderStatus.ALARM_TERMINATE_CURRENT_ORDER)
+                }
+                else -> return@fromSupplier false
             }
-            return@fromSupplier false
         }
     }
 
@@ -204,7 +254,8 @@ abstract class OrderRepository(
                 startWorkDate = temporaryOrder.startWorkDate,
                 totalWorkDays = temporaryOrder.totalWorkDays,
                 price = temporaryOrder.price,
-                companyProfessionId = temporaryOrder.companyProfessionId
+                companyProfessionId = temporaryOrder.companyProfessionId,
+                contractNumber = temporaryOrder.contractNumber
             )
             orderBlockingRepository.insert(updatableOrderModel)
             orderBlockingRepository.deleteFinalById(temporaryOrder.id!!)

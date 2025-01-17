@@ -24,8 +24,7 @@ class ClientModelConverter : ModelConverter<Client, ClientModel> {
             phoneNumber = rawObject.phoneNumber,
             salt = rawObject.salt,
             role = rawObject.role,
-            telegramUsername = rawObject.telegramUsername,
-            username = rawObject.username
+            telegramUsername = rawObject.telegramUsername
         )
     }
 
@@ -45,7 +44,6 @@ class ClientModelConverter : ModelConverter<Client, ClientModel> {
             modelObject.phoneNumber,
             modelObject.role,
             modelObject.telegramUsername,
-            modelObject.username,
             modelObject.id,
         )
     }
