@@ -5,9 +5,11 @@ on:
   push:
     branches:
       - main
+      - dev-front-react
   pull_request:
     branches:
       - main
+      - dev-front-react
 
 jobs:
   build:
@@ -21,13 +23,13 @@ jobs:
       uses: actions/checkout@v3
       
     - name: List files in build directory
-      run: ls -R frontend/public
+      run: ls -R frontend-react
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: my-app-front
-        path: frontend/public 
+        path: frontend-react
 
   deploy:
     runs-on: ubuntu-latest
@@ -58,9 +60,9 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no root@${{ secrets.IP_DOMAIN }} << 'EOF'
           cd /home/Nikolay/funScrut/funscrut-frontend
-          docker stop funscrut-frontend || true
-          docker rm funscrut-frontend || true
-          docker rmi funscrut-frontend || true
-          docker build -t funscrut-frontend .
-          docker run -d --name funscrut-frontend -p 8085:8085 funscrut-frontend
+          docker stop react-app || true
+          docker rm react-app || true
+          docker rmi react-app || true
+          docker build -t react-app .
+          docker run -d --name react-app -p 80:80 react-app
         EOF
