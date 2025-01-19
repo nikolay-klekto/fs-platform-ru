@@ -5,34 +5,25 @@ import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import Link from 'next/link'
 import EmailInputDesktop from '../../shared/formInput/EmailInputDesktop'
-import PasswordInputDesktop from '../../shared/formInput/PasswordInputDesktop'
 
 interface LoginFormData {
     email: string
-    password: string
 }
 
 interface LoginModalDesktopProps {
     closeModal: () => void
-    openRegistrationModal: () => void
-    onLoginSuccess: () => void
-    handleOpenModalForgotPassword: () => void
+    // openRegistrationModal: () => void
+    // onLoginSuccess: () => void
+    // handleOpenModalForgotPassword: () => void
 }
 
-const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({
-    closeModal,
-    openRegistrationModal,
-    onLoginSuccess,
-    handleOpenModalForgotPassword,
-}) => {
+const ForgotPasswordModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal }) => {
     const [formData, setFormData] = useState<LoginFormData>({
         email: '',
-        password: '',
     })
 
     const [inputInternalErrors, setInputInternalErrors] = useState<{ [key: string]: string | null }>({
         email: '',
-        password: '',
     })
 
     const [formError, setFormError] = useState(false)
@@ -45,14 +36,14 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({
     }
 
     const validateForm = (): boolean => {
-        const hasEmptyFields = formData.email === '' || formData.password === ''
+        const hasEmptyFields = formData.email === ''
 
         const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
 
         return hasEmptyFields || hasInternalErrors
     }
 
-    const handleChange = (field: keyof LoginFormData, value: string | boolean) => {
+    const handleChange = (field: keyof LoginFormData, value: string) => {
         setFormData((prev) => ({
             ...prev,
             [field]: value,
@@ -68,7 +59,6 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({
             setFormError(false)
             console.log('Форма входа отправлена:', formData)
             closeModal()
-            onLoginSuccess()
         }
     }
 
@@ -85,8 +75,13 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({
                     <X size={41} color="white" className="opacity-70 w-full" />
                 </button>
                 <h2 className="mb-7 4xl:mb-6 3xl:mb-5 2xl:mb-4 text36px_desktop font-medium text-gradient_desktop_custom uppercase inline">
-                    Вход
+                    забыли пароль?
                 </h2>
+                <div className="w-[95%]">
+                    <p className="pb-4 font-medium text18px_modal_desktop text-[#878797]">
+                        Чтобы получить доступ к аккаунту, введите e-mail адрес, который вы указали при регистрации
+                    </p>
+                </div>
                 <form onSubmit={handleSubmit} className="flex flex-col align-middle w-full">
                     <div className="mb-5">
                         <EmailInputDesktop
@@ -102,30 +97,8 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({
                             required={true}
                         />
                     </div>
-                    <div className="mb-5 relative">
-                        <PasswordInputDesktop
-                            value={formData.password}
-                            label="Пароль"
-                            placeholder="Пароль"
-                            onChange={(value) => handleChange('password', value)}
-                            onError={(error) => handleError('email', error)}
-                            labelClassName="label-form-desktop-custom"
-                            inputClassName="input-form-desktop-custom"
-                            errorClassName="error-form-desktop-custom"
-                            inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
-                            inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            // externalError={errors.password}
-                            required={true}
-                        />
-                    </div>
-                    <button
-                        onClick={handleOpenModalForgotPassword}
-                        className="bg-transparent border-transparent self-end text-[#878797] font-semibold text15px_desktop"
-                    >
-                        Забыли пароль?
-                    </button>
                     <div className="w-[95%]">
-                        <p className="mt-3 text-[#353652] font-medium text15px_desktop">
+                        <p className="text-[#353652] font-medium text15px_desktop">
                             Защита от спама reCAPTCHA{' '}
                             <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
                                 Конфиденциальность
@@ -144,21 +117,12 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({
                         disabled={formError}
                         className="mx-auto bg-gradient-desktop text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg font-semibold rounded-[50px] mt-6 hover:bg-gradient-desktop-hover w-[64%]"
                     >
-                        Войти
+                        Далее
                     </Button>
                 </form>
-                <div className="mt-5 flex justify-center text15px_desktop">
-                    <p className="mr-2 text-[#878797] font-medium">Нет аккаунта?</p>
-                    <button
-                        className="underline bg-transparent border-transparent text-white font-medium"
-                        onClick={openRegistrationModal}
-                    >
-                        Зарегистрироваться
-                    </button>
-                </div>
             </div>
         </Modal>
     )
 }
 
-export default LoginModalDesktop
+export default ForgotPasswordModalDesktop

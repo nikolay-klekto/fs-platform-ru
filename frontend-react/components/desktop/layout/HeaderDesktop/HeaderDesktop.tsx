@@ -7,6 +7,7 @@ import LoginModalDesktop from '@/components/desktop/layout/LoginModalDesktop/Log
 import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationDesktop'
 import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
+import ForgotPasswordModalDesktop from '../ModalDesktop/ForgotPasswordModalDesktop'
 
 interface HeaderDesktopProps {
     onOpenModalCallDesktop: () => void
@@ -14,6 +15,12 @@ interface HeaderDesktopProps {
 const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ onOpenModalCallDesktop }) => {
     const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
     const router = useRouter()
+
+    const [isModalForgotPasswordOpen, setIsModalForgotPasswordOpen] = useState(false)
+    const handleOpenModalForgotPassword = () => {
+        setIsModalForgotPasswordOpen(true)
+    }
+    const handleCloseForgotPassword = () => setIsModalForgotPasswordOpen(false)
 
     const openModal = (type: 'login' | 'registration') => {
         setModalType(type)
@@ -66,12 +73,15 @@ const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ onOpenModalCallDesktop })
                     closeModal={closeModal}
                     openRegistrationModal={() => openModal('registration')}
                     onLoginSuccess={handleLoginSuccess}
+                    handleOpenModalForgotPassword={handleOpenModalForgotPassword}
                 />
             )}
 
             {modalType === 'registration' && (
                 <RegistrationModalDesktop closeModal={closeModal} openLoginModal={() => openModal('login')} />
             )}
+
+            {isModalForgotPasswordOpen && <ForgotPasswordModalDesktop closeModal={handleCloseForgotPassword} />}
         </>
     )
 }
