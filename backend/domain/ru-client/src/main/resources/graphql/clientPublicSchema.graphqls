@@ -116,12 +116,50 @@ type Mutation {
     checkResetCode(clientPasswordModel: ClientsResetPasswords): ErrorStringModel
 
     addUnAuthorizeOrder(order: UnAuthorizeOrderModelInput): Order
+
+    insertClientLetter(clientLetter: ClientsLettersInput): ClientsLetters
+
+    insertJobRequest(jobRequests: JobRequestsInput): JobRequests
 }
 
 input InternshipTypeInput {
     id: ID
     name: String
     description: String
+}
+
+input ClientsLettersInput{
+    id: ID
+    username: String
+    phoneNumber: String
+    email: String
+    clientType: String
+    comment: String
+}
+
+type ClientsLetters{
+    id: ID
+    username: String
+    phoneNumber: String
+    email: String
+    clientType: String
+    comment: String
+    dateCreated: String
+}
+
+input JobRequestsInput{
+    id: ID
+    username: String
+    phoneNumber: String
+    profession: String
+}
+
+type JobRequests{
+    id: ID
+    username: String
+    phoneNumber: String
+    profession: String
+    dateCreated: String
 }
 
 input UnAuthorizeOrderModelInput{

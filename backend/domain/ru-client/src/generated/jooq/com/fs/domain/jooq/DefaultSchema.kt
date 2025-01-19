@@ -8,6 +8,7 @@ import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client
+import com.fs.domain.jooq.tables.ClientsLetters
 import com.fs.domain.jooq.tables.ClientsRefreshTokens
 import com.fs.domain.jooq.tables.ClientsResetPasswords
 import com.fs.domain.jooq.tables.Company
@@ -19,6 +20,7 @@ import com.fs.domain.jooq.tables.Databasechangeloglock
 import com.fs.domain.jooq.tables.Event
 import com.fs.domain.jooq.tables.EventCategories
 import com.fs.domain.jooq.tables.InternshipType
+import com.fs.domain.jooq.tables.JobRequests
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.Order
 import com.fs.domain.jooq.tables.Partner
@@ -64,6 +66,11 @@ open class DefaultSchema : SchemaImpl("", DefaultCatalog.DEFAULT_CATALOG) {
      * The table <code>client</code>.
      */
     val CLIENT: Client get() = Client.CLIENT
+
+    /**
+     * The table <code>clients_letters</code>.
+     */
+    val CLIENTS_LETTERS: ClientsLetters get() = ClientsLetters.CLIENTS_LETTERS
 
     /**
      * The table <code>clients_refresh_tokens</code>.
@@ -121,6 +128,11 @@ open class DefaultSchema : SchemaImpl("", DefaultCatalog.DEFAULT_CATALOG) {
     val INTERNSHIP_TYPE: InternshipType get() = InternshipType.INTERNSHIP_TYPE
 
     /**
+     * The table <code>job_requests</code>.
+     */
+    val JOB_REQUESTS: JobRequests get() = JobRequests.JOB_REQUESTS
+
+    /**
      * The table <code>office</code>.
      */
     val OFFICE: Office get() = Office.OFFICE
@@ -152,6 +164,7 @@ open class DefaultSchema : SchemaImpl("", DefaultCatalog.DEFAULT_CATALOG) {
         Basket.BASKET,
         City.CITY,
         Client.CLIENT,
+        ClientsLetters.CLIENTS_LETTERS,
         ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS,
         ClientsResetPasswords.CLIENTS_RESET_PASSWORDS,
         Company.COMPANY,
@@ -163,6 +176,7 @@ open class DefaultSchema : SchemaImpl("", DefaultCatalog.DEFAULT_CATALOG) {
         Event.EVENT,
         EventCategories.EVENT_CATEGORIES,
         InternshipType.INTERNSHIP_TYPE,
+        JobRequests.JOB_REQUESTS,
         Office.OFFICE,
         Order.ORDER,
         Partner.PARTNER,

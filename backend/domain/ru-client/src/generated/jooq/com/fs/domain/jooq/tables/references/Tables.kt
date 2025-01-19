@@ -8,6 +8,7 @@ import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client
+import com.fs.domain.jooq.tables.ClientsLetters
 import com.fs.domain.jooq.tables.ClientsRefreshTokens
 import com.fs.domain.jooq.tables.ClientsResetPasswords
 import com.fs.domain.jooq.tables.Company
@@ -19,6 +20,7 @@ import com.fs.domain.jooq.tables.Databasechangeloglock
 import com.fs.domain.jooq.tables.Event
 import com.fs.domain.jooq.tables.EventCategories
 import com.fs.domain.jooq.tables.InternshipType
+import com.fs.domain.jooq.tables.JobRequests
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.Order
 import com.fs.domain.jooq.tables.Partner
@@ -46,6 +48,11 @@ val CITY: City = City.CITY
  * The table <code>client</code>.
  */
 val CLIENT: Client = Client.CLIENT
+
+/**
+ * The table <code>clients_letters</code>.
+ */
+val CLIENTS_LETTERS: ClientsLetters = ClientsLetters.CLIENTS_LETTERS
 
 /**
  * The table <code>clients_refresh_tokens</code>.
@@ -101,6 +108,11 @@ val EVENT_CATEGORIES: EventCategories = EventCategories.EVENT_CATEGORIES
  * The table <code>internship_type</code>.
  */
 val INTERNSHIP_TYPE: InternshipType = InternshipType.INTERNSHIP_TYPE
+
+/**
+ * The table <code>job_requests</code>.
+ */
+val JOB_REQUESTS: JobRequests = JobRequests.JOB_REQUESTS
 
 /**
  * The table <code>office</code>.

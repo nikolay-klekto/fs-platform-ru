@@ -8,6 +8,7 @@ import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client
+import com.fs.domain.jooq.tables.ClientsLetters
 import com.fs.domain.jooq.tables.ClientsRefreshTokens
 import com.fs.domain.jooq.tables.ClientsResetPasswords
 import com.fs.domain.jooq.tables.Company
@@ -19,6 +20,7 @@ import com.fs.domain.jooq.tables.Databasechangeloglock
 import com.fs.domain.jooq.tables.Event
 import com.fs.domain.jooq.tables.EventCategories
 import com.fs.domain.jooq.tables.InternshipType
+import com.fs.domain.jooq.tables.JobRequests
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.Order
 import com.fs.domain.jooq.tables.Partner
@@ -28,6 +30,7 @@ import com.fs.domain.jooq.tables.records.AddressRecord
 import com.fs.domain.jooq.tables.records.BasketRecord
 import com.fs.domain.jooq.tables.records.CityRecord
 import com.fs.domain.jooq.tables.records.ClientRecord
+import com.fs.domain.jooq.tables.records.ClientsLettersRecord
 import com.fs.domain.jooq.tables.records.ClientsRefreshTokensRecord
 import com.fs.domain.jooq.tables.records.ClientsResetPasswordsRecord
 import com.fs.domain.jooq.tables.records.CompanyPartnerRecord
@@ -39,6 +42,7 @@ import com.fs.domain.jooq.tables.records.DatabasechangeloglockRecord
 import com.fs.domain.jooq.tables.records.EventCategoriesRecord
 import com.fs.domain.jooq.tables.records.EventRecord
 import com.fs.domain.jooq.tables.records.InternshipTypeRecord
+import com.fs.domain.jooq.tables.records.JobRequestsRecord
 import com.fs.domain.jooq.tables.records.OfficeRecord
 import com.fs.domain.jooq.tables.records.OrderRecord
 import com.fs.domain.jooq.tables.records.PartnerRecord
@@ -60,6 +64,7 @@ val ADDRESS_PKEY: UniqueKey<AddressRecord> = Internal.createUniqueKey(Address.AD
 val BASKET_PKEY: UniqueKey<BasketRecord> = Internal.createUniqueKey(Basket.BASKET, DSL.name("basket_pkey"), arrayOf(Basket.BASKET.ID), true)
 val CITY_PKEY: UniqueKey<CityRecord> = Internal.createUniqueKey(City.CITY, DSL.name("city_pkey"), arrayOf(City.CITY.ID), true)
 val CLIENT_PKEY: UniqueKey<ClientRecord> = Internal.createUniqueKey(Client.CLIENT, DSL.name("client_pkey"), arrayOf(Client.CLIENT.ID), true)
+val CLIENTS_LETTERS_PKEY: UniqueKey<ClientsLettersRecord> = Internal.createUniqueKey(ClientsLetters.CLIENTS_LETTERS, DSL.name("clients_letters_pkey"), arrayOf(ClientsLetters.CLIENTS_LETTERS.ID), true)
 val CLIENTS_REFRESH_TOKENS_PKEY: UniqueKey<ClientsRefreshTokensRecord> = Internal.createUniqueKey(ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS, DSL.name("clients_refresh_tokens_pkey"), arrayOf(ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS.ID), true)
 val CLIENTS_RESET_PASSWORDS_PKEY: UniqueKey<ClientsResetPasswordsRecord> = Internal.createUniqueKey(ClientsResetPasswords.CLIENTS_RESET_PASSWORDS, DSL.name("clients_reset_passwords_pkey"), arrayOf(ClientsResetPasswords.CLIENTS_RESET_PASSWORDS.ID), true)
 val COMPANY_PKEY: UniqueKey<CompanyRecord> = Internal.createUniqueKey(Company.COMPANY, DSL.name("company_pkey"), arrayOf(Company.COMPANY.ID), true)
@@ -71,6 +76,7 @@ val DATABASECHANGELOGLOCK_PKEY: UniqueKey<DatabasechangeloglockRecord> = Interna
 val EVENT_PKEY: UniqueKey<EventRecord> = Internal.createUniqueKey(Event.EVENT, DSL.name("event_pkey"), arrayOf(Event.EVENT.ID), true)
 val EVENT_CATEGORY_PKEY: UniqueKey<EventCategoriesRecord> = Internal.createUniqueKey(EventCategories.EVENT_CATEGORIES, DSL.name("event_category_pkey"), arrayOf(EventCategories.EVENT_CATEGORIES.ID), true)
 val INTERNSHIP_TYPE_PKEY: UniqueKey<InternshipTypeRecord> = Internal.createUniqueKey(InternshipType.INTERNSHIP_TYPE, DSL.name("internship_type_pkey"), arrayOf(InternshipType.INTERNSHIP_TYPE.ID), true)
+val JOB_REQUESTS_PKEY: UniqueKey<JobRequestsRecord> = Internal.createUniqueKey(JobRequests.JOB_REQUESTS, DSL.name("job_requests_pkey"), arrayOf(JobRequests.JOB_REQUESTS.ID), true)
 val OFFICE_PKEY: UniqueKey<OfficeRecord> = Internal.createUniqueKey(Office.OFFICE, DSL.name("office_pkey"), arrayOf(Office.OFFICE.ID), true)
 val ORDER_PKEY: UniqueKey<OrderRecord> = Internal.createUniqueKey(Order.ORDER, DSL.name("order_pkey"), arrayOf(Order.ORDER.ID), true)
 val PARTNER_PKEY: UniqueKey<PartnerRecord> = Internal.createUniqueKey(Partner.PARTNER, DSL.name("partner_pkey"), arrayOf(Partner.PARTNER.ID), true)
