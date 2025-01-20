@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { TelegramIconDesktop, InstagramIconDesktop, VkIconDesktop } from '@/components/assets/icons'
+import { TelegramIconDesktop, InstagramIconDesktop, VkIconDesktop, LinkedInIconDesktop } from '@/components/assets/icons'
 
 interface FooterIconLink {
     id: number
@@ -52,7 +52,7 @@ export const contentFooterDesktop: FooterSection[] = [
         icons: [
             { id: 11, name: <TelegramIconDesktop />, href: '#' },
             { id: 12, name: <InstagramIconDesktop />, href: '#' },
-            { id: 13, name: <VkIconDesktop />, href: '#' },
+            { id: 13, name: <LinkedInIconDesktop />, href: '#' },
         ],
     },
     {
