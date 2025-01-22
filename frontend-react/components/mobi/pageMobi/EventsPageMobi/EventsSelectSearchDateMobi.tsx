@@ -42,23 +42,38 @@ const EventsSelectSearchDateMobi = () => {
         return formattedDate
     }
 
-    const handleInputChange = (key: 'from' | 'to', value: string) => {
+    type DateKey = 'from' | 'to'
+
+    const handleInputChange = (key: DateKey, value: string) => {
         const formattedValue = autoFormatDate(value)
+
         setInputValues((prev) => ({
             ...prev,
             [key]: formattedValue,
         }))
 
-        if (/^\d{2}\.\d{2}\.\d{4}$/.test(formattedValue)) {
-            const [day, month, year] = formattedValue.split('.').map(Number)
-            const parsedDate = new Date(year, month - 1, day)
-            if (!isNaN(parsedDate.getTime())) {
-                setDates((prev) => ({
-                    ...prev,
-                    [key]: parsedDate,
-                }))
-            }
+        if (isValidDate(formattedValue)) {
+            const parsedDate = parseDate(formattedValue)
+            setDates((prev) => ({
+                ...prev,
+                [key]: parsedDate,
+            }))
         }
+    }
+
+    const isValidDate = (dateStr: string): boolean => {
+        const dateRegex = /^\d{2}.\d{2}.\d{4}$/
+        if (!dateRegex.test(dateStr)) return false
+
+        const [day, month, year] = dateStr.split('.').map(Number)
+        const parsedDate = new Date(year, month - 1, day)
+
+        return !isNaN(parsedDate.getTime())
+    }
+
+    const parseDate = (dateStr: string): Date => {
+        const [day, month, year] = dateStr.split('.').map(Number)
+        return new Date(year, month - 1, day)
     }
 
     const handleSelectToggle = () => {

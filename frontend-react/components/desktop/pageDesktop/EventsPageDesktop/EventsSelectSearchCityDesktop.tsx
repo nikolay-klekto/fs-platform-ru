@@ -17,11 +17,10 @@ const cities = [
 ]
 
 const EventsSelectSearchDateDesktop = () => {
-    const [open, setOpen] = useState(false) // Управляет открытием Popover
-    const [search, setSearch] = useState('') // Поле для ввода текста поиска
-    const [selectedCity, setSelectedCity] = useState<string | null>(null) // Выбранный город
+    const [open, setOpen] = useState(false)
+    const [search, setSearch] = useState('')
+    const [selectedCity, setSelectedCity] = useState<string | null>(null)
 
-    // Фильтруем список городов по введённому тексту
     const filteredCities = cities.filter((city) => city.label.toLowerCase().includes(search.toLowerCase()))
 
     return (
@@ -45,13 +44,7 @@ const EventsSelectSearchDateDesktop = () => {
                 }}
             >
                 <Command className="flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
-                    {/* Поле ввода для фильтрации */}
-                    <CommandInput
-                        placeholder="Поиск"
-                        value={search} // Текущее значение поиска
-                        onValueChange={(value) => setSearch(value)} // Обновление текста поиска
-                    />
-                    {/* Список результатов */}
+                    <CommandInput placeholder="Поиск" value={search} onValueChange={(value) => setSearch(value)} />
                     <CommandList>
                         {filteredCities.length === 0 ? (
                             <CommandEmpty>Не найден.</CommandEmpty>
@@ -62,9 +55,9 @@ const EventsSelectSearchDateDesktop = () => {
                                         key={city.value}
                                         value={city.value}
                                         onSelect={() => {
-                                            setSelectedCity(city.value) // Устанавливаем выбранный город
-                                            setSearch(city.label) // Обновляем текст поиска
-                                            setOpen(false) // Закрываем Popover
+                                            setSelectedCity(city.value)
+                                            setSearch(city.label)
+                                            setOpen(false)
                                         }}
                                     >
                                         {city.label}

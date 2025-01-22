@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { ChevronDownIconDesktop, LineDate, CalendarIcons } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 import { CheckedBoxIcon } from '@/components/assets/icons'
@@ -42,28 +42,58 @@ const EventsSelectSearchDateDesktop = () => {
         return formattedDate
     }
 
-    const handleInputChange = (key: 'from' | 'to', value: string) => {
+    type DateKey = 'from' | 'to'
+
+    const handleInputChange = (key: DateKey, value: string) => {
         const formattedValue = autoFormatDate(value)
+
         setInputValues((prev) => ({
             ...prev,
             [key]: formattedValue,
         }))
 
-        if (/^\d{2}\.\d{2}\.\d{4}$/.test(formattedValue)) {
-            const [day, month, year] = formattedValue.split('.').map(Number)
-            const parsedDate = new Date(year, month - 1, day)
-            if (!isNaN(parsedDate.getTime())) {
-                setDates((prev) => ({
-                    ...prev,
-                    [key]: parsedDate,
-                }))
-            }
+        if (isValidDate(formattedValue)) {
+            const parsedDate = parseDate(formattedValue)
+            setDates((prev) => ({
+                ...prev,
+                [key]: parsedDate,
+            }))
         }
+    }
+
+    const isValidDate = (dateStr: string): boolean => {
+        const dateRegex = /^\d{2}.\d{2}.\d{4}$/
+        if (!dateRegex.test(dateStr)) return false
+
+        const [day, month, year] = dateStr.split('.').map(Number)
+        const parsedDate = new Date(year, month - 1, day)
+
+        return !isNaN(parsedDate.getTime())
+    }
+
+    const parseDate = (dateStr: string): Date => {
+        const [day, month, year] = dateStr.split('.').map(Number)
+        return new Date(year, month - 1, day)
     }
 
     const handleSelectToggle = () => {
         setIsOpen((prev) => !prev)
     }
+
+    const calendarRef = useRef<HTMLDivElement>(null)
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
+            setIsOpen(false)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
 
     const toggleCalendar = (key: 'from' | 'to') => {
         setOpenCalendars((prev) => ({
@@ -88,7 +118,7 @@ const EventsSelectSearchDateDesktop = () => {
     }
 
     return (
-        <div className="relative z-[3]">
+        <div className="relative z-[3]" ref={calendarRef}>
             <Button
                 variant={'select_btn_desktop'}
                 size={'select_btn_desktop_events'}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { ChevronDownIconDesktop, CheckedBoxIcon, QuestionMark } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
@@ -17,6 +17,7 @@ interface SelectOption {
 const EventsSelectSearchDesktop = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
+    const dropdownRef = useRef<HTMLDivElement>(null) // Создаем ref для контейнера
 
     const toggleOption = (value: string) => {
         setSelectedOptions((prev) =>
@@ -28,6 +29,19 @@ const EventsSelectSearchDesktop = () => {
         setIsOpen((prev) => !prev)
     }
 
+    const handleClickOutside = (event: MouseEvent) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+            setIsOpen(false) // Закрываем dropdown, если клик вне области
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
+
     const options: SelectOption[] = [
         { value: 'fairs', label: 'Выставки/презентации' },
         { value: 'open_days', label: 'Дни открытых дверей' },
@@ -38,7 +52,7 @@ const EventsSelectSearchDesktop = () => {
     ]
 
     return (
-        <div className="relative z-[3]">
+        <div className="relative z-[3]" ref={dropdownRef}>
             <Button
                 variant={'select_btn_desktop'}
                 size={'select_btn_desktop_events'}
