@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import { contentFooterMobi, contentFooterMobiImages } from './contentFooterMobi'
-import { LogoIconMobi, TelegramIconMobi, InstagramIconMobi, VkIconMobi } from '@/components/assets/iconsMobi'
+import { LogoIconMobi, TelegramIconMobi, InstagramIconMobi, VkIconMobi, LinkedInIconMobi } from '@/components/assets/iconsMobi'
 
 const FooterMobi: React.FC = () => {
     return (
@@ -17,7 +17,7 @@ const FooterMobi: React.FC = () => {
                     backgroundSize: 'cover',
                 }}
             >
-                <div className="container flex flex-col items-center pt-6 pb-12">
+                <div className="container flex flex-col items-center pt-6 pb-12 pl-3 pr-3">
                     <LogoIconMobi />
                     <div className="flex justify-between w-full pt-7">
                         {contentFooterMobi.map((section) => (
@@ -52,7 +52,7 @@ const FooterMobi: React.FC = () => {
                             <InstagramIconMobi />
                         </a>
                         <a href="#" target="_blank" rel="noopener noreferrer">
-                            <VkIconMobi />
+                            <LinkedInIconMobi />
                         </a>
                     </div>
                     <div className="w-full h-[2px] bg-custom-grey rounded-full"></div>

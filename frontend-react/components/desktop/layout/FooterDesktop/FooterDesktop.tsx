@@ -56,7 +56,7 @@ const FooterDesktop: React.FC = () => {
                         </div>
                     </div>
                     <div className="w-full h-[2px] bg-custom-grey rounded-full"></div>
-                    <div className="flex flex-col items-center justify-between h-[162px] mt-12 pl-24 pr-24 2xl:px-0">
+                    <div className="flex flex-col items-center justify-between h-[162px] mt-10 pl-24 pr-24 2xl:px-0">
                         <div className="flex justify-between items-center w-full max-w-[1190px]">
                             {contentFooterDesktopImages.map((image) => (
                                 <Image
@@ -68,13 +68,13 @@ const FooterDesktop: React.FC = () => {
                                 />
                             ))}
                         </div>
-                        <p className="max-w-[896px] custom-grey text-2xl font-medium text-center">
+                        <p className="max-w-[896px] custom-grey text-2xl font-medium text-center pt-7 pb-4">
                             ООО “Надежные программы” УНП 100160363. 220006, Республика Беларусь, г. Минск, ул. Аранская
                             8, блок 1, эт. 4 Свидетельство о госдарственной регистрации №100160363, выдано Минским
                             горисполкомом 26.10.2023 г. Интернет-магазин включен в Торговый реестр Республики Беларусь
                             01.01.2001 за №111111
                         </p>
-                        <p className="text-white text-2xl font-medium text-center">
+                        <p className="text-white text-2xl font-medium text-center mb-5">
                             funscrut .by © 2023, ООО «funscrut» УНП 000000000
                         </p>
                     </div>

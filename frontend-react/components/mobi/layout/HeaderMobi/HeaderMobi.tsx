@@ -13,6 +13,7 @@ import {
     TelegramIconBurgerMobi,
     InstagramIconBurgerMobi,
     VkIconBurgerMobi,
+    LinkedInIconMobiBurger,
 } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
 import RegistrationModalMobi from '@/components/mobi/layout/RegistrationModalMobi/RegistrationModalMobi'
@@ -62,11 +63,11 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                 <div
                     className={`w-full h-[56px] flex items-center justify-between relative ${!disableBackground ? 'container' : ''}`}
                 >
-                    <PhoneIconMobi className="cursor-pointer" />
+                    <PhoneIconMobi className="cursor-pointer ml-3" />
                     <div className="absolute left-1/2 transform -translate-x-1/2 top-7 -translate-y-1/2">
                         <LogoIconMobi />
                     </div>
-                    <div className="flex gap-[17px]">
+                    <div className="flex gap-[17px] mr-2">
                         <ShoppingCartIconMobi className="cursor-pointer flex-shrink-0" />
                         <BurgerMenuIconMobi className="cursor-pointer flex-shrink-0" onClick={toggleMenu} />
                     </div>
@@ -101,7 +102,7 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                                 <InstagramIconBurgerMobi />
                             </a>
                             <a href="#" target="_blank" rel="noopener noreferrer">
-                                <VkIconBurgerMobi />
+                                <LinkedInIconMobiBurger />
                             </a>
                         </div>
                     </div>
