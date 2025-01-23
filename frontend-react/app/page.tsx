@@ -15,9 +15,11 @@ export default function Home() {
     const [isModalCallDesktopOpen, setModalCallDesktopOpen] = useState(false)
     const handleOpenModalCallDesktop = () => setModalCallDesktopOpen(true)
     const handleCloseModalCallDesktop = () => setModalCallDesktopOpen(false)
+
     useEffect(() => {
         setIsClient(true)
     }, [])
+
     const isDesktop = useMediaQuery({
         query: '(min-width: 1240px)',
     })
