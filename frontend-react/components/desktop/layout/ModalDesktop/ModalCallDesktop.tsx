@@ -6,7 +6,7 @@ import { X } from 'lucide-react'
 import Link from 'next/link'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateNameDesktop } from '@/components/desktop/commonDesktop/validate/validateNameDesktop'
-import PhoneInputDesktop from '@/components/desktop/shared/formInput/PhoneInputDesktop'
+import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 
 interface FormData {
     name: string
@@ -66,6 +66,18 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
         }
     }
 
+    const [inputTouched, setInputTouched] = useState({
+        email: false,
+        phone: false,
+    })
+
+    const handleInputBlur = (field) => {
+        setInputTouched((prev) => ({
+            ...prev,
+            [field]: true,
+        }))
+    }
+
     return (
         <>
             {step === 'form' && (
@@ -98,15 +110,24 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
                                 />
                             </div>
                             <div className="flex flex-col w-full">
-                                <PhoneInputDesktop
+                                <EnhancedInput
+                                    type="tel"
+                                    name="phone"
+                                    placeholder="Номер телефона"
                                     value={formData.phone}
+                                    onBlur={() => handleInputBlur('phone')}
+                                    validate={(value) => validatePhoneDesktop(value)}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
-                                    onError={(error) => setErrors((prev) => ({ ...prev, phone: error }))}
-                                    externalError={errors.phone}
-                                    inputClassName="border border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
+                                    className={`${
+                                        inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
+                                            ? 'border-[#bc8070] focus:border-[#bc8070]'
+                                            : 'border-[#878797] focus:border-[#878797]'
+                                    } border rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white`}
+                                    label="Телефон*"
                                     labelClassName="mb-1 text-2xl font-medium text-white"
-                                    inputERRAddStyle="border-red-500"
-                                    inputNOERRAddStyle="border-[#878797]"
+                                    wrapperClassName="w-full"
+                                    mask="+375 (99) 999-99-99"
+                                    maskPlaceholder="_"
                                 />
                             </div>
                             <div className="flex flex-col w-full">

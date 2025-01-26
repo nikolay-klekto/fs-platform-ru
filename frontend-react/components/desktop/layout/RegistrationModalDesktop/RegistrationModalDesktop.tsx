@@ -165,16 +165,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             placeholder="Почта"
                             value={formData.email}
                             onBlur={() => handleInputBlur('email')}
-                            validate={(value) => {
-                                const error = !value.trim()
-                                    ? 'Поле обязательно для заполнения'
-                                    : validateEmailDesktop(value).textError
-                                return {
-                                    textError: error,
-                                    status: !error,
-                                    styleError: Boolean(error),
-                                }
-                            }}
+                            validate={(value) => validateEmailDesktop(value)}
                             onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
                             className={`${
                                 inputTouched.email && validateEmailDesktop(formData.email).styleError
@@ -196,16 +187,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             placeholder="Номер телефона"
                             value={formData.phone}
                             onBlur={() => handleInputBlur('phone')}
-                            validate={(value) => {
-                                const error = !value.trim()
-                                    ? 'Поле обязательно для заполнения'
-                                    : validatePhoneDesktop(value).textError
-                                return {
-                                    textError: error,
-                                    status: !error,
-                                    styleError: Boolean(error),
-                                }
-                            }}
+                            validate={(value) => validatePhoneDesktop(value)}
                             onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
                             className={`${
                                 inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
@@ -215,6 +197,8 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             label="Телефон*"
                             labelClassName="mb-1 text-2xl font-medium text-white"
                             wrapperClassName="w-full"
+                            mask="+375 (99) 999-99-99"
+                            maskPlaceholder="_"
                         />
                         {inputInternalErrors.phone && (
                             <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>

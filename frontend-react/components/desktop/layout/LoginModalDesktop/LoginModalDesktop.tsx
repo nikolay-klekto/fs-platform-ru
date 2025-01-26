@@ -4,7 +4,9 @@ import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import Link from 'next/link'
-import EmailInputDesktop from '../../shared/formInput/EmailInputDesktop'
+import { EnhancedInput } from '@/components/ui/input'
+import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
+// import EmailInputDesktop from '../../shared/formInput/EmailInputDesktop'
 import PasswordInputDesktop from '../../shared/formInput/PasswordInputDesktop'
 
 interface LoginFormData {
@@ -72,6 +74,18 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
         }
     }, [formData, inputInternalErrors])
 
+    const [inputTouched, setInputTouched] = useState({
+        email: false,
+        phone: false,
+    })
+
+    const handleInputBlur = (field) => {
+        setInputTouched((prev) => ({
+            ...prev,
+            [field]: true,
+        }))
+    }
+
     return (
         <Modal show={true} onClose={closeModal} size="medium" showCloseButton={false}>
             <div className="flex flex-col justify-center items-center pt-[40px] pb-[30px] w-[73%] mx-auto">
@@ -83,18 +97,26 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
                 </h2>
                 <form onSubmit={handleSubmit} className="flex flex-col align-middle w-full">
                     <div className="mb-5">
-                        <EmailInputDesktop
+                        <EnhancedInput
+                            type="email"
+                            name="email"
+                            placeholder="Почта"
                             value={formData.email}
-                            onChange={(value) => handleChange('email', value)}
-                            onError={(error) => handleError('email', error)}
-                            inputClassName="input-form-desktop-custom"
-                            labelClassName="label-form-desktop-custom"
-                            errorClassName="error-form-desktop-custom"
-                            inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
-                            inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            // externalError={errors.email}
-                            required={true}
+                            onBlur={() => handleInputBlur('email')}
+                            validate={(value) => validateEmailDesktop(value)}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
+                            className={`${
+                                inputTouched.email && validateEmailDesktop(formData.email).styleError
+                                    ? 'border-[#bc8070] focus:border-[#bc8070] '
+                                    : 'border-[#878797] focus:border-[#878797]'
+                            } border rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white`}
+                            label="Почта*"
+                            labelClassName="mb-1 text-2xl font-medium text-white"
+                            wrapperClassName="w-full"
                         />
+                        {inputInternalErrors.email && (
+                            <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
+                        )}
                     </div>
                     <div className="mb-5 relative">
                         <PasswordInputDesktop

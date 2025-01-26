@@ -63,7 +63,7 @@ const ModalCallMobi: React.FC = () => {
                     <div className="relative max-w-md w-full mx-4">
                         <button
                             onClick={handleClose}
-                            className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
+                            className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
                             <X size={24} color="#878797" />
                         </button>
