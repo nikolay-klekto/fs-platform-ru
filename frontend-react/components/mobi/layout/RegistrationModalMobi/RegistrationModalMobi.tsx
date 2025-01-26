@@ -4,10 +4,13 @@ import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import Link from 'next/link'
-import EmailInputMobi from '../../shared/formInput/EmailInputMobi'
+import { EnhancedInput } from '@/components/ui/input'
+import { validateEmailMobi } from '../../commonMobi/validate/validateEmailMobi'
+import { validatePhoneMobi } from '../../commonMobi/validate/validatePhoneMobi'
+// import EmailInputMobi from '../../shared/formInput/EmailInputMobi'
 import PasswordInputMobi from '../../shared/formInput/PasswordInputMobi'
-import PhoneInputMobi from '../../shared/formInput/PhoneInputMobi'
-import CheckBoxInputMobi from '../../shared/formInput/CheckBoxInputMobi'
+// import PhoneInputMobi from '../../shared/formInput/PhoneInputMobi'
+// import CheckBoxInputMobi from '../../shared/formInput/CheckBoxInputMobi'
 
 interface RegistrationFormData {
     email: string
@@ -140,6 +143,17 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ closeModa
         }
     }, [formData, errors, inputInternalErrors])
 
+    const [inputTouched, setInputTouched] = useState({
+        email: false,
+        phone: false,
+    })
+
+    const handleInputBlur = (field) => {
+        setInputTouched((prev) => ({
+            ...prev,
+            [field]: true,
+        }))
+    }
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
             <div className="relative rounded-[50px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat flex flex-col items-center w-[90%] max-w-[500px]">
@@ -154,7 +168,7 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ closeModa
                 </h1>
                 <form onSubmit={handleSubmit} className="flex flex-col align-middle w-[80%]">
                     <div className="mb-3">
-                        <EmailInputMobi
+                        {/* <EmailInputMobi
                             value={formData.email}
                             onChange={(value) => handleChange('email', value)}
                             onError={(error) => handleError('email', error)}
@@ -165,10 +179,39 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ closeModa
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             // externalError={errors.email}
                             required={true}
+                        /> */}
+                        <EnhancedInput
+                            type="email"
+                            name="email"
+                            placeholder="Почта"
+                            value={formData.email}
+                            onBlur={() => handleInputBlur('email')}
+                            validate={(value) => {
+                                const error = !value.trim()
+                                    ? 'Поле обязательно для заполнения'
+                                    : validateEmailMobi(value).textError
+                                return {
+                                    textError: error,
+                                    status: !error,
+                                    styleError: Boolean(error),
+                                }
+                            }}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
+                            className={`${
+                                inputTouched.email && validateEmailMobi(formData.email).styleError
+                                    ? 'border-[#bc8070] focus:border-[#bc8070] '
+                                    : 'border-[#878797] focus:border-[#878797]'
+                            } border rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white`}
+                            label="Почта*"
+                            labelClassName="mb-1 text-2xl font-medium text-white"
+                            wrapperClassName="w-full"
                         />
+                        {inputInternalErrors.email && (
+                            <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
+                        )}
                     </div>
                     <div className="mb-3">
-                        <PhoneInputMobi
+                        {/* <PhoneInputMobi
                             value={formData.phone}
                             onChange={(value) => handleChange('phone', value)}
                             onError={(error) => handleError('phone', error)}
@@ -179,7 +222,36 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ closeModa
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             // externalError={errors.phone}
                             required={true}
+                        /> */}
+                        <EnhancedInput
+                            type="tel"
+                            name="phone"
+                            placeholder="Номер телефона"
+                            value={formData.phone}
+                            onBlur={() => handleInputBlur('phone')}
+                            validate={(value) => {
+                                const error = !value.trim()
+                                    ? 'Поле обязательно для заполнения'
+                                    : validatePhoneMobi(value).textError
+                                return {
+                                    textError: error,
+                                    status: !error,
+                                    styleError: Boolean(error),
+                                }
+                            }}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
+                            className={`${
+                                inputTouched.phone && validatePhoneMobi(formData.phone).styleError
+                                    ? 'border-[#bc8070] focus:border-[#bc8070]'
+                                    : 'border-[#878797] focus:border-[#878797]'
+                            } border rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white`}
+                            label="Телефон*"
+                            labelClassName="mb-1 text-2xl font-medium text-white"
+                            wrapperClassName="w-full"
                         />
+                        {inputInternalErrors.phone && (
+                            <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>
+                        )}
                     </div>
                     <div className="mb-3 relative">
                         <PasswordInputMobi
@@ -215,7 +287,7 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ closeModa
                         />
                         {errors.confirmPassword && <p className=" error-form-mobi-custom">{errors.confirmPassword}</p>}
                     </div>
-                    <div className="mt-2 mb-1">
+                    {/* <div className="mt-2 mb-1">
                         <CheckBoxInputMobi
                             id="subscribe"
                             checked={formData.subscribe}
@@ -231,6 +303,37 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ closeModa
                             label="Согласен с условиями использования"
                         />
                         {errors.agree && <p className="error-form-mobi-custom">{errors.agree}</p>}
+                    </div> */}
+                    <div className="mb-2">
+                        <EnhancedInput
+                            type="checkbox"
+                            name="subscribe"
+                            checked={formData.subscribe}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, subscribe: value }))}
+                            label="Я согласен(а) на обработку персональных данных"
+                            wrapperClassName="flex gap-2 pb-2"
+                            labelClassName={`${formData.subscribe ? 'text-white' : 'text-[#878797]'}`}
+                        />
+                    </div>
+                    <div className="mb-2">
+                        <EnhancedInput
+                            type="checkbox"
+                            name="agree"
+                            checked={formData.agree}
+                            validate={(value) => {
+                                const error = !value ? 'Вы должны согласиться с условиями' : ''
+                                return {
+                                    textError: error,
+                                    status: !error,
+                                    styleError: Boolean(error),
+                                }
+                            }}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, agree: value }))}
+                            label="Я согласен(а) получать новости о стажировках"
+                            wrapperClassName="flex gap-2 pb-2"
+                            labelClassName={`${formData.agree ? 'text-white' : 'text-[#878797]'}`}
+                        />
+                        {errors.agree && <p className="error-form-desktop-custom">{errors.agree}</p>}
                     </div>
                     {formError && <p className="error-form-mobi-custom">Заполните необходимые поля</p>}
                     <Button

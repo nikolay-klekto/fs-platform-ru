@@ -1,13 +1,12 @@
-'use client'
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import Link from 'next/link'
-import PhoneInputDesktop from '../../shared/formInput/PhoneInputDesktop'
-import EmailInputDesktop from '../../shared/formInput/EmailInputDesktop'
+import { EnhancedInput } from '@/components/ui/input'
+import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
+import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 import PasswordInputDesktop from '../../shared/formInput/PasswordInputDesktop'
-import CheckBoxInputDesktop from '../../shared/formInput/CheckBoxInputDesktop'
 
 interface RegistrationFormData {
     email: string
@@ -22,6 +21,7 @@ interface RegistrationModalDesktopProps {
     closeModal: () => void
     openLoginModal: () => void
 }
+
 const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ closeModal, openLoginModal }) => {
     const [formData, setFormData] = useState<RegistrationFormData>({
         email: '',
@@ -74,7 +74,6 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                 ...prev,
                 [field]: value,
             }
-
             if (field === 'confirmPassword' && typeof value === 'string') {
                 if (value !== updatedFormData.password) {
                     setErrors((prevErrors) => ({
@@ -88,7 +87,6 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                     }))
                 }
             }
-
             if (field === 'password' && typeof value === 'string') {
                 if (updatedFormData.confirmPassword && value !== updatedFormData.confirmPassword) {
                     setErrors((prevErrors) => ({
@@ -102,7 +100,6 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                     }))
                 }
             }
-
             if (field === 'agree' && typeof value === 'boolean') {
                 if (!value) {
                     setErrors((prevErrors) => ({
@@ -139,6 +136,18 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
         }
     }, [formData, errors, inputInternalErrors])
 
+    const [inputTouched, setInputTouched] = useState({
+        email: false,
+        phone: false,
+    })
+
+    const handleInputBlur = (field) => {
+        setInputTouched((prev) => ({
+            ...prev,
+            [field]: true,
+        }))
+    }
+
     return (
         <Modal show={true} onClose={closeModal} size="medium" showCloseButton={false}>
             <div className="flex flex-col justify-center items-center pt-[40px] pb-[30px] w-[73%] mx-auto">
@@ -150,32 +159,66 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                 </h2>
                 <form onSubmit={handleSubmit} className="flex flex-col align-middle w-full">
                     <div className="mb-5">
-                        <EmailInputDesktop
+                        <EnhancedInput
+                            type="email"
+                            name="email"
+                            placeholder="Почта"
                             value={formData.email}
-                            onChange={(value) => handleChange('email', value)}
-                            onError={(error) => handleError('email', error)}
-                            inputClassName="input-form-desktop-custom"
-                            labelClassName="label-form-desktop-custom"
-                            errorClassName="error-form-desktop-custom"
-                            inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
-                            inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            // externalError={errors.email}
-                            required={true}
+                            onBlur={() => handleInputBlur('email')}
+                            validate={(value) => {
+                                const error = !value.trim()
+                                    ? 'Поле обязательно для заполнения'
+                                    : validateEmailDesktop(value).textError
+                                return {
+                                    textError: error,
+                                    status: !error,
+                                    styleError: Boolean(error),
+                                }
+                            }}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
+                            className={`${
+                                inputTouched.email && validateEmailDesktop(formData.email).styleError
+                                    ? 'border-[#bc8070] focus:border-[#bc8070] '
+                                    : 'border-[#878797] focus:border-[#878797]'
+                            } border rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white`}
+                            label="Почта*"
+                            labelClassName="mb-1 text-2xl font-medium text-white"
+                            wrapperClassName="w-full"
                         />
+                        {inputInternalErrors.email && (
+                            <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
+                        )}
                     </div>
                     <div className="mb-5">
-                        <PhoneInputDesktop
+                        <EnhancedInput
+                            type="tel"
+                            name="phone"
+                            placeholder="Номер телефона"
                             value={formData.phone}
-                            onChange={(value) => handleChange('phone', value)}
-                            onError={(error) => handleError('phone', error)}
-                            labelClassName="label-form-desktop-custom"
-                            inputClassName="input-form-desktop-custom"
-                            errorClassName="error-form-desktop-custom"
-                            inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
-                            inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            // externalError={errors.phone}
-                            required={true}
+                            onBlur={() => handleInputBlur('phone')}
+                            validate={(value) => {
+                                const error = !value.trim()
+                                    ? 'Поле обязательно для заполнения'
+                                    : validatePhoneDesktop(value).textError
+                                return {
+                                    textError: error,
+                                    status: !error,
+                                    styleError: Boolean(error),
+                                }
+                            }}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
+                            className={`${
+                                inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
+                                    ? 'border-[#bc8070] focus:border-[#bc8070]'
+                                    : 'border-[#878797] focus:border-[#878797]'
+                            } border rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white`}
+                            label="Телефон*"
+                            labelClassName="mb-1 text-2xl font-medium text-white"
+                            wrapperClassName="w-full"
                         />
+                        {inputInternalErrors.phone && (
+                            <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>
+                        )}
                     </div>
                     <div className="mb-5 relative">
                         <PasswordInputDesktop
@@ -190,11 +233,10 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             showGenerateButton={true}
-                            // externalError={errors.password}
                             required={true}
                         />
                     </div>
-                    <div className="mb-7 4xl:mb-6 3xl:mb-5 2xl:mb-4">
+                    <div className="mb-7">
                         <PasswordInputDesktop
                             value={formData.confirmPassword}
                             label="Повторите пароль"
@@ -206,27 +248,40 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            // externalError={errors.confirmPassword}
                             required={true}
                         />
                         {errors.confirmPassword && (
-                            <p className=" error-form-desktop-custom">{errors.confirmPassword}</p>
+                            <p className="error-form-desktop-custom">{errors.confirmPassword}</p>
                         )}
                     </div>
                     <div className="mb-3">
-                        <CheckBoxInputDesktop
-                            id="subscribe"
+                        <EnhancedInput
+                            type="checkbox"
+                            name="subscribe"
                             checked={formData.subscribe}
-                            onChange={(checked) => handleChange('subscribe', checked)}
-                            label="Подписаться на рассылку"
+                            onChange={(value) => setFormData((prev) => ({ ...prev, subscribe: value }))}
+                            label="Я согласен(а) на получение рассылки"
+                            wrapperClassName="flex gap-2 pb-2"
+                            labelClassName={`${formData.subscribe ? 'text-white' : 'text-[#878797]'}`}
                         />
                     </div>
                     <div className="mb-3">
-                        <CheckBoxInputDesktop
-                            id="agree"
+                        <EnhancedInput
+                            type="checkbox"
+                            name="agree"
                             checked={formData.agree}
-                            onChange={(checked) => handleChange('agree', checked)}
-                            label="Согласен с условиями использования"
+                            validate={(value) => {
+                                const error = !value ? 'Вы должны согласиться с условиями' : ''
+                                return {
+                                    textError: error,
+                                    status: !error,
+                                    styleError: Boolean(error),
+                                }
+                            }}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, agree: value }))}
+                            label="Я согласен(а) на обработку персональных данных"
+                            wrapperClassName="flex gap-2 pb-2"
+                            labelClassName={`${formData.agree ? 'text-white' : 'text-[#878797]'}`}
                         />
                         {errors.agree && <p className="error-form-desktop-custom">{errors.agree}</p>}
                     </div>
@@ -248,7 +303,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="mx-auto bg-gradient-desktop text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg font-semibold rounded-[50px] mt-6 hover:bg-gradient-desktop-hover disabled:bg-[#878797] w-[70%]"
+                        className="mx-auto bg-gradient-desktop text-5xl font-semibold rounded-[50px] mt-6 hover:bg-gradient-desktop-hover disabled:bg-[#878797] w-[70%]"
                     >
                         Зарегистрироваться
                     </Button>
