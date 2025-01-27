@@ -1,6 +1,8 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useModal } from '@/context/ContextModal'
 
 import HeaderNavigationMobi from './HeaderNavigationMobi/HeaderNavigationMobi'
 import {
@@ -17,7 +19,7 @@ import {
 } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
 import RegistrationModalMobi from '@/components/mobi/layout/RegistrationModalMobi/RegistrationModalMobi'
-import LoginModalMobi from '@/components/mobi/layout/LoginModalMobi/LoginModalMobi'
+// import LoginModalMobi from '@/components/mobi/layout/LoginModalMobi/LoginModalMobi'
 
 interface HeaderMobiProps {
     disableBackground?: boolean
@@ -40,12 +42,16 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
 
     const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
 
-    const openModal = (type: 'login' | 'registration') => {
-        setModalType(type)
+    const { openModal } = useModal()
+    const router = useRouter()
+
+    const closeModal = (): void => {
+        setModalType(null)
     }
 
-    const closeModal = () => {
-        setModalType(null)
+    const handleLoginSuccess = (): void => {
+        closeModal()
+        router.push('/profile')
     }
 
     return (
@@ -82,31 +88,39 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                             <CrossIconMobi onClick={toggleMenu} />
                         </div>
                         <div className="flex gap-2.5 flex-col items-center pt-1 pb-12 sm_s:pb-10 sm:pb-10">
-                            <div className="flex items-center gap-3.5" onClick={() => openModal('login')}>
+                            <button
+                                className="flex items-center gap-3.5"
+                                onClick={(): void => openModal('login_mobi', 'mobi')}
+                            >
                                 <ProfileIconBurgerMobi />
                                 <p className="uppercase custom-grey text-4xl font-semibold whitespace-nowrap ">
                                     Войти в профиль
                                 </p>
-                            </div>
+                            </button>
                             <div className="w-full h-[1px] bg-custom-grey rounded-full"></div>
                         </div>
                         <HeaderNavigationMobi />
-                        <Button variant="select_mobi" size="select_mobi_menu" className="mt-11">
+                        <Button
+                            variant="select_mobi"
+                            size="select_mobi_menu"
+                            className="mt-11"
+                            onClick={(): void => openModal('modalcall_mobi', 'mobi')}
+                        >
                             Заказать звонок
                         </Button>
                         <div className="flex items-center gap-6 mt-6 pb-12">
-                            <a href="#" target="_blank" rel="noopener noreferrer">
+                            <a href="href" target="_blank" rel="noopener noreferrer">
                                 <TelegramIconBurgerMobi />
                             </a>
-                            <a href="#" target="_blank" rel="noopener noreferrer">
+                            <a href="href" target="_blank" rel="noopener noreferrer">
                                 <InstagramIconBurgerMobi />
                             </a>
-                            <a href="#" target="_blank" rel="noopener noreferrer">
+                            <a href="href" target="_blank" rel="noopener noreferrer">
                                 <LinkedInIconMobiBurger />
                             </a>
                         </div>
                     </div>
-                    {modalType === 'login' && (
+                    {/* {modalType === 'login' && (
                         <LoginModalMobi
                             closeModal={closeModal}
                             openRegistrationModal={() => openModal('registration')}
@@ -115,7 +129,7 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
 
                     {modalType === 'registration' && (
                         <RegistrationModalMobi closeModal={closeModal} openLoginModal={() => openModal('login')} />
-                    )}
+                    )} */}
                 </>
             )}
         </>

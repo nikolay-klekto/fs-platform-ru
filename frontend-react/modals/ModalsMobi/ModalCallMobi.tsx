@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validateNameMobi'
-import { validatePhoneMobi } from '../../commonMobi/validate/validatePhoneMobi'
+import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 interface FormData {
     name: string
     phone: string
