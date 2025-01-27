@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
 
 interface EmailInputProps {

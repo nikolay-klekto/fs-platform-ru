@@ -3,7 +3,6 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-
 import { contentFooterDesktop, contentFooterDesktopImages } from './contentFooterDesktop'
 import { LogoIconDesktop } from '@/components/assets/icons'
 
@@ -11,34 +10,34 @@ const FooterDesktop: React.FC = () => {
     return (
         <>
             <footer
-                className="flex items-center h-[521px]"
+                className="flex h-[521px] items-center"
                 style={{
                     backgroundColor: 'rgb(16,16,48)',
                     backgroundImage: `linear-gradient(rgba(16,16,48,0.5), rgba(16,16,48,0.5)), url(/background/bgFooterDesktop.png)`,
                     backgroundSize: 'cover',
                 }}
             >
-                <div className="relative container">
+                <div className="container relative">
                     <div className="absolute 2xl:hidden">
-                        <LogoIconDesktop className="w-[71px] h-[59px]" />
+                        <LogoIconDesktop className="h-[59px] w-[71px]" />
                     </div>
-                    <div className="flex justify-center pl-24 pr-24 pb-10 2xl:px-0">
-                        <div className="flex justify-between w-full max-w-[1190px]">
+                    <div className="flex justify-center px-24 pb-10 2xl:px-0">
+                        <div className="flex w-full max-w-[1190px] justify-between">
                             {contentFooterDesktop.map((section) => (
                                 <div key={section.id}>
-                                    <p className="text-white text-4xl font-bold pb-7">{section.title}</p>
+                                    <p className="pb-7 text-4xl font-bold text-white">{section.title}</p>
                                     <ul>
                                         {section.links.map((link) => (
                                             <li
                                                 key={link.id}
-                                                className={`text-white text-2xl font-medium ${link.id !== section.links.length ? 'pb-5' : ''} `}
+                                                className={`text-2xl font-medium text-white ${link.id !== section.links.length ? 'pb-5' : ''} `}
                                             >
                                                 <Link href={link.href}>{link.name}</Link>
                                             </li>
                                         ))}
                                     </ul>
                                     {section.icons && (
-                                        <div className="flex justify-between max-w-[112px] pt-5">
+                                        <div className="flex max-w-[112px] justify-between pt-5">
                                             {section.icons.map((icon) => (
                                                 <a
                                                     key={icon.id}
@@ -55,9 +54,9 @@ const FooterDesktop: React.FC = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="w-full h-[2px] bg-custom-grey rounded-full"></div>
-                    <div className="flex flex-col items-center justify-between h-[162px] mt-10 pl-24 pr-24 2xl:px-0">
-                        <div className="flex justify-between items-center w-full max-w-[1190px]">
+                    <div className="bg-custom-grey h-[2px] w-full rounded-full"></div>
+                    <div className="mt-10 flex h-[162px] flex-col items-center justify-between px-24 2xl:px-0">
+                        <div className="flex w-full max-w-[1190px] items-center justify-between">
                             {contentFooterDesktopImages.map((image) => (
                                 <Image
                                     key={image.id}
@@ -68,13 +67,13 @@ const FooterDesktop: React.FC = () => {
                                 />
                             ))}
                         </div>
-                        <p className="max-w-[896px] custom-grey text-2xl font-medium text-center pt-7 pb-4">
+                        <p className="custom-grey max-w-[896px] pb-4 pt-7 text-center text-2xl font-medium">
                             ООО “Надежные программы” УНП 100160363. 220006, Республика Беларусь, г. Минск, ул. Аранская
                             8, блок 1, эт. 4 Свидетельство о госдарственной регистрации №100160363, выдано Минским
                             горисполкомом 26.10.2023 г. Интернет-магазин включен в Торговый реестр Республики Беларусь
                             01.01.2001 за №111111
                         </p>
-                        <p className="text-white text-2xl font-medium text-center mb-5">
+                        <p className="mb-5 text-center text-2xl font-medium text-white">
                             funscrut .by © 2023, ООО «funscrut» УНП 000000000
                         </p>
                     </div>

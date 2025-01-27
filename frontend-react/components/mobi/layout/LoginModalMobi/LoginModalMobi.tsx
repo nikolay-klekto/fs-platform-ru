@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
-import Link from 'next/link'
 import EmailInputMobi from '../../shared/formInput/EmailInputMobi'
 import PasswordInputMobi from '../../shared/formInput/PasswordInputMobi'
 
@@ -72,17 +71,17 @@ const LoginModalDesktop: React.FC<LoginModalMobiProps> = ({ closeModal, openRegi
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-            <div className="relative rounded-[50px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat flex flex-col items-center w-[90%] max-w-[500px]">
+            <div className="relative flex w-[90%] max-w-[500px] flex-col items-center rounded-[50px] bg-[url('/images/Subtract_modalCall_png.png')] bg-cover bg-no-repeat">
                 <button
                     onClick={closeModal}
-                    className="absolute -top-1 -right-1 rounded-[50px] bg-[#101030] bg-opacity-80"
+                    className="absolute -right-1 -top-1 rounded-[50px] bg-[#101030] bg-opacity-80"
                 >
                     <X size={30} color="#878797" />
                 </button>
-                <h1 className="text18px_mobi font-semibold bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-1 mx-auto uppercase inline">
+                <h1 className="text18px_mobi bg-sub-title-gradient-mobi mx-auto mb-1 mt-6 inline bg-clip-text font-semibold uppercase text-transparent">
                     Вход
                 </h1>
-                <form onSubmit={handleSubmit} className="flex flex-col align-middle w-[80%]">
+                <form onSubmit={handleSubmit} className="flex w-4/5 flex-col align-middle">
                     <div className="mb-2">
                         <EmailInputMobi
                             value={formData.email}
@@ -97,7 +96,7 @@ const LoginModalDesktop: React.FC<LoginModalMobiProps> = ({ closeModal, openRegi
                             required={true}
                         />
                     </div>
-                    <div className="mb-2 relative">
+                    <div className="relative mb-2">
                         <PasswordInputMobi
                             value={formData.password}
                             label="Пароль"
@@ -113,7 +112,7 @@ const LoginModalDesktop: React.FC<LoginModalMobiProps> = ({ closeModal, openRegi
                             required={true}
                         />
                     </div>
-                    <button className="underline bg-transparent border-transparent self-end text-[#878797] font-semibold text14px_mobi">
+                    <button className="text14px_mobi self-end border-transparent bg-transparent font-semibold text-[#878797] underline">
                         Забыли пароль?
                     </button>
                     {formError && <p className="error-form-mobi-custom">Заполните необходимые поля</p>}
@@ -122,15 +121,15 @@ const LoginModalDesktop: React.FC<LoginModalMobiProps> = ({ closeModal, openRegi
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="mx-auto bg-gradient-desktop text-4xl md:text-4xl sm_xl:text-3xl sm_l:text-2xl sm_s:text-xl sm:text-xl font-medium rounded-[50px] mt-6 hover:bg-gradient-desktop-hover w-[80%]"
+                        className="bg-gradient-desktop sm_xl:text-3xl sm_l:text-2xl sm_s:text-xl hover:bg-gradient-desktop-hover mx-auto mt-6 w-4/5 rounded-[50px] text-4xl font-medium sm:text-xl md:text-4xl"
                     >
                         Войти
                     </Button>
                 </form>
-                <div className="mt-5 mb-6 flex justify-center text14px_mobi">
-                    <p className="mr-2 text-[#878797] font-medium">Нет аккаунта?</p>
+                <div className="text14px_mobi mb-6 mt-5 flex justify-center">
+                    <p className="mr-2 font-medium text-[#878797]">Нет аккаунта?</p>
                     <button
-                        className="underline bg-transparent border-transparent text-white font-medium"
+                        className="border-transparent bg-transparent font-medium text-white underline"
                         onClick={openRegistrationModal}
                     >
                         Зарегистрироваться
