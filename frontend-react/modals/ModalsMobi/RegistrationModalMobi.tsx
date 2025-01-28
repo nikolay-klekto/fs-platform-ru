@@ -7,6 +7,7 @@ import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailMobi } from '@/components/mobi/commonMobi/validate/validateEmailMobi'
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 import PasswordInputMobi from '@/components/mobi/shared/formInput/PasswordInputMobi'
+import { useModal } from '@/context/ContextModal'
 
 interface RegistrationFormData {
     email: string
@@ -17,12 +18,7 @@ interface RegistrationFormData {
     agree: boolean
 }
 
-interface RegistrationModalMobiProps {
-    closeModal: () => void
-    openLoginModal: () => void
-}
-
-const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ closeModal, openLoginModal }) => {
+const RegistrationModalMobi: React.FC = () => {
     const [formData, setFormData] = useState<RegistrationFormData>({
         email: '',
         phone: '',
@@ -31,7 +27,7 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ closeModa
         subscribe: false,
         agree: false,
     })
-
+    const { closeModal, openModal } = useModal()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -149,6 +145,10 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ closeModa
             ...prev,
             [field]: true,
         }))
+    }
+    const openLoginModal = () => {
+        closeModal()
+        openModal('login_desktop', 'desktop')
     }
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">

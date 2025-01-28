@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useModal } from '@/context/ContextModal'
-
 import HeaderNavigationMobi from './HeaderNavigationMobi/HeaderNavigationMobi'
+import router from 'next/router'
+
 import {
     ShoppingCartIconMobi,
     LogoIconMobi,
@@ -18,8 +18,6 @@ import {
     LinkedInIconMobiBurger,
 } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
-import RegistrationModalMobi from '@/components/mobi/layout/RegistrationModalMobi/RegistrationModalMobi'
-// import LoginModalMobi from '@/components/mobi/layout/LoginModalMobi/LoginModalMobi'
 
 interface HeaderMobiProps {
     disableBackground?: boolean
@@ -28,7 +26,6 @@ interface HeaderMobiProps {
 const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-
     useEffect(() => {
         if (isMenuOpen) {
             document.body.style.overflow = 'hidden'
@@ -41,9 +38,7 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
     }, [isMenuOpen])
 
     const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
-
     const { openModal } = useModal()
-    const router = useRouter()
 
     const closeModal = (): void => {
         setModalType(null)
@@ -120,16 +115,6 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                             </a>
                         </div>
                     </div>
-                    {/* {modalType === 'login' && (
-                        <LoginModalMobi
-                            closeModal={closeModal}
-                            openRegistrationModal={() => openModal('registration')}
-                        />
-                    )}
-
-                    {modalType === 'registration' && (
-                        <RegistrationModalMobi closeModal={closeModal} openLoginModal={() => openModal('login')} />
-                    )} */}
                 </>
             )}
         </>

@@ -1,22 +1,15 @@
 'use client'
 
 import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import RegistrationModalDesktop from '@/components/desktop/layout/RegistrationModalDesktop/RegistrationModalDesktop'
-// import LoginModalDesktop from '@/components/desktop/layout/LoginModalDesktop/LoginModalDesktop'
 import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationDesktop'
+import router from 'next/router'
 import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 import { useModal } from '@/context/ContextModal'
 
-interface HeaderDesktopProps {
-    onOpenModalCallDesktop: () => void
-}
-const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ onOpenModalCallDesktop }) => {
+const HeaderDesktop: React.FC = () => {
     const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
-
     const { openModal } = useModal()
-    const router = useRouter()
 
     const closeModal = (): void => {
         setModalType(null)
@@ -26,7 +19,6 @@ const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ onOpenModalCallDesktop })
         closeModal()
         router.push('/profile')
     }
-
     return (
         <>
             <header
@@ -60,17 +52,6 @@ const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ onOpenModalCallDesktop })
                     </div>
                 </div>
             </header>
-            {modalType === 'login' && (
-                <LoginModalDesktop
-                    closeModal={closeModal}
-                    openRegistrationModal={() => openModal('registration_desktop', 'desktop')}
-                    onLoginSuccess={handleLoginSuccess}
-                />
-            )}
-
-            {modalType === 'registration' && (
-                <RegistrationModalDesktop closeModal={closeModal} openLoginModal={() => openModal('login')} />
-            )}
         </>
     )
 }

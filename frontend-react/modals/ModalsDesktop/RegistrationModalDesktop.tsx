@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
@@ -7,6 +8,7 @@ import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
 import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
+import { useModal } from '@/context/ContextModal'
 
 interface RegistrationFormData {
     email: string
@@ -17,12 +19,7 @@ interface RegistrationFormData {
     agree: boolean
 }
 
-interface RegistrationModalDesktopProps {
-    closeModal: () => void
-    openLoginModal: () => void
-}
-
-const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ closeModal, openLoginModal }) => {
+const RegistrationModalDesktop: React.FC = () => {
     const [formData, setFormData] = useState<RegistrationFormData>({
         email: '',
         phone: '',
@@ -31,7 +28,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
         subscribe: false,
         agree: false,
     })
-
+    const { closeModal, openModal } = useModal()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -147,7 +144,10 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ clo
             [field]: true,
         }))
     }
-
+    const openLoginModal = () => {
+        closeModal()
+        openModal('login_desktop', 'desktop')
+    }
     return (
         <Modal show={true} onClose={closeModal} size="medium" showCloseButton={false}>
             <div className="flex flex-col justify-center items-center pt-[40px] pb-[30px] w-[73%] mx-auto">

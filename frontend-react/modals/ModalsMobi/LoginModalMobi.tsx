@@ -6,23 +6,19 @@ import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailMobi } from '@/components/mobi/commonMobi/validate/validateEmailMobi'
 import PasswordInputMobi from '@/components/mobi/shared/formInput/PasswordInputMobi'
+import { useModal } from '@/context/ContextModal'
 
 interface LoginFormData {
     email: string
     password: string
 }
 
-interface LoginModalMobiProps {
-    closeModal: () => void
-    openRegistrationModal: () => void
-}
-
-const LoginModalDesktop: React.FC<LoginModalMobiProps> = ({ closeModal, openRegistrationModal }) => {
+const LoginModalDesktop: React.FC = () => {
     const [formData, setFormData] = useState<LoginFormData>({
         email: '',
         password: '',
     })
-
+    const { closeModal, openModal } = useModal()
     const [inputInternalErrors, setInputInternalErrors] = useState<{ [key: string]: string | null }>({
         email: '',
         password: '',
@@ -81,8 +77,12 @@ const LoginModalDesktop: React.FC<LoginModalMobiProps> = ({ closeModal, openRegi
             [field]: true,
         }))
     }
+    const openRegistrationModal = () => {
+        closeModal()
+        openModal('registration_desktop', 'desktop')
+    }
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
+        <div className="flex items-center justify-center bg-black bg-opacity-70">
             <div className="relative max-w-md w-full">
                 <button
                     onClick={closeModal}
@@ -129,7 +129,6 @@ const LoginModalDesktop: React.FC<LoginModalMobiProps> = ({ closeModal, openRegi
                                 errorClassName="error-form-mobi-custom"
                                 inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                                 inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                                // externalError={errors.password}
                                 required={true}
                             />
                         </div>

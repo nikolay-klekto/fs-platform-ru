@@ -38,19 +38,10 @@ export const ModalProvider: FC<ModalProviderProps> = ({ children, modals }) => {
         <ModalContext.Provider value={{ openModal, closeModal, activeModal }}>
             {children}
             {activeModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-                    <div className="relative w-full">
-                        {typeof activeModal.content === 'function'
-                            ? activeModal.content({ onClose: closeModal })
-                            : activeModal.content}
-                        {/* 
-                        <button
-                            className="absolute right-2 top-2 text-gray-400 hover:text-gray-600 focus:outline-none"
-                            onClick={closeModal}
-                        >
-                            ✕
-                        </button> */}
-                    </div>
+                <div className=" flex justify-center bg-black/50">
+                    {typeof activeModal.content === 'function'
+                        ? activeModal.content({ onClose: closeModal })
+                        : activeModal.content}
                 </div>
             )}
         </ModalContext.Provider>

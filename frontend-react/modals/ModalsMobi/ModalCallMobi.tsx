@@ -4,6 +4,7 @@ import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validateNameMobi'
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
+import { useModal } from '@/context/ContextModal'
 interface FormData {
     name: string
     phone: string
@@ -20,15 +21,7 @@ const ModalCallMobi: React.FC = () => {
     })
     const [step, setStep] = useState<'form' | 'accepted' | null>(null)
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
-    const [ModalOpen, setModalOpen] = useState(false)
-
-    const handleOpenModal = () => {
-        setModalOpen(true)
-        setStep('form')
-    }
-
-    const handleCloseModal = () => setModalOpen(false)
-
+    const { closeModal } = useModal()
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
         if (!formData.name.trim()) {
@@ -68,10 +61,10 @@ const ModalCallMobi: React.FC = () => {
     return (
         <>
             {step === 'form' && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
+                <div className="flex items-center justify-center bg-black bg-opacity-[70%]">
                     <div className="relative max-w-md w-full mx-4">
                         <button
-                            onClick={handleClose}
+                            onClick={closeModal}
                             className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
                             <X size={24} color="#878797" />
@@ -174,7 +167,7 @@ const ModalCallMobi: React.FC = () => {
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
                     <div className="relative max-w-md w-full mx-4">
                         <button
-                            onClick={handleClose}
+                            onClick={closeModal}
                             className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
                         >
                             <X size={24} color="#878797" />

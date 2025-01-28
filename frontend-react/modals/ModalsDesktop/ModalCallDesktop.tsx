@@ -30,7 +30,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
     const [step, setStep] = useState<'form' | 'accepted' | null>('form')
 
-    const closeModal = useModal()
+    const { closeModal } = useModal()
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
 
@@ -73,7 +73,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
         phone: false,
     })
 
-    const handleInputBlur = (field: 'email' | 'phone') => {
+    const handleInputBlur = (field: 'phone') => {
         setInputTouched((prev) => ({
             ...prev,
             [field]: true,
@@ -96,7 +96,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
                                 Заполните поля – и мы с вами свяжемся
                             </p>
                         </div>
-                        <form className="flex flex-col items-start space-y-2 ml-8 mr-12" onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit}>
                             <div className="flex flex-col w-full">
                                 <EnhancedInput
                                     type="text"

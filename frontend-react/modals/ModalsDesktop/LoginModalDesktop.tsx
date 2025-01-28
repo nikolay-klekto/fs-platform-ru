@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
@@ -6,26 +7,20 @@ import Modal from '@/components/ui/modal'
 import Link from 'next/link'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
-// import EmailInputDesktop from '../../shared/formInput/EmailInputDesktop'
 import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
+import { useModal } from '@/context/ContextModal'
 
 interface LoginFormData {
     email: string
     password: string
 }
 
-interface LoginModalDesktopProps {
-    closeModal: () => void
-    openRegistrationModal: () => void
-    onLoginSuccess: () => void
-}
-
-const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openRegistrationModal, onLoginSuccess }) => {
+const LoginModalDesktop: React.FC = () => {
     const [formData, setFormData] = useState<LoginFormData>({
         email: '',
         password: '',
     })
-
+    const { closeModal, openModal } = useModal()
     const [inputInternalErrors, setInputInternalErrors] = useState<{ [key: string]: string | null }>({
         email: '',
         password: '',
@@ -64,7 +59,6 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
             setFormError(false)
             console.log('Форма входа отправлена:', formData)
             closeModal()
-            onLoginSuccess()
         }
     }
 
@@ -79,11 +73,16 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
         phone: false,
     })
 
-    const handleInputBlur = (field) => {
+    const handleInputBlur = (field: 'phone' | 'email') => {
         setInputTouched((prev) => ({
             ...prev,
             [field]: true,
         }))
+    }
+
+    const openRegistrationModal = () => {
+        closeModal()
+        openModal('registration_desktop', 'desktop')
     }
 
     return (
@@ -124,13 +123,13 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
                             label="Пароль"
                             placeholder="Пароль"
                             onChange={(value) => handleChange('password', value)}
-                            onError={(error) => handleError('email', error)}
+                            onError={(error) => handleError('password', error)}
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            // externalError={errors.password}
+                            showGenerateButton={true}
                             required={true}
                         />
                     </div>
