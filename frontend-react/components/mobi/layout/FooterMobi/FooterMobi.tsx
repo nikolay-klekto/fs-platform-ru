@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import { contentFooterMobi, contentFooterMobiImages } from './contentFooterMobi'
-import { LogoIconMobi, TelegramIconMobi, InstagramIconMobi, VkIconMobi, LinkedInIconMobi } from '@/components/assets/iconsMobi'
+import { LogoIconMobi, TelegramIconMobi, InstagramIconMobi, LinkedInIconMobi } from '@/components/assets/iconsMobi'
 
 const FooterMobi: React.FC = () => {
     return (
@@ -17,19 +17,19 @@ const FooterMobi: React.FC = () => {
                     backgroundSize: 'cover',
                 }}
             >
-                <div className="container flex flex-col items-center pt-6 pb-12 pl-3 pr-3">
+                <div className="container flex flex-col items-center px-3 pb-12 pt-6">
                     <LogoIconMobi />
-                    <div className="flex justify-between w-full pt-7">
+                    <div className="flex w-full justify-between pt-7">
                         {contentFooterMobi.map((section) => (
                             <div className="pr-2" key={section.id}>
-                                <p className="text-white text-4xl font-semibold pb-4 sm_xl:text-3xl sm_l:text-3xl sm_s:text-2xl sm:text-2xl">
+                                <p className="sm_xl:text-3xl sm_l:text-3xl sm_s:text-2xl pb-4 text-4xl font-semibold text-white sm:text-2xl">
                                     {section.title}
                                 </p>
                                 <ul>
                                     {section.links.map((link) => (
                                         <li
                                             key={link.id}
-                                            className={` text-white font-medium text-xl sm_xl:text-base sm_l:text-base sm_s:text-sm sm:text-sm ${link.id !== section.links.length ? 'pb-4' : ''}`}
+                                            className={` sm_xl:text-base sm_l:text-base sm_s:text-sm text-xl font-medium text-white sm:text-sm ${link.id !== section.links.length ? 'pb-4' : ''}`}
                                         >
                                             {link.href.startsWith('tel:') || link.href.startsWith('mailto:') ? (
                                                 <a href={link.href} className="whitespace-nowrap">
@@ -44,7 +44,7 @@ const FooterMobi: React.FC = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="flex justify-between max-w-[112px] w-full py-10">
+                    <div className="flex w-full max-w-[112px] justify-between py-10">
                         <a href="#" target="_blank" rel="noopener noreferrer">
                             <TelegramIconMobi />
                         </a>
@@ -55,8 +55,8 @@ const FooterMobi: React.FC = () => {
                             <LinkedInIconMobi />
                         </a>
                     </div>
-                    <div className="w-full h-[2px] bg-custom-grey rounded-full"></div>
-                    <div className="flex items-center pt-10 gap-x-8 gap-y-4 flex-wrap">
+                    <div className="bg-custom-grey h-[2px] w-full rounded-full"></div>
+                    <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-10">
                         {contentFooterMobiImages.map((image) => (
                             <Image
                                 key={image.id}
@@ -67,13 +67,13 @@ const FooterMobi: React.FC = () => {
                             />
                         ))}
                     </div>
-                    <p className="max-w-[896px] custom-grey text-xs font-medium text-center pt-6 pb-4">
+                    <p className="custom-grey max-w-[896px] pb-4 pt-6 text-center text-xs font-medium">
                         ООО “Надежные программы” УНП 100160363. 220006, Республика Беларусь, г. Минск, ул. Аранская 8,
                         блок 1, эт. 4 Свидетельство о госдарственной регистрации №100160363, выдано Минским
                         горисполкомом 26.10.2023 г. Интернет-магазин включен в Торговый реестр Республики Беларусь
                         01.01.2001 за №111111
                     </p>
-                    <p className="text-white text-xs font-medium text-center">
+                    <p className="text-center text-xs font-medium text-white">
                         funscrut .by © 2023, ООО «funscrut» УНП 000000000
                     </p>
                 </div>

@@ -21,7 +21,7 @@ const ModalCallMobi: React.FC = () => {
     })
     const [step, setStep] = useState<'form' | 'accepted' | null>(null)
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
-    const [ModalOpen, setModalOpen] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
 
     const handleOpenModal = () => {
         setModalOpen(true)
@@ -60,23 +60,23 @@ const ModalCallMobi: React.FC = () => {
         <>
             {step === 'form' && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="relative max-w-md w-full mx-4">
+                    <div className="relative mx-4 w-full max-w-md">
                         <button
                             onClick={handleClose}
-                            className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
+                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
                         >
                             <X size={24} color="#878797" />
                         </button>
-                        <div className=" rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat py-[40px] px-3">
-                            <p className="text-4xl md:text-5xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent pb-4">
+                        <div className=" rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 py-[40px]">
+                            <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-5xl">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </p>
-                            <p className="pb-4 pl-3 text-base md:text-lg font-medium text-[#878797]">
+                            <p className="pb-4 pl-3 text-base font-medium text-[#878797] md:text-lg">
                                 Заполните поля – и мы с вами свяжемся
                             </p>
 
                             <form className="flex flex-col items-start pl-2 pr-1" onSubmit={handleSubmit}>
-                                <div className="w-full flex flex-col mb-3 p-0.5">
+                                <div className="mb-3 flex w-full flex-col p-0.5">
                                     <EnhancedInput
                                         type="text"
                                         name="name"
@@ -86,15 +86,15 @@ const ModalCallMobi: React.FC = () => {
                                         onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
                                         className={`border-2 ${
                                             errors.name ? 'border-red-500' : 'border-[#878797]'
-                                        } text-[#878797] font-medium text-xl rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
+                                        } h-10 w-full rounded-[50px] bg-transparent p-4 text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] md:placeholder:text-2xl`}
                                         label="Ваше имя"
                                         labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
                                         externalError={errors.name} // добавляем отображение ошибки
                                     />
-                                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                                    {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
                                 </div>
-                                <div className="w-full flex flex-col mb-3 p-0.5">
+                                <div className="mb-3 flex w-full flex-col p-0.5">
                                     <PhoneInputMobi
                                         value={formData.phone}
                                         onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
@@ -107,9 +107,9 @@ const ModalCallMobi: React.FC = () => {
                                         inputNOERRAddStyle="border-[#878797]"
                                         labelClassName="text-white text-xl font-medium mb-1"
                                     />
-                                    {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+                                    {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
                                 </div>
-                                <div className="w-full flex flex-col mb-3 p-0.5">
+                                <div className="mb-3 flex w-full flex-col p-0.5">
                                     <EnhancedInput
                                         type="text"
                                         id="time"
@@ -117,13 +117,13 @@ const ModalCallMobi: React.FC = () => {
                                         placeholder="Удобное время для звонка"
                                         value={formData.time}
                                         onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                        className="border-2 border-[#878797] rounded-[50px] w-full bg-transparent h-10 p-4 text-[#878797] font-medium text-xl placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]"
+                                        className="h-10 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] md:placeholder:text-2xl"
                                         label="Удобное время для звонка"
                                         labelClassName="text-white text-xl"
                                         wrapperClassName="w-full"
                                     />
                                 </div>
-                                <div className="flex items-center mb-2 pt-4">
+                                <div className="mb-2 flex items-center pt-4">
                                     <input
                                         type="checkbox"
                                         id="consent"
@@ -132,19 +132,19 @@ const ModalCallMobi: React.FC = () => {
                                         onChange={(e) =>
                                             setFormData((prev) => ({ ...prev, consent: e.target.checked }))
                                         }
-                                        className="appearance-none checked:bg-[#878797] checked:border-transparent border-2 border-[#878797] rounded-[2px] w-4 h-4 mr-2 inline-block"
+                                        className="mr-2 inline-block size-4 appearance-none rounded-[2px] border-2 border-[#878797] checked:border-transparent checked:bg-[#878797]"
                                     />
                                     <label
                                         htmlFor="consent"
-                                        className="font-medium text-[#878797] cursor-pointer text-xs md:text-sm font-medium ml-1"
+                                        className="ml-1 cursor-pointer text-xs font-medium text-[#878797] md:text-sm"
                                     >
                                         Я согласен(а) на обработку персональных данных
                                     </label>
-                                    {errors.consent && <p className="text-red-500 text-sm mt-1">{errors.consent}</p>}
+                                    {errors.consent && <p className="mt-1 text-sm text-red-500">{errors.consent}</p>}
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-4/5 h-12 mx-auto mt-[30px] bg-sub-title-gradient-mobi rounded-[50px] text-3xl md:text-4xl font-semibold text-white"
+                                    className="bg-sub-title-gradient-mobi mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] text-3xl font-semibold text-white md:text-4xl"
                                 >
                                     Отправить заявку
                                 </button>
@@ -156,25 +156,25 @@ const ModalCallMobi: React.FC = () => {
 
             {step === 'accepted' && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="relative max-w-md w-full mx-4">
+                    <div className="relative mx-4 w-full max-w-md">
                         <button
                             onClick={handleClose}
-                            className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
+                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
                         >
                             <X size={24} color="#878797" />
                         </button>
                         <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat py-[40px]">
-                            <h1 className="text-3xl md:text-4xl font-semibold text-center bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-3">
+                            <h1 className="bg-sub-title-gradient-mobi mb-3 mt-6 bg-clip-text text-center text-3xl font-semibold text-transparent md:text-4xl">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
-                            <p className="mb-1 px-3 pb-[18px] text-justify md:text-lg font-medium text-[#878797]">
+                            <p className="mb-1 px-3 pb-[18px] text-justify font-medium text-[#878797] md:text-lg">
                                 Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
                                 сайте.
                             </p>
-                            <div className="flex justify-center items-center w-4/5 mx-auto p-[3px] rounded-[50px] bg-sub-title-gradient-mobi mb-2 mt-2">
+                            <div className="bg-sub-title-gradient-mobi mx-auto my-2 flex w-4/5 items-center justify-center rounded-[50px] p-[3px]">
                                 <button
                                     type="button"
-                                    className="w-full h-12 bg-[#101030] rounded-[50px] text-3xl font-semibold text-white"
+                                    className="h-12 w-full rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"
                                 >
                                     Смотреть
                                 </button>
