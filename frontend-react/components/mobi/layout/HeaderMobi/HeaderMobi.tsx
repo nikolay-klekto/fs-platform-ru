@@ -77,7 +77,9 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
 
             {isMenuOpen && (
                 <>
-                    <div className="fixed inset-0 bg-black bg-opacity-70 z-40" onClick={toggleMenu}></div>
+                    <div className="fixed inset-0 bg-black bg-opacity-70 z-40" onClick={toggleMenu}>
+                        {' '}
+                    </div>
                     <div className="absolute w-full top-0 right-0 bg-[#101030] z-50 flex flex-col items-center pt-9 px-3.5 text-white">
                         <div className="w-full flex justify-end opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-pointer">
                             <CrossIconMobi onClick={toggleMenu} />

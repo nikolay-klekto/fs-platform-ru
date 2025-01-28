@@ -71,7 +71,7 @@ const LoginModalDesktop: React.FC = () => {
         phone: false,
     })
 
-    const handleInputBlur = (field) => {
+    const handleInputBlur = (field: 'phone' | 'email') => {
         setInputTouched((prev) => ({
             ...prev,
             [field]: true,
@@ -82,7 +82,7 @@ const LoginModalDesktop: React.FC = () => {
         openModal('registration_desktop', 'desktop')
     }
     return (
-        <div className="flex items-center justify-center bg-black bg-opacity-70">
+        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-70">
             <div className="relative max-w-md w-full">
                 <button
                     onClick={closeModal}

@@ -88,7 +88,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
                         <button onClick={closeModal} className="absolute top-4 right-4">
                             <X size={35} color="white" className="opacity-70" />
                         </button>
-                        <div className="flex flex-col rounded-lg max-w-md mx-auto mt-8">
+                        <div className="flex-col rounded-lg max-w-md mx-auto">
                             <h1 className="mb-1 text-13xl bg-gradient-desktop bg-clip-text text-transparent">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </h1>

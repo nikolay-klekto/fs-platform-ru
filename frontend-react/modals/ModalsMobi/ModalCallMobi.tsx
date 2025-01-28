@@ -61,7 +61,7 @@ const ModalCallMobi: React.FC = () => {
     return (
         <>
             {step === 'form' && (
-                <div className="flex items-center justify-center bg-black bg-opacity-[70%]">
+                <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
                     <div className="relative max-w-md w-full mx-4">
                         <button
                             onClick={closeModal}
@@ -164,8 +164,8 @@ const ModalCallMobi: React.FC = () => {
             )}
 
             {step === 'accepted' && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="relative max-w-md w-full mx-4">
+                <div className=" flex items-center justify-center bg-black bg-opacity-[70%]">
+                    <div className="fixed inset-0 z-[70]  max-w-md w-full mx-4">
                         <button
                             onClick={closeModal}
                             className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
