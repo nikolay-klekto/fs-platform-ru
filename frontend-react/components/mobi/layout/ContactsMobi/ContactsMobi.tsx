@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
-
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
 import { EnhancedTextareaMobi } from '../../shared/TextareaMobi'
@@ -101,14 +100,14 @@ const ContactsMobi: React.FC = () => {
 
     return (
         <>
-            <div className="pt-10 px-[15px]">
+            <div className="px-[15px] pt-10">
                 <div className="flex flex-col gap-4 pb-10">
                     <h2 className="text-9xl font-medium uppercase">Cвяжитесь с нами</h2>
-                    <Button variant="select_btn_mobi" size="contacts_btn_mobi">
+                    <Button variant="select_mobi" size="contacts_btn_mobi">
                         Хочу в команду
                     </Button>
                 </div>
-                <div className="flex justify-between w-full">
+                <div className="flex w-full justify-between">
                     <div className="flex flex-col">
                         {contentContactsMobi.map((item) => (
                             <div
@@ -135,7 +134,7 @@ const ContactsMobi: React.FC = () => {
                 <div className="pt-[58px]">
                     <h3 className="text-9xl font-medium uppercase">Напишите нам</h3>
                     <form onSubmit={handleSubmit} noValidate>
-                        <div className="flex flex-col gap-2.5 pt-5 pb-0.5">
+                        <div className="flex flex-col gap-2.5 pb-0.5 pt-5">
                             <EnhancedInput
                                 type="text"
                                 id="name"
@@ -217,13 +216,13 @@ const ContactsMobi: React.FC = () => {
                                 wrapperClassName={'h-[104px]'}
                             />
                         </div>
-                        <div className="flex flex-col justify-between h-[70px] sm_s:h-[108px] sm:h-[108px]">
+                        <div className="sm_s:h-[108px] flex h-[70px] flex-col justify-between sm:h-[108px]">
                             {formError && <p className={cn('text-xs', 'text-destructive')}>{formError}</p>}
-                            <div className="mt-auto flex items-center gap-[19px] md:gap-7  sm_s:flex-col sm_s:justify-between sm_s:items-start sm_s:gap-2 sm:flex-col sm:justify-between sm:items-start sm:gap-2">
-                                <Button variant="select_btn_mobi" size="contacts_btn_send_mobi">
+                            <div className="sm_s:flex-col sm_s:justify-between sm_s:items-start sm_s:gap-2 mt-auto  flex items-center gap-[19px] sm:flex-col sm:items-start sm:justify-between sm:gap-2 md:gap-7">
+                                <Button variant="select_mobi" size="contacts_btn_send_mobi">
                                     Отправить
                                 </Button>
-                                <p className="w-full text-white/20 text-[8px] font-medium md:max-w-[60%] md:text-xs  ">
+                                <p className="w-full text-[8px] font-medium text-white/20 md:max-w-[60%] md:text-xs  ">
                                     Нажимая кнопку “Отправить”, я даю согласие на обработку своих персональных данных и
                                     соглашаюсь с Условиями использования и Политикой конфиденциальности
                                 </p>
@@ -231,12 +230,12 @@ const ContactsMobi: React.FC = () => {
                         </div>
                     </form>
                 </div>
-                <div className="grid grid-cols-2 gap-5 pt-[49.2px] pb-[39.3px] w-full sm_s:grid-cols-1 sm_s:gap-5 sm:grid-cols-1 sm:gap-5">
-                    <div className="flex flex-col justify-between h-[73px]">
+                <div className="sm_s:grid-cols-1 sm_s:gap-5 grid w-full grid-cols-2 gap-5 pb-[39.3px] pt-[49.2px] sm:grid-cols-1 sm:gap-5">
+                    <div className="flex h-[73px] flex-col justify-between">
                         {contentSocialContactsFirstMobi.map((item) => (
-                            <a key={item.id} href={item.href} className="flex items-center gap-2 max-w-[300px]">
+                            <a key={item.id} href={item.href} className="flex max-w-[300px] items-center gap-2">
                                 <div>
-                                    <div className="flex items-center justify-center w-[24.7px] h-[26.4px] rounded-full bg-gradient-desktop md:w-[27px] md:h-[29px]">
+                                    <div className="bg-gradient-desktop flex h-[26.4px] w-[24.7px] items-center justify-center rounded-full md:h-[29px] md:w-[27px]">
                                         {item.icon}
                                     </div>
                                 </div>
@@ -244,11 +243,11 @@ const ContactsMobi: React.FC = () => {
                             </a>
                         ))}
                     </div>
-                    <div className="flex flex-col justify-between h-[73px]">
+                    <div className="flex h-[73px] flex-col justify-between">
                         {contentSocialContactsSecondMobi.map((item) => (
-                            <a key={item.id} href={item.href} className="flex items-center gap-2 max-w-[300px]">
+                            <a key={item.id} href={item.href} className="flex max-w-[300px] items-center gap-2">
                                 <div>
-                                    <div className="flex items-center justify-center w-[24.7px] h-[26.4px] rounded-full bg-gradient-desktop md:w-[27px] md:h-[29px]">
+                                    <div className="bg-gradient-desktop flex h-[26.4px] w-[24.7px] items-center justify-center rounded-full md:h-[29px] md:w-[27px]">
                                         {item.icon}
                                     </div>
                                 </div>

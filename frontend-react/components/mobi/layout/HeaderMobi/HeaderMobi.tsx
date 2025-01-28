@@ -14,7 +14,6 @@ import {
     CrossIconMobi,
     TelegramIconBurgerMobi,
     InstagramIconBurgerMobi,
-    VkIconBurgerMobi,
     LinkedInIconMobiBurger,
 } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
@@ -62,15 +61,15 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                 }
             >
                 <div
-                    className={`w-full h-[56px] flex items-center justify-between relative ${!disableBackground ? 'container' : ''}`}
+                    className={`relative flex h-[56px] w-full items-center justify-between ${!disableBackground ? 'container' : ''}`}
                 >
-                    <PhoneIconMobi className="cursor-pointer ml-3" />
-                    <div className="absolute left-1/2 transform -translate-x-1/2 top-7 -translate-y-1/2">
+                    <PhoneIconMobi className="ml-3 cursor-pointer" />
+                    <div className="absolute left-1/2 top-7 -translate-x-1/2 -translate-y-1/2">
                         <LogoIconMobi />
                     </div>
-                    <div className="flex gap-[17px] mr-2">
-                        <ShoppingCartIconMobi className="cursor-pointer flex-shrink-0" />
-                        <BurgerMenuIconMobi className="cursor-pointer flex-shrink-0" onClick={toggleMenu} />
+                    <div className="mr-2 flex gap-[17px]">
+                        <ShoppingCartIconMobi className="shrink-0 cursor-pointer" />
+                        <BurgerMenuIconMobi className="shrink-0 cursor-pointer" onClick={toggleMenu} />
                     </div>
                 </div>
             </header>
@@ -90,7 +89,7 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                                 onClick={(): void => openModal('login_mobi', 'mobi')}
                             >
                                 <ProfileIconBurgerMobi />
-                                <p className="uppercase custom-grey text-4xl font-semibold whitespace-nowrap ">
+                                <p className="custom-grey whitespace-nowrap text-4xl font-semibold uppercase ">
                                     Войти в профиль
                                 </p>
                             </button>

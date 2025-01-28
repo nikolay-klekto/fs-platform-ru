@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { EyeOffPasswordDesktop, EyeOnPasswordDesktop, PasswordGeneratorDesktop } from '@/components/assets/icons'
 import { validatePassword } from '@/components/desktop/commonDesktop/validate/validatePasswordDesktop'
 import { generatePassword } from '@/components/desktop/commonDesktop/generatePassword'
@@ -82,7 +82,7 @@ const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
                 <button
                     type="button"
                     onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute top-1/2 transform -translate-y-1/2  right-4 flex items-center text-[#878797]"
+                    className="absolute right-4 top-1/2 flex  -translate-y-1/2 items-center text-[#878797]"
                 >
                     {showPassword ? <EyeOnPasswordDesktop /> : <EyeOffPasswordDesktop />}
                 </button>
@@ -90,7 +90,7 @@ const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
                     <button
                         type="button"
                         onClick={handleGeneratePassword}
-                        className="absolute top-1/2 transform -translate-y-1/2 right-[-10%] flex items-center text-[#878797]"
+                        className="absolute right-[-10%] top-1/2 flex -translate-y-1/2 items-center text-[#878797]"
                     >
                         <PasswordGeneratorDesktop />
                     </button>

@@ -5,8 +5,8 @@ import Modal from '@/components/ui/modal'
 import { contentModalEvents } from './content'
 import ModalEventsCardDesktop from './ModalEventsCardDesktop'
 import { Button } from '@/components/ui/button'
-import { ForwardIcon } from '@/components/assets/icons'
-import { MapPin, CalendarCheck, Calendar, Clock4, Users, Ellipsis, Banknote, X} from 'lucide-react'
+import { ForwardIconDesktop } from '@/components/assets/icons'
+import { MapPin, CalendarCheck, Calendar, Clock4, Users, Ellipsis, Banknote, X } from 'lucide-react'
 
 const ModalEventsDesktop: React.FC = () => {
     const [eventsModalOpen, setEventsModalOpen] = useState(true)
@@ -25,31 +25,31 @@ const ModalEventsDesktop: React.FC = () => {
                 <Modal
                     show={eventsModalOpen}
                     onClose={handleCloseEventsModal}
-                    size="large-width-882"
+                    size="large-lg"
                     showCloseButton={false}
                     paddingClass="pt-[68px] pb-[26px]"
-                > 
-                    <div className="scrollbar-modal_desktop_custom rounded-[50px] max-h-[90vh] 4xl:max-h-[94vh]">
+                >
+                    <div className="scrollbar-modal_desktop_custom 4xl:max-h-[94vh] max-h-[90vh] rounded-[50px]">
                         {contentModalEvents.map((event) => (
-                            <div 
-                                key={event.id} 
-                                className="flex flex-col pt-[50px] px-[20px] pb-[20px]">
-                                <button 
-                                    onClick={handleCloseEventsModal}
-                                    className="absolute top-4 right-4 z-10">
-                                    <X size={41} color="white" className="hover:opacity-100 opacity-70 transition-opacity duration-300" />
+                            <div key={event.id} className="flex flex-col px-[20px] pb-[20px] pt-[50px]">
+                                <button onClick={handleCloseEventsModal} className="absolute right-4 top-4 z-10">
+                                    <X
+                                        size={41}
+                                        color="white"
+                                        className="opacity-70 transition-opacity duration-300 hover:opacity-100"
+                                    />
                                 </button>
-                                <img 
-                                    src={event.image} 
-                                    alt="Фото" 
-                                    className="w-full h-auto object-cover rounded-[50px]"
+                                <img
+                                    src={event.image}
+                                    alt="Фото"
+                                    className="h-auto w-full rounded-[50px] object-cover"
                                 />
-                                
-                                <div className="flex flex-col p-[20px] rounded-[25px] bg-[#1F203F] mt-[16px] mb-[10px]">
-                                    <h3 className="text36px_desktop mb-[10px] text-gradient_desktop_custom font-medium uppercase">
+
+                                <div className="mb-[10px] mt-[16px] flex flex-col rounded-[25px] bg-[#1F203F] p-[20px]">
+                                    <h3 className="text36px_desktop text-gradient_desktop_custom mb-[10px] font-medium uppercase">
                                         {event.title}
                                     </h3>
-                                    <p className="text-[18px] text-[#878797] text-left font-medium leading-[22px]">
+                                    <p className="text-left text-[18px] font-medium leading-[22px] text-[#878797]">
                                         {event.description}
                                     </p>
                                 </div>
@@ -57,84 +57,80 @@ const ModalEventsDesktop: React.FC = () => {
                                 <div className="grid grid-cols-2 gap-2">
                                     <ModalEventsCardDesktop
                                         className="items-center"
-                                        icon={
-                                            <MapPin color="#878797" size={24} />
-                                        }
+                                        icon={<MapPin color="#878797" size={24} />}
                                         title="МЕСТО"
                                         info={event.location}
                                     />
-                                    <ModalEventsCardDesktop 
+                                    <ModalEventsCardDesktop
                                         className="items-center"
-                                        icon={
-                                            <Users color="#878797" size={24} />
-                                        }
+                                        icon={<Users color="#878797" size={24} />}
                                         title="ОРГАНИЗАТОР"
                                         info={event.organizer.name}
                                         link={event.organizer.link}
                                     />
                                     <ModalEventsCardDesktop
                                         className="items-center"
-                                        icon={
-                                            <Calendar color="#878797" size={24} />
-                                        }
+                                        icon={<Calendar color="#878797" size={24} />}
                                         title="ДАТА"
                                         info={`${event.date.data} (${event.date.day})`}
                                     />
-                                    <ModalEventsCardDesktop 
+                                    <ModalEventsCardDesktop
                                         className="items-center"
-                                        icon={
-                                            <Banknote color="#878797" size={24} />
-                                        }
+                                        icon={<Banknote color="#878797" size={24} />}
                                         title="ЦЕНА"
                                         info={`${event.price} BYN`}
                                     />
                                     <ModalEventsCardDesktop
                                         className="items-center"
-                                        icon={
-                                            <Clock4 color="#878797" size={24} />
-                                        }
+                                        icon={<Clock4 color="#878797" size={24} />}
                                         title="ВРЕМЯ"
                                         info={`${event.time.begin} - ${event.time.end}`}
                                     />
                                     <ModalEventsCardDesktop
-                                        className="bg-transparent bg-no-repeat bg-center items-center"
+                                        className="items-center bg-transparent bg-center bg-no-repeat"
                                         style={{
                                             backgroundImage: "url('/background/subtract_events_modal.webp')",
-                                            backgroundSize: "contain"
+                                            backgroundSize: 'contain',
                                         }}
-                                        icon={
-                                            <CalendarCheck color="#878797" size={24} />
-                                        }
+                                        icon={<CalendarCheck color="#878797" size={24} />}
                                         title="ОТМЕТИТЬ В GOOGLE КАЛЕНДАРЕ"
                                         info={
-                                            <div className="relative bg-[#101030] rounded-[20px]">
+                                            <div className="relative rounded-[20px] bg-[#101030]">
                                                 <Button
                                                     variant="accent_desktop"
                                                     size="circle_modal_desk"
-                                                    className="bg-[#ffffff1a] absolute right-0 bottom-[-40px]"
+                                                    className="absolute bottom-[-40px] right-0 bg-[#ffffff1a]"
                                                 >
-                                                    <a href={event.googleCalendarLink} target="_blank" rel="noopener noreferrer">
-                                                        <ForwardIcon fill="white" stroke="white" width={'29.25px'}/>
+                                                    <a
+                                                        href={event.googleCalendarLink}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        <ForwardIconDesktop
+                                                            fill="white"
+                                                            stroke="white"
+                                                            width={'29.25px'}
+                                                        />
                                                     </a>
                                                 </Button>
                                             </div>
                                         }
                                     />
-                                    <ModalEventsCardDesktop                   
-                                        className="pt-[64px] pb-[64px] pl-[20px] items-start"
+                                    <ModalEventsCardDesktop
+                                        className="items-start py-[64px] pl-[20px]"
                                         icon={
                                             <div>
                                                 <Ellipsis color="#878797" size={24} />
                                             </div>
                                         }
                                         title={
-                                            <a 
-                                                className="text28px_desktop text-[white] font-medium hover:text-[#382D90] transition-colors duration-300" 
-                                                href={event.moreInfoLink} 
-                                                target="_blank" 
+                                            <a
+                                                className="text28px_desktop font-medium text-[white] transition-colors duration-300 hover:text-[#382D90]"
+                                                href={event.moreInfoLink}
+                                                target="_blank"
                                                 rel="noopener noreferrer"
                                             >
-                                                    ПОДРОБНЕЕ
+                                                ПОДРОБНЕЕ
                                             </a>
                                         }
                                     />

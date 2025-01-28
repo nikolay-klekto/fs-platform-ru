@@ -6,7 +6,7 @@ interface ModalProps {
     children: ReactNode
     show: boolean
     onClose: () => void
-    size?: 'small' | 'medium' | 'semilarge' | 'large' | 'large-l'
+    size?: 'small' | 'medium' | 'semilarge' | 'large' | 'large-l' | 'large-lg'
     showCloseButton?: boolean
     paddingClass?: string
     className?: string
@@ -52,7 +52,7 @@ const Modal: React.FC<ModalProps> = ({
                 return 'max-w-4xl'
             case 'large-l':
                 return 'max-w-[1366px]'
-            case 'large-width-882':
+            case 'large-lg':
                 return '2xl:w-[830px] max-w-[882px]'
             case 'medium':
             default:
@@ -62,15 +62,15 @@ const Modal: React.FC<ModalProps> = ({
 
     return ReactDOM.createPortal(
         <div
-            className={`fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 ${paddingClass} ${className}`}
+            className={`fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 ${paddingClass} ${className}`}
             onClick={onClose}
         >
             <div
-                className={`relative bg-[#101030] rounded-[50px] w-full ${getSizeClass()} text-white modal-scrollable`}
+                className={`relative w-full rounded-[50px] bg-[#101030] ${getSizeClass()} modal-scrollable text-white`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {showCloseButton && (
-                    <button className="absolute top-0 right-[-53px]" onClick={onClose}>
+                    <button className="absolute right-[-53px] top-0" onClick={onClose}>
                         <X size={53} color="#878797" />
                     </button>
                 )}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { EyeOffPasswordDesktop, EyeOnPasswordDesktop, PasswordGeneratorDesktop } from '@/components/assets/icons'
 import { validatePasswordMobi } from '@/components/mobi/commonMobi/validate/validatePasswordMobi'
 import { generatePassword } from '@/components/mobi/commonMobi/generatePasswordMobi'
@@ -83,7 +83,7 @@ const PasswordInputMobi: React.FC<PasswordInputProps> = ({
                 <button
                     type="button"
                     onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute top-1/2 transform -translate-y-1/2  right-4 flex items-center text-[#878797] sm_l:w-[16px] sm_s:w-[16px] sm:w-[16px]"
+                    className="sm_l:w-[16px] sm_s:w-[16px] absolute right-4  top-1/2 flex -translate-y-1/2 items-center text-[#878797] sm:w-[16px]"
                 >
                     {showPassword ? <EyeOnPasswordDesktop /> : <EyeOffPasswordDesktop />}
                 </button>
@@ -91,7 +91,7 @@ const PasswordInputMobi: React.FC<PasswordInputProps> = ({
                     <button
                         type="button"
                         onClick={handleGeneratePassword}
-                        className="absolute top-[-55%] right-4 flex items-center text-[#878797] sm_l:w-[16px] sm_s:w-[16px] sm:w-[16px]"
+                        className="sm_l:w-[16px] sm_s:w-[16px] absolute right-4 top-[-55%] flex items-center text-[#878797] sm:w-[16px]"
                     >
                         <PasswordGeneratorDesktop />
                     </button>
