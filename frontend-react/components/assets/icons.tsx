@@ -318,9 +318,9 @@ export const CheckedBoxIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
                     y2="7.89772"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#8333F3" />
-                    <stop offset="0.485532" stop-color="#5F4AF3" />
-                    <stop offset="1" stop-color="#3B51A8" />
+                    <stop stopColor="#8333F3" />
+                    <stop offset="0.485532" stopColor="#5F4AF3" />
+                    <stop offset="1" stopColor="#3B51A8" />
                 </linearGradient>
                 <linearGradient
                     id="paint1_linear_423_22299"
@@ -330,9 +330,9 @@ export const CheckedBoxIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
                     y2="10.5011"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#8333F3" />
-                    <stop offset="0.485532" stop-color="#5F4AF3" />
-                    <stop offset="1" stop-color="#3B51A8" />
+                    <stop stopColor="#8333F3" />
+                    <stop offset="0.485532" stopColor="#5F4AF3" />
+                    <stop offset="1" stopColor="#3B51A8" />
                 </linearGradient>
             </defs>
         </svg>
@@ -569,9 +569,9 @@ export const SendIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
                     y2="17.3954"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#8333F3" />
-                    <stop offset="0.485532" stop-color="#5F4AF3" />
-                    <stop offset="1" stop-color="#3B51A8" />
+                    <stop stopColor="#8333F3" />
+                    <stop offset="0.485532" stopColor="#5F4AF3" />
+                    <stop offset="1" stopColor="#3B51A8" />
                 </linearGradient>
                 <linearGradient
                     id="paint1_linear_1854_21403"
@@ -581,9 +581,9 @@ export const SendIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
                     y2="17.5116"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#8333F3" />
-                    <stop offset="0.485532" stop-color="#5F4AF3" />
-                    <stop offset="1" stop-color="#3B51A8" />
+                    <stop stopColor="#8333F3" />
+                    <stop offset="0.485532" stopColor="#5F4AF3" />
+                    <stop offset="1" stopColor="#3B51A8" />
                 </linearGradient>
             </defs>
         </svg>
@@ -721,9 +721,9 @@ export const CheckedBoxIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
                     y2="7.89772"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#8333F3" />
-                    <stop offset="0.485532" stop-color="#5F4AF3" />
-                    <stop offset="1" stop-color="#3B51A8" />
+                    <stop stopColor="#8333F3" />
+                    <stop offset="0.485532" stopColor="#5F4AF3" />
+                    <stop offset="1" stopColor="#3B51A8" />
                 </linearGradient>
                 <linearGradient
                     id="paint1_linear_423_22299"
@@ -733,9 +733,9 @@ export const CheckedBoxIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
                     y2="10.5011"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#8333F3" />
-                    <stop offset="0.485532" stop-color="#5F4AF3" />
-                    <stop offset="1" stop-color="#3B51A8" />
+                    <stop stopColor="#8333F3" />
+                    <stop offset="0.485532" stopColor="#5F4AF3" />
+                    <stop offset="1" stopColor="#3B51A8" />
                 </linearGradient>
             </defs>
         </svg>
@@ -757,6 +757,27 @@ export const LineDate: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="22" height="2" viewBox="0 0 18 2" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M1 1H21" stroke="#878797" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+    )
+}
+
+export const SearchIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M18.3333 31.6667C25.6971 31.6667 31.6667 25.6971 31.6667 18.3333C31.6667 10.9695 25.6971 5 18.3333 5C10.9695 5 5 10.9695 5 18.3333C5 25.6971 10.9695 31.6667 18.3333 31.6667Z"
+                stroke="#878797"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M35 35L27.75 27.75"
+                stroke="#878797"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
         </svg>
     )
 }

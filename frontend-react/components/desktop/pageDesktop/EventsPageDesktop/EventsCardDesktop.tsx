@@ -15,7 +15,6 @@ interface EventsCardDesktop {
     city: string
     place: string
     company: string
-    id: number
 }
 
 const EventsCardDesktop: React.FC<EventsCardDesktop> = ({

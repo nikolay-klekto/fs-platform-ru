@@ -17,7 +17,7 @@ interface SelectOption {
 const EventsSelectSearchDesktop = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
-    const dropdownRef = useRef<HTMLDivElement>(null) // Создаем ref для контейнера
+    const dropdownRef = useRef<HTMLDivElement>(null)
 
     const toggleOption = (value: string) => {
         setSelectedOptions((prev) =>
@@ -31,7 +31,7 @@ const EventsSelectSearchDesktop = () => {
 
     const handleClickOutside = (event: MouseEvent) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-            setIsOpen(false) // Закрываем dropdown, если клик вне области
+            setIsOpen(false)
         }
     }
 

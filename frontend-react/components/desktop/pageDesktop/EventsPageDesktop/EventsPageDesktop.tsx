@@ -10,15 +10,10 @@ import EventsSelectSearchDateDesktop from './EventsSelectSearchDateDesctop'
 import EventsSelectSearchCityDesktop from './EventsSelectSearchCityDesktop'
 
 const EventsPageDesktop: React.FC = () => {
-    const [searchQuery, setSearchQuery] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
     const totalPages = Math.ceil(content.length / cardsPerPage)
 
-    const handleSearch = () => {
-        console.log('Поиск мероприятия:', searchQuery)
-        setSearchQuery('')
-    }
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }

@@ -81,9 +81,19 @@ const EventsSelectSearchDateDesktop = () => {
     }
 
     const calendarRef = useRef<HTMLDivElement>(null)
+    const fromCalendarRef = useRef<HTMLDivElement>(null)
+    const toCalendarRef = useRef<HTMLDivElement>(null)
 
     const handleClickOutside = (event: MouseEvent) => {
-        if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
+        const isOutsideCalendar = calendarRef.current && !calendarRef.current.contains(event.target as Node)
+        const isOutsideFromCalendar = fromCalendarRef.current && !fromCalendarRef.current.contains(event.target as Node)
+        const isOutsideToCalendar = toCalendarRef.current && !toCalendarRef.current.contains(event.target as Node)
+
+        if (isOutsideFromCalendar && isOutsideToCalendar) {
+            setOpenCalendars({ from: false, to: false })
+        }
+
+        if (isOutsideCalendar) {
             setIsOpen(false)
         }
     }
@@ -95,11 +105,12 @@ const EventsSelectSearchDateDesktop = () => {
         }
     }, [])
 
-    const toggleCalendar = (key: 'from' | 'to') => {
-        setOpenCalendars((prev) => ({
-            ...prev,
-            [key]: !prev[key],
-        }))
+    const toggleCalendar = (calendar: DateKey) => {
+        setOpenCalendars((prev) => {
+            const newState = { from: false, to: false }
+            newState[calendar] = !prev[calendar]
+            return newState
+        })
     }
 
     const handleDateChange = (key: 'from' | 'to', newDate: Date | undefined) => {
@@ -117,11 +128,63 @@ const EventsSelectSearchDateDesktop = () => {
         }))
     }
 
+    const handleDatePreset = (type: string) => {
+        const now = new Date()
+        let newFromDate: Date | undefined
+        let newToDate: Date | undefined
+
+        switch (type) {
+            case 'today':
+                newFromDate = new Date(now)
+                newToDate = new Date(now)
+                break
+            case 'tomorrow':
+                newFromDate = new Date(now)
+                newFromDate.setDate(now.getDate() + 1)
+                newToDate = new Date(newFromDate)
+                break
+            case 'this-week':
+                const startOfWeek = new Date(now)
+                const endOfWeek = new Date(now)
+
+                startOfWeek.setDate(now.getDate() - now.getDay())
+                endOfWeek.setDate(now.getDate() + (6 - now.getDay()))
+
+                newFromDate = startOfWeek
+                newToDate = endOfWeek
+                break
+            case 'this-month':
+                const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
+                const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0)
+
+                newFromDate = startOfMonth
+                newToDate = endOfMonth
+                break
+            default:
+                break
+        }
+
+        setDates({
+            from: newFromDate,
+            to: newToDate,
+        })
+
+        setInputValues({
+            from: newFromDate ? autoFormatDate(newFromDate.toLocaleDateString('ru-RU')) : '',
+            to: newToDate ? autoFormatDate(newToDate.toLocaleDateString('ru-RU')) : '',
+        })
+
+        setOpenCalendars({
+            from: false,
+            to: false,
+        })
+    }
+
     return (
         <div className="relative z-[3]" ref={calendarRef}>
             <Button
                 variant={'select_btn_desktop'}
-                size={'select_btn_desktop_events'}
+                size={'select_btn_desktop_date'}
                 onClick={handleSelectToggle}
                 className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
@@ -139,8 +202,7 @@ const EventsSelectSearchDateDesktop = () => {
                 >
                     <div className="flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3 relative">
                         <div className="flex items-center justify-between custom-grey">
-                            {/* Календарь "От" */}
-                            <div className="flex flex-col relative">
+                            <div className="flex flex-col relative" ref={fromCalendarRef}>
                                 <p>От</p>
                                 <div
                                     className="desktop flex items-center justify-center gap-1 rounded-[42px] w-[178px] h-[50px] 3xl:w-[120px] 2xl:w-[110px] border border-[#878797]"
@@ -177,8 +239,7 @@ const EventsSelectSearchDateDesktop = () => {
 
                             <LineDate className="mt-5" />
 
-                            {/* Календарь "До" */}
-                            <div className="flex flex-col relative">
+                            <div className="flex flex-col relative" ref={toCalendarRef}>
                                 <p>До</p>
                                 <div
                                     className="desktop flex items-center justify-center gap-1 rounded-[42px] w-[178px] h-[50px] 3xl:w-[120px] 2xl:w-[110px] border border-[#878797]"
@@ -213,32 +274,31 @@ const EventsSelectSearchDateDesktop = () => {
                                 )}
                             </div>
                         </div>
-                        {/* Кнопки */}
                         <Button
                             variant={'hover_button_date'}
                             size={'hover_button_date_desktop'}
-                            onClick={handleSelectToggle}
+                            onClick={() => handleDatePreset('today')}
                         >
                             Сегодня
                         </Button>
                         <Button
                             variant={'hover_button_date'}
                             size={'hover_button_date_desktop'}
-                            onClick={handleSelectToggle}
+                            onClick={() => handleDatePreset('tomorrow')}
                         >
                             Завтра
                         </Button>
                         <Button
                             variant={'hover_button_date'}
                             size={'hover_button_date_desktop'}
-                            onClick={handleSelectToggle}
+                            onClick={() => handleDatePreset('this-week')}
                         >
                             На этой неделе
                         </Button>
                         <Button
                             variant={'hover_button_date'}
                             size={'hover_button_date_desktop'}
-                            onClick={handleSelectToggle}
+                            onClick={() => handleDatePreset('this-month')}
                         >
                             В этом месяце
                         </Button>

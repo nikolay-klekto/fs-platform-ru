@@ -69,14 +69,16 @@ const buttonVariants = cva(
                 gradient_btn_desktop: 'h-[64px] w-[272px] 2xl:w-[250px] 3xl:w-[250px]',
                 select_btn_desktop:
                     'h-[64px] w-[337px] px-[30px] py-[20px] 2xl:w-[270px] 2xl:px-[20px] 3xl:w-[300px] 3xl:px-[20px]',
+                select_btn_desktop_events:
+                    'h-[64px] w-[290px] px-[30px] py-[20px] 2xl:w-[230px] 2xl:px-[20px] 3xl:w-[260px] 3xl:px-[20px]',
+                select_btn_desktop_date:
+                    'h-[64px] w-[200px] px-[30px] py-[20px] 2xl:w-[160px] 2xl:px-[20px] 3xl:w-[180px] 3xl:px-[20px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'size-[55px] sm:size-[50px] sm_s:size-[52px]',
                 contacts_btn_desktop: 'h-[65px] w-[262px] 2xl:h-[59px] 2xl:w-[250px] 3xl:h-[62px] 3xl:w-[256px]',
                 contacts_btn_send_desktop: 'h-[68.5px] w-[289px] 2xl:h-[62px] 2xl:w-[277px] 3xl:h-[65px] 3xl:w-[283px]',
                 contacts_btn_mobi: 'h-[39.5px] w-[159px] flex-shrink-0 sm:w-[152px] sm_s:w-[156px]',
                 contacts_btn_send_mobi: 'h-[35px] w-[145px] flex-shrink-0 sm:w-[136px] sm_s:w-[140px]',
-
-                select_btn_desktop_events: '3xl:px-[20px] h-[64px] px-[40px] py-[20px] 2xl:px-[20px]',
                 hover_button_date_desktop:
                     '3xl:w-[270px] 3xl:px-[20px] h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px]',
             },
