@@ -14,25 +14,21 @@ export const modals = {
         },
         {
             id: 'registration_desktop',
-            content: ({ onClose }: { onClose: () => void }) => (
-                <RegistrationModalDesktop isOpen={true} onClose={onClose} />
-            ),
+            content: <RegistrationModalDesktop isOpen={true} />,
         },
         {
             id: 'login_desktop',
-            content: ({ onClose }: { onClose: () => void }) => <LoginModalDesktop isOpen={true} onClose={onClose} />,
+            content: <LoginModalDesktop isOpen={true} />,
         },
     ],
     mobi: [
         {
             id: 'modalcall_mobi',
-            content: ({ onClose }: { onClose: () => void }) => <ModalCallMobi isOpen={true} onClose={onClose} />,
+            content: <ModalCallMobi isOpen={true} />,
         },
         {
             id: 'registration_mobi',
-            content: ({ onClose }: { onClose: () => void }) => (
-                <RegistrationModalMobi isOpen={true} onClose={onClose} />
-            ),
+            content: <RegistrationModalMobi isOpen={true} />,
         },
         {
             id: 'login_mobi',

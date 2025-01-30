@@ -13,7 +13,11 @@ interface LoginFormData {
     password: string
 }
 
-const LoginModalDesktop: React.FC = () => {
+interface ModalCallMobiProps {
+    isOpen: boolean
+    onClose: () => void
+}
+const LoginModalDesktop: React.FC<ModalCallMobiProps> = ({ isOpen, onClose }) => {
     const [formData, setFormData] = useState<LoginFormData>({
         email: '',
         password: '',

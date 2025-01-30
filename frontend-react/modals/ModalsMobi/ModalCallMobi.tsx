@@ -12,7 +12,11 @@ interface FormData {
     consent: boolean
 }
 
-const ModalCallMobi: React.FC = () => {
+interface ModalCallProps {
+    isOpen: boolean
+}
+
+const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         phone: '',
@@ -44,15 +48,16 @@ const ModalCallMobi: React.FC = () => {
         }
     }
 
-    const handleClose = () => {
-        setStep(null)
-    }
+    // if (!isOpen) {
+    //     return null
+    // }
+
     const [inputTouched, setInputTouched] = useState({
         email: false,
         phone: false,
     })
 
-    const handleInputBlur = (field) => {
+    const handleInputBlur = (field: 'phone') => {
         setInputTouched((prev) => ({
             ...prev,
             [field]: true,
@@ -60,12 +65,12 @@ const ModalCallMobi: React.FC = () => {
     }
     return (
         <>
-            {step === 'form' && (
+            {isOpen && step === 'form' && (
                 <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="relative max-w-md w-full mx-4">
+                    <div className="relative mx-4 w-full max-w-md">
                         <button
                             onClick={closeModal}
-                            className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
+                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
                             <X size={24} color="#878797" />
                         </button>
@@ -92,11 +97,11 @@ const ModalCallMobi: React.FC = () => {
                                         label="Ваше имя"
                                         labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
-                                        externalError={errors.name} // добавляем отображение ошибки
+                                        // externalError={errors.name}
                                     />
                                     {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
                                 </div>
-                                <div className="w-full flex flex-col mb-3 p-0.5">
+                                <div className="mb-3 flex w-full flex-col p-0.5">
                                     <EnhancedInput
                                         type="tel"
                                         name="phone"
@@ -109,7 +114,7 @@ const ModalCallMobi: React.FC = () => {
                                             inputTouched.phone && validatePhoneMobi(formData.phone).styleError
                                                 ? 'border-[#bc8070] focus:border-[#bc8070]'
                                                 : 'border-[#878797] focus:border-[#878797]'
-                                        } border rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white`}
+                                        } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
                                         label="Телефон*"
                                         labelClassName="mb-1 text-2xl font-medium text-white"
                                         wrapperClassName="w-full"
@@ -153,7 +158,7 @@ const ModalCallMobi: React.FC = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="bg-sub-title-gradient-mobi mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] text-3xl font-semibold text-white md:text-4xl"
+                                    className="mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] bg-sub-title-gradient-mobi text-3xl font-semibold text-white md:text-4xl"
                                 >
                                     Отправить заявку
                                 </button>
@@ -163,24 +168,24 @@ const ModalCallMobi: React.FC = () => {
                 </div>
             )}
 
-            {step === 'accepted' && (
+            {isOpen && step === 'accepted' && (
                 <div className=" flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="fixed inset-0 z-[70]  max-w-md w-full mx-4">
+                    <div className="fixed inset-0 z-[70]  mx-4 w-full max-w-md">
                         <button
                             onClick={closeModal}
-                            className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
+                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
                         >
                             <X size={24} color="#878797" />
                         </button>
                         <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat py-[40px]">
-                            <h1 className="bg-sub-title-gradient-mobi mb-3 mt-6 bg-clip-text text-center text-3xl font-semibold text-transparent md:text-4xl">
+                            <h1 className="mb-3 mt-6 bg-sub-title-gradient-mobi bg-clip-text text-center text-3xl font-semibold text-transparent md:text-4xl">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
                             <p className="mb-1 px-3 pb-[18px] text-justify font-medium text-[#878797] md:text-lg">
                                 Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
                                 сайте.
                             </p>
-                            <div className="bg-sub-title-gradient-mobi mx-auto my-2 flex w-4/5 items-center justify-center rounded-[50px] p-[3px]">
+                            <div className="mx-auto my-2 flex w-4/5 items-center justify-center rounded-[50px] bg-sub-title-gradient-mobi p-[3px]">
                                 <button
                                     type="button"
                                     className="h-12 w-full rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"

@@ -18,7 +18,11 @@ interface RegistrationFormData {
     agree: boolean
 }
 
-const RegistrationModalMobi: React.FC = () => {
+interface RegistrationMobiProps {
+    isOpen: boolean
+}
+
+const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
     const [formData, setFormData] = useState<RegistrationFormData>({
         email: '',
         phone: '',
@@ -140,7 +144,7 @@ const RegistrationModalMobi: React.FC = () => {
         phone: false,
     })
 
-    const handleInputBlur = (field) => {
+    const handleInputBlur = (field: 'phone' | 'email') => {
         setInputTouched((prev) => ({
             ...prev,
             [field]: true,
@@ -150,6 +154,7 @@ const RegistrationModalMobi: React.FC = () => {
         closeModal()
         openModal('login_desktop', 'desktop')
     }
+
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
             <div className="relative max-w-md w-full">
