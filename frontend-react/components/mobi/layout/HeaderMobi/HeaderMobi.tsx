@@ -60,7 +60,7 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                 }
             >
                 <div
-                    className={`relative flex h-[56px] w-full px-[15px] items-center justify-between ${!disableBackground ? 'container' : ''}`}
+                    className={`relative flex h-[56px] w-full px-[15px] items-center justify-between`}
                 >
                     <PhoneIconMobi className="cursor-pointer" />
                     <div className="absolute left-1/2 top-7 -translate-x-1/2 -translate-y-1/2">
