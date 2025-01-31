@@ -195,4 +195,18 @@
     .scrollbar-modal_desktop_custom:hover {
         cursor: grabbing;
     }
+    .front-image {
+        background-image: url('/background/subtract_desk.webp');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .back-image {
+        transition: blur 0.2s ease-in-out;
+        transform: scale(1.12);
+    }
+    .group:hover .back-image {
+        opacity: 1;
+        filter: blur(9px) drop-shadow(0px 4px 30px #ffffff1a);
+    }
 }
