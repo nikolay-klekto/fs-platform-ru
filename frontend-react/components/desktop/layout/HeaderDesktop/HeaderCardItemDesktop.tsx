@@ -27,10 +27,10 @@ const HeaderCardItemDesktop: React.FC<HeaderCardItemDesktop> = ({
                 src="/background/subtract-back-deck.webp"
                 layout="fill"
                 objectFit="cover"
-                alt="back-image"
-                className="back-image rounded-[50px] absolute top-0 left-0 w-full h-full opacity-0"
+                alt="Изображение тени под карточкой"
+                className="card-background-image_desktop rounded-[50px] absolute top-0 left-0 w-full h-full opacity-0"
             />
-            <div className="front-image 3xl:min-h-[210px] 3xl:max-w-[346px] flex min-h-[260px] max-w-[426px] items-center justify-center rounded-[50px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] 2xl:min-h-[188px] 2xl:max-w-[308px]">
+            <div className="card-foreground-image_desktop 3xl:min-h-[210px] 3xl:max-w-[346px] flex min-h-[260px] max-w-[426px] items-center justify-center rounded-[50px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] 2xl:min-h-[188px] 2xl:max-w-[308px]">
                 <div className="flex flex-1 flex-col justify-between gap-[17px]">
                     <div className="3xl:px-7 grow px-10 2xl:px-5">
                         <div className="3xl:leading-[30px] text24px_desktop text-justify font-medium leading-[40px] 2xl:leading-[24px]">
