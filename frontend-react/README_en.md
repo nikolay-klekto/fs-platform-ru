@@ -9,14 +9,14 @@
 
 ## Project structure
 
--   components
-    -   layout
-    -   shared
-    -   ui
--   constants
--   hooks
--   services
--   utils
+- components
+    - layout
+    - shared
+    - ui
+- constants
+- hooks
+- services
+- utils
 
 ## Installation and Running
 
@@ -37,11 +37,11 @@ node - v
 
 ## Stack
 
--   [Next](https://nextjs.org/) ([App router](https://nextjs.org/docs/app))
--   [TS](https://www.typescriptlang.org/)
--   [Tailwind CSS](https://tailwindcss.com/)
--   [shadcn](https://ui.shadcn.com/)
--   Eslint, Prettier
+- [Next](https://nextjs.org/) ([App router](https://nextjs.org/docs/app))
+- [TS](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn](https://ui.shadcn.com/)
+- Eslint, Prettier
 
 ## Project workflow
 
@@ -75,12 +75,12 @@ All correspondence in the repository, names of commits, PR, etc. provided in Eng
 
 ### GIT:
 
--   The **main** branch - for sending code to product
--   The **dev-front-react** branch is a working branch, from which we create branches to perform our tasks
--   Feature branches are called like **FF-12-feat/task-name**
--   Other branches in the same style - **FF-12-fix/issue-name** (docs, refactor etc.)
--   PR name - **FF-12-feat Task name** e.g. **FF-12-feat Header button colors**
-    **Where number e.g. FF-12 or FF-30 is the same as task number at Jira.**
+- The **main** branch - for sending code to product
+- The **dev-front-react** branch is a working branch, from which we create branches to perform our tasks
+- Feature branches are called like **FF-12-feat/task-name**
+- Other branches in the same style - **FF-12-fix/issue-name** (docs, refactor etc.)
+- PR name - **FF-12-feat Task name** e.g. **FF-12-feat Header button colors**
+  **Where number e.g. FF-12 or FF-30 is the same as task number at Jira.**
 
 Commit names - follow [commit convention](https://www.conventionalcommits.org/en/v1.0.0/) ([Russian transation](https://gist.github.com/Voloshin-Sergei/ffbec67c6d9fcb32b0df014ababba0e9) of this convention), e.g. `FF-12-feat: add submit button` or `FF-12-fix: some error`
 
@@ -100,8 +100,8 @@ https://nextjs.org/docs/app/building-your-application/routing/colocation
 
 We have two different apps: desktop and mobile. Each component can be related only for one type:
 
--   mobile (from 320px to 767px)
--   desktop (from 768px to 1920px)
+- mobile (from 320px to 767px)
+- desktop (from 768px to 1920px)
 
 _Note: **ui folder** is a list of figma's styled components. Please don't change them_
 
@@ -115,8 +115,8 @@ _Note: **ui folder** is a list of figma's styled components. Please don't change
 
 We organize components in a structured manner:
 
--   Main components are placed in the _/pageDesktop/layout_ (or /_pageMobi/layout_) folder.
--   Subcomponents are organized within their respective folders
+- Main components are placed in the _/pageDesktop/layout_ (or /_pageMobi/layout_) folder.
+- Subcomponents are organized within their respective folders
 
 ```
 /components
@@ -137,9 +137,9 @@ Following Next.js best practices, the app folder is strictly for pages, layouts,
 
 ## 2. Naming Conventions
 
--   Component file names: **UpperCamelCase** (e.g., HowWeWorkDesktop.tsx).
--   Hook file names: **lowerCamelCase** (e.g., useSomething.tsx).
--   Other file names: **kebab-case**
+- Component file names: **UpperCamelCase** (e.g., HowWeWorkDesktop.tsx).
+- Hook file names: **lowerCamelCase** (e.g., useSomething.tsx).
+- Other file names: **kebab-case**
 
 For more details, refer to this [common practice](https://medium.com/@hiro08gh/next-js-naming-conventions-are-checked-with-eslint-rules-946371d67882#:~:text=Component%20Naming%20Conventions,name%20of%20%20the%20folder%20path.).
 
@@ -147,26 +147,26 @@ For more details, refer to this [common practice](https://medium.com/@hiro08gh/n
 
 > **Important:** each component be named with a special suffix:
 >
-> -   **Mobi** (for mobile components)
-> -   **Desktop** (for Desktop components)
+> - **Mobi** (for mobile components)
+> - **Desktop** (for Desktop components)
 >
 >     Example:
 >
->     -   HowWeWork<mark>Desktop</mark>.tsx
->     -   HomePage<mark>Mobi</mark>.tsx
+>     - HowWeWork<mark>Desktop</mark>.tsx
+>     - HomePage<mark>Mobi</mark>.tsx
 
 ---
 
 ## 3. TypeScript Naming Conventions
 
--   Classes, interfaces, types, enums, decorators, type parameters: **UpperCamelCase**.
--   Variables, parameters, functions, methods, properties, module aliases: **lowerCamelCase**.
--   Global constants (including enum elements): **CONSTANT_CASE**.
+- Classes, interfaces, types, enums, decorators, type parameters: **UpperCamelCase**.
+- Variables, parameters, functions, methods, properties, module aliases: **lowerCamelCase**.
+- Global constants (including enum elements): **CONSTANT_CASE**.
 
 ### Props Types
 
--   Props types are declared directly in the component file.
--   General or reusable types are placed in a dedicated constants directory.
+- Props types are declared directly in the component file.
+- General or reusable types are placed in a dedicated constants directory.
 
 ## 4. Tailwind CSS
 

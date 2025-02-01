@@ -131,7 +131,7 @@ const EnhancedTextareaMobi = React.forwardRef<HTMLTextAreaElement, EnhancedTexta
                 />
                 {(helperText || internalError !== '') && (
                     <span className={cn('text-xs', internalError ? 'text-destructive' : 'text-muted-foreground')}>
-                    {internalError || helperText}
+                        {internalError || helperText}
                     </span>
                 )}
             </div>

@@ -1,19 +1,18 @@
-
 interface Organizer {
     name: string
     link: string
 }
-  
+
 interface Date {
     data: string
     day: string
 }
-  
+
 interface Time {
     begin: string
     end: string
 }
-  
+
 interface Events {
     id: number
     image: string
@@ -33,7 +32,8 @@ export const contentModalEvents: Events[] = [
         id: 1,
         image: '/images/events_modal_1.png',
         title: 'Название мероприятия',
-        description: 'Учитывая ключевые сценарии поведения, сложившаяся структура организации прекрасно подходит для реализации анализа существующих паттернов поведения. А ещё диаграммы связей ограничены исключительно образом мышления ключевые сценарии поведения, сложившаяся структура организации прекрасно подходит для реализации.',
+        description:
+            'Учитывая ключевые сценарии поведения, сложившаяся структура организации прекрасно подходит для реализации анализа существующих паттернов поведения. А ещё диаграммы связей ограничены исключительно образом мышления ключевые сценарии поведения, сложившаяся структура организации прекрасно подходит для реализации.',
         location: 'Минск, Тиражная 150',
         organizer: {
             name: 'EPAM',
@@ -49,6 +49,6 @@ export const contentModalEvents: Events[] = [
             end: '22:00',
         },
         googleCalendarLink: 'https://calendar.google.com',
-        moreInfoLink: 'https://example.com/event1'
-    }
+        moreInfoLink: 'https://example.com/event1',
+    },
 ]

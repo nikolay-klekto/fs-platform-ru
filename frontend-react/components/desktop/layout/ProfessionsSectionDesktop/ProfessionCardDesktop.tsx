@@ -27,7 +27,7 @@ const ProfessionCardDesktop: React.FC<ProfessionCardDesktopProps> = ({ image, pr
                 <CardFooter variant={'profession_home_desktop'} size={'profession_home_desktop'}>
                     <p className=" text24px_desktop  text-[#878797] ">
                         от{' '}
-                        <span className="bg-gradient-desktop text36px_desktop bg-clip-text text-transparent">
+                        <span className="text36px_desktop bg-gradient-desktop bg-clip-text text-transparent">
                             {price} BYN/
                         </span>
                         неделя

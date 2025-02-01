@@ -9,14 +9,14 @@
 
 ## Структура проекта
 
--   components
-    -   layout
-    -   shared
-    -   ui
--   constants
--   hooks
--   services
--   utils
+- components
+    - layout
+    - shared
+    - ui
+- constants
+- hooks
+- services
+- utils
 
 ## Установка и запуск
 
@@ -49,11 +49,11 @@ node - v
 
 ## Стек разработки
 
--   [Next](https://nextjs.org/) ([App router](https://nextjs.org/docs/app))
--   [TS](https://www.typescriptlang.org/)
--   [Tailwind CSS](https://tailwindcss.com/)
--   [shadcn](https://ui.shadcn.com/)
--   Eslint, Prettier
+- [Next](https://nextjs.org/) ([App router](https://nextjs.org/docs/app))
+- [TS](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn](https://ui.shadcn.com/)
+- Eslint, Prettier
 
 ## Рабочий процесс проекта
 
@@ -90,13 +90,13 @@ node - v
 
 ### GIT:
 
--   **main** branch - продакшен
--   **dev-front-react** branch - это текущая ветка разработки, с которой стягиваются текущие изменения и происходят ответвления для выполнения задач
--   Правила наименования:
-    -   Ветки с созданием новых фитч **FF-12-feat/task-name**
-    -   Ветки с другим функционалом - **FF-12-fix/issue-name** (docs, refactor etc.)
-    -   PR - **FF-12-feat Task name**, например **FF-12-feat Header button colors**. Где номер, такой как **FF-12 или FF-30** должен совпадать с индексом задаче в Jira
-    -   Commit - следуем [commit convention](https://www.conventionalcommits.org/en/v1.0.0/) ([на русском здесь](https://gist.github.com/Voloshin-Sergei/ffbec67c6d9fcb32b0df014ababba0e9) ), например, `FF-12-feat: add submit button` или `FF-12-fix: some error`
+- **main** branch - продакшен
+- **dev-front-react** branch - это текущая ветка разработки, с которой стягиваются текущие изменения и происходят ответвления для выполнения задач
+- Правила наименования:
+    - Ветки с созданием новых фитч **FF-12-feat/task-name**
+    - Ветки с другим функционалом - **FF-12-fix/issue-name** (docs, refactor etc.)
+    - PR - **FF-12-feat Task name**, например **FF-12-feat Header button colors**. Где номер, такой как **FF-12 или FF-30** должен совпадать с индексом задаче в Jira
+    - Commit - следуем [commit convention](https://www.conventionalcommits.org/en/v1.0.0/) ([на русском здесь](https://gist.github.com/Voloshin-Sergei/ffbec67c6d9fcb32b0df014ababba0e9) ), например, `FF-12-feat: add submit button` или `FF-12-fix: some error`
 
 ```
 P.S. Мы стараемся следовать предложенным рекомендациям, но главное задача любых наименований - это их ясность и отражение сути.
@@ -116,8 +116,8 @@ https://nextjs.org/docs/app/building-your-application/routing/colocation
 
 У нас есть два разных веб-приложения: десктоп и мобилка. Каждый разрабатываемый компонент может быть связан только с одним типом веб-приложения:
 
--   mobile (от 320px до 767px)
--   desktop (от 768px до 1920px)
+- mobile (от 320px до 767px)
+- desktop (от 768px до 1920px)
 
 _Примечание: в папке **ui** размещены общие переиспользуемые компоненты из дизайн макета figma. Редактирование допускается по согласованию с тимлидом_
 
@@ -131,7 +131,7 @@ _Примечание: в папке **ui** размещены общие пер
 
 Логика размещения компонентов:
 
--   Главные (родительские) компоненты расположены в папках
+- Главные (родительские) компоненты расположены в папках
 
 ```
 /pageDesktop/layout
@@ -139,7 +139,7 @@ _Примечание: в папке **ui** размещены общие пер
 /pageMobi/layout
 ```
 
--   Подкомпоненты размещаются в одноименных папках
+- Подкомпоненты размещаются в одноименных папках
 
 ```
 /components
@@ -156,21 +156,21 @@ _Примечание: в папке **ui** размещены общие пер
 
 ## 2. Наименования (принципы)
 
--   Компонента: **UpperCamelCase** (e.g., HowWeWorkDesktop.tsx).
--   Хук: **lowerCamelCase** (e.g., useSomething.tsx).
--   Другие файлы: **kebab-case**
+- Компонента: **UpperCamelCase** (e.g., HowWeWorkDesktop.tsx).
+- Хук: **lowerCamelCase** (e.g., useSomething.tsx).
+- Другие файлы: **kebab-case**
 
 ---
 
 > **ВАЖНО:** Название каждого компонента должно иметь специальное окончание:
 >
-> -   **Mobi** (для mobile компонентов)
-> -   **Desktop** (для Desktop компонентов)
+> - **Mobi** (для mobile компонентов)
+> - **Desktop** (для Desktop компонентов)
 >
 >     Примеры:
 >
->     -   HowWeWork<mark>Desktop</mark>.tsx
->     -   HomePage<mark>Mobi</mark>.tsx
+>     - HowWeWork<mark>Desktop</mark>.tsx
+>     - HomePage<mark>Mobi</mark>.tsx
 
 > Даже если у вас один и тот же компонент используется
 > без изменений в двух версиях, то его необходимо
@@ -178,14 +178,14 @@ _Примечание: в папке **ui** размещены общие пер
 
 ## 3. TypeScript Наименования
 
--   Classes, interfaces, types, enums, decorators, type parameters: **UpperCamelCase**.
--   Variables, parameters, functions, methods, properties, module aliases: **lowerCamelCase**.
--   Global constants (включая enum elements): **CONSTANT_CASE**.
+- Classes, interfaces, types, enums, decorators, type parameters: **UpperCamelCase**.
+- Variables, parameters, functions, methods, properties, module aliases: **lowerCamelCase**.
+- Global constants (включая enum elements): **CONSTANT_CASE**.
 
 ### Props Types
 
--   Props types объявляются напрямую в компоненте.
--   Общие или повторно используемые типы помещаются в специальный каталог констант.
+- Props types объявляются напрямую в компоненте.
+- Общие или повторно используемые типы помещаются в специальный каталог констант.
 
 ## 4. Tailwind CSS
 
