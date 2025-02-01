@@ -9,13 +9,21 @@ import { content } from './content'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
+import ProfessionModalDesktop from '../../layout/ProfessionModalDesktop/ProfessionModalDesktop'
 
 const ProfessionsPageDesktop: React.FC = () => {
+    const [openModal, setOpenModal] = useState<boolean>(false)
+    const [selectedProfession, setSelectedProfession] = useState<string>('')
+    const [selectedIdProfession, setSelectedIdProfession] = useState<number | null>(null)
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 12
     const totalPages = Math.ceil(content.length / cardsPerPage)
+
+    const closeModal = () => {
+        setOpenModal(false)
+    }
 
     const handleSearch = () => {
         console.log('Поиск профессий:', searchQuery)
@@ -27,7 +35,7 @@ const ProfessionsPageDesktop: React.FC = () => {
 
     return (
         <>
-            <div className="3xl:p-[76px_130px_150px_130px] container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px]">
+            <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
                 <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
                 <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
                 <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
@@ -57,13 +65,18 @@ const ProfessionsPageDesktop: React.FC = () => {
                     </div>
                     <ProfessionsSelectDesktop />
                 </div>
-                <div className="3xl:gap-[25px] 4xl:gap-[30px] grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px]">
+                <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
                     {content.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
                         <ProfessionCardPageDesktop
                             key={item.id}
                             image={item.image}
                             profession={item.profession}
                             price={item.price.toString()}
+                            onClick={() => {
+                                setSelectedProfession(item.profession)
+                                setSelectedIdProfession(item.id)
+                                setOpenModal(true)
+                            }}
                         />
                     ))}
                 </div>
@@ -73,6 +86,13 @@ const ProfessionsPageDesktop: React.FC = () => {
                     onPageChange={handlePageChange}
                 />
                 <ProfessionSearchDesktop />
+                {openModal && (
+                    <ProfessionModalDesktop
+                        closeModal={closeModal}
+                        profession={selectedProfession}
+                        professionId={selectedIdProfession}
+                    />
+                )}
             </div>
         </>
     )

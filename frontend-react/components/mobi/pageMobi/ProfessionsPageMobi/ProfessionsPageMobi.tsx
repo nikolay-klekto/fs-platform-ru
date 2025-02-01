@@ -8,14 +8,22 @@ import { EnhancedInput } from '@/components/ui/input'
 import { FiltersIconMobi } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
+import ProfessionModalMobi from '../../layout/ProfessionModalMobi/ProfessionModalMobi'
 
 const ProfessionsPageMobi: React.FC = () => {
+    const [openModal, setOpenModal] = useState<boolean>(false)
+    const [selectedProfession, setSelectedProfession] = useState<string>('')
+    const [selectedIdProfession, setSelectedIdProfession] = useState<number | null>(null)
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [isFilterActive, setIsFilterActive] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
     const totalPages = Math.ceil(content.length / cardsPerPage)
+
+    const closeModal = () => {
+        setOpenModal(false)
+    }
 
     const handleSearch = () => {
         console.log('Поиск профессий:', searchQuery)
@@ -65,6 +73,11 @@ const ProfessionsPageMobi: React.FC = () => {
                             image={item.image}
                             profession={item.profession}
                             price={item.price.toString()}
+                            onClick={() => {
+                                setSelectedProfession(item.profession)
+                                setSelectedIdProfession(item.id)
+                                setOpenModal(true)
+                            }}
                         />
                     ))}
                 </div>
@@ -74,6 +87,13 @@ const ProfessionsPageMobi: React.FC = () => {
                     onPageChange={handlePageChange}
                 />
                 <ProfessionSendMobi />
+                {openModal && (
+                    <ProfessionModalMobi
+                        closeModal={closeModal}
+                        profession={selectedProfession}
+                        professionId={selectedIdProfession}
+                    />
+                )}
             </div>
         </>
     )
