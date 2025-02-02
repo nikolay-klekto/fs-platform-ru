@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { HelpTooltipMobi } from '@/components/ui/tooltip'
 import { ArrowWhiteMobi } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
 
@@ -10,6 +11,7 @@ interface HeaderCardItemDesktop {
     textBlackBr: string
     price: number
     currency: string
+    tooltipMessage: string
 }
 
 const HeaderCardsItemMobi: React.FC<HeaderCardItemDesktop> = ({
@@ -18,11 +20,12 @@ const HeaderCardsItemMobi: React.FC<HeaderCardItemDesktop> = ({
     textBlackBr,
     price,
     currency,
+    tooltipMessage
 }) => {
     return (
         <>
             <div
-                className="sm_s:min-h-[192px] sm_xl:h-[226px] sm_xl:w-fit m-auto flex min-h-[212px] w-[346px] items-center justify-center rounded-[41px] drop-shadow-[0_3.26px_3.26px_rgba(0,0,0,0.25)] sm:min-h-[176px]"
+                className="sm_s:min-h-[192px] sm_xl:h-[226px] sm_xl:w-fit m-auto flex flex-col min-h-[212px] w-[346px] items-center justify-center rounded-[41px] drop-shadow-[0_3.26px_3.26px_rgba(0,0,0,0.25)] sm:min-h-[176px]"
                 style={{
                     backgroundImage: "url('/background/subtract_mobi.webp')",
                     backgroundSize: 'cover',
@@ -30,7 +33,8 @@ const HeaderCardsItemMobi: React.FC<HeaderCardItemDesktop> = ({
                     backgroundRepeat: 'no-repeat, no-repeat',
                 }}
             >
-                <div className="flex flex-1 flex-col items-center justify-center gap-[30px]">
+                <HelpTooltipMobi message={tooltipMessage} />
+                <div className="flex flex-1 flex-col items-center justify-center gap-[15px]">
                     <div className="sm_s:text-3xl sm_s:leading-[24px] px-[30px] text-justify text-5xl font-medium leading-[32px] text-white sm:text-3xl sm:leading-[24px]">
                         {textBlack}{' '}
                         <span className="bg-sub-title-gradient-mobi20 rounded-[20px] px-[4px] font-bold text-white sm:px-[2px]">

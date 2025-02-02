@@ -45,19 +45,19 @@ const PopoverArrow = PopoverPrimitive.Arrow
 export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ message }) => (
     <Popover>
         <PopoverTrigger asChild>
-            <button className="flex justify-self-end mb-2">
+            <button className="flex justify-self-start self-end mt-5 mr-5">
                 <HelpIconDesktop />
             </button>
         </PopoverTrigger>
         <PopoverContent
-            className="min-w-[385px] 2xl:min-w-[285px]  min-h-[96px] m-0 p-2 bg-tooltip rounded-[25px] shadow-none border-none"
-            sideOffset={5}
+            className="min-w-[385px] 3xl:min-w-[345px] 2xl:min-w-[308px] min-h-[96px] m-0 p-2 bg-tooltip rounded-[25px] shadow-none border-none"
+            sideOffset={3}
             side="top"
             align="end"
             alignOffset={-20}
         >
             <div className="p-3 pt-1">
-                <p className="text-[15px] 2xl:text-[10px] align-baseline font-medium 2xl:font-light text-white leading-[19px] text-mauve12" role="tooltip">
+                <p className="text-[15px] align-baseline font-medium 2xl:font-light text-white leading-[19px] text-mauve12">
                     {message}
                 </p>
             </div>
@@ -69,5 +69,27 @@ export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ message }) => (
 )
 
 export const HelpTooltipMobi: React.FC<HelpTooltipProps> = ({ message }) => (
-    <></>
+  <Popover>
+      <PopoverTrigger asChild>
+          <button className="flex justify-self-start self-end mt-5 mr-5">
+              <HelpIconMobi />
+          </button>
+      </PopoverTrigger>
+      <PopoverContent
+        className="w-[346px] min-h-[96px] m-0 p-2 bg-tooltip rounded-[25px] shadow-none border-none"
+        sideOffset={5}
+        side="top"
+        align="end"
+        alignOffset={-20}
+      >
+          <div className="p-2 pt-1">
+              <p className="text-[15px] align-baseline font-medium text-white leading-[19px] text-mauve12">
+                  {message}
+              </p>
+          </div>
+          <PopoverArrow
+            className="h-2 tooltip-arrow"
+          />
+      </PopoverContent>
+  </Popover>
 )
