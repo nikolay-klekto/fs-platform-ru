@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { HelpTooltipDesktop } from '@/components/ui/tooltip'
 import { ForwardIconDesktop } from '@/components/assets/icons'
 
 interface HeaderCardItemDesktop {
@@ -10,6 +11,7 @@ interface HeaderCardItemDesktop {
     price: number
     currency: string
     time: string
+    tooltipMessage: string
 }
 
 const HeaderCardItemDesktop: React.FC<HeaderCardItemDesktop> = ({
@@ -19,11 +21,12 @@ const HeaderCardItemDesktop: React.FC<HeaderCardItemDesktop> = ({
     price,
     currency,
     time,
+    tooltipMessage
 }) => {
     return (
         <>
             <div
-                className="3xl:min-h-[210px] 3xl:max-w-[346px] flex min-h-[260px] max-w-[426px] items-center justify-center rounded-[50px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] 2xl:min-h-[188px] 2xl:max-w-[308px]"
+                className="3xl:min-h-[210px] 3xl:max-w-[346px] flex flex-col min-h-[260px] max-w-[426px] items-center justify-center rounded-[50px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] 2xl:min-h-[188px] 2xl:max-w-[308px]"
                 style={{
                     backgroundImage: "url('/background/subtract_desk.webp')",
                     backgroundSize: 'contain, cover',
@@ -31,12 +34,13 @@ const HeaderCardItemDesktop: React.FC<HeaderCardItemDesktop> = ({
                     backgroundRepeat: 'no-repeat, no-repeat',
                 }}
             >
-                <div className="flex flex-1 flex-col justify-between gap-[17px]">
-                    <div className="3xl:px-7 grow px-10 2xl:px-5">
+                <HelpTooltipDesktop message={tooltipMessage} />
+                <div className="flex flex-1 flex-col items-start justify-items-stretch gap-[17px]">
+                    <div className="3xl:px-7 px-10 2xl:px-5">
                         <div className="3xl:leading-[30px] text24px_desktop text-justify font-medium leading-[40px] 2xl:leading-[24px]">
                             {textBlack}{' '}
                             <span
-                                className="bg-gradient-desktop font-bold  md:font-semibold"
+                                className="bg-gradient-desktop font-bold md:font-semibold"
                                 style={{
                                     WebkitBackgroundClip: 'text',
                                     WebkitTextFillColor: 'transparent',
@@ -48,7 +52,7 @@ const HeaderCardItemDesktop: React.FC<HeaderCardItemDesktop> = ({
                         </div>
                     </div>
                     <div
-                        className="bg-gradient-desktop 3xl:pl-7 pl-10 text-5xl font-semibold md:text-2xl 2xl:pl-5"
+                        className="pl-9 2xl:pl-5 bg-gradient-desktop text-5xl font-semibold md:text-2xl"
                         style={{
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
