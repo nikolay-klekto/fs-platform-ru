@@ -5,6 +5,7 @@ import ProfessionsSectionMobi from '../../layout/ProfessionsSectionMobi/Professi
 import HowWeWorkMobi from '../../layout/HowWeWorkMobi/HowWeWorkMobi'
 import PromoMobi from '../../layout/PromoMobi/PromoMobi'
 import EventsSectionMobi from '../../layout/EventsSectionMobi/EventsSectionMobi'
+import ModalOrderAcceptedMobi from '../../layout/ModalMobi/ModalOrderAcceptedMobi'
 const HomePageMobi: React.FC = () => {
     return (
         <>
@@ -14,6 +15,7 @@ const HomePageMobi: React.FC = () => {
             </div>
             <ProfessionsSectionMobi />
             <HowWeWorkMobi />
+            <ModalOrderAcceptedMobi />
             <PromoMobi />
             <EventsSectionMobi />
         </>
