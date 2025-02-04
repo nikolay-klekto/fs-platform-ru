@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { ChevronDownIconDesktop, CheckedBoxIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
@@ -17,6 +17,7 @@ interface SelectOption {
 const ProfessionsSelectDesktop = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
+    const selectRef = useRef<HTMLDivElement>(null)
 
     const toggleOption = (value: string) => {
         setSelectedOptions((prev) =>
@@ -27,6 +28,18 @@ const ProfessionsSelectDesktop = () => {
     const handleSelectToggle = () => {
         setIsOpen((prev) => !prev)
     }
+    const handleClickOutside = (event: MouseEvent) => {
+        if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+            setIsOpen(false)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
 
     const options: SelectOption[] = [
         { value: 'IT', label: 'IT-отрасль' },
@@ -38,7 +51,7 @@ const ProfessionsSelectDesktop = () => {
     ]
 
     return (
-        <div className="relative z-[3]">
+        <div className="relative z-[3]" ref={selectRef}>
             <Button
                 variant={'select_btn_desktop'}
                 size={'select_btn_desktop'}

@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react'
 import { useModal } from '@/context/ContextModal'
+import Link from 'next/link'
 import HeaderNavigationMobi from './HeaderNavigationMobi/HeaderNavigationMobi'
 import router from 'next/router'
-
 import {
     ShoppingCartIconMobi,
     LogoIconMobi,
@@ -61,13 +61,15 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                 }
             >
                 <div
-                    className={`relative flex h-[56px] w-full items-center justify-between ${!disableBackground ? 'container' : ''}`}
+                    className={`relative flex h-[56px] w-full px-[15px] items-center justify-between`}
                 >
-                    <PhoneIconMobi className="ml-3 cursor-pointer" />
+                    <PhoneIconMobi className="cursor-pointer" />
                     <div className="absolute left-1/2 top-7 -translate-x-1/2 -translate-y-1/2">
-                        <LogoIconMobi />
+                        <Link href="/">
+                            <LogoIconMobi />
+                        </Link>
                     </div>
-                    <div className="mr-2 flex gap-[17px]">
+                    <div className="flex gap-[17px]">
                         <ShoppingCartIconMobi className="shrink-0 cursor-pointer" />
                         <BurgerMenuIconMobi className="shrink-0 cursor-pointer" onClick={toggleMenu} />
                     </div>

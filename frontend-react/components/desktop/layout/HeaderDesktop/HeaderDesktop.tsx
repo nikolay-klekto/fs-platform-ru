@@ -30,7 +30,9 @@ const HeaderDesktop: React.FC = () => {
                 }}
             >
                 <div className="container flex justify-between items-center">
-                    <LogoIconDesktop className="flex-shrink-0 3xl:w-[82px] 3xl:h-auto 2xl:w-[75px] 2xl:h-auto" />
+                    <Link href="/">
+                        <LogoIconDesktop className="flex-shrink-0 3xl:w-[82px] 3xl:h-auto 2xl:w-[75px] 2xl:h-auto" />
+                    </Link>
                     <div className="flex gap-[32px] px-[14px] 3xl:gap-[22px] 3xl:px-[12px] 2xl:gap-[16px] 2xl:px-[10px]">
                         <HeaderNavigationDesktop />
                         <Button
