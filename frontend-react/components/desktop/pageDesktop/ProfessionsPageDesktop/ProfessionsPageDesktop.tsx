@@ -9,21 +9,15 @@ import { content } from './content'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
-import ProfessionModalDesktop from '../../layout/ProfessionModalDesktop/ProfessionModalDesktop'
+import { useModal } from '@/context/ContextModal'
 
 const ProfessionsPageDesktop: React.FC = () => {
-    const [openModal, setOpenModal] = useState<boolean>(false)
-    const [selectedProfession, setSelectedProfession] = useState<string>('')
-    const [selectedIdProfession, setSelectedIdProfession] = useState<number | null>(null)
+    const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 12
     const totalPages = Math.ceil(content.length / cardsPerPage)
-
-    const closeModal = () => {
-        setOpenModal(false)
-    }
 
     const handleSearch = () => {
         console.log('Поиск профессий:', searchQuery)
@@ -73,9 +67,10 @@ const ProfessionsPageDesktop: React.FC = () => {
                             profession={item.profession}
                             price={item.price.toString()}
                             onClick={() => {
-                                setSelectedProfession(item.profession)
-                                setSelectedIdProfession(item.id)
-                                setOpenModal(true)
+                                openModal('profession_modal_desktop', 'desktop', {
+                                    profession: item.profession,
+                                    professionId: item.id,
+                                })
                             }}
                         />
                     ))}
@@ -86,13 +81,6 @@ const ProfessionsPageDesktop: React.FC = () => {
                     onPageChange={handlePageChange}
                 />
                 <ProfessionSearchDesktop />
-                {openModal && (
-                    <ProfessionModalDesktop
-                        closeModal={closeModal}
-                        profession={selectedProfession}
-                        professionId={selectedIdProfession}
-                    />
-                )}
             </div>
         </>
     )

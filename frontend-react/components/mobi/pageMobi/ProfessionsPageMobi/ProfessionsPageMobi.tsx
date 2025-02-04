@@ -8,22 +8,16 @@ import { EnhancedInput } from '@/components/ui/input'
 import { FiltersIconMobi } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
-import ProfessionModalMobi from '../../layout/ProfessionModalMobi/ProfessionModalMobi'
+import { useModal } from '@/context/ContextModal'
 
 const ProfessionsPageMobi: React.FC = () => {
-    const [openModal, setOpenModal] = useState<boolean>(false)
-    const [selectedProfession, setSelectedProfession] = useState<string>('')
-    const [selectedIdProfession, setSelectedIdProfession] = useState<number | null>(null)
+    const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [isFilterActive, setIsFilterActive] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
     const totalPages = Math.ceil(content.length / cardsPerPage)
-
-    const closeModal = () => {
-        setOpenModal(false)
-    }
 
     const handleSearch = () => {
         console.log('Поиск профессий:', searchQuery)
@@ -74,9 +68,10 @@ const ProfessionsPageMobi: React.FC = () => {
                             profession={item.profession}
                             price={item.price.toString()}
                             onClick={() => {
-                                setSelectedProfession(item.profession)
-                                setSelectedIdProfession(item.id)
-                                setOpenModal(true)
+                                openModal('profession_modal_mobi', 'mobi', {
+                                    profession: item.profession,
+                                    professionId: item.id,
+                                })
                             }}
                         />
                     ))}
@@ -87,13 +82,6 @@ const ProfessionsPageMobi: React.FC = () => {
                     onPageChange={handlePageChange}
                 />
                 <ProfessionSendMobi />
-                {openModal && (
-                    <ProfessionModalMobi
-                        closeModal={closeModal}
-                        profession={selectedProfession}
-                        professionId={selectedIdProfession}
-                    />
-                )}
             </div>
         </>
     )
