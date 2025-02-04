@@ -112,7 +112,7 @@
         @apply shadow-shadow-right-desktop-custom;
     }
     .paddings-desktop-custom {
-        @apply pt-[10vw] pb-[50px] 3xl:pt-[7.5vw] 2xl:pt-[3.75rem] 2xl:pb-[3.75rem] xl:py-[2.5rem] lg:py-[2rem];
+        @apply pt-[15vw] pb-[50px] 3xl:pt-[7.5vw] 2xl:pt-[3.75rem] 2xl:pb-[3.75rem] xl:py-[2.5rem] lg:py-[2rem];
     }
     .gradient-text-desktop-custom {
         @apply bg-gradient-desktop bg-clip-text text-[1.5625rem] font-semibold text-transparent 2xl:text-[1.375rem];
