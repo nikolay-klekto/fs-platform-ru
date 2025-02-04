@@ -20,7 +20,7 @@ const ProfessionSendDesktop: React.FC = () => {
                 <EnhancedInput
                     type="text"
                     value={useRequest}
-                    onChange={(e) => setUseRequest(e.target.value)}
+                    onChange={(value) => setUseRequest(value)}
                     variant={'gradient_desktop'}
                     size={'gradient_desktop'}
                     rounded={'full'}
