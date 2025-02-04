@@ -1,34 +1,25 @@
 'use client'
 
 import React, { useState } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import RegistrationModalDesktop from '@/components/desktop/layout/RegistrationModalDesktop/RegistrationModalDesktop'
-import LoginModalDesktop from '@/components/desktop/layout/LoginModalDesktop/LoginModalDesktop'
 import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationDesktop'
+import  Link from 'next/link'
+import router from 'next/router'
 import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
+import { useModal } from '@/context/ContextModal'
 
-interface HeaderDesktopProps {
-    onOpenModalCallDesktop: () => void
-}
-const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ onOpenModalCallDesktop }) => {
+const HeaderDesktop: React.FC = () => {
     const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
-    const router = useRouter()
+    const { openModal } = useModal()
 
-    const openModal = (type: 'login' | 'registration') => {
-        setModalType(type)
-    }
-
-    const closeModal = () => {
+    const closeModal = (): void => {
         setModalType(null)
     }
 
-    const handleLoginSuccess = () => {
+    const handleLoginSuccess = (): void => {
         closeModal()
         router.push('/profile')
     }
-
     return (
         <>
             <header
@@ -48,7 +39,7 @@ const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ onOpenModalCallDesktop })
                         <Button
                             variant="header_desktop_btn_gradient"
                             size="header_btn"
-                            onClick={onOpenModalCallDesktop}
+                            onClick={(): void => openModal('modalcall_desktop', 'desktop')}
                         >
                             Заказать звонок
                         </Button>
@@ -59,22 +50,11 @@ const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ onOpenModalCallDesktop })
                     <div className="max-w-[50px] 3xl:max-w-[36px] 2xl:max-w-[36px]">
                         <ProfileIconDesktop
                             className="w-full h-auto cursor-pointer"
-                            onClick={() => openModal('login')}
+                            onClick={(): void => openModal('login_desktop', 'desktop')}
                         />
                     </div>
                 </div>
             </header>
-            {modalType === 'login' && (
-                <LoginModalDesktop
-                    closeModal={closeModal}
-                    openRegistrationModal={() => openModal('registration')}
-                    onLoginSuccess={handleLoginSuccess}
-                />
-            )}
-
-            {modalType === 'registration' && (
-                <RegistrationModalDesktop closeModal={closeModal} openLoginModal={() => openModal('login')} />
-            )}
         </>
     )
 }
