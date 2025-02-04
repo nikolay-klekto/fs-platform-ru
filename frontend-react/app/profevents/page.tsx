@@ -33,6 +33,7 @@ export default function Profevents() {
                 </>
             ) : (
                 <>
+                    <div className="h-[20px] bg-[#101030]"></div>
                     <HeaderMobi />
                     <main className="bg-[#101030] text-white">
                         <h1>Prof events</h1>
