@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 
 import HeaderNavigationMobi from './HeaderNavigationMobi/HeaderNavigationMobi'
 import {
@@ -64,7 +65,9 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                 >
                     <PhoneIconMobi className="ml-3 cursor-pointer" />
                     <div className="absolute left-1/2 top-7 -translate-x-1/2 -translate-y-1/2">
-                        <LogoIconMobi />
+                        <Link href="/">
+                            <LogoIconMobi />
+                        </Link>
                     </div>
                     <div className="mr-2 flex gap-[17px]">
                         <ShoppingCartIconMobi className="shrink-0 cursor-pointer" />
