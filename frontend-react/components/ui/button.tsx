@@ -38,7 +38,7 @@ const buttonVariants = cva(
                     'button-border-desktop hover:bg-gradient-desktop 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] border-2 text-5xl font-semibold hover:border-0 2xl:text-3xl',
                 circle: 'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
                 circleBlue: 'rounded-[50%] bg-[#382D90]',
-                cancel_btn: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
+                cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
             },
             size: {
                 default: 'h-10 px-4 py-2',
