@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { X } from 'lucide-react'
 
-const ModalOrderAcceptedMobi: React.FC = () => {
+const ModalContractTerminatedMobi: React.FC = () => {
     const [modalOpen, setModalOpen] = useState(false)
 
     const handleOpenModal = () => {
@@ -32,22 +32,11 @@ const ModalOrderAcceptedMobi: React.FC = () => {
                         </button>
                         <div className="rounded-[35px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 py-[40px]">
                             <h1 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-5xl">
-                                ЗАКАЗ ОФОРМЛЕН
+                                ДОГОВОР РАСТОРГНУТ
                             </h1>
-
-                            <p className="mb-1 px-1 pb-[18px] text-justify font-medium text-[#878797] md:text-lg">
-                                Пожалуйста, ожидайте звонка в течение 5 минут для оформления договора.
+                            <p className="mb-1 text-center text-xl font-medium text-[#878797] md:text-2xl">
+                                Выберите стажировку и возвращайтесь,<span className="block">Мы будем вас ждать!</span>
                             </p>
-
-                            <div className="bg-sub-title-gradient-mobi mx-auto my-2 flex w-4/5 items-center justify-center rounded-[50px] p-[3px]">
-                                <button
-                                    type="button"
-                                    onClick={handleCloseModal}
-                                    className="h-12 w-full rounded-[50px] bg-[#101030] text-3xl font-semibold text-white transition-colors hover:bg-transparent hover:text-white"
-                                >
-                                    Ожидать
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,4 +45,4 @@ const ModalOrderAcceptedMobi: React.FC = () => {
     )
 }
 
-export default ModalOrderAcceptedMobi
+export default ModalContractTerminatedMobi
