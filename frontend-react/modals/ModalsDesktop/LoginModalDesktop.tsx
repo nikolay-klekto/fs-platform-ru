@@ -1,29 +1,30 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+
+import React, { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import Link from 'next/link'
-import EmailInputDesktop from '../../shared/formInput/EmailInputDesktop'
-import PasswordInputDesktop from '../../shared/formInput/PasswordInputDesktop'
+import { EnhancedInput } from '@/components/ui/input'
+import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
+import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
+import { useModal } from '@/context/ContextModal'
 
 interface LoginFormData {
     email: string
     password: string
 }
 
-interface LoginModalDesktopProps {
-    closeModal: () => void
-    openRegistrationModal: () => void
-    onLoginSuccess: () => void
+interface LoginDesktopProps {
+    isOpen: boolean
 }
 
-const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openRegistrationModal, onLoginSuccess }) => {
+const LoginModalDesktop: React.FC<LoginDesktopProps> = ({ isOpen }) => {
     const [formData, setFormData] = useState<LoginFormData>({
         email: '',
         password: '',
     })
-
+    const { closeModal, openModal } = useModal()
     const [inputInternalErrors, setInputInternalErrors] = useState<{ [key: string]: string | null }>({
         email: '',
         password: '',
@@ -38,13 +39,13 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
         }))
     }
 
-    const validateForm = (): boolean => {
+    const validateForm = useCallback((): boolean => {
         const hasEmptyFields = formData.email === '' || formData.password === ''
 
         const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
 
         return hasEmptyFields || hasInternalErrors
-    }
+    }, [formData.email, formData.password, inputInternalErrors])
 
     const handleChange = (field: keyof LoginFormData, value: string | boolean) => {
         setFormData((prev) => ({
@@ -62,7 +63,6 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
             setFormError(false)
             console.log('Форма входа отправлена:', formData)
             closeModal()
-            onLoginSuccess()
         }
     }
 
@@ -70,53 +70,78 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
         if (!validateForm()) {
             setFormError(false)
         }
-    }, [formData, inputInternalErrors])
+    }, [formData, inputInternalErrors, validateForm])
+
+    const [inputTouched, setInputTouched] = useState({
+        email: false,
+        phone: false,
+    })
+
+    const handleInputBlur = (field: 'phone' | 'email') => {
+        setInputTouched((prev) => ({
+            ...prev,
+            [field]: true,
+        }))
+    }
+
+    const openRegistrationModal = () => {
+        closeModal()
+        openModal('registration_desktop', 'desktop')
+    }
 
     return (
-        <Modal show={true} onClose={closeModal} size="medium" showCloseButton={false}>
-            <div className="flex flex-col justify-center items-center pt-[40px] pb-[30px] w-[73%] mx-auto">
-                <button onClick={closeModal} className="absolute top-[5%] right-[5%] w-[7%]">
-                    <X size={41} color="white" className="opacity-70 w-full" />
+        <Modal show={isOpen} onClose={closeModal} size="medium" showCloseButton={false}>
+            <div className="mx-auto flex w-[73%] flex-col items-center justify-center pb-[30px] pt-[40px]">
+                <button onClick={closeModal} className="absolute right-[5%] top-[5%] w-[7%]">
+                    <X size={41} color="white" className="w-full opacity-70" />
                 </button>
-                <h2 className="mb-7 4xl:mb-6 3xl:mb-5 2xl:mb-4 text36px_desktop font-medium text-gradient_desktop_custom uppercase inline">
+                <h2 className="text36px_desktop text-gradient_desktop_custom mb-7 inline font-medium uppercase 2xl:mb-4 3xl:mb-5 4xl:mb-6">
                     Вход
                 </h2>
-                <form onSubmit={handleSubmit} className="flex flex-col align-middle w-full">
+                <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle">
                     <div className="mb-5">
-                        <EmailInputDesktop
+                        <EnhancedInput
+                            type="email"
+                            name="email"
+                            placeholder="Почта"
                             value={formData.email}
-                            onChange={(value) => handleChange('email', value)}
-                            onError={(error) => handleError('email', error)}
-                            inputClassName="input-form-desktop-custom"
-                            labelClassName="label-form-desktop-custom"
-                            errorClassName="error-form-desktop-custom"
-                            inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
-                            inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            // externalError={errors.email}
-                            required={true}
+                            onBlur={() => handleInputBlur('email')}
+                            validate={(value) => validateEmailDesktop(value)}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
+                            className={`${
+                                inputTouched.email && validateEmailDesktop(formData.email).styleError
+                                    ? 'border-[#bc8070] focus:border-[#bc8070] '
+                                    : 'border-[#878797] focus:border-[#878797]'
+                            } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
+                            label="Почта*"
+                            labelClassName="mb-1 text-2xl font-medium text-white"
+                            wrapperClassName="w-full"
                         />
+                        {inputInternalErrors.email && (
+                            <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
+                        )}
                     </div>
-                    <div className="mb-5 relative">
+                    <div className="relative mb-5">
                         <PasswordInputDesktop
                             value={formData.password}
                             label="Пароль"
                             placeholder="Пароль"
                             onChange={(value) => handleChange('password', value)}
-                            onError={(error) => handleError('email', error)}
+                            onError={(error) => handleError('password', error)}
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            // externalError={errors.password}
+                            showGenerateButton={true}
                             required={true}
                         />
                     </div>
-                    <button className="bg-transparent border-transparent self-end text-[#878797] font-semibold text15px_desktop">
+                    <button className="text15px_desktop self-end border-transparent bg-transparent font-semibold text-[#878797]">
                         Забыли пароль?
                     </button>
                     <div className="w-[95%]">
-                        <p className="mt-3 text-[#353652] font-medium text15px_desktop">
+                        <p className="text15px_desktop mt-3 font-medium text-[#353652]">
                             Защита от спама reCAPTCHA{' '}
                             <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
                                 Конфиденциальность
@@ -133,15 +158,15 @@ const LoginModalDesktop: React.FC<LoginModalDesktopProps> = ({ closeModal, openR
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="mx-auto bg-gradient-desktop text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg font-semibold rounded-[50px] mt-6 hover:bg-gradient-desktop-hover w-[64%]"
+                        className="mx-auto mt-6 w-[64%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover 2xl:text-lg 3xl:text-2xl 4xl:text-3xl"
                     >
                         Войти
                     </Button>
                 </form>
-                <div className="mt-5 flex justify-center text15px_desktop">
-                    <p className="mr-2 text-[#878797] font-medium">Нет аккаунта?</p>
+                <div className="text15px_desktop mt-5 flex justify-center">
+                    <p className="mr-2 font-medium text-[#878797]">Нет аккаунта?</p>
                     <button
-                        className="underline bg-transparent border-transparent text-white font-medium"
+                        className="border-transparent bg-transparent font-medium text-white underline"
                         onClick={openRegistrationModal}
                     >
                         Зарегистрироваться

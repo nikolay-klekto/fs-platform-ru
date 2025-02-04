@@ -1,8 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-
+import { useModal } from '@/context/ContextModal'
+import Link from 'next/link'
 import HeaderNavigationMobi from './HeaderNavigationMobi/HeaderNavigationMobi'
+import router from 'next/router'
 import {
     ShoppingCartIconMobi,
     LogoIconMobi,
@@ -15,8 +17,6 @@ import {
     LinkedInIconMobiBurger,
 } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
-import RegistrationModalMobi from '@/components/mobi/layout/RegistrationModalMobi/RegistrationModalMobi'
-import LoginModalMobi from '@/components/mobi/layout/LoginModalMobi/LoginModalMobi'
 
 interface HeaderMobiProps {
     disableBackground?: boolean
@@ -25,7 +25,6 @@ interface HeaderMobiProps {
 const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-
     useEffect(() => {
         if (isMenuOpen) {
             document.body.style.overflow = 'hidden'
@@ -38,13 +37,15 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
     }, [isMenuOpen])
 
     const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
+    const { openModal } = useModal()
 
-    const openModal = (type: 'login' | 'registration') => {
-        setModalType(type)
+    const closeModal = (): void => {
+        setModalType(null)
     }
 
-    const closeModal = () => {
-        setModalType(null)
+    const handleLoginSuccess = (): void => {
+        closeModal()
+        router.push('/profile')
     }
 
     return (
@@ -60,13 +61,15 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                 }
             >
                 <div
-                    className={`relative flex h-[56px] w-full items-center justify-between ${!disableBackground ? 'container' : ''}`}
+                    className={`relative flex h-[56px] w-full px-[15px] items-center justify-between`}
                 >
-                    <PhoneIconMobi className="ml-3 cursor-pointer" />
+                    <PhoneIconMobi className="cursor-pointer" />
                     <div className="absolute left-1/2 top-7 -translate-x-1/2 -translate-y-1/2">
-                        <LogoIconMobi />
+                        <Link href="/">
+                            <LogoIconMobi />
+                        </Link>
                     </div>
-                    <div className="mr-2 flex gap-[17px]">
+                    <div className="flex gap-[17px]">
                         <ShoppingCartIconMobi className="shrink-0 cursor-pointer" />
                         <BurgerMenuIconMobi className="shrink-0 cursor-pointer" onClick={toggleMenu} />
                     </div>
@@ -75,46 +78,46 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
 
             {isMenuOpen && (
                 <>
-                    <div className="fixed inset-0 z-40 bg-black bg-opacity-70" onClick={toggleMenu}></div>
-                    <div className="absolute right-0 top-0 z-50 flex w-full flex-col items-center bg-[#101030] px-3.5 pt-9 text-white">
-                        <div className="flex w-full cursor-pointer justify-end opacity-50 transition-opacity duration-300 hover:opacity-100">
+                    <div className="fixed inset-0 bg-black bg-opacity-70 z-40" onClick={toggleMenu}>
+                        {' '}
+                    </div>
+                    <div className="absolute w-full top-0 right-0 bg-[#101030] z-50 flex flex-col items-center pt-9 px-3.5 text-white">
+                        <div className="w-full flex justify-end opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-pointer">
                             <CrossIconMobi onClick={toggleMenu} />
                         </div>
-                        <div className="sm_s:pb-10 flex flex-col items-center gap-2.5 pb-12 pt-1 sm:pb-10">
-                            <div className="flex items-center gap-3.5" onClick={() => openModal('login')}>
+                        <div className="flex gap-2.5 flex-col items-center pt-1 pb-12 sm_s:pb-10 sm:pb-10">
+                            <button
+                                className="flex items-center gap-3.5"
+                                onClick={(): void => openModal('login_mobi', 'mobi')}
+                            >
                                 <ProfileIconBurgerMobi />
                                 <p className="custom-grey whitespace-nowrap text-4xl font-semibold uppercase ">
                                     Войти в профиль
                                 </p>
-                            </div>
-                            <div className="bg-custom-grey h-px w-full rounded-full"></div>
+                            </button>
+                            <div className="w-full h-[1px] bg-custom-grey rounded-full"></div>
                         </div>
                         <HeaderNavigationMobi />
-                        <Button variant="select_mobi" size="select_mobi_menu" className="mt-11">
+                        <Button
+                            variant="select_mobi"
+                            size="select_mobi_menu"
+                            className="mt-11"
+                            onClick={(): void => openModal('modalcall_mobi', 'mobi')}
+                        >
                             Заказать звонок
                         </Button>
-                        <div className="mt-6 flex items-center gap-6 pb-12">
-                            <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div className="flex items-center gap-6 mt-6 pb-12">
+                            <a href="href" target="_blank" rel="noopener noreferrer">
                                 <TelegramIconBurgerMobi />
                             </a>
-                            <a href="#" target="_blank" rel="noopener noreferrer">
+                            <a href="href" target="_blank" rel="noopener noreferrer">
                                 <InstagramIconBurgerMobi />
                             </a>
-                            <a href="#" target="_blank" rel="noopener noreferrer">
+                            <a href="href" target="_blank" rel="noopener noreferrer">
                                 <LinkedInIconMobiBurger />
                             </a>
                         </div>
                     </div>
-                    {modalType === 'login' && (
-                        <LoginModalMobi
-                            closeModal={closeModal}
-                            openRegistrationModal={() => openModal('registration')}
-                        />
-                    )}
-
-                    {modalType === 'registration' && (
-                        <RegistrationModalMobi closeModal={closeModal} openLoginModal={() => openModal('login')} />
-                    )}
                 </>
             )}
         </>
