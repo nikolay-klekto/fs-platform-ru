@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import HeaderNavigationDesktop from './HeaderNavigationDesktop/HeaderNavigationDesktop'
+import  Link from 'next/link'
 import router from 'next/router'
 import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
