@@ -4,11 +4,12 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.ORDER_PKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_BASKET_ID_FKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_COMPANY_OFFICE_ID_FKEY
 import com.fs.domain.jooq.keys.ORDER__ORDER_COMPANY_PROFESSION_ID_FKEY
+import com.fs.domain.jooq.keys.ORDER__ORDER_ORDER_DATES_ID_FKEY
 import com.fs.domain.jooq.tables.records.OrderRecord
 
 import java.time.LocalDateTime
@@ -22,7 +23,7 @@ import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
 import org.jooq.Records
-import org.jooq.Row11
+import org.jooq.Row12
 import org.jooq.Schema
 import org.jooq.SelectField
 import org.jooq.Table
@@ -47,7 +48,7 @@ open class Order(
     parameters: Array<Field<*>?>?
 ): TableImpl<OrderRecord>(
     alias,
-    DefaultSchema.DEFAULT_SCHEMA,
+    Public.PUBLIC,
     child,
     path,
     aliased,
@@ -58,7 +59,7 @@ open class Order(
     companion object {
 
         /**
-         * The reference instance of <code>order</code>
+         * The reference instance of <code>public.order</code>
          */
         val ORDER: Order = Order()
     }
@@ -69,87 +70,93 @@ open class Order(
     override fun getRecordType(): Class<OrderRecord> = OrderRecord::class.java
 
     /**
-     * The column <code>order.id</code>.
+     * The column <code>public.order.id</code>.
      */
     val ID: TableField<OrderRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>order.basket_id</code>.
+     * The column <code>public.order.basket_id</code>.
      */
     val BASKET_ID: TableField<OrderRecord, Long?> = createField(DSL.name("basket_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>order.company_office_id</code>.
+     * The column <code>public.order.company_office_id</code>.
      */
     val COMPANY_OFFICE_ID: TableField<OrderRecord, Long?> = createField(DSL.name("company_office_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>order.is_expired</code>.
+     * The column <code>public.order.is_expired</code>.
      */
     val IS_EXPIRED: TableField<OrderRecord, Boolean?> = createField(DSL.name("is_expired"), SQLDataType.BOOLEAN, this, "")
 
     /**
-     * The column <code>order.start_work_date</code>.
+     * The column <code>public.order.start_work_date</code>.
      */
     val START_WORK_DATE: TableField<OrderRecord, LocalDateTime?> = createField(DSL.name("start_work_date"), SQLDataType.LOCALDATETIME(6), this, "")
 
     /**
-     * The column <code>order.total_work_days</code>.
+     * The column <code>public.order.total_work_days</code>.
      */
     val TOTAL_WORK_DAYS: TableField<OrderRecord, Long?> = createField(DSL.name("total_work_days"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>order.price</code>.
+     * The column <code>public.order.price</code>.
      */
     val PRICE: TableField<OrderRecord, Double?> = createField(DSL.name("price"), SQLDataType.DOUBLE, this, "")
 
     /**
-     * The column <code>order.order_status</code>.
+     * The column <code>public.order.order_status</code>.
      */
     val ORDER_STATUS: TableField<OrderRecord, String?> = createField(DSL.name("order_status"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>order.date_created</code>.
+     * The column <code>public.order.date_created</code>.
      */
     val DATE_CREATED: TableField<OrderRecord, LocalDateTime?> = createField(DSL.name("date_created"), SQLDataType.LOCALDATETIME(6), this, "")
 
     /**
-     * The column <code>order.company_profession_id</code>.
+     * The column <code>public.order.company_profession_id</code>.
      */
     val COMPANY_PROFESSION_ID: TableField<OrderRecord, Long?> = createField(DSL.name("company_profession_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>order.contract_number</code>.
+     * The column <code>public.order.contract_number</code>.
      */
     val CONTRACT_NUMBER: TableField<OrderRecord, String?> = createField(DSL.name("contract_number"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.order.order_dates_id</code>.
+     */
+    val ORDER_DATES_ID: TableField<OrderRecord, Long?> = createField(DSL.name("order_dates_id"), SQLDataType.BIGINT, this, "")
 
     private constructor(alias: Name, aliased: Table<OrderRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<OrderRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>order</code> table reference
+     * Create an aliased <code>public.order</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>order</code> table reference
+     * Create an aliased <code>public.order</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>order</code> table reference
+     * Create a <code>public.order</code> table reference
      */
     constructor(): this(DSL.name("order"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, OrderRecord>): this(Internal.createPathAlias(child, key), child, key, ORDER, null)
-    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<OrderRecord, Long?> = super.getIdentity() as Identity<OrderRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<OrderRecord> = ORDER_PKEY
-    override fun getReferences(): List<ForeignKey<OrderRecord, *>> = listOf(ORDER__ORDER_BASKET_ID_FKEY, ORDER__ORDER_COMPANY_OFFICE_ID_FKEY, ORDER__ORDER_COMPANY_PROFESSION_ID_FKEY)
+    override fun getReferences(): List<ForeignKey<OrderRecord, *>> = listOf(ORDER__ORDER_BASKET_ID_FKEY, ORDER__ORDER_COMPANY_OFFICE_ID_FKEY, ORDER__ORDER_COMPANY_PROFESSION_ID_FKEY, ORDER__ORDER_ORDER_DATES_ID_FKEY)
 
     private lateinit var _basket: Basket
     private lateinit var _office: Office
     private lateinit var _companyProfession: CompanyProfession
+    private lateinit var _orderDates: OrderDates
 
     /**
      * Get the implicit join path to the <code>public.basket</code> table.
@@ -190,6 +197,19 @@ open class Order(
 
     val companyProfession: CompanyProfession
         get(): CompanyProfession = companyProfession()
+
+    /**
+     * Get the implicit join path to the <code>public.order_dates</code> table.
+     */
+    fun orderDates(): OrderDates {
+        if (!this::_orderDates.isInitialized)
+            _orderDates = OrderDates(this, ORDER__ORDER_ORDER_DATES_ID_FKEY)
+
+        return _orderDates;
+    }
+
+    val orderDates: OrderDates
+        get(): OrderDates = orderDates()
     override fun `as`(alias: String): Order = Order(DSL.name(alias), this)
     override fun `as`(alias: Name): Order = Order(alias, this)
     override fun `as`(alias: Table<*>): Order = Order(alias.getQualifiedName(), this)
@@ -210,18 +230,18 @@ open class Order(
     override fun rename(name: Table<*>): Order = Order(name.getQualifiedName(), null)
 
     // -------------------------------------------------------------------------
-    // Row11 type methods
+    // Row12 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row11<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?, String?> = super.fieldsRow() as Row11<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?, String?>
+    override fun fieldsRow(): Row12<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?, String?, Long?> = super.fieldsRow() as Row12<Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?, String?, Long?>
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    fun <U> mapping(from: (Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+    fun <U> mapping(from: (Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?, String?, Long?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
+    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, Long?, Boolean?, LocalDateTime?, Long?, Double?, String?, LocalDateTime?, Long?, String?, Long?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

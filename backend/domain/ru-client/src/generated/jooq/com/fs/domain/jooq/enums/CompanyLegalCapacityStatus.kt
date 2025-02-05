@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.enums
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 
 import org.jooq.Catalog
 import org.jooq.EnumType
@@ -20,7 +20,7 @@ enum class CompanyLegalCapacityStatus(@get:JvmName("literal") public val literal
     TEMPORARILY_UNAVAILABLE("TEMPORARILY_UNAVAILABLE"),
     CLOSED("CLOSED");
     override fun getCatalog(): Catalog? = schema.catalog
-    override fun getSchema(): Schema = DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema = Public.PUBLIC
     override fun getName(): String = "company_legal_capacity_status"
     override fun getLiteral(): String = literal
 }

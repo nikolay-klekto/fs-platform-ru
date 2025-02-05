@@ -19,7 +19,7 @@ abstract class CompanyProfessionRepository(
         return Flux.from(
             dsl.select(
                 COMPANY_PROFESSION.INTERNSHIP_TYPE_ID,
-                DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5).`as`("price_per_week")
+                DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).`as`("price_per_day")
             )
                 .from(COMPANY_PROFESSION)
                 .groupBy(COMPANY_PROFESSION.INTERNSHIP_TYPE_ID)
@@ -36,5 +36,21 @@ abstract class CompanyProfessionRepository(
                 ?.into(CompanyProfession::class.java)
                 ?.let { converter.toModel(it) }
         }
+    }
+
+    fun getInternshipTypesAndPricesByCompanyProfessionId(
+        companyId: Long,
+        professionId: Long
+    ): Flux<InternshipPricesModel>{
+        return Flux.from(
+            dsl.select(
+                COMPANY_PROFESSION.INTERNSHIP_TYPE_ID,
+                COMPANY_PROFESSION.PRICE_PER_DAY,
+                COMPANY_PROFESSION.ID.`as`("company_profession_id")
+                ).from(COMPANY_PROFESSION)
+                .where(COMPANY_PROFESSION.PROFESSION_ID.eq(professionId)
+                    .and(COMPANY_PROFESSION.COMPANY_ID.eq(companyId)))
+        )
+            .map {it.into(InternshipPricesModel::class.java)}
     }
 }

@@ -2,7 +2,9 @@ package com.fs.client.controller
 
 import com.fs.client.repository.OrderRepository
 import com.fs.service.ru.OrderModel
+import com.fs.service.ru.OrderModelInput
 import com.fs.service.ru.enums.OrderStatus
+import com.fs.service.ru.errors.ErrorModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -40,12 +42,12 @@ open class OrderController(open val orderRepository: OrderRepository) {
     }
 
     @MutationMapping
-    fun addOrder(@Argument order: OrderModel): Mono<OrderModel> {
+    fun addOrder(@Argument order: OrderModelInput): Mono<OrderModel> {
         return orderRepository.insertOrder(order)
     }
 
     @MutationMapping
-    fun addUnAuthorizeOrder(@Argument order: OrderModel): Mono<OrderModel> {
+    fun addUnAuthorizeOrder(@Argument order: OrderModelInput): Mono<OrderModel> {
         return orderRepository.insertOrder(order)
     }
 
@@ -55,8 +57,11 @@ open class OrderController(open val orderRepository: OrderRepository) {
     }
 
     @MutationMapping
-    fun placeOrder(@Argument orderId: Long): Mono<Boolean> {
+    fun placeOrder(@Argument orderId: Long): Mono<ErrorModel<Boolean>> {
         return orderRepository.confirmOrder(orderId)
+            .onErrorResume {
+                return@onErrorResume Mono.just(ErrorModel(null, it.message))
+            }
     }
 
     @MutationMapping

@@ -97,22 +97,39 @@ services:
       - prometheus-grafana-network
     restart: always
 
-  gateway:
-    image: ru-gateway:latest
+  appPhotoTransger:
+    image: ru-photo-transfer:latest
     build:
       context: .
-      dockerfile: Dockerfile-Gateway
+      dockerfile: Dockerfile-PhotoTransfer
     ports:
-      - "8081:8081"
-    #    container_name: app
+      - "8585:8585"
     depends_on:
       - service-db
-    #       condition: service_healthy
     environment:
-      - SERVER_PORT= 8081
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+      - SERVER_PORT= 8585
+    volumes:
+      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
     networks:
       - prometheus-grafana-network
+    restart: always
+
+#  gateway:
+#    image: ru-gateway:latest
+#    build:
+#      context: .
+#      dockerfile: Dockerfile-Gateway
+#    ports:
+#      - "8081:8081"
+#    #    container_name: app
+#    depends_on:
+#      - service-db
+#    #       condition: service_healthy
+#    environment:
+#      - SERVER_PORT= 8081
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+#    networks:
+#      - prometheus-grafana-network
 
   service-db:
     image: postgres:14.7-alpine
@@ -149,39 +166,39 @@ services:
     networks:
       - prometheus-grafana-network
 
-  prometheus:
-    image: prom/prometheus:v2.45.5
-    container_name: prometheus-container
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-    networks:
-      - prometheus-grafana-network
+#  prometheus:
+#    image: prom/prometheus:v2.45.5
+#    container_name: prometheus-container
+#    ports:
+#      - "9090:9090"
+#    volumes:
+#      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+#    networks:
+#      - prometheus-grafana-network
+#
+#  grafana:
+#    image: grafana/grafana:10.4.2
+#    container_name: grafana-container
+#    #    volumes:
+#    #      - ./config/grafana/provisioning:/etc/grafana/provisioning
+#    ports:
+#      - "3000:3000"
+#    environment:
+#      - GF_SECURITY_ADMIN_USER=admin
+#      - GF_SECURITY_ADMIN_PASSWORD=admin
+#    depends_on:
+#      - prometheus
+#    networks:
+#      - prometheus-grafana-network
 
-  grafana:
-    image: grafana/grafana:10.4.2
-    container_name: grafana-container
-    #    volumes:
-    #      - ./config/grafana/provisioning:/etc/grafana/provisioning
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    depends_on:
-      - prometheus
-    networks:
-      - prometheus-grafana-network
-
-  react-app:
-    build:
-      context: .
-      dockerfile: Dockerfile-React
-    ports:
-      - "80:80" # ”казываем внешний порт 80
-    networks:
-      - prometheus-grafana-network
+#  react-app:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile-React
+#    ports:
+#      - "80:80" # ”казываем внешний порт 80
+#    networks:
+#      - prometheus-grafana-network
 
 networks:
   prometheus-grafana-network:

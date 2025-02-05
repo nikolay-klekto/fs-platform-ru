@@ -13,7 +13,18 @@ import java.io.Serializable
 @Suppress("UNCHECKED_CAST")
 data class Constants(
     var id: Long? = null,
-    var daysForPayOrder: Int? = null
+    var daysForPayOrder: Int? = null,
+    var phoneNumber: String? = null,
+    var clientEmail: String? = null,
+    var partnerEmail: String? = null,
+    var candidateEmail: String? = null,
+    var officeCity: String? = null,
+    var officeAddress: String? = null,
+    var instLink: String? = null,
+    var tgLink: String? = null,
+    var linkedinLink: String? = null,
+    var footerOfficialInfo: String? = null,
+    var footerAdditionalInfo: String? = null
 ): Serializable {
 
 
@@ -22,6 +33,17 @@ data class Constants(
 
         sb.append(id)
         sb.append(", ").append(daysForPayOrder)
+        sb.append(", ").append(phoneNumber)
+        sb.append(", ").append(clientEmail)
+        sb.append(", ").append(partnerEmail)
+        sb.append(", ").append(candidateEmail)
+        sb.append(", ").append(officeCity)
+        sb.append(", ").append(officeAddress)
+        sb.append(", ").append(instLink)
+        sb.append(", ").append(tgLink)
+        sb.append(", ").append(linkedinLink)
+        sb.append(", ").append(footerOfficialInfo)
+        sb.append(", ").append(footerAdditionalInfo)
 
         sb.append(")")
         return sb.toString()

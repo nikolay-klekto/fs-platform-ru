@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.ADDRESS_PKEY
 import com.fs.domain.jooq.keys.ADDRESS__ADDRESS_CITY_ID_FKEY
 import com.fs.domain.jooq.tables.records.AddressRecord
@@ -44,7 +44,7 @@ open class Address(
     parameters: Array<Field<*>?>?
 ): TableImpl<AddressRecord>(
     alias,
-    DefaultSchema.DEFAULT_SCHEMA,
+    Public.PUBLIC,
     child,
     path,
     aliased,
@@ -55,7 +55,7 @@ open class Address(
     companion object {
 
         /**
-         * The reference instance of <code>address</code>
+         * The reference instance of <code>public.address</code>
          */
         val ADDRESS: Address = Address()
     }
@@ -66,27 +66,27 @@ open class Address(
     override fun getRecordType(): Class<AddressRecord> = AddressRecord::class.java
 
     /**
-     * The column <code>address.id</code>.
+     * The column <code>public.address.id</code>.
      */
     val ID: TableField<AddressRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>address.city_id</code>.
+     * The column <code>public.address.city_id</code>.
      */
     val CITY_ID: TableField<AddressRecord, Long?> = createField(DSL.name("city_id"), SQLDataType.BIGINT, this, "")
 
     /**
-     * The column <code>address.street</code>.
+     * The column <code>public.address.street</code>.
      */
     val STREET: TableField<AddressRecord, String?> = createField(DSL.name("street"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>address.house</code>.
+     * The column <code>public.address.house</code>.
      */
     val HOUSE: TableField<AddressRecord, String?> = createField(DSL.name("house"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>address.office_number</code>.
+     * The column <code>public.address.office_number</code>.
      */
     val OFFICE_NUMBER: TableField<AddressRecord, String?> = createField(DSL.name("office_number"), SQLDataType.VARCHAR, this, "")
 
@@ -94,22 +94,22 @@ open class Address(
     private constructor(alias: Name, aliased: Table<AddressRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>address</code> table reference
+     * Create an aliased <code>public.address</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>address</code> table reference
+     * Create an aliased <code>public.address</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>address</code> table reference
+     * Create a <code>public.address</code> table reference
      */
     constructor(): this(DSL.name("address"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, AddressRecord>): this(Internal.createPathAlias(child, key), child, key, ADDRESS, null)
-    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<AddressRecord, Long?> = super.getIdentity() as Identity<AddressRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<AddressRecord> = ADDRESS_PKEY
     override fun getReferences(): List<ForeignKey<AddressRecord, *>> = listOf(ADDRESS__ADDRESS_CITY_ID_FKEY)

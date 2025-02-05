@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.DATABASECHANGELOGLOCK_PKEY
 import com.fs.domain.jooq.tables.records.DatabasechangeloglockRecord
 
@@ -41,7 +41,7 @@ open class Databasechangeloglock(
     parameters: Array<Field<*>?>?
 ): TableImpl<DatabasechangeloglockRecord>(
     alias,
-    DefaultSchema.DEFAULT_SCHEMA,
+    Public.PUBLIC,
     child,
     path,
     aliased,
@@ -52,7 +52,7 @@ open class Databasechangeloglock(
     companion object {
 
         /**
-         * The reference instance of <code>databasechangeloglock</code>
+         * The reference instance of <code>public.databasechangeloglock</code>
          */
         val DATABASECHANGELOGLOCK: Databasechangeloglock = Databasechangeloglock()
     }
@@ -63,22 +63,22 @@ open class Databasechangeloglock(
     override fun getRecordType(): Class<DatabasechangeloglockRecord> = DatabasechangeloglockRecord::class.java
 
     /**
-     * The column <code>databasechangeloglock.id</code>.
+     * The column <code>public.databasechangeloglock.id</code>.
      */
     val ID: TableField<DatabasechangeloglockRecord, Int?> = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false), this, "")
 
     /**
-     * The column <code>databasechangeloglock.locked</code>.
+     * The column <code>public.databasechangeloglock.locked</code>.
      */
     val LOCKED: TableField<DatabasechangeloglockRecord, Boolean?> = createField(DSL.name("locked"), SQLDataType.BOOLEAN.nullable(false), this, "")
 
     /**
-     * The column <code>databasechangeloglock.lockgranted</code>.
+     * The column <code>public.databasechangeloglock.lockgranted</code>.
      */
     val LOCKGRANTED: TableField<DatabasechangeloglockRecord, LocalDateTime?> = createField(DSL.name("lockgranted"), SQLDataType.LOCALDATETIME(6), this, "")
 
     /**
-     * The column <code>databasechangeloglock.lockedby</code>.
+     * The column <code>public.databasechangeloglock.lockedby</code>.
      */
     val LOCKEDBY: TableField<DatabasechangeloglockRecord, String?> = createField(DSL.name("lockedby"), SQLDataType.VARCHAR(255), this, "")
 
@@ -86,22 +86,24 @@ open class Databasechangeloglock(
     private constructor(alias: Name, aliased: Table<DatabasechangeloglockRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>databasechangeloglock</code> table reference
+     * Create an aliased <code>public.databasechangeloglock</code> table
+     * reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>databasechangeloglock</code> table reference
+     * Create an aliased <code>public.databasechangeloglock</code> table
+     * reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>databasechangeloglock</code> table reference
+     * Create a <code>public.databasechangeloglock</code> table reference
      */
     constructor(): this(DSL.name("databasechangeloglock"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, DatabasechangeloglockRecord>): this(Internal.createPathAlias(child, key), child, key, DATABASECHANGELOGLOCK, null)
-    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getPrimaryKey(): UniqueKey<DatabasechangeloglockRecord> = DATABASECHANGELOGLOCK_PKEY
     override fun `as`(alias: String): Databasechangeloglock = Databasechangeloglock(DSL.name(alias), this)
     override fun `as`(alias: Name): Databasechangeloglock = Databasechangeloglock(alias, this)

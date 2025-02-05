@@ -9,5 +9,7 @@ data class CompanyModel(
     val legalCapacityStatus: String?,
     val name: String?,
     val site: String?,
-    val shortDescription: String?
+    val shortDescription: String?,
+    val workTime: String?,
+    var pricePerWeek: Double?
 )

@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.CLIENTS_RESET_PASSWORDS_PKEY
 import com.fs.domain.jooq.tables.records.ClientsResetPasswordsRecord
 
@@ -41,7 +41,7 @@ open class ClientsResetPasswords(
     parameters: Array<Field<*>?>?
 ): TableImpl<ClientsResetPasswordsRecord>(
     alias,
-    DefaultSchema.DEFAULT_SCHEMA,
+    Public.PUBLIC,
     child,
     path,
     aliased,
@@ -52,7 +52,7 @@ open class ClientsResetPasswords(
     companion object {
 
         /**
-         * The reference instance of <code>clients_reset_passwords</code>
+         * The reference instance of <code>public.clients_reset_passwords</code>
          */
         val CLIENTS_RESET_PASSWORDS: ClientsResetPasswords = ClientsResetPasswords()
     }
@@ -63,17 +63,17 @@ open class ClientsResetPasswords(
     override fun getRecordType(): Class<ClientsResetPasswordsRecord> = ClientsResetPasswordsRecord::class.java
 
     /**
-     * The column <code>clients_reset_passwords.id</code>.
+     * The column <code>public.clients_reset_passwords.id</code>.
      */
     val ID: TableField<ClientsResetPasswordsRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>clients_reset_passwords.client_email</code>.
+     * The column <code>public.clients_reset_passwords.client_email</code>.
      */
     val CLIENT_EMAIL: TableField<ClientsResetPasswordsRecord, String?> = createField(DSL.name("client_email"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>clients_reset_passwords.code</code>.
+     * The column <code>public.clients_reset_passwords.code</code>.
      */
     val CODE: TableField<ClientsResetPasswordsRecord, Int?> = createField(DSL.name("code"), SQLDataType.INTEGER, this, "")
 
@@ -81,22 +81,24 @@ open class ClientsResetPasswords(
     private constructor(alias: Name, aliased: Table<ClientsResetPasswordsRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>clients_reset_passwords</code> table reference
+     * Create an aliased <code>public.clients_reset_passwords</code> table
+     * reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>clients_reset_passwords</code> table reference
+     * Create an aliased <code>public.clients_reset_passwords</code> table
+     * reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>clients_reset_passwords</code> table reference
+     * Create a <code>public.clients_reset_passwords</code> table reference
      */
     constructor(): this(DSL.name("clients_reset_passwords"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, ClientsResetPasswordsRecord>): this(Internal.createPathAlias(child, key), child, key, CLIENTS_RESET_PASSWORDS, null)
-    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<ClientsResetPasswordsRecord, Long?> = super.getIdentity() as Identity<ClientsResetPasswordsRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ClientsResetPasswordsRecord> = CLIENTS_RESET_PASSWORDS_PKEY
     override fun `as`(alias: String): ClientsResetPasswords = ClientsResetPasswords(DSL.name(alias), this)

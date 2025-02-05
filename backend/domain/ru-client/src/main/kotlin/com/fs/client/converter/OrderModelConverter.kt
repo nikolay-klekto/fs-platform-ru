@@ -24,7 +24,8 @@ class OrderModelConverter : ModelConverter<Order, OrderModel> {
             price = rawObject.price,
             isExpired = rawObject.isExpired,
             companyProfessionId = rawObject.companyProfessionId,
-            contractNumber = rawObject.contractNumber
+            contractNumber = rawObject.contractNumber,
+            orderDatesId = rawObject.orderDatesId
         )
     }
 
@@ -40,7 +41,8 @@ class OrderModelConverter : ModelConverter<Order, OrderModel> {
             modelObject.orderStatus?.name,
             modelObject.dateCreated,
             modelObject.companyProfessionId,
-            modelObject.contractNumber
+            modelObject.contractNumber,
+            modelObject.orderDatesId
         )
     }
 }

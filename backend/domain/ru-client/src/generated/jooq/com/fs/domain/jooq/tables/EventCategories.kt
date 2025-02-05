@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.EVENT_CATEGORY_PKEY
 import com.fs.domain.jooq.tables.records.EventCategoriesRecord
 
@@ -41,7 +41,7 @@ open class EventCategories(
     parameters: Array<Field<*>?>?
 ): TableImpl<EventCategoriesRecord>(
     alias,
-    DefaultSchema.DEFAULT_SCHEMA,
+    Public.PUBLIC,
     child,
     path,
     aliased,
@@ -52,7 +52,7 @@ open class EventCategories(
     companion object {
 
         /**
-         * The reference instance of <code>event_categories</code>
+         * The reference instance of <code>public.event_categories</code>
          */
         val EVENT_CATEGORIES: EventCategories = EventCategories()
     }
@@ -63,17 +63,17 @@ open class EventCategories(
     override fun getRecordType(): Class<EventCategoriesRecord> = EventCategoriesRecord::class.java
 
     /**
-     * The column <code>event_categories.id</code>.
+     * The column <code>public.event_categories.id</code>.
      */
     val ID: TableField<EventCategoriesRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>event_categories.category</code>.
+     * The column <code>public.event_categories.category</code>.
      */
     val CATEGORY: TableField<EventCategoriesRecord, String?> = createField(DSL.name("category"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>event_categories.description</code>.
+     * The column <code>public.event_categories.description</code>.
      */
     val DESCRIPTION: TableField<EventCategoriesRecord, String?> = createField(DSL.name("description"), SQLDataType.VARCHAR, this, "")
 
@@ -81,22 +81,22 @@ open class EventCategories(
     private constructor(alias: Name, aliased: Table<EventCategoriesRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>event_categories</code> table reference
+     * Create an aliased <code>public.event_categories</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>event_categories</code> table reference
+     * Create an aliased <code>public.event_categories</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>event_categories</code> table reference
+     * Create a <code>public.event_categories</code> table reference
      */
     constructor(): this(DSL.name("event_categories"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, EventCategoriesRecord>): this(Internal.createPathAlias(child, key), child, key, EVENT_CATEGORIES, null)
-    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<EventCategoriesRecord, Long?> = super.getIdentity() as Identity<EventCategoriesRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<EventCategoriesRecord> = EVENT_CATEGORY_PKEY
     override fun `as`(alias: String): EventCategories = EventCategories(DSL.name(alias), this)

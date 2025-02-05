@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.CLIENTS_REFRESH_TOKENS_PKEY
 import com.fs.domain.jooq.keys.CLIENTS_REFRESH_TOKENS__CLIENTS_REFRESH_TOKENS_CLIENT_ID_FKEY
 import com.fs.domain.jooq.tables.records.ClientsRefreshTokensRecord
@@ -45,7 +45,7 @@ open class ClientsRefreshTokens(
     parameters: Array<Field<*>?>?
 ): TableImpl<ClientsRefreshTokensRecord>(
     alias,
-    DefaultSchema.DEFAULT_SCHEMA,
+    Public.PUBLIC,
     child,
     path,
     aliased,
@@ -56,7 +56,7 @@ open class ClientsRefreshTokens(
     companion object {
 
         /**
-         * The reference instance of <code>clients_refresh_tokens</code>
+         * The reference instance of <code>public.clients_refresh_tokens</code>
          */
         val CLIENTS_REFRESH_TOKENS: ClientsRefreshTokens = ClientsRefreshTokens()
     }
@@ -67,22 +67,22 @@ open class ClientsRefreshTokens(
     override fun getRecordType(): Class<ClientsRefreshTokensRecord> = ClientsRefreshTokensRecord::class.java
 
     /**
-     * The column <code>clients_refresh_tokens.id</code>.
+     * The column <code>public.clients_refresh_tokens.id</code>.
      */
     val ID: TableField<ClientsRefreshTokensRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>clients_refresh_tokens.client_id</code>.
+     * The column <code>public.clients_refresh_tokens.client_id</code>.
      */
     val CLIENT_ID: TableField<ClientsRefreshTokensRecord, String?> = createField(DSL.name("client_id"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>clients_refresh_tokens.token</code>.
+     * The column <code>public.clients_refresh_tokens.token</code>.
      */
     val TOKEN: TableField<ClientsRefreshTokensRecord, String?> = createField(DSL.name("token"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>clients_refresh_tokens.expiry_day</code>.
+     * The column <code>public.clients_refresh_tokens.expiry_day</code>.
      */
     val EXPIRY_DAY: TableField<ClientsRefreshTokensRecord, LocalDate?> = createField(DSL.name("expiry_day"), SQLDataType.LOCALDATE, this, "")
 
@@ -90,22 +90,24 @@ open class ClientsRefreshTokens(
     private constructor(alias: Name, aliased: Table<ClientsRefreshTokensRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>clients_refresh_tokens</code> table reference
+     * Create an aliased <code>public.clients_refresh_tokens</code> table
+     * reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>clients_refresh_tokens</code> table reference
+     * Create an aliased <code>public.clients_refresh_tokens</code> table
+     * reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>clients_refresh_tokens</code> table reference
+     * Create a <code>public.clients_refresh_tokens</code> table reference
      */
     constructor(): this(DSL.name("clients_refresh_tokens"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, ClientsRefreshTokensRecord>): this(Internal.createPathAlias(child, key), child, key, CLIENTS_REFRESH_TOKENS, null)
-    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<ClientsRefreshTokensRecord, Long?> = super.getIdentity() as Identity<ClientsRefreshTokensRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ClientsRefreshTokensRecord> = CLIENTS_REFRESH_TOKENS_PKEY
     override fun getReferences(): List<ForeignKey<ClientsRefreshTokensRecord, *>> = listOf(CLIENTS_REFRESH_TOKENS__CLIENTS_REFRESH_TOKENS_CLIENT_ID_FKEY)

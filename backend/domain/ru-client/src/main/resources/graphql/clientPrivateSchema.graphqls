@@ -16,14 +16,14 @@ extend type Mutation{
     updateReview(review: ReviewInput!): Boolean 
     deleteReviewById(id: ID!): Boolean 
 
-    addOrder(order: OrderInput!): Order 
+    addOrder(order: OrderInsertInput!): Order
     updateOrder(order: OrderInput!): Boolean
     updateOrderContractNumber(order: OrderInput!): Boolean
     deleteOrderById(id: ID!, orderStatus: OrderStatus!): Boolean
     deleteFinalOrderById(id: ID!): Boolean
     deleteAllOrdersByBasketId(basketId: ID!, orderStatus: OrderStatus!): Boolean
     deleteAllOrdersByClientId(clientId: String!, orderStatus: OrderStatus!): Boolean
-    placeOrder(orderId: ID!): Boolean
+    placeOrder(orderId: ID!): ErrorBooleanModel
     changeOrderStatusAfterPay(orderId: ID!, isPaySuccess: Boolean!): Boolean
 
     updateClient(client: ClientUpdate!): Boolean 

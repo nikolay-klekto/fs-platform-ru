@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.JOB_REQUESTS_PKEY
 import com.fs.domain.jooq.tables.records.JobRequestsRecord
 
@@ -42,7 +42,7 @@ open class JobRequests(
     parameters: Array<Field<*>?>?
 ): TableImpl<JobRequestsRecord>(
     alias,
-    DefaultSchema.DEFAULT_SCHEMA,
+    Public.PUBLIC,
     child,
     path,
     aliased,
@@ -53,7 +53,7 @@ open class JobRequests(
     companion object {
 
         /**
-         * The reference instance of <code>job_requests</code>
+         * The reference instance of <code>public.job_requests</code>
          */
         val JOB_REQUESTS: JobRequests = JobRequests()
     }
@@ -64,27 +64,27 @@ open class JobRequests(
     override fun getRecordType(): Class<JobRequestsRecord> = JobRequestsRecord::class.java
 
     /**
-     * The column <code>job_requests.id</code>.
+     * The column <code>public.job_requests.id</code>.
      */
     val ID: TableField<JobRequestsRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>job_requests.username</code>.
+     * The column <code>public.job_requests.username</code>.
      */
     val USERNAME: TableField<JobRequestsRecord, String?> = createField(DSL.name("username"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>job_requests.phone_number</code>.
+     * The column <code>public.job_requests.phone_number</code>.
      */
     val PHONE_NUMBER: TableField<JobRequestsRecord, String?> = createField(DSL.name("phone_number"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>job_requests.profession</code>.
+     * The column <code>public.job_requests.profession</code>.
      */
     val PROFESSION: TableField<JobRequestsRecord, String?> = createField(DSL.name("profession"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>job_requests.date_created</code>.
+     * The column <code>public.job_requests.date_created</code>.
      */
     val DATE_CREATED: TableField<JobRequestsRecord, LocalDate?> = createField(DSL.name("date_created"), SQLDataType.LOCALDATE, this, "")
 
@@ -92,22 +92,22 @@ open class JobRequests(
     private constructor(alias: Name, aliased: Table<JobRequestsRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>job_requests</code> table reference
+     * Create an aliased <code>public.job_requests</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>job_requests</code> table reference
+     * Create an aliased <code>public.job_requests</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>job_requests</code> table reference
+     * Create a <code>public.job_requests</code> table reference
      */
     constructor(): this(DSL.name("job_requests"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, JobRequestsRecord>): this(Internal.createPathAlias(child, key), child, key, JOB_REQUESTS, null)
-    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<JobRequestsRecord, Long?> = super.getIdentity() as Identity<JobRequestsRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<JobRequestsRecord> = JOB_REQUESTS_PKEY
     override fun `as`(alias: String): JobRequests = JobRequests(DSL.name(alias), this)

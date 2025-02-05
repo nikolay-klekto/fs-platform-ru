@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.BASKET_PKEY
 import com.fs.domain.jooq.tables.records.BasketRecord
 
@@ -41,7 +41,7 @@ open class Basket(
     parameters: Array<Field<*>?>?
 ): TableImpl<BasketRecord>(
     alias,
-    DefaultSchema.DEFAULT_SCHEMA,
+    Public.PUBLIC,
     child,
     path,
     aliased,
@@ -52,7 +52,7 @@ open class Basket(
     companion object {
 
         /**
-         * The reference instance of <code>basket</code>
+         * The reference instance of <code>public.basket</code>
          */
         val BASKET: Basket = Basket()
     }
@@ -63,12 +63,12 @@ open class Basket(
     override fun getRecordType(): Class<BasketRecord> = BasketRecord::class.java
 
     /**
-     * The column <code>basket.id</code>.
+     * The column <code>public.basket.id</code>.
      */
     val ID: TableField<BasketRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>basket.total_price</code>.
+     * The column <code>public.basket.total_price</code>.
      */
     val TOTAL_PRICE: TableField<BasketRecord, Double?> = createField(DSL.name("total_price"), SQLDataType.DOUBLE, this, "")
 
@@ -76,22 +76,22 @@ open class Basket(
     private constructor(alias: Name, aliased: Table<BasketRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>basket</code> table reference
+     * Create an aliased <code>public.basket</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>basket</code> table reference
+     * Create an aliased <code>public.basket</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>basket</code> table reference
+     * Create a <code>public.basket</code> table reference
      */
     constructor(): this(DSL.name("basket"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, BasketRecord>): this(Internal.createPathAlias(child, key), child, key, BASKET, null)
-    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<BasketRecord, Long?> = super.getIdentity() as Identity<BasketRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<BasketRecord> = BASKET_PKEY
     override fun `as`(alias: String): Basket = Basket(DSL.name(alias), this)

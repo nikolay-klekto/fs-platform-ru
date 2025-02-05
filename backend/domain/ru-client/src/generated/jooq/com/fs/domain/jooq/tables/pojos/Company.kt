@@ -17,7 +17,8 @@ data class Company(
     var legalCapacityStatus: String? = null,
     var name: String? = null,
     var site: String? = null,
-    var shortDescription: String? = null
+    var shortDescription: String? = null,
+    var workTime: String? = null
 ): Serializable {
 
 
@@ -30,6 +31,7 @@ data class Company(
         sb.append(", ").append(name)
         sb.append(", ").append(site)
         sb.append(", ").append(shortDescription)
+        sb.append(", ").append(workTime)
 
         sb.append(")")
         return sb.toString()

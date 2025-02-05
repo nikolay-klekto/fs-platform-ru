@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.COMPANY_PKEY
 import com.fs.domain.jooq.tables.records.CompanyRecord
 
@@ -16,7 +16,7 @@ import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
 import org.jooq.Records
-import org.jooq.Row6
+import org.jooq.Row7
 import org.jooq.Schema
 import org.jooq.SelectField
 import org.jooq.Table
@@ -41,7 +41,7 @@ open class Company(
     parameters: Array<Field<*>?>?
 ): TableImpl<CompanyRecord>(
     alias,
-    DefaultSchema.DEFAULT_SCHEMA,
+    Public.PUBLIC,
     child,
     path,
     aliased,
@@ -52,7 +52,7 @@ open class Company(
     companion object {
 
         /**
-         * The reference instance of <code>company</code>
+         * The reference instance of <code>public.company</code>
          */
         val COMPANY: Company = Company()
     }
@@ -63,55 +63,60 @@ open class Company(
     override fun getRecordType(): Class<CompanyRecord> = CompanyRecord::class.java
 
     /**
-     * The column <code>company.id</code>.
+     * The column <code>public.company.id</code>.
      */
     val ID: TableField<CompanyRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>company.company_industry</code>.
+     * The column <code>public.company.company_industry</code>.
      */
     val COMPANY_INDUSTRY: TableField<CompanyRecord, String?> = createField(DSL.name("company_industry"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>company.legal_capacity_status</code>.
+     * The column <code>public.company.legal_capacity_status</code>.
      */
     val LEGAL_CAPACITY_STATUS: TableField<CompanyRecord, String?> = createField(DSL.name("legal_capacity_status"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>company.name</code>.
+     * The column <code>public.company.name</code>.
      */
     val NAME: TableField<CompanyRecord, String?> = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>company.site</code>.
+     * The column <code>public.company.site</code>.
      */
     val SITE: TableField<CompanyRecord, String?> = createField(DSL.name("site"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>company.short_description</code>.
+     * The column <code>public.company.short_description</code>.
      */
     val SHORT_DESCRIPTION: TableField<CompanyRecord, String?> = createField(DSL.name("short_description"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.company.work_time</code>.
+     */
+    val WORK_TIME: TableField<CompanyRecord, String?> = createField(DSL.name("work_time"), SQLDataType.VARCHAR, this, "")
 
     private constructor(alias: Name, aliased: Table<CompanyRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<CompanyRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>company</code> table reference
+     * Create an aliased <code>public.company</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>company</code> table reference
+     * Create an aliased <code>public.company</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>company</code> table reference
+     * Create a <code>public.company</code> table reference
      */
     constructor(): this(DSL.name("company"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, CompanyRecord>): this(Internal.createPathAlias(child, key), child, key, COMPANY, null)
-    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<CompanyRecord, Long?> = super.getIdentity() as Identity<CompanyRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<CompanyRecord> = COMPANY_PKEY
     override fun `as`(alias: String): Company = Company(DSL.name(alias), this)
@@ -134,18 +139,18 @@ open class Company(
     override fun rename(name: Table<*>): Company = Company(name.getQualifiedName(), null)
 
     // -------------------------------------------------------------------------
-    // Row6 type methods
+    // Row7 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row6<Long?, String?, String?, String?, String?, String?> = super.fieldsRow() as Row6<Long?, String?, String?, String?, String?, String?>
+    override fun fieldsRow(): Row7<Long?, String?, String?, String?, String?, String?, String?> = super.fieldsRow() as Row7<Long?, String?, String?, String?, String?, String?, String?>
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    fun <U> mapping(from: (Long?, String?, String?, String?, String?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+    fun <U> mapping(from: (Long?, String?, String?, String?, String?, String?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    fun <U> mapping(toType: Class<U>, from: (Long?, String?, String?, String?, String?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
+    fun <U> mapping(toType: Class<U>, from: (Long?, String?, String?, String?, String?, String?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

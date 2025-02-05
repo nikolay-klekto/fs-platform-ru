@@ -108,6 +108,49 @@ abstract class ProfessionRepository(
         }
     }
 
+    fun getAllProfessionsByInternshipType(internshipTypeId: Long): Flux<ProfessionModel> {
+        return Flux.from(
+            dsl.select()
+                .from(
+                    dsl.select(
+                        PROFESSION.ID,
+                        PROFESSION.NAME,
+                        PROFESSION.DESCRIPTION,
+                        PROFESSION.CLIENTS_NUMBER,
+                        PROFESSION.PROFESSION_INDUSTRY,
+                        (DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5)).`as`("price_per_week"),
+                        DSL.rowNumber()
+                            .over(
+                                DSL.partitionBy(PROFESSION.NAME)
+                                    .orderBy(DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5).asc())
+                            ).`as`("row_number")
+                    )
+                        .from(PROFESSION)
+                        .leftJoin(COMPANY_PROFESSION)
+                        .on(PROFESSION.ID.eq(COMPANY_PROFESSION.PROFESSION_ID))
+                        .where(COMPANY_PROFESSION.INTERNSHIP_TYPE_ID.eq(internshipTypeId))
+                        .groupBy(
+                            PROFESSION.ID,
+                            PROFESSION.NAME,
+                            PROFESSION.DESCRIPTION,
+                            PROFESSION.CLIENTS_NUMBER,
+                            PROFESSION.PROFESSION_INDUSTRY
+                        )
+                )
+                .where(DSL.field("row_number").eq(1)) // Берем первую запись
+                .orderBy(DSL.field("clients_number").desc()) // Используем clients_number из промежуточного результата
+        ).map { record ->
+            ProfessionModel(
+                id = record.get(PROFESSION.ID),
+                name = record.get(PROFESSION.NAME),
+                description = record.get(PROFESSION.DESCRIPTION),
+                clientsNumber = record.get(PROFESSION.CLIENTS_NUMBER),
+                professionIndustry = record.get(PROFESSION.PROFESSION_INDUSTRY),
+                pricePerWeek = record.get("price_per_week", Double::class.java)
+            )
+        }
+    }
+
 //    fun getNMostPopularProfessions(quantity: Int): Flux<ProfessionModel> {
 //        return Flux.from(
 //            dsl.select(PROFESSION.asterisk()).from(PROFESSION)

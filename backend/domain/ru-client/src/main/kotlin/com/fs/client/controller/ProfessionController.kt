@@ -47,6 +47,11 @@ open class ProfessionController(
     }
 
     @QueryMapping
+    open fun getAllProfessionsByInternshipType(@Argument internshipTypeId: Long): Flux<ProfessionModel> {
+        return professionRepository.getAllProfessionsByInternshipType(internshipTypeId)
+    }
+
+    @QueryMapping
     open fun getAllProfessionsCategories(): Flux<String> {
         return professionRepository.getAllProfessionsCategories()
     }

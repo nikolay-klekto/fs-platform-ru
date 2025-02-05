@@ -8,5 +8,6 @@ data class CompanyAddress(
     val street: String?,
     val house: String?,
     val officeNumber: String?,
-    val phoneNumber: String?
+    val phoneNumber: String?,
+    val workTime: String?
 )

@@ -134,7 +134,7 @@ jooq {
                     database.apply {
                         name = "org.jooq.meta.postgres.PostgresDatabase"
                         inputSchema = "public"
-                        isOutputSchemaToDefault = true
+//                        isOutputSchemaToDefault = true
                         forcedTypes = listOf(
                             ForcedType().apply {
                                 isEnumConverter = true
@@ -174,3 +174,7 @@ jooq {
         }
     }
 }
+
+//java.sourceSets["main"].java {
+//    srcDir("src/generated/jooq")
+//}

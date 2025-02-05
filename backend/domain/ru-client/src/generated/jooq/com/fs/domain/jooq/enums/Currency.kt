@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.enums
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 
 import org.jooq.Catalog
 import org.jooq.EnumType
@@ -22,7 +22,7 @@ enum class Currency(@get:JvmName("literal") public val literal: String) : EnumTy
     RUB("RUB"),
     PLN("PLN");
     override fun getCatalog(): Catalog? = schema.catalog
-    override fun getSchema(): Schema = DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema = Public.PUBLIC
     override fun getName(): String = "currency"
     override fun getLiteral(): String = literal
 }

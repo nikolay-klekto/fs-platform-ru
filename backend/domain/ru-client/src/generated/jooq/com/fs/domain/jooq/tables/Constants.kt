@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.CONSTANTS_PKEY
 import com.fs.domain.jooq.tables.records.ConstantsRecord
 
@@ -16,7 +16,7 @@ import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
 import org.jooq.Records
-import org.jooq.Row2
+import org.jooq.Row13
 import org.jooq.Schema
 import org.jooq.SelectField
 import org.jooq.Table
@@ -41,7 +41,7 @@ open class Constants(
     parameters: Array<Field<*>?>?
 ): TableImpl<ConstantsRecord>(
     alias,
-    DefaultSchema.DEFAULT_SCHEMA,
+    Public.PUBLIC,
     child,
     path,
     aliased,
@@ -52,7 +52,7 @@ open class Constants(
     companion object {
 
         /**
-         * The reference instance of <code>constants</code>
+         * The reference instance of <code>public.constants</code>
          */
         val CONSTANTS: Constants = Constants()
     }
@@ -63,35 +63,90 @@ open class Constants(
     override fun getRecordType(): Class<ConstantsRecord> = ConstantsRecord::class.java
 
     /**
-     * The column <code>constants.id</code>.
+     * The column <code>public.constants.id</code>.
      */
     val ID: TableField<ConstantsRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>constants.days_for_pay_order</code>.
+     * The column <code>public.constants.days_for_pay_order</code>.
      */
     val DAYS_FOR_PAY_ORDER: TableField<ConstantsRecord, Int?> = createField(DSL.name("days_for_pay_order"), SQLDataType.INTEGER, this, "")
+
+    /**
+     * The column <code>public.constants.phone_number</code>.
+     */
+    val PHONE_NUMBER: TableField<ConstantsRecord, String?> = createField(DSL.name("phone_number"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.constants.client_email</code>.
+     */
+    val CLIENT_EMAIL: TableField<ConstantsRecord, String?> = createField(DSL.name("client_email"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.constants.partner_email</code>.
+     */
+    val PARTNER_EMAIL: TableField<ConstantsRecord, String?> = createField(DSL.name("partner_email"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.constants.candidate_email</code>.
+     */
+    val CANDIDATE_EMAIL: TableField<ConstantsRecord, String?> = createField(DSL.name("candidate_email"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.constants.office_city</code>.
+     */
+    val OFFICE_CITY: TableField<ConstantsRecord, String?> = createField(DSL.name("office_city"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.constants.office_address</code>.
+     */
+    val OFFICE_ADDRESS: TableField<ConstantsRecord, String?> = createField(DSL.name("office_address"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.constants.inst_link</code>.
+     */
+    val INST_LINK: TableField<ConstantsRecord, String?> = createField(DSL.name("inst_link"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.constants.tg_link</code>.
+     */
+    val TG_LINK: TableField<ConstantsRecord, String?> = createField(DSL.name("tg_link"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.constants.linkedIn_link</code>.
+     */
+    val LINKEDIN_LINK: TableField<ConstantsRecord, String?> = createField(DSL.name("linkedIn_link"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.constants.footer_official_info</code>.
+     */
+    val FOOTER_OFFICIAL_INFO: TableField<ConstantsRecord, String?> = createField(DSL.name("footer_official_info"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.constants.footer_additional_info</code>.
+     */
+    val FOOTER_ADDITIONAL_INFO: TableField<ConstantsRecord, String?> = createField(DSL.name("footer_additional_info"), SQLDataType.VARCHAR, this, "")
 
     private constructor(alias: Name, aliased: Table<ConstantsRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<ConstantsRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>constants</code> table reference
+     * Create an aliased <code>public.constants</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>constants</code> table reference
+     * Create an aliased <code>public.constants</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>constants</code> table reference
+     * Create a <code>public.constants</code> table reference
      */
     constructor(): this(DSL.name("constants"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, ConstantsRecord>): this(Internal.createPathAlias(child, key), child, key, CONSTANTS, null)
-    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<ConstantsRecord, Long?> = super.getIdentity() as Identity<ConstantsRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ConstantsRecord> = CONSTANTS_PKEY
     override fun `as`(alias: String): Constants = Constants(DSL.name(alias), this)
@@ -114,18 +169,18 @@ open class Constants(
     override fun rename(name: Table<*>): Constants = Constants(name.getQualifiedName(), null)
 
     // -------------------------------------------------------------------------
-    // Row2 type methods
+    // Row13 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row2<Long?, Int?> = super.fieldsRow() as Row2<Long?, Int?>
+    override fun fieldsRow(): Row13<Long?, Int?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?> = super.fieldsRow() as Row13<Long?, Int?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?>
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    fun <U> mapping(from: (Long?, Int?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+    fun <U> mapping(from: (Long?, Int?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    fun <U> mapping(toType: Class<U>, from: (Long?, Int?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
+    fun <U> mapping(toType: Class<U>, from: (Long?, Int?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

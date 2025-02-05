@@ -1,0 +1,6 @@
+FROM openjdk:17-oracle
+ARG JAR_FILE=jar/ru-file-transfer-0.0.3-SNAPSHOT.jar
+WORKDIR /opt/app
+COPY ${JAR_FILE} appPhotoTransfer.jar
+EXPOSE 8585
+ENTRYPOINT ["java","-jar","appPhotoTransfer.jar"]

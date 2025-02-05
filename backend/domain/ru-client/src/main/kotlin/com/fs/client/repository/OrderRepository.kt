@@ -9,7 +9,9 @@ import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.service.ru.OrderModel
+import com.fs.service.ru.OrderModelInput
 import com.fs.service.ru.enums.OrderStatus
+import com.fs.service.ru.errors.ErrorModel
 import org.apache.logging.log4j.LogManager
 import org.jooq.DSLContext
 import org.jooq.impl.DSL
@@ -25,7 +27,8 @@ abstract class OrderRepository(
     open val basketBlockingRepository: BasketBlockingRepository,
     open val orderBlockingRepository: OrderBlockingRepository,
     open val professionBlockingRepository: ProfessionBlockingRepository,
-    open val companyProfessionBlockingRepository: CompanyProfessionBlockingRepository
+    open val companyProfessionBlockingRepository: CompanyProfessionBlockingRepository,
+    open val orderDatesRepository: OrdersDatesRepository
 ) {
 
     fun getAllOrders(): Flux<OrderModel> {
@@ -56,7 +59,7 @@ abstract class OrderRepository(
             .map(converter::toModel)
     }
 
-    fun insertOrder(orderModel: OrderModel): Mono<OrderModel> {
+    fun insertOrder(orderModel: OrderModelInput): Mono<OrderModel> {
         return Mono.fromSupplier {
             orderBlockingRepository.insert(orderModel)
         }
@@ -69,16 +72,17 @@ abstract class OrderRepository(
         }
     }
 
-    fun confirmOrder(orderId: Long): Mono<Boolean> {
+    fun confirmOrder(orderId: Long): Mono<ErrorModel<Boolean>> {
         return Mono.fromSupplier {
             val oldOrderModel = orderBlockingRepository.getById(orderId)
-            if (oldOrderModel!!.orderStatus == OrderStatus.BASKET) {
-                return@fromSupplier orderBlockingRepository.updateOrderStatus(
+            orderDatesRepository.decreaseFreePlacesByOrderDatesId(oldOrderModel?.orderDatesId!!)
+            if (oldOrderModel.orderStatus == OrderStatus.BASKET) {
+                return@fromSupplier ErrorModel(orderBlockingRepository.updateOrderStatus(
                     orderId,
                     OrderStatus.NEED_TO_APPROVE_FROM_BASKET
-                )
+                ), null)
             } else {
-                return@fromSupplier false
+                return@fromSupplier ErrorModel(false, null)
             }
         }
     }
@@ -255,9 +259,10 @@ abstract class OrderRepository(
                 totalWorkDays = temporaryOrder.totalWorkDays,
                 price = temporaryOrder.price,
                 companyProfessionId = temporaryOrder.companyProfessionId,
-                contractNumber = temporaryOrder.contractNumber
+                contractNumber = temporaryOrder.contractNumber,
+                orderDatesId = temporaryOrder.orderDatesId
             )
-            orderBlockingRepository.insert(updatableOrderModel)
+            orderBlockingRepository.insertFromUpdate(updatableOrderModel)
             orderBlockingRepository.deleteFinalById(temporaryOrder.id!!)
             if (orderBlockingRepository.isBasketEmpty(temporaryBasketId)) {
                 basketBlockingRepository.delete(temporaryBasketId)

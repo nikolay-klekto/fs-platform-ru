@@ -4,7 +4,7 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.domain.jooq.DefaultSchema
+import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.CLIENTS_LETTERS_PKEY
 import com.fs.domain.jooq.tables.records.ClientsLettersRecord
 
@@ -42,7 +42,7 @@ open class ClientsLetters(
     parameters: Array<Field<*>?>?
 ): TableImpl<ClientsLettersRecord>(
     alias,
-    DefaultSchema.DEFAULT_SCHEMA,
+    Public.PUBLIC,
     child,
     path,
     aliased,
@@ -53,7 +53,7 @@ open class ClientsLetters(
     companion object {
 
         /**
-         * The reference instance of <code>clients_letters</code>
+         * The reference instance of <code>public.clients_letters</code>
          */
         val CLIENTS_LETTERS: ClientsLetters = ClientsLetters()
     }
@@ -64,37 +64,37 @@ open class ClientsLetters(
     override fun getRecordType(): Class<ClientsLettersRecord> = ClientsLettersRecord::class.java
 
     /**
-     * The column <code>clients_letters.id</code>.
+     * The column <code>public.clients_letters.id</code>.
      */
     val ID: TableField<ClientsLettersRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
-     * The column <code>clients_letters.username</code>.
+     * The column <code>public.clients_letters.username</code>.
      */
     val USERNAME: TableField<ClientsLettersRecord, String?> = createField(DSL.name("username"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>clients_letters.phone_number</code>.
+     * The column <code>public.clients_letters.phone_number</code>.
      */
     val PHONE_NUMBER: TableField<ClientsLettersRecord, String?> = createField(DSL.name("phone_number"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>clients_letters.email</code>.
+     * The column <code>public.clients_letters.email</code>.
      */
     val EMAIL: TableField<ClientsLettersRecord, String?> = createField(DSL.name("email"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>clients_letters.client_type</code>.
+     * The column <code>public.clients_letters.client_type</code>.
      */
     val CLIENT_TYPE: TableField<ClientsLettersRecord, String?> = createField(DSL.name("client_type"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>clients_letters.comment</code>.
+     * The column <code>public.clients_letters.comment</code>.
      */
     val COMMENT: TableField<ClientsLettersRecord, String?> = createField(DSL.name("comment"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>clients_letters.date_created</code>.
+     * The column <code>public.clients_letters.date_created</code>.
      */
     val DATE_CREATED: TableField<ClientsLettersRecord, LocalDate?> = createField(DSL.name("date_created"), SQLDataType.LOCALDATE, this, "")
 
@@ -102,22 +102,22 @@ open class ClientsLetters(
     private constructor(alias: Name, aliased: Table<ClientsLettersRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
     /**
-     * Create an aliased <code>clients_letters</code> table reference
+     * Create an aliased <code>public.clients_letters</code> table reference
      */
     constructor(alias: String): this(DSL.name(alias))
 
     /**
-     * Create an aliased <code>clients_letters</code> table reference
+     * Create an aliased <code>public.clients_letters</code> table reference
      */
     constructor(alias: Name): this(alias, null)
 
     /**
-     * Create a <code>clients_letters</code> table reference
+     * Create a <code>public.clients_letters</code> table reference
      */
     constructor(): this(DSL.name("clients_letters"), null)
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, ClientsLettersRecord>): this(Internal.createPathAlias(child, key), child, key, CLIENTS_LETTERS, null)
-    override fun getSchema(): Schema? = if (aliased()) null else DefaultSchema.DEFAULT_SCHEMA
+    override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<ClientsLettersRecord, Long?> = super.getIdentity() as Identity<ClientsLettersRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ClientsLettersRecord> = CLIENTS_LETTERS_PKEY
     override fun `as`(alias: String): ClientsLetters = ClientsLetters(DSL.name(alias), this)

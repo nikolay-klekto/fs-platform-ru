@@ -1,4 +1,3 @@
-
 type Query {
 
 
@@ -17,7 +16,7 @@ type Query {
     getAllCompanies: [Company]
     getAllAvailableCompanies: [Company]
     getAllCompaniesIndustries: [String]
-    getAllCompaniesByPositionId(id: ID!): [Company]
+    getAllCompaniesByProfessionId(id: ID!): [Company]
     getAllCompaniesByCountryCode(code: ID!): [Company]
     getAllCompaniesByCityId(id: ID!): [Company]
 
@@ -25,6 +24,7 @@ type Query {
     getAllProfessionsByCompanyId(id: ID!): [Profession]
     getAllProfessions: [Profession]
     getAllExistingProfessions:[Profession]
+    getAllProfessionsByInternshipType(internshipTypeId: ID!): [Profession]
     getAllProfessionsCategories: [String]
     getNMostPopularProfessions(quantity: ID!): [Profession]
 
@@ -55,7 +55,15 @@ type Query {
     getLowestPricesByInternshipTypes: [InternshipPricesModel]
 
     getDaysForPayOrder: Int
+    getInfoForContactPage: ConstantsModel
+    getInfoForFooter: ConstantsModel
 
+    getFeedbackByCompanyId(companyId: ID!): [ProfessionsCompaniesFeedback]
+    getFeedbackByProfessionId(professionId: ID!): [ProfessionsCompaniesFeedback]
+
+    getOrderDatesByProfessionCompanyId(companyProfessionId: ID!): [OrderDates]
+
+    getInternshipTypesAndPricesByCompanyProfessionId(companyId: ID!, professionId: ID!): [InternshipPricesModel]
 }
 
 type Mutation {
@@ -112,14 +120,51 @@ type Mutation {
     addEventCategory(eventCategory: EventCategoryInput!): EventCategory
     updateEventCategory(eventCategory: EventCategoryInput!): Boolean
 
-    resetClientPassword(email: String): ErrorBooleanModel
-    checkResetCode(clientPasswordModel: ClientsResetPasswords): ErrorStringModel
+    resetClientPassword(email: String!): ErrorBooleanModel
+    checkResetCode(clientPasswordModel: ClientsResetPasswords!): ErrorStringModel
 
-    addUnAuthorizeOrder(order: UnAuthorizeOrderModelInput): Order
+    addUnAuthorizeOrder(order: UnAuthorizeOrderModelInput!): Order
 
-    insertClientLetter(clientLetter: ClientsLettersInput): ClientsLetters
+    insertClientLetter(clientLetter: ClientsLettersInput!): ClientsLetters
 
-    insertJobRequest(jobRequests: JobRequestsInput): JobRequests
+    insertJobRequest(jobRequests: JobRequestsInput!): JobRequests
+
+    insertProfessionsCompaniesFeedback(professionsCompaniesFeedback: ProfessionsCompaniesFeedbackInput!): ProfessionsCompaniesFeedback
+
+    insertOrderDate(orderDate: OrderDatesInput!): OrderDates
+}
+
+input ProfessionsCompaniesFeedbackInput{
+    id: ID
+    companyId: ID
+    professionId: ID
+    question: String
+    answer: String
+    dateCreated: String
+}
+
+input OrderDatesInput{
+    id: ID
+    companyProfessionId: ID
+    dates: String
+    freePlaces: Int
+}
+
+type OrderDates{
+    id: ID
+    companyProfessionId: ID
+    dates: String
+    freePlaces: Int
+    dateCreated: String
+}
+
+type ProfessionsCompaniesFeedback{
+    id: ID
+    companyId: ID
+    professionId: ID
+    question: String
+    answer: String
+    dateCreated: String
 }
 
 input InternshipTypeInput {
@@ -147,6 +192,21 @@ type ClientsLetters{
     dateCreated: String
 }
 
+type ConstantsModel{
+     id: ID
+     phoneNumber: String
+     clientEmail: String
+     partnerEmail: String
+     candidateEmail: String
+     officeCity: String
+     officeAddress: String
+     instLink: String
+     tgLink: String
+     linkedinLink: String
+     footerOfficialInfo: String
+     footerAdditionalInfo: String
+}
+
 input JobRequestsInput{
     id: ID
     username: String
@@ -172,6 +232,7 @@ input UnAuthorizeOrderModelInput{
     price: Float
     companyProfessionId: Int
     contractNumber: String
+    orderDatesId: ID
 }
 
 input ReviewInput {
@@ -205,6 +266,21 @@ input OrderInput {
     price: Float
     companyProfessionId: Int
     contractNumber: String
+    orderDatesId: ID
+}
+
+input OrderInsertInput {
+    id: ID
+    basketId: ID
+    companyOfficeId: ID
+    dateCreated: String
+    orderStatus: OrderStatus
+    startWorkDate: String
+    totalWorkDays: Int
+    price: Float
+    companyProfessionId: ID
+    contractNumber: String
+    orderDatesId: ID
 }
 
 input CompanyInput {
@@ -214,6 +290,7 @@ input CompanyInput {
     name: String
     site: String
     shortDescription: String
+    workTime: String
 }
 
 input ProfessionInput {
@@ -298,6 +375,7 @@ input CompanyAddressInput {
     house: String
     officeNumber: String
     phoneNumber: String
+    workTime: String
 }
 
 input EventInput {
@@ -334,6 +412,7 @@ type Order {
     totalWorkDays: Int
     price: Float
     contractNumber: String
+    orderDatesId: ID
 }
 
 input ClientsResetPasswords{
@@ -349,6 +428,8 @@ type Company {
     name: String
     site: String
     shortDescription: String
+    workTime: String
+    pricePerWeek: ID
 }
 
 input AuthorizationClientModelInsert {
@@ -374,8 +455,9 @@ type InternshipType {
 }
 
 type InternshipPricesModel {
-    internshipTypeId: ID
-    pricePerWeek: ID
+    internshipType: InternshipType
+    pricePerDay: ID
+    companyProfessionId: ID
 }
 
 type Client {

@@ -3,7 +3,6 @@ package com.fs.client.controller
 import com.fs.client.repository.CompanyProfessionRepository
 import com.fs.service.ru.CompanyProfessionModel
 import com.fs.service.ru.InternshipPricesModel
-import com.fs.service.ru.InternshipTypeModel
 import com.fs.service.ru.OrderModel
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.QueryMapping
@@ -13,14 +12,26 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @RestController
-open class CompanyProfessionController(
+class CompanyProfessionController(
     private val companyProfessionRepository: CompanyProfessionRepository
 ) {
 
     @QueryMapping
-    open fun getLowestPricesByInternshipTypes(): Flux<InternshipPricesModel> {
+    fun getLowestPricesByInternshipTypes(): Flux<InternshipPricesModel> {
         return companyProfessionRepository.getLowestPricesByInternshipTypes()
     }
+
+    @QueryMapping
+    fun getInternshipTypesAndPricesByCompanyProfessionId(
+        @Argument companyId: Long,
+        @Argument professionId: Long
+    ): Flux<InternshipPricesModel> {
+        return companyProfessionRepository.getInternshipTypesAndPricesByCompanyProfessionId(
+            companyId,
+            professionId
+        )
+    }
+
 
     @SchemaMapping(typeName = "Order", field = "companyProfession")
     fun getCompanyProfessionForOrder(orderModel: OrderModel): Mono<CompanyProfessionModel> {

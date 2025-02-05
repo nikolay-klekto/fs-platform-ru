@@ -3,11 +3,13 @@ package com.fs.client.repository.blocked
 import com.fs.client.converter.OrderModelConverter
 import com.fs.domain.jooq.tables.Basket.Companion.BASKET
 import com.fs.domain.jooq.tables.Client
+import com.fs.domain.jooq.tables.CompanyProfession.Companion.COMPANY_PROFESSION
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.domain.jooq.tables.records.OrderRecord
 import com.fs.service.ru.BasketModel
 import com.fs.service.ru.OrderModel
+import com.fs.service.ru.OrderModelInput
 import com.fs.service.ru.enums.OrderStatus
 import org.jooq.DSLContext
 import java.time.LocalDateTime
@@ -82,7 +84,7 @@ abstract class OrderBlockingRepository(
             .execute() == 1
     }
 
-    fun insert(orderModel: OrderModel): OrderModel {
+    fun insert(orderModel: OrderModelInput): OrderModel {
         if (orderModel.companyProfessionId == null || orderModel.companyOfficeId == null ||
             orderModel.startWorkDate == null || orderModel.totalWorkDays == null
         ) {
@@ -131,8 +133,68 @@ abstract class OrderBlockingRepository(
             startWorkDate = orderModel.startWorkDate,
             totalWorkDays = orderModel.totalWorkDays,
             price = newOrderPrice,
+            companyProfessionId = orderModel.companyProfessionId!!,
+            contractNumber = orderModel.contractNumber,
+            orderDatesId = orderModel.orderDatesId
+        )
+        val newOrderRecord: OrderRecord = dsl.newRecord(ORDER)
+        newOrderRecord.from(newOrderModel)
+        newOrderRecord.reset(ORDER.ID)
+        newOrderRecord.store()
+        return converter.toModel(newOrderRecord.into(Order::class.java))
+    }
+
+    fun insertFromUpdate(orderModel: OrderModel): OrderModel {
+        if (orderModel.companyProfessionId == null || orderModel.companyOfficeId == null ||
+            orderModel.startWorkDate == null || orderModel.totalWorkDays == null
+        ) {
+            throw Exception("Необходимо заполнить все обязательные поля!")
+        }
+        var newOrderStatus: OrderStatus? = OrderStatus.BASKET
+        var basketId: Long? = orderModel.basketId
+
+        if (orderModel.basketId == null) {
+            val newBasketModel: BasketModel = basketBlockingRepository.insert()
+            basketId = newBasketModel.id
+        } else {
+            newOrderStatus = if (orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!)
+                    .isBefore(LocalDateTime.now())
+            ) {
+                OrderStatus.EXPIRED
+            } else {
+                OrderStatus.BASKET
+            }
+        }
+
+        val pastTotalPrice: Double? =
+            basketBlockingRepository.getById(basketId!!)?.totalPrice
+
+        val newOrderPrice: Double =
+            companyProfessionBlockingRepository.
+            getPricePerDayById(orderModel.companyProfessionId!!)* orderModel.totalWorkDays!!
+
+        val totalPrice: Double = if (pastTotalPrice != null) {
+
+            pastTotalPrice + newOrderPrice
+
+        } else {
+            newOrderPrice
+        }
+        basketBlockingRepository.update(BasketModel(basketId, totalPrice))
+
+        val newOrderModel = OrderModel(
+            id = DEFAULT_ORDER_ID,
+            basketId = basketId,
+            companyOfficeId = orderModel.companyOfficeId,
+            dateCreated = LocalDateTime.now(),
+            isExpired = orderModel.isExpired,
+            orderStatus = orderModel.orderStatus ?: newOrderStatus,
+            startWorkDate = orderModel.startWorkDate,
+            totalWorkDays = orderModel.totalWorkDays,
+            price = newOrderPrice,
             companyProfessionId = orderModel.companyProfessionId,
-            contractNumber = orderModel.contractNumber
+            contractNumber = orderModel.contractNumber,
+            orderDatesId = orderModel.orderDatesId
         )
         val newOrderRecord: OrderRecord = dsl.newRecord(ORDER)
         newOrderRecord.from(newOrderModel)

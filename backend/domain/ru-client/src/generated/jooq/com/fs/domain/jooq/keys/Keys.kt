@@ -23,8 +23,10 @@ import com.fs.domain.jooq.tables.InternshipType
 import com.fs.domain.jooq.tables.JobRequests
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.Order
+import com.fs.domain.jooq.tables.OrderDates
 import com.fs.domain.jooq.tables.Partner
 import com.fs.domain.jooq.tables.Profession
+import com.fs.domain.jooq.tables.ProfessionsCompaniesFeedback
 import com.fs.domain.jooq.tables.Review
 import com.fs.domain.jooq.tables.records.AddressRecord
 import com.fs.domain.jooq.tables.records.BasketRecord
@@ -44,9 +46,11 @@ import com.fs.domain.jooq.tables.records.EventRecord
 import com.fs.domain.jooq.tables.records.InternshipTypeRecord
 import com.fs.domain.jooq.tables.records.JobRequestsRecord
 import com.fs.domain.jooq.tables.records.OfficeRecord
+import com.fs.domain.jooq.tables.records.OrderDatesRecord
 import com.fs.domain.jooq.tables.records.OrderRecord
 import com.fs.domain.jooq.tables.records.PartnerRecord
 import com.fs.domain.jooq.tables.records.ProfessionRecord
+import com.fs.domain.jooq.tables.records.ProfessionsCompaniesFeedbackRecord
 import com.fs.domain.jooq.tables.records.ReviewRecord
 
 import org.jooq.ForeignKey
@@ -79,8 +83,10 @@ val INTERNSHIP_TYPE_PKEY: UniqueKey<InternshipTypeRecord> = Internal.createUniqu
 val JOB_REQUESTS_PKEY: UniqueKey<JobRequestsRecord> = Internal.createUniqueKey(JobRequests.JOB_REQUESTS, DSL.name("job_requests_pkey"), arrayOf(JobRequests.JOB_REQUESTS.ID), true)
 val OFFICE_PKEY: UniqueKey<OfficeRecord> = Internal.createUniqueKey(Office.OFFICE, DSL.name("office_pkey"), arrayOf(Office.OFFICE.ID), true)
 val ORDER_PKEY: UniqueKey<OrderRecord> = Internal.createUniqueKey(Order.ORDER, DSL.name("order_pkey"), arrayOf(Order.ORDER.ID), true)
+val ORDER_DATES_PKEY: UniqueKey<OrderDatesRecord> = Internal.createUniqueKey(OrderDates.ORDER_DATES, DSL.name("order_dates_pkey"), arrayOf(OrderDates.ORDER_DATES.ID), true)
 val PARTNER_PKEY: UniqueKey<PartnerRecord> = Internal.createUniqueKey(Partner.PARTNER, DSL.name("partner_pkey"), arrayOf(Partner.PARTNER.ID), true)
 val PROFESSION_PKEY: UniqueKey<ProfessionRecord> = Internal.createUniqueKey(Profession.PROFESSION, DSL.name("profession_pkey"), arrayOf(Profession.PROFESSION.ID), true)
+val PROFESSIONS_COMPANIES_FEEDBACK_PKEY: UniqueKey<ProfessionsCompaniesFeedbackRecord> = Internal.createUniqueKey(ProfessionsCompaniesFeedback.PROFESSIONS_COMPANIES_FEEDBACK, DSL.name("professions_companies_feedback_pkey"), arrayOf(ProfessionsCompaniesFeedback.PROFESSIONS_COMPANIES_FEEDBACK.ID), true)
 val REVIEW_PKEY: UniqueKey<ReviewRecord> = Internal.createUniqueKey(Review.REVIEW, DSL.name("review_pkey"), arrayOf(Review.REVIEW.ID), true)
 
 // -------------------------------------------------------------------------
@@ -103,6 +109,10 @@ val OFFICE__OFFICE_COMPANY_ID_FKEY: ForeignKey<OfficeRecord, CompanyRecord> = In
 val ORDER__ORDER_BASKET_ID_FKEY: ForeignKey<OrderRecord, BasketRecord> = Internal.createForeignKey(Order.ORDER, DSL.name("order_basket_id_fkey"), arrayOf(Order.ORDER.BASKET_ID), com.fs.domain.jooq.keys.BASKET_PKEY, arrayOf(Basket.BASKET.ID), true)
 val ORDER__ORDER_COMPANY_OFFICE_ID_FKEY: ForeignKey<OrderRecord, OfficeRecord> = Internal.createForeignKey(Order.ORDER, DSL.name("order_company_office_id_fkey"), arrayOf(Order.ORDER.COMPANY_OFFICE_ID), com.fs.domain.jooq.keys.OFFICE_PKEY, arrayOf(Office.OFFICE.ID), true)
 val ORDER__ORDER_COMPANY_PROFESSION_ID_FKEY: ForeignKey<OrderRecord, CompanyProfessionRecord> = Internal.createForeignKey(Order.ORDER, DSL.name("order_company_profession_id_fkey"), arrayOf(Order.ORDER.COMPANY_PROFESSION_ID), com.fs.domain.jooq.keys.COMPANY_PROFESSION_PKEY, arrayOf(CompanyProfession.COMPANY_PROFESSION.ID), true)
+val ORDER__ORDER_ORDER_DATES_ID_FKEY: ForeignKey<OrderRecord, OrderDatesRecord> = Internal.createForeignKey(Order.ORDER, DSL.name("order_order_dates_id_fkey"), arrayOf(Order.ORDER.ORDER_DATES_ID), com.fs.domain.jooq.keys.ORDER_DATES_PKEY, arrayOf(OrderDates.ORDER_DATES.ID), true)
+val ORDER_DATES__ORDER_DATES_COMPANYPROFESSIONID_FKEY: ForeignKey<OrderDatesRecord, CompanyProfessionRecord> = Internal.createForeignKey(OrderDates.ORDER_DATES, DSL.name("order_dates_companyProfessionId_fkey"), arrayOf(OrderDates.ORDER_DATES.COMPANY_PROFESSION_ID), com.fs.domain.jooq.keys.COMPANY_PROFESSION_PKEY, arrayOf(CompanyProfession.COMPANY_PROFESSION.ID), true)
 val PARTNER__PARTNER_CLIENT_ID_FKEY: ForeignKey<PartnerRecord, ClientRecord> = Internal.createForeignKey(Partner.PARTNER, DSL.name("partner_client_id_fkey"), arrayOf(Partner.PARTNER.CLIENT_ID), com.fs.domain.jooq.keys.CLIENT_PKEY, arrayOf(Client.CLIENT.ID), true)
+val PROFESSIONS_COMPANIES_FEEDBACK__PROFESSIONS_COMPANIES_FEEDBACK_COMPANY_ID_FKEY: ForeignKey<ProfessionsCompaniesFeedbackRecord, CompanyRecord> = Internal.createForeignKey(ProfessionsCompaniesFeedback.PROFESSIONS_COMPANIES_FEEDBACK, DSL.name("professions_companies_feedback_company_id_fkey"), arrayOf(ProfessionsCompaniesFeedback.PROFESSIONS_COMPANIES_FEEDBACK.COMPANY_ID), com.fs.domain.jooq.keys.COMPANY_PKEY, arrayOf(Company.COMPANY.ID), true)
+val PROFESSIONS_COMPANIES_FEEDBACK__PROFESSIONS_COMPANIES_FEEDBACK_PROFESSION_ID_FKEY: ForeignKey<ProfessionsCompaniesFeedbackRecord, ProfessionRecord> = Internal.createForeignKey(ProfessionsCompaniesFeedback.PROFESSIONS_COMPANIES_FEEDBACK, DSL.name("professions_companies_feedback_profession_id_fkey"), arrayOf(ProfessionsCompaniesFeedback.PROFESSIONS_COMPANIES_FEEDBACK.PROFESSION_ID), com.fs.domain.jooq.keys.PROFESSION_PKEY, arrayOf(Profession.PROFESSION.ID), true)
 val REVIEW__REVIEW_CLIENT_ID_FKEY: ForeignKey<ReviewRecord, ClientRecord> = Internal.createForeignKey(Review.REVIEW, DSL.name("review_client_id_fkey"), arrayOf(Review.REVIEW.CLIENT_ID), com.fs.domain.jooq.keys.CLIENT_PKEY, arrayOf(Client.CLIENT.ID), true)
 val REVIEW__REVIEW_ORDER_ID_FKEY: ForeignKey<ReviewRecord, OrderRecord> = Internal.createForeignKey(Review.REVIEW, DSL.name("review_order_id_fkey"), arrayOf(Review.REVIEW.ORDER_ID), com.fs.domain.jooq.keys.ORDER_PKEY, arrayOf(Order.ORDER.ID), true)

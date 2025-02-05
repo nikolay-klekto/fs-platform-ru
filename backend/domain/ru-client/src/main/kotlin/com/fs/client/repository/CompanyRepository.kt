@@ -19,6 +19,7 @@ import org.jooq.DSLContext
 import org.jooq.impl.DSL
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import java.math.BigDecimal
 
 abstract class CompanyRepository(
     open val dsl: DSLContext,
@@ -52,24 +53,30 @@ abstract class CompanyRepository(
     open fun getAllAvailableCompanies(): Flux<CompanyModel> {
         return Flux.from(
             dsl.select(COMPANY.asterisk()).from(COMPANY)
-                .where(COMPANY.LEGAL_CAPACITY_STATUS.eq(CompanyLegalCapacityStatus.CLOSED.name))
+                .where(COMPANY.LEGAL_CAPACITY_STATUS.eq(CompanyLegalCapacityStatus.CAPABLE.name))
         ).map { it.into(Company::class.java) }
             .map(converter::toModel)
     }
 
     fun getAllCompaniesByProfessionId(professionId: Long): Flux<CompanyModel> {
         return Flux.from(
-            dsl.select(COMPANY.asterisk()).from(COMPANY)
-                .where(
-                    COMPANY.ID.`in`(
-                        dsl.select(COMPANY_PROFESSION.COMPANY_ID).from(COMPANY_PROFESSION)
-                            .where(COMPANY_PROFESSION.PROFESSION_ID.eq(professionId))
-                    )
-                )
-
-        ).map { it.into(Company::class.java) }
-            .map(converter::toModel)
+            dsl.select(
+                COMPANY.asterisk(),
+                DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5).`as`("price_per_week")
+            )
+                .from(COMPANY)
+                .join(COMPANY_PROFESSION).on(COMPANY.ID.eq(COMPANY_PROFESSION.COMPANY_ID))
+                .where(COMPANY_PROFESSION.PROFESSION_ID.eq(professionId))
+                .groupBy(COMPANY.ID)
+        ).map { record ->
+            val company = record.into(Company::class.java)
+            val pricePerWeek = record.get("price_per_week", Double::class.java)
+            converter.toModel(company).apply {
+                this.pricePerWeek = pricePerWeek // предполагается, что `CompanyModel` имеет поле `pricePerWeek`
+            }
+        }
     }
+
 
     fun getAllCompaniesByCountryCode(countryCode: Long): Flux<CompanyModel> {
         return Flux.from(
@@ -165,6 +172,10 @@ abstract class CompanyRepository(
                 .set(
                     COMPANY.SHORT_DESCRIPTION,
                     DSL.value(companyModel.shortDescription ?: oldCompanyModel.shortDescription)
+                )
+                .set(
+                    COMPANY.WORK_TIME,
+                    DSL.value(companyModel.workTime ?: oldCompanyModel.workTime)
                 )
                 .where(
                     COMPANY.ID.eq(DSL.value(companyModel.id)) // Оборачиваем ID в DSL.value

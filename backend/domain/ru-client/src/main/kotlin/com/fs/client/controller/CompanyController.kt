@@ -45,7 +45,7 @@ open class CompanyController(
     }
 
     @QueryMapping
-    open fun getAllCompaniesByPositionId(@Argument id: Long): Flux<CompanyModel> {
+    open fun getAllCompaniesByProfessionId(@Argument id: Long): Flux<CompanyModel> {
         return companyRepository.getAllCompaniesByProfessionId(id)
     }
 

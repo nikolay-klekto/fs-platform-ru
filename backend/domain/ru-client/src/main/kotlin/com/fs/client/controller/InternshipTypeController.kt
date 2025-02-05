@@ -2,6 +2,7 @@ package com.fs.client.controller
 
 import com.fs.client.repository.InternshipTypeRepository
 import com.fs.service.ru.CompanyProfessionModel
+import com.fs.service.ru.InternshipPricesModel
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.InternshipTypeModel
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -73,5 +74,10 @@ open class InternshipTypeController(
     @SchemaMapping(typeName = "CompanyProfession", field = "internshipType")
     fun getInternshipTypeForCompanyProfession(companyProfessionModel: CompanyProfessionModel): Mono<InternshipTypeModel> {
         return internshipTypeRepository.getInternshipTypeById(companyProfessionModel.internshipTypeId!!)
+    }
+
+    @SchemaMapping(typeName = "InternshipPricesModel", field = "internshipType")
+    fun getInternshipTypeForInternshipPriceModel(internshipPriceModel: InternshipPricesModel): Mono<InternshipTypeModel> {
+        return internshipTypeRepository.getInternshipTypeById(internshipPriceModel.internshipTypeId!!)
     }
 }
