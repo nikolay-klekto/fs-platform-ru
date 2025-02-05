@@ -2,11 +2,11 @@ import React from 'react'
 import Modal from '@/components/ui/modal'
 import { X } from 'lucide-react'
 
-interface ModalOrderPlacedDekstopProps {
+interface ModalOrderPlacedDesktopProps {
     closeModal: () => void
 }
 
-const ModalOrderPlacedDekstop: React.FC<ModalOrderPlacedDekstopProps> = ({ closeModal }) => {
+const ModalOrderPlacedDesktop: React.FC<ModalOrderPlacedDesktopProps> = ({ closeModal }) => {
     return (
         <Modal show={true} onClose={closeModal} size="medium" showCloseButton={false}>
             <div>
@@ -29,4 +29,4 @@ const ModalOrderPlacedDekstop: React.FC<ModalOrderPlacedDekstopProps> = ({ close
     )
 }
 
-export default ModalOrderPlacedDekstop
+export default ModalOrderPlacedDesktop

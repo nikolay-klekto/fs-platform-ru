@@ -8,7 +8,7 @@ interface ModalContractTerminatedDesktopProps {
 
 const ModalContractTerminatedDesktop: React.FC<ModalContractTerminatedDesktopProps> = ({ closeModal }) => {
     return (
-        <Modal show={true} onClose={closeModal} size="max-w-md" showCloseButton={false}>
+        <Modal show={true} onClose={closeModal} size="extra-medium" showCloseButton={false}>
             <div>
                 <button onClick={closeModal} className="absolute right-[22px] top-[18px]">
                     <X size={41} color="white" className="opacity-50 hover:opacity-100" />

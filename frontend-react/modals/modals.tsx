@@ -5,7 +5,7 @@ import LoginModalDesktop from '@/modals/ModalsDesktop/LoginModalDesktop'
 import ModalCallMobi from '@/modals/ModalsMobi/ModalCallMobi'
 import RegistrationModalMobi from '@/modals/ModalsMobi/RegistrationModalMobi'
 import LoginModalMobi from '@/modals/ModalsMobi/LoginModalMobi'
-import ModalOrderPlacedDekstop from '@/modals/ModalsDesktop/ModalOrderPlacedDekstop'
+import ModalOrderPlacedDesktop from '@/modals/ModalsDesktop/ModalOrderPlacedDesktop'
 import ModalContractTerminatedDesktop from '@/modals/ModalsDesktop/ModalContractTerminatedDesktop'
 export const modals = {
     desktop: [
@@ -22,8 +22,8 @@ export const modals = {
             content: <LoginModalDesktop isOpen={true} />,
         },
         {
-            id: 'order_placed_dekstop',
-            content: ({ onClose }: { onClose: () => void }) => <ModalOrderPlacedDekstop closeModal={onClose} />,
+            id: 'order_placed_desktop',
+            content: ({ onClose }: { onClose: () => void }) => <ModalOrderPlacedDesktop closeModal={onClose} />,
         },
         {
             id: 'contract_terminated_desktop',
