@@ -73,25 +73,25 @@ jobs:
 
     steps:
     - name: Download JAR artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: my-app-jar
         path: ./artifact
 
     - name: Download Docker Compose artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: docker-compose-file
         path: ./artifact
 
     - name: Download JAR registration artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: my-app-jar-auth
         path: ./artifact
 
     - name: Download JAR call request artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: my-app-jar-call-request
         path: ./artifact
