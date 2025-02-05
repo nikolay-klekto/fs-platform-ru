@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Modal from '@/components/ui/modal'
 import { X } from 'lucide-react'
 
-const ModalOrderPlacedDekstop: React.FC = () => {
-    const [isModalOpen, setModalOpen] = useState(true)
-    const handleCloseModal = () => setModalOpen(false)
+interface ModalOrderPlacedDekstopProps {
+    closeModal: () => void
+}
+
+const ModalOrderPlacedDekstop: React.FC<ModalOrderPlacedDekstopProps> = ({ closeModal }) => {
     return (
-        <Modal show={isModalOpen} onClose={handleCloseModal} size="medium" showCloseButton={false}>
+        <Modal show={true} onClose={closeModal} size="medium" showCloseButton={false}>
             <div>
-                <button onClick={handleCloseModal} className="absolute right-7 top-6">
+                <button onClick={closeModal} className="absolute right-7 top-6">
                     <X size={41} color="white" className="opacity-50 hover:opacity-100" />
                 </button>
             </div>

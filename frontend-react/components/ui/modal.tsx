@@ -6,7 +6,7 @@ interface ModalProps {
     children: ReactNode
     show: boolean
     onClose: () => void
-    size?: 'small' | 'medium' | 'semilarge' | 'large' | 'large-l' | 'large-lg' | 'custom'
+    size?: 'small' | 'medium' | 'semilarge' | 'large' | 'large-l' | 'large-lg' | 'max-w-md'
     showCloseButton?: boolean
     paddingClass?: string
     className?: string
@@ -54,7 +54,7 @@ const Modal: React.FC<ModalProps> = ({
                 return 'max-w-[1366px]'
             case 'large-lg':
                 return '2xl:w-[830px] max-w-[882px]'
-            case 'custom':
+            case 'max-w-md':
                 return 'max-w-[466px]'
             case 'medium':
             default:

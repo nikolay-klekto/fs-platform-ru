@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Modal from '@/components/ui/modal'
 import { X } from 'lucide-react'
 
-const ModalContractTerminatedDesktop: React.FC = () => {
-    const [isModalOpen, setModalOpen] = useState(true)
-    const handleCloseModal = () => setModalOpen(false)
+interface ModalContractTerminatedDesktopProps {
+    closeModal: () => void
+}
+
+const ModalContractTerminatedDesktop: React.FC<ModalContractTerminatedDesktopProps> = ({ closeModal }) => {
     return (
-        <Modal show={isModalOpen} onClose={handleCloseModal} size="custom" showCloseButton={false}>
+        <Modal show={true} onClose={closeModal} size="max-w-md" showCloseButton={false}>
             <div>
-                <button onClick={handleCloseModal} className="absolute right-[22px] top-[18px]">
+                <button onClick={closeModal} className="absolute right-[22px] top-[18px]">
                     <X size={41} color="white" className="opacity-50 hover:opacity-100" />
                 </button>
             </div>
