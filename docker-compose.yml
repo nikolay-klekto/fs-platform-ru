@@ -196,7 +196,7 @@ services:
 #      context: .
 #      dockerfile: Dockerfile-React
 #    ports:
-#      - "80:80" # Указываем внешний порт 80
+#      - "80:80" # РЈРєР°Р·С‹РІР°РµРј РІРЅРµС€РЅРёР№ РїРѕСЂС‚ 80
 #    networks:
 #      - prometheus-grafana-network
 
