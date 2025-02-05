@@ -76,7 +76,7 @@ export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ message }) => (
                 </button>
             </TooltipTrigger>
             <TooltipContent
-                className="w-[385px] 3xl:max-w-[345px] 2xl:max-w-[308px] min-h-[96px] m-0 p-2 bg-tooltip rounded-[25px] shadow-none border-none"
+                className="w-[385px] 3xl:max-w-[345px] 2xl:max-w-[308px] min-h-[90px] m-0 p-2 bg-tooltip rounded-[25px] shadow-none border-none"
                 sideOffset={3}
                 side="top"
                 align="end"
@@ -85,8 +85,8 @@ export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ message }) => (
                 avoidCollisions={false}
                 collisionPadding={{ top: 20, left: 20 }}
             >
-                <div className="p-2 pt-1">
-                    <p className="text-[15px] align-baseline font-medium 2xl:font-light text-white leading-[19px] text-mauve12">
+                <div className="p-2 pt-2">
+                    <p className="text-[15px] 3xl:text-[12px] 2xl:text-[12px] align-baseline font-medium 2xl:font-light text-white leading-[19px] text-mauve12">
                         {message}
                     </p>
                 </div>
@@ -104,7 +104,7 @@ export const HelpTooltipMobi: React.FC<HelpTooltipProps> = ({ message }) => (
             </button>
         </PopoverTrigger>
         <PopoverContent
-            className="min-w-[345px] sm_xl:max-w-[425px] sm_l:min-w-[332px] sm:max-w-[290px] sm_s:min-w-[290px] min-h-[96px] m-auto p-1.5 bg-tooltip rounded-[25px] shadow-none border-none will-change-auto"
+            className="min-w-[345px] sm_xl:max-w-[425px] sm_l:min-w-[332px] sm:min-w-[100px] sm_s:min-w-[290px] min-h-[96px] m-auto p-1.5 sm:p-1 bg-tooltip rounded-[25px] shadow-none border-none will-change-auto"
             sideOffset={3}
             side="top"
             align="end"
