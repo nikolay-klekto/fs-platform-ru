@@ -5,7 +5,6 @@ import { X } from 'lucide-react'
 
 const ModalConfirmAvoidContractDesktop: React.FC = () => {
     const [isModalOpen, setModalOpen] = useState(true)
-    const handleOpenModal = () => setModalOpen(true)
     const handleCloseModal = () => setModalOpen(false)
 
     return (
@@ -24,7 +23,7 @@ const ModalConfirmAvoidContractDesktop: React.FC = () => {
                 </p>
             </div>
             <div className="mx-auto mb-[57px] mt-[23px] flex max-w-[426px] items-center justify-between">
-                <Button type="button" variant="cancel_btn_desktop" className="p-0">
+                <Button type="button" variant="cancel_btn_desktop" className="p-0" onClick={handleCloseModal}>
                     Отмена
                 </Button>
                 <Button type="button" variant="send_btn_desktop" size="confirm_btn_desktop">
