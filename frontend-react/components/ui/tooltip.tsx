@@ -76,7 +76,7 @@ export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ message }) => (
                 </button>
             </TooltipTrigger>
             <TooltipContent
-                className="w-[385px] 3xl:max-w-[345px] 2xl:max-w-[308px] min-h-[90px] m-0 p-2 bg-tooltip rounded-[25px] shadow-none border-none"
+                className="w-[385px] 3xl:max-w-[310px] 2xl:max-w-[278px] min-h-[90px] m-0 bg-tooltip rounded-[25px] shadow-none border-none"
                 sideOffset={3}
                 side="top"
                 align="end"
@@ -85,7 +85,7 @@ export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ message }) => (
                 avoidCollisions={false}
                 collisionPadding={{ top: 20, left: 20 }}
             >
-                <div className="p-2 pt-2">
+                <div className="p-2 3xl:p-1.5 2xl:p-1 pt-2 3xl:pt-1 2xl:pt-1">
                     <p className="text-[15px] 3xl:text-[12px] 2xl:text-[12px] align-baseline font-medium 2xl:font-light text-white leading-[19px] text-mauve12">
                         {message}
                     </p>
