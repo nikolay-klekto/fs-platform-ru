@@ -14,6 +14,7 @@ interface FormData {
 
 interface ModalCallProps {
     isOpen: boolean
+    onClose: () => void
 }
 
 const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
@@ -23,7 +24,7 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
         time: '',
         consent: false,
     })
-    const [step, setStep] = useState<'form' | 'accepted' | null>(null)
+    const [step, setStep] = useState<'form' | 'accepted' | null>('form')
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
     const { closeModal } = useModal()
     const validateForm = () => {
@@ -65,7 +66,7 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
     }
     return (
         <>
-            {isOpen && step === 'form' && (
+            {step === 'form' && (
                 <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
                     <div className="relative mx-4 w-full max-w-md">
                         <button

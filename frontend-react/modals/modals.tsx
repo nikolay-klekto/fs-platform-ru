@@ -24,7 +24,7 @@ export const modals = {
     mobi: [
         {
             id: 'modalcall_mobi',
-            content: <ModalCallMobi isOpen={true} />,
+            content: ({ onClose }: { onClose: () => void }) => <ModalCallMobi isOpen={true} onClose={onClose} />,
         },
         {
             id: 'registration_mobi',
