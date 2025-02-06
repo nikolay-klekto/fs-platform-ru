@@ -68,12 +68,12 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
         <>
             {step === 'form' && (
                 <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="relative mx-4 w-full max-w-md">
+                    <div className="relative mx-4 w-full max-w-md ">
                         <button
                             onClick={closeModal}
-                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
+                            className="absolute right-1 top-1 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
-                            <X size={24} color="#878797" />
+                            <X size={30} color="#878797" />
                         </button>
                         <div className=" rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 py-[40px]">
                             <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-5xl">
