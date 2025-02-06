@@ -1,23 +1,31 @@
-interface Message {
+interface ModalContent {
+    id: number
+    title: string
     message: string
-    action: string
-    id: string
+    cancelButton: string
+    confirmButton: string
 }
 
-export const confirmMessage: Message[] = [
-    {
-        message: 'Вы действительно хотите удалить заказ из корзины?',
-        action: 'Удалить',
-        id: 'delete',
-    },
-    {
+export const modalContent: Record<string, ModalContent> = {
+    avoidContract: {
+        id: 1,
+        title: 'ПОДТВЕРЖДЕНИЕ',
         message: 'Вы действительно хотите расторгнуть договор? Отменить это действие нельзя',
-        action: 'Расторгнуть',
-        id: 'avoid',
+        cancelButton: 'Отмена',
+        confirmButton: 'Расторгнуть',
     },
-    {
+    orderCancel: {
+        id: 2,
+        title: 'ПОДТВЕРЖДЕНИЕ',
         message: 'Вы действительно хотите удалить заказ? Отменить это действие нельзя',
-        action: 'Удалить заказ',
-        id: 'cancel',
+        cancelButton: 'Отмена',
+        confirmButton: 'Удалить заказ',
     },
-]
+    orderDelete: {
+        id: 3,
+        title: 'ПОДТВЕРЖДЕНИЕ',
+        message: 'Вы действительно хотите удалить заказ из корзины?',
+        cancelButton: 'Отмена',
+        confirmButton: 'Удалить',
+    },
+}
