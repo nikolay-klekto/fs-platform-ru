@@ -85,19 +85,19 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
             {step === 'form' && (
                 <Modal show={isOpen} onClose={closeModal} size="medium" showCloseButton={false}>
                     <div>
-                        <button onClick={closeModal} className="absolute top-4 right-4">
+                        <button onClick={closeModal} className="absolute right-4 top-4">
                             <X size={35} color="white" className="opacity-70" />
                         </button>
-                        <div className="flex-col rounded-lg max-w-md mx-auto">
-                            <h1 className="mb-1 text-13xl bg-gradient-desktop bg-clip-text text-transparent">
+                        <div className="mx-auto max-w-md flex-col rounded-lg">
+                            <h1 className="text-13xl bg-gradient-desktop mb-1 bg-clip-text text-transparent">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </h1>
-                            <p className="text-4xl text-[#878797] shadow-md mb-4">
+                            <p className="mb-4 text-4xl text-[#878797] shadow-md">
                                 Заполните поля – и мы с вами свяжемся
                             </p>
                         </div>
                         <form onSubmit={handleSubmit}>
-                            <div className="flex flex-col w-full">
+                            <div className="flex w-full flex-col">
                                 <EnhancedInput
                                     type="text"
                                     name="name"
@@ -105,13 +105,13 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
                                     value={formData.name}
                                     validate={(value) => validateNameDesktop(value)}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
-                                    className="border border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
+                                    className="h-10 w-full rounded-[20px] border border-[#878797] bg-transparent p-3 text-xl font-medium text-white"
                                     label="Ваше имя*"
                                     labelClassName="mb-1 text-2xl font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
                             </div>
-                            <div className="flex flex-col w-full">
+                            <div className="flex w-full flex-col">
                                 <EnhancedInput
                                     type="tel"
                                     name="phone"
@@ -124,7 +124,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
                                             ? 'border-[#bc8070] focus:border-[#bc8070]'
                                             : 'border-[#878797] focus:border-[#878797]'
-                                    } border rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white`}
+                                    } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
                                     label="Телефон*"
                                     labelClassName="mb-1 text-2xl font-medium text-white"
                                     wrapperClassName="w-full"
@@ -132,7 +132,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
                                     maskPlaceholder="_"
                                 />
                             </div>
-                            <div className="flex flex-col w-full">
+                            <div className="flex w-full flex-col">
                                 <EnhancedInput
                                     type="text"
                                     id="time"
@@ -140,38 +140,38 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
                                     placeholder="Удобное время для звонка"
                                     value={formData.time}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
-                                    className="border border-[#878797] rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white"
+                                    className="h-10 w-full rounded-[20px] border border-[#878797] bg-transparent p-3 text-xl font-medium text-white"
                                     label="Удобное время для звонка"
                                     labelClassName="mb-1 text-2xl font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
 
-                                <p className="mt-2 mb-1 text-2xl font-medium text-[#353652]">
+                                <p className="mb-1 mt-2 text-2xl font-medium text-[#353652]">
                                     *Обязательное поле для ввода
                                 </p>
                             </div>
-                            <div className="flex items-center w-full text-[#A09ACF]">
+                            <div className="flex w-full items-center text-[#A09ACF]">
                                 <input
                                     type="checkbox"
                                     id="consent"
                                     name="consent"
                                     checked={formData.consent}
                                     onChange={handleChange}
-                                    className="mr-2 appearance-none size-4 bg-transparent border-2 border-gray-600 rounded-sm checked:bg-blue-500 focus:outline-none focus:ring-0 checked:border-blue-500
-                                 checked:before:content-['✔'] checked:before:text-white checked:before:text-lg checked:before:flex checked:before:justify-center checked:before:items-center"
+                                    className="mr-2 size-4 appearance-none rounded-sm border-2 border-gray-600 bg-transparent checked:border-blue-500 checked:bg-blue-500 checked:before:flex checked:before:items-center
+                                 checked:before:justify-center checked:before:text-lg checked:before:text-white checked:before:content-['✔'] focus:outline-none focus:ring-0"
                                 />
 
                                 <label htmlFor="consent" className="text-2xl font-medium text-[#878797]">
                                     Я согласен(а) на обработку персональных данных
                                 </label>
                             </div>
-                            {errors.consent && <p className="text-sm text-red-500 mt-1">{errors.consent}</p>}
-                            <div className="pl-1 mx-auto">
+                            {errors.consent && <p className="mt-1 text-sm text-red-500">{errors.consent}</p>}
+                            <div className="mx-auto pl-1">
                                 <p className="text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
                                     <a
                                         href="href"
-                                        className="text-2xl font-medium text-[#353652] underline hover:cursor"
+                                        className="hover:cursor text-2xl font-medium text-[#353652] underline"
                                     >
                                         Конфиденциальность
                                     </a>{' '}
@@ -185,7 +185,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
                                 type="submit"
                                 variant="default"
                                 size="btn_modal_desktop"
-                                className="px-20 mx-auto bg-gradient-desktop text-5xl rounded-full mb-3 hover:bg-gradient-desktop-hover"
+                                className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mb-3 rounded-full px-20 text-5xl"
                             >
                                 Оставить заявку
                             </Button>
@@ -196,24 +196,24 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
             {step === 'accepted' && (
                 <Modal show={isOpen} onClose={closeModal} size="medium" showCloseButton={false}>
                     <div>
-                        <button onClick={closeModal} className="absolute top-4 right-4">
+                        <button onClick={closeModal} className="absolute right-4 top-4">
                             <X size={35} color="white" className="opacity-70" />
                         </button>
-                        <div className="flex flex-col p-3 rounded-lg max-w-md mx-auto">
-                            <h1 className="mb-1 text-13xl font-medium bg-gradient-desktop bg-clip-text text-transparent text-center">
+                        <div className="mx-auto flex max-w-md flex-col rounded-lg p-3">
+                            <h1 className="text-13xl bg-gradient-desktop mb-1 bg-clip-text text-center font-medium text-transparent">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
-                            <p className="text-4xl font-medium text-[#878797] shadow-md text-center">
+                            <p className="text-center text-4xl font-medium text-[#878797] shadow-md">
                                 Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
                                 сайте
                             </p>
                         </div>
-                        <div className="flex justify-center items-center mb-6">
+                        <div className="mb-6 flex items-center justify-center">
                             <Link href="href">
                                 <Button
                                     variant="default"
                                     size="btn_modal_desktop"
-                                    className="px-20 mx-auto bg-gradient-desktop text-5xl font-semibold rounded-full py-8 mt-1 hover:bg-gradient-desktop-hover"
+                                    className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-1 rounded-full px-20 py-8 text-5xl font-semibold"
                                 >
                                     Смотреть профессии
                                 </Button>
