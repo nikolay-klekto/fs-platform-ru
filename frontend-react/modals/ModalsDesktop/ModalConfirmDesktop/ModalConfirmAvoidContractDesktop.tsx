@@ -6,16 +6,12 @@ import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import { modalContent } from './content'
 
-interface AvoidContractDesktopProps {
-    isOpen: boolean
-}
-
-const ModalConfirmAvoidContractDesktop: React.FC<AvoidContractDesktopProps> = ({ isOpen }) => {
+const ModalConfirmAvoidContractDesktop: React.FC = () => {
     const { closeModal } = useModal()
     const content = modalContent['avoidContract']
 
     return (
-        <Modal show={isOpen} onClose={closeModal} size="medium" showCloseButton={false}>
+        <Modal size="medium" showCloseButton={false}>
             <div>
                 <button onClick={closeModal} className="absolute right-7 top-6">
                     <X size={41} color="white" className="opacity-50 hover:opacity-100" />

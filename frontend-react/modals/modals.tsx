@@ -24,16 +24,16 @@ export const modals = {
             content: <LoginModalDesktop isOpen={true} />,
         },
         {
-            id: 'confirm_avoid_contract',
-            content: <ModalConfirmAvoidContractDesktop isOpen={true} />,
+            id: 'confirm_avoid_contract_desktop',
+            content: <ModalConfirmAvoidContractDesktop />,
         },
         {
-            id: 'confirm_order_cancel',
-            content: <ModalConfirmOrderCancelDesktop isOpen={true} />,
+            id: 'confirm_order_cancel_desktop',
+            content: <ModalConfirmOrderCancelDesktop />,
         },
         {
-            id: 'confirm_order_delete',
-            content: <ModalConfirmOrderDeleteDesktop isOpen={true} />,
+            id: 'confirm_order_delete_desktop',
+            content: <ModalConfirmOrderDeleteDesktop />,
         },
     ],
     mobi: [
