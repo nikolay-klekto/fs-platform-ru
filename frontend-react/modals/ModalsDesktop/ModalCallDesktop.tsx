@@ -34,13 +34,13 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
         if (!formData.name.trim()) {
-            newErrors.name = 'Поле обязательно для заполнения'
+            newErrors.name = 'Это поле обязательно для заполнения'
         }
         if (!formData.phone.trim()) {
-            newErrors.phone = 'Поле обязательно для заполнения'
+            newErrors.phone = 'Это поле обязательно для заполнения'
         }
         if (!formData.consent) {
-            newErrors.consent = 'Необходимо согласие'
+            newErrors.consent = 'Подтвердите согласие на обработку данных'
         }
         setErrors(newErrors)
         return Object.keys(newErrors).length === 0
