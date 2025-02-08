@@ -126,13 +126,6 @@
         background-color: #878797;
     }
 
-    .bg-tooltip {
-        background-color: rgba(53, 54, 82, 0.8);
-    }
-
-    .tooltip-arrow {
-        fill: rgba(53, 54, 82, 0.8);
-    }
     .radial-gradient_desktop {
         @apply size-[852px] opacity-30 rounded-full absolute z-[0];
         background: radial-gradient(circle, #8917a5 0%, #30217b 100%);

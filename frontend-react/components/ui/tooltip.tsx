@@ -39,30 +39,30 @@ const PopoverContent = React.forwardRef<
     </PopoverPrimitive.Portal>
 ))
 PopoverContent.displayName = PopoverPrimitive.Content.displayName
-
 const PopoverArrow = PopoverPrimitive.Arrow
+
 const TooltipProvider = TooltipPrimitive.Provider
 const Tooltip = TooltipPrimitive.Root
 const TooltipTrigger = TooltipPrimitive.Trigger
 const TooltipContent = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
+    React.ElementRef<typeof TooltipPrimitive.Content>,
+    React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
 >(({ className, align = 'start', side= 'top', sideOffset = 4, alignOffset= 50, avoidCollisions, arrowPadding, collisionPadding, ...props }, ref) => (
-  <TooltipPrimitive.Content
-    ref={ref}
-    align={align}
-    side={side}
-    sideOffset={sideOffset}
-    alignOffset= {alignOffset}
-    arrowPadding={arrowPadding}
-    avoidCollisions={avoidCollisions}
-    collisionPadding={collisionPadding}
-    className={cn(
-      "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-      className
-    )}
-    {...props}
-  />
+    <TooltipPrimitive.Content
+        ref={ref}
+        align={align}
+        side={side}
+        sideOffset={sideOffset}
+        alignOffset= {alignOffset}
+        arrowPadding={arrowPadding}
+        avoidCollisions={avoidCollisions}
+        collisionPadding={collisionPadding}
+        className={cn(
+        'z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+        className
+        )}
+        {...props}
+    />
 ))
 TooltipContent.displayName = TooltipPrimitive.Content.displayName
 const TooltipArrow = TooltipPrimitive.Arrow
@@ -76,7 +76,7 @@ export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ message }) => (
                 </button>
             </TooltipTrigger>
             <TooltipContent
-                className="w-[385px] 3xl:max-w-[345px] 2xl:max-w-[308px] min-h-[96px] m-0 p-2 bg-tooltip rounded-[25px] shadow-none border-none"
+                className="w-[385px] 3xl:max-w-[310px] 2xl:max-w-[278px] min-h-[90px] m-0 bg-[#353652cc] rounded-[25px] shadow-none border-none"
                 sideOffset={3}
                 side="top"
                 align="end"
@@ -85,42 +85,40 @@ export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ message }) => (
                 avoidCollisions={false}
                 collisionPadding={{ top: 20, left: 20 }}
             >
-                <div className="p-2 pt-1">
-                    <p className="text-[15px] align-baseline font-medium 2xl:font-light text-white leading-[19px] text-mauve12">
+                <div className="p-2 3xl:p-1.5 2xl:p-1 pt-2 3xl:pt-1 2xl:pt-1">
+                    <p className="text-[15px] 3xl:text-[12px] 2xl:text-[12px] align-baseline font-medium 2xl:font-light text-white leading-[19px] text-mauve12">
                         {message}
                     </p>
                 </div>
-                <TooltipArrow className="h-2 tooltip-arrow"/>
+                <TooltipArrow className="h-2 fill-[#353652cc]"/>
             </TooltipContent>
         </Tooltip>
     </TooltipProvider>
 )
 
 export const HelpTooltipMobi: React.FC<HelpTooltipProps> = ({ message }) => (
-  <Popover>
-      <PopoverTrigger asChild>
-          <button className="flex justify-self-start self-end mt-5 mr-5">
-              <HelpIconMobi />
-          </button>
-      </PopoverTrigger>
-      <PopoverContent
-        className="min-w-[345px] sm_xl:max-w-[425px] sm_l:min-w-[332px] sm:max-w-[290px] sm_s:min-w-[290px] min-h-[96px] m-auto p-1.5 bg-tooltip rounded-[25px] shadow-none border-none will-change-auto"
-        sideOffset={3}
-        side="top"
-        align="end"
-        alignOffset={-20}
-        arrowPadding={0}
-        avoidCollisions={false}
-        collisionPadding={{ top: 20, left: 20 }}
-      >
-          <div className="p-2">
-              <p className="text-[15px] align-baseline font-medium text-white leading-[19px] text-mauve12">
-                  {message}
-              </p>
-          </div>
-          <PopoverArrow
-            className="h-2 tooltip-arrow"
-          />
-      </PopoverContent>
-  </Popover>
+    <Popover>
+        <PopoverTrigger asChild>
+            <button className="flex justify-self-start self-end mt-5 mr-5">
+                <HelpIconMobi />
+            </button>
+        </PopoverTrigger>
+        <PopoverContent
+            className="min-w-[345px] sm_xl:max-w-[425px] sm_l:min-w-[332px] sm_s:min-w-[290px] sm:min-w-[100px] sm:w-min min-h-[96px] sm_s:min-h-[76px] sm:min-h-[76px] m-auto p-1.5 sm:p-1 bg-[#353652cc] rounded-[25px] shadow-none border-none will-change-auto"
+            sideOffset={3}
+            side="top"
+            align="end"
+            alignOffset={-20}
+            arrowPadding={0}
+            avoidCollisions={false}
+            collisionPadding={{ top: 20, left: 20 }}
+        >
+            <div className="p-2 sm:p-1 sm:w-[200px]">
+                <p className="text-[15px] sm_s:text-[12px] sm:text-[12px] align-baseline font-medium text-white leading-[19px] sm:leading-[17px] text-mauve12">
+                    {message}
+                </p>
+            </div>
+            <PopoverArrow className="h-2 fill-[#353652cc]"/>
+        </PopoverContent>
+    </Popover>
 )
