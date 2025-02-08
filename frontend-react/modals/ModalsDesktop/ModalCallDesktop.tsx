@@ -33,22 +33,15 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
     const { closeModal } = useModal()
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
-
-        const nameError = validateNameDesktop(formData.name)
-        if (nameError) {
-            newErrors.name = nameError
-        } else if (!formData.name) {
-            newErrors.name = 'Это поле обязательно для заполнения'
+        if (!formData.name.trim()) {
+            newErrors.name = 'Поле обязательно для заполнения'
         }
-
-        if (!formData.phone) {
-            newErrors.phone = 'Это поле обязательно для заполнения'
+        if (!formData.phone.trim()) {
+            newErrors.phone = 'Поле обязательно для заполнения'
         }
-
         if (!formData.consent) {
-            newErrors.consent = 'Подтвердите согласие на обработку данных'
+            newErrors.consent = 'Необходимо согласие'
         }
-
         setErrors(newErrors)
         return Object.keys(newErrors).length === 0
     }
@@ -86,7 +79,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
                 <Modal show={isOpen} onClose={closeModal} size="medium" showCloseButton={false}>
                     <div>
                         <button onClick={closeModal} className="absolute top-6 right-7">
-                            <X size={41} color="white" className="opacity-70" />
+                            <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="flex-col rounded-lg max-w-md  ml-[75px] ">
                             <h1 className="mb-2 mt-[53px] text-13xl leading-[44px] font-medium bg-gradient-desktop bg-clip-text text-transparent">
@@ -198,27 +191,27 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
                     </div>
                 </Modal>
             )}
-            {step === 'accepted' && (
+            {isOpen && step === 'accepted' && (
                 <Modal show={isOpen} onClose={closeModal} size="medium" showCloseButton={false}>
                     <div>
                         <button onClick={closeModal} className="absolute top-4 right-4">
-                            <X size={35} color="white" className="opacity-70" />
+                            <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="flex flex-col p-3 rounded-lg max-w-md mx-auto">
-                            <h1 className="mb-1 text-13xl font-medium bg-gradient-desktop bg-clip-text text-transparent text-center">
+                            <h1 className="mb-6 mt-10 text-13xl leading-[44px] font-medium bg-gradient-desktop bg-clip-text text-transparent text-center">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
-                            <p className="text-4xl font-medium text-[#878797] shadow-md text-center">
-                                Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
-                                сайте
+                            <p className="text-4xl leading-[22px] font-medium text-[#878797] shadow-md text-justify">
+                                Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими <br />
+                                <span className="block text-center">услугами на сайте</span>
                             </p>
                         </div>
-                        <div className="flex justify-center items-center mb-6">
+                        <div className="flex justify-center items-center mb-[67px]">
                             <Link href="href">
                                 <Button
                                     variant="default"
                                     size="btn_modal_desktop"
-                                    className="px-20 mx-auto bg-gradient-desktop text-5xl font-semibold rounded-full py-8 mt-1 hover:bg-gradient-desktop-hover"
+                                    className="px-20 mx-auto bg-gradient-desktop text-5xl leading-[24px] font-semibold rounded-full py-8 mt-8 hover:bg-gradient-desktop-hover"
                                 >
                                     Смотреть профессии
                                 </Button>
