@@ -27,6 +27,7 @@ type Query {
     getAllProfessionsByInternshipType(internshipTypeId: ID!): [Profession]
     getAllProfessionsCategories: [String]
     getNMostPopularProfessions(quantity: ID!): [Profession]
+    getAllProfessionsCategoriesForTable: [String]
 
     getPartnerById(id: ID!): Partner
     getAllPartners: [Partner]

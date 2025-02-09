@@ -56,6 +56,11 @@ open class ProfessionController(
         return professionRepository.getAllProfessionsCategories()
     }
 
+    @QueryMapping
+    open fun getAllProfessionsCategoriesForTable(): Flux<String> {
+        return professionRepository.getAllProfessionsCategoriesForTable()
+    }
+
     @MutationMapping
     open fun addProfession(@Argument profession: ProfessionModel): Mono<ProfessionModel> {
         return professionRepository.insertProfession(profession)

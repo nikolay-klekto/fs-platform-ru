@@ -148,6 +148,8 @@ services:
       #      - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
       - ./infrastructure/db:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
+      - ./infrastructure/db/postgresql.conf:/var/lib/postgresql/data/postgresql.conf  # Подключаем конфигурационный файл
+    command: ["postgres", "-c", "config_file=/var/lib/postgresql/data/postgresql.conf"]  # Указываем путь к конфигурационному файлу
     restart: unless-stopped
     networks:
       - prometheus-grafana-network

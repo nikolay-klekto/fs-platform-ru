@@ -4,6 +4,7 @@ import com.fs.client.converter.ProfessionModelConverter
 import com.fs.client.repository.blocked.ProfessionBlockingRepository
 import com.fs.domain.jooq.tables.CompanyProfession.Companion.COMPANY_PROFESSION
 import com.fs.domain.jooq.tables.Profession.Companion.PROFESSION
+import com.fs.domain.jooq.tables.ProfessionsCompaniesFeedback.Companion.PROFESSIONS_COMPANIES_FEEDBACK
 import com.fs.domain.jooq.tables.pojos.CompanyProfession
 import com.fs.domain.jooq.tables.pojos.Profession
 import com.fs.domain.jooq.tables.records.CompanyProfessionRecord
@@ -54,6 +55,17 @@ abstract class ProfessionRepository(
         ).map { it.into(String::class.java) }
     }
 
+    fun getAllProfessionsCategoriesForTable(): Flux<String>{
+        return Flux.fromIterable(
+            listOf(
+                "Экономика и бизнес",
+                "Наука и технологии",
+                "Образование и культура",
+                "Государственное управление и право",
+                " Здравоохранение и медицина",
+                " Экология и сельское хозяйство",
+                "Другое"))
+    }
 //    fun getAllExistingProfessions(): Flux<ProfessionModel> {
 //        return Flux.from(
 //            dsl.select(PROFESSION.asterisk()).from(PROFESSION)
@@ -266,14 +278,15 @@ abstract class ProfessionRepository(
 
     fun updateProfession(professionModel: ProfessionModel): Mono<Boolean> {
         return Mono.fromSupplier {
-            val oldPosition = professionBlockingRepository.getById(professionModel.id!!)
+            val oldProfessionModel = professionBlockingRepository.getById(professionModel.id!!)
 
             dsl.update(PROFESSION)
-                .set(PROFESSION.DESCRIPTION, professionModel.description ?: oldPosition?.description)
-                .set(PROFESSION.NAME, professionModel.name ?: oldPosition?.name)
+                .set(PROFESSION.DESCRIPTION, professionModel.description ?: oldProfessionModel?.description)
+                .set(PROFESSION.NAME, professionModel.name ?: oldProfessionModel?.name)
+                .set(PROFESSION.PROFESSION_INDUSTRY, professionModel.professionIndustry?: oldProfessionModel?.professionIndustry)
                 .set(
                     PROFESSION.PROFESSION_INDUSTRY,
-                    professionModel.professionIndustry ?: oldPosition?.professionIndustry
+                    professionModel.professionIndustry ?: oldProfessionModel?.professionIndustry
                 )
                 .where(PROFESSION.ID.eq(professionModel.id))
                 .execute() == 1
@@ -284,6 +297,9 @@ abstract class ProfessionRepository(
         return Mono.fromSupplier {
             dsl.deleteFrom(COMPANY_PROFESSION)
                 .where(COMPANY_PROFESSION.PROFESSION_ID.eq(professionId))
+                .execute()
+            dsl.deleteFrom(PROFESSIONS_COMPANIES_FEEDBACK)
+                .where(PROFESSIONS_COMPANIES_FEEDBACK.PROFESSION_ID.eq(professionId))
                 .execute()
             dsl.deleteFrom(PROFESSION)
                 .where(PROFESSION.ID.eq(professionId))
