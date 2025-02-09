@@ -186,7 +186,7 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
                                 Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
                                 сайте.
                             </p>
-                            <div className="mx-auto my-2 flex w-[180px] items-center justify-center rounded-[50px] bg-sub-title-gradient-mobi p-1">
+                            <div className="mx-auto my-2 flex w-[180px] items-center justify-center rounded-[50px] bg-sub-title-gradient-mobi p-[3px]">
                                 <button
                                     type="button"
                                     className="h-10 w-full rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"
