@@ -3,7 +3,7 @@
 import React from 'react'
 import { ArrowWhiteMobi } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
-import {HelpTooltipDesktop, HelpTooltipMobi} from '@/components/ui/tooltip'
+import { HelpTooltipMobi } from '@/components/ui/tooltip'
 
 interface HeaderCardItemDesktop {
     textBlack: string
