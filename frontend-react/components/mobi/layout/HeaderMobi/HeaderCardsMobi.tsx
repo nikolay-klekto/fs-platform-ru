@@ -13,6 +13,7 @@ const HeaderCardsMobi: React.FC = () => {
                     textBlackBr="для любой профессии"
                     price={123}
                     currency="BYN"
+                    tooltipMessage="Вы получаете стажировку наблюдателя, но с рабочими задачами под ваш уровень и человеком, который в случае чего поможет подтянуть знания"
                 />
                 <HeaderCardsItemMobi
                     textBlack="Стажировка"
@@ -20,6 +21,7 @@ const HeaderCardsMobi: React.FC = () => {
                     textBlackBr="для любой профессии"
                     price={123}
                     currency="BYN"
+                    tooltipMessage="На стажировке вас ждет ментор, обзорные экскурсии и рабочее место, без необходимости работать"
                 />
             </div>
         </>
