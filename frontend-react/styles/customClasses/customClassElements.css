@@ -101,7 +101,6 @@
     .text-gradient_mobi_custom {
         @apply bg-gradient-desktop bg-clip-text text-transparent;
     }
-
     .button-shadow_around_desktop_custom {
         @apply shadow-shadow-around-desktop-custom;
     }
@@ -110,6 +109,11 @@
     }
     .button-shadow_right_desktop_custom {
         @apply shadow-shadow-right-desktop-custom;
+    }
+    .button-shadow-arrow-around-desktop-custom {
+        box-shadow:
+            3px 0 15px 12px #9653f566,
+            0 4px 15px 0 #ffffff1a;
     }
     .paddings-desktop-custom {
         @apply pt-[10vw] pb-[50px] 3xl:pt-[7.5vw] 2xl:pt-[3.75rem] 2xl:pb-[3.75rem] xl:py-[2.5rem] lg:py-[2rem];
@@ -194,5 +198,11 @@
     }
     .scrollbar-modal_desktop_custom:hover {
         cursor: grabbing;
+    }
+    .card-foreground-image_desktop {
+        background-image: url('/background/subtract_desk.webp');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 }
