@@ -12,7 +12,7 @@ type ModalsByDevice = {
 }
 
 type ModalContextType = {
-    openModal: (id: string, device: keyof ModalsByDevice) => void
+    openModal: (id: string, device: keyof ModalsByDevice, props?: Record<string, unknown>) => void
     closeModal: () => void
     activeModal: Modal | null
 }
