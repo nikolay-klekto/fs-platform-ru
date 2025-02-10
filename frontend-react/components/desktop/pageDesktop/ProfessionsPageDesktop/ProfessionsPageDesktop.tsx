@@ -12,6 +12,7 @@ import { Search } from 'lucide-react'
 import NotifyModalDesktop from '@/components/desktop/layout/ProfessionModalDesktop/NotifyModalDesktop' // ✅ Добавили модалку
 
 const ProfessionsPageDesktop: React.FC = () => {
+    const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
@@ -60,7 +61,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                     </div>
                     <ProfessionsSelectDesktop />
                 </div>
-                <div className="3xl:gap-[25px] 4xl:gap-[30px] grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px]">
+                <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
                     {content.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
                         <ProfessionCardPageDesktop
                             key={item.id}
