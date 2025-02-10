@@ -8,8 +8,10 @@ import { EnhancedInput } from '@/components/ui/input'
 import { FiltersIconMobi } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
+import { useModal } from '@/context/ContextModal'
 
 const ProfessionsPageMobi: React.FC = () => {
+    const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [isFilterActive, setIsFilterActive] = useState(false)
@@ -65,6 +67,12 @@ const ProfessionsPageMobi: React.FC = () => {
                             image={item.image}
                             profession={item.profession}
                             price={item.price.toString()}
+                            onClick={() => {
+                                openModal('profession_modal_mobi', 'mobi', {
+                                    profession: item.profession,
+                                    professionId: item.id,
+                                })
+                            }}
                         />
                     ))}
                 </div>
