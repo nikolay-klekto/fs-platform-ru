@@ -2,6 +2,9 @@
 import ModalCallDesktop from '@/modals/ModalsDesktop/ModalCallDesktop'
 import RegistrationModalDesktop from '@/modals/ModalsDesktop/RegistrationModalDesktop'
 import LoginModalDesktop from '@/modals/ModalsDesktop/LoginModalDesktop'
+import ModalConfirmAvoidContractDesktop from '@/modals/ModalsDesktop/ModalConfirmDesktop/ModalConfirmAvoidContractDesktop'
+import ModalConfirmOrderCancelDesktop from '@/modals/ModalsDesktop/ModalConfirmDesktop/ModalConfirmOrderCancelDesktop'
+import ModalConfirmOrderDeleteDesktop from '@/modals/ModalsDesktop/ModalConfirmDesktop/ModalConfirmOrderDeleteDesktop'
 import ModalCallMobi from '@/modals/ModalsMobi/ModalCallMobi'
 import RegistrationModalMobi from '@/modals/ModalsMobi/RegistrationModalMobi'
 import LoginModalMobi from '@/modals/ModalsMobi/LoginModalMobi'
@@ -34,6 +37,18 @@ export const modals = {
                 profession: string
                 professionId: number | null
             }) => <ProfessionModalDesktop closeModal={onClose} profession={profession} professionId={professionId} />,
+        },
+        {
+            id: 'confirm_avoid_contract_desktop',
+            content: <ModalConfirmAvoidContractDesktop />,
+        },
+        {
+            id: 'confirm_order_cancel_desktop',
+            content: <ModalConfirmOrderCancelDesktop />,
+        },
+        {
+            id: 'confirm_order_delete_desktop',
+            content: <ModalConfirmOrderDeleteDesktop />,
         },
         {
             id: 'order_placed_desktop',
