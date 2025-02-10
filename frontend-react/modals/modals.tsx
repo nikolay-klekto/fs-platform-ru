@@ -10,7 +10,8 @@ import RegistrationModalMobi from '@/modals/ModalsMobi/RegistrationModalMobi'
 import LoginModalMobi from '@/modals/ModalsMobi/LoginModalMobi'
 import ProfessionModalDesktop from '@/components/desktop/layout/ProfessionModalDesktop/ProfessionModalDesktop'
 import ProfessionModalMobi from '@/components/mobi/layout/ProfessionModalMobi/ProfessionModalMobi'
-
+import ModalOrderPlacedDesktop from '@/modals/ModalsDesktop/ModalOrderPlacedDesktop'
+import ModalContractTerminatedDesktop from '@/modals/ModalsDesktop/ModalContractTerminatedDesktop'
 export const modals = {
     desktop: [
         {
@@ -48,6 +49,14 @@ export const modals = {
         {
             id: 'confirm_order_delete_desktop',
             content: <ModalConfirmOrderDeleteDesktop />,
+        },
+        {
+            id: 'order_placed_desktop',
+            content: ({ onClose }: { onClose: () => void }) => <ModalOrderPlacedDesktop closeModal={onClose} />,
+        },
+        {
+            id: 'contract_terminated_desktop',
+            content: ({ onClose }: { onClose: () => void }) => <ModalContractTerminatedDesktop closeModal={onClose} />,
         },
     ],
     mobi: [
