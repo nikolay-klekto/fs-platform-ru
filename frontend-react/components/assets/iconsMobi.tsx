@@ -77,8 +77,8 @@ export const ArrowWhiteMobi: React.FC = (props) => {
                 d="M23.5 10.8438L13.1875 1V6.625C3.31856 6.625 1 13.7014 1 20.6875C3.84824 17.0406 6.36719 15.0625 13.1875 15.0625V20.6875L23.5 10.8438Z"
                 fill="white"
                 stroke="white"
-                stroke-width="0.814815"
-                stroke-linejoin="round"
+                strokeWidth="0.814815"
+                strokeLinejoin="round"
             />
         </svg>
     )
