@@ -6,6 +6,7 @@ import ModalCallMobi from '@/modals/ModalsMobi/ModalCallMobi'
 import RegistrationModalMobi from '@/modals/ModalsMobi/RegistrationModalMobi'
 import LoginModalMobi from '@/modals/ModalsMobi/LoginModalMobi'
 
+
 export const modals = {
     desktop: [
         {

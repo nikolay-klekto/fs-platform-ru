@@ -158,7 +158,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
                                     checked={formData.consent}
                                     onChange={handleChange}
                                     className="mr-2 appearance-none size-4 bg-transparent border-2 border-gray-600 rounded-sm checked:bg-blue-500 focus:outline-none focus:ring-0 checked:border-blue-500
-                                 checked:before:content-['✔'] checked:before:text-white checked:before:text-lg checked:before:flex checked:before:justify-center checked:before:items-center"
+                                    checked:before:content-['✔'] checked:before:text-white checked:before:text-lg checked:before:flex checked:before:justify-center checked:before:items-center"
                                 />
 
                                 <label htmlFor="consent" className="text-2xl font-medium text-[#878797]">
