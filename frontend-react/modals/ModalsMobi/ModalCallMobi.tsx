@@ -14,6 +14,7 @@ interface FormData {
 
 interface ModalCallProps {
     isOpen: boolean
+    onClose: () => void
 }
 
 const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
@@ -23,7 +24,7 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
         time: '',
         consent: false,
     })
-    const [step, setStep] = useState<'form' | 'accepted' | null>(null)
+    const [step, setStep] = useState<'form' | 'accepted' | null>('form')
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
     const { closeModal } = useModal()
     const validateForm = () => {
@@ -65,17 +66,17 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
     }
     return (
         <>
-            {isOpen && step === 'form' && (
+            {step === 'form' && (
                 <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="relative mx-4 w-full max-w-md">
+                    <div className="relative mx-4 w-full max-w-md ">
                         <button
                             onClick={closeModal}
                             className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
-                            <X size={24} color="#878797" />
+                            <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className=" rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 py-[40px]">
-                            <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-5xl">
+                            <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </p>
                             <p className="pb-4 pl-3 text-base font-medium text-[#878797] md:text-lg">
@@ -169,26 +170,26 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
             )}
 
             {isOpen && step === 'accepted' && (
-                <div className=" flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="fixed inset-0 z-[70]  mx-4 w-full max-w-md">
+                <div className=" fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
+                    <div className="relative mx-4 w-full max-w-md ">
                         <button
                             onClick={closeModal}
-                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
+                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
-                            <X size={24} color="#878797" />
+                            <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
-                        <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat py-[40px]">
-                            <h1 className="mb-3 mt-6 bg-sub-title-gradient-mobi bg-clip-text text-center text-3xl font-semibold text-transparent md:text-4xl">
+                        <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat pt-10 pb-7 px-3">
+                            <h1 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
-                            <p className="mb-1 px-3 pb-[18px] text-justify font-medium text-[#878797] md:text-lg">
+                            <p className="mb-1 px-3 pb-[18px] text-xl leading-[17px] text-justify font-medium text-[#878797] md:text-lg">
                                 Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
                                 сайте.
                             </p>
-                            <div className="mx-auto my-2 flex w-4/5 items-center justify-center rounded-[50px] bg-sub-title-gradient-mobi p-[3px]">
+                            <div className="mx-auto my-2 flex w-[180px] items-center justify-center rounded-[50px] bg-sub-title-gradient-mobi p-[3px]">
                                 <button
                                     type="button"
-                                    className="h-12 w-full rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"
+                                    className="h-10 w-full rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"
                                 >
                                     Смотреть
                                 </button>
