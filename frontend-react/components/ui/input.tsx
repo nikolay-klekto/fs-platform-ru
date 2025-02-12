@@ -121,10 +121,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         }
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-            const newValue = isCheckbox ? (e.target.checked ? 'true' : 'false') : e.target.value
-            setInternalValue(newValue)
-            // validateComponent(newValue)
-            onChange?.(newValue)
+            const newValue = isCheckbox ? e.target.checked : e.target.value
+            setInternalValue(newValue.toString())
+            onChange?.(newValue.toString())
         }
 
         const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {

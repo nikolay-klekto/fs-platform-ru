@@ -18,11 +18,7 @@ interface RegistrationFormData {
     agree: boolean
 }
 
-interface RegistrationMobiProps {
-    isOpen: boolean
-}
-
-const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
+const RegistrationModalMobi: React.FC = () => {
     const [formData, setFormData] = useState<RegistrationFormData>({
         email: '',
         phone: '',
@@ -156,19 +152,19 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-            <div className="relative max-w-md w-full">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70]">
+            <div className="relative w-full max-w-md">
                 <button
                     onClick={closeModal}
-                    className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-80"
+                    className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80]"
                 >
                     <X size={44} color="#878797" />
                 </button>
-                <div className="relative rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat flex flex-col items-center max-w-[500px]">
-                    <h1 className="text18px_mobi font-semibold bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-1 mx-auto uppercase inline">
+                <div className="relative flex max-w-[500px] flex-col items-center rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat">
+                    <h1 className="text18px_mobi bg-sub-title-gradient-mobi mx-auto mb-1 mt-6 inline bg-clip-text font-semibold uppercase text-transparent">
                         Регистрация
                     </h1>
-                    <form onSubmit={handleSubmit} className="flex flex-col align-middle w-[80%]">
+                    <form onSubmit={handleSubmit} className="flex w-4/5 flex-col align-middle">
                         <div className="mb-3">
                             <EnhancedInput
                                 type="email"
@@ -182,7 +178,7 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
                                     inputTouched.email && validateEmailMobi(formData.email).styleError
                                         ? 'border-[#bc8070] focus:border-[#bc8070] '
                                         : 'border-[#878797] focus:border-[#878797]'
-                                } border rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white`}
+                                } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
                                 label="Почта*"
                                 labelClassName="mb-1 text-2xl font-medium text-white"
                                 wrapperClassName="w-full"
@@ -204,7 +200,7 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
                                     inputTouched.phone && validatePhoneMobi(formData.phone).styleError
                                         ? 'border-[#bc8070] focus:border-[#bc8070]'
                                         : 'border-[#878797] focus:border-[#878797]'
-                                } border rounded-[20px] w-full bg-transparent h-10 p-3 text-xl font-medium text-white`}
+                                } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
                                 label="Телефон*"
                                 labelClassName="mb-1 text-2xl font-medium text-white"
                                 wrapperClassName="w-full"
@@ -215,7 +211,7 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
                                 <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>
                             )}
                         </div>
-                        <div className="mb-3 relative">
+                        <div className="relative mb-3">
                             <PasswordInputMobi
                                 value={formData.password}
                                 label="Пароль"
@@ -231,7 +227,7 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
                                 required={true}
                             />
                         </div>
-                        <div className="mb-3 relative">
+                        <div className="relative mb-3">
                             <PasswordInputMobi
                                 value={formData.confirmPassword}
                                 label="Повторите пароль"
@@ -286,15 +282,15 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
                             variant="default"
                             size="btn_modal_desktop"
                             disabled={formError}
-                            className="mx-auto bg-gradient-desktop text-4xl md:text-4xl sm_xl:text-3xl sm_l:text-2xl sm_s:text-xl sm:text-xl font-medium rounded-[50px] mt-6 hover:bg-gradient-desktop-hover w-[70%] sm_l:w-[80%] sm_s:w-[80%] sm:w-[80%]"
+                            className="bg-gradient-desktop sm_xl:text-3xl sm_l:text-2xl sm_s:text-xl hover:bg-gradient-desktop-hover sm_l:w-4/5 sm_s:w-4/5 mx-auto mt-6 w-[70%] rounded-[50px] text-4xl font-medium sm:w-4/5 sm:text-xl md:text-4xl"
                         >
                             Зарегистрироваться
                         </Button>
                     </form>
-                    <div className="mt-5 mb-6 flex justify-center text14px_mobi">
-                        <p className="mr-2 text-[#878797] font-medium">Уже зарегистрированы?</p>
+                    <div className="text14px_mobi mb-6 mt-5 flex justify-center">
+                        <p className="mr-2 font-medium text-[#878797]">Уже зарегистрированы?</p>
                         <button
-                            className="underline bg-transparent border-transparent text-white font-medium"
+                            className="border-transparent bg-transparent font-medium text-white underline"
                             onClick={openLoginModal}
                         >
                             Войти в аккаунт

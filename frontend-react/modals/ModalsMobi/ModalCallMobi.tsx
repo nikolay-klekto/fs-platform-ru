@@ -158,7 +158,7 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] bg-sub-title-gradient-mobi text-3xl font-semibold text-white md:text-4xl"
+                                    className="bg-sub-title-gradient-mobi mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] text-3xl font-semibold text-white md:text-4xl"
                                 >
                                     Отправить заявку
                                 </button>
@@ -178,14 +178,14 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
                             <X size={24} color="#878797" />
                         </button>
                         <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat py-[40px]">
-                            <h1 className="mb-3 mt-6 bg-sub-title-gradient-mobi bg-clip-text text-center text-3xl font-semibold text-transparent md:text-4xl">
+                            <h1 className="bg-sub-title-gradient-mobi mb-3 mt-6 bg-clip-text text-center text-3xl font-semibold text-transparent md:text-4xl">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
                             <p className="mb-1 px-3 pb-[18px] text-justify font-medium text-[#878797] md:text-lg">
                                 Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
                                 сайте.
                             </p>
-                            <div className="mx-auto my-2 flex w-4/5 items-center justify-center rounded-[50px] bg-sub-title-gradient-mobi p-[3px]">
+                            <div className="bg-sub-title-gradient-mobi mx-auto my-2 flex w-4/5 items-center justify-center rounded-[50px] p-[3px]">
                                 <button
                                     type="button"
                                     className="h-12 w-full rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"

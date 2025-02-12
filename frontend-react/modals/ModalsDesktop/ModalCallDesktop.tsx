@@ -20,7 +20,7 @@ interface ModalCallDesktopProps {
     onClose: () => void
 }
 
-const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) => {
+const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen }) => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         phone: '',
@@ -35,8 +35,8 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ isOpen, onClose }) 
         const newErrors: { [key: string]: string } = {}
 
         const nameError = validateNameDesktop(formData.name)
-        if (nameError) {
-            newErrors.name = nameError
+        if (nameError?.textError) {
+            newErrors.name = nameError.textError
         } else if (!formData.name) {
             newErrors.name = 'Это поле обязательно для заполнения'
         }
