@@ -11,8 +11,6 @@ import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 
 @Tag(name = "Order")
 @RestController
@@ -20,87 +18,88 @@ import reactor.core.publisher.Mono
 open class OrderController(open val orderRepository: OrderRepository) {
 
     @QueryMapping
-    fun getOrderById(@Argument id: Long): Mono<OrderModel> {
-        return orderRepository.getOrderByrId(id)
+    suspend fun getOrderById(@Argument id: Long): OrderModel? {
+        return orderRepository.getOrderById(id)
     }
 
     @QueryMapping
-    fun getAllOrders(): Flux<OrderModel> {
+    suspend fun getAllOrders(): List<OrderModel> {
         return orderRepository.getAllOrders()
     }
 
     @QueryMapping
-    fun getOrdersByClientId(
-        @Argument clientId: String): Flux<OrderModel> {
+    suspend fun getOrdersByClientId(@Argument clientId: String): List<OrderModel> {
         return orderRepository.getAllOrdersByClientId(clientId)
     }
 
     @QueryMapping
-    fun getOrdersByBasketId(
-        @Argument basketId: Long): Flux<OrderModel> {
+    suspend fun getOrdersByBasketId(@Argument basketId: Long): List<OrderModel> {
         return orderRepository.getAllOrdersByBasketID(basketId)
     }
 
     @MutationMapping
-    fun addOrder(@Argument order: OrderModelInput): Mono<OrderModel> {
+    suspend fun addOrder(@Argument order: OrderModelInput): OrderModel {
         return orderRepository.insertOrder(order)
     }
 
     @MutationMapping
-    fun addUnAuthorizeOrder(@Argument order: OrderModelInput): Mono<OrderModel> {
+    suspend fun addUnAuthorizeOrder(@Argument order: OrderModelInput): OrderModel {
         return orderRepository.insertOrder(order)
     }
 
     @MutationMapping
-    fun updateOrder(@Argument order: OrderModel): Mono<Boolean> {
+    suspend fun updateOrder(@Argument order: OrderModel): Boolean {
         return orderRepository.updateOrder(order)
     }
 
     @MutationMapping
-    fun placeOrder(@Argument orderId: Long): Mono<ErrorModel<Boolean>> {
-        return orderRepository.confirmOrder(orderId)
-            .onErrorResume {
-                return@onErrorResume Mono.just(ErrorModel(null, it.message))
-            }
+    suspend fun placeOrder(@Argument orderId: Long): ErrorModel<Boolean> {
+        return try {
+            orderRepository.confirmOrder(orderId)
+        } catch (e: Exception) {
+            ErrorModel(null, e.message)
+        }
     }
 
     @MutationMapping
-    fun changeOrderStatusAfterPay(
+    suspend fun changeOrderStatusAfterPay(
         @Argument orderId: Long,
-        @Argument isPaySuccess: Boolean): Mono<Boolean> {
+        @Argument isPaySuccess: Boolean
+    ): Boolean {
         return orderRepository.changeOrderStatusAfterPay(orderId, isPaySuccess)
     }
 
     @MutationMapping
-    fun updateOrderContractNumber(@Argument order: OrderModel): Mono<Boolean> {
+    suspend fun updateOrderContractNumber(@Argument order: OrderModel): Boolean {
         return orderRepository.updateOrderContractNumber(order)
     }
 
     @MutationMapping
-    fun deleteFinalOrderById(@Argument id: Long): Mono<Boolean> {
+    suspend fun deleteFinalOrderById(@Argument id: Long): Boolean {
         return orderRepository.deleteFinalOrderById(id)
     }
 
     @MutationMapping
-    fun deleteOrderById(
+    suspend fun deleteOrderById(
         @Argument id: Long,
         @Argument orderStatus: OrderStatus
-    ): Mono<Boolean> {
+    ): Boolean {
         return orderRepository.deleteOrderById(id, orderStatus)
     }
 
     @MutationMapping
-    fun deleteAllOrdersByBasketId(
+    suspend fun deleteAllOrdersByBasketId(
         @Argument basketId: Long,
         @Argument orderStatus: OrderStatus
-    ): Mono<Boolean> {
+    ): Boolean {
         return orderRepository.deleteAllOrdersByBasketId(basketId, orderStatus)
     }
 
     @MutationMapping
-    fun deleteAllOrdersByClientId(
+    suspend fun deleteAllOrdersByClientId(
         @Argument clientId: String,
-        @Argument orderStatus: OrderStatus): Mono<Boolean> {
+        @Argument orderStatus: OrderStatus
+    ): Boolean {
         return orderRepository.deleteAllOrdersByClientId(clientId, orderStatus)
     }
 }

@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
@@ -20,7 +19,10 @@ class WebSecurityConfig {
             .cors { } // Включаем CORS
             .csrf { it.disable() } // Отключаем CSRF
             .authorizeHttpRequests {
-                it.requestMatchers("/events/upload").permitAll() // Разрешаем доступ без аутентификации
+                it.requestMatchers("/events/upload").permitAll()
+                it.requestMatchers("/companies/upload/facade").permitAll()
+                it.requestMatchers("/companies/upload/logo").permitAll()
+                it.requestMatchers("/professions/upload").permitAll() // Разрешаем доступ без аутентификации
                 it.anyRequest().authenticated() // Все остальные запросы требуют аутентификации
             }
         return http.build()

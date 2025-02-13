@@ -110,6 +110,9 @@ services:
       - SERVER_PORT= 8585
     volumes:
       - /home/Nikolay/funScrut/photos/events:/app/uploads/events
+      - /home/Nikolay/funScrut/photos/professions:/app/uploads/professions
+      - /home/Nikolay/funScrut/photos/companies/facade:/app/uploads/companies/facade
+      - /home/Nikolay/funScrut/photos/companies/logo:/app/uploads/companies/logo
     networks:
       - prometheus-grafana-network
     restart: always
@@ -148,8 +151,8 @@ services:
       #      - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
       - ./infrastructure/db:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
-      - ./infrastructure/db/postgresql.conf:/var/lib/postgresql/data/postgresql.conf  # Подключаем конфигурационный файл
-    command: ["postgres", "-c", "config_file=/var/lib/postgresql/data/postgresql.conf"]  # Указываем путь к конфигурационному файлу
+#      - ./infrastructure/db/postgresql.conf:/var/lib/postgresql/data/postgresql.conf  # Подключаем конфигурационный файл
+#    command: ["postgres", "-c", "config_file=/var/lib/postgresql/data/postgresql.conf"]  # Указываем путь к конфигурационному файлу
     restart: unless-stopped
     networks:
       - prometheus-grafana-network

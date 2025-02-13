@@ -11,7 +11,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 
 @RestController
-@RequestMapping("/professions")
+@RequestMapping("/companies")
 open class CompaniesPhotoController() {
 
     // Укажите путь к папке, куда будут сохраняться файлы

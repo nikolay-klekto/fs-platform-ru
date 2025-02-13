@@ -95,6 +95,16 @@ dependencies {
     implementation("com.google.oauth-client:google-oauth-client-jetty:1.35.0")
     implementation("org.springframework.boot:spring-boot-starter-mail")
 
+    // Основная библиотека корутин
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+
+    // Для интеграции с Project Reactor (WebFlux)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.0")
+
+    // Для интеграции с JDBC (если используешь блокирующие вызовы к БД)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.8.0")
+    implementation("org.springframework.data:spring-data-commons:3.2.0")
+
 
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")

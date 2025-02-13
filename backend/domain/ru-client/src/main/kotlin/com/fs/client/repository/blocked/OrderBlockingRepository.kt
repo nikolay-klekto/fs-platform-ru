@@ -11,6 +11,8 @@ import com.fs.service.ru.BasketModel
 import com.fs.service.ru.OrderModel
 import com.fs.service.ru.OrderModelInput
 import com.fs.service.ru.enums.OrderStatus
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.jooq.DSLContext
 import java.time.LocalDateTime
 
@@ -18,41 +20,43 @@ abstract class OrderBlockingRepository(
     open val dsl: DSLContext,
     open val converter: OrderModelConverter,
     open val basketBlockingRepository: BasketBlockingRepository,
-    open val internshipTypeBlockingRepository: InternshipTypeBlockingRepository,
     open val companyProfessionBlockingRepository: CompanyProfessionBlockingRepository
 ) {
 
-    fun getById(orderId: Long): OrderModel? {
-        return dsl.select(ORDER.asterisk()).from(ORDER)
+    suspend fun getById(orderId: Long): OrderModel? = withContext(Dispatchers.IO) {
+        dsl.select(ORDER.asterisk())
+            .from(ORDER)
             .where(ORDER.ID.eq(orderId))
             .map { it.into(Order::class.java) }
             .map(converter::toModel)
             .firstOrNull()
     }
 
-    fun getAllByClientId(clientId: String): List<OrderModel> {
-        return dsl.selectFrom(ORDER)
+    suspend fun getAllByClientId(clientId: String): List<OrderModel> = withContext(Dispatchers.IO) {
+        dsl.selectFrom(ORDER)
             .where(
                 ORDER.BASKET_ID.eq(
-                    dsl.select(Client.CLIENT.BASKET_ID).from(Client.CLIENT)
+                    dsl.select(Client.CLIENT.BASKET_ID)
+                        .from(Client.CLIENT)
                         .where(Client.CLIENT.ID.eq(clientId))
                 )
             )
-            .map { it.into(Order::class.java) }
-            .map(converter::toModel)
-
+                    .map { it.into(Order::class.java) }
+                    .map(converter::toModel)
     }
 
-    fun decreaseBasketTotalPriceByOrderId(orderId: Long) {
+    suspend fun decreaseBasketTotalPriceByOrderId(orderId: Long) = withContext(Dispatchers.IO) {
         val currentOrder: OrderModel? = getById(orderId)
         val orderStatus = currentOrder?.orderStatus
-        if(orderStatus == OrderStatus.BASKET ||
+        if (orderStatus == OrderStatus.BASKET ||
             orderStatus == OrderStatus.PRE_ORDERED ||
-            orderStatus == OrderStatus.ACTUAL) {
-            val basketTotalPrice: Double? = dsl.select(BASKET.TOTAL_PRICE).from(BASKET)
+            orderStatus == OrderStatus.ACTUAL
+        ) {
+            val basketTotalPrice: Double? = dsl.select(BASKET.TOTAL_PRICE)
+                .from(BASKET)
                 .where(BASKET.ID.eq(dsl.select(ORDER.BASKET_ID).from(ORDER).where(ORDER.ID.eq(orderId))))
-                .map { it.into(Double::class.java) }.firstOrNull()
-
+                .map { it.into(Double::class.java) }
+                .firstOrNull()
 
             val currentOrderPrice = currentOrder.price
 
@@ -62,94 +66,29 @@ abstract class OrderBlockingRepository(
         }
     }
 
-    fun isBasketEmpty(basketId: Long): Boolean {
-        val ordersWithCurrentBasket: Int = dsl.selectCount().from(ORDER).where(ORDER.BASKET_ID.eq(basketId))
+    suspend fun isBasketEmpty(basketId: Long): Boolean = withContext(Dispatchers.IO) {
+        val ordersWithCurrentBasket: Int = dsl.selectCount()
+            .from(ORDER)
+            .where(ORDER.BASKET_ID.eq(basketId))
             .first()
             .map { it.into(Int::class.java) }
-        return ordersWithCurrentBasket == 0
+        ordersWithCurrentBasket == 0
     }
 
-//    private fun isPreOrdersInBasket(basketId: Long): Boolean {
-//        val preOrdersQuantity: Int = dsl.selectCount().from(ORDER)
-//            .where(ORDER.BASKET_ID.eq(basketId).and(ORDER.ORDER_STATUS.eq(OrderStatus.PRE_ORDERED.name)))
-//            .map { it.into(Int::class.java) }
-//            .first()
-//        return preOrdersQuantity > 0
-//    }
-
-    fun deleteFinalById(orderId: Long): Boolean {
+    suspend fun deleteFinalById(orderId: Long): Boolean = withContext(Dispatchers.IO) {
         decreaseBasketTotalPriceByOrderId(orderId)
-        return dsl.deleteFrom(ORDER)
+        dsl.deleteFrom(ORDER)
             .where(ORDER.ID.eq(orderId))
             .execute() == 1
     }
 
-    fun insert(orderModel: OrderModelInput): OrderModel {
+    suspend fun insert(orderModel: OrderModelInput): OrderModel = withContext(Dispatchers.IO) {
         if (orderModel.companyProfessionId == null || orderModel.companyOfficeId == null ||
             orderModel.startWorkDate == null || orderModel.totalWorkDays == null
         ) {
             throw Exception("Необходимо заполнить все обязательные поля!")
         }
-        var newOrderStatus: OrderStatus? = OrderStatus.BASKET
-        var basketId: Long? = orderModel.basketId
 
-        if (orderModel.basketId == null) {
-            val newBasketModel: BasketModel = basketBlockingRepository.insert()
-            basketId = newBasketModel.id
-        } else {
-                newOrderStatus = if (orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!)
-                        .isBefore(LocalDateTime.now())
-                ) {
-                    OrderStatus.EXPIRED
-                } else {
-                    OrderStatus.BASKET
-                }
-
-        }
-
-        val pastTotalPrice: Double? =
-            basketBlockingRepository.getById(basketId!!)?.totalPrice
-
-        val newOrderPrice: Double =
-            companyProfessionBlockingRepository.
-            getPricePerDayById(orderModel.companyProfessionId!!)* orderModel.totalWorkDays!!
-
-        val totalPrice: Double = if (pastTotalPrice != null) {
-
-            pastTotalPrice + newOrderPrice
-
-        } else {
-            newOrderPrice
-        }
-        basketBlockingRepository.update(BasketModel(basketId, totalPrice))
-
-        val newOrderModel = OrderModel(
-            id = DEFAULT_ORDER_ID,
-            basketId = basketId,
-            companyOfficeId = orderModel.companyOfficeId,
-            dateCreated = LocalDateTime.now(),
-            isExpired = orderModel.isExpired,
-            orderStatus = orderModel.orderStatus ?: newOrderStatus,
-            startWorkDate = orderModel.startWorkDate,
-            totalWorkDays = orderModel.totalWorkDays,
-            price = newOrderPrice,
-            companyProfessionId = orderModel.companyProfessionId!!,
-            contractNumber = orderModel.contractNumber,
-            orderDatesId = orderModel.orderDatesId
-        )
-        val newOrderRecord: OrderRecord = dsl.newRecord(ORDER)
-        newOrderRecord.from(newOrderModel)
-        newOrderRecord.reset(ORDER.ID)
-        newOrderRecord.store()
-        return converter.toModel(newOrderRecord.into(Order::class.java))
-    }
-
-    fun insertFromUpdate(orderModel: OrderModel): OrderModel {
-        if (orderModel.companyProfessionId == null || orderModel.companyOfficeId == null ||
-            orderModel.startWorkDate == null || orderModel.totalWorkDays == null
-        ) {
-            throw Exception("Необходимо заполнить все обязательные поля!")
-        }
         var newOrderStatus: OrderStatus? = OrderStatus.BASKET
         var basketId: Long? = orderModel.basketId
 
@@ -166,20 +105,67 @@ abstract class OrderBlockingRepository(
             }
         }
 
-        val pastTotalPrice: Double? =
-            basketBlockingRepository.getById(basketId!!)?.totalPrice
+        val pastTotalPrice: Double? = basketBlockingRepository.getById(basketId!!)?.totalPrice
 
-        val newOrderPrice: Double =
-            companyProfessionBlockingRepository.
-            getPricePerDayById(orderModel.companyProfessionId!!)* orderModel.totalWorkDays!!
+        val newOrderPrice: Double = companyProfessionBlockingRepository
+            .getPricePerDayById(orderModel.companyProfessionId!!) * orderModel.totalWorkDays!!
 
-        val totalPrice: Double = if (pastTotalPrice != null) {
+        val totalPrice: Double = pastTotalPrice?.let { it + newOrderPrice } ?: newOrderPrice
 
-            pastTotalPrice + newOrderPrice
+        basketBlockingRepository.update(BasketModel(basketId, totalPrice))
 
-        } else {
-            newOrderPrice
+        val newOrderModel = OrderModel(
+            id = DEFAULT_ORDER_ID,
+            basketId = basketId,
+            companyOfficeId = orderModel.companyOfficeId,
+            dateCreated = LocalDateTime.now(),
+            isExpired = orderModel.isExpired,
+            orderStatus = orderModel.orderStatus ?: newOrderStatus,
+            startWorkDate = orderModel.startWorkDate,
+            totalWorkDays = orderModel.totalWorkDays,
+            price = newOrderPrice,
+            companyProfessionId = orderModel.companyProfessionId!!,
+            contractNumber = orderModel.contractNumber,
+            orderDatesId = orderModel.orderDatesId
+        )
+
+        val newOrderRecord: OrderRecord = dsl.newRecord(ORDER)
+        newOrderRecord.from(newOrderModel)
+        newOrderRecord.reset(ORDER.ID)
+        newOrderRecord.store()
+        converter.toModel(newOrderRecord.into(Order::class.java))
+    }
+
+    suspend fun insertFromUpdate(orderModel: OrderModel): OrderModel = withContext(Dispatchers.IO) {
+        if (orderModel.companyProfessionId == null || orderModel.companyOfficeId == null ||
+            orderModel.startWorkDate == null || orderModel.totalWorkDays == null
+        ) {
+            throw Exception("Необходимо заполнить все обязательные поля!")
         }
+
+        var newOrderStatus: OrderStatus? = OrderStatus.BASKET
+        var basketId: Long? = orderModel.basketId
+
+        if (orderModel.basketId == null) {
+            val newBasketModel: BasketModel = basketBlockingRepository.insert()
+            basketId = newBasketModel.id
+        } else {
+            newOrderStatus = if (orderModel.startWorkDate!!.plusDays(orderModel.totalWorkDays!!)
+                    .isBefore(LocalDateTime.now())
+            ) {
+                OrderStatus.EXPIRED
+            } else {
+                OrderStatus.BASKET
+            }
+        }
+
+        val pastTotalPrice: Double? = basketBlockingRepository.getById(basketId!!)?.totalPrice
+
+        val newOrderPrice: Double = companyProfessionBlockingRepository
+            .getPricePerDayById(orderModel.companyProfessionId!!) * orderModel.totalWorkDays!!
+
+        val totalPrice: Double = pastTotalPrice?.let { it + newOrderPrice } ?: newOrderPrice
+
         basketBlockingRepository.update(BasketModel(basketId, totalPrice))
 
         val newOrderModel = OrderModel(
@@ -196,14 +182,15 @@ abstract class OrderBlockingRepository(
             contractNumber = orderModel.contractNumber,
             orderDatesId = orderModel.orderDatesId
         )
+
         val newOrderRecord: OrderRecord = dsl.newRecord(ORDER)
         newOrderRecord.from(newOrderModel)
         newOrderRecord.reset(ORDER.ID)
         newOrderRecord.store()
-        return converter.toModel(newOrderRecord.into(Order::class.java))
+        converter.toModel(newOrderRecord.into(Order::class.java))
     }
 
-    fun checkAndUpdateOrderStatus(orderId: Long) {
+    suspend fun checkAndUpdateOrderStatus(orderId: Long) = withContext(Dispatchers.IO) {
         val newOrderStatus: OrderStatus
 
         val oldOrderModel = getById(orderId)
@@ -219,24 +206,25 @@ abstract class OrderBlockingRepository(
                     OrderStatus.BASKET
                 }
             }
+
         dsl.update(ORDER)
             .set(ORDER.ORDER_STATUS, newOrderStatus.name)
             .where(ORDER.ID.eq(orderId))
             .execute()
     }
 
-    fun updateOrder(newOrderModel: OrderModel): Boolean {
-            val oldOrderModel: OrderModel = getById(newOrderModel.id!!)!!
+    suspend fun updateOrder(newOrderModel: OrderModel): Boolean = withContext(Dispatchers.IO) {
+        val oldOrderModel: OrderModel = getById(newOrderModel.id!!)!!
 
-            return dsl.update(ORDER)
-                .set(ORDER.ORDER_STATUS, newOrderModel.orderStatus?.name ?: oldOrderModel.orderStatus?.name)
-                .where(ORDER.ID.eq(newOrderModel.id))
-                .execute() == 1
+        dsl.update(ORDER)
+            .set(ORDER.ORDER_STATUS, newOrderModel.orderStatus?.name ?: oldOrderModel.orderStatus?.name)
+            .where(ORDER.ID.eq(newOrderModel.id))
+            .execute() == 1
     }
 
-    fun updateOrderStatus(orderId: Long, orderStatus: OrderStatus): Boolean {
+    suspend fun updateOrderStatus(orderId: Long, orderStatus: OrderStatus): Boolean = withContext(Dispatchers.IO) {
         decreaseBasketTotalPriceByOrderId(orderId)
-        return dsl.update(ORDER)
+        dsl.update(ORDER)
             .set(ORDER.ORDER_STATUS, orderStatus.name)
             .where(ORDER.ID.eq(orderId))
             .execute() == 1
@@ -244,6 +232,5 @@ abstract class OrderBlockingRepository(
 
     companion object {
         private const val DEFAULT_ORDER_ID: Long = 1
-
     }
 }
