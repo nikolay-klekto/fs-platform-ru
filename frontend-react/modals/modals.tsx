@@ -12,6 +12,9 @@ import ProfessionModalDesktop from '@/components/desktop/layout/ProfessionModalD
 import ProfessionModalMobi from '@/components/mobi/layout/ProfessionModalMobi/ProfessionModalMobi'
 import ModalOrderPlacedDesktop from '@/modals/ModalsDesktop/ModalOrderPlacedDesktop'
 import ModalContractTerminatedDesktop from '@/modals/ModalsDesktop/ModalContractTerminatedDesktop'
+import ModalContractTerminatedMobi from './ModalsMobi/ModalStatusMobi/ModalContractTerminatedMobi'
+import ModalOrderAcceptedMobi from './ModalsMobi/ModalStatusMobi/ModalOrderAcceptedMobi'
+
 export const modals = {
     desktop: [
         {
@@ -83,6 +86,19 @@ export const modals = {
                 profession: string
                 professionId: number | null
             }) => <ProfessionModalMobi closeModal={onClose} profession={profession} professionId={professionId} />,
+        },
+
+        {
+            id: 'contract_terminated_mobi',
+            content: ({ onClose }: { onClose: () => void }) => (
+                <ModalContractTerminatedMobi isOpen={true} onClose={onClose} />
+            ),
+        },
+        {
+            id: 'order_accepted_mobi',
+            content: ({ onClose }: { onClose: () => void }) => (
+                <ModalOrderAcceptedMobi isOpen={true} onClose={onClose} />
+            ),
         },
     ],
 }
