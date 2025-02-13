@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validateNameMobi'
-import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
-
+import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
+import { useModal } from '@/context/ContextModal'
 interface FormData {
     name: string
     phone: string
@@ -12,24 +12,21 @@ interface FormData {
     consent: boolean
 }
 
-const ModalCallMobi: React.FC = () => {
+interface ModalCallProps {
+    isOpen: boolean
+    onClose: () => void
+}
+
+const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         phone: '',
         time: '',
         consent: false,
     })
-    const [step, setStep] = useState<'form' | 'accepted' | null>(null)
+    const [step, setStep] = useState<'form' | 'accepted' | null>('form')
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
-    const [modalOpen, setModalOpen] = useState(false)
-
-    const handleOpenModal = () => {
-        setModalOpen(true)
-        setStep('form')
-    }
-
-    const handleCloseModal = () => setModalOpen(false)
-
+    const { closeModal } = useModal()
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
         if (!formData.name.trim()) {
@@ -52,23 +49,34 @@ const ModalCallMobi: React.FC = () => {
         }
     }
 
-    const handleClose = () => {
-        setStep(null)
-    }
+    // if (!isOpen) {
+    //     return null
+    // }
 
+    const [inputTouched, setInputTouched] = useState({
+        email: false,
+        phone: false,
+    })
+
+    const handleInputBlur = (field: 'phone') => {
+        setInputTouched((prev) => ({
+            ...prev,
+            [field]: true,
+        }))
+    }
     return (
         <>
             {step === 'form' && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="relative mx-4 w-full max-w-md">
+                <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
+                    <div className="relative mx-4 w-full max-w-md ">
                         <button
-                            onClick={handleClose}
-                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
+                            onClick={closeModal}
+                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
-                            <X size={24} color="#878797" />
+                            <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className=" rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 py-[40px]">
-                            <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-5xl">
+                            <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </p>
                             <p className="pb-4 pl-3 text-base font-medium text-[#878797] md:text-lg">
@@ -90,22 +98,29 @@ const ModalCallMobi: React.FC = () => {
                                         label="Ваше имя"
                                         labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
-                                        externalError={errors.name} // добавляем отображение ошибки
+                                        // externalError={errors.name}
                                     />
                                     {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
                                 </div>
                                 <div className="mb-3 flex w-full flex-col p-0.5">
-                                    <PhoneInputMobi
+                                    <EnhancedInput
+                                        type="tel"
+                                        name="phone"
+                                        placeholder="Номер телефона"
                                         value={formData.phone}
+                                        onBlur={() => handleInputBlur('phone')}
+                                        validate={(value) => validatePhoneMobi(value)}
                                         onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
-                                        onError={(error) => setErrors((prev) => ({ ...prev, phone: error }))}
-                                        externalError={errors.phone}
-                                        inputClassName={`border-2 ${
-                                            errors.phone ? 'border-red-500' : 'border-[#878797]'
-                                        } text-[#878797] font-medium text-xl rounded-[50px] w-full bg-transparent h-10 p-4 placeholder:text-xl md:placeholder:text-2xl placeholder:font-medium placeholder:text-[#353652]`}
-                                        inputERRAddStyle="border-red-500"
-                                        inputNOERRAddStyle="border-[#878797]"
-                                        labelClassName="text-white text-xl font-medium mb-1"
+                                        className={`${
+                                            inputTouched.phone && validatePhoneMobi(formData.phone).styleError
+                                                ? 'border-[#bc8070] focus:border-[#bc8070]'
+                                                : 'border-[#878797] focus:border-[#878797]'
+                                        } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
+                                        label="Телефон*"
+                                        labelClassName="mb-1 text-2xl font-medium text-white"
+                                        wrapperClassName="w-full"
+                                        mask="+375 (99) 999-99-99"
+                                        maskPlaceholder="_"
                                     />
                                     {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
                                 </div>
@@ -144,7 +159,7 @@ const ModalCallMobi: React.FC = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="bg-sub-title-gradient-mobi mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] text-3xl font-semibold text-white md:text-4xl"
+                                    className="mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] bg-sub-title-gradient-mobi text-3xl font-semibold text-white md:text-4xl"
                                 >
                                     Отправить заявку
                                 </button>
@@ -154,27 +169,27 @@ const ModalCallMobi: React.FC = () => {
                 </div>
             )}
 
-            {step === 'accepted' && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="relative mx-4 w-full max-w-md">
+            {isOpen && step === 'accepted' && (
+                <div className=" fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
+                    <div className="relative mx-4 w-full max-w-md ">
                         <button
-                            onClick={handleClose}
-                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[6px]"
+                            onClick={closeModal}
+                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
-                            <X size={24} color="#878797" />
+                            <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
-                        <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat py-[40px]">
-                            <h1 className="bg-sub-title-gradient-mobi mb-3 mt-6 bg-clip-text text-center text-3xl font-semibold text-transparent md:text-4xl">
+                        <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat pt-10 pb-7 px-3">
+                            <h1 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
-                            <p className="mb-1 px-3 pb-[18px] text-justify font-medium text-[#878797] md:text-lg">
+                            <p className="mb-1 px-3 pb-[18px] text-xl leading-[17px] text-justify font-medium text-[#878797] md:text-lg">
                                 Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
                                 сайте.
                             </p>
-                            <div className="bg-sub-title-gradient-mobi mx-auto my-2 flex w-4/5 items-center justify-center rounded-[50px] p-[3px]">
+                            <div className="mx-auto my-2 flex w-[180px] items-center justify-center rounded-[50px] bg-sub-title-gradient-mobi p-[3px]">
                                 <button
                                     type="button"
-                                    className="h-12 w-full rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"
+                                    className="h-10 w-full rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"
                                 >
                                     Смотреть
                                 </button>

@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
+import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/icons'
+import InputMask from 'react-input-mask'
 
 const inputVariants = cva(
     'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
@@ -63,6 +65,9 @@ export interface EnhancedInputProps
     labelClassName?: string
     placeholder?: string
     name?: string
+    checked?: boolean
+    mask?: string
+    maskPlaceholder?: string
 }
 
 const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
@@ -83,6 +88,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             wrapperClassName,
             labelClassName,
             placeholder,
+            checked,
+            mask,
+            maskPlaceholder = '_',
             ...props
         },
         ref,
@@ -91,7 +99,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const [internalError, setInternalError] = React.useState('')
         const [styleErrorClass, setStyleErrorClass] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
-
+        const isCheckbox = type === 'checkbox'
         function validateComponent(newValue: string) {
             if (validate) {
                 const validationResult = validate(newValue)
@@ -113,7 +121,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         }
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-            const newValue = e.target.value
+            const newValue = isCheckbox ? e.target.checked : e.target.value
             setInternalValue(newValue)
             // validateComponent(newValue)
             onChange?.(newValue)
@@ -130,26 +138,82 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             internalValue && validateComponent(internalValue)
         }
 
+        const handleCheckboxToggle = () => {
+            const newValue = !internalValue
+            setInternalValue(newValue)
+            onChange?.(newValue)
+        }
+
         return (
             <div className={cn('flex flex-col gap-1.5', wrapperClassName)}>
-                {label && <label className={cn('text-sm font-medium text-foreground', labelClassName)}>{label}</label>}
-                <input
-                    type={type}
-                    className={cn(
-                        inputVariants({ variant, size, rounded }),
-                        isFocused && 'ring-2 ring-ring ring-offset-2',
-                        className,
-                        styleErrorClass && 'custom_error_style_input',
-                    )}
-                    ref={ref}
-                    name={name}
-                    placeholder={placeholder}
-                    value={internalValue}
-                    onChange={handleChange}
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
-                    {...props}
-                />
+                {label && (
+                    <label
+                        htmlFor={name}
+                        className={cn(
+                            'text15px_desktop font-medium text-[#878797]',
+                            labelClassName,
+                            isCheckbox && 'flex items-center gap-2',
+                        )}
+                    >
+                        {isCheckbox && (
+                            <button
+                                type="button"
+                                className={cn(
+                                    'cursor-pointer flex items-center justify-center rounded transition-all',
+                                    className,
+                                )}
+                                onClick={handleCheckboxToggle}
+                            >
+                                {internalValue ? (
+                                    <CheckedBoxFormDesktop className="w-[16px]" />
+                                ) : (
+                                    <UncheckedBoxFormDesktop className="w-[16px]" />
+                                )}
+                            </button>
+                        )}
+                        {label}
+                    </label>
+                )}
+                {!isCheckbox &&
+                    (mask ? (
+                        <InputMask
+                            mask={mask}
+                            maskPlaceholder={maskPlaceholder}
+                            value={internalValue as string}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            onFocus={handleFocus}
+                            className={cn(
+                                inputVariants({ variant, size, rounded }),
+                                isFocused && 'ring-2 ring-ring ring-offset-2',
+                                className,
+                                styleErrorClass && 'custom_error_style_input',
+                            )}
+                            {...props}
+                        >
+                            {(inputProps: any) => (
+                                <input {...inputProps} ref={ref} type={type} name={name} placeholder={placeholder} />
+                            )}
+                        </InputMask>
+                    ) : (
+                        <input
+                            type={type}
+                            className={cn(
+                                inputVariants({ variant, size, rounded }),
+                                isFocused && 'ring-2 ring-ring ring-offset-2',
+                                className,
+                                styleErrorClass && 'custom_error_style_input',
+                            )}
+                            ref={ref}
+                            name={name}
+                            placeholder={placeholder}
+                            value={internalValue}
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
+                            {...props}
+                        />
+                    ))}
                 {(helperText || internalError !== '') && (
                     <span className={cn('text-xs', internalError ? 'text-destructive' : 'text-muted-foreground')}>
                         {internalError || helperText}

@@ -6,15 +6,13 @@ import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDeskt
 import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/HomePageDesktop'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
-import ModalCallMobi from '@/components/mobi/layout/ModalMobi/ModalCallMobi'
-import ModalCallDesktop from '@/components/desktop/layout/ModalDesktop/ModalCallDesktop'
 import ModalCookieDesktop from '@/components/desktop/layout/ModalDesktop/ModalCookieDesktop'
 
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
     const [isModalCallDesktopOpen, setModalCallDesktopOpen] = useState(false)
     const handleOpenModalCallDesktop = () => setModalCallDesktopOpen(true)
-    const handleCloseModalCallDesktop = () => setModalCallDesktopOpen(false)
+    // const handleCloseModalCallDesktop = () => setModalCallDesktopOpen(false)
 
     useEffect(() => {
         setIsClient(true)
@@ -36,7 +34,6 @@ export default function Home() {
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />
-                    <ModalCallDesktop isOpen={isModalCallDesktopOpen} onClose={handleCloseModalCallDesktop} />
                     <ModalCookieDesktop />
                 </>
             ) : (
@@ -45,7 +42,6 @@ export default function Home() {
                         <HomePageMobi />
                     </main>
                     <FooterMobi />
-                    <ModalCallMobi />
                 </>
             )}
         </div>
