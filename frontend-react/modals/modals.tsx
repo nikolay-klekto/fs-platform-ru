@@ -63,7 +63,6 @@ export const modals = {
         },
     ],
     mobi: [
-        { id: 'test_mobi', content: <TestModalMobi /> },
         {
             id: 'modalcall_mobi',
             content: ({ onClose }: { onClose: () => void }) => <ModalCallMobi isOpen={true} onClose={onClose} />,
