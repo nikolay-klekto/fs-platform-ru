@@ -71,9 +71,3 @@ management:
 jwt:
   secret: N]Aw&)Cya(JAg!o_JU^/+\:H5@4tTxQ@RQA,~yEjg9*y&Ra7yqA.IdmtV^oZ,=;L39235
 
-#management:
-#  endpoints:
-#    web.exposure.include: "*"
-#    metrics.enabled: true
-#    prometheus.enabled: true
-

@@ -18,6 +18,8 @@ import org.apache.logging.log4j.LogManager
 import org.jooq.DSLContext
 import org.jooq.impl.DSL
 import org.jooq.impl.SQLDataType
+import reactor.core.publisher.Flux
+import reactor.core.scheduler.Schedulers
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -51,6 +53,35 @@ abstract class OrderRepository(
             .where(ORDER.BASKET_ID.eq(basketId))
             .map { it.into(Order::class.java) }
             .map(converter::toModel)
+    }
+
+    fun getAllOrdersByBasketIDSimple(basketId: Long): List<OrderModel> {
+        return dsl.selectFrom(ORDER)
+            .where(ORDER.BASKET_ID.eq(basketId))
+            .map { it.into(Order::class.java) }
+            .map(converter::toModel)
+    }
+
+    fun getAllOrdersByBasketIDWebFlux(basketId: Long): Flux<OrderModel> {
+        return Flux.from(
+            dsl.selectFrom(ORDER)
+                .where(ORDER.BASKET_ID.eq(basketId))
+        ).map { it.into(Order::class.java) }
+            .map(converter::toModel)
+    }
+
+    fun getAllOrdersByBasketIDWebFluxPlus(basketId: Long): Flux<OrderModel> {
+        return Flux.defer {
+            // Блокирующий вызов оборачиваем в Flux.defer
+            Flux.fromIterable(
+                dsl.selectFrom(ORDER)
+                    .where(ORDER.BASKET_ID.eq(basketId))
+                    .fetch() // Блокирующий вызов
+                    .map { it.into(Order::class.java) }
+                    .map(converter::toModel)
+            )
+        }
+            .subscribeOn(Schedulers.boundedElastic()) // Выполняем на отдельном потоке
     }
 
     suspend fun insertOrder(orderModel: OrderModelInput): OrderModel = withContext(Dispatchers.IO) {

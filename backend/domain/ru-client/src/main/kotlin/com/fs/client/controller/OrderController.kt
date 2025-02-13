@@ -11,6 +11,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import reactor.core.publisher.Flux
 
 @Tag(name = "Order")
 @RestController
@@ -35,6 +36,21 @@ open class OrderController(open val orderRepository: OrderRepository) {
     @QueryMapping
     suspend fun getOrdersByBasketId(@Argument basketId: Long): List<OrderModel> {
         return orderRepository.getAllOrdersByBasketID(basketId)
+    }
+
+    @QueryMapping
+    suspend fun getOrdersByBasketIdWebFlux(@Argument basketId: Long): Flux<OrderModel> {
+        return orderRepository.getAllOrdersByBasketIDWebFlux(basketId)
+    }
+
+    @QueryMapping
+    suspend fun getOrdersByBasketIdWebFluxPlus(@Argument basketId: Long): Flux<OrderModel> {
+        return orderRepository.getAllOrdersByBasketIDWebFluxPlus(basketId)
+    }
+
+    @QueryMapping
+    fun getOrdersByBasketIdSimple(@Argument basketId: Long): List<OrderModel> {
+        return orderRepository.getAllOrdersByBasketIDSimple(basketId)
     }
 
     @MutationMapping
