@@ -7,9 +7,9 @@ import com.fs.domain.jooq.tables.Review.Companion.REVIEW
 import com.fs.domain.jooq.tables.pojos.Review
 import com.fs.domain.jooq.tables.records.ReviewRecord
 import com.fs.service.ru.errors.ErrorModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.jooq.DSLContext
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
 abstract class ReviewRepository(
@@ -18,30 +18,20 @@ abstract class ReviewRepository(
     open val clientBlockingRepository: ClientBlockingRepository
 ) {
 
-    fun getReviewById(id: Long): Mono<Review> {
-        return Mono.fromSupplier {
+    suspend fun getReviewById(id: Long): Review? =
+        withContext(Dispatchers.IO) {
             reviewBlockingRepository.getById(id)
         }
-    }
 
-    fun getAllReviewByClientId(clientId: String): Flux<Review> {
-        return Flux.from(
+    suspend fun getAllReviewByClientId(clientId: String): List<Review> =
+        withContext(Dispatchers.IO) {
             dsl.select(REVIEW.asterisk()).from(REVIEW)
                 .where(REVIEW.CLIENT_ID.eq(clientId))
-        ).map { it.into(Review::class.java) }
-    }
+                .map { it.into(Review::class.java) }
+        }
 
-//    fun getAllReviewByCompanyId(id: Long): Flux<Review> {
-//        return Flux.from(
-//            dsl.selectFrom(REVIEW)
-//                .where(REVIEW.COMPANY_ID.eq(id))
-//        )
-//            .map { it.into(Review::class.java) }
-//            .map(converter::toModel)
-//    }
-
-    fun updateReview(review: Review): Mono<Boolean> {
-        return Mono.fromSupplier {
+    suspend fun updateReview(review: Review): Boolean =
+        withContext(Dispatchers.IO) {
             val oldReview = reviewBlockingRepository.getById(review.id!!)
 
             dsl.update(REVIEW)
@@ -51,10 +41,8 @@ abstract class ReviewRepository(
                 .execute() == 1
         }
 
-    }
-
-    fun insertReview(reviewModel: Review): Mono<ErrorModel<Review>> {
-        return Mono.fromSupplier {
+    suspend fun insertReview(reviewModel: Review): ErrorModel<Review> =
+        withContext(Dispatchers.IO) {
             val clientRole: ClientRoleModel = clientBlockingRepository.getById(reviewModel.clientId)?.role!!
             if (clientRole != ClientRoleModel.CLIENT) {
                 throw Exception("Чтобы оставить отзыв, необходимо пройти процесс регистрации.")
@@ -64,16 +52,13 @@ abstract class ReviewRepository(
             newReviewRecord.dateCreated = LocalDateTime.now()
             newReviewRecord.reset(REVIEW.ID)
             newReviewRecord.store()
-            return@fromSupplier newReviewRecord.into(Review::class.java)
+            ErrorModel(newReviewRecord.into(Review::class.java), null)
         }
-            .map { ErrorModel(it, null) }
-    }
 
-    fun deleteReviewByID(id: Long): Mono<Boolean> {
-        return Mono.fromSupplier {
+    suspend fun deleteReviewByID(id: Long): Boolean =
+        withContext(Dispatchers.IO) {
             dsl.deleteFrom(REVIEW)
                 .where(REVIEW.ID.eq(id))
                 .execute() == 1
         }
-    }
 }

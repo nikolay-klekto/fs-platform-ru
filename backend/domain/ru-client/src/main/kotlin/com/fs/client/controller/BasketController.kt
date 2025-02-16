@@ -7,44 +7,42 @@ import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.web.bind.annotation.*
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 
 @Tag(name = "Basket")
 @RestController
 @RequestMapping("/basket", produces = ["application/json"])
-open class BasketController(
-    open val basketRepository: BasketRepository
+class BasketController(
+    private val basketRepository: BasketRepository
 ) {
 
     @GetMapping("{id}")
-    fun getBasketByID(@PathVariable("id") basketId: Long) =
+    suspend fun getBasketByID(@PathVariable("id") basketId: Long): BasketModel? =
         basketRepository.getBasketById(basketId)
 
     @PutMapping("{id}")
-    fun updateBasketByID(
+    suspend fun updateBasketByID(
         @RequestBody basketModel: BasketModel,
-    ): Mono<Boolean> {
+    ): Boolean {
         return basketRepository.updateBasket(basketModel)
     }
 
     @QueryMapping
-    open fun getBasketById(@Argument id: Long): Mono<BasketModel> {
+    suspend fun getBasketById(@Argument id: Long): BasketModel? {
         return basketRepository.getBasketById(id)
     }
 
     @QueryMapping
-    open fun getAllBaskets(): Flux<BasketModel> {
+    suspend fun getAllBaskets(): List<BasketModel> {
         return basketRepository.getAllBaskets()
     }
 
     @MutationMapping
-    open fun addBasket(): Mono<BasketModel> {
+    suspend fun addBasket(): BasketModel {
         return basketRepository.insertBasket()
     }
 
     @MutationMapping
-    open fun updateBasket(@Argument basket: BasketModel): Mono<Boolean> {
+    suspend fun updateBasket(@Argument basket: BasketModel): Boolean {
         return basketRepository.updateBasket(basket)
     }
 

@@ -6,9 +6,6 @@ extend type Query {
     getOrderById(id: ID!): Order 
     getOrdersByClientId(clientId: ID): [Order]
     getOrdersByBasketId(basketId: ID): [Order]
-    getOrdersByBasketIdWebFlux(basketId: ID): [Order]
-    getOrdersByBasketIdWebFluxPlus(basketId: ID): [Order]
-    getOrdersByBasketIdSimple(basketId: ID): [Order]
     getBasketById(id: ID!): Basket
     getAllBaskets: [Basket]
     

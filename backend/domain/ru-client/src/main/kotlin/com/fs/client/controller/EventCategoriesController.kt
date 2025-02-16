@@ -10,8 +10,8 @@ import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.stereotype.Controller
 
 @Controller
-open class EventCategoriesController(
-    open val eventCategoriesRepository: EventCategoriesRepository
+class EventCategoriesController(
+    private val eventCategoriesRepository: EventCategoriesRepository
 ) {
 
     @QueryMapping

@@ -8,8 +8,6 @@ import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.RestController
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 
 @RestController
 class CompanyProfessionController(
@@ -17,24 +15,23 @@ class CompanyProfessionController(
 ) {
 
     @QueryMapping
-    fun getLowestPricesByInternshipTypes(): Flux<InternshipPricesModel> {
+    suspend fun getLowestPricesByInternshipTypes(): List<InternshipPricesModel> {
         return companyProfessionRepository.getLowestPricesByInternshipTypes()
     }
 
     @QueryMapping
-    fun getInternshipTypesAndPricesByCompanyProfessionId(
+    suspend fun getInternshipTypesAndPricesByCompanyProfessionId(
         @Argument companyId: Long,
         @Argument professionId: Long
-    ): Flux<InternshipPricesModel> {
+    ): List<InternshipPricesModel> {
         return companyProfessionRepository.getInternshipTypesAndPricesByCompanyProfessionId(
             companyId,
             professionId
         )
     }
 
-
     @SchemaMapping(typeName = "Order", field = "companyProfession")
-    fun getCompanyProfessionForOrder(orderModel: OrderModel): Mono<CompanyProfessionModel> {
+    suspend fun getCompanyProfessionForOrder(orderModel: OrderModel): CompanyProfessionModel? {
         return companyProfessionRepository.getCompanyProfessionById(orderModel.companyProfessionId!!)
     }
 }

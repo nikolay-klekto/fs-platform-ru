@@ -3,7 +3,6 @@ package com.fs.client.repository.blocked
 import com.fs.client.converter.OrderModelConverter
 import com.fs.domain.jooq.tables.Basket.Companion.BASKET
 import com.fs.domain.jooq.tables.Client
-import com.fs.domain.jooq.tables.CompanyProfession.Companion.COMPANY_PROFESSION
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
 import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.domain.jooq.tables.records.OrderRecord
@@ -41,8 +40,8 @@ abstract class OrderBlockingRepository(
                         .where(Client.CLIENT.ID.eq(clientId))
                 )
             )
-                    .map { it.into(Order::class.java) }
-                    .map(converter::toModel)
+            .map { it.into(Order::class.java) }
+            .map(converter::toModel)
     }
 
     suspend fun decreaseBasketTotalPriceByOrderId(orderId: Long) = withContext(Dispatchers.IO) {

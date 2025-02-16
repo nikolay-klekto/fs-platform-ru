@@ -9,46 +9,40 @@ import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 
 @Tag(name = "Review")
 @RestController
 @RequestMapping("/review", produces = ["application/json"])
-open class ReviewController(
-    open val reviewRepository: ReviewRepository
+class ReviewController(
+    private val reviewRepository: ReviewRepository
 ) {
 
     @QueryMapping
-    open fun getReviewById(@Argument id: Long): Mono<Review> {
+    suspend fun getReviewById(@Argument id: Long): Review? {
         return reviewRepository.getReviewById(id)
     }
 
-//    @QueryMapping
-//    open fun getAllReviewsByCompany(@Argument id: Long): Flux<Review> {
-//        return reviewRepository.getAllReviewByCompanyId(id)
-//    }
-
     @QueryMapping
-        open fun getAllReviewByClientId(@Argument clientId: String): Flux<Review> {
+    suspend fun getAllReviewByClientId(@Argument clientId: String): List<Review> {
         return reviewRepository.getAllReviewByClientId(clientId)
     }
 
     @MutationMapping
-    open fun updateReview(@Argument review: Review): Mono<Boolean> {
+    suspend fun updateReview(@Argument review: Review): Boolean {
         return reviewRepository.updateReview(review)
     }
 
     @MutationMapping
-    open fun addReview(@Argument review: Review): Mono<ErrorModel<Review>> {
-        return reviewRepository.insertReview(review)
-            .onErrorResume {
-                return@onErrorResume Mono.just(ErrorModel(null, it.message))
-            }
+    suspend fun addReview(@Argument review: Review): ErrorModel<Review> {
+        return try {
+            reviewRepository.insertReview(review)
+        } catch (e: Exception) {
+            ErrorModel(null, e.message)
+        }
     }
 
     @MutationMapping
-    open fun deleteReviewById(@Argument id: Long): Mono<Boolean> {
+    suspend fun deleteReviewById(@Argument id: Long): Boolean {
         return reviewRepository.deleteReviewByID(id)
     }
 }

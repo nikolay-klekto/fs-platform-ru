@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service
 class EventModelConverter(
     open val cityBlockingRepository: CityBlockingRepository,
     open val eventBlockingRepository: EventBlockingRepository
-) : ModelConverter<Event, EventModel> {
-    override fun toModel(rawObject: Event): EventModel {
+) {
+    suspend fun toModel(rawObject: Event): EventModel {
         return EventModel(
             id = rawObject.id,
             date = rawObject.date,
@@ -32,7 +32,7 @@ class EventModelConverter(
         )
     }
 
-    override fun fromModel(modelObject: EventModel): Event {
+    suspend fun fromModel(modelObject: EventModel): Event {
         return Event(
             modelObject.id,
             modelObject.date,

@@ -12,132 +12,53 @@ import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.*
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
-import java.lang.Error
 
 @Tag(name = "Client")
 @RestController
 @RequestMapping("/client", produces = ["application/json"])
-open class ClientController(open val clientRepository: ClientRepository) {
-
-    @GetMapping("{id}")
-    fun getClientById(@PathVariable("id") clientAccountId: String) =
-        clientRepository.getClintById(clientAccountId)
-
-    @GetMapping
-    fun getAllClientModels() =
-        clientRepository.getAllClients()
-
-//    @PutMapping("{id}")
-//    fun updateClientByID(
-//        @RequestBody clientModel: ClientModel
-//    ) = clientRepository
-//        .updateClientInfo(clientModel)
-
-    @PutMapping("/status/{id}")
-    fun updateClientActiveStatus(
-        @RequestBody activeStatus: Boolean,
-        @PathVariable("id") id: String
-    ) = clientRepository
-        .changeActiveStatus(id, activeStatus)
-
-//    @PutMapping("/password/{id}")
-//    fun updateClientPassword(
-//        @RequestBody password: String,
-//        @PathVariable("id") id: String
-//    ) = clientRepository
-//        .changePassword(id, password)
-
-//    @PutMapping("/role/{id}")
-//    fun updateClientRole(
-//        @RequestBody role: ClientRoleModel,
-//        @PathVariable("id") id: Long
-//    ) = clientRepository
-//        .changeRole(id, role)
-
-//    @DeleteMapping("{id}")
-//    fun deleteClientByID(
-//        @PathVariable("id") id: Long
-//    ) =
-//        clientRepository.deleteClientById(id)
-
-//    @PostMapping
-//    open fun insertClientModel(
-//        @RequestBody clientModel: ClientModel
-//    ): Mono<ErrorModel<ClientModel>> {
-//        return clientRepository.insertClient(clientModel)
-//            .onErrorResume {
-//                Mono.just(ErrorModel(null, it.message))
-//            }
-//    }
-
-//    @MutationMapping
-//    open fun verifyClientPassword(@Argument client: ClientModel): Mono<ErrorModel<Long>>{
-//        return clientRepository.verifyPassword(client)
-//            .onErrorResume {
-//                Mono.just(ErrorModel(null, it.message))
-//            }
-//    }
+class ClientController(private val clientRepository: ClientRepository) {
 
     @QueryMapping
-    open fun getClintById(@Argument id: String): Mono<ClientModel> {
+    suspend fun getClintById(@Argument id: String): ClientModel? {
         return clientRepository.getClintById(id)
     }
 
     @QueryMapping
-    open fun getAllClients(): Flux<ClientModel> {
+    suspend fun getAllClients(): List<ClientModel> {
         return clientRepository.getAllClients()
     }
 
     @MutationMapping
-    open fun updateClient(@Argument client: ClientInputModel): Mono<Boolean> {
+    suspend fun updateClient(@Argument client: ClientInputModel): Boolean {
         return clientRepository.updateClientInfo(client)
     }
 
     @MutationMapping
-    open fun changePassword(
+    suspend fun changePassword(
         @Argument clientId: String,
         @Argument password: String
-    ): Mono<Boolean> {
+    ): Boolean {
         return clientRepository.changePassword(clientId, password)
     }
 
     @MutationMapping
-    open fun verifyPassword(
+    suspend fun verifyPassword(
         @Argument clientModel: AuthorizationClientModel
-    ): Mono<ErrorModel<Boolean>> {
-        return clientRepository.verifyPassword(clientModel)
-            .onErrorResume {
-                Mono.just(ErrorModel(null, it.message))
-            }
+    ): ErrorModel<Boolean> {
+        return try {
+            clientRepository.verifyPassword(clientModel)
+        } catch (e: Exception) {
+            ErrorModel(null, e.message)
+        }
     }
 
-
-    //Should to think how to realize this function
-//    @MutationMapping
-//    open fun changeRole(
-//        @Argument clientId: Long,
-//        @Argument role: ClientRoleModel
-//    ): Mono<Boolean> {
-//        return clientRepository.changeRole(clientId, role)
-//    }
-
-//    @MutationMapping
-//    open fun addClient(@Argument client: ClientModel): Mono<ErrorModel<ClientModel>> {
-//        return clientRepository.insertClient(client)
-//            .onErrorResume {
-//                return@onErrorResume Mono.just(ErrorModel(null, it.message))
-//            }
-//    }
-
     @MutationMapping
-    open fun deleteClient(@Argument id: String): Mono<Boolean> {
+    suspend fun deleteClient(@Argument id: String): Boolean {
         return clientRepository.deleteClientById(id)
     }
 
     @SchemaMapping(typeName = "Partner", field = "client")
-    fun getClientForPartner(partner: PartnerModel): Mono<ClientModel> {
+    suspend fun getClientForPartner(partner: PartnerModel): ClientModel? {
         return clientRepository.getClintById(partner.clientId)
     }
 }

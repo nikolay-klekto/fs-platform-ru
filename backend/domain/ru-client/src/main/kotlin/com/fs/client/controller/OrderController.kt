@@ -38,21 +38,6 @@ open class OrderController(open val orderRepository: OrderRepository) {
         return orderRepository.getAllOrdersByBasketID(basketId)
     }
 
-    @QueryMapping
-    suspend fun getOrdersByBasketIdWebFlux(@Argument basketId: Long): Flux<OrderModel> {
-        return orderRepository.getAllOrdersByBasketIDWebFlux(basketId)
-    }
-
-    @QueryMapping
-    suspend fun getOrdersByBasketIdWebFluxPlus(@Argument basketId: Long): Flux<OrderModel> {
-        return orderRepository.getAllOrdersByBasketIDWebFluxPlus(basketId)
-    }
-
-    @QueryMapping
-    fun getOrdersByBasketIdSimple(@Argument basketId: Long): List<OrderModel> {
-        return orderRepository.getAllOrdersByBasketIDSimple(basketId)
-    }
-
     @MutationMapping
     suspend fun addOrder(@Argument order: OrderModelInput): OrderModel {
         return orderRepository.insertOrder(order)

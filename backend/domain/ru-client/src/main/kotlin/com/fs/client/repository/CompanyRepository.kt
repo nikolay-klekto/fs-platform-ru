@@ -1,7 +1,7 @@
 package com.fs.client.repository
 
-import com.fs.client.repository.blocked.CompanyBlockingRepository
 import com.fs.client.converter.CompanyModelConverter
+import com.fs.client.repository.blocked.CompanyBlockingRepository
 import com.fs.domain.jooq.tables.Address.Companion.ADDRESS
 import com.fs.domain.jooq.tables.Company.Companion.COMPANY
 import com.fs.domain.jooq.tables.CompanyProfession.Companion.COMPANY_PROFESSION
@@ -13,13 +13,11 @@ import com.fs.domain.jooq.tables.references.CITY
 import com.fs.domain.jooq.tables.references.COMPANY_PARTNER
 import com.fs.service.ru.CompanyModel
 import com.fs.service.ru.enums.CompanyLegalCapacityStatus
-import com.fs.service.ru.enums.IndustryModel
 import io.micrometer.core.annotation.Timed
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.jooq.DSLContext
 import org.jooq.impl.DSL
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
-import java.math.BigDecimal
 
 abstract class CompanyRepository(
     open val dsl: DSLContext,
@@ -27,39 +25,36 @@ abstract class CompanyRepository(
     open val companyBlockingRepository: CompanyBlockingRepository
 ) {
 
-    fun getCompanyById(id: Long): Mono<CompanyModel> {
-        return Mono.fromSupplier {
+    suspend fun getCompanyById(id: Long): CompanyModel? =
+        withContext(Dispatchers.IO) {
             companyBlockingRepository.getById(id)
         }
-    }
 
-    fun getAllCompaniesIndustries(): Flux<String> {
-        return Flux.fromIterable(
+    suspend fun getAllCompaniesIndustries(): List<String> =
+        withContext(Dispatchers.IO) {
             dsl.selectDistinct(COMPANY.COMPANY_INDUSTRY)
                 .from(COMPANY)
                 .map { it.into(String::class.java) }
-        )
-    }
-
+        }
 
     @Timed(value = "companies.time", description = "Time taken to return all companies")
-    open fun getAllCompanies(): Flux<CompanyModel> {
-        return Flux.from(
+    open suspend fun getAllCompanies(): List<CompanyModel> =
+        withContext(Dispatchers.IO) {
             dsl.select(COMPANY.asterisk()).from(COMPANY)
-        ).map { it.into(Company::class.java) }
-            .map(converter::toModel)
-    }
+                .map { it.into(Company::class.java) }
+                .map(converter::toModel)
+        }
 
-    open fun getAllAvailableCompanies(): Flux<CompanyModel> {
-        return Flux.from(
+    open suspend fun getAllAvailableCompanies(): List<CompanyModel> =
+        withContext(Dispatchers.IO) {
             dsl.select(COMPANY.asterisk()).from(COMPANY)
                 .where(COMPANY.LEGAL_CAPACITY_STATUS.eq(CompanyLegalCapacityStatus.CAPABLE.name))
-        ).map { it.into(Company::class.java) }
-            .map(converter::toModel)
-    }
+                .map { it.into(Company::class.java) }
+                .map(converter::toModel)
+        }
 
-    fun getAllCompaniesByProfessionId(professionId: Long): Flux<CompanyModel> {
-        return Flux.from(
+    suspend fun getAllCompaniesByProfessionId(professionId: Long): List<CompanyModel> =
+        withContext(Dispatchers.IO) {
             dsl.select(
                 COMPANY.asterisk(),
                 DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5).`as`("price_per_week")
@@ -68,18 +63,17 @@ abstract class CompanyRepository(
                 .join(COMPANY_PROFESSION).on(COMPANY.ID.eq(COMPANY_PROFESSION.COMPANY_ID))
                 .where(COMPANY_PROFESSION.PROFESSION_ID.eq(professionId))
                 .groupBy(COMPANY.ID)
-        ).map { record ->
-            val company = record.into(Company::class.java)
-            val pricePerWeek = record.get("price_per_week", Double::class.java)
-            converter.toModel(company).apply {
-                this.pricePerWeek = pricePerWeek // предполагается, что `CompanyModel` имеет поле `pricePerWeek`
-            }
+                .map { record ->
+                    val company = record.into(Company::class.java)
+                    val pricePerWeek = record.get("price_per_week", Double::class.java)
+                    converter.toModel(company).apply {
+                        this.pricePerWeek = pricePerWeek // предполагается, что `CompanyModel` имеет поле `pricePerWeek`
+                    }
+                }
         }
-    }
 
-
-    fun getAllCompaniesByCountryCode(countryCode: Long): Flux<CompanyModel> {
-        return Flux.from(
+    suspend fun getAllCompaniesByCountryCode(countryCode: Long): List<CompanyModel> =
+        withContext(Dispatchers.IO) {
             dsl.select(COMPANY.asterisk()).from(COMPANY)
                 .where(
                     COMPANY.ID.`in`(
@@ -97,12 +91,12 @@ abstract class CompanyRepository(
                             )
                     )
                 )
-        ).map { it.into(Company::class.java) }
-            .map(converter::toModel)
-    }
+                .map { it.into(Company::class.java) }
+                .map(converter::toModel)
+        }
 
-    fun getAllCompaniesByCityId(cityId: Long): Flux<CompanyModel> {
-        return Flux.from(
+    suspend fun getAllCompaniesByCityId(cityId: Long): List<CompanyModel> =
+        withContext(Dispatchers.IO) {
             dsl.select(COMPANY.asterisk()).from(COMPANY)
                 .where(
                     COMPANY.ID.`in`(
@@ -115,23 +109,21 @@ abstract class CompanyRepository(
                             )
                     )
                 )
-        ).map { it.into(Company::class.java) }
-            .map(converter::toModel)
-    }
+                .map { it.into(Company::class.java) }
+                .map(converter::toModel)
+        }
 
-    fun insertCompany(companyModel: CompanyModel): Mono<CompanyModel> {
-        return Mono.fromSupplier {
+    suspend fun insertCompany(companyModel: CompanyModel): CompanyModel =
+        withContext(Dispatchers.IO) {
             val newCompanyRecord: CompanyRecord = dsl.newRecord(COMPANY)
             newCompanyRecord.from(companyModel)
             newCompanyRecord.reset(COMPANY.ID)
             newCompanyRecord.store()
-            return@fromSupplier newCompanyRecord.into(Company::class.java)
-        }
-            .map(converter::toModel)
-    }
+            newCompanyRecord.into(Company::class.java)
+        }.let(converter::toModel)
 
-    fun insertCompanyByPartnerId(partnerId: Long, companyModel: CompanyModel): Mono<CompanyModel> {
-        return Mono.fromSupplier {
+    suspend fun insertCompanyByPartnerId(partnerId: Long, companyModel: CompanyModel): CompanyModel =
+        withContext(Dispatchers.IO) {
             val newCompanyRecord: CompanyRecord = dsl.newRecord(COMPANY)
             newCompanyRecord.from(companyModel)
             newCompanyRecord.reset(COMPANY.ID)
@@ -143,19 +135,19 @@ abstract class CompanyRepository(
             dsl.insertInto(COMPANY_PARTNER)
                 .set(newPartnerCompanyRecord)
                 .execute()
-            return@fromSupplier newCompanyRecord.into(Company::class.java)
-        }
-            .map(converter::toModel)
-    }
+            newCompanyRecord.into(Company::class.java)
+        }.let(converter::toModel)
 
-    fun updateCompany(companyModel: CompanyModel): Mono<Boolean> {
-        return Mono.fromSupplier {
+    suspend fun updateCompany(companyModel: CompanyModel): Boolean =
+        withContext(Dispatchers.IO) {
             val oldCompanyModel: CompanyModel = companyBlockingRepository.getById(companyModel.id!!)!!
 
             val rowsUpdated = dsl.update(COMPANY)
                 .set(
                     COMPANY.COMPANY_INDUSTRY,
-                    DSL.value(companyModel.companyIndustry ?: oldCompanyModel.companyIndustry) // Оборачиваем значение в DSL.value
+                    DSL.value(
+                        companyModel.companyIndustry ?: oldCompanyModel.companyIndustry
+                    ) // Оборачиваем значение в DSL.value
                 )
                 .set(
                     COMPANY.LEGAL_CAPACITY_STATUS,
@@ -184,12 +176,9 @@ abstract class CompanyRepository(
 
             rowsUpdated == 1
         }
-    }
 
-
-    fun deleteCompany(companyId: Long): Mono<Boolean> {
-        return Mono.fromSupplier {
-
+    suspend fun deleteCompany(companyId: Long): Boolean =
+        withContext(Dispatchers.IO) {
             val result2 = dsl.deleteFrom(COMPANY_PARTNER)
                 .where(COMPANY_PARTNER.COMPANY_ID.eq(companyId))
                 .execute() == 1
@@ -202,7 +191,6 @@ abstract class CompanyRepository(
                 .where(COMPANY_PROFESSION.COMPANY_ID.eq(companyId))
                 .execute() == 1
 
-            return@fromSupplier returnResult || result2 || result3
+            returnResult || result2 || result3
         }
-    }
 }

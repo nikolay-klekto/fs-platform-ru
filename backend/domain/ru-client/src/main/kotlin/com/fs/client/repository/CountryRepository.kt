@@ -8,50 +8,47 @@ import com.fs.domain.jooq.tables.City.Companion.CITY
 import com.fs.domain.jooq.tables.Country.Companion.COUNTRY
 import com.fs.domain.jooq.tables.pojos.Country
 import com.fs.domain.jooq.tables.records.CountryRecord
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.jooq.DSLContext
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 
 abstract class CountryRepository(
     open val dsl: DSLContext,
     open val converter: CountryModelConverter,
     open val countryBlockingRepository: CountryBlockingRepository
 ) {
-    fun getCountryByCode(code: Long): Mono<CountryModel> {
-        return Mono.from(
+    suspend fun getCountryByCode(code: Long): CountryModel? =
+        withContext(Dispatchers.IO) {
             dsl.select(COUNTRY.asterisk()).from(COUNTRY)
                 .where(COUNTRY.CODE.eq(code))
-        )
-            .map { it.into(Country::class.java) }
-            .map(converter::toModel)
-    }
+                .map { it.into(Country::class.java) }
+                .map(converter::toModel)
+                .firstOrNull()
+        }
 
-    fun getCountryByName(countryName: CountryNameModel): Mono<CountryModel> {
-        return Mono.from(
+    suspend fun getCountryByName(countryName: CountryNameModel): CountryModel? =
+        withContext(Dispatchers.IO) {
             dsl.select(COUNTRY.asterisk()).from(COUNTRY)
                 .where(COUNTRY.NAME.eq(countryName.name))
-        )
-            .map { it.into(Country::class.java) }
-            .map(converter::toModel)
-    }
+                .map { it.into(Country::class.java) }
+                .map(converter::toModel)
+                .firstOrNull()
+        }
 
-    fun getCountryByCityId(id: Long): Mono<CountryModel> {
-        return Mono.fromSupplier {
+    suspend fun getCountryByCityId(id: Long): CountryModel? =
+        withContext(Dispatchers.IO) {
             countryBlockingRepository.getCountryByCityId(id)
         }
-    }
 
-    fun getAllCountries(): Flux<CountryModel> {
-        return Flux.from(
+    suspend fun getAllCountries(): List<CountryModel> =
+        withContext(Dispatchers.IO) {
             dsl.select(COUNTRY.asterisk()).from(COUNTRY)
-        )
-            .map { it.into(Country::class.java) }
-            .map(converter::toModel)
+                .map { it.into(Country::class.java) }
+                .map(converter::toModel)
+        }
 
-    }
-
-    fun insertCountry(countryModel: CountryModel): Mono<CountryModel> {
-        return Mono.fromSupplier {
+    suspend fun insertCountry(countryModel: CountryModel): CountryModel =
+        withContext(Dispatchers.IO) {
             val newCountryRecord: CountryRecord = dsl.newRecord(COUNTRY)
             val newCountryModel = CountryModel(
                 code = countryModel.name!!.value,
@@ -60,13 +57,11 @@ abstract class CountryRepository(
             )
             newCountryRecord.from(newCountryModel)
             newCountryRecord.store()
-            return@fromSupplier newCountryRecord.into(Country::class.java)
-        }
-            .map(converter::toModel)
-    }
+            newCountryRecord.into(Country::class.java)
+        }.let(converter::toModel)
 
-    fun deleteCountryByCode(countryCode: Long): Mono<Boolean> {
-        return Mono.fromSupplier {
+    suspend fun deleteCountryByCode(countryCode: Long): Boolean =
+        withContext(Dispatchers.IO) {
             val result = dsl.deleteFrom(CITY)
                 .where(CITY.COUNTRY_CODE.eq(countryCode))
                 .execute() > 0
@@ -78,9 +73,4 @@ abstract class CountryRepository(
                 .where(COUNTRY.CODE.eq(countryCode))
                 .execute() == 1
         }
-    }
-
-    companion object {
-//        private val log = LogManager.getLogger()
-    }
 }
