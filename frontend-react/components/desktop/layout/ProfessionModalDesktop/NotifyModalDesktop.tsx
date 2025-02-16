@@ -7,21 +7,23 @@ import Modal from '@/components/ui/modal'
 import Link from 'next/link'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
-import { useModal } from '@/context/ContextModal'
 
 interface NotifyFormData {
     email: string
     consent: boolean
 }
 
-const NotifyModalDesktop: React.FC = () => {
-    const { isOpen, closeModal } = useModal() 
+interface NotifyModalDesktopProps {
+    isOpen: boolean
+    onClose: () => void
+}
+
+const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ isOpen, onClose }) => {
     const [formData, setFormData] = useState<NotifyFormData>({
         email: '',
         consent: false,
     })
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [inputErrors] = useState<{ [key: string]: string | null }>({
         email: '',
     })
@@ -48,7 +50,7 @@ const NotifyModalDesktop: React.FC = () => {
             setFormError(true)
         } else {
             console.log('Форма уведомления отправлена:', formData)
-            closeModal()
+            onClose()
         }
     }
 
@@ -58,13 +60,21 @@ const NotifyModalDesktop: React.FC = () => {
         }
     }, [formData, inputErrors, validateForm])
 
+    if (!isOpen) return null // Не рендерим, если модалка закрыта
+
     return (
-        <Modal show={isOpen} onClose={closeModal} size="semilarge" showCloseButton={false}>
+        <Modal show={isOpen} onClose={onClose} size="semilarge" showCloseButton={false}>
             <div className="mx-auto flex w-[73%] flex-col items-center justify-center pb-[30px] pt-[40px]">
-                <button onClick={closeModal} className="absolute right-[5%] top-[5%] w-[7%]">
-                    <X size={41} color="white" className="w-full opacity-70" />
+                <button
+                    onClick={onClose}
+                    className="absolute right-[5%] top-[5%] w-[7%] hover:opacity-100 transition-opacity duration-300"
+                >
+                    <X size={41} color="white" className="w-full opacity-70 hover:opacity-100" />
                 </button>
-                <h2 className="text28px_desktop text-gradient_desktop_custom mb-7 inline font-medium uppercase text-center">
+                <h2
+                    className="text28px_desktop text-gradient_desktop_custom mb-7 block font-medium uppercase text-center w-[543px] leading-[1.22] break-normal whitespace-normal"
+                    style={{ textWrap: 'balance' }}
+                >
                     Когда профессия станет доступна, куда вам сообщить?
                 </h2>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle">
@@ -76,22 +86,23 @@ const NotifyModalDesktop: React.FC = () => {
                             value={formData.email}
                             validate={validateEmailDesktop}
                             onChange={(value) => handleChange('email', value)}
-                            className="h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white"                      />
+                            className="h-10 w-full rounded-[20px] border-[2px] !border-[#878797] bg-transparent p-3 text-xl font-medium text-white focus:outline-none focus:ring-0 focus-visible:ring-0 focus:!border-[#878797]"
+                        />
                         {inputErrors.email && <p className="error-form-desktop-custom">{inputErrors.email}</p>}
                     </div>
-                    <div className="mb-3">
+                    <div className="py-2 flex items-center h-[40px]">
                         <EnhancedInput
                             type="checkbox"
                             name="consent"
                             checked={formData.consent}
                             onChange={(value) => handleChange('consent', value === 'true')}
                             label="Я согласен(а) на обработку персональных данных"
-                            wrapperClassName="flex gap-2 pb-2"
+                            wrapperClassName="flex gap-2 pt-2"
                         />
                     </div>
                     <p className="text15px_desktop mt-3 font-medium text-[#353652]">
                         Защита от спама reCAPTCHA{' '}
-                        <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
+                        <Link href="/" target="_blank" rel="noopener noreferrer" className="underline ">
                             Конфиденциальность
                         </Link>{' '}
                         и{' '}
@@ -100,7 +111,10 @@ const NotifyModalDesktop: React.FC = () => {
                         </Link>
                     </p>
                     {formError && <p className="error-form-desktop-custom">Заполните необходимые поля</p>}
-                    <Button type="submit" className="bg-gradient-desktop mx-auto mt-6 w-[220px]  h-[52.35px] rounded-[40.44px] text-16.18px font-semibold">
+                    <Button
+                        type="submit"
+                        className="bg-gradient-to-r from-[#6A11CB] to-[#2575FC] mx-auto mt-6 w-[220px] h-[52.35px] rounded-[40.44px] text-lg font-semibold transition-all duration-300 hover:shadow-lg hover:bg-gradient-desktop-hover"
+                    >
                         Отправить
                     </Button>
                 </form>

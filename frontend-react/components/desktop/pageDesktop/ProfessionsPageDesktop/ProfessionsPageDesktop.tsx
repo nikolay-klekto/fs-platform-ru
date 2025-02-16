@@ -9,7 +9,7 @@ import { content } from './content'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
-import NotifyModalDesktop from '@/components/desktop/layout/ProfessionModalDesktop/NotifyModalDesktop' // ✅ Добавили модалку
+import { useModal } from '@/context/ContextModal'
 
 const ProfessionsPageDesktop: React.FC = () => {
     const { openModal } = useModal()
@@ -23,15 +23,13 @@ const ProfessionsPageDesktop: React.FC = () => {
         console.log('Поиск профессий:', searchQuery)
         setSearchQuery('')
     }
-
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
 
     return (
         <>
-            <NotifyModalDesktop /> 
-            <div className="3xl:p-[76px_130px_150px_130px] container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px]">
+            <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
                 <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
                 <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
                 <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
@@ -68,7 +66,12 @@ const ProfessionsPageDesktop: React.FC = () => {
                             image={item.image}
                             profession={item.profession}
                             price={item.price.toString()}
-                            isAvailable={item.isAvailable} 
+                            onClick={() => {
+                                openModal('profession_modal_desktop', 'desktop', {
+                                    profession: item.profession,
+                                    professionId: item.id,
+                                })
+                            }}
                         />
                     ))}
                 </div>
