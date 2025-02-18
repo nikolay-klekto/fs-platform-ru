@@ -42,8 +42,7 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ isOpen, onClose
             ...prev,
             [field]: value,
         }))
-
-        // Дополнительная валидация email
+        
         if (field === 'email' && typeof value === 'string') {
             const { status, textError } = validateEmailDesktop(value)
             setInputErrors((prev) => ({
@@ -69,7 +68,7 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ isOpen, onClose
         }
     }, [formData, inputErrors, validateForm])
 
-    if (!isOpen) return null // Не рендерим, если модалка закрыта
+    if (!isOpen) return null 
 
     return (
         <Modal show={isOpen} onClose={onClose} size="semilarge" showCloseButton={false}>
