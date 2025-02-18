@@ -24,15 +24,15 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ isOpen, onClose
         consent: false,
     })
 
-    const [inputErrors] = useState<{ [key: string]: string | null }>({
-        email: '',
+    const [inputErrors, setInputErrors] = useState<{ email: string | null }>({
+        email: null,
     })
 
     const [formError, setFormError] = useState(false)
 
     const validateForm = useCallback((): boolean => {
         const hasEmptyFields = !formData.email || !formData.consent
-        const hasInternalErrors = Object.values(inputErrors).some((error) => error !== null && error !== '')
+        const hasInternalErrors = inputErrors.email !== null && inputErrors.email !== ''
 
         return hasEmptyFields || hasInternalErrors
     }, [formData, inputErrors])
@@ -42,6 +42,15 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ isOpen, onClose
             ...prev,
             [field]: value,
         }))
+
+        // Дополнительная валидация email
+        if (field === 'email' && typeof value === 'string') {
+            const { status, textError } = validateEmailDesktop(value)
+            setInputErrors((prev) => ({
+                ...prev,
+                email: status ? null : textError,
+            }))
+        }
     }
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -86,7 +95,8 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ isOpen, onClose
                             value={formData.email}
                             validate={validateEmailDesktop}
                             onChange={(value) => handleChange('email', value)}
-                            className="h-10 w-full rounded-[20px] border-[2px] !border-[#878797] bg-transparent p-3 text-xl font-medium text-white focus:outline-none focus:ring-0 focus-visible:ring-0 focus:!border-[#878797]"
+                            variant="gradient_desktop"
+                            className="h-10 w-full rounded-[20px] border-[2px] border-[#878797] bg-transparent p-3 text-xl font-medium text-white focus:outline-none focus:ring-0"
                         />
                         {inputErrors.email && <p className="error-form-desktop-custom">{inputErrors.email}</p>}
                     </div>
@@ -95,14 +105,14 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ isOpen, onClose
                             type="checkbox"
                             name="consent"
                             checked={formData.consent}
-                            onChange={(value) => handleChange('consent', value === 'true')}
+                            onChange={(value) => handleChange('consent', value === true)}
                             label="Я согласен(а) на обработку персональных данных"
                             wrapperClassName="flex gap-2 pt-2"
                         />
                     </div>
                     <p className="text15px_desktop mt-3 font-medium text-[#353652]">
                         Защита от спама reCAPTCHA{' '}
-                        <Link href="/" target="_blank" rel="noopener noreferrer" className="underline ">
+                        <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
                             Конфиденциальность
                         </Link>{' '}
                         и{' '}
@@ -113,7 +123,7 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ isOpen, onClose
                     {formError && <p className="error-form-desktop-custom">Заполните необходимые поля</p>}
                     <Button
                         type="submit"
-                        className="bg-gradient-to-r from-[#6A11CB] to-[#2575FC] mx-auto mt-6 w-[220px] h-[52.35px] rounded-[40.44px] text-lg font-semibold transition-all duration-300 hover:shadow-lg hover:bg-gradient-desktop-hover"
+                        className="bg-gradient-to-r from-[#8333F3] to-[#3B51A8] mx-auto mt-6 w-[220px] h-[52.35px] rounded-[40.44px] text-lg font-semibold transition-all duration-300 via-[#5F4AF3] hover:shadow-lg hover:bg-gradient-desktop-hover"
                     >
                         Отправить
                     </Button>
