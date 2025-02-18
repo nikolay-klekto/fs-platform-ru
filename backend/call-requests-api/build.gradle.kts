@@ -38,21 +38,15 @@ repositories {
 
 dependencies {
 
-//    implementation(project(":backend:domain:ru-client-model"))
-//    implementation(project(":backend:domain:ru-service-model"))
-//    implementation(project(":backend:domain:ru-client")) {
-//        artifact {
-//            classifier = "lib" // Используем библиотечный JAR из ru-client
-//        }
-//    }
-//    runtimeOnly(project(":frontend"))
+    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+    implementation("org.postgresql:r2dbc-postgresql:1.0.7.RELEASE")
+
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-graphql")
     implementation("org.springframework.boot:spring-boot-starter-jooq")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-tomcat")
-//    implementation("org.springframework:spring-core")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jooq:jooq-kotlin:3.17.4")
@@ -66,8 +60,6 @@ dependencies {
     jooqGenerator("jakarta.xml.bind:jakarta.xml.bind-api:4.0.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-//    testImplementation("org.springframework:spring-webflux")
-//    testImplementation("org.springframework.graphql:spring-graphql-test")
 
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
