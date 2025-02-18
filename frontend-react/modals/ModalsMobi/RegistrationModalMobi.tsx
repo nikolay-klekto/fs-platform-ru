@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
@@ -8,7 +9,7 @@ import { validateEmailMobi } from '@/components/mobi/commonMobi/validate/validat
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 import PasswordInputMobi from '@/components/mobi/shared/formInput/PasswordInputMobi'
 import { useModal } from '@/context/ContextModal'
-
+import { useAuthActions } from '@/hooks/AuthHook'
 interface RegistrationFormData {
     email: string
     phone: string
@@ -32,6 +33,7 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
         agree: false,
     })
     const { closeModal, openModal } = useModal()
+    const { handleRegister } = useAuthActions()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -54,7 +56,7 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
         }))
     }
 
-    const validateForm = (): boolean => {
+    const validateForm = useCallback((): boolean => {
         const hasEmptyFields =
             formData.email === '' ||
             formData.phone === '' ||
@@ -66,7 +68,7 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
         const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
 
         return hasEmptyFields || hasErrors || hasInternalErrors
-    }
+    }, [formData, errors, inputInternalErrors])
 
     const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
         setFormData((prev) => {
@@ -120,16 +122,29 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
             return updatedFormData
         })
     }
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const router = useRouter()
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         if (validateForm()) {
             setFormError(true)
             console.log('Ошибка: Заполните все поля корректно или исправьте ошибки')
         } else {
             setFormError(false)
-            console.log('Форма отправлена:', formData)
-            closeModal()
+            try {
+                await handleRegister({
+                    email: formData.email,
+                    phone: formData.phone,
+                    password: formData.password,
+                })
+                closeModal()
+                router.push('/personalaccount')
+            } catch (error) {
+                if (error instanceof Error) {
+                    alert(error.message)
+                } else {
+                    alert('Произошла неизвестная ошибка')
+                }
+            }
         }
     }
 
@@ -137,7 +152,7 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
         if (!validateForm()) {
             setFormError(false)
         }
-    }, [formData, errors, inputInternalErrors])
+    }, [formData, errors, inputInternalErrors, validateForm])
 
     const [inputTouched, setInputTouched] = useState({
         email: false,
@@ -160,12 +175,12 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
             <div className="relative max-w-md w-full">
                 <button
                     onClick={closeModal}
-                    className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-80"
+                    className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-80"
                 >
                     <X size={44} color="#878797" />
                 </button>
-                <div className="relative rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat flex flex-col items-center max-w-[500px]">
-                    <h1 className="text18px_mobi font-semibold bg-sub-title-gradient-mobi bg-clip-text text-transparent mt-6 mb-1 mx-auto uppercase inline">
+                <div className="relative flex max-w-[500px] flex-col items-center rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat">
+                    <h1 className="text18px_mobi mx-auto mb-1 mt-6 inline bg-sub-title-gradient-mobi bg-clip-text font-semibold uppercase text-transparent">
                         Регистрация
                     </h1>
                     <form onSubmit={handleSubmit} className="flex flex-col align-middle w-[80%]">
@@ -254,7 +269,7 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
                                 type="checkbox"
                                 name="subscribe"
                                 checked={formData.subscribe}
-                                onChange={(value) => setFormData((prev) => ({ ...prev, subscribe: value }))}
+                                onChange={(value) => setFormData((prev) => ({ ...prev, subscribe: value === 'true' }))}
                                 label="Я согласен(а) на обработку персональных данных"
                                 wrapperClassName="flex gap-2 pb-2"
                                 labelClassName={`${formData.subscribe ? 'text-white' : 'text-[#878797]'}`}
@@ -273,7 +288,7 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
                                         styleError: Boolean(error),
                                     }
                                 }}
-                                onChange={(value) => setFormData((prev) => ({ ...prev, agree: value }))}
+                                onChange={(value) => setFormData((prev) => ({ ...prev, subscribe: value === 'true' }))}
                                 label="Я согласен(а) получать новости о стажировках"
                                 wrapperClassName="flex gap-2 pb-2"
                                 labelClassName={`${formData.agree ? 'text-white' : 'text-[#878797]'}`}

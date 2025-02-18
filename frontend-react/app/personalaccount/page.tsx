@@ -12,7 +12,7 @@ export default function PersonalAccount() {
 
     useEffect(() => {
         setIsClient(true)
-    })
+    }, [])
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 768px)',
@@ -26,7 +26,7 @@ export default function PersonalAccount() {
             {isDesktop ? (
                 <>
                     <HeaderDesktop />
-                    <main className="grow min-h-[60vh] bg-[#101030]">
+                    <main className="min-h-[60vh] grow bg-[#101030]">
                         <PersonalAccountDesktop />
                     </main>
                     <FooterDesktop />
@@ -34,7 +34,7 @@ export default function PersonalAccount() {
             ) : (
                 <>
                     <HeaderMobi />
-                    <main className="grow min-h-screen bg-[#101030]">
+                    <main className="min-h-screen grow bg-[#101030]">
                         <PersonalAccountMobi />
                     </main>
                 </>
