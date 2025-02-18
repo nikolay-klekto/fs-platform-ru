@@ -4,11 +4,13 @@ import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
 import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
 import { useModal } from '@/context/ContextModal'
+import { useAuthActions } from '@/hooks/AuthHook'
 
 interface RegistrationFormData {
     email: string
@@ -33,6 +35,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ isO
         agree: false,
     })
     const { closeModal, openModal } = useModal()
+    const { handleRegister } = useAuthActions()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -118,20 +121,33 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ isO
             return updatedFormData
         })
     }
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const router = useRouter()
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         if (validateForm()) {
             setFormError(true)
             console.log('Ошибка: Заполните все поля корректно или исправьте ошибки')
         } else {
             setFormError(false)
-            console.log('Форма отправлена:', formData)
-            closeModal()
+            try {
+                await handleRegister({
+                    email: formData.email,
+                    phone: formData.phone,
+                    password: formData.password,
+                })
+                closeModal()
+                router.push('/personalaccount')
+            } catch (error) {
+                if (error instanceof Error) {
+                    alert(error.message)
+                } else {
+                    alert('Произошла неизвестная ошибка')
+                }
+            }
         }
     }
 
-    useEffect(() => {
+   useEffect(() => {
         if (!validateForm()) {
             setFormError(false)
         }
@@ -266,7 +282,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ isO
                                     styleError: Boolean(error),
                                 }
                             }}
-                            onChange={(value) => setFormData((prev) => ({ ...prev, agree: value === 'true' }))}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, agree: Boolean(value) }))}
                             label="Я согласен(а) на обработку персональных данных"
                             wrapperClassName="flex gap-2 pb-2"
                             labelClassName={`${formData.agree ? 'text-white' : 'text-[#878797]'}`}
@@ -290,7 +306,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ isO
                         type="submit"
                         variant="default"
                         size="btn_modal_desktop"
-                        disabled={formError}
+                        // disabled={formError}
                         className="mx-auto mt-6 w-[70%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:bg-[#878797]"
                     >
                         Зарегистрироваться
