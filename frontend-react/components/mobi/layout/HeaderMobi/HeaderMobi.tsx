@@ -60,10 +60,11 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                         : undefined
                 }
             >
-                <div
-                    className={`relative flex h-[56px] w-full px-[15px] items-center justify-between`}
-                >
-                    <PhoneIconMobi className="cursor-pointer" />
+                <div className={`relative flex h-[56px] w-full px-[15px] items-center justify-between`}>
+                    <PhoneIconMobi
+                        className="cursor-pointer"
+                        onClick={(): void => openModal('modalcall_mobi', 'mobi')}
+                    />
                     <div className="absolute left-1/2 top-7 -translate-x-1/2 -translate-y-1/2">
                         <Link href="/">
                             <LogoIconMobi />
