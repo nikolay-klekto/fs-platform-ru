@@ -4,7 +4,6 @@ import { EnhancedInput } from '@/components/ui/input'
 import { ForwardIconMobi } from '@/components/assets/icons'
 
 const ProfessionSendMobi: React.FC = () => {
-    const [isFocused, setIsFocused] = useState(false)
     const [useRequest, setUseRequest] = useState('')
 
     const handleSendRequest = () => {
@@ -26,8 +25,6 @@ const ProfessionSendMobi: React.FC = () => {
                     size={'send_mobi'}
                     rounded={'rounded_50'}
                     wrapperClassName="w-full h-[44px] rounded-[50px] justify-bitween flex border-[2px] border-[#878797] bg-transparent p-[2px]"
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
                 />
                 <Button variant={'select_mobi'} size={'gradient_circle_mobi'} onClick={handleSendRequest}>
                     <ForwardIconMobi />

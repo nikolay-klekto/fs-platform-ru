@@ -123,8 +123,10 @@ export interface CardTitleProps
         VariantProps<typeof cardTitleVariants> {}
 
 const CardTitle = React.forwardRef<HTMLParagraphElement, CardTitleProps>(
-    ({ className, variant, size, ...props }, ref) => (
-        <h3 ref={ref} className={cn(cardTitleVariants({ variant, size }), className)} {...props} />
+    ({ className, variant, children, size, ...props }, ref) => (
+        <h3 ref={ref} className={cn(cardTitleVariants({ variant, size }), className)} {...props}>
+            {children}
+        </h3>
     ),
 )
 CardTitle.displayName = 'CardTitle'

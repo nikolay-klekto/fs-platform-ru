@@ -3,16 +3,16 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const textareaVariants = cva(
-    'flex w-full rounded-md border text-sm ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+    'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
     {
         variants: {
             variant: {
                 default:
-                    'border-input bg-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+                    'border-input bg-background focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2',
                 contacts_page_desktop:
-                    'text-5xl bg-transparent ring-offset-transparent border-2 border-[#878797] focus:border-[3px] focus:ring-transparent',
+                    'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent focus:border-[3px] focus:ring-transparent',
                 contacts_page_error_desktop:
-                    'text-5xl bg-transparent ring-offset-transparent border-2 border-[#bc8070] focus:border-[3px] focus:ring-transparent',
+                    'border-2 border-[#bc8070] bg-transparent text-5xl ring-offset-transparent focus:border-[3px] focus:ring-transparent',
             },
             size: {
                 default: 'h-10 px-3 py-2',
@@ -97,7 +97,7 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
             onChange?.(newValue)
         }
 
-        const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+        const handleFocus = () => {
             setIsFocused(true)
             onFocus?.()
         }
@@ -105,12 +105,15 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-            internalValue && validateComponent(internalValue)
+
+            if (internalValue) {
+                validateComponent(internalValue)
+            }
         }
 
         return (
             <div className={cn('flex flex-col gap-1.5', wrapperClassName)}>
-                {label && <label className="text-sm font-medium text-foreground">{label}</label>}
+                {label && <label className="text-foreground text-sm font-medium">{label}</label>}
                 <textarea
                     className={cn(
                         textareaVariants({ variant, size, rounded }),

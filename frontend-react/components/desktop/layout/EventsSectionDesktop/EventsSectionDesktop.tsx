@@ -22,12 +22,12 @@ const EventsSectionDesktop: React.FC = () => {
     const scrollbarWidth = `${((content.length * itemWidth) / window.innerWidth) * 150}%`
 
     return (
-        <div className="container p-no-right-padding py-[10vh]">
+        <div className="p-no-right-padding container py-[10vh]">
             <TitleDesktop title={'МЕРОПРИЯТИЯ'} href="/profevents" />
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="mt-[10vh] flex gap-8 max-w-full overflow-x-scroll no-scrollbar_custom select-none"
+                className="no-scrollbar_custom mt-[10vh] flex max-w-full select-none gap-8 overflow-x-scroll"
             >
                 {content.map((item) => (
                     <ItemEventsDesktop
@@ -42,7 +42,7 @@ const EventsSectionDesktop: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="h-2 w-[60%] mx-auto mt-[8vh] overflow-x-scroll scrollbar_custom cursor-pointer"
+                className="scrollbar_custom mx-auto mt-[8vh] h-2 w-3/5 cursor-pointer overflow-x-scroll"
             >
                 <div className="h-full" style={{ width: scrollbarWidth }}></div>
             </div>

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import { useModal } from '@/context/ContextModal'
 import Link from 'next/link'
 import HeaderNavigationMobi from './HeaderNavigationMobi/HeaderNavigationMobi'
-import router from 'next/router'
 import {
     ShoppingCartIconMobi,
     LogoIconMobi,
@@ -36,17 +35,7 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
         }
     }, [isMenuOpen])
 
-    const [modalType, setModalType] = useState<'login' | 'registration' | null>(null)
     const { openModal } = useModal()
-
-    const closeModal = (): void => {
-        setModalType(null)
-    }
-
-    const handleLoginSuccess = (): void => {
-        closeModal()
-        router.push('/profile')
-    }
 
     return (
         <>
@@ -60,7 +49,7 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                         : undefined
                 }
             >
-                <div className={`relative flex h-[56px] w-full px-[15px] items-center justify-between`}>
+                <div className={`relative flex h-[56px] w-full items-center justify-between px-[15px]`}>
                     <PhoneIconMobi
                         className="cursor-pointer"
                         onClick={(): void => openModal('modalcall_mobi', 'mobi')}
@@ -79,14 +68,24 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
 
             {isMenuOpen && (
                 <>
-                    <div className="fixed inset-0 bg-black bg-opacity-70 z-40" onClick={toggleMenu}>
+                    <div
+                        role="button"
+                        tabIndex={0}
+                        className="fixed inset-0 z-40 bg-black bg-opacity-[70%]"
+                        onClick={toggleMenu}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                toggleMenu()
+                            }
+                        }}
+                    >
                         {' '}
                     </div>
-                    <div className="absolute w-full top-0 right-0 bg-[#101030] z-50 flex flex-col items-center pt-9 px-3.5 text-white">
-                        <div className="w-full flex justify-end opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                    <div className="absolute right-0 top-0 z-50 flex w-full flex-col items-center bg-[#101030] px-3.5 pt-9 text-white">
+                        <div className="flex w-full cursor-pointer justify-end opacity-50 transition-opacity duration-300 hover:opacity-100">
                             <CrossIconMobi onClick={toggleMenu} />
                         </div>
-                        <div className="flex gap-2.5 flex-col items-center pt-1 pb-12 sm_s:pb-10 sm:pb-10">
+                        <div className="sm_s:pb-10 flex flex-col items-center gap-2.5 pb-12 pt-1 sm:pb-10">
                             <button
                                 className="flex items-center gap-3.5"
                                 onClick={(): void => openModal('login_mobi', 'mobi')}
@@ -96,7 +95,7 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                                     Войти в профиль
                                 </p>
                             </button>
-                            <div className="w-full h-[1px] bg-custom-grey rounded-full"></div>
+                            <div className="bg-custom-grey h-px w-full rounded-full"></div>
                         </div>
                         <HeaderNavigationMobi />
                         <Button
@@ -107,7 +106,7 @@ const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
                         >
                             Заказать звонок
                         </Button>
-                        <div className="flex items-center gap-6 mt-6 pb-12">
+                        <div className="mt-6 flex items-center gap-6 pb-12">
                             <a href="href" target="_blank" rel="noopener noreferrer">
                                 <TelegramIconBurgerMobi />
                             </a>

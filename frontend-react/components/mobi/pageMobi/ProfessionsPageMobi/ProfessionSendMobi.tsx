@@ -3,7 +3,6 @@ import { EnhancedInput } from '@/components/ui/input'
 import { SendIconMobi } from '@/components/assets/icons'
 
 const ProfessionSendMobi: React.FC = () => {
-    const [isFocused, setIsFocused] = useState(false)
     const [useRequest, setUseRequest] = useState('')
 
     const handleSendRequest = () => {
@@ -25,8 +24,6 @@ const ProfessionSendMobi: React.FC = () => {
                     size={'send_mobi'}
                     rounded={'rounded_20'}
                     wrapperClassName="justify-bitween h-[30px] rounded-[20px] border-box w-full border-[1.25px] border-[#878797] bg-transparent"
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
                 />
                 <SendIconMobi onClick={handleSendRequest} />
             </div>

@@ -12,7 +12,7 @@ export default function Profevents() {
 
     useEffect(() => {
         setIsClient(true)
-    })
+    }, [])
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 768px)',

@@ -3,25 +3,25 @@ import Modal from '@/components/ui/modal'
 import { X } from 'lucide-react'
 
 interface ModalOrderPlacedDesktopProps {
-    closeModal: () => void
+    onClose: () => void
 }
 
-const ModalOrderPlacedDesktop: React.FC<ModalOrderPlacedDesktopProps> = ({ closeModal }) => {
+const ModalOrderPlacedDesktop: React.FC<ModalOrderPlacedDesktopProps> = ({ onClose }) => {
     return (
-        <Modal show={true} onClose={closeModal} size="medium" showCloseButton={false}>
+        <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div>
-                <button onClick={closeModal} className="absolute right-7 top-6">
+                <button onClick={onClose} className="absolute right-7 top-6">
                     <X size={41} color="white" className="opacity-50 hover:opacity-100" />
                 </button>
             </div>
             <div className="mx-auto flex max-w-[426px] flex-col">
-                <h3 className="text-center bg-gradient-desktop bg-clip-text text-13xl font-medium mt-[54px] leading-[44px] text-transparent uppercase">
+                <h3 className="bg-gradient-desktop text-13xl mt-[54px] bg-clip-text text-center font-medium uppercase leading-[44px] text-transparent">
                     Заказ оформлен
                 </h3>
-                <p className="text-center mt-4 font-medium text-4xl leading-[22px] custom-grey">
+                <p className="custom-grey mt-4 text-center text-4xl font-medium leading-[22px]">
                     Мы уже занимаемся вашим заказом.
                 </p>
-                <p className="text-center mb-[61px] font-medium text-4xl leading-[22px] custom-grey">
+                <p className="custom-grey mb-[61px] text-center text-4xl font-medium leading-[22px]">
                     Свяжемся с вами в ближайшее время
                 </p>
             </div>

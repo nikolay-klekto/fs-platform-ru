@@ -12,7 +12,7 @@ export default function Companies() {
 
     useEffect(() => {
         setIsClient(true)
-    })
+    }, [])
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 768px)',

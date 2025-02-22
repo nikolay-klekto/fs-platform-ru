@@ -13,7 +13,7 @@ export default function Profile() {
 
     useEffect(() => {
         setIsClient(true)
-    })
+    }, [])
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 1240px)',

@@ -35,15 +35,15 @@ const ItemCompaniesDesktop: React.FC<ItemCompaniesDesktopProps> = ({ image, pric
     return (
         <div
             ref={itemRef}
-            className="flex justify-center items-end flex-shrink-0 w-[clamp(160px,_14vw,_228px)] h-[clamp(100px,_8vw,_142px)] pb-[clamp(16px,_1.5vw,_28px)] px-2 pt-6 border-2 border-[#878797] rounded-[25px] "
+            className="flex h-[clamp(100px,_8vw,_142px)] w-[clamp(160px,_14vw,_228px)] shrink-0 items-end justify-center rounded-[25px] border-2 border-[#878797] px-2 pb-[clamp(16px,_1.5vw,_28px)] pt-6 "
         >
-            <div className="flex flex-col items-center gap-[clamp(6px,_0.4vw,_13px)] w-full">
+            <div className="flex w-full flex-col items-center gap-[clamp(6px,_0.4vw,_13px)]">
                 <div className="flex justify-center">
                     <Image src={image.src} alt={image.alt} width={image.width} height={image.height} />
                 </div>
-                <p className="text-[#878797] text-[19px] 3xl:text-4xl 2xl:text-3xl">
+                <p className="3xl:text-4xl text-[19px] text-[#878797] 2xl:text-3xl">
                     от{' '}
-                    <span className="bg-gradient-desktop text-6xl 3xl:text-5xl 2xl:text-3xl bg-clip-text text-transparent">
+                    <span className="bg-gradient-desktop 3xl:text-5xl bg-clip-text text-6xl text-transparent 2xl:text-3xl">
                         {price} BYN/
                     </span>
                     неделя
