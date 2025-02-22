@@ -88,7 +88,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             wrapperClassName,
             labelClassName,
             placeholder,
-            checked,
             mask,
             maskPlaceholder = '_',
             ...props
@@ -126,7 +125,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             onChange?.(newValue.toString())
         }
 
-        const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        const handleFocus = () => {
             setIsFocused(true)
             onFocus?.()
         }
@@ -134,7 +133,10 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-            internalValue && validateComponent(internalValue)
+
+            if (internalValue) {
+                validateComponent(internalValue)
+            }
         }
 
         const handleCheckboxToggle = () => {
@@ -190,7 +192,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
                             )}
                             {...props}
                         >
-                            {(inputProps: any) => (
+                            {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
                                 <input {...inputProps} ref={ref} type={type} name={name} placeholder={placeholder} />
                             )}
                         </InputMask>

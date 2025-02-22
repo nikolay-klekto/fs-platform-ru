@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
@@ -17,8 +17,11 @@ interface RegistrationFormData {
     subscribe: boolean
     agree: boolean
 }
+interface RegistrationModalMobiProps {
+    onClose: () => void
+}
 
-const RegistrationModalMobi: React.FC = () => {
+const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }) => {
     const [formData, setFormData] = useState<RegistrationFormData>({
         email: '',
         phone: '',
@@ -27,7 +30,7 @@ const RegistrationModalMobi: React.FC = () => {
         subscribe: false,
         agree: false,
     })
-    const { closeModal, openModal } = useModal()
+    const { openModal } = useModal()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -50,7 +53,7 @@ const RegistrationModalMobi: React.FC = () => {
         }))
     }
 
-    const validateForm = (): boolean => {
+    const validateForm = useCallback((): boolean => {
         const hasEmptyFields =
             formData.email === '' ||
             formData.phone === '' ||
@@ -62,7 +65,13 @@ const RegistrationModalMobi: React.FC = () => {
         const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
 
         return hasEmptyFields || hasErrors || hasInternalErrors
-    }
+    }, [formData, errors, inputInternalErrors])
+
+    useEffect(() => {
+        if (!validateForm()) {
+            setFormError(false)
+        }
+    }, [validateForm])
 
     const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
         setFormData((prev) => {
@@ -125,15 +134,9 @@ const RegistrationModalMobi: React.FC = () => {
         } else {
             setFormError(false)
             console.log('Форма отправлена:', formData)
-            closeModal()
+            onClose()
         }
     }
-
-    useEffect(() => {
-        if (!validateForm()) {
-            setFormError(false)
-        }
-    }, [formData, errors, inputInternalErrors])
 
     const [inputTouched, setInputTouched] = useState({
         email: false,
@@ -147,7 +150,7 @@ const RegistrationModalMobi: React.FC = () => {
         }))
     }
     const openLoginModal = () => {
-        closeModal()
+        onClose()
         openModal('login_desktop', 'desktop')
     }
 
@@ -155,7 +158,7 @@ const RegistrationModalMobi: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70]">
             <div className="relative w-full max-w-md">
                 <button
-                    onClick={closeModal}
+                    onClick={onClose}
                     className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80]"
                 >
                     <X size={44} color="#878797" />
@@ -250,7 +253,7 @@ const RegistrationModalMobi: React.FC = () => {
                                 type="checkbox"
                                 name="subscribe"
                                 checked={formData.subscribe}
-                                onChange={(value) => setFormData((prev) => ({ ...prev, subscribe: value }))}
+                                onChange={(value) => setFormData((prev) => ({ ...prev, subscribe: value === 'true' }))}
                                 label="Я согласен(а) на обработку персональных данных"
                                 wrapperClassName="flex gap-2 pb-2"
                                 labelClassName={`${formData.subscribe ? 'text-white' : 'text-[#878797]'}`}
@@ -269,7 +272,7 @@ const RegistrationModalMobi: React.FC = () => {
                                         styleError: Boolean(error),
                                     }
                                 }}
-                                onChange={(value) => setFormData((prev) => ({ ...prev, agree: value }))}
+                                onChange={(value) => setFormData((prev) => ({ ...prev, agree: value === 'true' }))}
                                 label="Я согласен(а) получать новости о стажировках"
                                 wrapperClassName="flex gap-2 pb-2"
                                 labelClassName={`${formData.agree ? 'text-white' : 'text-[#878797]'}`}

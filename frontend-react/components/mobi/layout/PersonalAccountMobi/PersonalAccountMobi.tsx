@@ -51,20 +51,22 @@ const PersonalAccountMobi: React.FC = () => {
                     Выбрать стажировку
                 </button>
             </div>
-            <Modal show={menuOpen} onClose={() => setMenuOpen(false)} size="small" showCloseButton={false}>
-                <div className="z-50 flex flex-col space-y-4 p-6 text-center">
-                    {options.map((option) => (
-                        <button
-                            key={option}
-                            onClick={() => handleSelectOption(option)}
-                            className="hover:bg-gradient-desktop cursor-pointer text-[#878797]  hover:bg-clip-text hover:text-transparent hover:underline
+            {menuOpen && (
+                <Modal onClose={() => setMenuOpen(false)} size="small" showCloseButton={false}>
+                    <div className="z-50 flex flex-col space-y-4 p-6 text-center">
+                        {options.map((option) => (
+                            <button
+                                key={option}
+                                onClick={() => handleSelectOption(option)}
+                                className="hover:bg-gradient-desktop cursor-pointer text-[#878797]  hover:bg-clip-text hover:text-transparent hover:underline
                             "
-                        >
-                            {option}
-                        </button>
-                    ))}
-                </div>
-            </Modal>
+                            >
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+                </Modal>
+            )}
         </div>
     )
 }
