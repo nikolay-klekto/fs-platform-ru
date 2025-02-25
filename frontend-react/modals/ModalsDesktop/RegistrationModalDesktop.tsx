@@ -20,10 +20,10 @@ interface RegistrationFormData {
 }
 
 interface RegistrationModalDesktopProps {
-    isOpen: boolean
+    onClose: () => void
 }
 
-const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ isOpen }) => {
+const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onClose }) => {
     const [formData, setFormData] = useState<RegistrationFormData>({
         email: '',
         phone: '',
@@ -32,7 +32,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ isO
         subscribe: false,
         agree: false,
     })
-    const { closeModal, openModal } = useModal()
+    const { openModal } = useModal()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -127,7 +127,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ isO
         } else {
             setFormError(false)
             console.log('Форма отправлена:', formData)
-            closeModal()
+            onClose()
         }
     }
 
@@ -149,16 +149,16 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ isO
         }))
     }
     const openLoginModal = () => {
-        closeModal()
+        onClose()
         openModal('login_desktop', 'desktop')
     }
     return (
-        <Modal show={isOpen} onClose={closeModal} size="medium" showCloseButton={false}>
+        <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div className="mx-auto flex w-[73%] flex-col items-center justify-center pb-[30px] pt-[40px]">
-                <button onClick={closeModal} className="absolute right-[5%] top-[5%] w-[7%]">
+                <button onClick={onClose} className="absolute right-[5%] top-[5%] w-[7%]">
                     <X size={41} color="white" className="w-full opacity-70" />
                 </button>
-                <h2 className="text36px_desktop text-gradient_desktop_custom mb-7 inline font-medium uppercase 2xl:mb-4 3xl:mb-5 4xl:mb-6">
+                <h2 className="text36px_desktop text-gradient_desktop_custom 3xl:mb-5 4xl:mb-6 mb-7 inline font-medium uppercase 2xl:mb-4">
                     Регистрация
                 </h2>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle">
@@ -291,7 +291,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ isO
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="mx-auto mt-6 w-[70%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:bg-[#878797]"
+                        className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-6 w-[70%] rounded-[50px] text-5xl font-semibold disabled:bg-[#878797]"
                     >
                         Зарегистрироваться
                     </Button>

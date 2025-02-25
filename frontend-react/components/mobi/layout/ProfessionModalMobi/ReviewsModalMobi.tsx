@@ -1,14 +1,12 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { contentReviewsMobi } from './content'
 import ItemReviewsMobi from './ItemReviewsMobi'
 
 const ReviewsModalMobi: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
-    const [itemWidth, setItemWidth] = useState<number>(0)
-
     const contentWidth = contentRef.current?.scrollWidth
 
     const handleScroll = () => {
@@ -28,21 +26,21 @@ const ReviewsModalMobi: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="flex gap-2 overflow-x-scroll no-scrollbar_custom select-none"
+                className="no-scrollbar_custom flex select-none gap-2 overflow-x-scroll"
             >
                 {contentReviewsMobi.map((item) => (
                     <ItemReviewsMobi
                         key={item.id}
                         question={item.question}
                         answer={item.answer}
-                        onWidthChange={setItemWidth}
+                        onWidthChange={() => {}}
                     />
                 ))}
             </div>
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="relative h-2 w-[97%] mx-auto mt-6 sm_s:mt-5 sm:mt-5 overflow-x-scroll scrollbar_custom cursor-pointer"
+                className="sm_s:mt-5 scrollbar_custom relative mx-auto mt-6 h-2 w-[97%] cursor-pointer overflow-x-scroll sm:mt-5"
             >
                 <div className="h-full" style={{ width: `${contentWidth}px` }}></div>
             </div>

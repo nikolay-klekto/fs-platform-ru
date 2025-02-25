@@ -5,6 +5,7 @@ import { EnhancedInput } from '@/components/ui/input'
 import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validateNameMobi'
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 import { useModal } from '@/context/ContextModal'
+
 interface FormData {
     name: string
     phone: string
@@ -12,12 +13,11 @@ interface FormData {
     consent: boolean
 }
 
-interface ModalCallProps {
-    isOpen: boolean
+interface ModalCallMobiProps {
     onClose: () => void
 }
 
-const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
+const ModalCallMobi: React.FC<ModalCallMobiProps> = ({ onClose }) => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         phone: '',
@@ -26,7 +26,7 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
     })
     const [step, setStep] = useState<'form' | 'accepted' | null>('form')
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
-    const { closeModal } = useModal()
+
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
         if (!formData.name.trim()) {
@@ -49,10 +49,6 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
         }
     }
 
-    // if (!isOpen) {
-    //     return null
-    // }
-
     const [inputTouched, setInputTouched] = useState({
         email: false,
         phone: false,
@@ -70,7 +66,7 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
                 <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
                     <div className="relative mx-4 w-full max-w-md ">
                         <button
-                            onClick={closeModal}
+                            onClick={onClose}
                             className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
                             <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
@@ -159,7 +155,7 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] bg-sub-title-gradient-mobi text-3xl font-semibold text-white md:text-4xl"
+                                    className="bg-sub-title-gradient-mobi mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] text-3xl font-semibold text-white md:text-4xl"
                                 >
                                     Отправить заявку
                                 </button>
@@ -169,24 +165,24 @@ const ModalCallMobi: React.FC<ModalCallProps> = ({ isOpen }) => {
                 </div>
             )}
 
-            {isOpen && step === 'accepted' && (
+            {step === 'accepted' && (
                 <div className=" fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
                     <div className="relative mx-4 w-full max-w-md ">
                         <button
-                            onClick={closeModal}
+                            onClick={onClose}
                             className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                         >
                             <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
-                        <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat pt-10 pb-7 px-3">
+                        <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat px-3 pb-7 pt-10">
                             <h1 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
-                            <p className="mb-1 px-3 pb-[18px] text-xl leading-[17px] text-justify font-medium text-[#878797] md:text-lg">
+                            <p className="mb-1 px-3 pb-[18px] text-justify text-xl font-medium leading-[17px] text-[#878797] md:text-lg">
                                 Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
                                 сайте.
                             </p>
-                            <div className="mx-auto my-2 flex w-[180px] items-center justify-center rounded-[50px] bg-sub-title-gradient-mobi p-[3px]">
+                            <div className="bg-sub-title-gradient-mobi mx-auto my-2 flex w-[180px] items-center justify-center rounded-[50px] p-[3px]">
                                 <button
                                     type="button"
                                     className="h-10 w-full rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"
