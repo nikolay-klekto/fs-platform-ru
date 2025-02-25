@@ -1,13 +1,13 @@
-import RequiringPaymentCardDesktop from './RequiringPaymentCardDesktop/RequiringPaymentCardDesktop'
-import { content } from '@/components/desktop/layout/RequiringPaymentDesktop/RequiringPaymentCardDesktop/content'
+import { contentOrderPayment } from '@/components/desktop/layout/OrderPaymentDesktop/OrderPaymentDesktop/contentOrderPayment'
 import { Button } from '@/components/ui/button'
+import OrderPaymentCardDesktop from './OrderPaymentDesktop/OrderPaymentCardDesktop'
 import Link from 'next/link'
 
-const RequiringPaymentDesktop: React.FC = () => {
-    if (!content) {
+const OrderPaymentDesktop: React.FC = () => {
+    if (!contentOrderPayment) {
         return (
             <div className="flex flex-col items-center pb-[370px] pt-[80px]">
-                <p className="mb-4 text-[#353652] hover:underline">Ваша корзина пуста</p>
+                <p className="mb-4 text-[#353652] hover:underline">Заказов требующих оплаты нет</p>
                 <Link href={'/professions'}>
                     <Button variant={'send_btn_desktop'} size={'send_btn_desktop'}>
                         Выбрать профессию
@@ -20,8 +20,8 @@ const RequiringPaymentDesktop: React.FC = () => {
         <>
             <div className="pb-[49px] pt-[80px]">
                 <div className="flex flex-wrap justify-between gap-[34px] self-end pb-[87px] md:gap-[12px] 2xl:pt-[75px]">
-                    {content.map((item) => (
-                        <RequiringPaymentCardDesktop
+                    {contentOrderPayment.map((item) => (
+                        <OrderPaymentCardDesktop
                             key={item.id}
                             profession={item.profession}
                             company_name={item.company_name}
@@ -31,7 +31,9 @@ const RequiringPaymentDesktop: React.FC = () => {
                             location={item.location}
                             image={item.image}
                             price={item.price}
-                            tooltipMessage="Удалить из корзины"
+                            contract={item.contract}
+                            daysForPayOrder={item.daysForPayOrder}
+                            tooltipMessage="Расторгнуть договор"
                         />
                     ))}
                 </div>
@@ -42,4 +44,4 @@ const RequiringPaymentDesktop: React.FC = () => {
         </>
     )
 }
-export default RequiringPaymentDesktop
+export default OrderPaymentDesktop

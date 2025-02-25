@@ -101,12 +101,12 @@ export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ tooltipMessage 
     <TooltipProvider delayDuration={200}>
         <Tooltip>
             <TooltipTrigger asChild>
-                <button className="flex justify-self-start self-end mt-5 mr-6 3xl:mr-5 2xl:mr-6">
+                <button className="3xl:mr-5 mr-6 mt-5 flex self-end justify-self-start 2xl:mr-6">
                     <HelpIconDesktop />
                 </button>
             </TooltipTrigger>
             <TooltipContent
-                className="w-[385px] 3xl:max-w-[310px] 2xl:max-w-[278px] h-full max-h-[100vh] m-0 bg-[#353652cc] rounded-[25px] shadow-none border-none"
+                className="3xl:max-w-[310px] m-0 h-full max-h-screen w-[385px] rounded-[25px] border-none bg-[#353652cc] shadow-none 2xl:max-w-[278px]"
                 sideOffset={3}
                 side="top"
                 align="end"
@@ -115,12 +115,12 @@ export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ tooltipMessage 
                 avoidCollisions={false}
                 collisionPadding={{ top: 20, left: 20 }}
             >
-                <div className="p-2 4xl:p-1.5 3xl:p-1.5 2xl:p-1.5 pt-2 3xl:pt-1 2xl:pt-1">
-                    <p className="text-[15px] 3xl:text-[12px] 2xl:text-[12px] align-baseline font-medium 3xl:font-light 2xl:font-light text-white leading-[19px] text-mauve12">
+                <div className="4xl:p-1.5 3xl:p-1.5 3xl:pt-1 p-2 2xl:p-1.5 2xl:pt-1">
+                    <p className="3xl:text-[12px] 3xl:font-light text-mauve12 align-baseline text-[15px] font-medium leading-[19px] text-white 2xl:text-[12px] 2xl:font-light">
                         {tooltipMessage}
                     </p>
                 </div>
-                <TooltipArrow className="h-2 fill-[#353652cc] transform: translateY(-1px)" />
+                <TooltipArrow className="transform: translateY(-1px) h-2 fill-[#353652cc]" />
             </TooltipContent>
         </Tooltip>
     </TooltipProvider>
@@ -129,12 +129,12 @@ export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ tooltipMessage 
 export const HelpTooltipMobi: React.FC<HelpTooltipProps> = ({ tooltipMessage }) => (
     <Popover>
         <PopoverTrigger asChild>
-            <button className="flex justify-self-start self-end mt-5 mr-5">
+            <button className="mr-5 mt-5 flex self-end justify-self-start">
                 <HelpIconMobi />
             </button>
         </PopoverTrigger>
         <PopoverContent
-            className="min-w-[345px] sm_xl:max-w-[425px] sm_l:min-w-[332px] sm_s:min-w-[290px] sm:min-w-[100px] sm:w-min min-h-[96px] sm_s:min-h-[76px] sm:min-h-[76px] m-auto p-1.5 sm:p-1 bg-[#353652cc] rounded-[25px] shadow-none border-none will-change-auto"
+            className="sm_xl:max-w-[425px] sm_l:min-w-[332px] sm_s:min-w-[290px] sm_s:min-h-[76px] m-auto min-h-[96px] min-w-[345px] rounded-[25px] border-none bg-[#353652cc] p-1.5 shadow-none will-change-auto sm:min-h-[76px] sm:w-min sm:min-w-[100px] sm:p-1"
             sideOffset={3}
             side="top"
             align="end"
@@ -143,8 +143,8 @@ export const HelpTooltipMobi: React.FC<HelpTooltipProps> = ({ tooltipMessage }) 
             avoidCollisions={false}
             collisionPadding={{ top: 20, left: 20 }}
         >
-            <div className="p-2 sm:p-1 sm:px-1.5 sm:w-[200px]">
-                <p className="text-[15px] sm_s:text-[12px] sm:text-[12px] align-baseline font-medium text-white leading-[19px] sm:leading-[17px] text-mauve12">
+            <div className="p-2 sm:w-[200px] sm:p-1 sm:px-1.5">
+                <p className="sm_xl:max-w-[425px] sm_l:min-w-[332px] sm_s:min-w-[290px] sm_s:min-h-[76px] m-auto min-h-[96px] min-w-[345px] rounded-[25px] border-none bg-[#353652cc] p-1.5 shadow-none will-change-auto sm:min-h-[76px] sm:w-min sm:min-w-[100px] sm:p-1">
                     {tooltipMessage}
                 </p>
             </div>
@@ -162,7 +162,7 @@ export const TrashTooltipDesktop: React.FC<HelpTooltipProps> = ({ tooltipMessage
                 </button>
             </TooltipTrigger>
             <TooltipContent
-                className="w-[201px] m-0 bg-[#353652cc] rounded-[25px] shadow-none border-none"
+                className="3xl:max-w-[310px] m-0 h-full max-h-screen w-[350px] rounded-[25px] border-none bg-[#353652cc] shadow-none 2xl:max-w-[278px]"
                 sideOffset={3}
                 side="bottom"
                 align="start"
@@ -171,12 +171,12 @@ export const TrashTooltipDesktop: React.FC<HelpTooltipProps> = ({ tooltipMessage
                 avoidCollisions={false}
                 collisionPadding={{ top: 10, left: 20 }}
             >
-                <div className="p-2 4xl:p-1.5 3xl:p-1.5 2xl:p-1.5 pt-2 3xl:pt-1 2xl:pt-1">
-                    <p className="text-[15px] 3xl:text-[12px] 2xl:text-[12px] align-baseline font-medium 3xl:font-light 2xl:font-light text-white leading-[19px] text-mauve12">
+                <div className="4xl:p-1.5 3xl:p-1.5 3xl:pt-1 p-2 2xl:p-1.5 2xl:pt-1">
+                    <p className="3xl:text-[12px] 3xl:font-light text-mauve12 align-baseline text-[15px] font-medium leading-[19px] text-white 2xl:text-[12px] 2xl:font-light">
                         {tooltipMessage}
                     </p>
                 </div>
-                <TooltipArrow className="h-2 fill-[#353652cc] transform: translateY(-1px)" />
+                <TooltipArrow className="transform: translateY(-1px) h-2 fill-[#353652cc]" />
             </TooltipContent>
         </Tooltip>
     </TooltipProvider>
