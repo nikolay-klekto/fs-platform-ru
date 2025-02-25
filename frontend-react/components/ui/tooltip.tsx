@@ -144,7 +144,7 @@ export const HelpTooltipMobi: React.FC<HelpTooltipProps> = ({ tooltipMessage }) 
             collisionPadding={{ top: 20, left: 20 }}
         >
             <div className="p-2 sm:w-[200px] sm:p-1 sm:px-1.5">
-                <p className="sm_xl:max-w-[425px] sm_l:min-w-[332px] sm_s:min-w-[290px] sm_s:min-h-[76px] m-auto min-h-[96px] min-w-[345px] rounded-[25px] border-none bg-[#353652cc] p-1.5 shadow-none will-change-auto sm:min-h-[76px] sm:w-min sm:min-w-[100px] sm:p-1">
+                <p className="sm_s:text-[12px] text-mauve12 align-baseline text-[15px] font-medium leading-[19px] text-white sm:text-[12px] sm:leading-[17px]">
                     {tooltipMessage}
                 </p>
             </div>

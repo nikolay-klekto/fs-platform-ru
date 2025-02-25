@@ -1,13 +1,12 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { contentReviewsDesktop } from './content'
 import ItemReviewsDesktop from './ItemReviewsDesktop'
 
 const ReviewsModalDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
-    const [itemWidth, setItemWidth] = useState<number>(0)
 
     const handleScroll = () => {
         if (contentRef.current && scrollbarRef.current) {
@@ -33,21 +32,21 @@ const ReviewsModalDesktop: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="w-full flex gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll no-scrollbar_custom select-none"
+                className="no-scrollbar_custom flex w-full select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll"
             >
                 {contentReviewsDesktop.map((item) => (
                     <ItemReviewsDesktop
                         key={item.id}
                         question={item.question}
                         answer={item.answer}
-                        onWidthChange={setItemWidth}
+                        onWidthChange={() => {}}
                     />
                 ))}
             </div>
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="relative h-[14px] w-[65%] mx-auto mt-[clamp(25px,_2vw,_40px)] overflow-x-scroll scrollbar_custom cursor-pointer"
+                className="scrollbar_custom relative mx-auto mt-[clamp(25px,_2vw,_40px)] h-[14px] w-[65%] cursor-pointer overflow-x-scroll"
             >
                 <div className="absolute h-2" style={{ width: `${calculateScrollbarWidth()}px` }}></div>
             </div>
