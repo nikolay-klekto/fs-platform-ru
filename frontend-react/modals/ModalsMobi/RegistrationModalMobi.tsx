@@ -160,7 +160,7 @@ const RegistrationModalMobi: React.FC<RegistrationMobiProps> = ({ isOpen }) => {
             <div className="relative max-w-md w-full">
                 <button
                     onClick={closeModal}
-                    className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-80"
+                    className="absolute top-0 right-0 rounded-[50px] bg-[#101030] bg-opacity-80 z-10"
                 >
                     <X size={44} color="#878797" />
                 </button>
