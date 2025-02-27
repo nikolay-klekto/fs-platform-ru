@@ -1,6 +1,6 @@
 import { contentOrderPayment } from '@/components/desktop/layout/OrderPaymentDesktop/OrderPaymentCardDesktop/contentOrderPayment'
 import { Button } from '@/components/ui/button'
-import OrderPaymentCardDesktop from './OrderPaymentCardDesktop/OrderPaymentCardDesktop'
+import OrderPaymentCardDesktop from './OrderPaymentCardMobi/OrderPaymentCardMobi'
 import Link from 'next/link'
 
 const OrderPaymentDesktop: React.FC = () => {

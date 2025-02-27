@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import RequiringPaymentDesktop from '../RequiringPaymentDesktop/RequiringPaymentDesktop'
+import OrderPaymentDesktop from '../OrderPaymentDesktop/OrderPaymentDesktop'
 
 const PersonalAccountDesktop: React.FC = () => {
     return (
@@ -49,6 +50,7 @@ const PersonalAccountDesktop: React.FC = () => {
                         </Link>
                     </div>
                     <RequiringPaymentDesktop />
+                    <OrderPaymentDesktop />
                 </div>
             </div>
         </>
