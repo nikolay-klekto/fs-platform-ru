@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Modal from '@/components/ui/modal'
 import { ChevronLeft } from 'lucide-react'
 import RequiringPaymentMobi from '../RequiringPaymentMobi/RequiringPaymentMobi'
+import OrderPaymentMobi from '../OrderPaymentMobi/OrderPaymentMobi'
 
 const PersonalAccountMobi: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -19,7 +20,7 @@ const PersonalAccountMobi: React.FC = () => {
             case 'МОЙ ПРОФИЛЬ':
                 return 'Раздел с информацией'
             case 'ТРЕБУЮЩИЕ ОПЛАТЫ':
-                return 'Нет счетов'
+                return <OrderPaymentMobi />
             case 'КОРЗИНА':
                 return <RequiringPaymentMobi />
             default:
@@ -49,13 +50,12 @@ const PersonalAccountMobi: React.FC = () => {
             <p className="text-text22px_mobi text-center text-[#353652]">{getContentText()}</p>
             {menuOpen && (
                 <Modal onClose={() => setMenuOpen(false)} size="small" showCloseButton={false}>
-                    <div className="z-50 flex flex-col space-y-4  text-center">
+                    <div className="z-50 flex flex-col space-y-4 text-center py-[36px]">
                         {options.map((option) => (
                             <button
                                 key={option}
                                 onClick={() => handleSelectOption(option)}
-                                className="hover:bg-gradient-desktop cursor-pointer text-[#878797]  hover:bg-clip-text hover:text-transparent hover:underline
-                            "
+                                className="hover:bg-gradient-desktop cursor-pointer text-[#878797]  hover:bg-clip-text hover:text-transparent hover:underline text18px_mobi"
                             >
                                 {option}
                             </button>

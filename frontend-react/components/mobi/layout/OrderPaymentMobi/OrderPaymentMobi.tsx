@@ -1,16 +1,16 @@
-import { contentOrderPayment } from '@/components/desktop/layout/OrderPaymentDesktop/OrderPaymentCardDesktop/contentOrderPayment'
+import { contentOrderPayment } from './OrderPaymentCardMobi/contentOrderPayment'
 import { Button } from '@/components/ui/button'
-import OrderPaymentCardDesktop from './OrderPaymentCardMobi/OrderPaymentCardMobi'
+import OrderPaymentCardMobi from './OrderPaymentCardMobi/OrderPaymentCardMobi'
 import Link from 'next/link'
 
-const OrderPaymentDesktop: React.FC = () => {
+const OrderPaymentMobi: React.FC = () => {
     if (!contentOrderPayment) {
         return (
-            <div className="flex flex-col items-center pb-[370px] pt-[80px]">
+            <div className="flex flex-col items-center  pt-[57px]">
                 <p className="mb-4 text-[#353652] hover:underline">Заказов требующих оплаты нет</p>
                 <Link href={'/professions'}>
-                    <Button variant={'send_btn_desktop'} size={'send_btn_desktop'}>
-                        Выбрать профессию
+                    <Button variant={'select_mobi'} size={'promo_mobi'} className="text-[17px] w-[294px]">
+                        Выбрать стажировку
                     </Button>
                 </Link>
             </div>
@@ -18,10 +18,10 @@ const OrderPaymentDesktop: React.FC = () => {
     }
     return (
         <>
-            <div className="pb-[49px] pt-[80px]">
-                <div className="flex flex-wrap justify-between gap-[34px] self-end pb-[87px] md:gap-[12px] 2xl:pt-[75px]">
+            <div className="py-[40px]">
+                <div className="flex flex-wrap justify-center gap-[34px] self-end pb-[87px] md:gap-[12px] 2xl:pt-[75px]">
                     {contentOrderPayment.map((item) => (
-                        <OrderPaymentCardDesktop
+                        <OrderPaymentCardMobi
                             key={item.id}
                             profession={item.profession}
                             company_name={item.company_name}
@@ -33,15 +33,14 @@ const OrderPaymentDesktop: React.FC = () => {
                             price={item.price}
                             contract={item.contract}
                             daysForPayOrder={item.daysForPayOrder}
-                            tooltipMessage="Расторгнуть договор"
                         />
                     ))}
                 </div>
-                <Button className="flex justify-self-center" variant={'send_btn_desktop'} size={'send_btn_desktop'}>
+                <Button variant={'select_mobi'} size={'promo_mobi'} className="text-[17px] w-[294px]">
                     Очистить всё
                 </Button>
             </div>
         </>
     )
 }
-export default OrderPaymentDesktop
+export default OrderPaymentMobi

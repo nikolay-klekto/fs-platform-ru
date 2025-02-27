@@ -2,9 +2,9 @@
 
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { TrashTooltipDesktop } from '@/components/ui/tooltip'
+import { TrashIconMobi } from '@/components/assets/iconsMobi'
 
-interface OrderPaymentCardDesktop {
+interface OrderPaymentCardMobi {
     profession: string
     company_name: string
     start_day: string
@@ -13,13 +13,12 @@ interface OrderPaymentCardDesktop {
     location: string
     image: string
     price: number
-    tooltipMessage: string
     contract: string
     daysForPayOrder: string
     onClick?: () => void
 }
 
-const OrderPaymentCardDesktop: React.FC<OrderPaymentCardDesktop> = ({
+const OrderPaymentCardMobi: React.FC<OrderPaymentCardMobi> = ({
     profession,
     company_name,
     start_day,
@@ -33,62 +32,41 @@ const OrderPaymentCardDesktop: React.FC<OrderPaymentCardDesktop> = ({
     onClick,
 }) => {
     return (
-        <div className="flex flex-col flex-wrap rounded-[50px] bg-[#272745] px-[32px] py-[40px]">
-            <div className="grid grid-cols-[4fr_4fr_5fr] grid-rows-8 pb-[13px] leading-none">
-                <div className="text30px_desktop text-gradient_desktop_custom col-span-2">ОПЛАТА ЗАКАЗА</div>
-                <div className="relative row-span-6 mb-[20px] ml-[32px] h-[328px] w-[290px]">
+        <div className="flex flex-col flex-wrap rounded-[40px] bg-[#272745] px-[12px] py-[40px]">
+            <div className="flex flex-col leading-none ">
+                <div className="text18px_mobi text-gradient_mobi_custom pb-[30px]">ОПЛАТА ЗАКАЗА</div>
+                <div className="relative h-[184px]">
                     <Image
                         src={image}
                         fill
                         alt={profession}
-                        className="pointer-events-none select-none rounded-[3.125rem] 2xl:rounded-[2rem]"
+                        className="pointer-events-none select-none rounded-[25px]"
                     />
                 </div>
-                <div className="text18px_desktop border-b-2 border-[#353652] pt-[20px] font-medium text-[#878797]">
-                    Номер договора
+                <div className="grid grid-cols-2 gap-[20px] text-wrap text-left pb-[30px] pt-[20px]">
+                    <div className="text-[#878797] font-medium text12px_mobi">Профессия:</div>
+                    <div className="text14px_mobi text-white leading-[1.2]">{profession}</div>
+                    <div className="text-[#878797] font-medium text12px_mobi">Компания:</div>
+                    <div className="text14px_mobi text-white leading-[1.2]">{company_name}</div>
+                    <div className="text-[#878797] font-medium text12px_mobi">Дата стажировки:</div>
+                    <div className="text14px_mobi text-white text-nowrap">
+                        {start_day} - {end_day}
+                    </div>
+                    <div className="text-[#878797] font-medium text12px_mobi">Вид стажировки:</div>
+                    <div className="text14px_mobi text-white leading-[1.2] leading-[1.2]">{category}</div>
+                    <div className="text-[#878797] font-medium text12px_mobi">Адрес офиса:</div>
+                    <div className="text14px_mobi text-white leading-[1.2]">{location}</div>
                 </div>
-                <div className="text18px_modal_desktop border-b-2 border-[#353652] pt-[20px] leading-none text-white">
-                    № {contract}
+                <div className="border-t-2 text-right text-xs pt-[4px] text-[#BC8070]">
+                    Оплатить заказ до {daysForPayOrder}
                 </div>
-                <div className="text18px_desktop border-b-2 border-[#353652] pt-[20px] font-medium text-[#878797]">
-                    Профессия:
-                </div>
-                <div className="text18px_modal_desktop border-b-2 border-[#353652] pt-[20px] leading-none text-white">
-                    {profession}
-                </div>
-                <div className="text18px_desktop border-b-2 border-[#353652] pt-[20px] font-medium text-[#878797]">
-                    Компания:
-                </div>
-                <div className="text18px_modal_desktop border-b-2 border-[#353652] pt-[20px] text-white">
-                    {company_name}
-                </div>
-                <div className="text18px_desktop border-b-2 border-[#353652] pt-[20px] font-medium text-[#878797]">
-                    Дата стажировки
-                </div>
-                <div className="text18px_modal_desktop border-b-2 border-[#353652] pt-[20px] text-white">
-                    {start_day} - {end_day}
-                </div>
-                <div className="text18px_desktop  pt-[20px] font-medium text-[#878797]">Вид стажировки:</div>
-                <div className="text18px_modal_desktop  pt-[20px] text-white">{category}</div>
-                <div className="text18px_desktop border-b-2 border-[#353652] pt-[20px] text-[#878797]">
-                    Адрес офиса:
-                </div>
-                <div className="text18px_modal_desktop col-span-2 auto-cols-max border-t-2 border-[#353652] pt-[20px] text-white">
-                    {location}
-                </div>
-                <div className="text24px_desktop border-t-2 pt-[20px] font-semibold text-white">Стоимость:</div>
-                <div className="text28px_desktop col-span-2 border-t-2 pt-[20px] font-semibold text-white">
-                    {price} BYN
-                </div>
-            </div>
-            <div className="flex items-center justify-between pt-[13px]">
-                <div className="text18px_desktop text-[#BC8070] "> Оплатить заказ до {daysForPayOrder}</div>
-                <div className="flex gap-[20px] self-end">
+                <div className="flex justify-between  pt-[4px] items-center ">
+                    <div className="text16px_mobi   font-semibold text-white">{price} BYN</div>
                     <button>
-                        <TrashTooltipDesktop tooltipMessage="Расторгнуть договор" />
+                        <TrashIconMobi />
                     </button>
-                    <Button variant={'send_btn_desktop'} size={'send_btn_desktop'} onClick={onClick}>
-                        Оформить заказ
+                    <Button variant={'select_mobi'} size={'select_mobi'} className="text-2xl" onClick={onClick}>
+                        Оплатить
                     </Button>
                 </div>
             </div>
@@ -96,4 +74,4 @@ const OrderPaymentCardDesktop: React.FC<OrderPaymentCardDesktop> = ({
     )
 }
 
-export default OrderPaymentCardDesktop
+export default OrderPaymentCardMobi

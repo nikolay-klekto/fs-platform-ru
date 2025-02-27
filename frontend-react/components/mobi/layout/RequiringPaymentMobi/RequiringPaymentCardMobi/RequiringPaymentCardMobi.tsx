@@ -41,17 +41,17 @@ const RequiringPaymentCardMobi: React.FC<RequiringPaymentCardMobi> = ({
                 </div>
                 <div className="grid grid-cols-2 gap-[20px] text-wrap text-left">
                     <div className="text-[#878797] font-medium text12px_mobi">Профессия:</div>
-                    <div className="text14px_mobi text-white">{profession}</div>
+                    <div className="text14px_mobi text-white leading-[1.2]">{profession}</div>
                     <div className="text-[#878797] font-medium text12px_mobi">Компания:</div>
-                    <div className="text14px_mobi text-white">{company_name}</div>
+                    <div className="text14px_mobi text-white leading-[1.2]">{company_name}</div>
                     <div className="text-[#878797] font-medium text12px_mobi">Начало стажировки:</div>
                     <div className="text14px_mobi text-white">{start_day}</div>
                     <div className="text-[#878797] font-medium text12px_mobi">Конец стажировки:</div>
                     <div className="text14px_mobi text-white">{end_day}</div>
                     <div className="text-[#878797] font-medium text12px_mobi">Вид стажировки:</div>
-                    <div className="text14px_mobi text-white">{category}</div>
+                    <div className="text14px_mobi text-white leading-[1.2]">{category}</div>
                     <div className="text-[#878797] font-medium text12px_mobi">Адрес офиса:</div>
-                    <div className="text14px_mobi text-white">{location}</div>
+                    <div className="text14px_mobi text-white leading-[1.2]">{location}</div>
                 </div>
                 <div className="flex justify-between border-t-2 pt-[20px] items-center">
                     <div className="text16px_mobi   font-semibold text-white">{price} BYN</div>

@@ -162,7 +162,7 @@ export const TrashTooltipDesktop: React.FC<HelpTooltipProps> = ({ tooltipMessage
                 </button>
             </TooltipTrigger>
             <TooltipContent
-                className="3xl:max-w-[207px] m-0 h-full max-h-screen w-[207px] rounded-[25px] border-none bg-[#353652cc] shadow-none 2xl:max-w-[207px]"
+                className=" m-0 h-full max-h-screen w-[207px] rounded-[25px] border-none bg-[#353652cc] shadow-none"
                 sideOffset={3}
                 side="bottom"
                 align="start"
