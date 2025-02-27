@@ -8,7 +8,9 @@ import { validateEmailMobi } from '@/components/mobi/commonMobi/validate/validat
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 import PasswordInputMobi from '@/components/mobi/shared/formInput/PasswordInputMobi'
 import { useModal } from '@/context/ContextModal'
-import { useAuthActions } from '@/hooks/AuthHook'
+import { useAuth } from '@/hooks/useAuth'
+import { useRouter } from 'next/router'
+
 interface RegistrationFormData {
     email: string
     phone: string
@@ -31,6 +33,7 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }
         agree: false,
     })
     const { openModal } = useModal()
+    const { register } = useAuth()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -133,8 +136,12 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }
             console.log('Ошибка: Заполните все поля корректно или исправьте ошибки')
         } else {
             setFormError(false)
-            console.log('Форма отправлена:', formData)
-            onClose()
+            const result = await register(formData.email, formData.phone, formData.password)
+            if (result) {
+                console.log('Успешная регистрация', result)
+                onClose()
+                router.push('/personalaccount')
+            }
         }
     }
 
@@ -164,7 +171,7 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }
                     <X size={44} color="#878797" />
                 </button>
                 <div className="relative flex max-w-[500px] flex-col items-center rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat">
-                    <h1 className="text18px_mobi bg-sub-title-gradient-mobi mx-auto mb-1 mt-6 inline bg-clip-text font-semibold uppercase text-transparent">
+                    <h1 className="text18px_mobi mx-auto mb-1 mt-6 inline bg-sub-title-gradient-mobi bg-clip-text font-semibold uppercase text-transparent">
                         Регистрация
                     </h1>
                     <form onSubmit={handleSubmit} className="flex w-4/5 flex-col align-middle">
@@ -285,7 +292,7 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }
                             variant="default"
                             size="btn_modal_desktop"
                             disabled={formError}
-                            className="bg-gradient-desktop sm_xl:text-3xl sm_l:text-2xl sm_s:text-xl hover:bg-gradient-desktop-hover sm_l:w-4/5 sm_s:w-4/5 mx-auto mt-6 w-[70%] rounded-[50px] text-4xl font-medium sm:w-4/5 sm:text-xl md:text-4xl"
+                            className="mx-auto mt-6 w-[70%] rounded-[50px] bg-gradient-desktop text-4xl font-medium hover:bg-gradient-desktop-hover sm:w-4/5 sm:text-xl md:text-4xl sm_s:w-4/5 sm_s:text-xl sm_l:w-4/5 sm_l:text-2xl sm_xl:text-3xl"
                         >
                             Зарегистрироваться
                         </Button>

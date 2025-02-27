@@ -10,7 +10,7 @@ import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validat
 import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
 import { useModal } from '@/context/ContextModal'
-import { useAuthActions } from '@/hooks/AuthHook'
+import { useAuth } from '@/hooks/useAuth'
 
 interface RegistrationFormData {
     email: string
@@ -34,6 +34,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
         subscribe: false,
         agree: false,
     })
+    const { register } = useAuth()
     const { openModal } = useModal()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
@@ -125,11 +126,14 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
         e.preventDefault()
         if (validateForm()) {
             setFormError(true)
-            console.log('Ошибка: Заполните все поля корректно или исправьте ошибки')
-        } else {
-            setFormError(false)
-            console.log('Форма отправлена:', formData)
+            return
+        }
+
+        const result = await register(formData.email, formData.phone, formData.password)
+        if (result) {
+            console.log('Успешная регистрация', result)
             onClose()
+            router.push('/personalaccount')
         }
     }
 
@@ -154,13 +158,14 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
         onClose()
         openModal('login_desktop', 'desktop')
     }
+
     return (
         <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div className="mx-auto flex w-[73%] flex-col items-center justify-center pb-[30px] pt-[40px]">
                 <button onClick={onClose} className="absolute right-[5%] top-[5%] w-[7%]">
                     <X size={41} color="white" className="w-full opacity-70" />
                 </button>
-                <h2 className="text36px_desktop text-gradient_desktop_custom 3xl:mb-5 4xl:mb-6 mb-7 inline font-medium uppercase 2xl:mb-4">
+                <h2 className="text36px_desktop text-gradient_desktop_custom mb-7 inline font-medium uppercase 2xl:mb-4 3xl:mb-5 4xl:mb-6">
                     Регистрация
                 </h2>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle">
@@ -293,7 +298,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-6 w-[70%] rounded-[50px] text-5xl font-semibold disabled:bg-[#878797]"
+                        className="mx-auto mt-6 w-[70%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:bg-[#878797]"
                     >
                         Зарегистрироваться
                     </Button>
