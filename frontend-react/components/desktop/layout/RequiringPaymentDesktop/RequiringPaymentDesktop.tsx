@@ -18,8 +18,8 @@ const RequiringPaymentDesktop: React.FC = () => {
     }
     return (
         <>
-            <div className="pb-[49px] pt-[80px]">
-                <div className="flex flex-wrap justify-between gap-[34px] self-end pb-[87px] md:gap-[12px] 2xl:pt-[75px]">
+            <div className="3xl:pt-[50px] pb-[49px] pt-[80px] 2xl:pt-[40px]">
+                <div className="grid grid-cols-2 justify-between gap-[34px] self-end pb-[87px]">
                     {content.map((item) => (
                         <RequiringPaymentCardDesktop
                             key={item.id}
