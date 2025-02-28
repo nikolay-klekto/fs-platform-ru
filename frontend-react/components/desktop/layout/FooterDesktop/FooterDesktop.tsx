@@ -17,12 +17,12 @@ const FooterDesktop: React.FC = () => {
                     backgroundSize: 'cover',
                 }}
             >
-                <div className="container relative">
-                    <div className="absolute 2xl:hidden">
+                <div className="container relative mx-4 h-[521px] rounded-[3.125rem] bg-[#10103033] p-6">
+                    <div className="absolute pt-4 2xl:hidden">
                         <LogoIconDesktop className="h-[59px] w-[71px]" />
                     </div>
-                    <div className="flex justify-center px-24 pb-10 2xl:px-0">
-                        <div className="flex w-full max-w-[1190px] justify-between">
+                    <div className="flex justify-center px-24 pb-7 pt-4 2xl:px-0">
+                        <div className="flex w-full max-w-[1190px] justify-around">
                             {contentFooterDesktop.map((section) => (
                                 <div key={section.id}>
                                     <p className="pb-7 text-4xl font-bold text-white">{section.title}</p>
@@ -56,7 +56,7 @@ const FooterDesktop: React.FC = () => {
                     </div>
                     <div className="bg-custom-grey h-[2px] w-full rounded-full"></div>
                     <div className="mt-10 flex h-[162px] flex-col items-center justify-between px-24 2xl:px-0">
-                        <div className="flex w-full max-w-[1190px] items-center justify-between">
+                        <div className="flex w-full max-w-[1190px] items-center justify-center gap-10">
                             {contentFooterDesktopImages.map((image) => (
                                 <Image
                                     key={image.id}
