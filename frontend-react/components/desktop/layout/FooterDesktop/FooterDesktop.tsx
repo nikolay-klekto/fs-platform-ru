@@ -17,7 +17,7 @@ const FooterDesktop: React.FC = () => {
                     backgroundSize: 'cover',
                 }}
             >
-                <div className="container relative mx-4 h-[521px] rounded-[3.125rem] bg-[#10103033] p-6">
+                <div className="container relative mx-4 h-[521px] rounded-t-[3.125rem] bg-[#10103033] p-6">
                     <div className="absolute pt-4 2xl:hidden">
                         <LogoIconDesktop className="h-[59px] w-[71px]" />
                     </div>
