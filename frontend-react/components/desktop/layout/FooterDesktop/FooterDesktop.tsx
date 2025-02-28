@@ -10,7 +10,7 @@ const FooterDesktop: React.FC = () => {
     return (
         <>
             <footer
-                className="flex h-[521px] items-center"
+                className="flex h-[521px] items-center justify-center"
                 style={{
                     backgroundColor: 'rgb(16,16,48)',
                     backgroundImage: `linear-gradient(rgba(16,16,48,0.5), rgba(16,16,48,0.5)), url(/background/bgFooterDesktop.png)`,
@@ -18,10 +18,10 @@ const FooterDesktop: React.FC = () => {
                 }}
             >
                 <div className="container relative mx-4 h-[521px] rounded-t-[3.125rem] bg-[#10103033] p-6">
-                    <div className="absolute pt-4 2xl:hidden">
+                    <div className="absolute pt-3 2xl:hidden">
                         <LogoIconDesktop className="h-[59px] w-[71px]" />
                     </div>
-                    <div className="flex justify-center px-24 pb-7 pt-4 2xl:px-0">
+                    <div className="flex justify-center px-24 pb-5 pt-3 2xl:px-0">
                         <div className="flex w-full max-w-[1190px] justify-around">
                             {contentFooterDesktop.map((section) => (
                                 <div key={section.id}>
@@ -55,7 +55,7 @@ const FooterDesktop: React.FC = () => {
                         </div>
                     </div>
                     <div className="bg-custom-grey h-[2px] w-full rounded-full"></div>
-                    <div className="mt-10 flex h-[162px] flex-col items-center justify-between px-24 2xl:px-0">
+                    <div className="mt-8 flex h-[162px] flex-col items-center justify-between px-24 2xl:px-0">
                         <div className="flex w-full max-w-[1190px] items-center justify-center gap-10">
                             {contentFooterDesktopImages.map((image) => (
                                 <Image
@@ -73,7 +73,7 @@ const FooterDesktop: React.FC = () => {
                             горисполкомом 26.10.2023 г. Интернет-магазин включен в Торговый реестр Республики Беларусь
                             01.01.2001 за №111111
                         </p>
-                        <p className="mb-5 text-center text-2xl font-medium text-white">
+                        <p className="mt-3 text-center text-2xl font-medium text-white">
                             funscrut .by © 2023, ООО «funscrut» УНП 000000000
                         </p>
                     </div>
