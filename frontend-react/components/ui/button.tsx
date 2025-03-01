@@ -23,10 +23,10 @@ const buttonVariants = cva(
                 accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
                 accent_mobi: 'flex items-center rounded-[50px] bg-white',
                 registration:
-                    'text-13xl w-[500px] rounded-[45px] bg-white font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] lg:text-9xl',
+                    'text-13xl w-[500px] rounded-[45px] bg-white font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] lg:text-9xl 2xl:text-11xl',
                 registration_mobi:
                     'rounded-full bg-white px-4 py-2 font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
-                arrow: 'w-[95px] rounded-[45px] bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
+                arrow: 'w-[95px] rounded-[45px] bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] 2xl:w-[79px] 3xl:w-[95px] 4xl:w-[95px]',
                 arrow_mobi:
                     'flex size-[51px] items-center justify-center rounded-full bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 header_desktop_btn_gradient:
@@ -44,7 +44,8 @@ const buttonVariants = cva(
                 default: 'h-10 px-4 py-2',
                 sm: 'h-9 rounded-md px-3',
                 lg: 'h-11 rounded-md px-8',
-                four_xl: 'h-[95px]',
+                arrow_registration: 'h-[95px] 2xl:h-[79px]',
+                registration: '2xl:w-[417px] h-[79px] 3xl:h-[95px] w-[500px] 4xl:h-[95px] 4xl:w-[500px]',
                 promo_mobi: 'h-[51px]',
                 select_mobi: 'h-[40px] w-full max-w-[188px] ',
                 gradient_circle_mobi: 'aspect-square size-[44px] p-[10px]',

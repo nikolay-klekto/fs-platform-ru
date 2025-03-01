@@ -23,20 +23,20 @@ const PromoDesktop: React.FC = () => {
                         опыта и навыков
                     </p>
                 </div>
-                <div className="group ml-8 inline-flex w-fit items-center lg:mt-10 xl:mt-10 4xl:ml-auto">
+                <div className="group ml-auto inline-flex w-fit items-center lg:mt-10 xl:mt-10" >
                     <Button
                         variant="registration"
-                        size="four_xl"
+                        size="registration"
                         className="group-hover:button-shadow_around_desktop_custom"
                         onClick={() => openModal('registration_desktop', 'desktop')}
                     >
-                        <span className="bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-transparent 2xl:text-11xl">
+                        <span className="bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-transparent">
                             Зарегистрироваться
                         </span>
                     </Button>
                     <Button
                         variant="arrow"
-                        size="four_xl"
+                        size="arrow_registration"
                         className="group-hover:button-shadow_right_desktop_custom"
                         onClick={() => openModal('registration_desktop', 'desktop')}
                     >
