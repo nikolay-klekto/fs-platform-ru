@@ -19,18 +19,10 @@ const ProfessionCardPageDesktop: React.FC<ProfessionCardDesktopProps> = ({ image
                 style={{ backgroundImage: `url(${image})` }}
                 onClick={onClick}
             >
-                <CardTitle
-                    variant={'profession_page_desktop'}
-                    size={'profession_page_desktop'}
-                    rounded={'rounded_25px'}
-                >
+                <CardTitle variant={'profession_page_desktop'} size={'profession_page_desktop'} rounded={'rounded_25'}>
                     {profession}
                 </CardTitle>
-                <CardFooter
-                    variant={'profession_page_desktop'}
-                    size={'profession_page_desktop'}
-                    rounded={'rounded_25px'}
-                >
+                <CardFooter variant={'profession_page_desktop'} size={'profession_page_desktop'} rounded={'rounded_25'}>
                     <p className="4xl:text-4xl 3xl:text-4xl  text-7xl leading-[40px] tracking-normal text-[#878797]  2xl:text-3xl">
                         от{' '}
                         <span className="bg-gradient-desktop 4xl:text-6xl 3xl:text-5xl bg-clip-text text-8xl text-transparent 2xl:text-4xl">

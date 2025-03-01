@@ -13,7 +13,7 @@ export default function Professions() {
 
     useEffect(() => {
         setIsClient(true)
-    })
+    }, [])
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 1240px)',

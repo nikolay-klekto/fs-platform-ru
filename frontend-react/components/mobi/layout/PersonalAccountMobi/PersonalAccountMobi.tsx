@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Modal from '@/components/ui/Modal'
+import Modal from '@/components/ui/modal'
 import { ChevronLeft } from 'lucide-react'
 
 const PersonalAccountMobi: React.FC = () => {
@@ -27,16 +27,15 @@ const PersonalAccountMobi: React.FC = () => {
     }
 
     return (
-        <div className="flex justify-center flex-col items-center bg-[#101030] ">
+        <div className="flex flex-col items-center justify-center bg-[#101030] ">
             <h2 className="title28px_mobi_custom mb-4">ЛИЧНЫЙ КАБИНЕТ</h2>
 
             <div
-                className="text-text22px_mobi text-[#878797] mb-12 relative
-                hover:bg-sub-title-gradient-mobi hover:bg-clip-text hover:text-transparent cursor-pointer "
+                className="text-text22px_mobi hover:bg-sub-title-gradient-mobi relative mb-12
+                cursor-pointer text-[#878797] hover:bg-clip-text hover:text-transparent "
             >
                 <button
-                    className="cursor-pointer flex items-center
-                     bg-sub-title-gradient-mobi bg-clip-text text-transparent"
+                    className="bg-sub-title-gradient-mobi flex cursor-pointer items-center bg-clip-text text-transparent"
                     onClick={() => setMenuOpen(true)}
                 >
                     {selectedOption}
@@ -46,31 +45,28 @@ const PersonalAccountMobi: React.FC = () => {
                 </button>
             </div>
 
-            <p
-                className="text-text22px_mobi text-center text-[#353652] mb-6
-             "
-            >
-                {getContentText()}
-            </p>
-            <div className="flex justify-center items-center w-4/5 mx-auto p-[3px] rounded-[50px] bg-sub-title-gradient-mobi">
-                <button type="button" className="w-full h-12 bg-[#101030] rounded-[55px] text-text16px_mobi text-white">
+            <p className="text-text22px_mobi mb-6 text-center text-[#353652]">{getContentText()}</p>
+            <div className="bg-sub-title-gradient-mobi mx-auto flex w-4/5 items-center justify-center rounded-[50px] p-[3px]">
+                <button type="button" className="text-text16px_mobi h-12 w-full rounded-[55px] bg-[#101030] text-white">
                     Выбрать стажировку
                 </button>
             </div>
-            <Modal show={menuOpen} onClose={() => setMenuOpen(false)} size="small" showCloseButton={false}>
-                <div className="flex flex-col p-6 text-center space-y-4 z-50">
-                    {options.map((option) => (
-                        <button
-                            key={option}
-                            onClick={() => handleSelectOption(option)}
-                            className="text-[#878797] cursor-pointer hover:underline  hover:bg-gradient-desktop hover:bg-clip-text hover:text-transparent
+            {menuOpen && (
+                <Modal onClose={() => setMenuOpen(false)} size="small" showCloseButton={false}>
+                    <div className="z-50 flex flex-col space-y-4 p-6 text-center">
+                        {options.map((option) => (
+                            <button
+                                key={option}
+                                onClick={() => handleSelectOption(option)}
+                                className="hover:bg-gradient-desktop cursor-pointer text-[#878797]  hover:bg-clip-text hover:text-transparent hover:underline
                             "
-                        >
-                            {option}
-                        </button>
-                    ))}
-                </div>
-            </Modal>
+                            >
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+                </Modal>
+            )}
         </div>
     )
 }

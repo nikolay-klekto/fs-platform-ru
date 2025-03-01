@@ -42,8 +42,6 @@ const ProfessionsPageMobi: React.FC = () => {
                             wrapperClassName={
                                 'relative h-[48px] border-[2px] border-[#878797] bg-transparent flex-1 justify-bitween flex rounded-[50px]'
                             }
-                            onFocus={() => setIsFocused(true)}
-                            onBlur={() => setIsFocused(false)}
                             placeholder="Поиск"
                         />
                         <Button variant="circle_btn_mobi" size="circle_btn_mobi" onClick={handleSearch}>
