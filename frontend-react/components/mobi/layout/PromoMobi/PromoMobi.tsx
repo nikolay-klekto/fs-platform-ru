@@ -19,7 +19,7 @@ const PromoMobi: React.FC = () => {
                 </p>
 
                 <div className="mt-[33px] flex justify-center md:mt-[80px]">
-                    <Button variant="registration_mobi" size="promo_mobi" className="flex-1 md:w-[270px] md:flex-none">
+                    <Button variant="registration_mobi" size="registration_mobi" className="flex-1 md:w-[270px] md:flex-none">
                         <span className="bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent">
                             Найти стажировку
                         </span>

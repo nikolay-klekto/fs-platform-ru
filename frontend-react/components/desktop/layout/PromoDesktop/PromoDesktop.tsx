@@ -25,8 +25,8 @@ const PromoDesktop: React.FC = () => {
                 </div>
                 <div className="group ml-auto inline-flex w-fit items-center lg:mt-10 xl:mt-10" >
                     <Button
-                        variant="registration"
-                        size="registration"
+                        variant="registration_desktop"
+                        size="registration_desktop"
                         className="group-hover:button-shadow_around_desktop_custom"
                         onClick={() => openModal('registration_desktop', 'desktop')}
                     >
@@ -36,11 +36,11 @@ const PromoDesktop: React.FC = () => {
                     </Button>
                     <Button
                         variant="arrow"
-                        size="arrow_registration"
+                        size="arrow_registration_desktop"
                         className="group-hover:button-shadow_right_desktop_custom"
                         onClick={() => openModal('registration_desktop', 'desktop')}
                     >
-                        <ArrowBtn width={54} height={54} />
+                        <ArrowBtn width={54} height={54}/>
                     </Button>
                 </div>
             </div>
