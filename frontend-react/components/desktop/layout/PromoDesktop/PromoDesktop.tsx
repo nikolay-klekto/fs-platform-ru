@@ -35,7 +35,7 @@ const PromoDesktop: React.FC = () => {
                         </span>
                     </Button>
                     <Button
-                        variant="arrow_registration_desktop"
+                        variant="arrow"
                         size="arrow_registration_desktop"
                         className="group-hover:button-shadow_right_desktop_custom"
                         onClick={() => openModal('registration_desktop', 'desktop')}
