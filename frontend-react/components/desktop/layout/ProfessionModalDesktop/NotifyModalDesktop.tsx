@@ -14,11 +14,10 @@ interface NotifyFormData {
 }
 
 interface NotifyModalDesktopProps {
-    isOpen: boolean
     onClose: () => void
 }
 
-const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ isOpen, onClose }) => {
+const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ onClose }) => {
     const [formData, setFormData] = useState<NotifyFormData>({
         email: '',
         consent: false,
@@ -68,10 +67,8 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ isOpen, onClose
         }
     }, [formData, inputErrors, validateForm])
 
-    if (!isOpen) return null 
-
     return (
-        <Modal show={isOpen} onClose={onClose} size="semilarge" showCloseButton={false}>
+        <Modal onClose={onClose} size="semilarge" showCloseButton={false}>
             <div className="mx-auto flex w-[73%] flex-col items-center justify-center pb-[30px] pt-[40px]">
                 <button
                     onClick={onClose}
