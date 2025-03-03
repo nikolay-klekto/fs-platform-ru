@@ -161,9 +161,7 @@
     .custom_error_style_input {
         @apply border-red-500;
     }
-    input:focus-visible {
-        @apply ring-0 ring-offset-0;
-    }
+
     .modal-padding-content-lg-dsk {
         padding-top: clamp(32px, 2.6vw, 50px);
         padding-bottom: clamp(33px, 2.6vw, 51px);
