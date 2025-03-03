@@ -1,19 +1,14 @@
 'use client'
 
-import React, { useState, useRef, useEffect } from 'react'
+import React from 'react'
 import TitleMobi from '@/components/mobi/shared/TitleMobi'
 import ProfessionCardMobi from './ProfessionCardMobi'
 import ProfessionSendMobi from './ProfessionSendMobi'
 import { content } from '@/components/desktop/layout/ProfessionsSectionDesktop/content'
-import ProfessionModalMobi from '../ProfessionModalMobi/ProfessionModalMobi'
+import { useModal } from '@/context/ContextModal'
 
 const ProfessionsSectionMobi: React.FC = () => {
-    const [openModal, setOpenModal] = useState<boolean>(false)
-    const [selectedProfession, setSelectedProfession] = useState<string>('')
-    const [selectedIdProfession, setSelectedIdProfession] = useState<number | null>(null)
-    const closeModal = () => {
-        setOpenModal(false)
-    }
+    const { openModal } = useModal()
 
     return (
         <div className="flex max-w-full flex-col gap-[20px] px-[15px] py-[60px] sm:gap-[15px] sm:pt-[15px]">
@@ -31,21 +26,15 @@ const ProfessionsSectionMobi: React.FC = () => {
                         profession={item.profession}
                         price={item.price.toString()}
                         onClick={() => {
-                            setSelectedProfession(item.profession)
-                            setSelectedIdProfession(item.id)
-                            setOpenModal(true)
+                            openModal('profession_modal_mobi', 'mobi', {
+                                profession: item.profession,
+                                professionId: item.id,
+                            })
                         }}
                     />
                 ))}
             </div>
             <ProfessionSendMobi />
-            {openModal && (
-                <ProfessionModalMobi
-                    closeModal={closeModal}
-                    profession={selectedProfession}
-                    professionId={selectedIdProfession}
-                />
-            )}
         </div>
     )
 }

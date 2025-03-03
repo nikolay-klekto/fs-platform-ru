@@ -10,9 +10,6 @@ import ModalCookieDesktop from '@/components/desktop/layout/ModalDesktop/ModalCo
 
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
-    const [isModalCallDesktopOpen, setModalCallDesktopOpen] = useState(false)
-    const handleOpenModalCallDesktop = () => setModalCallDesktopOpen(true)
-    // const handleCloseModalCallDesktop = () => setModalCallDesktopOpen(false)
 
     useEffect(() => {
         setIsClient(true)
@@ -29,7 +26,7 @@ export default function Home() {
         <div>
             {isDesktop ? (
                 <>
-                    <HeaderDesktop onOpenModalCallDesktop={handleOpenModalCallDesktop} />
+                    <HeaderDesktop />
                     <main className="bg-[url('/background/main.webp')] bg-cover bg-no-repeat">
                         <HomePageDesktop />
                     </main>

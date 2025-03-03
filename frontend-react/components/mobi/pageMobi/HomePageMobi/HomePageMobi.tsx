@@ -5,6 +5,7 @@ import ProfessionsSectionMobi from '../../layout/ProfessionsSectionMobi/Professi
 import HowWeWorkMobi from '../../layout/HowWeWorkMobi/HowWeWorkMobi'
 import PromoMobi from '../../layout/PromoMobi/PromoMobi'
 import EventsSectionMobi from '../../layout/EventsSectionMobi/EventsSectionMobi'
+
 const HomePageMobi: React.FC = () => {
     return (
         <>

@@ -88,7 +88,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             wrapperClassName,
             labelClassName,
             placeholder,
-            checked,
             mask,
             maskPlaceholder = '_',
             ...props
@@ -96,7 +95,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         ref,
     ) => {
         const [internalValue, setInternalValue] = React.useState<string>('')
-        const [internalError, setInternalError] = React.useState('')
+        const [internalError, setInternalError] = React.useState<string>('')
         const [styleErrorClass, setStyleErrorClass] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
         const isCheckbox = type === 'checkbox'
@@ -122,12 +121,11 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const newValue = isCheckbox ? e.target.checked : e.target.value
-            setInternalValue(newValue)
-            // validateComponent(newValue)
-            onChange?.(newValue)
+            setInternalValue(newValue.toString())
+            onChange?.(newValue.toString())
         }
 
-        const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        const handleFocus = () => {
             setIsFocused(true)
             onFocus?.()
         }
@@ -135,11 +133,14 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-            internalValue && validateComponent(internalValue)
+
+            if (internalValue) {
+                validateComponent(internalValue)
+            }
         }
 
         const handleCheckboxToggle = () => {
-            const newValue = !internalValue
+            const newValue = internalValue === 'true' ? 'false' : 'true'
             setInternalValue(newValue)
             onChange?.(newValue)
         }
@@ -191,7 +192,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
                             )}
                             {...props}
                         >
-                            {(inputProps: any) => (
+                            {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
                                 <input {...inputProps} ref={ref} type={type} name={name} placeholder={placeholder} />
                             )}
                         </InputMask>
