@@ -361,3 +361,71 @@ export const TrashIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
         </svg>
     )
 }
+
+export const SearchIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg {...props} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M18.3333 31.6667C25.6971 31.6667 31.6667 25.6971 31.6667 18.3333C31.6667 10.9695 25.6971 5 18.3333 5C10.9695 5 5 10.9695 5 18.3333C5 25.6971 10.9695 31.6667 18.3333 31.6667Z"
+                stroke="#878797"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M35 35L27.75 27.75"
+                stroke="#878797"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}
+
+export const CheckedBoxIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M8.41016 9.48327L10.9353 12.0084L19.3524 3.59131"
+                stroke="white"
+                strokeWidth="1.68342"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M18.5101 10.3249V16.2168C18.5101 16.6633 18.3328 17.0915 18.0171 17.4072C17.7014 17.7229 17.2732 17.9003 16.8267 17.9003H5.04279C4.59632 17.9003 4.16814 17.7229 3.85244 17.4072C3.53673 17.0915 3.35938 16.6633 3.35938 16.2168V4.43293C3.35938 3.98646 3.53673 3.55827 3.85244 3.24257C4.16814 2.92687 4.59632 2.74951 5.04279 2.74951H14.3016"
+                stroke="white"
+                strokeWidth="1.68342"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <defs>
+                <linearGradient
+                    id="paint0_linear_423_22299"
+                    x1="7.51951"
+                    y1="7.89772"
+                    x2="19.3524"
+                    y2="7.89772"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stopColor="#8333F3" />
+                    <stop offset="0.485532" stopColor="#5F4AF3" />
+                    <stop offset="1" stopColor="#3B51A8" />
+                </linearGradient>
+                <linearGradient
+                    id="paint1_linear_423_22299"
+                    x1="2.12617"
+                    y1="10.5011"
+                    x2="18.5101"
+                    y2="10.5011"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stopColor="#8333F3" />
+                    <stop offset="0.485532" stopColor="#5F4AF3" />
+                    <stop offset="1" stopColor="#3B51A8" />
+                </linearGradient>
+            </defs>
+        </svg>
+    )
+}
