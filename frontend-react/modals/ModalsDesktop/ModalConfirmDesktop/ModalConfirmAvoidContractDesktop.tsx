@@ -1,19 +1,21 @@
 'use client'
 
-import { useModal } from '@/context/ContextModal'
 import Modal from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import { modalContent } from './content'
 
-const ModalConfirmAvoidContractDesktop: React.FC = () => {
-    const { closeModal } = useModal()
+interface ModalConfirmDesktopProps {
+    onClose: () => void
+}
+
+const ModalConfirmAvoidContractDesktop: React.FC<ModalConfirmDesktopProps> = ({ onClose }) => {
     const content = modalContent['avoidContract']
 
     return (
-        <Modal size="medium" showCloseButton={false}>
+        <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div>
-                <button onClick={closeModal} className="absolute right-7 top-6">
+                <button onClick={onClose} className="absolute right-7 top-6">
                     <X size={41} color="white" className="opacity-50 hover:opacity-100" />
                 </button>
             </div>
@@ -24,7 +26,7 @@ const ModalConfirmAvoidContractDesktop: React.FC = () => {
                 <p className="pt-10 text-4xl font-medium leading-[22px] text-[#878797]">{content.message}</p>
             </div>
             <div className="mx-auto mb-[57px] mt-[23px] flex max-w-[426px] items-center justify-between">
-                <Button type="button" variant="cancel_btn_desktop" className="p-0" onClick={closeModal}>
+                <Button type="button" variant="cancel_btn_desktop" className="p-0" onClick={onClose}>
                     {content.cancelButton}
                 </Button>
                 <Button type="button" variant="send_btn_desktop" size="confirm_btn_desktop">

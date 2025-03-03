@@ -45,13 +45,13 @@ const FooterMobi: React.FC = () => {
                         ))}
                     </div>
                     <div className="flex w-full max-w-[112px] justify-between py-10">
-                        <a href="#" target="_blank" rel="noopener noreferrer">
+                        <a href="https://web.telegram.org/" target="_blank" rel="noopener noreferrer">
                             <TelegramIconMobi />
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
                             <InstagramIconMobi />
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
                             <LinkedInIconMobi />
                         </a>
                     </div>
