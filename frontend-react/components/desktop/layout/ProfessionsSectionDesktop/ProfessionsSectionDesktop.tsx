@@ -1,26 +1,20 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
 import ProfessionCardDesktop from '@/components/desktop/layout/ProfessionsSectionDesktop/ProfessionCardDesktop'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import ProfessionSendDesktop from './ProfessionSendDesktop'
 import { content } from '@/components/desktop/layout/ProfessionsSectionDesktop/content'
-import ProfessionModalDesktop from '../ProfessionModalDesktop/ProfessionModalDesktop'
+import { useModal } from '@/context/ContextModal'
 
 interface ProfessionsSectionDesktopProps {
     cardsToShow?: number
 }
 
 const ProfessionsSectionDesktop: React.FC<ProfessionsSectionDesktopProps> = ({ cardsToShow = 4 }) => {
-    const [openModal, setOpenModal] = useState<boolean>(false)
-    const [selectedProfession, setSelectedProfession] = useState<string>('')
-    const [selectedIdProfession, setSelectedIdProfession] = useState<number | null>(null)
-
-    const closeModal = () => {
-        setOpenModal(false)
-    }
+    const { openModal } = useModal()
 
     return (
         <div className="container flex flex-col gap-[80px] py-[100px]">
@@ -43,21 +37,15 @@ const ProfessionsSectionDesktop: React.FC<ProfessionsSectionDesktopProps> = ({ c
                         profession={item.profession}
                         price={item.price.toString()}
                         onClick={() => {
-                            setSelectedProfession(item.profession)
-                            setSelectedIdProfession(item.id)
-                            setOpenModal(true)
+                            openModal('profession_modal_desktop', 'desktop', {
+                                profession: item.profession,
+                                professionId: item.id,
+                            })
                         }}
                     />
                 ))}
             </div>
             <ProfessionSendDesktop />
-            {openModal && (
-                <ProfessionModalDesktop
-                    closeModal={closeModal}
-                    profession={selectedProfession}
-                    professionId={selectedIdProfession}
-                />
-            )}
         </div>
     )
 }
