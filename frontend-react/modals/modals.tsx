@@ -82,13 +82,11 @@ export const modals = {
         },
         {
             id: 'contract_terminated_mobi',
-            content:  ({ onClose }: ModalContentProps) => <ModalContractTerminatedMobi onClose={onClose} />,
-            ),
+            content: ({ onClose }: ModalContentProps) => <ModalContractTerminatedMobi onClose={onClose} />,
         },
         {
             id: 'order_accepted_mobi',
-            content: ({ onClose }: ModalContentProps) => <ModalOrderAcceptedMobi onClose={onClose} />
-            ),
+            content: ({ onClose }: ModalContentProps) => <ModalOrderAcceptedMobi onClose={onClose} />,
         },
     ],
 }
