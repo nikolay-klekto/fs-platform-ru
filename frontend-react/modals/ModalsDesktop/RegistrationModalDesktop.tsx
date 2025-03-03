@@ -247,7 +247,9 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                             type="checkbox"
                             name="subscribe"
                             checked={formData.subscribe}
-                            onChange={() => setFormData((prev) => ({ ...prev, subscribe: !prev.subscribe }))}
+                            onChange={(value) => {
+                                setFormData((prev) => ({ ...prev, subscribe: value === 'true' }))
+                            }}
                             label="Я согласен(а) на получение рассылки"
                             wrapperClassName="flex gap-2 pb-2"
                             labelClassName={`${formData.subscribe ? 'text-white' : 'text-[#878797]'}`}

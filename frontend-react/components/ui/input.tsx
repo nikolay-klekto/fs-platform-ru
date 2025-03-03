@@ -2,7 +2,7 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/icons'
-import InputMask from 'react-input-mask'
+//import InputMask from 'react-input-mask'
 
 const inputVariants = cva(
     'flex w-full rounded-md border text-sm ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
@@ -90,19 +90,25 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             labelClassName,
             placeholder,
             mask,
-            maskPlaceholder = '_',
+            checked,
+            //maskPlaceholder = '_',
             ...props
         },
         ref,
     ) => {
-        const [internalValue, setInternalValue] = React.useState<string>('')
+        const [internalValue, setInternalValue] = React.useState(() => {
+            if (typeof checked === 'boolean') {
+                return false
+            }
+            return ''
+        })
         const [internalError, setInternalError] = React.useState<string>('')
         const [styleErrorClass, setStyleErrorClass] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
         const isCheckbox = type === 'checkbox'
-        function validateComponent(newValue: string) {
+        function validateComponent(newValue: string | boolean) {
             if (validate) {
-                const validationResult = validate(newValue)
+                const validationResult = validate(newValue.toString())
                 if (validationResult) {
                     const { textError, status, styleError } = validationResult
                     if (!status) {
@@ -141,9 +147,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         }
 
         const handleCheckboxToggle = () => {
-            const newValue = internalValue === 'true' ? 'false' : 'true'
+            const newValue = !internalValue
             setInternalValue(newValue)
-            onChange?.(newValue)
+            onChange?.(newValue.toString())
         }
 
         return (
@@ -177,26 +183,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
                     </label>
                 )}
                 {!isCheckbox &&
-                    (mask ? // <InputMask
-                    //     mask={mask}
-                    //     maskPlaceholder={maskPlaceholder}
-                    //     value={internalValue as string}
-                    //     onChange={handleChange}
-                    //     onBlur={handleBlur}
-                    //     onFocus={handleFocus}
-                    //     className={cn(
-                    //         inputVariants({ variant, size, rounded }),
-                    //         isFocused && 'ring-2 ring-ring ring-offset-2',
-                    //         className,
-                    //         styleErrorClass && 'custom_error_style_input',
-                    //     )}
-                    //     {...props}
-                    // >
-                    //     {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
-                    //         <input {...inputProps} ref={ref} type={type} name={name} placeholder={placeholder} />
-                    //     )}
-                    // </InputMask>
-                    null : (
+                    (mask ? null : ( // </InputMask> //     )} //         <input {...inputProps} ref={ref} type={type} name={name} placeholder={placeholder} /> //     {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => ( // > //     {...props} //     )} //         styleErrorClass && 'custom_error_style_input', //         className, //         isFocused && 'ring-2 ring-ring ring-offset-2', //         inputVariants({ variant, size, rounded }), //     className={cn( //     onFocus={handleFocus} //     onBlur={handleBlur} //     onChange={handleChange} //     value={internalValue as string} //     maskPlaceholder={maskPlaceholder} //     mask={mask} // <InputMask
                         <input
                             type={type}
                             className={cn(
@@ -208,7 +195,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
                             ref={ref}
                             name={name}
                             placeholder={placeholder}
-                            value={internalValue}
+                            value={internalValue.toString()}
                             onChange={handleChange}
                             onFocus={handleFocus}
                             onBlur={handleBlur}
