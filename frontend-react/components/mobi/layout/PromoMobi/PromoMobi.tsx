@@ -24,7 +24,7 @@ const PromoMobi: React.FC = () => {
                             Найти стажировку
                         </span>
                     </Button>
-                    <Button variant="arrow_mobi" size="promo_mobi">
+                    <Button variant="arrow_registration_mobi" size="arrow_registration_mobi">
                         <ArrowBtn width={30} height={30} />
                     </Button>
                 </div>
