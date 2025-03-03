@@ -80,7 +80,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                             <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="ml-[75px] max-w-md flex-col  rounded-lg ">
-                            <h1 className="text-13xl bg-gradient-desktop mb-2 mt-[53px] bg-clip-text font-medium leading-[44px] text-transparent">
+                            <h1 className="mb-2 mt-[53px] bg-gradient-desktop bg-clip-text text-13xl font-medium leading-[44px] text-transparent">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </h1>
                             <p className="mb-7 text-4xl font-medium leading-[22px] text-[#878797] shadow-md">
@@ -120,7 +120,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
                                     mask="+375 (99) 999-99-99"
-                                    maskPlaceholder="_"
+                                    //maskPlaceholder="_"
                                 />
                             </div>
                             <div className="flex w-full flex-col px-[75px]">
@@ -179,7 +179,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                                     type="submit"
                                     variant="default"
                                     size="btn_modal_desktop"
-                                    className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mb-3 rounded-full px-20 text-5xl leading-6 "
+                                    className="mx-auto mb-3 rounded-full bg-gradient-desktop px-20 text-5xl leading-6 hover:bg-gradient-desktop-hover "
                                 >
                                     Оставить заявку
                                 </Button>
@@ -195,7 +195,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                             <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="mx-auto flex max-w-md flex-col rounded-lg p-3">
-                            <h1 className="text-13xl bg-gradient-desktop mb-6 mt-10 bg-clip-text text-center font-medium leading-[44px] text-transparent">
+                            <h1 className="mb-6 mt-10 bg-gradient-desktop bg-clip-text text-center text-13xl font-medium leading-[44px] text-transparent">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
                             <p className="text-justify text-4xl font-medium leading-[22px] text-[#878797] shadow-md">
@@ -208,7 +208,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                                 <Button
                                     variant="default"
                                     size="btn_modal_desktop"
-                                    className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-8 rounded-full px-20 py-8 text-5xl font-semibold leading-[24px]"
+                                    className="mx-auto mt-8 rounded-full bg-gradient-desktop px-20 py-8 text-5xl font-semibold leading-[24px] hover:bg-gradient-desktop-hover"
                                 >
                                     Смотреть профессии
                                 </Button>
