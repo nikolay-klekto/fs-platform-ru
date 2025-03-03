@@ -5,12 +5,12 @@ import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/ass
 import InputMask from 'react-input-mask'
 
 const inputVariants = cva(
-    'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+    'flex w-full rounded-md border text-sm ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
     {
         variants: {
             variant: {
                 default:
-                    'border-input bg-background focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2',
+                    'border-input bg-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
                 gradient_desktop:
                     'flex border-0 text-5xl text-[#878797] caret-[#878797] outline-none placeholder:font-semibold placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
                 search_mobi:
@@ -32,7 +32,7 @@ const inputVariants = cva(
                 search_mobi: 'size-full py-[15px] pl-[10px] pr-[45px]',
                 send_mobi: 'size-full px-[10px]',
                 contacts_page_desktop: 'h-[53px] w-[453px] px-4 py-3.5 2xl:w-[520px]',
-                contacts_page_info_desktop: '3xl:w-[452px] h-[53px] w-[484px] px-4 py-3.5 2xl:w-[520px]',
+                contacts_page_info_desktop: 'h-[53px] w-[484px] px-4 py-3.5 2xl:w-[520px] 3xl:w-[452px]',
                 contacts_page_mobi: 'h-[28.5px] max-w-[346px] px-4 py-2 md:h-[32px]',
             },
             rounded: {
@@ -89,7 +89,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             wrapperClassName,
             labelClassName,
             placeholder,
-            checked,
             mask,
             maskPlaceholder = '_',
             ...props
@@ -97,7 +96,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         ref,
     ) => {
         const [internalValue, setInternalValue] = React.useState<string>('')
-        const [internalError, setInternalError] = React.useState('')
+        const [internalError, setInternalError] = React.useState<string>('')
         const [styleErrorClass, setStyleErrorClass] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
         const isCheckbox = type === 'checkbox'
@@ -123,12 +122,11 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const newValue = isCheckbox ? e.target.checked : e.target.value
-            setInternalValue(newValue)
-            // validateComponent(newValue)
-            onChange?.(newValue)
+            setInternalValue(newValue.toString())
+            onChange?.(newValue.toString())
         }
 
-        const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        const handleFocus = () => {
             setIsFocused(true)
             onFocus?.()
         }
@@ -136,11 +134,14 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-            internalValue && validateComponent(internalValue)
+
+            if (internalValue) {
+                validateComponent(internalValue)
+            }
         }
 
         const handleCheckboxToggle = () => {
-            const newValue = !internalValue
+            const newValue = internalValue === 'true' ? 'false' : 'true'
             setInternalValue(newValue)
             onChange?.(newValue)
         }
@@ -176,27 +177,26 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
                     </label>
                 )}
                 {!isCheckbox &&
-                    (mask ? (
-                        <InputMask
-                            mask={mask}
-                            maskPlaceholder={maskPlaceholder}
-                            value={internalValue as string}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            onFocus={handleFocus}
-                            className={cn(
-                                inputVariants({ variant, size, rounded }),
-                                isFocused && 'ring-2 ring-ring ring-offset-2',
-                                className,
-                                styleErrorClass && 'custom_error_style_input',
-                            )}
-                            {...props}
-                        >
-                            {(inputProps: any) => (
-                                <input {...inputProps} ref={ref} type={type} name={name} placeholder={placeholder} />
-                            )}
-                        </InputMask>
-                    ) : (
+                    (mask ? // <InputMask
+                    //     mask={mask}
+                    //     maskPlaceholder={maskPlaceholder}
+                    //     value={internalValue as string}
+                    //     onChange={handleChange}
+                    //     onBlur={handleBlur}
+                    //     onFocus={handleFocus}
+                    //     className={cn(
+                    //         inputVariants({ variant, size, rounded }),
+                    //         isFocused && 'ring-2 ring-ring ring-offset-2',
+                    //         className,
+                    //         styleErrorClass && 'custom_error_style_input',
+                    //     )}
+                    //     {...props}
+                    // >
+                    //     {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
+                    //         <input {...inputProps} ref={ref} type={type} name={name} placeholder={placeholder} />
+                    //     )}
+                    // </InputMask>
+                    null : (
                         <input
                             type={type}
                             className={cn(

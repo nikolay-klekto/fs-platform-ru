@@ -5,14 +5,15 @@ import ProfessionsPaginationMobi from './ProfessionsPaginationMobi'
 import ProfessionSendMobi from './ProfessionSendMobi'
 import { content } from './content'
 import { EnhancedInput } from '@/components/ui/input'
-import { FiltersIconMobi } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
+import { useModal } from '@/context/ContextModal'
+import ProfessionsSelectMobi from './ProfessionsSelectMobi'
 
 const ProfessionsPageMobi: React.FC = () => {
+    const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
-    const [isFilterActive, setIsFilterActive] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
     const totalPages = Math.ceil(content.length / cardsPerPage)
@@ -23,10 +24,6 @@ const ProfessionsPageMobi: React.FC = () => {
     }
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
-    }
-
-    const handleFilterIconClick = () => {
-        setIsFilterActive(!isFilterActive)
     }
 
     return (
@@ -45,18 +42,13 @@ const ProfessionsPageMobi: React.FC = () => {
                             wrapperClassName={
                                 'relative h-[48px] border-[2px] border-[#878797] bg-transparent flex-1 justify-bitween flex rounded-[50px]'
                             }
-                            onFocus={() => setIsFocused(true)}
-                            onBlur={() => setIsFocused(false)}
                             placeholder="Поиск"
                         />
                         <Button variant="circle_btn_mobi" size="circle_btn_mobi" onClick={handleSearch}>
                             <Search color="#878797" width={24} height={24} strokeWidth={2} />
                         </Button>
                     </div>
-                    <FiltersIconMobi
-                        className={`size-[32px] ${isFilterActive ? 'text-white' : 'text-[#878797]'}`}
-                        onClick={handleFilterIconClick}
-                    />
+                    <ProfessionsSelectMobi />
                 </div>
                 <div className="sm_xl:gap-[15px] flex flex-wrap justify-center gap-[20px]">
                     {content.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
@@ -65,6 +57,12 @@ const ProfessionsPageMobi: React.FC = () => {
                             image={item.image}
                             profession={item.profession}
                             price={item.price.toString()}
+                            onClick={() => {
+                                openModal('profession_modal_mobi', 'mobi', {
+                                    profession: item.profession,
+                                    professionId: item.id,
+                                })
+                            }}
                         />
                     ))}
                 </div>

@@ -14,7 +14,7 @@ export default function Contacts() {
 
     useEffect(() => {
         setIsClient(true)
-    })
+    }, [])
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 768px)',

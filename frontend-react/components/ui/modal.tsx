@@ -4,41 +4,27 @@ import { X } from 'lucide-react'
 
 interface ModalProps {
     children: ReactNode
-    show: boolean
     onClose: () => void
-    size?: 'small' | 'medium' | 'semilarge' | 'large' | 'large-l' | 'large-lg'
+    size?: 'small' | 'medium' | 'semilarge' | 'large' | 'large-l' | 'large-lg' | 'extra-medium'
     showCloseButton?: boolean
     paddingClass?: string
     className?: string
 }
 const Modal: React.FC<ModalProps> = ({
     children,
-    show,
     onClose,
     size = 'medium',
     showCloseButton = true,
     paddingClass = '',
     className,
 }) => {
-    const lockScroll = () => {
-        document.body.style.overflow = 'hidden'
-    }
-    const unlockScroll = () => {
-        document.body.style.overflow = ''
-    }
-
     useEffect(() => {
-        if (show) {
-            lockScroll()
-        } else {
-            unlockScroll()
-        }
+        const originalOverflow = document.body.style.overflow
+        document.body.style.overflow = 'hidden'
         return () => {
-            unlockScroll()
+            document.body.style.overflow = originalOverflow
         }
-    }, [show])
-
-    if (!show) return null
+    }, [])
 
     const getSizeClass = () => {
         switch (size) {
@@ -54,7 +40,8 @@ const Modal: React.FC<ModalProps> = ({
                 return 'max-w-[1366px]'
             case 'large-lg':
                 return '2xl:w-[830px] max-w-[882px]'
-            case 'medium':
+            case 'extra-medium':
+                return 'max-w-lg'
             default:
                 return 'max-w-lg'
         }
@@ -62,11 +49,19 @@ const Modal: React.FC<ModalProps> = ({
 
     return ReactDOM.createPortal(
         <div
-            className={`fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 ${paddingClass} ${className}`}
+            className={`fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%] ${paddingClass} ${className}`}
             onClick={onClose}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+                if (e.key === 'Eneter' || e.key === ' ') {
+                    onClose()
+                }
+            }}
         >
             <div
                 className={`relative w-full rounded-[50px] bg-[#101030] ${getSizeClass()} modal-scrollable text-white`}
+                role="none"
                 onClick={(e) => e.stopPropagation()}
             >
                 {showCloseButton && (

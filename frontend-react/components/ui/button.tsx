@@ -42,6 +42,7 @@ const buttonVariants = cva(
                 select_day: 'bg-gradient-desktop rounded-[90px] text-white',
                 hover_button_date:
                     'bg-[#1F203F] hover:bg-[#28295B] rounded-[90px] border border-[#878797] hover:button-border-desktop-date text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg',
+                cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
             },
             size: {
                 default: 'h-10 px-4 py-2',
@@ -82,6 +83,7 @@ const buttonVariants = cva(
                 circle_modal_desk: 'size-[54px]',
                 hover_button_date_desktop:
                     '3xl:w-[270px] 3xl:px-[20px] h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px]',
+                confirm_btn_desktop: 'h-[64px] w-[250px]',
             },
         },
         defaultVariants: {

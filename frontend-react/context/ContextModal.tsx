@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, ReactNode, FC } from 'react
 
 type Modal = {
     id: string
-    content: ReactNode | ((props: { onClose: () => void }) => ReactNode)
+    content: (props: { onClose: () => void; modalProps?: Record<string, unknown> }) => ReactNode
 }
 
 type ModalsByDevice = {
@@ -12,9 +12,10 @@ type ModalsByDevice = {
 }
 
 type ModalContextType = {
-    openModal: (id: string, device: keyof ModalsByDevice) => void
+    openModal: (id: string, device: keyof ModalsByDevice, props?: Record<string, unknown>) => void
     closeModal: () => void
     activeModal: Modal | null
+    modalProps?: Record<string, unknown>
 }
 
 type ModalProviderProps = {
@@ -26,22 +27,25 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined)
 
 export const ModalProvider: FC<ModalProviderProps> = ({ children, modals }) => {
     const [activeModal, setActiveModal] = useState<Modal | null>(null)
+    const [modalProps, setModalProps] = useState<Record<string, unknown> | undefined>(undefined)
 
-    const openModal = (id: string, device: keyof ModalsByDevice) => {
+    const openModal = (id: string, device: keyof ModalsByDevice, props?: Record<string, unknown>) => {
         const modal = modals[device].find((modal) => modal.id === id)
-        if (modal) setActiveModal(modal)
+        if (modal) {
+            setActiveModal(modal)
+            setModalProps(props)
+        }
     }
     const closeModal = () => {
         setActiveModal(null)
+        setModalProps(undefined)
     }
     return (
-        <ModalContext.Provider value={{ openModal, closeModal, activeModal }}>
+        <ModalContext.Provider value={{ openModal, closeModal, activeModal, modalProps }}>
             {children}
             {activeModal && (
                 <div className=" flex justify-center bg-black/50">
-                    {typeof activeModal.content === 'function'
-                        ? activeModal.content({ onClose: closeModal })
-                        : activeModal.content}
+                    {activeModal.content({ onClose: closeModal, modalProps })}
                 </div>
             )}
         </ModalContext.Provider>

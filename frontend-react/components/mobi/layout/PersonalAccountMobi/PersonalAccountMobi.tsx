@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
-import Modal from '@/components/ui/Modal'
+import Modal from '@/components/ui/modal'
 import { ChevronLeft } from 'lucide-react'
+import RequiringPaymentMobi from '../RequiringPaymentMobi/RequiringPaymentMobi'
+import OrderPaymentMobi from '../OrderPaymentMobi/OrderPaymentMobi'
 
 const PersonalAccountMobi: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState('КОРЗИНА')
 
-    const options = ['КОРЗИНА', 'МОЙ ПРОФИЛЬ', 'ТРЕБУЮЩИЕ ОПЛАТЫ', 'ПРЕДСТОЯЩИЕ СТАЖИРОВКИ', 'АРХИВ']
+    const options = ['МОЙ ПРОФИЛЬ', 'ТРЕБУЮЩИЕ ОПЛАТЫ', 'ПРЕДСТОЯЩИЕ СТАЖИРОВКИ', 'АРХИВ', 'КОРЗИНА']
 
     const handleSelectOption = (option: string) => {
         setSelectedOption(option)
@@ -15,28 +17,27 @@ const PersonalAccountMobi: React.FC = () => {
 
     const getContentText = () => {
         switch (selectedOption) {
-            case 'КОРЗИНА':
-                return 'Ваша корзина пуста'
             case 'МОЙ ПРОФИЛЬ':
                 return 'Раздел с информацией'
             case 'ТРЕБУЮЩИЕ ОПЛАТЫ':
-                return 'Нет счетов'
+                return <OrderPaymentMobi />
+            case 'КОРЗИНА':
+                return <RequiringPaymentMobi />
             default:
                 return 'Информация отсутствует'
         }
     }
 
     return (
-        <div className="flex justify-center flex-col items-center bg-[#101030] ">
+        <div className="flex flex-col items-center justify-center bg-[#101030] pt-[40px] px-[15px]">
             <h2 className="title28px_mobi_custom mb-4">ЛИЧНЫЙ КАБИНЕТ</h2>
 
             <div
-                className="text-text22px_mobi text-[#878797] mb-12 relative
-                hover:bg-sub-title-gradient-mobi hover:bg-clip-text hover:text-transparent cursor-pointer "
+                className="text-text22px_mobi hover:bg-sub-title-gradient-mobi relative 
+                cursor-pointer text-[#878797] hover:bg-clip-text hover:text-transparent "
             >
                 <button
-                    className="cursor-pointer flex items-center
-                     bg-sub-title-gradient-mobi bg-clip-text text-transparent"
+                    className="bg-sub-title-gradient-mobi flex cursor-pointer items-center bg-clip-text text-transparent underline decoration-[#6C41F3] decoration-1 underline-offset-4"
                     onClick={() => setMenuOpen(true)}
                 >
                     {selectedOption}
@@ -46,31 +47,22 @@ const PersonalAccountMobi: React.FC = () => {
                 </button>
             </div>
 
-            <p
-                className="text-text22px_mobi text-center text-[#353652] mb-6
-             "
-            >
-                {getContentText()}
-            </p>
-            <div className="flex justify-center items-center w-4/5 mx-auto p-[3px] rounded-[50px] bg-sub-title-gradient-mobi">
-                <button type="button" className="w-full h-12 bg-[#101030] rounded-[55px] text-text16px_mobi text-white">
-                    Выбрать стажировку
-                </button>
-            </div>
-            <Modal show={menuOpen} onClose={() => setMenuOpen(false)} size="small" showCloseButton={false}>
-                <div className="flex flex-col p-6 text-center space-y-4 z-50">
-                    {options.map((option) => (
-                        <button
-                            key={option}
-                            onClick={() => handleSelectOption(option)}
-                            className="text-[#878797] cursor-pointer hover:underline  hover:bg-gradient-desktop hover:bg-clip-text hover:text-transparent
-                            "
-                        >
-                            {option}
-                        </button>
-                    ))}
-                </div>
-            </Modal>
+            <p className="text-text22px_mobi text-center text-[#353652]">{getContentText()}</p>
+            {menuOpen && (
+                <Modal onClose={() => setMenuOpen(false)} size="small" showCloseButton={false}>
+                    <div className="z-50 flex flex-col space-y-4 text-center py-[36px]">
+                        {options.map((option) => (
+                            <button
+                                key={option}
+                                onClick={() => handleSelectOption(option)}
+                                className="hover:bg-gradient-desktop cursor-pointer text-[#878797]  hover:bg-clip-text hover:text-transparent hover:underline text18px_mobi"
+                            >
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+                </Modal>
+            )}
         </div>
     )
 }
