@@ -38,6 +38,10 @@ const buttonVariants = cva(
                     'button-border-desktop hover:bg-gradient-desktop 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] border-2 text-5xl font-semibold hover:border-0 2xl:text-3xl',
                 circle: 'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
                 circleBlue: 'rounded-[50%] bg-[#382D90]',
+                circleDarkBlue: 'rounded-[50%] bg-[#272744]',
+                select_day: 'bg-gradient-desktop rounded-[90px] text-white',
+                hover_button_date:
+                    'bg-[#1F203F] hover:bg-[#28295B] rounded-[90px] border border-[#878797] hover:button-border-desktop-date text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg',
                 cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
             },
             size: {
@@ -68,6 +72,10 @@ const buttonVariants = cva(
                 gradient_btn_desktop: '3xl:w-[250px] h-[64px] w-[272px] 2xl:w-[250px]',
                 select_btn_desktop:
                     '3xl:w-[300px] 3xl:px-[20px] h-[64px] w-[337px] px-[30px] py-[20px] 2xl:w-[270px] 2xl:px-[20px]',
+                select_btn_desktop_events:
+                    'h-[64px] w-[290px] px-[30px] py-[20px] 2xl:w-[230px] 2xl:px-[20px] 3xl:w-[260px] 3xl:px-[20px]',
+                select_btn_desktop_date:
+                    'h-[64px] w-[200px] px-[30px] py-[20px] 2xl:w-[160px] 2xl:px-[20px] 3xl:w-[180px] 3xl:px-[20px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'sm_s:size-[52px] size-[55px] sm:size-[50px]',
                 contacts_btn_desktop: '3xl:h-[62px] 3xl:w-[256px] h-[65px] w-[262px] 2xl:h-[59px] 2xl:w-[250px]',
@@ -75,6 +83,8 @@ const buttonVariants = cva(
                 contacts_btn_mobi: 'sm_s:w-[156px] h-[39.5px] w-[159px] flex-shrink-0 sm:w-[152px]',
                 contacts_btn_send_mobi: 'sm_s:w-[140px] h-[35px] w-[145px] flex-shrink-0 sm:w-[136px]',
                 circle_modal_desk: 'size-[54px]',
+                hover_button_date_desktop:
+                    '3xl:w-[270px] 3xl:px-[20px] h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px]',
                 confirm_btn_desktop: 'h-[64px] w-[250px]',
             },
         },

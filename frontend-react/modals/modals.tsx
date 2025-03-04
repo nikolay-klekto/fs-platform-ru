@@ -12,6 +12,8 @@ import ProfessionModalDesktop from '@/components/desktop/layout/ProfessionModalD
 import ProfessionModalMobi from '@/components/mobi/layout/ProfessionModalMobi/ProfessionModalMobi'
 import ModalOrderPlacedDesktop from '@/modals/ModalsDesktop/ModalOrderPlacedDesktop'
 import ModalContractTerminatedDesktop from '@/modals/ModalsDesktop/ModalContractTerminatedDesktop'
+import ModalContractTerminatedMobi from './ModalsMobi/ModalStatusMobi/ModalContractTerminatedMobi'
+import ModalOrderAcceptedMobi from './ModalsMobi/ModalStatusMobi/ModalOrderAcceptedMobi'
 
 interface ModalContentProps {
     onClose: () => void
@@ -82,13 +84,11 @@ export const modals = {
         },
         {
             id: 'contract_terminated_mobi',
-            content:  ({ onClose }: ModalContentProps) => <ModalContractTerminatedMobi onClose={onClose} />,
-            ),
+            content: ({ onClose }: ModalContentProps) => <ModalContractTerminatedMobi onClose={onClose} />,
         },
         {
             id: 'order_accepted_mobi',
-            content: ({ onClose }: ModalContentProps) => <ModalOrderAcceptedMobi onClose={onClose} />
-            ),
+            content: ({ onClose }: ModalContentProps) => <ModalOrderAcceptedMobi onClose={onClose} />,
         },
     ],
 }
