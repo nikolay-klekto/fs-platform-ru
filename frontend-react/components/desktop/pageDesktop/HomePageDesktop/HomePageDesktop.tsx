@@ -9,7 +9,7 @@ const HomePageDesktop: React.FC = () => {
     return (
         <>
             <div>
-                <div className="paddings-desktop-custom container flex justify-between">
+                <div className="paddings-desktop-custom container flex justify-between bg-header-main-gradient-desktop">
                     <HeaderMainDesktop />
                     <HeaderCardsDesktop />
                 </div>

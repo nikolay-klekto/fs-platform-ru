@@ -80,5 +80,15 @@ export const modals = {
                 return <ProfessionModalMobi onClose={onClose} profession={profession} professionId={professionId} />
             },
         },
+        {
+            id: 'contract_terminated_mobi',
+            content:  ({ onClose }: ModalContentProps) => <ModalContractTerminatedMobi onClose={onClose} />,
+            ),
+        },
+        {
+            id: 'order_accepted_mobi',
+            content: ({ onClose }: ModalContentProps) => <ModalOrderAcceptedMobi onClose={onClose} />
+            ),
+        },
     ],
 }
