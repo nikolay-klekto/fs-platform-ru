@@ -13,7 +13,7 @@ const PromoDesktop: React.FC = () => {
             }}
             className="flex h-[607px] w-full items-center justify-center bg-cover bg-center"
         >
-            <div className="container flex items-center p-6 lg:flex-col xl:flex-col">
+            <div className="container flex items-center gap-[100px] p-6 lg:flex-col xl:flex-col">
                 <div className="max-w-[68rem]">
                     <h3 className="text-18xl font-semibold text-white lg:text-9xl xl:text-15xl 2xl:text-16xl">
                         РЕГИСТРИРУЙСЯ, ВЫБИРАЙ ПРОФЕССИЮ И КОМПАНИЮ, ПОЛУЧАЙ НОВЫЕ ЗНАНИЯ И ОПЫТ
@@ -40,7 +40,7 @@ const PromoDesktop: React.FC = () => {
                         className="group-hover:button-shadow_right_desktop_custom"
                         onClick={() => openModal('registration_desktop', 'desktop')}
                     >
-                        <ArrowBtn width={54} height={54}/>
+                        <ArrowBtn width={54} height={54} />
                     </Button>
                 </div>
             </div>
