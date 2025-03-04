@@ -1,25 +1,22 @@
 'use client'
 import React from 'react'
-import { useModal } from '@/context/ContextModal'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import { modalContentMobi } from './content'
 
 interface ModalContractTerminatedProps {
-    isOpen: boolean
     onClose: () => void
 }
 
-const ModalContractTerminatedMobi: React.FC<ModalContractTerminatedProps> = ({ isOpen }) => {
+const ModalContractTerminatedMobi: React.FC<ModalContractTerminatedProps> = ({ onClose }) => {
     const { title, text } = modalContentMobi.contractTerminatedMobi
-    const { closeModal } = useModal()
 
     return (
-        <Modal show={isOpen} onClose={closeModal} size="medium" showCloseButton={false}>
+        <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
                 <div className="relative mx-4 w-full max-w-lg">
                     <button
-                        onClick={closeModal}
+                        onClick={onClose}
                         className="absolute right-0 top-0 rounded-[30px] bg-[#101030] bg-opacity-[80%] p-px"
                     >
                         <X size={24} color="#878797" />
