@@ -28,7 +28,7 @@ const buttonVariants = cva(
                     'bg-white font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 arrow_registration_desktop: 'bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 arrow_registration_mobi:
-                    'flex items-center justify-center rounded-full bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
+                    'flex items-center justify-center bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 header_desktop_btn_gradient:
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
                 circle_btn_gradient_desktop:
@@ -51,7 +51,7 @@ const buttonVariants = cva(
                 arrow_registration_desktop: 'w-[95px] h-[95px] rounded-[45px]',
                 registration_desktop: 'w-[500px] h-[95px] rounded-[45px] 3xl:w-[376px] 2xl:w-[323px]',
                 registration_mobi: 'rounded-full h-[51px] px-4 py-2',
-                arrow_registration_mobi: 'size-[51px]',
+                arrow_registration_mobi: 'rounded-full size-[51px]',
                 select_mobi: 'h-[40px] w-full max-w-[188px] ',
                 gradient_circle_mobi: 'aspect-square size-[44px] p-[10px]',
                 btn_modal_desktop: 'h-12 max-w-[272px] rounded-md',
