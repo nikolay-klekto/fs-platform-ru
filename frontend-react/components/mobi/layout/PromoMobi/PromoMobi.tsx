@@ -27,7 +27,7 @@ const PromoMobi: React.FC = () => {
                         </span>
                     </Button>
                     <Button
-                        variant="registration_mobi"
+                        variant="arrow_registration_mobi"
                         size="arrow_registration_mobi"
                         onClick={() => openModal('registration_mobi', 'mobi')}
                     >
