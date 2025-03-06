@@ -23,7 +23,7 @@ const PromoDesktop: React.FC = () => {
                         опыта и навыков
                     </p>
                 </div>
-                <div className="ml-auto flex justify-center lg:mt-10 xl:mt-10" >
+                <div className="group ml-auto flex justify-center lg:mt-10 xl:mt-10">
                     <Button
                         variant="registration_desktop"
                         size="registration_desktop"
