@@ -23,7 +23,7 @@ const PromoDesktop: React.FC = () => {
                         опыта и навыков
                     </p>
                 </div>
-                <div className="group ml-auto inline-flex w-fit items-center lg:mt-10 xl:mt-10" >
+                <div className="ml-auto flex justify-center lg:mt-10 xl:mt-10" >
                     <Button
                         variant="registration_desktop"
                         size="registration_desktop"
@@ -40,7 +40,7 @@ const PromoDesktop: React.FC = () => {
                         className="group-hover:button-shadow_right_desktop_custom"
                         onClick={() => openModal('registration_desktop', 'desktop')}
                     >
-                        <ArrowBtn width={54} height={54} />
+                        <ArrowBtn width="57%" height="57%" />
                     </Button>
                 </div>
             </div>
