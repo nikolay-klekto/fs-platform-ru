@@ -34,8 +34,9 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
         subscribe: false,
         agree: false,
     })
-    const { register } = useAuth()
+    const { register, error, loading } = useAuth()
     const { openModal } = useModal()
+    // const [form, setForm] = useState({ email: '', phoneNumber: '', password: '' })
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -208,8 +209,8 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                             label="Телефон*"
                             labelClassName="mb-1 text-2xl font-medium text-white"
                             wrapperClassName="w-full"
-                            mask="+375 (99) 999-99-99"
-                            maskPlaceholder="_"
+                            // mask="+375 (99) 999-99-99"
+                            // maskPlaceholder="_"
                         />
                         {inputInternalErrors.phone && (
                             <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>
@@ -300,8 +301,9 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                         disabled={formError}
                         className="mx-auto mt-6 w-[70%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:bg-[#878797]"
                     >
-                        Зарегистрироваться
+                        {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                     </Button>
+                    {error && <p className="error-form-desktop-custom">{error}</p>}
                 </form>
                 <div className="text15px_desktop mt-5 flex justify-center">
                     <p className="mr-2 font-medium text-[#878797]">Уже зарегистрированы?</p>
