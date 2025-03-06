@@ -12,6 +12,7 @@ import ProfessionModalDesktop from '@/components/desktop/layout/ProfessionModalD
 import ProfessionModalMobi from '@/components/mobi/layout/ProfessionModalMobi/ProfessionModalMobi'
 import ModalOrderPlacedDesktop from '@/modals/ModalsDesktop/ModalOrderPlacedDesktop'
 import ModalContractTerminatedDesktop from '@/modals/ModalsDesktop/ModalContractTerminatedDesktop'
+import ModalForgotPasswordDesktop from '@/modals/ModalsDesktop/ModalForgotPasswordDesktop'
 
 interface ModalContentProps {
     onClose: () => void
@@ -58,6 +59,10 @@ export const modals = {
         {
             id: 'contract_terminated_desktop',
             content: ({ onClose }: ModalContentProps) => <ModalContractTerminatedDesktop onClose={onClose} />,
+        },
+        {
+            id: 'forgot_password_desktop',
+            content: ({ onClose }: ModalContentProps) => <ModalForgotPasswordDesktop onClose={onClose} />,
         },
     ],
     mobi: [
