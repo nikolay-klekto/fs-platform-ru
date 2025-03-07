@@ -19,12 +19,14 @@ const ProfessionModalDesktop: React.FC<ProfessionModalDesktopProps> = ({ onClose
 
     const handleResize = () => {
         if (contentRef.current) {
-            setContentWidth(contentRef.current.offsetHeight)
+            setContentWidth(contentRef.current.offsetWidth)
         }
     }
 
     useEffect(() => {
-        handleResize()
+        if (contentRef.current) {
+            handleResize()
+        }
         window.addEventListener('resize', handleResize)
 
         return () => {
