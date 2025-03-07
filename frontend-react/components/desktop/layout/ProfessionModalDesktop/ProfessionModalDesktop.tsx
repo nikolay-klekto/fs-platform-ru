@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import { contentProfessionAboutDesktop } from './content'
@@ -14,9 +14,27 @@ interface ProfessionModalDesktopProps {
 }
 
 const ProfessionModalDesktop: React.FC<ProfessionModalDesktopProps> = ({ onClose, profession }) => {
+    const contentRef = useRef<HTMLDivElement>(null)
+    const [contentWidth, setContentWidth] = useState(0)
+
+    const handleResize = () => {
+        if (contentRef.current) {
+            setContentWidth(contentRef.current.offsetHeight)
+        }
+    }
+
+    useEffect(() => {
+        handleResize()
+        window.addEventListener('resize', handleResize)
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
+
     return (
         <Modal onClose={onClose} size="large-l" showCloseButton={false} className="px-[clamp(180px,_14vw,_277px)]">
-            <div className="modal-padding-content-lg-dsk flex flex-col">
+            <div ref={contentRef} className="modal-padding-content-lg-dsk flex flex-col">
                 <button onClick={onClose} className="absolute right-[36px] top-[23px]">
                     <X size={41} className="color-[#878797] opacity-50 hover:opacity-80"></X>
                 </button>
