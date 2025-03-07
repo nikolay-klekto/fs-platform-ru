@@ -23,7 +23,7 @@ const inputVariants = cva(
                     'border-[1.18px] border-[#878797] bg-transparent text-xl ring-offset-transparent placeholder:text-xs placeholder:font-medium focus:border-2 focus:ring-transparent md:placeholder:text-base',
                 contacts_page_error_mobi:
                     'border-[1.18px] border-[#bc8070] bg-transparent text-xl ring-offset-transparent placeholder:text-xs placeholder:font-medium focus:border-2 focus:ring-transparent md:placeholder:text-base',
-                events_date_desktop: 'bg-transparent border-none outline-none placeholder-gray-500 h-[22px]',
+                events_date_desktop: 'h-[22px] border-none bg-transparent placeholder-gray-500 outline-none',
             },
             size: {
                 default: 'h-10 px-3 py-2',

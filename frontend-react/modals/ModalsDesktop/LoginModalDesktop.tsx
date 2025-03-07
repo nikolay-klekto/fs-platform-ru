@@ -93,9 +93,9 @@ const LoginModalDesktop: React.FC<LoginDesktopProps> = ({ onClose }) => {
         <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div className="mx-auto flex w-[73%] flex-col items-center justify-center pb-[30px] pt-[40px]">
                 <button onClick={onClose} className="absolute right-[5%] top-[5%] w-[7%]">
-                    <X size={41} color="white" className="w-full opacity-70" />
+                    <X size={41} color="#878797" className="w-full opacity-50 hover:opacity-100" />
                 </button>
-                <h2 className="text36px_desktop text-gradient_desktop_custom 3xl:mb-5 4xl:mb-6 mb-7 inline font-medium uppercase 2xl:mb-4">
+                <h2 className="text36px_desktop text-gradient_desktop_custom mb-7 inline font-medium uppercase 2xl:mb-4 3xl:mb-5 4xl:mb-6">
                     Вход
                 </h2>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle">
@@ -107,12 +107,15 @@ const LoginModalDesktop: React.FC<LoginDesktopProps> = ({ onClose }) => {
                             value={formData.email}
                             onBlur={() => handleInputBlur('email')}
                             validate={(value) => validateEmailDesktop(value)}
-                            onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
+                            onChange={(value) => {
+                                setFormData((prev) => ({ ...prev, email: value }))
+                                setFormError(!validateForm)
+                            }}
                             className={`${
-                                inputTouched.email && validateEmailDesktop(formData.email).styleError
-                                    ? 'border-[#bc8070] focus:border-[#bc8070] '
-                                    : 'border-[#878797] focus:border-[#878797]'
-                            } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
+                                (inputTouched.email && validateEmailDesktop(formData.email).styleError) || formError
+                                    ? 'border-[#bc8070] focus:bg-[#1f203f]'
+                                    : 'input-form-desktop-custom border-[#878797]'
+                            } h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium text-white outline-none placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
                             label="Почта*"
                             labelClassName="mb-1 text-2xl font-medium text-white"
                             wrapperClassName="w-full"
@@ -126,20 +129,27 @@ const LoginModalDesktop: React.FC<LoginDesktopProps> = ({ onClose }) => {
                             value={formData.password}
                             label="Пароль"
                             placeholder="Пароль"
-                            onChange={(value) => handleChange('password', value)}
+                            onChange={(value) => {
+                                handleChange('password', value)
+                                setFormError(!validateForm)
+                            }}
                             onError={(error) => handleError('password', error)}
                             labelClassName="label-form-desktop-custom"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
+                            formError={formError}
                             showGenerateButton={true}
                             required={true}
                         />
                     </div>
-                    <button className="text15px_desktop self-end border-transparent bg-transparent font-semibold text-[#878797]">
-                        Забыли пароль?
-                    </button>
+                    <div className={`flex w-full ${formError ? 'justify-between' : 'justify-end'}`}>
+                        {formError && <p className="error-form-desktop-custom">Введите e-mail и пароль</p>}
+                        <button className="text15px_desktop border-transparent bg-transparent font-semibold text-[#878797]">
+                            Забыли пароль?
+                        </button>
+                    </div>
                     <div className="w-[95%]">
                         <p className="text15px_desktop mt-3 font-medium text-[#353652]">
                             Защита от спама reCAPTCHA{' '}
@@ -152,13 +162,12 @@ const LoginModalDesktop: React.FC<LoginDesktopProps> = ({ onClose }) => {
                             </Link>
                         </p>
                     </div>
-                    {formError && <p className="error-form-desktop-custom">Заполните необходимые поля</p>}
                     <Button
                         type="submit"
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="bg-gradient-desktop hover:bg-gradient-desktop-hover 3xl:text-2xl 4xl:text-3xl mx-auto mt-6 w-[64%] rounded-[50px] text-5xl font-semibold 2xl:text-lg"
+                        className="mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:hover:bg-none"
                     >
                         Войти
                     </Button>
