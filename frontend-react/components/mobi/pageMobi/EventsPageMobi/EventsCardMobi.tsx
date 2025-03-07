@@ -15,7 +15,6 @@ interface EventsCardMobi {
     city: string
     place: string
     company: string
-    id: number
 }
 
 const EventsCardMobi: React.FC<EventsCardMobi> = ({
