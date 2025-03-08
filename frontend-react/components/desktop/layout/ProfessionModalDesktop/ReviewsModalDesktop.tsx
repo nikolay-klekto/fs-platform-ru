@@ -30,8 +30,10 @@ const ReviewsModalDesktop: React.FC = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            const calculatedScrollbarWidth = calculateScrollbarWidth()
-            setScrollbarWidth(calculatedScrollbarWidth)
+            if (contentRef.current && scrollbarRef.current) {
+                const calculatedScrollbarWidth = calculateScrollbarWidth()
+                setScrollbarWidth(calculatedScrollbarWidth)
+            }
         }
 
         window.addEventListener('resize', handleResize)
