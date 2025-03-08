@@ -190,16 +190,19 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                             </div>
                             {errors.consent && <p className="error-form-desktop-custom px-[75px]">{errors.consent}</p>}
                             <div className="mx-auto mt-[1.25rem]">
-                                <p className="px-[75px] text-2xl text-[#353652]">
+                                <p className="px-[75px] text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
                                     <a
                                         href="href"
-                                        className="hover:cursor text-2xl leading-[18px] text-[#353652] underline ml-1"
+                                        className="hover:cursor text-2xl font-medium leading-[18px] text-[#353652] underline ml-1"
                                     >
                                         Конфиденциальность
                                     </a>{' '}
                                     <br />и{' '}
-                                    <a href="href" className="mb-4 text-2xl leading-[18px] text-[#353652] underline">
+                                    <a
+                                        href="href"
+                                        className="mb-4 text-2xl font-medium leading-[18px] text-[#353652] underline"
+                                    >
                                         Условия использования
                                     </a>
                                 </p>
@@ -210,7 +213,11 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                                     variant="default"
                                     size="btn_modal_desktop"
                                     disabled={Object.keys(errors).length > 0}
-                                    className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mb-3 rounded-full px-20 text-5xl leading-[24.38px] font-semibold h-16"
+                                    className={`mx-auto mb-3 rounded-full px-20 text-5xl leading-[24.38px] font-semibold h-16 ${
+                                        Object.keys(errors).length > 0
+                                            ? 'bg-[#878797]'
+                                            : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'
+                                    }`}
                                 >
                                     Оставить заявку
                                 </Button>
