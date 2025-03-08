@@ -167,7 +167,7 @@ const LoginModalDesktop: React.FC<LoginDesktopProps> = ({ onClose }) => {
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:hover:bg-none"
+                        className="mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
                     >
                         Войти
                     </Button>

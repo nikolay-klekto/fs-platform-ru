@@ -174,8 +174,8 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                             className={`${
                                 inputTouched.email && validateEmailDesktop(formData.email).styleError
                                     ? 'border-[#bc8070] focus:border-[#bc8070] '
-                                    : 'border-[#878797] focus:border-[#878797]'
-                            } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
+                                    : 'input-form-desktop-custom border-[#878797]'
+                            } h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-5xl font-medium text-white focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
                             label="Почта*"
                             labelClassName="mb-1 text-2xl font-medium text-white"
                             wrapperClassName="w-full"
@@ -293,7 +293,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="mx-auto mt-6 w-[70%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:bg-[#878797]"
+                        className="mx-auto mt-6 w-[70%] h-[64px] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
                     >
                         Зарегистрироваться
                     </Button>
