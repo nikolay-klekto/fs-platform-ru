@@ -215,7 +215,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                                     disabled={Object.keys(errors).length > 0}
                                     className={`mx-auto mb-3 rounded-full px-20 text-5xl leading-[24.38px] font-semibold h-16 ${
                                         Object.keys(errors).length > 0
-                                            ? 'bg-[#878797]'
+                                            ? 'bg-[#878797] disabled:opacity-100'
                                             : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'
                                     }`}
                                 >
