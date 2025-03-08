@@ -1,12 +1,20 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { contentReviewsDesktop } from './content'
 import ItemReviewsDesktop from './ItemReviewsDesktop'
 
 const ReviewsModalDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
+    const [scrollbarWidth, setScrollbarWidth] = useState(0)
+
+    const calculateScrollbarWidth = () => {
+        if (!contentRef.current || !scrollbarRef.current) return 0
+        const visibleContentWidth = contentRef.current.offsetWidth
+        const visibleScrollBarWidth = scrollbarRef.current.offsetWidth
+        return contentRef.current.scrollWidth - (visibleContentWidth - visibleScrollBarWidth)
+    }
 
     const handleScroll = () => {
         if (contentRef.current && scrollbarRef.current) {
@@ -20,12 +28,20 @@ const ReviewsModalDesktop: React.FC = () => {
         }
     }
 
-    const calculateScrollbarWidth = () => {
-        if (!contentRef.current || !scrollbarRef.current) return 0
-        const visibleContentWidth = contentRef.current.offsetWidth
-        const visibleScrollBarWidth = scrollbarRef.current.offsetWidth
-        return contentRef.current.scrollWidth - (visibleContentWidth - visibleScrollBarWidth)
-    }
+    useEffect(() => {
+        const handleResize = () => {
+            const calculatedScrollbarWidth = calculateScrollbarWidth()
+            setScrollbarWidth(calculatedScrollbarWidth)
+        }
+
+        window.addEventListener('resize', handleResize)
+
+        handleResize()
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
 
     return (
         <div>
@@ -48,7 +64,7 @@ const ReviewsModalDesktop: React.FC = () => {
                 onScroll={handleScrollbarScroll}
                 className="scrollbar_custom relative mx-auto mt-[clamp(25px,_2vw,_40px)] h-[14px] w-[65%] cursor-pointer overflow-x-scroll"
             >
-                <div className="absolute h-2" style={{ width: `${calculateScrollbarWidth()}px` }}></div>
+                <div className="absolute h-2" style={{ width: `${scrollbarWidth}px` }}></div>
             </div>
         </div>
     )
