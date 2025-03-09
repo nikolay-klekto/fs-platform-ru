@@ -17,7 +17,6 @@ interface PasswordInputProps {
     inputNOERRAddStyle?: string
     showGenerateButton?: boolean
     required?: boolean
-    formError?: boolean
 }
 
 const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
@@ -32,7 +31,6 @@ const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
     errorClassName,
     inputERRAddStyle,
     inputNOERRAddStyle,
-    formError,
     showGenerateButton = false,
     required = false,
 }) => {
@@ -79,7 +77,7 @@ const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
                     value={value}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full ${inputClassName} ${hasError || formError ? inputERRAddStyle : inputNOERRAddStyle}`}
+                    className={`w-full ${inputClassName} ${hasError ? inputERRAddStyle : inputNOERRAddStyle}`}
                 />
                 <button
                     type="button"
