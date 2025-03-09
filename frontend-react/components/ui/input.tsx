@@ -2,7 +2,7 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/icons'
-//import InputMask from 'react-input-mask'
+import InputMask from 'react-input-mask'
 
 const inputVariants = cva(
     'flex w-full rounded-md border text-sm ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
@@ -91,7 +91,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
             placeholder,
             mask,
             checked,
-            //maskPlaceholder = '_',
+            maskPlaceholder = '_',
             ...props
         },
         ref,
