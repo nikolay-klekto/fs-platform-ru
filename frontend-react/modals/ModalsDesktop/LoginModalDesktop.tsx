@@ -116,7 +116,7 @@ const LoginModalDesktop: React.FC<LoginDesktopProps> = ({ onClose }) => {
                                     ? 'border-[#bc8070] focus:bg-[#1f203f]'
                                     : 'input-form-desktop-custom border-[#878797]'
                             } h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium text-white outline-none placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
-                            label="Почта*"
+                            label="Почта"
                             labelClassName="mb-1 text-2xl font-medium text-white"
                             wrapperClassName="w-full"
                         />
@@ -134,7 +134,7 @@ const LoginModalDesktop: React.FC<LoginDesktopProps> = ({ onClose }) => {
                                 setFormError(!validateForm)
                             }}
                             onError={(error) => handleError('password', error)}
-                            labelClassName="label-form-desktop-custom"
+                            labelClassName="label-form-desktop-custom text-2xl mb-1"
                             inputClassName="input-form-desktop-custom"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"

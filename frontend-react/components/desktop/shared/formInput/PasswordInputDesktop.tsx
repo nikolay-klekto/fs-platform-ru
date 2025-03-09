@@ -67,7 +67,7 @@ const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
     const hasError = Boolean(externalError || internalError)
 
     return (
-        <div className="w-full">
+        <div className="flex w-full flex-col gap-1.5">
             <label htmlFor={label} className={`${labelClassName}`}>
                 {label}
             </label>
