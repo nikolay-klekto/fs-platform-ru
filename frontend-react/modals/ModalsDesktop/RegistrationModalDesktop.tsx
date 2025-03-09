@@ -176,7 +176,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                                     ? 'border-[#bc8070] focus:border-[#bc8070] '
                                     : 'input-form-desktop-custom border-[#878797]'
                             } h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-5xl font-medium text-white focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
-                            label="Почта*"
+                            label="Почта"
                             labelClassName="mb-1 text-2xl font-medium text-white"
                             wrapperClassName="w-full"
                         />
@@ -198,7 +198,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                                     ? 'border-[#bc8070] focus:border-[#bc8070]'
                                     : 'border-[#878797] focus:border-[#878797]'
                             } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
-                            label="Телефон*"
+                            label="Телефон"
                             labelClassName="mb-1 text-2xl font-medium text-white"
                             wrapperClassName="w-full"
                             mask="+375 (99) 999-99-99"
