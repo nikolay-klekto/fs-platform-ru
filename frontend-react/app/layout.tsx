@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-import Providers from '@/app/providers/providers'
+import { modals } from '@/modals/modals'
+import { ModalProvider } from '@/context/ContextModal'
+import ApolloProviderWrapper from '@/components/wrapper/ApolloProviderWrapper'
 import '../styles/globals.css'
 
 const montserrat = Montserrat({
@@ -22,7 +24,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={montserrat.className}>
-                <Providers>{children}</Providers>
+                <ApolloProviderWrapper>
+                    <ModalProvider modals={modals}>{children}</ModalProvider>
+                </ApolloProviderWrapper>
             </body>
         </html>
     )

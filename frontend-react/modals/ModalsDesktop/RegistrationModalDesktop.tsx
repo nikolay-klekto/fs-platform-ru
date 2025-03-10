@@ -14,7 +14,7 @@ import { useAuth } from '@/hooks/useAuth'
 
 interface RegistrationFormData {
     email: string
-    phone: string
+    phoneNumber: string
     password: string
     confirmPassword: string
     subscribe: boolean
@@ -28,7 +28,7 @@ interface RegistrationModalDesktopProps {
 const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onClose }) => {
     const [formData, setFormData] = useState<RegistrationFormData>({
         email: '',
-        phone: '',
+        phoneNumber: '',
         password: '',
         confirmPassword: '',
         subscribe: false,
@@ -45,7 +45,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
 
     const [inputInternalErrors, setInputInternalErrors] = useState<{ [key: string]: string | null }>({
         email: '',
-        phone: '',
+        phoneNumber: '',
         password: '',
         confirmPassword: '',
         subscribe: '',
@@ -62,7 +62,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
     const validateForm = useCallback((): boolean => {
         const hasEmptyFields =
             formData.email === '' ||
-            formData.phone === '' ||
+            formData.phoneNumber === '' ||
             formData.password === '' ||
             formData.confirmPassword === '' ||
             formData.agree !== true
@@ -130,7 +130,12 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
             return
         }
 
-        const result = await register(formData.email, formData.phone, formData.password)
+        // const result = await register(formData.email, formData.phoneNumber, formData.password)
+        const result = await register({
+            email: formData.email,
+            phoneNumber: formData.phoneNumber,
+            password: formData.password,
+        })
         if (result) {
             console.log('Успешная регистрация', result)
             onClose()
@@ -146,7 +151,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
 
     const [inputTouched, setInputTouched] = useState({
         email: false,
-        phone: false,
+        phoneNumber: false,
     })
 
     const handleInputBlur = (field: 'phone' | 'email') => {
@@ -197,12 +202,12 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                             type="tel"
                             name="phone"
                             placeholder="Номер телефона"
-                            value={formData.phone}
+                            value={formData.phoneNumber}
                             onBlur={() => handleInputBlur('phone')}
                             validate={(value) => validatePhoneDesktop(value)}
-                            onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, phoneNumber: value }))}
                             className={`${
-                                inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
+                                inputTouched.phoneNumber && validatePhoneDesktop(formData.phoneNumber).styleError
                                     ? 'border-[#bc8070] focus:border-[#bc8070]'
                                     : 'border-[#878797] focus:border-[#878797]'
                             } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
@@ -303,7 +308,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                     >
                         {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                     </Button>
-                    {error && <p className="error-form-desktop-custom">{error}</p>}
+                    {error && <p className="error-form-desktop-custom">{error.message}</p>}
                 </form>
                 <div className="text15px_desktop mt-5 flex justify-center">
                     <p className="mr-2 font-medium text-[#878797]">Уже зарегистрированы?</p>
