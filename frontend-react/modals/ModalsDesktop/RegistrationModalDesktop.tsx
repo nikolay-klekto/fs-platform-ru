@@ -34,7 +34,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
         subscribe: false,
         agree: false,
     })
-    const { register, error, loading } = useAuth()
+    const { register, data, error, loading, client } = useAuth()
     const { openModal } = useModal()
     // const [form, setForm] = useState({ email: '', phoneNumber: '', password: '' })
     const [formError, setFormError] = useState(false)
@@ -125,17 +125,13 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
     const router = useRouter()
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        client.resetStore(); 
         if (validateForm()) {
             setFormError(true)
             return
         }
 
-        // const result = await register(formData.email, formData.phoneNumber, formData.password)
-        const result = await register({
-            email: formData.email,
-            phoneNumber: formData.phoneNumber,
-            password: formData.password,
-        })
+        const result = await register(formData.email, formData.phoneNumber, formData.password)
         if (result) {
             console.log('Успешная регистрация', result)
             onClose()
@@ -309,6 +305,9 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                         {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                     </Button>
                     {error && <p className="error-form-desktop-custom">{error.message}</p>}
+                    {data && (
+                        <p className="text-green-500">Регистрация успешна! Добро пожаловать, {data.user?.name}!</p>
+                    )}
                 </form>
                 <div className="text15px_desktop mt-5 flex justify-center">
                     <p className="mr-2 font-medium text-[#878797]">Уже зарегистрированы?</p>

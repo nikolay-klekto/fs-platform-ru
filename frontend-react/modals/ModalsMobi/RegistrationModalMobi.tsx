@@ -33,7 +33,7 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }
         agree: false,
     })
     const { openModal } = useModal()
-    const { register } = useAuth()
+    const { register, data, error, loading, client } = useAuth()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -131,6 +131,7 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }
     const router = useRouter()
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        client.resetStore()
         if (validateForm()) {
             setFormError(true)
             console.log('Ошибка: Заполните все поля корректно или исправьте ошибки')
@@ -294,8 +295,12 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }
                             disabled={formError}
                             className="mx-auto mt-6 w-[70%] rounded-[50px] bg-gradient-desktop text-4xl font-medium hover:bg-gradient-desktop-hover sm:w-4/5 sm:text-xl md:text-4xl sm_s:w-4/5 sm_s:text-xl sm_l:w-4/5 sm_l:text-2xl sm_xl:text-3xl"
                         >
-                            Зарегистрироваться
+                            {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                         </Button>
+                        {error && <p className="error-form-desktop-custom">{error.message}</p>}
+                        {data && (
+                            <p className="text-green-500">Регистрация успешна! Добро пожаловать, {data.user?.name}!</p>
+                        )}
                     </form>
                     <div className="text14px_mobi mb-6 mt-5 flex justify-center">
                         <p className="mr-2 font-medium text-[#878797]">Уже зарегистрированы?</p>
