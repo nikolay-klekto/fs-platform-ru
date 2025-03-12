@@ -17,12 +17,18 @@ const ProfessionsPageDesktop: React.FC = () => {
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 12
-    const totalPages = Math.ceil(content.length / cardsPerPage)
+
+    const filteredContent = content.filter((item) =>
+        item.profession.toLowerCase().includes(searchQuery.toLowerCase().trim()),
+    )
+
+    const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
 
     const handleSearch = () => {
         console.log('Поиск профессий:', searchQuery)
-        setSearchQuery('')
+        setCurrentPage(1)
     }
+
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
@@ -39,7 +45,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                         <EnhancedInput
                             type="text"
                             value={searchQuery}
-                            onChange={(value) => setSearchQuery(value)}
+                            onChange={setSearchQuery}
                             variant={'gradient_desktop'}
                             size={'gradient_search_desktop'}
                             rounded={'full'}
@@ -60,7 +66,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                     <ProfessionsSelectDesktop />
                 </div>
                 <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
-                    {content.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
+                    {filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
                         <ProfessionCardPageDesktop
                             key={item.id}
                             image={item.image}
@@ -75,11 +81,14 @@ const ProfessionsPageDesktop: React.FC = () => {
                         />
                     ))}
                 </div>
-                <ProfessionsPaginationDesktop
-                    totalPages={totalPages}
-                    currentPage={currentPage}
-                    onPageChange={handlePageChange}
-                />
+                {totalPages > 1 && (
+                    <ProfessionsPaginationDesktop
+                        totalPages={totalPages}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                    />
+                )}
+
                 <ProfessionSearchDesktop />
             </div>
         </>
