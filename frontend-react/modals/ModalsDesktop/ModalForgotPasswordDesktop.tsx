@@ -1,11 +1,11 @@
 'use client'
 
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Modal from '@/components/ui/modal'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
 import { Button } from '@/components/ui/button'
-import { useModal } from '@/context/ContextModal'
+
 import { X } from 'lucide-react'
 
 interface ForgotPasswordData {
@@ -20,43 +20,13 @@ const ModalForgotPasswordDesktop: React.FC<ForgotPasswordDataProps> = ({ onClose
     const [passwordData, setPasswordData] = useState<ForgotPasswordData>({
         email: '',
     })
-    const { openModal } = useModal()
-    const [inputInternalErrors, setInputInternalErrors] = useState<{ [key: string]: string | null }>({
+
+    const [inputInternalErrors] = useState<{ [key: string]: string | null }>({
         email: '',
     })
 
-    const [setError] = useState(false)
-
-    const handleError = (field: string, error: string | null) => {
-        setInputInternalErrors((prevErrors) => ({
-            ...prevErrors,
-            [field]: error,
-        }))
-    }
-
-    const validateEmail = useCallback((): boolean => {
-        const hasEmptyFields = passwordData.email === ''
-        const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
-
-        return hasEmptyFields || hasInternalErrors
-    }, [passwordData.email, inputInternalErrors])
-
-    // const handleChange = (field: keyof ForgotPasswordData, value: string) => {
-    //     setPasswordData((prev) => ({
-    //         ...prev,
-    //         [field]: value,
-    //     }))
-    // }
-
-    useEffect(() => {
-        if (!validateEmail()) {
-            setError(false)
-        }
-    }, [passwordData, inputInternalErrors, validateEmail, setError])
-
     const [inputTouched, setInputTouched] = useState({
         email: false,
-        phone: false,
     })
 
     const handleInputBlur = (field: 'email') => {
@@ -66,11 +36,6 @@ const ModalForgotPasswordDesktop: React.FC<ForgotPasswordDataProps> = ({ onClose
         }))
     }
 
-    // const openForgotPassowrdModal = () => {
-    //     onClose()
-    //     openModal('forgot_password_desktop', 'desktop')
-    // }
-
     return (
         <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div>
@@ -78,16 +43,14 @@ const ModalForgotPasswordDesktop: React.FC<ForgotPasswordDataProps> = ({ onClose
                     <X size={41} color="white" className="opacity-50 hover:opacity-100" />
                 </button>
             </div>
-            <div className="mx-auto flex max-w-[578px] flex-col">
-                <h3 className="text28px_desktop bg-gradient-desktop bg-clip-text text-center font-medium text-transparent">
-                    ЗАБЫЛИ ПАРОЛЬ
+            <div className=" flex max-w-[578px] flex-col">
+                <h3 className="text28px_desktop mb-2 mt-[40px] bg-gradient-desktop bg-clip-text text-center font-medium text-transparent">
+                    ЗАБЫЛИ ПАРОЛЬ?
                 </h3>
-                <p className="custom-grey text18px_desktop font-medium ">
-                    Чтобы получить доступ к аккаунту, введите <br />
-                    e-mail адрес, который вы указали при
-                    <br /> регистрации
+                <p className="custom-grey text18px_desktop px-[3.96vw] font-medium ">
+                    Чтобы получить доступ к аккаунту, введите e-mail адрес, который вы указали при регистрации
                 </p>
-                <div className="">
+                <div className="flex w-full flex-col px-[3.96vw]">
                     <EnhancedInput
                         type="email"
                         name="email"
@@ -100,26 +63,29 @@ const ModalForgotPasswordDesktop: React.FC<ForgotPasswordDataProps> = ({ onClose
                             inputTouched.email && validateEmailDesktop(passwordData.email).styleError
                                 ? 'border-[#bc8070] focus:border-[#bc8070] '
                                 : 'border-[#878797] focus:border-[#878797]'
-                        } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
+                        } h-10 w-full rounded-[20px] border bg-transparent px-4 text-xl font-medium text-white`}
                         label="Почта"
-                        labelClassName="mb-1 text15px_desktop font-medium text-white"
+                        labelClassName="mt-2 mb-1 text15px_desktop font-medium text-white"
                         wrapperClassName="w-full"
                     />
                     {inputInternalErrors.email && (
                         <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
                     )}
                 </div>
-                <div className="">
-                    <p className=" text15px_desktop font-medium text-[#353652]">
+                <div className="mt-2 px-[3.96vw]">
+                    <p className="text15px_desktop font-medium text-[#353652]">
                         Защита от спама reCAPTCHA{' '}
                         <a
                             href="href"
-                            className="hover:cursor text-2xl font-medium leading-[18px] text-[#353652] underline"
+                            className="hover:cursor ml-1 text-2xl font-medium leading-[18px] text-[#353652] underline"
                         >
                             Конфиденциальность
                         </a>{' '}
                         <br />и{' '}
-                        <a href="href" className="mb-4 text-2xl font-medium leading-[18px] text-[#353652] underline">
+                        <a
+                            href="href"
+                            className="mb-4 ml-1 text-2xl font-medium leading-[18px] text-[#353652] underline"
+                        >
                             Условия использования
                         </a>
                     </p>

@@ -13,7 +13,7 @@ import ProfessionModalMobi from '@/components/mobi/layout/ProfessionModalMobi/Pr
 import ModalOrderPlacedDesktop from '@/modals/ModalsDesktop/ModalOrderPlacedDesktop'
 import ModalContractTerminatedDesktop from '@/modals/ModalsDesktop/ModalContractTerminatedDesktop'
 import ModalForgotPasswordDesktop from '@/modals/ModalsDesktop/ModalForgotPasswordDesktop'
-
+import ModalForgotPasswordMobi from '@/modals/ModalsMobi/ModalForgotPasswordMobi'
 interface ModalContentProps {
     onClose: () => void
     modalProps?: Record<string, unknown>
@@ -84,6 +84,10 @@ export const modals = {
                 const { profession, professionId } = modalProps as { profession: string; professionId: number | null }
                 return <ProfessionModalMobi onClose={onClose} profession={profession} professionId={professionId} />
             },
+        },
+        {
+            id: 'forgot_password_mobi',
+            content: ({ onClose }: ModalContentProps) => <ModalForgotPasswordMobi onClose={onClose} />,
         },
     ],
 }
