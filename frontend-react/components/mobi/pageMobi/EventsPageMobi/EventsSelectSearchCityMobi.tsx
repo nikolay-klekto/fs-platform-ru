@@ -30,12 +30,12 @@ const EventsSelectSearchCityMobi = () => {
                 <Button
                     variant={'select_btn_desktop'}
                     size={'select_btn_desktop_events'}
-                    className="bg-[#101030] relative z-[3]"
+                    className="relative z-[3] bg-[#101030]"
                     role="combobox"
                     aria-expanded={open}
                 >
                     {selectedCity ? cities.find((city) => city.value === selectedCity)?.label : 'Город'}
-                    <ChevronDownIcon className="h-[15px] w-[27px] ml-2 transition-transform duration-200" />
+                    <ChevronDownIcon className="ml-2 h-[15px] w-[27px] transition-transform duration-200" />
                 </Button>
             </PopoverTrigger>
             <PopoverContent

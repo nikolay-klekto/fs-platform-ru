@@ -1,7 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { ChevronDownIconDesktop, LineDate, CalendarIcons } from '@/components/assets/icons'
+import {
+    ChevronDownIconDesktop,
+    LineDate,
+    CalendarIcons,
+    QuestionMark,
+    CheckedBoxIcon,
+} from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
-import { CheckedBoxIcon } from '@/components/assets/icons'
 
 import { Calendar } from '@/components/ui/calendar'
 
@@ -200,12 +205,12 @@ const EventsSelectSearchDateDesktop = () => {
                         background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
                     }}
                 >
-                    <div className="flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3 relative">
-                        <div className="flex items-center justify-between custom-grey">
-                            <div className="flex flex-col relative" ref={fromCalendarRef}>
+                    <div className="relative flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
+                        <div className="custom-grey flex items-center justify-between">
+                            <div className="relative flex flex-col" ref={fromCalendarRef}>
                                 <p>От</p>
                                 <div
-                                    className="desktop flex items-center justify-center gap-1 rounded-[42px] w-[178px] h-[50px] 3xl:w-[120px] 2xl:w-[110px] border border-[#878797]"
+                                    className="desktop 3xl:w-[120px] flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border border-[#878797] 2xl:w-[110px]"
                                     onClick={() => toggleCalendar('from')}
                                     onKeyDown={(e) => {
                                         if (e.key === 'Enter' || e.key === ' ') {
@@ -222,16 +227,16 @@ const EventsSelectSearchDateDesktop = () => {
                                         placeholder="__.__.____"
                                         onChange={(e) => handleInputChange('from', e.target.value)}
                                         onFocus={() => setOpenCalendars((prev) => ({ ...prev, from: true }))}
-                                        className="bg-transparent border-none outline-none placeholder-gray-500 w-[81px] 2xl:w-[75px] text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg"
+                                        className="4xl:text-2xl 3xl:text-xl w-[81px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:w-[75px] 2xl:text-lg"
                                     />
                                 </div>
                                 {openCalendars.from && (
-                                    <div className="absolute top-full left-0 mt-2 z-20">
+                                    <div className="absolute left-0 top-full z-20 mt-2">
                                         <Calendar
                                             mode="single"
                                             selected={dates.from || undefined}
                                             onSelect={(date) => handleDateChange('from', date)}
-                                            className="w-full h-full rounded-[50px] bg-[#353652] border-[#878797] shadow-lg"
+                                            className="size-full rounded-[50px] border-[#878797] bg-[#353652] shadow-lg"
                                         />
                                     </div>
                                 )}
@@ -239,10 +244,10 @@ const EventsSelectSearchDateDesktop = () => {
 
                             <LineDate className="mt-5" />
 
-                            <div className="flex flex-col relative" ref={toCalendarRef}>
+                            <div className="relative flex flex-col" ref={toCalendarRef}>
                                 <p>До</p>
                                 <div
-                                    className="desktop flex items-center justify-center gap-1 rounded-[42px] w-[178px] h-[50px] 3xl:w-[120px] 2xl:w-[110px] border border-[#878797]"
+                                    className="desktop 3xl:w-[120px] flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border border-[#878797] 2xl:w-[110px]"
                                     onClick={() => toggleCalendar('to')}
                                     onKeyDown={(e) => {
                                         if (e.key === 'Enter' || e.key === ' ') {
@@ -259,16 +264,16 @@ const EventsSelectSearchDateDesktop = () => {
                                         placeholder="__.__.____"
                                         onChange={(e) => handleInputChange('to', e.target.value)}
                                         onFocus={() => setOpenCalendars((prev) => ({ ...prev, from: true }))}
-                                        className="bg-transparent border-none outline-none placeholder-gray-500 w-[81px] 2xl:w-[75px] text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg"
+                                        className="4xl:text-2xl 3xl:text-xl w-[81px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:w-[75px] 2xl:text-lg"
                                     />
                                 </div>
                                 {openCalendars.to && (
-                                    <div className="absolute top-full right-0 mt-2 z-20">
+                                    <div className="absolute right-0 top-full z-20 mt-2">
                                         <Calendar
                                             mode="single"
                                             selected={dates.to}
                                             onSelect={(date) => handleDateChange('to', date)}
-                                            className="w-full h-full rounded-[50px] bg-[#353652] border-[#878797] shadow-lg"
+                                            className="size-full rounded-[50px] border-[#878797] bg-[#353652] shadow-lg"
                                         />
                                     </div>
                                 )}

@@ -41,7 +41,7 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ onClose }) => {
             ...prev,
             [field]: value,
         }))
-        
+
         if (field === 'email' && typeof value === 'string') {
             const { status, textError } = validateEmailDesktop(value)
             setInputErrors((prev) => ({
@@ -72,12 +72,12 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ onClose }) => {
             <div className="mx-auto flex w-[73%] flex-col items-center justify-center pb-[30px] pt-[40px]">
                 <button
                     onClick={onClose}
-                    className="absolute right-[5%] top-[5%] w-[7%] hover:opacity-100 transition-opacity duration-300"
+                    className="absolute right-[5%] top-[5%] w-[7%] transition-opacity duration-300 hover:opacity-100"
                 >
                     <X size={41} color="white" className="w-full opacity-70 hover:opacity-100" />
                 </button>
                 <h2
-                    className="text28px_desktop text-gradient_desktop_custom mb-7 block font-medium uppercase text-center w-[543px] leading-[1.22] break-normal whitespace-normal"
+                    className="text28px_desktop text-gradient_desktop_custom mb-7 block w-[543px] whitespace-normal break-normal text-center font-medium uppercase leading-[1.22]"
                     style={{ textWrap: 'balance' }}
                 >
                     Когда профессия станет доступна, куда вам сообщить?
@@ -92,16 +92,16 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ onClose }) => {
                             validate={validateEmailDesktop}
                             onChange={(value) => handleChange('email', value)}
                             variant="gradient_desktop"
-                            className="h-10 w-full rounded-[20px] border-[2px] border-[#878797] bg-transparent p-3 text-xl font-medium text-white focus:outline-none focus:ring-0"
+                            className="h-10 w-full rounded-[20px] border-2 border-[#878797] bg-transparent p-3 text-xl font-medium text-white focus:outline-none focus:ring-0"
                         />
                         {inputErrors.email && <p className="error-form-desktop-custom">{inputErrors.email}</p>}
                     </div>
-                    <div className="py-2 flex items-center h-[40px]">
+                    <div className="flex h-[40px] items-center py-2">
                         <EnhancedInput
                             type="checkbox"
                             name="consent"
                             checked={formData.consent}
-                            onChange={(value) => handleChange('consent', value === true)}
+                            onChange={(value) => handleChange('consent', value === 'true')}
                             label="Я согласен(а) на обработку персональных данных"
                             wrapperClassName="flex gap-2 pt-2"
                         />
@@ -119,7 +119,7 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ onClose }) => {
                     {formError && <p className="error-form-desktop-custom">Заполните необходимые поля</p>}
                     <Button
                         type="submit"
-                        className="bg-gradient-to-r from-[#8333F3] to-[#3B51A8] mx-auto mt-6 w-[220px] h-[52.35px] rounded-[40.44px] text-lg font-semibold transition-all duration-300 via-[#5F4AF3] hover:shadow-lg hover:bg-gradient-desktop-hover"
+                        className="hover:bg-gradient-desktop-hover mx-auto mt-6 h-[52.35px] w-[220px] rounded-[40.44px] bg-gradient-to-r from-[#8333F3] via-[#5F4AF3] to-[#3B51A8] text-lg font-semibold transition-all duration-300 hover:shadow-lg"
                     >
                         Отправить
                     </Button>
