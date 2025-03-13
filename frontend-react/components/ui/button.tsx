@@ -22,13 +22,13 @@ const buttonVariants = cva(
                 select_mobi: 'button-border-mobi rounded-[50px] border-2 border-transparent bg-[#101030] text-white',
                 accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
                 accent_mobi: 'flex items-center rounded-[50px] bg-white',
-                registration:
-                    'text-13xl w-[500px] rounded-[45px] bg-white font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] lg:text-9xl',
+                registration_desktop:
+                    'bg-white font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] text-12xl 3xl:text-8xl 2xl:text-6xl',
                 registration_mobi:
-                    'rounded-full bg-white px-4 py-2 font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
-                arrow: 'w-[95px] rounded-[45px] bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
-                arrow_mobi:
-                    'flex size-[51px] items-center justify-center rounded-full bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
+                    'bg-white font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
+                arrow_registration_desktop: 'bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
+                arrow_registration_mobi:
+                    'flex items-center justify-center bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 header_desktop_btn_gradient:
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
                 circle_btn_gradient_desktop:
@@ -48,8 +48,10 @@ const buttonVariants = cva(
                 default: 'h-10 px-4 py-2',
                 sm: 'h-9 rounded-md px-3',
                 lg: 'h-11 rounded-md px-8',
-                four_xl: 'h-[95px]',
-                promo_mobi: 'h-[51px]',
+                arrow_registration_desktop: 'rounded-full size-[95px] 2xl:size-[80px] 3xl:size-[88px]',
+                registration_desktop: 'w-[500px] h-[95px] rounded-[45px] 3xl:w-[376px] 3xl:h-[88px] 2xl:w-[323px] 2xl:h-[80px] ',
+                registration_mobi: 'rounded-full h-[51px] px-4 py-2',
+                arrow_registration_mobi: 'rounded-full size-[51px]',
                 select_mobi: 'h-[40px] w-full max-w-[188px] ',
                 gradient_circle_mobi: 'aspect-square size-[44px] p-[10px]',
                 btn_modal_desktop: 'h-12 max-w-[272px] rounded-md',
