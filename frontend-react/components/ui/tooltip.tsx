@@ -4,7 +4,7 @@ import * as React from 'react'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 import { cn } from '@/lib/utils'
-import { HelpIconDesktop } from '@/components/assets/icons'
+import { HelpIconDesktop, TrashIcon } from '@/components/assets/icons'
 import { HelpIconMobi } from '@/components/assets/iconsMobi'
 
 interface HelpTooltipProps {
@@ -151,4 +151,33 @@ export const HelpTooltipMobi: React.FC<HelpTooltipProps> = ({ tooltipMessage }) 
             <PopoverArrow className="h-2 fill-[#353652cc]" />
         </PopoverContent>
     </Popover>
+)
+
+export const TrashTooltipDesktop: React.FC<HelpTooltipProps> = ({ tooltipMessage }) => (
+    <TooltipProvider delayDuration={200}>
+        <Tooltip>
+            <TooltipTrigger asChild>
+                <button>
+                    <TrashIcon />
+                </button>
+            </TooltipTrigger>
+            <TooltipContent
+                className=" m-0 h-full max-h-screen w-[207px] rounded-[25px] border-none bg-[#353652cc] shadow-none"
+                sideOffset={3}
+                side="bottom"
+                align="start"
+                alignOffset={0}
+                arrowPadding={0}
+                avoidCollisions={false}
+                collisionPadding={{ top: 10, left: 20 }}
+            >
+                <div className="4xl:p-1.5 3xl:p-1.5 3xl:pt-1 p-2 2xl:p-1.5 2xl:pt-1">
+                    <p className="3xl:text-[12px] 3xl:font-light text-mauve12 align-baseline text-[15px] font-medium leading-[19px] text-white 2xl:text-[12px] 2xl:font-light">
+                        {tooltipMessage}
+                    </p>
+                </div>
+                <TooltipArrow className="transform: translateY(-1px) h-2 fill-[#353652cc]" />
+            </TooltipContent>
+        </Tooltip>
+    </TooltipProvider>
 )

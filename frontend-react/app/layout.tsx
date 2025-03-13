@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google'
 import { modals } from '@/modals/modals'
 import { ModalProvider } from '@/context/ContextModal'
 import '../styles/globals.css'
+import ScrollRestoration from '@/lib/scroll-restoration'
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -23,6 +24,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={montserrat.className}>
+                <ScrollRestoration />
                 <ModalProvider modals={modals}>{children}</ModalProvider>
             </body>
         </html>
