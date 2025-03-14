@@ -12,7 +12,7 @@ import PasswordInputDesktop from '@/components/desktop/shared/formInput/Password
 import { useModal } from '@/context/ContextModal'
 import { useAuth } from '@/hooks/useAuth'
 
-interface RegistrationFormData {
+interface IRegistrationFormData {
     email: string
     phoneNumber: string
     password: string
@@ -21,12 +21,12 @@ interface RegistrationFormData {
     agree: boolean
 }
 
-interface RegistrationModalDesktopProps {
+interface IRegistrationModalDesktop {
     onClose: () => void
 }
 
-const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onClose }) => {
-    const [formData, setFormData] = useState<RegistrationFormData>({
+const RegistrationModalDesktop: React.FC<IRegistrationModalDesktop> = ({ onClose }) => {
+    const [formData, setFormData] = useState<IRegistrationFormData>({
         email: '',
         phoneNumber: '',
         password: '',
@@ -34,7 +34,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
         subscribe: false,
         agree: false,
     })
-    const { register, data, error, loading, client } = useAuth()
+    const { register, error, loading, client } = useAuth()
     const { openModal } = useModal()
     // const [form, setForm] = useState({ email: '', phoneNumber: '', password: '' })
     const [formError, setFormError] = useState(false)
@@ -73,7 +73,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
         return hasEmptyFields || hasErrors || hasInternalErrors
     }, [formData, errors, inputInternalErrors])
 
-    const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
+    const handleChange = (field: keyof IRegistrationFormData, value: string | boolean) => {
         setFormData((prev) => {
             const updatedFormData = {
                 ...prev,
@@ -132,11 +132,19 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
         }
 
         const result = await register(formData.email, formData.phoneNumber, formData.password)
-        if (result) {
-            console.log('Успешная регистрация', result)
-            onClose()
-            router.push('/personalaccount')
+        if (typeof result === 'object' && result.errorMessage) {
+            if (result.errorMessage.includes('Пользователь с таким e-mail уже существует')) {
+                setInputInternalErrors((prevErrors) => ({
+                    ...prevErrors,
+                    email: 'Пользователь с таким e-mail уже существует',
+                }))
+            }
+            return
         }
+
+        console.log('Успешная регистрация', result)
+        onClose()
+        router.push('/personalaccount')
     }
 
     useEffect(() => {
@@ -302,14 +310,11 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="mx-auto mt-6 w-[70%] h-[64px] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
+                        className="mx-auto mt-6 h-[64px] w-[70%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
                     >
                         {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                     </Button>
                     {error && <p className="error-form-desktop-custom">{error.message}</p>}
-                    {data && (
-                        <p className="text-green-500">Регистрация успешна! Добро пожаловать, {data.user?.name}!</p>
-                    )}
                 </form>
                 <div className="text15px_desktop mt-5 flex justify-center">
                     <p className="mr-2 font-medium text-[#878797]">Уже зарегистрированы?</p>

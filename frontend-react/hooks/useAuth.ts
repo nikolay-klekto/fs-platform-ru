@@ -14,10 +14,16 @@ const REGISTER_MUTATION = gql`
 `;
 
 export const useAuth = () => {
-  const [registerMutation, {data, error, loading, client }] = useMutation(REGISTER_MUTATION, {
+  const [registerMutation, { error, loading, client }] = useMutation(REGISTER_MUTATION, {
     onCompleted: (response) => {
-      if (response?.register?.data) {
-        const { accessToken, refreshToken, clientId } = response.register.data;
+      const registerData = response?.register;
+      if (registerData?.errorMessage) {
+        console.error("Registration error:", registerData.errorMessage);
+        return;
+      }
+
+      if (registerData?.data) {
+        const { accessToken, refreshToken, clientId } = registerData.data;
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
         localStorage.setItem("clientId", clientId);
@@ -26,6 +32,11 @@ export const useAuth = () => {
   });
 
   const register = async (email: string, phoneNumber: string, password: string) => {
+    const existingAccessToken = localStorage.getItem("accessToken");
+    const existingRefreshToken = localStorage.getItem("refreshToken");
+    if (existingAccessToken && existingRefreshToken) {
+    return { success: false, errorMessage: "Пользователь с таким e-mail уже существует" };
+    }
     try {
       await registerMutation({
         variables: {
@@ -36,10 +47,10 @@ export const useAuth = () => {
         });
         return true
         } catch (err) {
-        return false
       console.log("Registration error:", err);
+      return false
     }
   };
 
-  return { register, data, error, loading, client };
+  return { register, error, loading, client };
 };

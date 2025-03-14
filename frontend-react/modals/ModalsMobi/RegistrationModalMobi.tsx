@@ -11,7 +11,7 @@ import { useModal } from '@/context/ContextModal'
 import { useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'next/router'
 
-interface RegistrationFormData {
+interface IRegistrationFormData {
     email: string
     phone: string
     password: string
@@ -19,12 +19,12 @@ interface RegistrationFormData {
     subscribe: boolean
     agree: boolean
 }
-interface RegistrationModalMobiProps {
+interface IRegistrationModalMobi {
     onClose: () => void
 }
 
-const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }) => {
-    const [formData, setFormData] = useState<RegistrationFormData>({
+const RegistrationModalMobi: React.FC<IRegistrationModalMobi> = ({ onClose }) => {
+    const [formData, setFormData] = useState<IRegistrationFormData>({
         email: '',
         phone: '',
         password: '',
@@ -33,7 +33,7 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }
         agree: false,
     })
     const { openModal } = useModal()
-    const { register, data, error, loading, client } = useAuth()
+    const { register, error, loading, client } = useAuth()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -76,7 +76,7 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }
         }
     }, [validateForm])
 
-    const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
+    const handleChange = (field: keyof IRegistrationFormData, value: string | boolean) => {
         setFormData((prev) => {
             const updatedFormData = {
                 ...prev,
@@ -138,11 +138,18 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }
         } else {
             setFormError(false)
             const result = await register(formData.email, formData.phone, formData.password)
-            if (result) {
-                console.log('Успешная регистрация', result)
-                onClose()
-                router.push('/personalaccount')
+            if (typeof result === 'object' && result.errorMessage) {
+                if (result.errorMessage.includes('Пользователь с таким e-mail уже существует')) {
+                    setInputInternalErrors((prevErrors) => ({
+                        ...prevErrors,
+                        email: 'Пользователь с таким e-mail уже существует',
+                    }))
+                }
+                return
             }
+            console.log('Успешная регистрация', result)
+            onClose()
+            router.push('/personalaccount')
         }
     }
 
@@ -298,9 +305,6 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }
                             {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                         </Button>
                         {error && <p className="error-form-desktop-custom">{error.message}</p>}
-                        {data && (
-                            <p className="text-green-500">Регистрация успешна! Добро пожаловать, {data.user?.name}!</p>
-                        )}
                     </form>
                     <div className="text14px_mobi mb-6 mt-5 flex justify-center">
                         <p className="mr-2 font-medium text-[#878797]">Уже зарегистрированы?</p>
