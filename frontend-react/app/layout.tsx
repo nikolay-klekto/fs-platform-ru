@@ -4,6 +4,7 @@ import { modals } from '@/modals/modals'
 import { ModalProvider } from '@/context/ContextModal'
 import ApolloProviderWrapper from '@/components/wrapper/ApolloProviderWrapper'
 import '../styles/globals.css'
+import ScrollRestoration from '@/lib/scroll-restoration'
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -24,6 +25,8 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={montserrat.className}>
+                <ScrollRestoration />
+                <ModalProvider modals={modals}>{children}</ModalProvider>
                 <ApolloProviderWrapper>
                     <ModalProvider modals={modals}>{children}</ModalProvider>
                 </ApolloProviderWrapper>

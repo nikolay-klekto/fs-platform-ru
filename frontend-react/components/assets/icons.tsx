@@ -1,11 +1,11 @@
 import React, { SVGProps } from 'react'
 
 interface ArrowBtnProps {
-    width?: number
-    height?: number
+    width?: number | string;
+    height?: number | string;
 }
 
-export const ArrowBtn: React.FC<ArrowBtnProps> = ({ width = 56, height = 56 }) => {
+export const ArrowBtn: React.FC<ArrowBtnProps> = ({ width = "100%", height = "100%" }) => {
     return (
         <svg width={width} height={height} viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
