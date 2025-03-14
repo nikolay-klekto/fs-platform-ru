@@ -69,7 +69,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         return hasEmptyFields || hasErrors || hasInternalErrors
     }, [formData, errors, inputInternalErrors])
 
-    const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
+    const handleChange = (field: keyof IRegistrationFormData, value: string | boolean) => {
         setFormData((prev) => {
             const updatedFormData = {
                 ...prev,

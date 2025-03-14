@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { contentOrderPayment } from '@/components/desktop/layout/OrderPaymentDesktop/OrderPaymentCardDesktop/content'
 import { Button } from '@/components/ui/button'
-import OrderPaymentCardDesktop from '@/components/desktop/layout/OrderPaymentDesktop/OrderPaymentCardDesktop'
+import OrderPaymentCardDesktop from '@/components/desktop/layout/OrderPaymentDesktop/OrderPaymentCardDesktop/OrderPaymentCardDesktop'
 
 const OrderPaymentDesktop: React.FC = () => {
     if (!contentOrderPayment) {

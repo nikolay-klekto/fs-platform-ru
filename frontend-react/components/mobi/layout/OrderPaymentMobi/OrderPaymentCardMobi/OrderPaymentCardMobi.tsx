@@ -27,7 +27,6 @@ const OrderPaymentCardMobi: React.FC<IOrderPaymentCard> = ({
     location,
     image,
     price,
-    contract,
     daysForPayOrder,
     onClick,
 }) => {

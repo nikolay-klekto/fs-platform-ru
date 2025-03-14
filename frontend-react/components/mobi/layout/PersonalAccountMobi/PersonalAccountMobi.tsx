@@ -37,7 +37,7 @@ const PersonalAccountMobi: React.FC = () => {
                 cursor-pointer text-[#878797] hover:bg-clip-text hover:text-transparent "
             >
                 <button
-                    className="bg-sub-title-gradient-mobi flex cursor-pointer items-center bg-clip-text text-transparent underline decoration-[#6C41F3] decoration-1 underline-offset-4"
+                    className="bg-sub-title-gradient-mobi flex items-center bg-clip-text text-transparent underline decoration-[#6C41F3] decoration-1 underline-offset-4"
                     onClick={() => setMenuOpen(true)}
                 >
                     {selectedOption}

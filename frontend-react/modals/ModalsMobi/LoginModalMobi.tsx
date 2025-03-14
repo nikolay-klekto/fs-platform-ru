@@ -51,7 +51,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         }
     }, [validateForm])
 
-    const handleChange = (field: keyof LoginFormData, value: string | boolean) => {
+    const handleChange = (field: keyof ILoginFormData, value: string | boolean) => {
         setFormData((prev) => ({
             ...prev,
             [field]: value,
