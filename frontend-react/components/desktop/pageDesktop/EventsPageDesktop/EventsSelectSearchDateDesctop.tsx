@@ -7,10 +7,9 @@ import {
     CheckedBoxIcon,
 } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
-
 import { Calendar } from '@/components/ui/calendar'
 
-interface SelectItemProps {
+interface ISelectItem {
     value: string
     children: React.ReactNode
     isChecked: boolean
@@ -314,7 +313,7 @@ const EventsSelectSearchDateDesktop = () => {
     )
 }
 
-const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
+const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
     ({ children, isChecked, onClick, ...props }, forwardedRef) => {
         return (
             <div

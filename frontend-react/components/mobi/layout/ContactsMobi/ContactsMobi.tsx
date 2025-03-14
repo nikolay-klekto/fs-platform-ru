@@ -9,13 +9,9 @@ import { validateEmailMobi } from '../../commonMobi/validate/validateEmailMobi'
 import { validatePhoneMobi } from '../../commonMobi/validate/validatePhoneMobi'
 import { validateRoleMobi } from '../../commonMobi/validate/validateRoleMobi'
 import { validateTextareaMobi } from '../../commonMobi/validate/validateTextareaMobi'
-import {
-    contentContactsMobi,
-    contentSocialContactsFirstMobi,
-    contentSocialContactsSecondMobi,
-} from './contentContactsMobi'
+import { contentContactsMobi, contentSocialContactsFirstMobi, contentSocialContactsSecondMobi } from './content'
 
-interface FormData {
+interface IFormData {
     name: string
     email: string
     tel: string
@@ -24,7 +20,7 @@ interface FormData {
 }
 
 const ContactsMobi: React.FC = () => {
-    const [formData, setFormData] = useState<FormData>({
+    const [formData, setFormData] = useState<IFormData>({
         name: '',
         email: '',
         tel: '',
@@ -49,7 +45,7 @@ const ContactsMobi: React.FC = () => {
 
     const [formError, setFormError] = React.useState('')
 
-    const handleChange = (field: keyof FormData, value: string) => {
+    const handleChange = (field: keyof IFormData, value: string) => {
         setFormData((prev) => ({
             ...prev,
             [field]: value,
@@ -66,7 +62,7 @@ const ContactsMobi: React.FC = () => {
         }))
     }
 
-    const updateFieldError = (field: keyof FormData, hasError: boolean) => {
+    const updateFieldError = (field: keyof IFormData, hasError: boolean) => {
         setFieldErrors((prev) => ({
             ...prev,
             [field]: hasError,

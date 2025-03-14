@@ -1,16 +1,16 @@
-interface ProfessionAbout {
+interface IProfessionAbout {
     id: number
     text: string
 }
 
-export const contentProfessionAboutDesktop: ProfessionAbout[] = [
+export const contentProfessionAboutDesktop: IProfessionAbout[] = [
     {
         id: 1,
         text: 'Программист создаёт компьютерные программы, сайты, веб-сервисы и мобильные приложения с помощью различных языков программирования — Python, C, C++, Go, Java, JS, Swift и других.',
     },
 ]
 
-interface InternshipCompanies {
+interface IInternshipCompanies {
     id: number
     image: {
         src: string
@@ -21,7 +21,7 @@ interface InternshipCompanies {
     price: number
 }
 
-export const contentInternshipCompaniesDesktop: InternshipCompanies[] = [
+export const contentInternshipCompaniesDesktop: IInternshipCompanies[] = [
     {
         id: 1,
         image: {
@@ -154,13 +154,13 @@ export const contentInternshipCompaniesDesktop: InternshipCompanies[] = [
     },
 ]
 
-interface Reviews {
+interface IReviews {
     id: number
     question: string
     answer: string
 }
 
-export const contentReviewsDesktop: Reviews[] = [
+export const contentReviewsDesktop: IReviews[] = [
     {
         id: 1,
         question: 'Необычные моменты произошедшие с Вами в процессе работы?',

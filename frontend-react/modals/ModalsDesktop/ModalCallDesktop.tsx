@@ -15,11 +15,11 @@ interface FormData {
     consent: boolean
 }
 
-interface ModalCallDesktopProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
+const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         phone: '',
@@ -90,7 +90,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                             </h1>
                         </div>
                         <form onSubmit={handleSubmit}>
-                            <div className="flex w-full flex-col px-[75px] mb-5">
+                            <div className="mb-5 flex w-full flex-col px-[75px]">
                                 <EnhancedInput
                                     type="text"
                                     name="name"
@@ -115,7 +115,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                                 />
                                 {errors.name && <p className="error-form-desktop-custom">{errors.name}</p>}
                             </div>
-                            <div className="flex w-full flex-col px-[75px] mb-5">
+                            <div className="mb-5 flex w-full flex-col px-[75px]">
                                 <EnhancedInput
                                     type="tel"
                                     name="phone"
@@ -189,12 +189,12 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                                 />
                             </div>
                             {errors.consent && <p className="error-form-desktop-custom px-[75px]">{errors.consent}</p>}
-                            <div className="mx-auto mt-[1.25rem]">
+                            <div className="mx-auto mt-5">
                                 <p className="px-[75px] text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
                                     <a
                                         href="href"
-                                        className="hover:cursor text-2xl font-medium leading-[18px] text-[#353652] underline ml-1"
+                                        className="hover:cursor ml-1 text-2xl font-medium leading-[18px] text-[#353652] underline"
                                     >
                                         Конфиденциальность
                                     </a>{' '}
@@ -213,7 +213,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                                     variant="default"
                                     size="btn_modal_desktop"
                                     disabled={Object.keys(errors).length > 0}
-                                    className={`mx-auto mb-3 rounded-full px-20 text-5xl leading-[24.38px] font-semibold h-16 ${
+                                    className={`mx-auto mb-3 h-16 rounded-full px-20 text-5xl font-semibold leading-[24.38px] ${
                                         Object.keys(errors).length > 0
                                             ? 'bg-[#878797] disabled:opacity-100'
                                             : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'

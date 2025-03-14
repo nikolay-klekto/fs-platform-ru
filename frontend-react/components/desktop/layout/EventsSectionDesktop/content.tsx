@@ -5,7 +5,7 @@ interface IContent {
     id: number
 }
 
-export const content: IContent[] = [
+export const contentEventsSection: IContent[] = [
     {
         title: 'Длинное название мероприятия',
         image: '/images/events_1.png',

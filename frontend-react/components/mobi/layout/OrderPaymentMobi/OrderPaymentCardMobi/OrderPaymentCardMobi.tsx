@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { TrashIconMobi } from '@/components/assets/iconsMobi'
 
-interface OrderPaymentCardMobi {
+interface IOrderPaymentCard {
     profession: string
     company_name: string
     start_day: string
@@ -18,7 +18,7 @@ interface OrderPaymentCardMobi {
     onClick?: () => void
 }
 
-const OrderPaymentCardMobi: React.FC<OrderPaymentCardMobi> = ({
+const OrderPaymentCardMobi: React.FC<IOrderPaymentCard> = ({
     profession,
     company_name,
     start_day,
@@ -43,24 +43,24 @@ const OrderPaymentCardMobi: React.FC<OrderPaymentCardMobi> = ({
                         className="pointer-events-none select-none rounded-[25px]"
                     />
                 </div>
-                <div className="grid grid-cols-2 gap-[20px] text-wrap text-left pb-[30px] pt-[20px]">
-                    <div className="text-[#878797] font-medium text12px_mobi">Профессия:</div>
-                    <div className="text14px_mobi text-white leading-[1.2]">{profession}</div>
-                    <div className="text-[#878797] font-medium text12px_mobi">Компания:</div>
-                    <div className="text14px_mobi text-white leading-[1.2]">{company_name}</div>
-                    <div className="text-[#878797] font-medium text12px_mobi">Дата стажировки:</div>
-                    <div className="text14px_mobi text-white text-nowrap">
+                <div className="grid grid-cols-2 gap-[20px] text-wrap pb-[30px] pt-[20px] text-left">
+                    <div className="text12px_mobi font-medium text-[#878797]">Профессия:</div>
+                    <div className="text14px_mobi leading-[1.2] text-white">{profession}</div>
+                    <div className="text12px_mobi font-medium text-[#878797]">Компания:</div>
+                    <div className="text14px_mobi leading-[1.2] text-white">{company_name}</div>
+                    <div className="text12px_mobi font-medium text-[#878797]">Дата стажировки:</div>
+                    <div className="text14px_mobi text-nowrap text-white">
                         {start_day} - {end_day}
                     </div>
-                    <div className="text-[#878797] font-medium text12px_mobi">Вид стажировки:</div>
-                    <div className="text14px_mobi text-white leading-[1.2] leading-[1.2]">{category}</div>
-                    <div className="text-[#878797] font-medium text12px_mobi">Адрес офиса:</div>
-                    <div className="text14px_mobi text-white leading-[1.2]">{location}</div>
+                    <div className="text12px_mobi font-medium text-[#878797]">Вид стажировки:</div>
+                    <div className="text14px_mobi leading-[1.2] text-white">{category}</div>
+                    <div className="text12px_mobi font-medium text-[#878797]">Адрес офиса:</div>
+                    <div className="text14px_mobi leading-[1.2] text-white">{location}</div>
                 </div>
-                <div className="border-t-2 text-right text-xs pt-[4px] text-[#BC8070]">
+                <div className="border-t-2 pt-[4px] text-right text-xs text-[#BC8070]">
                     Оплатить заказ до {daysForPayOrder}
                 </div>
-                <div className="flex justify-between  pt-[4px] items-center ">
+                <div className="flex items-center  justify-between pt-[4px] ">
                     <div className="text16px_mobi   font-semibold text-white">{price} BYN</div>
                     <button>
                         <TrashIconMobi />

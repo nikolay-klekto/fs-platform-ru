@@ -111,18 +111,16 @@ const cardFooterVariants = cva('p-0', {
     },
 })
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardVariants> {}
+export interface ICard extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardVariants> {}
 
-const Card = React.forwardRef<HTMLDivElement, CardProps>(({ className, variant, size, rounded, ...props }, ref) => (
+const Card = React.forwardRef<HTMLDivElement, ICard>(({ className, variant, size, rounded, ...props }, ref) => (
     <div ref={ref} className={cn(cardVariants({ variant, size, rounded }), className)} {...props} />
 ))
 Card.displayName = 'Card'
 
-export interface CardTitleProps
-    extends React.HTMLAttributes<HTMLHeadingElement>,
-        VariantProps<typeof cardTitleVariants> {}
+export interface ICardTitle extends React.HTMLAttributes<HTMLHeadingElement>, VariantProps<typeof cardTitleVariants> {}
 
-const CardTitle = React.forwardRef<HTMLParagraphElement, CardTitleProps>(
+const CardTitle = React.forwardRef<HTMLParagraphElement, ICardTitle>(
     ({ className, variant, children, size, ...props }, ref) => (
         <h3 ref={ref} className={cn(cardTitleVariants({ variant, size }), className)} {...props}>
             {children}
@@ -131,11 +129,9 @@ const CardTitle = React.forwardRef<HTMLParagraphElement, CardTitleProps>(
 )
 CardTitle.displayName = 'CardTitle'
 
-export interface CardFooterProps
-    extends React.HTMLAttributes<HTMLDivElement>,
-        VariantProps<typeof cardFooterVariants> {}
+export interface ICardFooter extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardFooterVariants> {}
 
-const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(({ className, variant, size, ...props }, ref) => (
+const CardFooter = React.forwardRef<HTMLDivElement, ICardFooter>(({ className, variant, size, ...props }, ref) => (
     <div ref={ref} className={cn(cardFooterVariants({ variant, size }), className)} {...props} />
 ))
 CardFooter.displayName = 'CardFooter'

@@ -10,7 +10,7 @@ import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validat
 import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
 import { useModal } from '@/context/ContextModal'
 
-interface RegistrationFormData {
+interface IRegistrationFormData {
     email: string
     phone: string
     password: string
@@ -19,12 +19,12 @@ interface RegistrationFormData {
     agree: boolean
 }
 
-interface RegistrationModalDesktopProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onClose }) => {
-    const [formData, setFormData] = useState<RegistrationFormData>({
+const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
+    const [formData, setFormData] = useState<IRegistrationFormData>({
         email: '',
         phone: '',
         password: '',
@@ -158,7 +158,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                 <button onClick={onClose} className="absolute right-[5%] top-[5%] w-[7%]">
                     <X size={41} color="#878797" className="w-full opacity-50 hover:opacity-100" />
                 </button>
-                <h2 className="text36px_desktop text-gradient_desktop_custom mb-7 inline font-medium uppercase 2xl:mb-4 3xl:mb-5 4xl:mb-6">
+                <h2 className="text36px_desktop text-gradient_desktop_custom 3xl:mb-5 4xl:mb-6 mb-7 inline font-medium uppercase 2xl:mb-4">
                     Регистрация
                 </h2>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle">
@@ -293,7 +293,7 @@ const RegistrationModalDesktop: React.FC<RegistrationModalDesktopProps> = ({ onC
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="mx-auto mt-6 w-[70%] h-[64px] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
+                        className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-6 h-[64px] w-[70%] rounded-[50px] text-5xl font-semibold disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
                     >
                         Зарегистрироваться
                     </Button>

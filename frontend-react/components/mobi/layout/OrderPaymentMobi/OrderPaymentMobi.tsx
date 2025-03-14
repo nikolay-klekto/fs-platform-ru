@@ -1,4 +1,4 @@
-import { contentOrderPayment } from './OrderPaymentCardMobi/contentOrderPayment'
+import { contentOrderPayment } from './OrderPaymentCardMobi/content'
 import { Button } from '@/components/ui/button'
 import OrderPaymentCardMobi from './OrderPaymentCardMobi/OrderPaymentCardMobi'
 import Link from 'next/link'
@@ -9,7 +9,7 @@ const OrderPaymentMobi: React.FC = () => {
             <div className="flex flex-col items-center  pt-[57px]">
                 <p className="mb-4 text-[#353652] hover:underline">Заказов требующих оплаты нет</p>
                 <Link href={'/professions'}>
-                    <Button variant={'select_mobi'} size={'promo_mobi'} className="text-[17px] w-[294px]">
+                    <Button variant={'select_mobi'} size={'promo_mobi'} className="w-[294px] text-[17px]">
                         Выбрать стажировку
                     </Button>
                 </Link>
@@ -36,7 +36,7 @@ const OrderPaymentMobi: React.FC = () => {
                         />
                     ))}
                 </div>
-                <Button variant={'select_mobi'} size={'promo_mobi'} className="text-[17px] w-[294px]">
+                <Button variant={'select_mobi'} size={'promo_mobi'} className="w-[294px] text-[17px]">
                     Очистить всё
                 </Button>
             </div>

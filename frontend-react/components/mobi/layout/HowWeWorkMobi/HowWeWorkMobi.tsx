@@ -1,8 +1,8 @@
 import React from 'react'
-import { content } from '@/components/mobi/layout/HowWeWorkMobi/content'
 import TitleMobi from '@/components/mobi/shared/TitleMobi'
 import SubTitleMobi from '@/components/mobi/shared/SubTitleMobi'
 import { Button } from '@/components/ui/button'
+import { content } from './content'
 
 const HowWeWorkMobi: React.FC = () => {
     const [showList, setShowList] = React.useState(true)

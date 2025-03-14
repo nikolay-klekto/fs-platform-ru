@@ -1,11 +1,10 @@
 'use client'
-
+import React from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Map, CalendarIcons, User, ForwardIconWhite } from '@/components/assets/icons'
-import Image from 'next/image'
-import React from 'react'
 
-interface EventsCardDesktop {
+interface IEventsCard {
     title: string
     category: string
     image: string
@@ -17,7 +16,7 @@ interface EventsCardDesktop {
     company: string
 }
 
-const EventsCardDesktop: React.FC<EventsCardDesktop> = ({
+const EventsCardDesktop: React.FC<IEventsCard> = ({
     title,
     category,
     image,
