@@ -1,0 +1,6 @@
+FROM openjdk:17-oracle
+ARG JAR_FILE=jar/funScrutContactCenterBot-0.0.1-SNAPSHOT.jar
+WORKDIR /opt/app
+COPY ${JAR_FILE} funscrutContactCenterTgBot.jar
+EXPOSE 8189
+ENTRYPOINT ["java","-jar","funscrutContactCenterTgBot.jar"]

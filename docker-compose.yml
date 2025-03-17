@@ -90,9 +90,12 @@ services:
       - "8383:8383"
     depends_on:
       - service-db
+      - rabbitmq
     environment:
       - SERVER_PORT= 8383
       - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
     networks:
       - prometheus-grafana-network
     restart: always
@@ -113,6 +116,7 @@ services:
       - /home/Nikolay/funScrut/photos/professions:/app/uploads/professions
       - /home/Nikolay/funScrut/photos/companies/facade:/app/uploads/companies/facade
       - /home/Nikolay/funScrut/photos/companies/logo:/app/uploads/companies/logo
+      - /home/Nikolay/funScrut/files/resumes:/app/uploads/resumes
     networks:
       - prometheus-grafana-network
     restart: always
@@ -204,6 +208,38 @@ services:
 #      - "80:80" # Указываем  внешний порт 80
 #    networks:
 #      - prometheus-grafana-network
+
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"   # Порт для AMQP (используется приложением)
+      - "15672:15672" # Веб-интерфейс управления
+    environment:
+      RABBITMQ_DEFAULT_USER: funscrutFirst
+      RABBITMQ_DEFAULT_PASS: 191220#Destin
+    networks:
+      - prometheus-grafana-network
+
+  tgContactCenterBot:
+    image: contact-center-bot-client:latest
+    build:
+      context: .
+      dockerfile: Dockerfile-TgBotContactCenter
+    ports:
+      - "8189:8189"
+    environment:
+      - SERVER_PORT=8189
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+    depends_on:
+      - service-db
+      - rabbitmq
+    networks:
+      - prometheus-grafana-network
+    restart: unless-stopped
 
 networks:
   prometheus-grafana-network:

@@ -33,6 +33,11 @@ spring:
     url: r2dbc:postgresql://45.135.234.61:15432/fun_scrut
     username: username
     password: password
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: funscrutFirst
+    password: 191220#Destin
 
 logging:
   level:

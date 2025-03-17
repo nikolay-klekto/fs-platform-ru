@@ -2,13 +2,15 @@ package com.fs.calls.repository
 
 import com.fs.calls.jooq.tables.pojos.CallRequests
 import org.apache.logging.log4j.LogManager
+import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.r2dbc.core.DatabaseClient
 import org.springframework.r2dbc.core.bind
 import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
 abstract class CallRequestRepository(
-    open val databaseClient: DatabaseClient
+    open val databaseClient: DatabaseClient,
+    open val rabbitTemplate: RabbitTemplate
 ) {
 
     fun insertCallRequest(callRequest: CallRequests): Mono<Boolean> {
@@ -29,6 +31,11 @@ abstract class CallRequestRepository(
             .fetch()
             .rowsUpdated()
             .map { it == 1L }
+            .doOnSuccess { success ->
+                if (success) {
+                    rabbitTemplate.convertAndSend("call_requests_queue", callRequest)
+                }
+            }
     }
 
     fun updateExpiredCallRequestsStatuses(): Mono<Boolean> {

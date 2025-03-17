@@ -22,6 +22,7 @@ class WebSecurityConfig {
                 it.requestMatchers("/events/upload").permitAll()
                 it.requestMatchers("/companies/upload/facade").permitAll()
                 it.requestMatchers("/companies/upload/logo").permitAll()
+                it.requestMatchers("/resumes/upload").permitAll()
                 it.requestMatchers("/professions/upload").permitAll() // Разрешаем доступ без аутентификации
                 it.anyRequest().authenticated() // Все остальные запросы требуют аутентификации
             }
