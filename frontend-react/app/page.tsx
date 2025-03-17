@@ -10,10 +10,21 @@ import ModalCookieDesktop from '@/components/desktop/layout/ModalDesktop/ModalCo
 
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
+    const [showCookies, setShowCookies] = useState(false)
 
     useEffect(() => {
         setIsClient(true)
+
+        const hasSeenCookies = localStorage.getItem('hasSeenCookies')
+        if (!hasSeenCookies) {
+            setShowCookies(true)
+        }
     }, [])
+
+    const handleCloseCookies = () => {
+        setShowCookies(false)
+        localStorage.setItem('hasSeenCookies', 'true')
+    }
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 1240px)',
@@ -31,7 +42,7 @@ export default function Home() {
                         <HomePageDesktop />
                     </main>
                     <FooterDesktop />
-                    <ModalCookieDesktop />
+                    {showCookies && <ModalCookieDesktop onClose={handleCloseCookies} />}
                 </>
             ) : (
                 <>
