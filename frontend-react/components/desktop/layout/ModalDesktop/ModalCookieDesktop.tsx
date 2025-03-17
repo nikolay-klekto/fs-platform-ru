@@ -5,10 +5,17 @@ import { Dialog, DialogPortal } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
-export default function ModalCookieDesktop() {
+interface IModalCookieDesktop {
+    onClose: () => void
+}
+
+export default function ModalCookieDesktop({ onClose }: IModalCookieDesktop) {
     const [open, setOpen] = useState(true)
 
-    const handleClose = () => setOpen(false)
+    const handleClose = () => {
+        setOpen(false)
+        onClose()
+    }
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>

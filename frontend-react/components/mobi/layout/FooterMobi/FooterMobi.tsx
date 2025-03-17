@@ -3,9 +3,8 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-
-import { contentFooterMobi, contentFooterMobiImages } from './contentFooterMobi'
 import { LogoIconMobi, TelegramIconMobi, InstagramIconMobi, LinkedInIconMobi } from '@/components/assets/iconsMobi'
+import { contentFooterMobi, contentFooterMobiImages } from './content'
 
 const FooterMobi: React.FC = () => {
     return (

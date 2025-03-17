@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { ChevronDownIcon, SearchIcon } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
-interface SelectItemProps {
+interface ISelectItem {
     value: string
     children: React.ReactNode
     isChecked: boolean
     onClick: () => void
 }
 
-interface SelectOption {
+interface ISelectOption {
     value: string
     label: string
 }
@@ -41,7 +41,7 @@ const EventsSelectSearchCityDesktop = () => {
         }
     }, [])
 
-    const options: SelectOption[] = [
+    const options: ISelectOption[] = [
         { value: 'brest', label: 'Брест' },
         { value: 'vitebsk', label: 'Витебск' },
         { value: 'gomel', label: 'Гомель' },
@@ -73,16 +73,16 @@ const EventsSelectSearchCityDesktop = () => {
                     }}
                 >
                     <div className="flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
-                        <div className="flex items-center border border-white-300 rounded-[50px] px-3">
+                        <div className="border-white-300 flex items-center rounded-[50px] border px-3">
                             <input
                                 type="text"
                                 placeholder="Поиск"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="flex h-11 w-full rounded-md bg-transparent py-3 text-18px outline-none placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
+                                className="text-18px flex h-11 w-full rounded-md bg-transparent py-3 outline-none placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
                             />
                             <SearchIcon
-                                className="mr-2 h-4 w-4 shrink-0 opacity-50"
+                                className="mr-2 size-4 shrink-0 opacity-50"
                                 onClick={() => console.log('Search icon clicked!')}
                             />
                         </div>
@@ -103,12 +103,12 @@ const EventsSelectSearchCityDesktop = () => {
     )
 }
 
-const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
+const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
     ({ children, isChecked, onClick, ...props }, forwardedRef) => {
         return (
             <div
-                className={`relative z-[3] flex cursor-pointer items-center justify-between p-[15px] hover:border-hover text-white text-[18px]font-medium ${
-                    isChecked ? 'bg-[#28295B] border-t-2 border-b-2 border-selected' : 'bg-transparent'
+                className={`hover:border-hover text-[18px]font-medium relative z-[3] flex cursor-pointer items-center justify-between p-[15px] text-white ${
+                    isChecked ? 'border-selected border-y-2 bg-[#28295B]' : 'bg-transparent'
                 }`}
                 {...props}
                 ref={forwardedRef}

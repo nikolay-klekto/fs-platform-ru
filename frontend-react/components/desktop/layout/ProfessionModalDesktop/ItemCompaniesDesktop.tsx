@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from 'react'
 import Image from 'next/image'
 
-interface ItemCompaniesDesktopProps {
+interface IItemCompaniesDesktop {
     image: {
         src: string
         alt: string
@@ -14,7 +14,7 @@ interface ItemCompaniesDesktopProps {
     onWidthChange: (width: number) => void
 }
 
-const ItemCompaniesDesktop: React.FC<ItemCompaniesDesktopProps> = ({ image, price, onWidthChange }) => {
+const ItemCompaniesDesktop: React.FC<IItemCompaniesDesktop> = ({ image, price, onWidthChange }) => {
     const itemRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {

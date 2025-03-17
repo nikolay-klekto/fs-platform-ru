@@ -9,7 +9,7 @@ import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validat
 import PasswordInputMobi from '@/components/mobi/shared/formInput/PasswordInputMobi'
 import { useModal } from '@/context/ContextModal'
 
-interface RegistrationFormData {
+interface IRegistrationFormData {
     email: string
     phone: string
     password: string
@@ -17,12 +17,12 @@ interface RegistrationFormData {
     subscribe: boolean
     agree: boolean
 }
-interface RegistrationModalMobiProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }) => {
-    const [formData, setFormData] = useState<RegistrationFormData>({
+const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
+    const [formData, setFormData] = useState<IRegistrationFormData>({
         email: '',
         phone: '',
         password: '',
@@ -73,7 +73,7 @@ const RegistrationModalMobi: React.FC<RegistrationModalMobiProps> = ({ onClose }
         }
     }, [validateForm])
 
-    const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
+    const handleChange = (field: keyof IRegistrationFormData, value: string | boolean) => {
         setFormData((prev) => {
             const updatedFormData = {
                 ...prev,

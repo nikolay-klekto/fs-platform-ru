@@ -13,7 +13,7 @@ import ProfessionsSelectMobi from './ProfessionsSelectMobi'
 const ProfessionsPageMobi: React.FC = () => {
     const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
-    const [isFocused, setIsFocused] = useState(false)
+    //const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
     const totalPages = Math.ceil(content.length / cardsPerPage)

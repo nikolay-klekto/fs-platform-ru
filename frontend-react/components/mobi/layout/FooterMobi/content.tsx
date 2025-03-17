@@ -1,16 +1,16 @@
-interface FooterLink {
+interface IFooterLink {
     id: number
     name: string
     href: string
 }
 
-interface FooterSection {
+interface IFooterSection {
     id: number
     title: string
-    links: FooterLink[]
+    links: IFooterLink[]
 }
 
-export const contentFooterMobi: FooterSection[] = [
+export const contentFooterMobi: IFooterSection[] = [
     {
         id: 1,
         title: 'Правила и документы',
@@ -29,7 +29,7 @@ export const contentFooterMobi: FooterSection[] = [
     },
 ]
 
-interface FooterImage {
+interface IFooterImage {
     id: number
     src: string
     alt: string
@@ -37,7 +37,7 @@ interface FooterImage {
     height: number
 }
 
-export const contentFooterMobiImages: FooterImage[] = [
+export const contentFooterMobiImages: IFooterImage[] = [
     { id: 1, src: '/images/iconFooter_1.png', alt: 'icon-1', width: 63, height: 21 },
     { id: 2, src: '/images/iconFooter_2.png', alt: 'icon-2', width: 30, height: 30 },
     { id: 3, src: '/images/iconFooter_3.png', alt: 'icon-3', width: 145, height: 30 },

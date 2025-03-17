@@ -10,9 +10,9 @@ import { validateEmailDesktop } from '../../commonDesktop/validate/validateEmail
 import { validatePhoneDesktop } from '../../commonDesktop/validate/validatePhoneDesktop'
 import { validateRoleDesktop } from '../../commonDesktop/validate/validateRoleDesktop'
 import { validateTextareaDesktop } from '../../commonDesktop/validate/validateTextareaDesktop'
-import { contentContactsDesktop, contentSocialContactsDesktop } from './contentContactsDesktop'
+import { contentContactsDesktop, contentSocialContactsDesktop } from './content'
 
-interface FormData {
+interface IFormData {
     name: string
     email: string
     tel: string
@@ -21,7 +21,7 @@ interface FormData {
 }
 
 const ContactsDesktop: React.FC = () => {
-    const [formData, setFormData] = useState<FormData>({
+    const [formData, setFormData] = useState<IFormData>({
         name: '',
         email: '',
         tel: '',
@@ -46,7 +46,7 @@ const ContactsDesktop: React.FC = () => {
 
     const [formError, setFormError] = React.useState('')
 
-    const handleChange = (field: keyof FormData, value: string) => {
+    const handleChange = (field: keyof IFormData, value: string) => {
         setFormData((prev) => ({
             ...prev,
             [field]: value,
@@ -63,7 +63,7 @@ const ContactsDesktop: React.FC = () => {
         }))
     }
 
-    const updateFieldError = (field: keyof FormData, hasError: boolean) => {
+    const updateFieldError = (field: keyof IFormData, hasError: boolean) => {
         setFieldErrors((prev) => ({
             ...prev,
             [field]: hasError,

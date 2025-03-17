@@ -15,19 +15,24 @@ interface FormData {
     consent: boolean
 }
 
-interface ModalCallDesktopProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
+const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         phone: '',
         time: '',
         consent: false,
     })
-    const [errors, setErrors] = useState<{ [key: string]: string }>({})
+    const [errors, setErrors] = useState<{ name?: string; phone?: string; time?: string; consent?: string }>({})
     const [step, setStep] = useState<'form' | 'accepted' | null>('form')
+    const [inputTouched, setInputTouched] = useState({
+        name: false,
+        phone: false,
+        time: false,
+    })
 
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
@@ -44,27 +49,27 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
         return Object.keys(newErrors).length === 0
     }
 
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        const isValid = validateForm()
+        if (isValid) {
+            setStep('accepted')
+        }
+    }
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target
         setFormData((prevData) => ({
             ...prevData,
             [name]: type === 'checkbox' ? checked : value,
         }))
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: '',
+        }))
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        if (validateForm()) {
-            setStep('accepted')
-        }
-    }
-
-    const [inputTouched, setInputTouched] = useState({
-        email: false,
-        phone: false,
-    })
-
-    const handleInputBlur = (field: 'phone') => {
+    const handleInputBlur = (field: 'phone' | 'name' | 'time') => {
         setInputTouched((prev) => ({
             ...prev,
             [field]: true,
@@ -79,49 +84,62 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                         <button onClick={onClose} className="absolute right-7 top-6">
                             <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
-                        <div className="ml-[75px] max-w-md flex-col  rounded-lg ">
-                            <h1 className="mb-2 mt-[53px] bg-gradient-desktop bg-clip-text text-13xl font-medium leading-[44px] text-transparent">
+                        <div className="mx-[75px] max-w-md flex-col rounded-lg text-center">
+                            <h1 className="text-13xl bg-gradient-desktop mb-[2.56rem] mt-[53px] bg-clip-text font-medium leading-[44px] text-transparent">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </h1>
-                            <p className="mb-7 text-4xl font-medium leading-[22px] text-[#878797] shadow-md">
-                                Заполните поля – и мы с вами свяжемся
-                            </p>
                         </div>
                         <form onSubmit={handleSubmit}>
-                            <div className="flex w-full flex-col px-[75px]">
+                            <div className="mb-5 flex w-full flex-col px-[75px]">
                                 <EnhancedInput
                                     type="text"
                                     name="name"
                                     placeholder="Ваше имя"
+                                    maxLength={30}
                                     value={formData.name}
+                                    onBlur={() => handleInputBlur('name')}
                                     validate={(value) => validateNameDesktop(value)}
-                                    onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
-                                    className="mb-5 h-10 w-full rounded-[20px] border border-[#878797] bg-transparent p-3 text-xl font-medium text-white"
+                                    onChange={(value: string) =>
+                                        handleChange({
+                                            target: { name: 'name', value, type: 'text', checked: false },
+                                        } as React.ChangeEvent<HTMLInputElement>)
+                                    }
+                                    className={`${
+                                        inputTouched.name && validateNameDesktop(formData.name).styleError
+                                            ? 'border-[#bc8070]'
+                                            : 'border-[#878797]'
+                                    } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0`}
                                     label="Ваше имя*"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
+                                {errors.name && <p className="error-form-desktop-custom">{errors.name}</p>}
                             </div>
-                            <div className="flex w-full flex-col px-[75px]">
+                            <div className="mb-5 flex w-full flex-col px-[75px]">
                                 <EnhancedInput
                                     type="tel"
                                     name="phone"
-                                    placeholder="Номер телефона"
+                                    placeholder="+375 (__) ___-__-__"
                                     value={formData.phone}
                                     onBlur={() => handleInputBlur('phone')}
                                     validate={(value) => validatePhoneDesktop(value)}
-                                    onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
+                                    onChange={(value: string) =>
+                                        handleChange({
+                                            target: { name: 'phone', value, type: 'tel', checked: false },
+                                        } as React.ChangeEvent<HTMLInputElement>)
+                                    }
                                     className={`${
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
                                             ? 'border-[#bc8070] focus:border-[#bc8070]'
                                             : 'border-[#878797] focus:border-[#878797]'
-                                    } mb-2 h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
-                                    label="Телефон*"
+                                    } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0`}
+                                    label="Номер телефона*"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
                                     mask="+375 (99) 999-99-99"
-                                    //maskPlaceholder="_"
+                                    maskPlaceholder="_"
                                 />
+                                {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
                             </div>
                             <div className="flex w-full flex-col px-[75px]">
                                 <EnhancedInput
@@ -129,39 +147,54 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                                     id="time"
                                     name="time"
                                     placeholder="Удобное время для звонка"
+                                    maxLength={100}
                                     value={formData.time}
+                                    onBlur={() => handleInputBlur('time')}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                    className="h-10 w-full rounded-[20px] border border-[#878797] bg-transparent p-3 text-xl font-medium text-white"
+                                    className={`${
+                                        inputTouched.time && !formData.time.trim()
+                                            ? 'border-[#bc8070]'
+                                            : 'border-[#878797]'
+                                    } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0`}
                                     label="Удобное время для звонка"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
-
-                                <p className="mb-3 mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
+                                <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
                                     *Обязательное поле для ввода
                                 </p>
+                                {Object.keys(errors).length > 0 && (
+                                    <p className="error-form-desktop-custom mb-3">Заполните обязательные поля</p>
+                                )}
                             </div>
-                            <div className="flex w-full items-center px-[75px] text-[#A09ACF]">
-                                <input
+                            <div className="mb-3 px-[75px]">
+                                <EnhancedInput
                                     type="checkbox"
                                     id="consent"
                                     name="consent"
                                     checked={formData.consent}
-                                    onChange={handleChange}
-                                    className="mr-2 size-4 appearance-none rounded-sm border-2 border-gray-600 bg-transparent checked:border-blue-500 checked:bg-blue-500 checked:before:flex checked:before:items-center checked:before:justify-center checked:before:text-lg checked:before:text-white checked:before:content-['✔'] focus:outline-none focus:ring-0"
+                                    onChange={(value: string) =>
+                                        handleChange({
+                                            target: {
+                                                name: 'consent',
+                                                value,
+                                                type: 'checkbox',
+                                                checked: value === 'true',
+                                            },
+                                        } as React.ChangeEvent<HTMLInputElement>)
+                                    }
+                                    label="Я согласен(а) на обработку персональных данных"
+                                    wrapperClassName="flex gap-2 pb-2"
+                                    labelClassName={`${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                                 />
-
-                                <label htmlFor="consent" className="text-2xl font-medium leading-[18px] text-[#878797]">
-                                    Я согласен(а) на обработку персональных данных
-                                </label>
                             </div>
-                            {errors.consent && <p className="mt-1 px-[75px] text-sm text-red-500">{errors.consent}</p>}
-                            <div className="mx-auto pl-1">
+                            {errors.consent && <p className="error-form-desktop-custom px-[75px]">{errors.consent}</p>}
+                            <div className="mx-auto mt-5">
                                 <p className="px-[75px] text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
                                     <a
                                         href="href"
-                                        className="hover:cursor text-2xl font-medium leading-[18px] text-[#353652] underline"
+                                        className="hover:cursor ml-1 text-2xl font-medium leading-[18px] text-[#353652] underline"
                                     >
                                         Конфиденциальность
                                     </a>{' '}
@@ -179,7 +212,12 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                                     type="submit"
                                     variant="default"
                                     size="btn_modal_desktop"
-                                    className="mx-auto mb-3 rounded-full bg-gradient-desktop px-20 text-5xl leading-6 hover:bg-gradient-desktop-hover "
+                                    disabled={Object.keys(errors).length > 0}
+                                    className={`mx-auto mb-3 h-16 rounded-full px-20 text-5xl font-semibold leading-[24.38px] ${
+                                        Object.keys(errors).length > 0
+                                            ? 'bg-[#878797] disabled:opacity-100'
+                                            : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'
+                                    }`}
                                 >
                                     Оставить заявку
                                 </Button>
@@ -195,7 +233,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                             <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="mx-auto flex max-w-md flex-col rounded-lg p-3">
-                            <h1 className="mb-6 mt-10 bg-gradient-desktop bg-clip-text text-center text-13xl font-medium leading-[44px] text-transparent">
+                            <h1 className="text-13xl bg-gradient-desktop mb-6 mt-10 bg-clip-text text-center font-medium leading-[44px] text-transparent">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
                             <p className="text-justify text-4xl font-medium leading-[22px] text-[#878797] shadow-md">
@@ -208,7 +246,7 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                                 <Button
                                     variant="default"
                                     size="btn_modal_desktop"
-                                    className="mx-auto mt-8 rounded-full bg-gradient-desktop px-20 py-8 text-5xl font-semibold leading-[24px] hover:bg-gradient-desktop-hover"
+                                    className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-8 rounded-full px-20 py-8 text-5xl font-semibold leading-[24px]"
                                 >
                                     Смотреть профессии
                                 </Button>

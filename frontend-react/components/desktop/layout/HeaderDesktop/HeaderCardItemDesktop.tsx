@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { ForwardIconDesktop } from '@/components/assets/icons'
 import { HelpTooltipDesktop } from '@/components/ui/tooltip'
 
-interface HeaderCardItemDesktop {
+interface IHeaderCardItem {
     textBlack: string
     textColor: string
     textBlackBr: string
@@ -14,7 +14,7 @@ interface HeaderCardItemDesktop {
     tooltipMessage: string
 }
 
-const HeaderCardItemDesktop: React.FC<HeaderCardItemDesktop> = ({
+const HeaderCardItemDesktop: React.FC<IHeaderCardItem> = ({
     textBlack,
     textColor,
     textBlackBr,

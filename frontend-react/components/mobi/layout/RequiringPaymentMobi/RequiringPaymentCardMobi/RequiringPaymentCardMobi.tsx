@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { TrashIconMobi } from '@/components/assets/iconsMobi'
 
-interface RequiringPaymentCardMobi {
+interface IRequiringPaymentCard {
     profession: string
     company_name: string
     start_day: string
@@ -16,7 +16,7 @@ interface RequiringPaymentCardMobi {
     onClick?: () => void
 }
 
-const RequiringPaymentCardMobi: React.FC<RequiringPaymentCardMobi> = ({
+const RequiringPaymentCardMobi: React.FC<IRequiringPaymentCard> = ({
     profession,
     company_name,
     start_day,
@@ -29,7 +29,7 @@ const RequiringPaymentCardMobi: React.FC<RequiringPaymentCardMobi> = ({
 }) => {
     return (
         <div className="flex flex-col flex-wrap rounded-[40px] bg-[#272745] px-[12px] py-[40px]">
-            <div className="flex flex-col leading-none gap-[20px]">
+            <div className="flex flex-col gap-[20px] leading-none">
                 <div className="text18px_mobi text-gradient_mobi_custom pb-[10px]">ОФОРМЛЕНИЕ ЗАКАЗА</div>
                 <div className="relative h-[184px]">
                     <Image
@@ -40,20 +40,20 @@ const RequiringPaymentCardMobi: React.FC<RequiringPaymentCardMobi> = ({
                     />
                 </div>
                 <div className="grid grid-cols-2 gap-[20px] text-wrap text-left">
-                    <div className="text-[#878797] font-medium text12px_mobi">Профессия:</div>
-                    <div className="text14px_mobi text-white leading-[1.2]">{profession}</div>
-                    <div className="text-[#878797] font-medium text12px_mobi">Компания:</div>
-                    <div className="text14px_mobi text-white leading-[1.2]">{company_name}</div>
-                    <div className="text-[#878797] font-medium text12px_mobi">Начало стажировки:</div>
+                    <div className="text12px_mobi font-medium text-[#878797]">Профессия:</div>
+                    <div className="text14px_mobi leading-[1.2] text-white">{profession}</div>
+                    <div className="text12px_mobi font-medium text-[#878797]">Компания:</div>
+                    <div className="text14px_mobi leading-[1.2] text-white">{company_name}</div>
+                    <div className="text12px_mobi font-medium text-[#878797]">Начало стажировки:</div>
                     <div className="text14px_mobi text-white">{start_day}</div>
-                    <div className="text-[#878797] font-medium text12px_mobi">Конец стажировки:</div>
+                    <div className="text12px_mobi font-medium text-[#878797]">Конец стажировки:</div>
                     <div className="text14px_mobi text-white">{end_day}</div>
-                    <div className="text-[#878797] font-medium text12px_mobi">Вид стажировки:</div>
-                    <div className="text14px_mobi text-white leading-[1.2]">{category}</div>
-                    <div className="text-[#878797] font-medium text12px_mobi">Адрес офиса:</div>
-                    <div className="text14px_mobi text-white leading-[1.2]">{location}</div>
+                    <div className="text12px_mobi font-medium text-[#878797]">Вид стажировки:</div>
+                    <div className="text14px_mobi leading-[1.2] text-white">{category}</div>
+                    <div className="text12px_mobi font-medium text-[#878797]">Адрес офиса:</div>
+                    <div className="text14px_mobi leading-[1.2] text-white">{location}</div>
                 </div>
-                <div className="flex justify-between border-t-2 pt-[20px] items-center">
+                <div className="flex items-center justify-between border-t-2 pt-[20px]">
                     <div className="text16px_mobi   font-semibold text-white">{price} BYN</div>
                     <button>
                         <TrashIconMobi />

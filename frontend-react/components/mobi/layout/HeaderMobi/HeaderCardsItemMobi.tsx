@@ -5,7 +5,7 @@ import { ArrowWhiteMobi } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
 import { HelpTooltipMobi } from '@/components/ui/tooltip'
 
-interface HeaderCardItemDesktop {
+interface IHeaderCardItem {
     textBlack: string
     textColor: string
     textBlackBr: string
@@ -14,7 +14,7 @@ interface HeaderCardItemDesktop {
     tooltipMessage: string
 }
 
-const HeaderCardsItemMobi: React.FC<HeaderCardItemDesktop> = ({
+const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
     textBlack,
     textColor,
     textBlackBr,

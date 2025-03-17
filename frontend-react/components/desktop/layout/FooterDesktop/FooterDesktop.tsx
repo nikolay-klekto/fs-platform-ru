@@ -3,8 +3,8 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { contentFooterDesktop, contentFooterDesktopImages } from './contentFooterDesktop'
 import { LogoIconDesktop } from '@/components/assets/icons'
+import { contentFooterDesktop, contentFooterImagesDesktop } from './content'
 
 const FooterDesktop: React.FC = () => {
     return (
@@ -57,7 +57,7 @@ const FooterDesktop: React.FC = () => {
                     <div className="bg-custom-grey h-[2px] w-full rounded-full"></div>
                     <div className="mt-8 flex h-[162px] flex-col items-center justify-between px-24 2xl:px-0">
                         <div className="flex w-full max-w-[1190px] items-center justify-center gap-10">
-                            {contentFooterDesktopImages.map((image) => (
+                            {contentFooterImagesDesktop.map((image) => (
                                 <Image
                                     key={image.id}
                                     src={image.src}

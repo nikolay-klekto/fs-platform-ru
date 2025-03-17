@@ -3,13 +3,13 @@
 import React from 'react'
 import { LessIcon, MoreIcon } from '@/components/assets/icons'
 
-interface ProfessionsPaginationMobiProps {
+interface IProfessionsPagination {
     totalPages: number
     currentPage: number
     onPageChange: (page: number) => void
 }
 
-const EventsPaginationMobi: React.FC<ProfessionsPaginationMobiProps> = ({ totalPages, currentPage, onPageChange }) => {
+const EventsPaginationMobi: React.FC<IProfessionsPagination> = ({ totalPages, currentPage, onPageChange }) => {
     const siblingsCount = 2
 
     const getPageNumbers = () => {

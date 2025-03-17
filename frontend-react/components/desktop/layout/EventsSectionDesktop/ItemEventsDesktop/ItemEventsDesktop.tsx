@@ -1,14 +1,14 @@
 import React, { useRef, useEffect } from 'react'
 import Image from 'next/image'
 
-interface EventSectionDesktopProps {
+interface IEventSection {
     image: string
     title: string
     date: string
     onWidthChange: (width: number) => void
 }
 
-const ItemEventsDesktop: React.FC<EventSectionDesktopProps> = ({ image, title, date, onWidthChange }) => {
+const ItemEventsDesktop: React.FC<IEventSection> = ({ image, title, date, onWidthChange }) => {
     const [day, month] = date.split(' ')
 
     const itemRef = useRef<HTMLDivElement>(null)

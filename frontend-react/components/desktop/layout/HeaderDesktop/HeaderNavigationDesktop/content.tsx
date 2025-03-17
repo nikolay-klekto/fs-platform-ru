@@ -1,10 +1,10 @@
-interface IHeaderNavigationDesktop {
+interface IHeaderNavigation {
     title: string
     link: string
     id: string
 }
 
-export const content: IHeaderNavigationDesktop[] = [
+export const content: IHeaderNavigation[] = [
     {
         title: 'Главная',
         link: '/',
@@ -15,7 +15,7 @@ export const content: IHeaderNavigationDesktop[] = [
         link: '/professions',
         id: '2',
     },
-   /* {
+    /* {
         title: 'Компании',
         link: '/companies',
         id: '3',
