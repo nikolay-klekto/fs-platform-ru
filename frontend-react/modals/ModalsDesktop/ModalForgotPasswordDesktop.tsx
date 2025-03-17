@@ -47,55 +47,54 @@ const ModalForgotPasswordDesktop: React.FC<ForgotPasswordDataProps> = ({ onClose
                 <h3 className="text28px_desktop mb-2 mt-[40px] bg-gradient-desktop bg-clip-text text-center font-medium text-transparent">
                     ЗАБЫЛИ ПАРОЛЬ?
                 </h3>
-                <p className="custom-grey text18px_desktop px-[3.96vw] font-medium ">
-                    Чтобы получить доступ к аккаунту, введите e-mail адрес, который вы указали при регистрации
-                </p>
                 <div className="flex w-full flex-col px-[3.96vw]">
+                    <p className="custom-grey text18px_desktop font-medium mb-4 w-full max-w-[426px] text-left ">
+                        Чтобы получить доступ к аккаунту, введите e-mail адрес, который вы указали при регистрации
+                    </p>
                     <EnhancedInput
                         type="email"
                         name="email"
                         placeholder="Почта"
+                        // variant="contacts_page_desktop"
                         value={passwordData.email}
                         onBlur={() => handleInputBlur('email')}
                         validate={(value) => validateEmailDesktop(value)}
                         onChange={(value) => setPasswordData((prev) => ({ ...prev, email: value }))}
                         className={`${
                             inputTouched.email && validateEmailDesktop(passwordData.email).styleError
-                                ? 'border-[#bc8070] focus:border-[#bc8070] '
-                                : 'border-[#878797] focus:border-[#878797]'
-                        } h-10 w-full rounded-[20px] border bg-transparent px-4 text-xl font-medium text-white`}
-                        label="Почта"
+                                ? 'border-[#bc8070] '
+                                : 'border-[#878797] '
+                        } h-10  w-full max-w-[426px] rounded-[20px] border bg-transparent px-4 text-4xl  font-medium placeholder:text-[#353652] placeholder: opacity-80`}
+                        label="Почта*"
                         labelClassName="mt-2 mb-1 text15px_desktop font-medium text-white"
-                        wrapperClassName="w-full"
+                        wrapperClassName="w-full max-w-[426px]"
                     />
                     {inputInternalErrors.email && (
                         <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
                     )}
+                    <p className="mb-3 mt-2 text-2xl font-medium text-[#353652]">*Обязательное поле для ввода</p>
                 </div>
                 <div className="mt-2 px-[3.96vw]">
                     <p className="text15px_desktop font-medium text-[#353652]">
                         Защита от спама reCAPTCHA{' '}
-                        <a
-                            href="href"
-                            className="hover:cursor ml-1 text-2xl font-medium leading-[18px] text-[#353652] underline"
-                        >
+                        <a href="href" className="hover:cursor text15px_desktop font-medium  text-[#353652] underline">
                             Конфиденциальность
                         </a>{' '}
-                        <br />и{' '}
+                        и{' '}
                         <a
                             href="href"
-                            className="mb-4 ml-1 text-2xl font-medium leading-[18px] text-[#353652] underline"
+                            className="mb-4 text15px_desktop font-medium leading-[18px] text-[#353652] underline"
                         >
                             Условия использования
                         </a>
                     </p>
                 </div>
-                <div className="mb-10 mt-5 flex justify-center">
+                <div className="mb-6 mt-5 flex justify-center">
                     <Button
                         type="submit"
                         variant="default"
                         size="btn_modal_desktop"
-                        className="mx-auto mb-3 rounded-full bg-gradient-desktop px-20 text-5xl leading-6 hover:bg-gradient-desktop-hover "
+                        className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto w-[90%] rounded-[50px] text-2xl font-semibold disabled:bg-[#878797] flex items-center justify-center"
                     >
                         Далее
                     </Button>

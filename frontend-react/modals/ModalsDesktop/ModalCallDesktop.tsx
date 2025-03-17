@@ -119,8 +119,8 @@ const ModalCallDesktop: React.FC<ModalCallDesktopProps> = ({ onClose }) => {
                                     label="Телефон*"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
-                                    mask="+375 (99) 999-99-99"
-                                    maskPlaceholder="_"
+                                    // mask="+375 (99) 999-99-99"
+                                    // maskPlaceholder="_"
                                 />
                             </div>
                             <div className="flex w-full flex-col px-[75px]">
