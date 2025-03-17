@@ -159,7 +159,8 @@ For more details, refer to this [common practice](https://medium.com/@hiro08gh/n
 
 ## 3. TypeScript Naming Conventions
 
--   Classes, interfaces, types, enums, decorators, type parameters: **UpperCamelCase**.
+-   Classes, types, enums, decorators, type parameters: **UpperCamelCase**.
+-   Interfaces: **IUpperCamelCase** (e.g. interface IFormData).
 -   Variables, parameters, functions, methods, properties, module aliases: **lowerCamelCase**.
 -   Global constants (including enum elements): **CONSTANT_CASE**.
 
