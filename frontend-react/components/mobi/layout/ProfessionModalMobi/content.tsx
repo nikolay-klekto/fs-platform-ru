@@ -1,16 +1,9 @@
-interface ProfessionAbout {
+interface IProfessionAbout {
     id: number
     text: string
 }
 
-export const contentProfessionAboutMobi: ProfessionAbout[] = [
-    {
-        id: 1,
-        text: 'Программист создаёт компьютерные программы, сайты, веб-сервисы и мобильные приложения с помощью различных языков программирования — Python, C, C++, Go, Java, JS, Swift и других.',
-    },
-]
-
-interface InternshipCompanies {
+interface IInternshipCompanies {
     id: number
     image: {
         src: string
@@ -20,7 +13,20 @@ interface InternshipCompanies {
     }
 }
 
-export const contentInternshipCompaniesMobi: InternshipCompanies[] = [
+interface IReviews {
+    id: number
+    question: string
+    answer: string
+}
+
+export const contentProfessionAboutMobi: IProfessionAbout[] = [
+    {
+        id: 1,
+        text: 'Программист создаёт компьютерные программы, сайты, веб-сервисы и мобильные приложения с помощью различных языков программирования — Python, C, C++, Go, Java, JS, Swift и других.',
+    },
+]
+
+export const contentInternshipCompaniesMobi: IInternshipCompanies[] = [
     {
         id: 1,
         image: {
@@ -86,13 +92,7 @@ export const contentInternshipCompaniesMobi: InternshipCompanies[] = [
     },
 ]
 
-interface Reviews {
-    id: number
-    question: string
-    answer: string
-}
-
-export const contentReviewsMobi: Reviews[] = [
+export const contentReviewsMobi: IReviews[] = [
     {
         id: 1,
         question: 'Необычные моменты произошедшие с Вами в процессе работы?',

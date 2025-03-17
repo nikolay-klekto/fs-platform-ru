@@ -4,11 +4,11 @@ import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import { modalContentMobi } from './content'
 
-interface ModalOrderAcceptedMobiProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const ModalOrderAcceptedMobi: React.FC<ModalOrderAcceptedMobiProps> = ({ onClose }) => {
+const ModalOrderAcceptedMobi: React.FC<IModalContent> = ({ onClose }) => {
     const { title, text, buttonText } = modalContentMobi.orderAcceptedMobi
 
     return (

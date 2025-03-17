@@ -17,11 +17,11 @@ import {
 } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
 
-interface HeaderMobiProps {
+interface IHeader {
     disableBackground?: boolean
 }
 
-const HeaderMobi: React.FC<HeaderMobiProps> = ({ disableBackground }) => {
+const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
     useEffect(() => {

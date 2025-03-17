@@ -1,11 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
-interface PropsTitleDesktop {
+interface IPropsTitle {
     title: string
     href: string
 }
 
-const TitleDesktop: React.FC<PropsTitleDesktop> = ({ title, href }) => {
+const TitleDesktop: React.FC<IPropsTitle> = ({ title, href }) => {
     return (
         <div className="relative">
             <h2

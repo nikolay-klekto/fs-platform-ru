@@ -9,7 +9,7 @@ const RequiringPaymentMobi: React.FC = () => {
             <div className="flex flex-col items-center  pt-[77px]">
                 <p className="mb-4 text-[#353652] hover:underline">Ваша корзина пуста</p>
                 <Link href={'/professions'}>
-                    <Button variant={'select_mobi'} size={'promo_mobi'} className="text-[17px] w-[294px]">
+                    <Button variant={'select_mobi'} size={'registration_mobi'} className="w-[294px] text-[17px]">
                         Выбрать стажировку
                     </Button>
                 </Link>
@@ -34,7 +34,7 @@ const RequiringPaymentMobi: React.FC = () => {
                         />
                     ))}
                 </div>
-                <Button variant={'select_mobi'} size={'promo_mobi'} className="text-[17px] w-[294px]">
+                <Button variant={'select_mobi'} size={'registration_mobi'} className="w-[294px] text-[17px]">
                     Очистить всё
                 </Button>
             </div>

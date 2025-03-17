@@ -6,7 +6,7 @@ import { content } from './content'
 import EventsCardMobi from './EventsCardMobi'
 import EventsPaginationMobi from './EventsPaginationMobi'
 import EventsSelectSearchMobi from './EventsSelectSearchMobi'
-import EventsSelectSearchDateMobi from './EventsSelectSearchCityMobi'
+import EventsSelectSearchDateMobi from './EventsSelectSearchDateMobi'
 import EventsSelectSearchCityMobi from './EventsSelectSearchCityMobi'
 
 const EventsPageDesktop: React.FC = () => {
@@ -16,9 +16,9 @@ const EventsPageDesktop: React.FC = () => {
     const totalPages = Math.ceil(content.length / cardsPerPage)
 
     // const handleSearch = () => {
-    //     console.log('Поиск мероприятия:', searchQuery)
-    //     setSearchQuery('')
-    // }
+    //console.log('Поиск мероприятия:', searchQuery)
+    //setSearchQuery('')
+    //}
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }

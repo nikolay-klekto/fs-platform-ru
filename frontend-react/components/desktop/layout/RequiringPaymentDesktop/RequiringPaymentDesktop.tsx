@@ -1,7 +1,7 @@
 import RequiringPaymentCardDesktop from './RequiringPaymentCardDesktop/RequiringPaymentCardDesktop'
+import Link from 'next/link'
 import { content } from '@/components/desktop/layout/RequiringPaymentDesktop/RequiringPaymentCardDesktop/content'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
 
 const RequiringPaymentDesktop: React.FC = () => {
     if (!content) {

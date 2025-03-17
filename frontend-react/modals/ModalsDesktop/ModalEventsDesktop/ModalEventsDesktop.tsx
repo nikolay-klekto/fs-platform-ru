@@ -1,19 +1,19 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
+import { MapPin, CalendarCheck, Calendar, Clock4, Users, Ellipsis, Banknote, X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
-import { contentModalEvents } from './content'
-import ModalEventsCardDesktop from './ModalEventsCardDesktop'
 import { Button } from '@/components/ui/button'
 import { ForwardIconDesktop } from '@/components/assets/icons'
-import { MapPin, CalendarCheck, Calendar, Clock4, Users, Ellipsis, Banknote, X } from 'lucide-react'
-import Image from 'next/image'
+import { contentModalEvents } from './content'
+import ModalEventsCardDesktop from './ModalEventsCardDesktop'
 
-interface ModalEventsDesktopProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const ModalEventsDesktop: React.FC<ModalEventsDesktopProps> = ({ onClose }) => {
+const ModalEventsDesktop: React.FC<IModalContent> = ({ onClose }) => {
     return (
         <>
             <Modal onClose={onClose} size="large-lg" showCloseButton={false} paddingClass="pt-[68px] pb-[26px]">

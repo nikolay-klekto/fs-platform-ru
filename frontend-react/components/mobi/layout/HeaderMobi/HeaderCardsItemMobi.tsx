@@ -5,7 +5,7 @@ import { ArrowWhiteMobi } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
 import { HelpTooltipMobi } from '@/components/ui/tooltip'
 
-interface HeaderCardItemDesktop {
+interface IHeaderCardItem {
     textBlack: string
     textColor: string
     textBlackBr: string
@@ -14,18 +14,18 @@ interface HeaderCardItemDesktop {
     tooltipMessage: string
 }
 
-const HeaderCardsItemMobi: React.FC<HeaderCardItemDesktop> = ({
+const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
     textBlack,
     textColor,
     textBlackBr,
     price,
     currency,
-    tooltipMessage
+    tooltipMessage,
 }) => {
     return (
         <>
             <div
-                className="sm_s:min-h-[192px] sm_xl:h-[226px] sm_xl:w-fit m-auto flex flex-col min-h-[212px] w-[346px] items-center justify-center rounded-[41px] drop-shadow-[0_3.26px_3.26px_rgba(0,0,0,0.25)] sm:min-h-[176px]"
+                className="sm_s:min-h-[192px] sm_xl:h-[226px] sm_xl:w-fit m-auto flex min-h-[212px] w-[346px] flex-col items-center justify-center rounded-[41px] drop-shadow-[0_3.26px_3.26px_rgba(0,0,0,0.25)] sm:min-h-[176px]"
                 style={{
                     backgroundImage: "url('/background/subtract_mobi.webp')",
                     backgroundSize: 'cover',

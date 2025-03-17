@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import { HelpIconDesktop, TrashIcon } from '@/components/assets/icons'
 import { HelpIconMobi } from '@/components/assets/iconsMobi'
 
-interface HelpTooltipProps {
+interface IHelpTooltip {
     tooltipMessage: string
     className?: string
 }
@@ -97,7 +97,7 @@ const TooltipContent = React.forwardRef<
 TooltipContent.displayName = TooltipPrimitive.Content.displayName
 const TooltipArrow = TooltipPrimitive.Arrow
 
-export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ tooltipMessage }) => (
+export const HelpTooltipDesktop: React.FC<IHelpTooltip> = ({ tooltipMessage }) => (
     <TooltipProvider delayDuration={200}>
         <Tooltip>
             <TooltipTrigger asChild>
@@ -126,7 +126,7 @@ export const HelpTooltipDesktop: React.FC<HelpTooltipProps> = ({ tooltipMessage 
     </TooltipProvider>
 )
 
-export const HelpTooltipMobi: React.FC<HelpTooltipProps> = ({ tooltipMessage }) => (
+export const HelpTooltipMobi: React.FC<IHelpTooltip> = ({ tooltipMessage }) => (
     <Popover>
         <PopoverTrigger asChild>
             <button className="mr-5 mt-5 flex self-end justify-self-start">
@@ -153,7 +153,7 @@ export const HelpTooltipMobi: React.FC<HelpTooltipProps> = ({ tooltipMessage }) 
     </Popover>
 )
 
-export const TrashTooltipDesktop: React.FC<HelpTooltipProps> = ({ tooltipMessage }) => (
+export const TrashTooltipDesktop: React.FC<IHelpTooltip> = ({ tooltipMessage }) => (
     <TooltipProvider delayDuration={200}>
         <Tooltip>
             <TooltipTrigger asChild>
