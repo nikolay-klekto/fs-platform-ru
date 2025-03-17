@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ProfessionsSelectDesktop from './ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './ProfessionCardPageDesktop'
 import ProfessionsPaginationDesktop from './ProfessionsPaginationDesktop'
@@ -18,53 +18,51 @@ const ProfessionsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 12
 
-    const filteredContent = content.filter((item) =>
-        item.profession.toLowerCase().includes(searchQuery.toLowerCase().trim()),
-    )
+    const filteredContent =
+        searchQuery.length < 3
+            ? content
+            : content.filter((item) => item.profession.toLowerCase().includes(searchQuery.toLowerCase().trim()))
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
 
-    const handleSearch = () => {
-        console.log('Поиск профессий:', searchQuery)
+    useEffect(() => {
         setCurrentPage(1)
-    }
+    }, [searchQuery])
 
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
 
     return (
-        <>
-            <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
-                <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
-                <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
-                <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
-                <h1 className="title80px_desktop relative z-[1]">Профессии</h1>
-                <div className="relative z-[1] flex items-center justify-between py-[80px]">
-                    <div className="relative">
-                        <EnhancedInput
-                            type="text"
-                            value={searchQuery}
-                            onChange={setSearchQuery}
-                            variant={'gradient_desktop'}
-                            size={'gradient_search_desktop'}
-                            rounded={'full'}
-                            className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
-                            wrapperClassName={`2xl:w-[600px] relative 4xl:max-w-[700px] 3xl:w-[650px] h-[64px] w-[741px] justify-bitween flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
-                            onFocus={() => setIsFocused(true)}
-                            onBlur={() => setIsFocused(false)}
-                            placeholder="Поиск"
-                        />
-                        <Button
-                            variant={'circle_btn_gradient_desktop'}
-                            size={'circle_btn_gradient_desktop'}
-                            onClick={handleSearch}
-                        >
-                            <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
-                        </Button>
-                    </div>
-                    <ProfessionsSelectDesktop />
+        <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
+            <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
+            <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
+            <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
+            <h1 className="title80px_desktop relative z-[1]">Профессии</h1>
+            <div className="relative z-[1] flex items-center justify-between py-[80px]">
+                <div className="relative">
+                    <EnhancedInput
+                        type="text"
+                        value={searchQuery}
+                        onChange={setSearchQuery}
+                        variant={'gradient_desktop'}
+                        size={'gradient_search_desktop'}
+                        rounded={'full'}
+                        className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
+                        wrapperClassName={`2xl:w-[600px] relative 4xl:max-w-[700px] 3xl:w-[650px] h-[64px] w-[741px] justify-between flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
+                        onFocus={() => setIsFocused(true)}
+                        onBlur={() => setIsFocused(false)}
+                        placeholder="Поиск"
+                    />
+
+                    <Button variant={'circle_btn_gradient_desktop'} size={'circle_btn_gradient_desktop'}>
+                        <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
+                    </Button>
                 </div>
+                <ProfessionsSelectDesktop />
+            </div>
+
+            {filteredContent.length > 0 ? (
                 <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
                     {filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
                         <ProfessionCardPageDesktop
@@ -81,17 +79,20 @@ const ProfessionsPageDesktop: React.FC = () => {
                         />
                     ))}
                 </div>
-                {totalPages > 1 && (
-                    <ProfessionsPaginationDesktop
-                        totalPages={totalPages}
-                        currentPage={currentPage}
-                        onPageChange={handlePageChange}
-                    />
-                )}
+            ) : (
+                <p className="text-center text-white text-2xl mt-10">Ничего не найдено</p>
+            )}
 
-                <ProfessionSearchDesktop />
-            </div>
-        </>
+            {totalPages > 1 && filteredContent.length > 0 && (
+                <ProfessionsPaginationDesktop
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    onPageChange={handlePageChange}
+                />
+            )}
+
+            <ProfessionSearchDesktop />
+        </div>
     )
 }
 
