@@ -35,7 +35,7 @@ const ModalForgotPasswordMobi: React.FC<ForgotPasswordDataMobiProps> = ({ onClos
 
     return (
         <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
-            <div className="relative mx-4 w-full max-w-md ">
+            <div className="relative mx-4 w-full max-w-[346px]">
                 <button
                     onClick={onClose}
                     className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
@@ -46,7 +46,7 @@ const ModalForgotPasswordMobi: React.FC<ForgotPasswordDataMobiProps> = ({ onClos
                     <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
                         ЗАБЫЛИ ПАРОЛЬ?
                     </p>
-                    <div className="flex w-full flex-col px-[19px]">
+                    <div className="flex w-full flex-col px-[18px]">
                         <EnhancedInput
                             type="email"
                             name="email"
@@ -57,23 +57,27 @@ const ModalForgotPasswordMobi: React.FC<ForgotPasswordDataMobiProps> = ({ onClos
                             onChange={(value) => setPasswordData((prev) => ({ ...prev, email: value }))}
                             className={`${
                                 inputTouched.email && validateEmailMobi(passwordData.email).styleError
-                                    ? 'border-[#bc8070] focus:border-[#bc8070] '
-                                    : 'border-[#878797] focus:border-[#878797]'
-                            } text14px_mobi h-10 w-full rounded-[20px] border bg-transparent p-3  text-white`}
-                            label="Почта"
+                                    ? 'border-[#bc8070]  '
+                                    : 'border-[#878797]'
+                            } text14px_mobi h-12 w-full rounded-[20px] border-2 bg-transparent placeholder:text-[#353652]/70 text-white`}
+                            label="Почта*"
                             labelClassName="mb-1 text14px_mobi text-white"
                             wrapperClassName="w-full"
                         />
                         {inputInternalErrors.email && (
                             <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
                         )}
+                        <p className="mb-3 mt-2 text12px_mobi font-medium text-[#353652]">
+                            *Обязательное поле для ввода
+                        </p>
                     </div>
-                    <p className="custom-grey text18px_desktop text12px_mobi mt-2 px-[19px] ">
+                    <p className="custom-grey text18px_desktop text12px_mobi mt-2 ">
                         Введите e-mail, указанный при регистрации
                     </p>
                     <button
                         type="submit"
-                        className="mx-[26px] mt-8 h-12 w-4/5 rounded-[50px] bg-sub-title-gradient-mobi text-3xl font-semibold text-white md:text-4xl"
+                        className=" flex justify-center items-center h-12 mx-auto w-[92%] rounded-[50px] bg-sub-title-gradient-mobi text-3xl font-semibold 
+                        disabled:bg-[#878797] text-white md:text-4xl"
                     >
                         Далее
                     </button>

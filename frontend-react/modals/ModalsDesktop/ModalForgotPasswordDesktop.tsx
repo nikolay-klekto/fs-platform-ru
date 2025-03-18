@@ -64,7 +64,7 @@ const ModalForgotPasswordDesktop: React.FC<ForgotPasswordDataProps> = ({ onClose
                             inputTouched.email && validateEmailDesktop(passwordData.email).styleError
                                 ? 'border-[#bc8070] '
                                 : 'border-[#878797] '
-                        } h-10  w-full max-w-[426px] rounded-[20px] border bg-transparent px-4 text-4xl  font-medium placeholder:text-[#353652] placeholder: opacity-80`}
+                        }  h-13 w-full max-w-[426px] rounded-[20px] border-2 bg-transparent text-4xl font-medium opacity-80 placeholder:text-[#353652]`}
                         label="Почта*"
                         labelClassName="mt-2 mb-1 text15px_desktop font-medium text-white"
                         wrapperClassName="w-full max-w-[426px]"
@@ -81,10 +81,7 @@ const ModalForgotPasswordDesktop: React.FC<ForgotPasswordDataProps> = ({ onClose
                             Конфиденциальность
                         </a>{' '}
                         и{' '}
-                        <a
-                            href="href"
-                            className="mb-4 text15px_desktop font-medium leading-[18px] text-[#353652] underline"
-                        >
+                        <a href="href" className="mb-4 text15px_desktop font-medium text-[#353652] underline">
                             Условия использования
                         </a>
                     </p>
