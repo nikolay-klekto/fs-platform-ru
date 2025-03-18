@@ -178,7 +178,8 @@ _Примечание: в папке **ui** размещены общие пер
 
 ## 3. TypeScript Наименования
 
--   Classes, interfaces, types, enums, decorators, type parameters: **UpperCamelCase**.
+-   Classes, types, enums, decorators, type parameters: **UpperCamelCase**.
+-   Interfaces: **IUpperCamelCase** (например, interface IFormData).
 -   Variables, parameters, functions, methods, properties, module aliases: **lowerCamelCase**.
 -   Global constants (включая enum elements): **CONSTANT_CASE**.
 

@@ -1,11 +1,11 @@
 import React, { SVGProps } from 'react'
 
-interface ArrowBtnProps {
+interface IArrowBtn {
     width?: number | string
     height?: number | string
 }
 
-export const ArrowBtn: React.FC<ArrowBtnProps> = ({ width = '100%', height = '100%' }) => {
+export const ArrowBtn: React.FC<IArrowBtn> = ({ width = '100%', height = '100%' }) => {
     return (
         <svg width={width} height={height} viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -141,12 +141,12 @@ export const LogoIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-interface ForwardIconProps extends React.SVGProps<SVGSVGElement> {
+interface IForwardIcon extends React.SVGProps<SVGSVGElement> {
     fill?: string
     stroke?: string
 }
 
-export const ForwardIconDesktop: React.FC<ForwardIconProps> = ({
+export const ForwardIconDesktop: React.FC<IForwardIcon> = ({
     fill = 'currentColor',
     stroke = 'currentColor',
     ...props
@@ -196,7 +196,7 @@ export const ForwardIconDesktop: React.FC<ForwardIconProps> = ({
     )
 }
 
-export const ForwardIconMobi: React.FC<ForwardIconProps> = ({
+export const ForwardIconMobi: React.FC<IForwardIcon> = ({
     fill = 'currentColor',
     stroke = 'currentColor',
     ...props
