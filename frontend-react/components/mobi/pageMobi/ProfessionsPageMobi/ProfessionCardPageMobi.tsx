@@ -3,14 +3,14 @@
 import React from 'react'
 import { Card, CardTitle, CardFooter } from '@/components/ui/card'
 
-interface ProfessionCardMobiProps {
+interface IProfessionCard {
     profession: string
     image: string
     price: string
     onClick: () => void
 }
 
-const ProfessionCardPageMobi: React.FC<ProfessionCardMobiProps> = ({ image, profession, price, onClick }) => {
+const ProfessionCardPageMobi: React.FC<IProfessionCard> = ({ image, profession, price, onClick }) => {
     return (
         <>
             <Card

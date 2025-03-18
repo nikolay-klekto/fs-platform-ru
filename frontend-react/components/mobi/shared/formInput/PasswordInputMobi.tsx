@@ -3,7 +3,7 @@ import { EyeOffPasswordDesktop, EyeOnPasswordDesktop, PasswordGeneratorDesktop }
 import { validatePasswordMobi } from '@/components/mobi/commonMobi/validate/validatePasswordMobi'
 import { generatePassword } from '@/components/mobi/commonMobi/generatePasswordMobi'
 
-interface PasswordInputProps {
+interface IPasswordInput {
     value: string
     onChange: (value: string) => void
     onError: (value: string) => void
@@ -19,7 +19,7 @@ interface PasswordInputProps {
     required?: boolean
 }
 
-const PasswordInputMobi: React.FC<PasswordInputProps> = ({
+const PasswordInputMobi: React.FC<IPasswordInput> = ({
     value,
     onChange,
     onError,

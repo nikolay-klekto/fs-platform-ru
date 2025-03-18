@@ -1,27 +1,34 @@
 import { ReactNode } from 'react'
-
 import { TelegramIconDesktop, InstagramIconDesktop, LinkedInIconDesktop } from '@/components/assets/icons'
 
-interface FooterIconLink {
+interface IFooterIconLink {
     id: number
     name: ReactNode
     href: string
 }
 
-interface FooterLink {
+interface IFooterLink {
     id: number
     name: string
     href: string
 }
 
-interface FooterSection {
+interface IFooterSection {
     id: number
     title: string
-    links: FooterLink[]
-    icons?: FooterIconLink[]
+    links: IFooterLink[]
+    icons?: IFooterIconLink[]
 }
 
-export const contentFooterDesktop: FooterSection[] = [
+interface IFooterImage {
+    id: number
+    src: string
+    alt: string
+    width: number
+    height: number
+}
+
+export const contentFooterDesktop: IFooterSection[] = [
     {
         id: 1,
         title: 'Информация',
@@ -65,15 +72,7 @@ export const contentFooterDesktop: FooterSection[] = [
     },
 ]
 
-interface FooterImage {
-    id: number
-    src: string
-    alt: string
-    width: number
-    height: number
-}
-
-export const contentFooterDesktopImages: FooterImage[] = [
+export const contentFooterImagesDesktop: IFooterImage[] = [
     { id: 1, src: '/images/iconFooter_1.png', alt: 'icon-1', width: 63, height: 21 },
     { id: 2, src: '/images/iconFooter_2.png', alt: 'icon-2', width: 30, height: 30 },
     { id: 3, src: '/images/iconFooter_3.png', alt: 'icon-3', width: 145, height: 30 },

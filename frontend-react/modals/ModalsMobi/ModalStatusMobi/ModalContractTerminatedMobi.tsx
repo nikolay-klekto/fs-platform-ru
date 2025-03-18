@@ -4,11 +4,11 @@ import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import { modalContentMobi } from './content'
 
-interface ModalContractTerminatedProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const ModalContractTerminatedMobi: React.FC<ModalContractTerminatedProps> = ({ onClose }) => {
+const ModalContractTerminatedMobi: React.FC<IModalContent> = ({ onClose }) => {
     const { title, text } = modalContentMobi.contractTerminatedMobi
 
     return (

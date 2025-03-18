@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { TrashTooltipDesktop } from '@/components/ui/tooltip'
 
-interface RequiringPaymentCardDesktop {
+interface IRequiringPaymentCard {
     profession: string
     company_name: string
     start_day: string
@@ -17,7 +17,7 @@ interface RequiringPaymentCardDesktop {
     onClick?: () => void
 }
 
-const RequiringPaymentCardDesktop: React.FC<RequiringPaymentCardDesktop> = ({
+const RequiringPaymentCardDesktop: React.FC<IRequiringPaymentCard> = ({
     profession,
     company_name,
     start_day,

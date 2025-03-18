@@ -10,17 +10,17 @@ import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validat
 import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
 import { useModal } from '@/context/ContextModal'
 
-interface LoginFormData {
+interface ILoginFormData {
     email: string
     password: string
 }
 
-interface LoginDesktopProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const LoginModalDesktop: React.FC<LoginDesktopProps> = ({ onClose }) => {
-    const [formData, setFormData] = useState<LoginFormData>({
+const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
+    const [formData, setFormData] = useState<ILoginFormData>({
         email: '',
         password: '',
     })
@@ -47,7 +47,7 @@ const LoginModalDesktop: React.FC<LoginDesktopProps> = ({ onClose }) => {
         return hasEmptyFields || hasInternalErrors
     }, [formData.email, formData.password, inputInternalErrors])
 
-    const handleChange = (field: keyof LoginFormData, value: string | boolean) => {
+    const handleChange = (field: keyof ILoginFormData, value: string | boolean) => {
         setFormData((prev) => ({
             ...prev,
             [field]: value,
@@ -95,7 +95,7 @@ const LoginModalDesktop: React.FC<LoginDesktopProps> = ({ onClose }) => {
                 <button onClick={onClose} className="absolute right-[5%] top-[5%] w-[7%]">
                     <X size={41} color="#878797" className="w-full opacity-50 hover:opacity-100" />
                 </button>
-                <h2 className="text36px_desktop text-gradient_desktop_custom mb-7 inline font-medium uppercase 2xl:mb-4 3xl:mb-5 4xl:mb-6">
+                <h2 className="text36px_desktop text-gradient_desktop_custom 3xl:mb-5 4xl:mb-6 mb-7 inline font-medium uppercase 2xl:mb-4">
                     Вход
                 </h2>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle">
@@ -167,7 +167,7 @@ const LoginModalDesktop: React.FC<LoginDesktopProps> = ({ onClose }) => {
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
+                        className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] text-5xl font-semibold disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
                     >
                         Войти
                     </Button>

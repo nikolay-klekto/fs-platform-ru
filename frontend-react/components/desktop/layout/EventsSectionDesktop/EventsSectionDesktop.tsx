@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
 import ItemEventsDesktop from '@/components/desktop/layout/EventsSectionDesktop/ItemEventsDesktop/ItemEventsDesktop'
-import { content } from '@/components/desktop/layout/EventsSectionDesktop/content'
+import { contentEventsSection } from '@/components/desktop/layout/EventsSectionDesktop/content'
 const EventsSectionDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
@@ -19,7 +19,7 @@ const EventsSectionDesktop: React.FC = () => {
         }
     }
 
-    const scrollbarWidth = `${((content.length * itemWidth) / window.innerWidth) * 150}%`
+    const scrollbarWidth = `${((contentEventsSection.length * itemWidth) / window.innerWidth) * 150}%`
 
     return (
         <div className="p-no-right-padding container py-[10vh]">
@@ -29,7 +29,7 @@ const EventsSectionDesktop: React.FC = () => {
                 onScroll={handleScroll}
                 className="no-scrollbar_custom mt-[10vh] flex max-w-full select-none gap-8 overflow-x-scroll"
             >
-                {content.map((item) => (
+                {contentEventsSection.map((item) => (
                     <ItemEventsDesktop
                         image={item.image}
                         title={item.title}

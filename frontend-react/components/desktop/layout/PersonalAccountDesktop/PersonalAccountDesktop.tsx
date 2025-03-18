@@ -36,11 +36,12 @@ const PersonalAccountDesktop: React.FC = () => {
                                 <button
                                     key={item.id}
                                     onClick={() => handleButtonClick(item.component, item.id)}
-                                    className={
-                                        item.id === activeId
-                                            ? 'bg-gradient-desktop from-[#5F4AF3] text18px_desktop font-medium text-[#878797] decoration-transparent decoration-2 bg-clip-text text-transparent underline decoration-[#8333F3] underline-offset-8'
-                                            : 'hover:bg-gradient-desktop  hover:from-[#5F4AF3]hover:[#3B51A8] text18px_desktop font-medium text-[#878797] decoration-transparent decoration-2 hover:bg-clip-text hover:text-transparent hover:underline hover:decoration-[#8333F3] hover:underline-offset-8'
-                                    }
+                                    className={`text18px_desktop cursor-pointer font-medium text-transparent underline-offset-8 
+                                        ${
+                                            item.id === activeId
+                                                ? 'bg-gradient-desktop bg-clip-text underline decoration-[#6C41F3]'
+                                                : 'hover:bg-gradient-desktop hover:[#3B51A8] text-[#878797] hover:bg-clip-text hover:underline'
+                                        }`}
                                 >
                                     {item.title}
                                 </button>
