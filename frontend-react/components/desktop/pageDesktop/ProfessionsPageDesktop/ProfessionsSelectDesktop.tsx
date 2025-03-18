@@ -2,14 +2,14 @@ import React, { useState, useEffect, useRef } from 'react'
 import { ChevronDownIconDesktop, CheckedBoxIconDesktop } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
-interface SelectItemProps {
+interface ISelectItem {
     value: string
     children: React.ReactNode
     isChecked: boolean
     onClick: () => void
 }
 
-interface SelectOption {
+interface ISelectOption {
     value: string
     label: string
 }
@@ -41,7 +41,7 @@ const ProfessionsSelectDesktop = () => {
         }
     }, [])
 
-    const options: SelectOption[] = [
+    const options: ISelectOption[] = [
         { value: 'IT', label: 'IT-отрасль' },
         { value: 'healthcare', label: 'Здравоохранение' },
         { value: 'art', label: 'Искусство' },
@@ -88,7 +88,7 @@ const ProfessionsSelectDesktop = () => {
     )
 }
 
-const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
+const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
     ({ children, isChecked, onClick, ...props }, forwardedRef) => {
         return (
             <div

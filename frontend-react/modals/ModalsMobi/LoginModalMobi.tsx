@@ -8,17 +8,17 @@ import { validateEmailMobi } from '@/components/mobi/commonMobi/validate/validat
 import PasswordInputMobi from '@/components/mobi/shared/formInput/PasswordInputMobi'
 import { useModal } from '@/context/ContextModal'
 
-interface LoginFormData {
+interface ILoginFormData {
     email: string
     password: string
 }
 
-interface ModalCallMobiProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const LoginModalDesktop: React.FC<ModalCallMobiProps> = ({ onClose }) => {
-    const [formData, setFormData] = useState<LoginFormData>({
+const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
+    const [formData, setFormData] = useState<ILoginFormData>({
         email: '',
         password: '',
     })
@@ -51,7 +51,7 @@ const LoginModalDesktop: React.FC<ModalCallMobiProps> = ({ onClose }) => {
         }
     }, [validateForm])
 
-    const handleChange = (field: keyof LoginFormData, value: string | boolean) => {
+    const handleChange = (field: keyof ILoginFormData, value: string | boolean) => {
         setFormData((prev) => ({
             ...prev,
             [field]: value,

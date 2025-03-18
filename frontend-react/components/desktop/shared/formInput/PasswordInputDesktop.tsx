@@ -3,7 +3,7 @@ import { EyeOffPasswordDesktop, EyeOnPasswordDesktop, PasswordGeneratorDesktop }
 import { validatePassword } from '@/components/desktop/commonDesktop/validate/validatePasswordDesktop'
 import { generatePassword } from '@/components/desktop/commonDesktop/generatePassword'
 
-interface PasswordInputProps {
+interface IPasswordInput {
     value: string
     onChange: (value: string) => void
     onError: (value: string) => void
@@ -17,9 +17,10 @@ interface PasswordInputProps {
     inputNOERRAddStyle?: string
     showGenerateButton?: boolean
     required?: boolean
+    formError?: boolean
 }
 
-const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
+const PasswordInputDesktop: React.FC<IPasswordInput> = ({
     value,
     onChange,
     onError,
@@ -65,7 +66,7 @@ const PasswordInputDesktop: React.FC<PasswordInputProps> = ({
     const hasError = Boolean(externalError || internalError)
 
     return (
-        <div className="w-full">
+        <div className="flex w-full flex-col gap-1.5">
             <label htmlFor={label} className={`${labelClassName}`}>
                 {label}
             </label>

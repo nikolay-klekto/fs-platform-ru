@@ -6,19 +6,19 @@ import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validate
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 import { useModal } from '@/context/ContextModal'
 
-interface FormData {
+interface IFormData {
     name: string
     phone: string
     time: string
     consent: boolean
 }
 
-interface ModalCallMobiProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const ModalCallMobi: React.FC<ModalCallMobiProps> = ({ onClose }) => {
-    const [formData, setFormData] = useState<FormData>({
+const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
+    const [formData, setFormData] = useState<IFormData>({
         name: '',
         phone: '',
         time: '',

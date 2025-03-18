@@ -3,13 +3,13 @@
 import React, { useRef, useEffect } from 'react'
 import { AvatarIconMobi } from '@/components/assets/iconsMobi'
 
-interface ItemReviewsMobiProps {
+interface IItemReviews {
     question: string
     answer: string
     onWidthChange: (width: number) => void
 }
 
-const ItemReviewsMobi: React.FC<ItemReviewsMobiProps> = ({ question, answer, onWidthChange }) => {
+const ItemReviewsMobi: React.FC<IItemReviews> = ({ question, answer, onWidthChange }) => {
     const itemRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -28,14 +28,14 @@ const ItemReviewsMobi: React.FC<ItemReviewsMobiProps> = ({ question, answer, onW
     }, [])
 
     return (
-        <div ref={itemRef} className="flex flex-shrink-0">
-            <div className="mr-1 max-w-[40px] sm_s:max-w-[34px] sm:max-w-[32px]">
-                <AvatarIconMobi className="w-full h-auto" />
+        <div ref={itemRef} className="flex shrink-0">
+            <div className="sm_s:max-w-[34px] mr-1 max-w-[40px] sm:max-w-[32px]">
+                <AvatarIconMobi className="h-auto w-full" />
             </div>
             <div className="max-w-[246px]">
-                <div className="border-[1.28px] border-[#878797] rounded-[16px] p-2">
-                    <p className="text12px_mobi text-white font-medium mb-2">{question}</p>
-                    <p className="text-xs text-[#878797] font-medium">{answer}</p>
+                <div className="rounded-[16px] border-[1.28px] border-[#878797] p-2">
+                    <p className="text12px_mobi mb-2 font-medium text-white">{question}</p>
+                    <p className="text-xs font-medium text-[#878797]">{answer}</p>
                 </div>
             </div>
         </div>

@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import Modal from '@/components/ui/modal'
 import { ChevronLeft } from 'lucide-react'
+import RequiringPaymentMobi from '../RequiringPaymentMobi/RequiringPaymentMobi'
+import OrderPaymentMobi from '../OrderPaymentMobi/OrderPaymentMobi'
 
 const PersonalAccountMobi: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState('КОРЗИНА')
 
-    const options = ['КОРЗИНА', 'МОЙ ПРОФИЛЬ', 'ТРЕБУЮЩИЕ ОПЛАТЫ', 'ПРЕДСТОЯЩИЕ СТАЖИРОВКИ', 'АРХИВ']
+    const options = ['МОЙ ПРОФИЛЬ', 'ТРЕБУЮЩИЕ ОПЛАТЫ', 'ПРЕДСТОЯЩИЕ СТАЖИРОВКИ', 'АРХИВ', 'КОРЗИНА']
 
     const handleSelectOption = (option: string) => {
         setSelectedOption(option)
@@ -15,27 +17,27 @@ const PersonalAccountMobi: React.FC = () => {
 
     const getContentText = () => {
         switch (selectedOption) {
-            case 'КОРЗИНА':
-                return 'Ваша корзина пуста'
             case 'МОЙ ПРОФИЛЬ':
                 return 'Раздел с информацией'
             case 'ТРЕБУЮЩИЕ ОПЛАТЫ':
-                return 'Нет счетов'
+                return <OrderPaymentMobi />
+            case 'КОРЗИНА':
+                return <RequiringPaymentMobi />
             default:
                 return 'Информация отсутствует'
         }
     }
 
     return (
-        <div className="flex flex-col items-center justify-center bg-[#101030] ">
+        <div className="flex flex-col items-center justify-center bg-[#101030] px-[15px] pt-[40px]">
             <h2 className="title28px_mobi_custom mb-4">ЛИЧНЫЙ КАБИНЕТ</h2>
 
             <div
-                className="text-text22px_mobi hover:bg-sub-title-gradient-mobi relative mb-12
+                className="text-text22px_mobi hover:bg-sub-title-gradient-mobi relative 
                 cursor-pointer text-[#878797] hover:bg-clip-text hover:text-transparent "
             >
                 <button
-                    className="bg-sub-title-gradient-mobi flex cursor-pointer items-center bg-clip-text text-transparent"
+                    className="bg-sub-title-gradient-mobi flex items-center bg-clip-text text-transparent underline decoration-[#6C41F3] decoration-1 underline-offset-4"
                     onClick={() => setMenuOpen(true)}
                 >
                     {selectedOption}
@@ -45,21 +47,15 @@ const PersonalAccountMobi: React.FC = () => {
                 </button>
             </div>
 
-            <p className="text-text22px_mobi mb-6 text-center text-[#353652]">{getContentText()}</p>
-            <div className="bg-sub-title-gradient-mobi mx-auto flex w-4/5 items-center justify-center rounded-[50px] p-[3px]">
-                <button type="button" className="text-text16px_mobi h-12 w-full rounded-[55px] bg-[#101030] text-white">
-                    Выбрать стажировку
-                </button>
-            </div>
+            <p className="text-text22px_mobi text-center text-[#353652]">{getContentText()}</p>
             {menuOpen && (
                 <Modal onClose={() => setMenuOpen(false)} size="small" showCloseButton={false}>
-                    <div className="z-50 flex flex-col space-y-4 p-6 text-center">
+                    <div className="z-50 flex flex-col space-y-4 py-[36px] text-center">
                         {options.map((option) => (
                             <button
                                 key={option}
                                 onClick={() => handleSelectOption(option)}
-                                className="hover:bg-gradient-desktop cursor-pointer text-[#878797]  hover:bg-clip-text hover:text-transparent hover:underline
-                            "
+                                className="hover:bg-gradient-desktop text18px_mobi cursor-pointer  text-[#878797] hover:bg-clip-text hover:text-transparent hover:underline"
                             >
                                 {option}
                             </button>

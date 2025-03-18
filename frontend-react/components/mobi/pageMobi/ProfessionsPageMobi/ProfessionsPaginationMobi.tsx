@@ -3,17 +3,13 @@
 import React, { useState } from 'react'
 import { LessIconMobi, MoreIconMobi } from '@/components/assets/icons'
 
-interface ProfessionsPaginationMobiProps {
+interface IProfessionsPagination {
     totalPages: number
     currentPage: number
     onPageChange: (page: number) => void
 }
 
-const ProfessionsPaginationMobi: React.FC<ProfessionsPaginationMobiProps> = ({
-    totalPages,
-    currentPage,
-    onPageChange,
-}) => {
+const ProfessionsPaginationMobi: React.FC<IProfessionsPagination> = ({ totalPages, currentPage, onPageChange }) => {
     const [visibleStart, setVisibleStart] = useState(1)
     const visibleEnd = visibleStart + 2
 

@@ -1,4 +1,4 @@
-interface ModalContent {
+interface IModalContent {
     id: number
     title: string
     message: string
@@ -6,7 +6,7 @@ interface ModalContent {
     confirmButton: string
 }
 
-export const modalContent: Record<string, ModalContent> = {
+export const modalContent: Record<string, IModalContent> = {
     avoidContract: {
         id: 1,
         title: 'ПОДТВЕРЖДЕНИЕ',

@@ -5,11 +5,11 @@ import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import { modalContent } from './content'
 
-interface ModalConfirmDesktopProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const ModalConfirmOrderCancelDesktop: React.FC<ModalConfirmDesktopProps> = ({ onClose }) => {
+const ModalConfirmOrderCancelDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const content = modalContent['orderCancel']
 
     return (

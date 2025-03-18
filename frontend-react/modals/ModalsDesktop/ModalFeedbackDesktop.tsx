@@ -1,14 +1,14 @@
 'use client'
 import React, { useState } from 'react'
+import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
-import { X } from 'lucide-react'
 
-interface ModalFeedbackDesktopProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const ModalFeedbackDesktop: React.FC<ModalFeedbackDesktopProps> = ({ onClose }) => {
+const ModalFeedbackDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const [formData, setFormData] = useState<string>('')
     const [error, setError] = useState<string | null>(null)
     const [isTyping, setIsTyping] = useState<boolean>(false)

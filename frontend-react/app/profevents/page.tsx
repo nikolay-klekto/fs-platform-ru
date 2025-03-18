@@ -6,6 +6,7 @@ import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDeskt
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
+import EventsPageDesktop from '@/components/desktop/pageDesktop/EventsPageDesktop/EventsPageDesktop'
 
 export default function Profevents() {
     const [isClient, setIsClient] = useState(false)
@@ -27,7 +28,7 @@ export default function Profevents() {
                 <>
                     <HeaderDesktop />
                     <main className="bg-[#101030] text-white">
-                        <h1>Prof events</h1>
+                        <EventsPageDesktop />
                     </main>
                     <FooterDesktop />
                 </>
@@ -36,7 +37,7 @@ export default function Profevents() {
                     <div className="h-[20px] bg-[#101030]"></div>
                     <HeaderMobi />
                     <main className="bg-[#101030] text-white">
-                        <h1>Prof events</h1>
+                        <EventsPageDesktop />
                     </main>
                     <FooterMobi />
                 </>

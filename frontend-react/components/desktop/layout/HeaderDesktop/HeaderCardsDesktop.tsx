@@ -6,7 +6,7 @@ import HeaderCardItemDesktop from './HeaderCardItemDesktop'
 const HeaderCardsDesktop: React.FC = () => {
     return (
         <>
-            <div className="flex flex-col gap-[20px] md:gap-[12px] self-end pt-[104px] 2xl:pt-[75px]">
+            <div className="flex flex-col gap-[20px] self-end pt-[104px] md:gap-[12px] 2xl:pt-[75px]">
                 <HeaderCardItemDesktop
                     textBlack="Стажировка"
                     textColor="наблюдателя"

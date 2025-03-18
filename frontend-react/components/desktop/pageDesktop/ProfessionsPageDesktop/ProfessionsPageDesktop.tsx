@@ -1,15 +1,15 @@
 'use client'
 
 import React, { useState } from 'react'
+import { Search } from 'lucide-react'
+import { EnhancedInput } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { useModal } from '@/context/ContextModal'
 import ProfessionsSelectDesktop from './ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './ProfessionCardPageDesktop'
 import ProfessionsPaginationDesktop from './ProfessionsPaginationDesktop'
 import ProfessionSearchDesktop from './ProfessionSendDesktop'
 import { content } from './content'
-import { EnhancedInput } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Search } from 'lucide-react'
-import { useModal } from '@/context/ContextModal'
 
 const ProfessionsPageDesktop: React.FC = () => {
     const { openModal } = useModal()
@@ -29,7 +29,7 @@ const ProfessionsPageDesktop: React.FC = () => {
 
     return (
         <>
-            <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
+            <div className="3xl:p-[76px_130px_150px_130px] container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px]">
                 <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
                 <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
                 <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
@@ -59,7 +59,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                     </div>
                     <ProfessionsSelectDesktop />
                 </div>
-                <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
+                <div className="3xl:gap-[25px] 4xl:gap-[30px] grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px]">
                     {content.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
                         <ProfessionCardPageDesktop
                             key={item.id}

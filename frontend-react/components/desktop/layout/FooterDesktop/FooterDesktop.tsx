@@ -3,26 +3,26 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { contentFooterDesktop, contentFooterDesktopImages } from './contentFooterDesktop'
 import { LogoIconDesktop } from '@/components/assets/icons'
+import { contentFooterDesktop, contentFooterImagesDesktop } from './content'
 
 const FooterDesktop: React.FC = () => {
     return (
         <>
             <footer
-                className="flex h-[521px] items-center"
+                className="flex h-[521px] items-center justify-center"
                 style={{
                     backgroundColor: 'rgb(16,16,48)',
                     backgroundImage: `linear-gradient(rgba(16,16,48,0.5), rgba(16,16,48,0.5)), url(/background/bgFooterDesktop.png)`,
                     backgroundSize: 'cover',
                 }}
             >
-                <div className="container relative">
-                    <div className="absolute 2xl:hidden">
+                <div className="container relative mx-4 h-[521px] rounded-t-[3.125rem] bg-[#10103033] p-6">
+                    <div className="absolute pt-3 2xl:hidden">
                         <LogoIconDesktop className="h-[59px] w-[71px]" />
                     </div>
-                    <div className="flex justify-center px-24 pb-10 2xl:px-0">
-                        <div className="flex w-full max-w-[1190px] justify-between">
+                    <div className="flex justify-center px-24 pb-5 pt-3 2xl:px-0">
+                        <div className="flex w-full max-w-[1190px] justify-around">
                             {contentFooterDesktop.map((section) => (
                                 <div key={section.id}>
                                     <p className="pb-7 text-4xl font-bold text-white">{section.title}</p>
@@ -55,9 +55,9 @@ const FooterDesktop: React.FC = () => {
                         </div>
                     </div>
                     <div className="bg-custom-grey h-[2px] w-full rounded-full"></div>
-                    <div className="mt-10 flex h-[162px] flex-col items-center justify-between px-24 2xl:px-0">
-                        <div className="flex w-full max-w-[1190px] items-center justify-between">
-                            {contentFooterDesktopImages.map((image) => (
+                    <div className="mt-8 flex h-[162px] flex-col items-center justify-between px-24 2xl:px-0">
+                        <div className="flex w-full max-w-[1190px] items-center justify-center gap-10">
+                            {contentFooterImagesDesktop.map((image) => (
                                 <Image
                                     key={image.id}
                                     src={image.src}
@@ -73,7 +73,7 @@ const FooterDesktop: React.FC = () => {
                             горисполкомом 26.10.2023 г. Интернет-магазин включен в Торговый реестр Республики Беларусь
                             01.01.2001 за №111111
                         </p>
-                        <p className="mb-5 text-center text-2xl font-medium text-white">
+                        <p className="mt-3 text-center text-2xl font-medium text-white">
                             funscrut .by © 2023, ООО «funscrut» УНП 000000000
                         </p>
                     </div>

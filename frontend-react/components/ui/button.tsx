@@ -22,13 +22,12 @@ const buttonVariants = cva(
                 select_mobi: 'button-border-mobi rounded-[50px] border-2 border-transparent bg-[#101030] text-white',
                 accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
                 accent_mobi: 'flex items-center rounded-[50px] bg-white',
-                registration:
-                    'text-13xl w-[500px] rounded-[45px] bg-white font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] lg:text-9xl',
-                registration_mobi:
-                    'rounded-full bg-white px-4 py-2 font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
-                arrow: 'w-[95px] rounded-[45px] bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
-                arrow_mobi:
-                    'flex size-[51px] items-center justify-center rounded-full bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
+                registration_desktop:
+                    'text-12xl 3xl:text-8xl bg-white font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8] 2xl:text-6xl',
+                registration_mobi: 'bg-white font-semibold hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
+                arrow_registration_desktop: 'bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
+                arrow_registration_mobi:
+                    'flex items-center justify-center bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 header_desktop_btn_gradient:
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
                 circle_btn_gradient_desktop:
@@ -38,14 +37,21 @@ const buttonVariants = cva(
                     'button-border-desktop hover:bg-gradient-desktop 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] border-2 text-5xl font-semibold hover:border-0 2xl:text-3xl',
                 circle: 'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
                 circleBlue: 'rounded-[50%] bg-[#382D90]',
+                circleDarkBlue: 'rounded-[50%] bg-[#272744]',
+                select_day: 'bg-gradient-desktop rounded-[90px] text-white',
+                hover_button_date:
+                    'hover:button-border-desktop-date 4xl:text-2xl 3xl:text-xl rounded-[90px] border border-[#878797] bg-[#1F203F] text-[18px] hover:bg-[#28295B] 2xl:text-lg',
                 cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
             },
             size: {
                 default: 'h-10 px-4 py-2',
                 sm: 'h-9 rounded-md px-3',
                 lg: 'h-11 rounded-md px-8',
-                four_xl: 'h-[95px]',
-                promo_mobi: 'h-[51px]',
+                arrow_registration_desktop: '3xl:size-[88px] size-[95px] rounded-full 2xl:size-[80px]',
+                registration_desktop:
+                    '3xl:w-[376px] 3xl:h-[88px] h-[95px] w-[500px] rounded-[45px] 2xl:h-[80px] 2xl:w-[323px] ',
+                registration_mobi: 'h-[51px] rounded-full px-4 py-2',
+                arrow_registration_mobi: 'size-[51px] rounded-full',
                 select_mobi: 'h-[40px] w-full max-w-[188px] ',
                 gradient_circle_mobi: 'aspect-square size-[44px] p-[10px]',
                 btn_modal_desktop: 'h-12 max-w-[272px] rounded-md',
@@ -57,7 +63,7 @@ const buttonVariants = cva(
                 circle_mobi:
                     'sm_s:h-[2.3rem] sm_s:p-[10px] sm_l:h-[2.85rem] sm_xl:h-12 aspect-square h-[3.125rem] p-[12px] sm:h-[2.375rem] sm:p-[10px]',
                 header_btn:
-                    'text-7.5xl 3xl:px-[2vw] 3xl:py-[15px] 3xl:text-4xl 4xl:px-[3vw] 4xl:py-[19px] 4xl:text-6xl px-[80px] py-[16px] md:text-xs lg:px-[1vw] lg:py-[9px] lg:text-xs xl:px-[1.5vw] xl:py-[12px] xl:text-xl 2xl:px-[2vw] 2xl:py-[14px] 2xl:text-3xl',
+                    'text-7.5xl 3xl:px-[2vw] 3xl:py-[15px] 3xl:text-4xl 4xl:px-[3vw] 4xl:py-[19px] 4xl:text-6xl max-h-[68px] px-[80px] py-[16px] 2xl:px-[2vw] 2xl:py-[14px] 2xl:text-3xl',
                 select_mobi_menu: 'h-[47px] w-full max-w-[195px] text-3xl',
                 send_btn_desktop: 'h-[64px] w-[272px] 2xl:w-[200px]',
                 cookie_btn_desktop: '3xl:w-[250px] h-[64px] w-[237px]',
@@ -66,6 +72,10 @@ const buttonVariants = cva(
                 gradient_btn_desktop: '3xl:w-[250px] h-[64px] w-[272px] 2xl:w-[250px]',
                 select_btn_desktop:
                     '3xl:w-[300px] 3xl:px-[20px] h-[64px] w-[337px] px-[30px] py-[20px] 2xl:w-[270px] 2xl:px-[20px]',
+                select_btn_desktop_events:
+                    '3xl:w-[260px] 3xl:px-[20px] h-[64px] w-[290px] px-[30px] py-[20px] 2xl:w-[230px] 2xl:px-[20px]',
+                select_btn_desktop_date:
+                    '3xl:w-[180px] 3xl:px-[20px] h-[64px] w-[200px] px-[30px] py-[20px] 2xl:w-[160px] 2xl:px-[20px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'sm_s:size-[52px] size-[55px] sm:size-[50px]',
                 contacts_btn_desktop: '3xl:h-[62px] 3xl:w-[256px] h-[65px] w-[262px] 2xl:h-[59px] 2xl:w-[250px]',
@@ -73,6 +83,8 @@ const buttonVariants = cva(
                 contacts_btn_mobi: 'sm_s:w-[156px] h-[39.5px] w-[159px] flex-shrink-0 sm:w-[152px]',
                 contacts_btn_send_mobi: 'sm_s:w-[140px] h-[35px] w-[145px] flex-shrink-0 sm:w-[136px]',
                 circle_modal_desk: 'size-[54px]',
+                hover_button_date_desktop:
+                    '3xl:w-[270px] 3xl:px-[20px] h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px]',
                 confirm_btn_desktop: 'h-[64px] w-[250px]',
             },
         },
@@ -83,13 +95,11 @@ const buttonVariants = cva(
     },
 )
 
-export interface ButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-        VariantProps<typeof buttonVariants> {
+export interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
     asChild?: boolean
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = React.forwardRef<HTMLButtonElement, IButton>(
     ({ className, variant, size, asChild = false, ...props }, ref) => {
         const Comp = asChild ? Slot : 'button'
         return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />

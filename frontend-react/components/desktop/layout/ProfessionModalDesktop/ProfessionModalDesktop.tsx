@@ -7,13 +7,13 @@ import { contentProfessionAboutDesktop } from './content'
 import InternshipCompaniesModalDesktop from './InternshipCompaniesModalDesktop'
 import ReviewsModalDesktop from './ReviewsModalDesktop'
 
-interface ProfessionModalDesktopProps {
+interface IProfessionModal {
     onClose: () => void
     profession: string
     professionId: number | null
 }
 
-const ProfessionModalDesktop: React.FC<ProfessionModalDesktopProps> = ({ onClose, profession }) => {
+const ProfessionModalDesktop: React.FC<IProfessionModal> = ({ onClose, profession }) => {
     return (
         <Modal onClose={onClose} size="large-l" showCloseButton={false} className="px-[clamp(180px,_14vw,_277px)]">
             <div className="modal-padding-content-lg-dsk flex flex-col">
