@@ -34,7 +34,7 @@ const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
                 }}
             >
                 <HelpTooltipMobi tooltipMessage={tooltipMessage} />
-                <div className="flex flex-1 flex-col items-center justify-center gap-[17px]">
+                <div className="relative flex flex-1 flex-col items-center justify-center gap-[17px]">
                     <div className="sm_s:text-3xl sm_s:leading-[24px] px-[30px] text-justify text-5xl font-medium leading-[32px] text-white sm:text-3xl sm:leading-[24px]">
                         {textBlack}{' '}
                         <span className="bg-sub-title-gradient-mobi20 rounded-[20px] px-[4px] font-bold text-white sm:px-[2px]">

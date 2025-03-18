@@ -27,7 +27,7 @@ const HeaderCardItemDesktop: React.FC<IHeaderCardItem> = ({
         <>
             <div className="card-foreground-image_desktop 3xl:min-h-[210px] 3xl:max-w-[346px] flex min-h-[260px] max-w-[426px] flex-col items-center justify-center rounded-[50px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] 2xl:min-h-[188px] 2xl:max-w-[308px]">
                 <HelpTooltipDesktop tooltipMessage={tooltipMessage} />
-                <div className="flex flex-1 flex-col items-start justify-items-stretch gap-[17px]">
+                <div className="relative flex flex-1 flex-col items-start justify-items-stretch gap-[17px]">
                     <div className="3xl:px-7 px-10 2xl:px-5">
                         <div className="3xl:leading-[30px] text24px_desktop text-justify font-medium leading-[40px] 2xl:leading-[24px]">
                             {textBlack}{' '}
