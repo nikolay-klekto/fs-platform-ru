@@ -16,6 +16,7 @@ const ProfessionsPageDesktop: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
+    const [isClient, setIsClient] = useState(false)
     const cardsPerPage = 12
 
     const filteredContent =
@@ -26,11 +27,16 @@ const ProfessionsPageDesktop: React.FC = () => {
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
 
     useEffect(() => {
+        setIsClient(true)
         setCurrentPage(1)
     }, [searchQuery])
 
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
+    }
+
+    if (!isClient) {
+        return null
     }
 
     return (
@@ -80,7 +86,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                     ))}
                 </div>
             ) : (
-                <p className="text-center text-white text-2xl mt-10">Ничего не найдено</p>
+                <p className="text-center text-white text-4xl mt-10 mb-20">Ничего не найдено</p>
             )}
 
             {totalPages > 1 && filteredContent.length > 0 && (
