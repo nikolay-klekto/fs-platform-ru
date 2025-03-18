@@ -1,5 +1,7 @@
 package com.fs.calls.repository
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fs.calls.jooq.tables.pojos.CallRequests
 import org.apache.logging.log4j.LogManager
 import org.springframework.amqp.rabbit.core.RabbitTemplate
@@ -8,10 +10,16 @@ import org.springframework.r2dbc.core.bind
 import reactor.core.publisher.Mono
 import java.time.LocalDateTime
 
+
 abstract class CallRequestRepository(
     open val databaseClient: DatabaseClient,
-    open val rabbitTemplate: RabbitTemplate
+    open val rabbitTemplate: RabbitTemplate,
+    protected open var objectMapper: ObjectMapper
 ) {
+    init {
+        println("? CallRequestRepository создан с ObjectMapper: $objectMapper")
+    }
+
 
     fun insertCallRequest(callRequest: CallRequests): Mono<Boolean> {
         val now = LocalDateTime.now()
@@ -21,7 +29,7 @@ abstract class CallRequestRepository(
             """
             INSERT INTO call_request.call_requests (name, phone_num, is_active, date_created, call_time) 
             VALUES (:name, :phoneNum, :isActive, :dateCreated, :callTime)
-        """.trimIndent()
+            """.trimIndent()
         )
             .bind("name", callRequest.name)
             .bind("phoneNum", callRequest.phoneNum)
@@ -33,7 +41,10 @@ abstract class CallRequestRepository(
             .map { it == 1L }
             .doOnSuccess { success ->
                 if (success) {
-                    rabbitTemplate.convertAndSend("call_requests_queue", callRequest)
+                    println("objectMapper instance: $objectMapper")
+                    println("callREQUEST instance: $callRequest")
+                    val jsonMessage = objectMapper.writeValueAsString(callRequest)
+                    rabbitTemplate.convertAndSend("call_requests_queue", jsonMessage)
                 }
             }
     }
