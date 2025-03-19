@@ -5,7 +5,7 @@ import { Map, CalendarIcons, User, ForwardIconWhite } from '@/components/assets/
 import Image from 'next/image'
 import React from 'react'
 
-interface EventsCardMobi {
+interface IEventsCard {
     title: string
     category: string
     image: string
@@ -17,17 +17,7 @@ interface EventsCardMobi {
     company: string
 }
 
-const EventsCardMobi: React.FC<EventsCardMobi> = ({
-    title,
-    category,
-    image,
-    date,
-    week,
-    time,
-    city,
-    place,
-    company,
-}) => {
+const EventsCardMobi: React.FC<IEventsCard> = ({ title, category, image, date, week, time, city, place, company }) => {
     return (
         <>
             <div

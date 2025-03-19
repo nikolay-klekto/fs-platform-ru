@@ -3,17 +3,13 @@
 import React, { useState } from 'react'
 import { LessIconDesktop, MoreIconDesktop } from '@/components/assets/icons'
 
-interface ProfessionsPaginationDesktopProps {
+interface IProfessionsPagination {
     totalPages: number
     currentPage: number
     onPageChange: (page: number) => void
 }
 
-const ProfessionsPaginationDesktop: React.FC<ProfessionsPaginationDesktopProps> = ({
-    totalPages,
-    currentPage,
-    onPageChange,
-}) => {
+const ProfessionsPaginationDesktop: React.FC<IProfessionsPagination> = ({ totalPages, currentPage, onPageChange }) => {
     const [visibleStart, setVisibleStart] = useState(1)
     const visibleEnd = visibleStart + 2
 

@@ -9,11 +9,11 @@ import ProfessionSendDesktop from './ProfessionSendDesktop'
 import { content } from '@/components/desktop/layout/ProfessionsSectionDesktop/content'
 import { useModal } from '@/context/ContextModal'
 
-interface ProfessionsSectionDesktopProps {
+interface IProfessionsSection {
     cardsToShow?: number
 }
 
-const ProfessionsSectionDesktop: React.FC<ProfessionsSectionDesktopProps> = ({ cardsToShow = 4 }) => {
+const ProfessionsSectionDesktop: React.FC<IProfessionsSection> = ({ cardsToShow = 4 }) => {
     const { openModal } = useModal()
 
     return (

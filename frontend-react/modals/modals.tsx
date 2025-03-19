@@ -14,8 +14,10 @@ import ModalOrderPlacedDesktop from '@/modals/ModalsDesktop/ModalOrderPlacedDesk
 import ModalContractTerminatedDesktop from '@/modals/ModalsDesktop/ModalContractTerminatedDesktop'
 import ModalContractTerminatedMobi from './ModalsMobi/ModalStatusMobi/ModalContractTerminatedMobi'
 import ModalOrderAcceptedMobi from './ModalsMobi/ModalStatusMobi/ModalOrderAcceptedMobi'
+import ModalFeedbackDesktop from './ModalsDesktop/ModalFeedbackDesktop'
+import ModalEventsDesktop from './ModalsDesktop/ModalEventsDesktop/ModalEventsDesktop'
 
-interface ModalContentProps {
+interface IModalContent {
     onClose: () => void
     modalProps?: Record<string, unknown>
 }
@@ -24,71 +26,79 @@ export const modals = {
     desktop: [
         {
             id: 'modalcall_desktop',
-            content: ({ onClose }: ModalContentProps) => <ModalCallDesktop onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <ModalCallDesktop onClose={onClose} />,
         },
         {
             id: 'registration_desktop',
-            content: ({ onClose }: ModalContentProps) => <RegistrationModalDesktop onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <RegistrationModalDesktop onClose={onClose} />,
         },
         {
             id: 'login_desktop',
-            content: ({ onClose }: ModalContentProps) => <LoginModalDesktop onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <LoginModalDesktop onClose={onClose} />,
         },
         {
             id: 'profession_modal_desktop',
-            content: ({ onClose, modalProps }: ModalContentProps) => {
+            content: ({ onClose, modalProps }: IModalContent) => {
                 const { profession, professionId } = modalProps as { profession: string; professionId: number | null }
                 return <ProfessionModalDesktop onClose={onClose} profession={profession} professionId={professionId} />
             },
         },
         {
             id: 'confirm_avoid_contract_desktop',
-            content: ({ onClose }: ModalContentProps) => <ModalConfirmAvoidContractDesktop onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <ModalConfirmAvoidContractDesktop onClose={onClose} />,
         },
         {
             id: 'confirm_order_cancel_desktop',
-            content: ({ onClose }: ModalContentProps) => <ModalConfirmOrderCancelDesktop onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <ModalConfirmOrderCancelDesktop onClose={onClose} />,
         },
         {
             id: 'confirm_order_delete_desktop',
-            content: ({ onClose }: ModalContentProps) => <ModalConfirmOrderDeleteDesktop onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <ModalConfirmOrderDeleteDesktop onClose={onClose} />,
         },
         {
             id: 'order_placed_desktop',
-            content: ({ onClose }: ModalContentProps) => <ModalOrderPlacedDesktop onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <ModalOrderPlacedDesktop onClose={onClose} />,
         },
         {
             id: 'contract_terminated_desktop',
-            content: ({ onClose }: ModalContentProps) => <ModalContractTerminatedDesktop onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <ModalContractTerminatedDesktop onClose={onClose} />,
+        },
+        {
+            id: 'feedback_desktop',
+            content: ({ onClose }: IModalContent) => <ModalFeedbackDesktop onClose={onClose} />,
+        },
+        {
+            id: 'events_desktop',
+            content: ({ onClose }: IModalContent) => <ModalEventsDesktop onClose={onClose} />,
         },
     ],
     mobi: [
         {
             id: 'modalcall_mobi',
-            content: ({ onClose }: ModalContentProps) => <ModalCallMobi onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <ModalCallMobi onClose={onClose} />,
         },
         {
             id: 'registration_mobi',
-            content: ({ onClose }: ModalContentProps) => <RegistrationModalMobi onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <RegistrationModalMobi onClose={onClose} />,
         },
         {
             id: 'login_mobi',
-            content: ({ onClose }: ModalContentProps) => <LoginModalMobi onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <LoginModalMobi onClose={onClose} />,
         },
         {
             id: 'profession_modal_mobi',
-            content: ({ onClose, modalProps }: ModalContentProps) => {
+            content: ({ onClose, modalProps }: IModalContent) => {
                 const { profession, professionId } = modalProps as { profession: string; professionId: number | null }
                 return <ProfessionModalMobi onClose={onClose} profession={profession} professionId={professionId} />
             },
         },
         {
             id: 'contract_terminated_mobi',
-            content: ({ onClose }: ModalContentProps) => <ModalContractTerminatedMobi onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <ModalContractTerminatedMobi onClose={onClose} />,
         },
         {
             id: 'order_accepted_mobi',
-            content: ({ onClose }: ModalContentProps) => <ModalOrderAcceptedMobi onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <ModalOrderAcceptedMobi onClose={onClose} />,
         },
     ],
 }

@@ -3,14 +3,14 @@
 import React from 'react'
 import { Card, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 
-interface ProfessionCardMobiProps {
+interface IProfessionCard {
     profession: string
     image: string
     price: string
     onClick?: () => void
 }
 
-const ProfessionCardMobi: React.FC<ProfessionCardMobiProps> = ({ image, profession, price, onClick }) => {
+const ProfessionCardMobi: React.FC<IProfessionCard> = ({ image, profession, price, onClick }) => {
     return (
         <Card
             variant={'profession_home_mobi'}

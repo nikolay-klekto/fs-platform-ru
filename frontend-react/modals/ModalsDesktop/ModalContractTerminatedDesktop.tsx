@@ -2,11 +2,11 @@ import React from 'react'
 import Modal from '@/components/ui/modal'
 import { X } from 'lucide-react'
 
-interface ModalContractTerminatedDesktopProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const ModalContractTerminatedDesktop: React.FC<ModalContractTerminatedDesktopProps> = ({ onClose }) => {
+const ModalContractTerminatedDesktop: React.FC<IModalContent> = ({ onClose }) => {
     return (
         <Modal onClose={onClose} size="extra-medium" showCloseButton={false}>
             <div>

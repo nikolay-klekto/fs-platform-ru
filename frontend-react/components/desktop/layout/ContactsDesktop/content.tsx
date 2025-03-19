@@ -1,15 +1,20 @@
 import { ReactNode } from 'react'
 
-import { InstagramIconMobi, TelegramIconMobi, LinkedInIconMobi, PhoneIconMobi } from '@/components/assets/iconsMobi'
+import {
+    InstagramIconDesktop,
+    TelegramIconDesktop,
+    LinkedInIconDesktop,
+    PhoneIconDesktop,
+} from '@/components/assets/icons'
 
-interface Contacts {
+interface IContacts {
     id: number
     title: string
     value: string
     href?: string
 }
 
-export const contentContactsMobi: Contacts[] = [
+export const contentContactsDesktop: IContacts[] = [
     {
         id: 1,
         title: 'Для клиентов и партнеров',
@@ -35,46 +40,36 @@ export const contentContactsMobi: Contacts[] = [
     },
 ]
 
-interface SocialContactFirst {
+interface ISocialContacts {
     id: number
     icon: ReactNode
     name: string
     href: string
 }
 
-export const contentSocialContactsFirstMobi: SocialContactFirst[] = [
+export const contentSocialContactsDesktop: ISocialContacts[] = [
     {
         id: 1,
-        icon: <InstagramIconMobi width={15} height={15} />,
+        icon: <InstagramIconDesktop width={34} height={34} />,
         name: 'Instagram с мемами',
         href: '#',
     },
     {
         id: 2,
-        icon: <TelegramIconMobi width={17} height={17} />,
+        icon: <TelegramIconDesktop width={44} height={40} />,
         name: 'Telegram канал с полезными статьями',
         href: '#',
     },
-]
-
-interface SocialContactSecond {
-    id: number
-    icon: ReactNode
-    name: string
-    href: string
-}
-
-export const contentSocialContactsSecondMobi: SocialContactSecond[] = [
     {
-        id: 1,
-        icon: <PhoneIconMobi width={15} height={15} />,
-        name: '+375 (29) 000 00 00',
-        href: 'tel:+375290000000',
-    },
-    {
-        id: 2,
-        icon: <LinkedInIconMobi width={15} height={15} />,
+        id: 3,
+        icon: <LinkedInIconDesktop width={30} height={30} />,
         name: 'LinkedIn с открытыми вакансиями',
         href: '#',
+    },
+    {
+        id: 4,
+        icon: <PhoneIconDesktop />,
+        name: '+375 (29) 000 00 00',
+        href: 'tel:+375290000000',
     },
 ]

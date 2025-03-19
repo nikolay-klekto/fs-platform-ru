@@ -11,14 +11,14 @@ const HeaderNavigationMobi: React.FC = () => {
 
     return (
         <nav className="w-full">
-            <ul className="flex flex-col justify-center items-center w-full">
+            <ul className="flex w-full flex-col items-center justify-center">
                 {content.map((item) => (
                     <li
                         key={item.id}
                         className={
                             isActive(item.link)
-                                ? 'text-white font-semibold text-7xl sm_s:text-5xl sm:text-5xl py-4 sm_s:py-3 sm:py-3'
-                                : 'text-gradient_mobi_custom hover:bg-gradient-desktop-hover font-medium text-5xl sm_s:text-3xl sm:text-3xl py-4 sm_s:py-3 sm:py-3'
+                                ? 'sm_s:text-5xl sm_s:py-3 py-4 text-7xl font-semibold text-white sm:py-3 sm:text-5xl'
+                                : 'text-gradient_mobi_custom hover:bg-gradient-desktop-hover sm_s:text-3xl sm_s:py-3 py-4 text-5xl font-medium sm:py-3 sm:text-3xl'
                         }
                     >
                         <Link href={item.link} className="uppercase">

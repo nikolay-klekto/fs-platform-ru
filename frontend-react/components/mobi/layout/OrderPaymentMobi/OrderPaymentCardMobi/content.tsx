@@ -1,4 +1,4 @@
-interface IContent {
+export interface IContent {
     profession: string
     company_name: string
     start_day: string

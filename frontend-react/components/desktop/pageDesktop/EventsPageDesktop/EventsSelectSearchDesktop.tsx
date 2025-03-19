@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 import { ChevronDownIconDesktop, CheckedBoxIcon, QuestionMark } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 
-interface SelectItemProps {
+interface ISelectItem {
     value: string
     children: React.ReactNode
     isChecked: boolean
     onClick: () => void
 }
 
-interface SelectOption {
+interface ISelectOption {
     value: string
     label: string
 }
@@ -42,7 +42,7 @@ const EventsSelectSearchDesktop = () => {
         }
     }, [])
 
-    const options: SelectOption[] = [
+    const options: ISelectOption[] = [
         { value: 'fairs', label: 'Выставки/презентации' },
         { value: 'open_days', label: 'Дни открытых дверей' },
         { value: 'conferences', label: 'Конференции' },
@@ -66,7 +66,7 @@ const EventsSelectSearchDesktop = () => {
             </Button>
             {isOpen && (
                 <div
-                    className="3xl:w-[300px] absolute top-[80px] right-0 z-50 w-[400px] rounded-[42px] p-[2px] 2xl:w-[270px]"
+                    className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[400px] rounded-[42px] p-[2px] 2xl:w-[270px]"
                     style={{
                         background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
                     }}
@@ -89,11 +89,11 @@ const EventsSelectSearchDesktop = () => {
     )
 }
 
-const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
+const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
     ({ children, isChecked, onClick, ...props }, forwardedRef) => {
         return (
             <div
-                className={`relative z-[3] flex cursor-pointer items-center justify-between rounded-[18px] p-[15px] font-medium text-[15px] ${
+                className={`relative z-[3] flex cursor-pointer items-center justify-between rounded-[18px] p-[15px] text-[15px] font-medium ${
                     isChecked ? 'bg-[#5F4AF30F] text-white' : 'bg-transparent text-[#878797]'
                 }`}
                 {...props}

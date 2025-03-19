@@ -1,24 +1,24 @@
 'use client'
 
 import React, { useState, useEffect, useCallback } from 'react'
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
-import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
 
-interface NotifyFormData {
+interface INotifyFormData {
     email: string
     consent: boolean
 }
 
-interface NotifyModalDesktopProps {
+interface INotifyModal {
     onClose: () => void
 }
 
-const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ onClose }) => {
-    const [formData, setFormData] = useState<NotifyFormData>({
+const NotifyModalDesktop: React.FC<INotifyModal> = ({ onClose }) => {
+    const [formData, setFormData] = useState<INotifyFormData>({
         email: '',
         consent: false,
     })
@@ -36,7 +36,7 @@ const NotifyModalDesktop: React.FC<NotifyModalDesktopProps> = ({ onClose }) => {
         return hasEmptyFields || hasInternalErrors
     }, [formData, inputErrors])
 
-    const handleChange = (field: keyof NotifyFormData, value: string | boolean) => {
+    const handleChange = (field: keyof INotifyFormData, value: string | boolean) => {
         setFormData((prev) => ({
             ...prev,
             [field]: value,

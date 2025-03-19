@@ -19,11 +19,11 @@ interface IRegistrationFormData {
     subscribe: boolean
     agree: boolean
 }
-interface IRegistrationModalMobi {
+interface IModalContent {
     onClose: () => void
 }
 
-const RegistrationModalMobi: React.FC<IRegistrationModalMobi> = ({ onClose }) => {
+const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
     const [formData, setFormData] = useState<IRegistrationFormData>({
         email: '',
         phone: '',

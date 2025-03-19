@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { content } from './content'
-import TitleDesktop from '../../shared/TitleDesktop'
+import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
 const HowWeWorkDesktop: React.FC = () => {
     return (
         <>

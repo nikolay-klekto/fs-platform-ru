@@ -5,11 +5,11 @@ import { Dialog, DialogPortal } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
-interface ModalCookieDesktopProps {
+interface IModalCookieDesktop {
     onClose: () => void
 }
 
-export default function ModalCookieDesktop({ onClose }: ModalCookieDesktopProps) {
+export default function ModalCookieDesktop({ onClose }: IModalCookieDesktop) {
     const [open, setOpen] = useState(true)
 
     const handleClose = () => {

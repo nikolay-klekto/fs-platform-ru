@@ -3,14 +3,14 @@ import React, { useState, useEffect, useRef } from 'react'
 import { SearchIconMobi, CheckedBoxIconMobi } from '@/components/assets/iconsMobi'
 import { FiltersIconMobi } from '@/components/assets/icons'
 
-interface SelectItemProps {
+interface ISelectItem {
     value: string
     children: React.ReactNode
     isChecked: boolean
     onClick: () => void
 }
 
-interface SelectOption {
+interface ISelectOption {
     value: string
     label: string
 }
@@ -42,7 +42,7 @@ const ProfessionsSelectMobi = () => {
         }
     }, [])
 
-    const options: SelectOption[] = [
+    const options: ISelectOption[] = [
         { value: 'IT', label: 'IT-отрасль' },
         { value: 'healthcare', label: 'Здравоохранение' },
         { value: 'art', label: 'Искусство' },
@@ -74,7 +74,7 @@ const ProfessionsSelectMobi = () => {
             />
             {isOpen && (
                 <div
-                    className="3xl:w-[300px] absolute top-[80px] right-0 z-50 w-[337px] rounded-[42px] p-[2px] 2xl:w-[270px]"
+                    className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[337px] rounded-[42px] p-[2px] 2xl:w-[270px]"
                     style={{
                         background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
                     }}
@@ -87,16 +87,16 @@ const ProfessionsSelectMobi = () => {
                             </button>
                         </div>
 
-                        <div className="flex items-center border border-white-300 rounded-[50px] px-3">
+                        <div className="border-white-300 flex items-center rounded-[50px] border px-3">
                             <input
                                 type="text"
                                 placeholder="Поиск"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="flex h-11 w-full rounded-md bg-transparent py-3 text-14px outline-none placeholder:text-gray-700 disabled:cursor-not-allowed disabled:opacity-50"
+                                className="text-14px flex h-11 w-full rounded-md bg-transparent py-3 outline-none placeholder:text-gray-700 disabled:cursor-not-allowed disabled:opacity-50"
                             />
                             <SearchIconMobi
-                                className="mr-2 h-6 w-6 shrink-0 opacity-50"
+                                className="mr-2 size-6 shrink-0 opacity-50"
                                 onClick={() => console.log('Search icon clicked!')}
                             />
                         </div>
@@ -120,11 +120,11 @@ const ProfessionsSelectMobi = () => {
     )
 }
 
-const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
+const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
     ({ children, isChecked, onClick, ...props }, forwardedRef) => {
         return (
             <div
-                className={`relative z-[3] flex cursor-pointer items-center gap-[14px] p-[15px] text-14px border-b-2 border-[#353632] ${
+                className={`text-14px relative z-[3] flex cursor-pointer items-center gap-[14px] border-b-2 border-[#353632] p-[15px] ${
                     isChecked ? 'text-white' : 'bg-transparent text-[#878797]'
                 }`}
                 {...props}

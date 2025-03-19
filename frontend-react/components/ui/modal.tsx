@@ -2,7 +2,7 @@ import { ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { X } from 'lucide-react'
 
-interface ModalProps {
+interface IModal {
     children: ReactNode
     onClose: () => void
     size?: 'small' | 'medium' | 'semilarge' | 'large' | 'large-l' | 'large-lg' | 'extra-medium'
@@ -10,7 +10,7 @@ interface ModalProps {
     paddingClass?: string
     className?: string
 }
-const Modal: React.FC<ModalProps> = ({
+const Modal: React.FC<IModal> = ({
     children,
     onClose,
     size = 'medium',

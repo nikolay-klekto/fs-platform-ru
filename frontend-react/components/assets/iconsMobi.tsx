@@ -1,11 +1,11 @@
 import React, { SVGProps } from 'react'
 
-interface ArrowBtnProps {
+interface IArrowBtn {
     width?: number
     height?: number
 }
 
-export const ArrowBtn: React.FC<ArrowBtnProps> = ({ width = 56, height = 56 }) => {
+export const ArrowBtn: React.FC<IArrowBtn> = ({ width = 56, height = 56 }) => {
     return (
         <svg width={width} height={height} viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -329,7 +329,7 @@ export const HelpIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
 
 export const TrashIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 40 40" fill="none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 40 40" fill="none" {...props}>
             <path
                 d="M5 10H8.33333H35"
                 stroke="#878797"

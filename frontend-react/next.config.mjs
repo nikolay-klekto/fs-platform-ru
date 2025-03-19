@@ -6,7 +6,7 @@ const nextConfig = {
     // Если используете базовый путь
     basePath: '',
     // Если нужно отключить строгий режим
-    reactStrictMode: false,
+    reactStrictMode: true,
 }
 
 export default nextConfig
