@@ -152,6 +152,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         onClose()
         openModal('login_desktop', 'desktop')
     }
+    
     return (
         <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div className="mx-auto flex w-[73%] flex-col items-center justify-center pb-[30px] pt-[40px]">

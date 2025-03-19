@@ -4,16 +4,16 @@ import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailMobi } from '@/components/mobi/commonMobi/validate/validateEmailMobi'
 
-interface ForgotPasswordData {
+interface IForgotPasswordData {
     email: string
 }
 
-interface ForgotPasswordDataMobiProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const ModalForgotPasswordMobi: React.FC<ForgotPasswordDataMobiProps> = ({ onClose }) => {
-    const [passwordData, setPasswordData] = useState<ForgotPasswordData>({
+const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
+    const [passwordData, setPasswordData] = useState<IForgotPasswordData>({
         email: '',
     })
 
@@ -59,9 +59,9 @@ const ModalForgotPasswordMobi: React.FC<ForgotPasswordDataMobiProps> = ({ onClos
                                 inputTouched.email && validateEmailMobi(passwordData.email).styleError
                                     ? 'border-[#bc8070]  '
                                     : 'border-[#878797]'
-                            } placeholder:text14px_mobi h-12 w-full rounded-[20px] border-2 bg-transparent text-white placeholder:text-[#353652]/40`}
+                            } placeholder:text14px_mobi h-12 w-full rounded-[50px] border-2 bg-transparent text-white placeholder:text-[#353652]/50`}
                             label="Почта*"
-                            labelClassName="text14px_mobi text-white"
+                            labelClassName="text14px_mobi font-medium text-white"
                             wrapperClassName="w-full"
                         />
                         {inputInternalErrors.email && (

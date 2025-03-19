@@ -16,11 +16,10 @@ import ModalContractTerminatedMobi from './ModalsMobi/ModalStatusMobi/ModalContr
 import ModalOrderAcceptedMobi from './ModalsMobi/ModalStatusMobi/ModalOrderAcceptedMobi'
 import ModalFeedbackDesktop from './ModalsDesktop/ModalFeedbackDesktop'
 import ModalEventsDesktop from './ModalsDesktop/ModalEventsDesktop/ModalEventsDesktop'
+import ModalForgotPasswordDesktop from './ModalsDesktop/ModalForgotPasswordDesktop'
+import ModalForgotPasswordMobi from './ModalsMobi/ModalForgotPasswordMobi'
 
 interface IModalContent {
-import ModalForgotPasswordDesktop from '@/modals/ModalsDesktop/ModalForgotPasswordDesktop'
-import ModalForgotPasswordMobi from '@/modals/ModalsMobi/ModalForgotPasswordMobi'
-interface ModalContentProps {
     onClose: () => void
     modalProps?: Record<string, unknown>
 }
@@ -76,7 +75,7 @@ export const modals = {
         },
         {
             id: 'forgot_password_desktop',
-            content: ({ onClose }: ModalContentProps) => <ModalForgotPasswordDesktop onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <ModalForgotPasswordDesktop onClose={onClose} />,
         },
     ],
     mobi: [
@@ -109,7 +108,7 @@ export const modals = {
         },
         {
             id: 'forgot_password_mobi',
-            content: ({ onClose }: ModalContentProps) => <ModalForgotPasswordMobi onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <ModalForgotPasswordMobi onClose={onClose} />,
         },
     ],
 }

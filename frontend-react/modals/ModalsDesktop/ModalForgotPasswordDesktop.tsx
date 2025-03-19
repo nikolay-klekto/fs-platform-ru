@@ -8,16 +8,16 @@ import { Button } from '@/components/ui/button'
 
 import { X } from 'lucide-react'
 
-interface ForgotPasswordData {
+interface IForgotPasswordData {
     email: string
 }
 
-interface ForgotPasswordDataProps {
+interface IModalContent {
     onClose: () => void
 }
 
-const ModalForgotPasswordDesktop: React.FC<ForgotPasswordDataProps> = ({ onClose }) => {
-    const [passwordData, setPasswordData] = useState<ForgotPasswordData>({
+const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
+    const [passwordData, setPasswordData] = useState<IForgotPasswordData>({
         email: '',
     })
 

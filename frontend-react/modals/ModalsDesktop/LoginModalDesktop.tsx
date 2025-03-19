@@ -89,7 +89,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         openModal('registration_desktop', 'desktop')
     }
 
-    const openForgotPassowrdModal = () => {
+    const openForgotPasswordModal = () => {
         onClose()
         openModal('forgot_password_desktop', 'desktop')
     }
@@ -151,7 +151,11 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     </div>
                     <div className={`flex w-full ${formError ? 'justify-between' : 'justify-end'}`}>
                         {formError && <p className="error-form-desktop-custom">Введите e-mail и пароль</p>}
-                        <button className="text15px_desktop border-transparent bg-transparent font-semibold text-[#878797]">
+                        <button
+                            type="button"
+                            className="text15px_desktop bg-transparent font-semibold text-[#878797]"
+                            onClick={openForgotPasswordModal}
+                        >
                             Забыли пароль?
                         </button>
                     </div>
@@ -172,7 +176,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] text-5xl font-semibold disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
+                        className="mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
                     >
                         Войти
                     </Button>
