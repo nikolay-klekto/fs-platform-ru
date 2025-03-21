@@ -35,11 +35,17 @@ const ItemCompaniesDesktop: React.FC<IItemCompaniesDesktop> = ({ image, price, o
     return (
         <div
             ref={itemRef}
-            className="flex h-[clamp(100px,_8vw,_142px)] w-[clamp(160px,_14vw,_228px)] shrink-0 items-end justify-center rounded-[25px] border-2 border-[#878797] px-2 pb-[clamp(16px,_1.5vw,_28px)] pt-6 "
+            className="flex h-auto w-[clamp(160px,_14vw,_228px)] shrink-0 items-end justify-center rounded-[25px] border-2 border-[#878797] px-2 pb-[clamp(16px,_1.5vw,_28px)] pt-6 text-center"
         >
             <div className="flex w-full flex-col items-center gap-[clamp(6px,_0.4vw,_13px)]">
                 <div className="flex justify-center">
-                    <Image src={image.src} alt={image.alt} width={image.width} height={image.height} />
+                    <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={image.width}
+                        height={image.height}
+                        style={{ width: '100%', height: 'auto' }}
+                    />
                 </div>
                 <p className="3xl:text-4xl text-[19px] text-[#878797] 2xl:text-3xl">
                     от{' '}
