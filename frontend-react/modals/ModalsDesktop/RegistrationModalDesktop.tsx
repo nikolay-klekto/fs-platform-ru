@@ -138,6 +138,11 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     ...prevErrors,
                     email: 'Пользователь с таким e-mail уже существует',
                 }))
+            } else {
+                setInputInternalErrors((prevErrors) => ({
+                    ...prevErrors,
+                    email: result.errorMessage,
+                }))
             }
             return
         }
