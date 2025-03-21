@@ -2,7 +2,7 @@
 
 import React, { ReactNode, useMemo } from 'react'
 import { ApolloProvider } from '@apollo/client'
-import { createApolloClient } from '@/lib/apolloLClient'
+import { createApolloClient } from '@/lib/apolloClient'
 
 interface IApolloProviderWrapper {
     children: ReactNode

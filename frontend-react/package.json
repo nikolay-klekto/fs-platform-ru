@@ -24,6 +24,7 @@
         "date-fns": "^3.6.0",
         "eslint-config-prettier": "^9.1.0",
         "graphql": "^16.10.0",
+        "js-cookie": "^3.0.5",
         "lucide-react": "^0.436.0",
         "next": "15.1.2",
         "react": "^18.3.1",
@@ -35,6 +36,7 @@
         "tailwindcss-animate": "^1.0.7"
     },
     "devDependencies": {
+        "@types/js-cookie": "^3.0.6",
         "@types/node": "^20.16.15",
         "@types/react": "^18.3.12",
         "@types/react-dom": "^18.3.1",

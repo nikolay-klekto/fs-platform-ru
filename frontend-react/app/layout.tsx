@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import { modals } from '@/modals/modals'
 import { ModalProvider } from '@/context/ContextModal'
+import ApolloProviderWrapper from '@/components/wrapper/ApolloProviderWrapper'
 import '../styles/globals.css'
 import ScrollRestoration from '@/lib/scroll-restoration'
 
@@ -25,7 +26,9 @@ export default function RootLayout({
         <html lang="en">
             <body className={montserrat.className}>
                 <ScrollRestoration />
-                <ModalProvider modals={modals}>{children}</ModalProvider>
+                <ApolloProviderWrapper>
+                    <ModalProvider modals={modals}>{children}</ModalProvider>
+                </ApolloProviderWrapper>
             </body>
         </html>
     )
