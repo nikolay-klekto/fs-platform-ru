@@ -14,38 +14,34 @@ interface ISelectOption {
     label: string
 }
 
-const ProfessionsSelectDesktop = () => {
+const ProfessionsSelectDesktop = ({ onCategoryChange }: { onCategoryChange: (categories: string[]) => void }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
-    const selectRef = useRef<HTMLDivElement>(null)
 
     const toggleOption = (value: string) => {
-        setSelectedOptions((prev) =>
-            prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value],
-        )
+        console.log('Before toggle, selectedOptions:', selectedOptions)
+        setSelectedOptions((prev) => {
+            const updatedOptions = prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value]
+            console.log('After toggle, updatedOptions:', updatedOptions)
+            return updatedOptions
+        })
     }
 
     const handleSelectToggle = () => {
         setIsOpen((prev) => !prev)
     }
-    const handleClickOutside = (event: MouseEvent) => {
-        if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
-            setIsOpen(false)
-        }
-    }
+
+    const selectRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [])
+        onCategoryChange(selectedOptions)
+    }, [selectedOptions, onCategoryChange])
 
     const options: ISelectOption[] = [
-        { value: 'IT', label: 'IT-отрасль' },
-        { value: 'healthcare', label: 'Здравоохранение' },
-        { value: 'art', label: 'Искусство' },
-        { value: 'sport', label: 'Спорт' },
+        { value: 'IT-отрасль', label: 'IT-отрасль' },
+        { value: 'Здравоохранение', label: 'Здравоохранение' },
+        { value: 'Искусство', label: 'Искусство' },
+        { value: 'Спорт', label: 'Спорт' },
         { value: 'field5', label: 'Отрасль 5' },
         { value: 'field6', label: 'Отрасль 6' },
     ]
@@ -56,11 +52,11 @@ const ProfessionsSelectDesktop = () => {
                 variant={'select_btn_desktop'}
                 size={'select_btn_desktop'}
                 onClick={handleSelectToggle}
-                className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
+                className={`${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Отрасль профессии
                 <ChevronDownIconDesktop
-                    className={`h-[15px] w-[27px] transition-transform  duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
+                    className={`h-[15px] w-[27px] transition-transform duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
                 />
             </Button>
             {isOpen && (
