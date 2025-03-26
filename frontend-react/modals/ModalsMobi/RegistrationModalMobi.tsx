@@ -33,7 +33,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
         agree: false,
     })
     const { openModal } = useModal()
-    const { register, error, loading, client } = useAuth()
+    const { register, loading, client, customError } = useAuth()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -64,17 +64,17 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
             formData.confirmPassword === '' ||
             formData.agree !== true
 
-        const hasErrors = Object.values(errors).some((error) => error !== null && error !== '')
+        const hasErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
         const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
 
         return hasEmptyFields || hasErrors || hasInternalErrors
-    }, [formData, errors, inputInternalErrors])
+    }, [formData, inputInternalErrors])
 
     useEffect(() => {
         if (!validateForm()) {
             setFormError(false)
         }
-    }, [validateForm])
+    }, [formData, inputInternalErrors, validateForm])
 
     const handleChange = (field: keyof IRegistrationFormData, value: string | boolean) => {
         setFormData((prev) => {
@@ -134,27 +134,19 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
         client.resetStore()
         if (validateForm()) {
             setFormError(true)
-            console.log('Ошибка: Заполните все поля корректно или исправьте ошибки')
+            return
         } else {
             setFormError(false)
             const result = await register(formData.email, formData.phone, formData.password)
-            if (typeof result === 'object' && result.errorMessage) {
-                if (result.errorMessage.includes('Пользователь с таким e-mail уже существует')) {
-                    setInputInternalErrors((prevErrors) => ({
-                        ...prevErrors,
-                        email: 'Пользователь с таким e-mail уже существует',
-                    }))
-                } else {
-                    setInputInternalErrors((prevErrors) => ({
-                        ...prevErrors,
-                        email: result.errorMessage,
-                    }))
-                }
-                return
+            if (result.success) {
+                onClose()
+                router.push('/personalaccount')
+            } else {
+                setInputInternalErrors((prevErrors) => ({
+                    ...prevErrors,
+                    email: result.errorMessage,
+                }))
             }
-            console.log('Успешная регистрация', result)
-            onClose()
-            router.push('/personalaccount')
         }
     }
 
@@ -309,7 +301,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                         >
                             {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                         </Button>
-                        {error && <p className="error-form-desktop-custom">{error.message}</p>}
+                        {customError && <p className="error-form-desktop-custom">{customError}</p>}
                     </form>
                     <div className="text14px_mobi mb-6 mt-5 flex justify-center">
                         <p className="mr-2 font-medium text-[#878797]">Уже зарегистрированы?</p>

@@ -34,9 +34,8 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         subscribe: false,
         agree: false,
     })
-    const { register, error, loading, client } = useAuth()
+    const { register, loading, client, customError } = useAuth()
     const { openModal } = useModal()
-    // const [form, setForm] = useState({ email: '', phoneNumber: '', password: '' })
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -67,11 +66,11 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
             formData.confirmPassword === '' ||
             formData.agree !== true
 
-        const hasErrors = Object.values(errors).some((error) => error !== null && error !== '')
+        const hasErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
         const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
 
         return hasEmptyFields || hasErrors || hasInternalErrors
-    }, [formData, errors, inputInternalErrors])
+    }, [formData, inputInternalErrors])
 
     const handleChange = (field: keyof IRegistrationFormData, value: string | boolean) => {
         setFormData((prev) => {
@@ -132,31 +131,22 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         }
 
         const result = await register(formData.email, formData.phoneNumber, formData.password)
-        if (typeof result === 'object' && result.errorMessage) {
-            if (result.errorMessage.includes('Пользователь с таким e-mail уже существует')) {
-                setInputInternalErrors((prevErrors) => ({
-                    ...prevErrors,
-                    email: 'Пользователь с таким e-mail уже существует',
-                }))
-            } else {
-                setInputInternalErrors((prevErrors) => ({
-                    ...prevErrors,
-                    email: result.errorMessage,
-                }))
-            }
-            return
+        if (result.success) {
+            onClose()
+            router.push('/personalaccount')
+        } else {
+            setInputInternalErrors((prevErrors) => ({
+                ...prevErrors,
+                email: result.errorMessage,
+            }))
         }
-
-        console.log('Успешная регистрация', result)
-        onClose()
-        router.push('/personalaccount')
     }
 
     useEffect(() => {
         if (!validateForm()) {
             setFormError(false)
         }
-    }, [formData, errors, inputInternalErrors, validateForm])
+    }, [formData, inputInternalErrors, validateForm])
 
     const [inputTouched, setInputTouched] = useState({
         email: false,
@@ -319,7 +309,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     >
                         {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                     </Button>
-                    {error && <p className="error-form-desktop-custom">{error.message}</p>}
+                    {customError && <p className="error-form-desktop-custom">{customError}</p>}
                 </form>
                 <div className="text15px_desktop mt-5 flex justify-center">
                     <p className="mr-2 font-medium text-[#878797]">Уже зарегистрированы?</p>

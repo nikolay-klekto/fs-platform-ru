@@ -64,7 +64,8 @@ export const useAuth = () => {
     }
   };
 
-  return { register, error, loading, client };
+  return { register, error, loading, client, customError };
+
 };
 
 
