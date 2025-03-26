@@ -7,7 +7,6 @@ const ProfessionSendDesktop: React.FC = () => {
     const [useRequest, setUseRequest] = useState('')
 
     const handleSendRequest = () => {
-        console.log('Отправка запроса на профессию:', useRequest)
         setUseRequest('')
     }
     return (

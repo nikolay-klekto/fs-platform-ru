@@ -56,7 +56,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                         size={'gradient_search_desktop'}
                         rounded={'full'}
                         className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
-                        wrapperClassName="2xl:w-[600px] relative 4xl:max-w-[700px] 3xl:w-[650px] h-[64px] w-[741px] justify-between flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}"
+                        wrapperClassName={`2xl:w-[600px] relative 4xl:max-w-[700px] 3xl:w-[650px] h-[64px] w-[741px] justify-between flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
                         onFocus={() => setIsFocused(true)}
                         onBlur={() => setIsFocused(false)}
                         placeholder="Поиск"

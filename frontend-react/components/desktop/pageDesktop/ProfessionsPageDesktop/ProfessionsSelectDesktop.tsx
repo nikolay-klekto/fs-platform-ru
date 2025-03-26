@@ -17,12 +17,11 @@ interface ISelectOption {
 const ProfessionsSelectDesktop = ({ onCategoryChange }: { onCategoryChange: (categories: string[]) => void }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
+    const selectRef = useRef<HTMLDivElement>(null)
 
     const toggleOption = (value: string) => {
-        console.log('Before toggle, selectedOptions:', selectedOptions)
         setSelectedOptions((prev) => {
             const updatedOptions = prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value]
-            console.log('After toggle, updatedOptions:', updatedOptions)
             return updatedOptions
         })
     }
@@ -31,7 +30,18 @@ const ProfessionsSelectDesktop = ({ onCategoryChange }: { onCategoryChange: (cat
         setIsOpen((prev) => !prev)
     }
 
-    const selectRef = useRef<HTMLDivElement>(null)
+    const handleClickOutside = (event: MouseEvent) => {
+        if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+            setIsOpen(false)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
 
     useEffect(() => {
         onCategoryChange(selectedOptions)
