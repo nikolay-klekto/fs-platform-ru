@@ -4,15 +4,17 @@ import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
 import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
 import { useModal } from '@/context/ContextModal'
+import { useAuth } from '@/hooks/useAuth'
 
 interface IRegistrationFormData {
     email: string
-    phone: string
+    phoneNumber: string
     password: string
     confirmPassword: string
     subscribe: boolean
@@ -26,12 +28,13 @@ interface IModalContent {
 const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const [formData, setFormData] = useState<IRegistrationFormData>({
         email: '',
-        phone: '',
+        phoneNumber: '',
         password: '',
         confirmPassword: '',
         subscribe: false,
         agree: false,
     })
+    const { register, loading, client, customError } = useAuth()
     const { openModal } = useModal()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
@@ -41,7 +44,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const [inputInternalErrors, setInputInternalErrors] = useState<{ [key: string]: string | null }>({
         email: '',
-        phone: '',
+        phoneNumber: '',
         password: '',
         confirmPassword: '',
         subscribe: '',
@@ -58,16 +61,16 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const validateForm = useCallback((): boolean => {
         const hasEmptyFields =
             formData.email === '' ||
-            formData.phone === '' ||
+            formData.phoneNumber === '' ||
             formData.password === '' ||
             formData.confirmPassword === '' ||
             formData.agree !== true
 
-        const hasErrors = Object.values(errors).some((error) => error !== null && error !== '')
+        const hasErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
         const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
 
         return hasEmptyFields || hasErrors || hasInternalErrors
-    }, [formData, errors, inputInternalErrors])
+    }, [formData, inputInternalErrors])
 
     const handleChange = (field: keyof IRegistrationFormData, value: string | boolean) => {
         setFormData((prev) => {
@@ -118,16 +121,24 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
             return updatedFormData
         })
     }
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const router = useRouter()
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        client.resetStore()
         if (validateForm()) {
             setFormError(true)
-            console.log('Ошибка: Заполните все поля корректно или исправьте ошибки')
-        } else {
-            setFormError(false)
-            console.log('Форма отправлена:', formData)
+            return
+        }
+
+        const result = await register(formData.email, formData.phoneNumber, formData.password)
+        if (result.success) {
             onClose()
+            router.push('/personalaccount')
+        } else {
+            setInputInternalErrors((prevErrors) => ({
+                ...prevErrors,
+                email: result.errorMessage,
+            }))
         }
     }
 
@@ -135,11 +146,11 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         if (!validateForm()) {
             setFormError(false)
         }
-    }, [formData, errors, inputInternalErrors, validateForm])
+    }, [formData, inputInternalErrors, validateForm])
 
     const [inputTouched, setInputTouched] = useState({
         email: false,
-        phone: false,
+        phoneNumber: false,
     })
 
     const handleInputBlur = (field: 'phone' | 'email') => {
@@ -152,6 +163,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         onClose()
         openModal('login_desktop', 'desktop')
     }
+
     return (
         <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div className="mx-auto flex w-[73%] flex-col items-center justify-center pb-[30px] pt-[40px]">
@@ -189,20 +201,20 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             type="tel"
                             name="phone"
                             placeholder="Номер телефона"
-                            value={formData.phone}
+                            value={formData.phoneNumber}
                             onBlur={() => handleInputBlur('phone')}
                             validate={(value) => validatePhoneDesktop(value)}
-                            onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, phoneNumber: value }))}
                             className={`${
-                                inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
+                                inputTouched.phoneNumber && validatePhoneDesktop(formData.phoneNumber).styleError
                                     ? 'border-[#bc8070] focus:border-[#bc8070]'
                                     : 'border-[#878797] focus:border-[#878797]'
                             } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
                             label="Телефон"
                             labelClassName="mb-1 text-2xl font-medium text-white"
                             wrapperClassName="w-full"
-                            mask="+375 (99) 999-99-99"
-                            maskPlaceholder="_"
+                            // mask="+375 (99) 999-99-99"
+                            // maskPlaceholder="_"
                         />
                         {inputInternalErrors.phone && (
                             <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>
@@ -268,7 +280,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     styleError: Boolean(error),
                                 }
                             }}
-                            onChange={(value) => setFormData((prev) => ({ ...prev, agree: value === 'true' }))}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, agree: Boolean(value) }))}
                             label="Я согласен(а) на обработку персональных данных"
                             wrapperClassName="flex gap-2 pb-2"
                             labelClassName={`${formData.agree ? 'text-white' : 'text-[#878797]'}`}
@@ -295,8 +307,9 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         disabled={formError}
                         className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-6 h-[64px] w-[70%] rounded-[50px] text-5xl font-semibold disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
                     >
-                        Зарегистрироваться
+                        {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                     </Button>
+                    {customError && <p className="error-form-desktop-custom">{customError}</p>}
                 </form>
                 <div className="text15px_desktop mt-5 flex justify-center">
                     <p className="mr-2 font-medium text-[#878797]">Уже зарегистрированы?</p>
