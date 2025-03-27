@@ -4,11 +4,9 @@ import { EnhancedInput } from '@/components/ui/input'
 
 const ProfessionSendDesktop: React.FC = () => {
     const [isFocused, setIsFocused] = useState(false)
-    /*для отправки запроса профессии*/
     const [useRequest, setUseRequest] = useState('')
 
     const handleSendRequest = () => {
-        console.log('Отправка запроса на профессию:', useRequest)
         setUseRequest('')
     }
     return (

@@ -8,6 +8,8 @@ import { validateEmailMobi } from '@/components/mobi/commonMobi/validate/validat
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 import PasswordInputMobi from '@/components/mobi/shared/formInput/PasswordInputMobi'
 import { useModal } from '@/context/ContextModal'
+import { useAuth } from '@/hooks/useAuth'
+import { useRouter } from 'next/router'
 
 interface IRegistrationFormData {
     email: string
@@ -31,6 +33,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
         agree: false,
     })
     const { openModal } = useModal()
+    const { register, loading, client, customError } = useAuth()
     const [formError, setFormError] = useState(false)
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({
         confirmPassword: '',
@@ -61,17 +64,17 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
             formData.confirmPassword === '' ||
             formData.agree !== true
 
-        const hasErrors = Object.values(errors).some((error) => error !== null && error !== '')
+        const hasErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
         const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
 
         return hasEmptyFields || hasErrors || hasInternalErrors
-    }, [formData, errors, inputInternalErrors])
+    }, [formData, inputInternalErrors])
 
     useEffect(() => {
         if (!validateForm()) {
             setFormError(false)
         }
-    }, [validateForm])
+    }, [formData, inputInternalErrors, validateForm])
 
     const handleChange = (field: keyof IRegistrationFormData, value: string | boolean) => {
         setFormData((prev) => {
@@ -125,16 +128,25 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
             return updatedFormData
         })
     }
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const router = useRouter()
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        client.resetStore()
         if (validateForm()) {
             setFormError(true)
-            console.log('Ошибка: Заполните все поля корректно или исправьте ошибки')
+            return
         } else {
             setFormError(false)
-            console.log('Форма отправлена:', formData)
-            onClose()
+            const result = await register(formData.email, formData.phone, formData.password)
+            if (result.success) {
+                onClose()
+                router.push('/personalaccount')
+            } else {
+                setInputInternalErrors((prevErrors) => ({
+                    ...prevErrors,
+                    email: result.errorMessage,
+                }))
+            }
         }
     }
 
@@ -285,8 +297,9 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                             disabled={formError}
                             className="mx-auto mt-6 w-[70%] rounded-[50px] bg-gradient-desktop text-4xl font-medium hover:bg-gradient-desktop-hover sm:w-4/5 sm:text-xl md:text-4xl sm_s:w-4/5 sm_s:text-xl sm_l:w-4/5 sm_l:text-2xl sm_xl:text-3xl"
                         >
-                            Зарегистрироваться
+                            {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                         </Button>
+                        {customError && <p className="error-form-desktop-custom">{customError}</p>}
                     </form>
                     <div className="text14px_mobi mb-6 mt-5 flex justify-center">
                         <p className="mr-2 font-medium text-[#878797]">Уже зарегистрированы?</p>
