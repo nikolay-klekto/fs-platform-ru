@@ -163,7 +163,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
     }
     const openLoginModal = () => {
         onClose()
-        openModal('login_desktop', 'desktop')
+        openModal('login_mobi', 'mobi')
     }
 
     return (
@@ -219,8 +219,6 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 label="Телефон*"
                                 labelClassName="mb-1 text-2xl font-medium text-white"
                                 wrapperClassName="w-full"
-                                mask="+375 (99) 999-99-99"
-                                maskPlaceholder="_"
                             />
                             {inputInternalErrors.phone && (
                                 <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>
