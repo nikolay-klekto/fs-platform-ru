@@ -143,6 +143,9 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             showGenerateButton={true}
                             required={true}
                         />
+                        <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
+                            *Обязательное поле для ввода
+                        </p>
                     </div>
                     <div className={`flex w-full ${formError ? 'justify-between' : 'justify-end'}`}>
                         {formError && <p className="error-form-desktop-custom">Введите e-mail и пароль</p>}
