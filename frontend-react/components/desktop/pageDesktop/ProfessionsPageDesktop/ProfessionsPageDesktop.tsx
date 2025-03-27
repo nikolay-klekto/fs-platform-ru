@@ -90,6 +90,8 @@ const ProfessionsPageDesktop: React.FC = () => {
                 <p className="text-center text-white text-4xl mt-20 mb-20 min-h-[250px]">Ничего не найдено</p>
             )}
 
+            {totalPages <= 1 && <div className="h-[80px]"></div>}
+
             {totalPages > 1 && filteredContent.length > 0 && (
                 <ProfessionsPaginationDesktop
                     totalPages={totalPages}

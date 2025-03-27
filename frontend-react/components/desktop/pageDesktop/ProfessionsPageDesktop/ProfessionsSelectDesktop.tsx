@@ -20,10 +20,9 @@ const ProfessionsSelectDesktop = ({ onCategoryChange }: { onCategoryChange: (cat
     const selectRef = useRef<HTMLDivElement>(null)
 
     const toggleOption = (value: string) => {
-        setSelectedOptions((prev) => {
-            const updatedOptions = prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value]
-            return updatedOptions
-        })
+        setSelectedOptions((prev) =>
+            prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value],
+        )
     }
 
     const handleSelectToggle = () => {
