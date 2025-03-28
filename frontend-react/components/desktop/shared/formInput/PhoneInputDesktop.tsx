@@ -32,7 +32,6 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     const [inputValue, setInputValue] = useState<string>(value || PHONE_MASK)
     const inputRef = useRef<HTMLInputElement>(null)
     const [internalError, setInternalError] = useState<string | null>(null)
-    const [touched, setTouched] = useState(false)
 
     const setCaretToPosition = (pos: number) => {
         if (inputRef.current) {
@@ -46,6 +45,8 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     }, [value])
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        let newValue
+
         if (e.key === 'Backspace') {
             e.preventDefault()
             const pos = inputRef.current?.selectionStart
@@ -54,7 +55,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
             for (let i = pos - 1; i >= 0; i--) {
                 if (digitPositions.includes(i)) {
                     if (inputValue[i] !== '_') {
-                        const newValue = inputValue.substring(0, i) + '_' + inputValue.substring(i + 1)
+                        newValue = inputValue.substring(0, i) + '_' + inputValue.substring(i + 1)
                         setInputValue(newValue)
                         setTimeout(() => setCaretToPosition(i), 0)
                         break
@@ -71,7 +72,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
             // Ищем ближайшую позицию для ввода цифры
             const nextPos = digitPositions.find((p) => p >= pos)
             if (nextPos === undefined) return
-            const newValue = inputValue.substring(0, nextPos) + e.key + inputValue.substring(nextPos + 1)
+            newValue = inputValue.substring(0, nextPos) + e.key + inputValue.substring(nextPos + 1)
             setInputValue(newValue)
             // Перемещаем курсор на следующую позицию ввода
             const following = digitPositions.find((p) => p > nextPos)
@@ -80,28 +81,22 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
         } else {
             e.preventDefault()
         }
+
+        validateValue(newValue)
     }
     ////////////не
-    const handleBlur = () => {
-        setTouched(true)
-        console.log(value)
+    const validateValue = (value: string) => {
         const error =
-            required && !inputValue.trim()
+            required && (value === PHONE_MASK || !value)
                 ? 'Поле обязательно для заполнения'
-                : validatePhoneDesktop(inputValue).textError
+                : validatePhoneDesktop(value).textError
         setInternalError(error)
         onError(error)
+        onChange(value)
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value
-        onChange(newValue)
-
-        if (touched) {
-            const { textError } = validatePhoneDesktop(newValue)
-            setInternalError(textError)
-            onError(textError)
-        }
+    const handleBlur = () => {
+        validateValue(inputValue)
     }
 
     const handleFocus = () => {
@@ -134,7 +129,6 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                 type="tel"
                 name="phone"
                 value={inputValue}
-                onChange={handleChange}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}
                 onClick={handleClick}
