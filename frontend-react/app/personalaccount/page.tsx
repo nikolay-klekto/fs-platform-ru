@@ -4,8 +4,8 @@ import { useMediaQuery } from 'react-responsive'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
-import PersonalAccountDesktop from '@/components/desktop/layout/PersonalAccountDesktop/PersonalAccountDesktop'
-import PersonalAccountMobi from '@/components/mobi/layout/PersonalAccountMobi/PersonalAccountMobi'
+import ProfilePageDesktop from '@/components/desktop/pageDesktop/ProfilePageDesktop/ProfilePageDesktop'
+import ProfilePageMobi from '@/components/mobi/pageMobi/ProfilePageMobi/ProfilePageMobi'
 
 export default function PersonalAccount() {
     const [isClient, setIsClient] = useState(false)
@@ -27,7 +27,7 @@ export default function PersonalAccount() {
                 <>
                     <HeaderDesktop />
                     <main className="min-h-[60vh] grow bg-[#101030]">
-                        <PersonalAccountDesktop />
+                        <ProfilePageDesktop />
                     </main>
                     <FooterDesktop />
                 </>
@@ -35,7 +35,7 @@ export default function PersonalAccount() {
                 <>
                     <HeaderMobi />
                     <main className="min-h-screen grow bg-[#101030]">
-                        <PersonalAccountMobi />
+                        <ProfilePageMobi />
                     </main>
                 </>
             )}

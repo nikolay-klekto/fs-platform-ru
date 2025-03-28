@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import Modal from '@/components/ui/modal'
 import { ChevronLeft } from 'lucide-react'
-import RequiringPaymentMobi from '../RequiringPaymentMobi/RequiringPaymentMobi'
-import OrderPaymentMobi from '../OrderPaymentMobi/OrderPaymentMobi'
+import RequiringPaymentMobi from '../../layout/RequiringPaymentMobi/RequiringPaymentMobi'
+import OrderPaymentMobi from '../../layout/OrderPaymentMobi/OrderPaymentMobi'
 
-const PersonalAccountMobi: React.FC = () => {
+const ProfilePageMobi: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState('КОРЗИНА')
 
@@ -67,4 +67,4 @@ const PersonalAccountMobi: React.FC = () => {
     )
 }
 
-export default PersonalAccountMobi
+export default ProfilePageMobi

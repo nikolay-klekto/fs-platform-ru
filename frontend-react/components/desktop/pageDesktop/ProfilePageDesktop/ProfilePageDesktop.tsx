@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { content } from '@/components/desktop/layout/PersonalAccountDesktop/content'
 
-const PersonalAccountDesktop: React.FC = () => {
+const ProfilePageDesktop: React.FC = () => {
     const [currentComponent, setCurrentComponent] = useState<React.ReactElement | null>(null)
     const [activeId, setActiveId] = useState(1)
 
@@ -55,4 +55,4 @@ const PersonalAccountDesktop: React.FC = () => {
     )
 }
 
-export default PersonalAccountDesktop
+export default ProfilePageDesktop
