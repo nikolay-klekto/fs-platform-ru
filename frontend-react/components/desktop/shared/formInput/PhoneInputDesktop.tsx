@@ -1,0 +1,150 @@
+import React, { useState, useEffect, useRef } from 'react'
+import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
+
+interface IPhoneInputDesktop {
+    value: string
+    onChange: (value: string) => void
+    onError: (value: string) => void
+    className?: string
+    labelClassName?: string
+    wrapperClassName?: string
+    required?: boolean
+}
+
+const PHONE_MASK = '+375(__)___-__-__'
+
+const digitPositions: number[] = []
+for (let i = 0; i < PHONE_MASK.length; i++) {
+    if (PHONE_MASK[i] === '_') {
+        digitPositions.push(i)
+    }
+}
+
+const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
+    value,
+    onChange,
+    onError,
+    className,
+    labelClassName,
+    wrapperClassName,
+    required = false,
+}) => {
+    const [inputValue, setInputValue] = useState<string>(value || PHONE_MASK)
+    const inputRef = useRef<HTMLInputElement>(null)
+    const [internalError, setInternalError] = useState<string | null>(null)
+    const [touched, setTouched] = useState(false)
+
+    const setCaretToPosition = (pos: number) => {
+        if (inputRef.current) {
+            inputRef.current.setSelectionRange(pos, pos)
+            inputRef.current.focus()
+        }
+    }
+
+    useEffect(() => {
+        setInputValue(value || PHONE_MASK)
+    }, [value])
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Backspace') {
+            e.preventDefault()
+            const pos = inputRef.current?.selectionStart
+            if (pos === undefined || pos === null || pos === 0) return
+            // Ищем предыдущую позицию для ввода цифры
+            for (let i = pos - 1; i >= 0; i--) {
+                if (digitPositions.includes(i)) {
+                    if (inputValue[i] !== '_') {
+                        const newValue = inputValue.substring(0, i) + '_' + inputValue.substring(i + 1)
+                        setInputValue(newValue)
+                        setTimeout(() => setCaretToPosition(i), 0)
+                        break
+                    }
+                }
+            }
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Tab') {
+            // Навигационные клавиши разрешаем без изменений
+            return
+        } else if (e.key >= '0' && e.key <= '9') {
+            e.preventDefault()
+            const pos = inputRef.current?.selectionStart
+            if (pos === undefined || pos === null) return
+            // Ищем ближайшую позицию для ввода цифры
+            const nextPos = digitPositions.find((p) => p >= pos)
+            if (nextPos === undefined) return
+            const newValue = inputValue.substring(0, nextPos) + e.key + inputValue.substring(nextPos + 1)
+            setInputValue(newValue)
+            // Перемещаем курсор на следующую позицию ввода
+            const following = digitPositions.find((p) => p > nextPos)
+            const caretPos = following !== undefined ? following : nextPos + 1
+            setTimeout(() => setCaretToPosition(caretPos), 0)
+        } else {
+            e.preventDefault()
+        }
+    }
+    ////////////не
+    const handleBlur = () => {
+        setTouched(true)
+        console.log(value)
+        const error =
+            required && !inputValue.trim()
+                ? 'Поле обязательно для заполнения'
+                : validatePhoneDesktop(inputValue).textError
+        setInternalError(error)
+        onError(error)
+    }
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = e.target.value
+        onChange(newValue)
+
+        if (touched) {
+            const { textError } = validatePhoneDesktop(newValue)
+            setInternalError(textError)
+            onError(textError)
+        }
+    }
+
+    const handleFocus = () => {
+        // Если инпут еще не изменен (полностью маска), ставим курсор в начало.
+        if (inputValue === PHONE_MASK) {
+            setCaretToPosition(digitPositions[0])
+        } else {
+            // Если инпут уже изменен, ставим курсор в конец введенных цифр
+            const rawDigits = inputValue.replace(/\D/g, '')
+            const pos = Math.min(digitPositions.length, rawDigits.length)
+            setCaretToPosition(digitPositions[pos - 1] || digitPositions[0])
+        }
+    }
+
+    const handleClick = () => {
+        // При клике на инпут сразу ставим курсор в начало, если еще не введены данные
+        if (inputValue === PHONE_MASK) {
+            setCaretToPosition(digitPositions[0])
+        }
+    }
+
+    return (
+        <div className={`flex w-full flex-col gap-1.5 ${wrapperClassName}`}>
+            <label htmlFor="phone" className={`mb-1 text-2xl font-medium text-white ${labelClassName}`}>
+                Номер телефона*
+            </label>
+            <input
+                ref={inputRef}
+                id="phone"
+                type="tel"
+                name="phone"
+                value={inputValue}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                onKeyDown={handleKeyDown}
+                onClick={handleClick}
+                onBlur={handleBlur}
+                placeholder={PHONE_MASK}
+                className={`input-form-desktop-custom w-full placeholder:text-[#353652] ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+            />
+            {internalError && <p className={'error-form-desktop-custom'}>{internalError}</p>}
+        </div>
+    )
+}
+
+export default PhoneInputDesktop

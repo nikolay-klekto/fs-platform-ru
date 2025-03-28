@@ -6,9 +6,9 @@ import Modal from '@/components/ui/modal'
 import Link from 'next/link'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
-import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
 import { useModal } from '@/context/ContextModal'
+import PhoneInputDesktop from '@/components/desktop/shared/formInput/PhoneInputDesktop'
 
 interface IRegistrationFormData {
     email: string
@@ -142,7 +142,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         phone: false,
     })
 
-    const handleInputBlur = (field: 'phone' | 'email') => {
+    const handleInputBlur = (field: 'email') => {
         setInputTouched((prev) => ({
             ...prev,
             [field]: true,
@@ -185,28 +185,14 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         )}
                     </div>
                     <div className="mb-5">
-                        <EnhancedInput
-                            type="tel"
-                            name="phone"
-                            placeholder="Номер телефона"
+                        <PhoneInputDesktop
                             value={formData.phone}
-                            onBlur={() => handleInputBlur('phone')}
-                            validate={(value) => validatePhoneDesktop(value)}
                             onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
-                            className={`${
-                                inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
-                                    ? 'border-[#bc8070] focus:border-[#bc8070]'
-                                    : 'border-[#878797] focus:border-[#878797]'
-                            } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
-                            label="Телефон"
-                            labelClassName="mb-1 text-2xl font-medium text-white"
+                            onError={(error) => handleError('phone', error)}
                             wrapperClassName="w-full"
-                            mask="+375 (99) 999-99-99"
-                            maskPlaceholder="_"
+                            //className="placeholder:text-[#353652]"
+                            required={true}
                         />
-                        {inputInternalErrors.phone && (
-                            <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>
-                        )}
                     </div>
                     <div className="relative mb-5">
                         <PasswordInputDesktop
