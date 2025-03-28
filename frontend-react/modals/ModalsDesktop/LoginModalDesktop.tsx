@@ -95,7 +95,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 <button onClick={onClose} className="absolute right-[5%] top-[5%] w-[7%]">
                     <X size={41} color="#878797" className="w-full opacity-50 hover:opacity-100" />
                 </button>
-                <h2 className="text36px_desktop text-gradient_desktop_custom 3xl:mb-5 4xl:mb-6 mb-7 inline font-medium uppercase 2xl:mb-4">
+                <h2 className="text36px_desktop text-13xl text-gradient_desktop_custom 3xl:mb-5 4xl:mb-6 mb-7 inline font-medium uppercase 2xl:mb-4">
                     Вход
                 </h2>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle">
@@ -103,7 +103,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         <EnhancedInput
                             type="email"
                             name="email"
-                            placeholder="Почта"
+                            placeholder="Ваш e-mail"
                             value={formData.email}
                             onBlur={() => handleInputBlur('email')}
                             validate={(value) => validateEmailDesktop(value)}
@@ -111,13 +111,13 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 setFormData((prev) => ({ ...prev, email: value }))
                                 setFormError(!validateForm)
                             }}
+                            label="Почта"
+                            labelClassName="label-form-desktop-custom text-2xl text-white"
                             className={`${
                                 (inputTouched.email && validateEmailDesktop(formData.email).styleError) || formError
                                     ? 'border-[#bc8070] focus:bg-[#1f203f]'
                                     : 'input-form-desktop-custom border-[#878797]'
-                            } h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium text-white outline-none placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
-                            label="Почта"
-                            labelClassName="mb-1 text-2xl font-medium text-white"
+                            } mt-1 h-[50px] rounded-[50px] border-2 bg-transparent px-4 py-2 text-4xl placeholder:text-4xl placeholder:font-medium placeholder:text-[#353652] focus:border-[#878797] focus:bg-[#1f203f] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
                             wrapperClassName="w-full"
                         />
                         {inputInternalErrors.email && (
@@ -126,16 +126,16 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     </div>
                     <div className="relative mb-5">
                         <PasswordInputDesktop
-                            value={formData.password}
-                            label="Пароль"
                             placeholder="Пароль"
+                            value={formData.password}
                             onChange={(value) => {
                                 handleChange('password', value)
                                 setFormError(!validateForm)
                             }}
                             onError={(error) => handleError('password', error)}
-                            labelClassName="label-form-desktop-custom text-2xl mb-1"
-                            inputClassName="input-form-desktop-custom"
+                            label="Пароль"
+                            labelClassName="label-form-desktop-custom text-2xl"
+                            inputClassName="input-form-desktop-custom h-[50px] text-4xl placeholder:text-4xl"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
@@ -143,18 +143,18 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             showGenerateButton={true}
                             required={true}
                         />
-                        <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
+                        <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652] text-opacity-50">
                             *Обязательное поле для ввода
                         </p>
                     </div>
                     <div className={`flex w-full ${formError ? 'justify-between' : 'justify-end'}`}>
                         {formError && <p className="error-form-desktop-custom">Введите e-mail и пароль</p>}
-                        <button className="text15px_desktop border-transparent bg-transparent font-semibold text-[#878797]">
+                        <button className="text15px_desktop border-transparent bg-transparent text-2xl text-[#878797]">
                             Забыли пароль?
                         </button>
                     </div>
                     <div className="w-[95%]">
-                        <p className="text15px_desktop mt-3 font-medium text-[#353652]">
+                        <p className="text15px_desktop mt-3 text-2xl font-medium text-[#353652]">
                             Защита от спама reCAPTCHA{' '}
                             <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
                                 Конфиденциальность
@@ -175,10 +175,10 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         Войти
                     </Button>
                 </form>
-                <div className="text15px_desktop mt-5 flex justify-center">
-                    <p className="mr-2 font-medium text-[#878797]">Нет аккаунта?</p>
+                <div className="text15px_desktop mt-5 flex justify-center text-2xl">
+                    <p className="mr-2 text-[#878797]">Нет аккаунта?</p>
                     <button
-                        className="border-transparent bg-transparent font-medium text-white underline"
+                        className="border-transparent bg-transparent text-white underline"
                         onClick={openRegistrationModal}
                     >
                         Зарегистрироваться
