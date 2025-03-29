@@ -150,15 +150,22 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const [inputTouched, setInputTouched] = useState({
         email: false,
-        phoneNumber: false,
+        phone: false, // изменено с phoneNumber на phone
     })
 
-    const handleInputBlur = (field: 'phone' | 'email') => {
-        setInputTouched((prev) => ({
-            ...prev,
-            [field]: true,
-        }))
+    const handleInputBlur = (field: keyof typeof inputTouched) => {
+        console.log(`Touched ${field}`)
+
+        setInputTouched((prev) => {
+            if (prev[field]) return prev // Теперь TypeScript знает, что `field` существует в `inputTouched`
+
+            return {
+                ...prev,
+                [field]: true, // Обновляем состояние для указанного поля
+            }
+        })
     }
+
     const openLoginModal = () => {
         onClose()
         openModal('login_desktop', 'desktop')
@@ -178,18 +185,20 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         <EnhancedInput
                             type="email"
                             name="email"
-                            placeholder="Почта"
+                            placeholder="Ваш e-mail"
                             value={formData.email}
                             onBlur={() => handleInputBlur('email')}
                             validate={(value) => validateEmailDesktop(value)}
                             onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
                             className={`${
                                 inputTouched.email && validateEmailDesktop(formData.email).styleError
-                                    ? 'border-[#bc8070] focus:border-[#bc8070] '
-                                    : 'input-form-desktop-custom border-[#878797]'
-                            } h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-5xl font-medium text-white focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
-                            label="Почта"
-                            labelClassName="mb-1 text-2xl font-medium text-white"
+                                    ? 'border-[#bc8070] bg-[#1f203f]'
+                                    : inputTouched.email && !validateEmailDesktop(formData.email).styleError
+                                      ? 'border-[#878797] bg-[#1f203f]'
+                                      : 'input-form-desktop-custom border-[#878797]'
+                            } h-[50px] w-full rounded-[50px] border-2 bg-transparent p-3 text-[18px] font-medium text-white focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-[#353652]`}
+                            label="Почта*"
+                            labelClassName="mb-1 text-[15px] font-semibold text-white"
                             wrapperClassName="w-full"
                         />
                         {inputInternalErrors.email && (
@@ -200,21 +209,21 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         <EnhancedInput
                             type="tel"
                             name="phone"
-                            placeholder="Номер телефона"
+                            placeholder="+375 (__)___-__-__"
                             value={formData.phoneNumber}
                             onBlur={() => handleInputBlur('phone')}
                             validate={(value) => validatePhoneDesktop(value)}
                             onChange={(value) => setFormData((prev) => ({ ...prev, phoneNumber: value }))}
                             className={`${
-                                inputTouched.phoneNumber && validatePhoneDesktop(formData.phoneNumber).styleError
-                                    ? 'border-[#bc8070] focus:border-[#bc8070]'
-                                    : 'border-[#878797] focus:border-[#878797]'
-                            } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
-                            label="Телефон"
+                                inputTouched.phone && validatePhoneDesktop(formData.phoneNumber).styleError
+                                    ? 'border-[#bc8070] bg-[#1f203f]'
+                                    : inputTouched.phone && !validatePhoneDesktop(formData.phoneNumber).styleError
+                                      ? 'border-[#878797] bg-[#1f203f]'
+                                      : 'input-form-desktop-custom border-[#878797]'
+                            } h-[50px] w-full rounded-[50px] border-2 bg-transparent p-3 text-[18px] font-medium text-white focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-[#353652]`}
+                            label="Телефон*"
                             labelClassName="mb-1 text-2xl font-medium text-white"
                             wrapperClassName="w-full"
-                            // mask="+375 (99) 999-99-99"
-                            // maskPlaceholder="_"
                         />
                         {inputInternalErrors.phone && (
                             <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>
@@ -223,12 +232,12 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     <div className="relative mb-5">
                         <PasswordInputDesktop
                             value={formData.password}
-                            label="Пароль"
+                            label="Пароль*"
                             placeholder="Пароль"
                             onChange={(value) => handleChange('password', value)}
                             onError={(error) => handleError('password', error)}
                             labelClassName="label-form-desktop-custom"
-                            inputClassName="input-form-desktop-custom"
+                            inputClassName="input-form-desktop-custom placeholder:text-[#353652]"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
@@ -236,15 +245,15 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             required={true}
                         />
                     </div>
-                    <div className="mb-7">
+                    <div className="mb-3">
                         <PasswordInputDesktop
                             value={formData.confirmPassword}
-                            label="Повторите пароль"
+                            label="Повторите пароль*"
                             placeholder="Повторите пароль"
                             onChange={(value) => handleChange('confirmPassword', value)}
                             onError={(error) => handleError('confirmPassword', error)}
                             labelClassName="label-form-desktop-custom"
-                            inputClassName="input-form-desktop-custom"
+                            inputClassName="input-form-desktop-custom placeholder:text-[#353652]"
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
@@ -253,6 +262,11 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         {errors.confirmPassword && (
                             <p className="error-form-desktop-custom">{errors.confirmPassword}</p>
                         )}
+                    </div>
+                    <div className="w-[95%]">
+                        <p className="text15px_desktop mb-3 font-medium text-[#353652] cursor-default">
+                            *Обязательное поле для ввода{' '}
+                        </p>
                     </div>
                     <div className="mb-3">
                         <EnhancedInput
