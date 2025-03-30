@@ -3,6 +3,8 @@ package com.fs.client.repository
 import com.fs.client.converter.ProfessionModelConverter
 import com.fs.client.repository.blocked.ProfessionBlockingRepository
 import com.fs.domain.jooq.tables.CompanyProfession.Companion.COMPANY_PROFESSION
+import com.fs.domain.jooq.tables.OrderDates
+import com.fs.domain.jooq.tables.OrderDates.Companion.ORDER_DATES
 import com.fs.domain.jooq.tables.Profession.Companion.PROFESSION
 import com.fs.domain.jooq.tables.ProfessionsCompaniesFeedback.Companion.PROFESSIONS_COMPANIES_FEEDBACK
 import com.fs.domain.jooq.tables.pojos.CompanyProfession
@@ -247,6 +249,15 @@ abstract class ProfessionRepository(
 
     suspend fun deleteProfession(professionId: Long): Boolean =
         withContext(Dispatchers.IO) {
+            // Удаляем зависимые записи из order_dates
+            dsl.deleteFrom(ORDER_DATES)
+                .where(
+                    ORDER_DATES.COMPANY_PROFESSION_ID.`in`(
+                    dsl.select(COMPANY_PROFESSION.ID)
+                        .from(COMPANY_PROFESSION)
+                        .where(COMPANY_PROFESSION.PROFESSION_ID.eq(professionId))
+                ))
+                .execute()
             dsl.deleteFrom(COMPANY_PROFESSION)
                 .where(COMPANY_PROFESSION.PROFESSION_ID.eq(professionId))
                 .execute()

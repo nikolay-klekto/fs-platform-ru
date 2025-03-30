@@ -6,6 +6,9 @@ import com.fs.domain.jooq.tables.Address.Companion.ADDRESS
 import com.fs.domain.jooq.tables.Company.Companion.COMPANY
 import com.fs.domain.jooq.tables.CompanyProfession.Companion.COMPANY_PROFESSION
 import com.fs.domain.jooq.tables.Office.Companion.OFFICE
+import com.fs.domain.jooq.tables.OrderDates.Companion.ORDER_DATES
+import com.fs.domain.jooq.tables.ProfessionsCompaniesFeedback
+import com.fs.domain.jooq.tables.ProfessionsCompaniesFeedback.Companion.PROFESSIONS_COMPANIES_FEEDBACK
 import com.fs.domain.jooq.tables.pojos.Company
 import com.fs.domain.jooq.tables.records.CompanyPartnerRecord
 import com.fs.domain.jooq.tables.records.CompanyRecord
@@ -113,6 +116,15 @@ abstract class CompanyRepository(
                 .map(converter::toModel)
         }
 
+    suspend fun getAllCompanyStatusesForTable(): List<String> =
+        withContext(Dispatchers.IO) {
+            listOf(
+                "Открыта",
+                "Временно приостановлена",
+                "Закрыта"
+            )
+        }
+
     suspend fun insertCompany(companyModel: CompanyModel): CompanyModel =
         withContext(Dispatchers.IO) {
             val newCompanyRecord: CompanyRecord = dsl.newRecord(COMPANY)
@@ -181,16 +193,34 @@ abstract class CompanyRepository(
         withContext(Dispatchers.IO) {
             val result2 = dsl.deleteFrom(COMPANY_PARTNER)
                 .where(COMPANY_PARTNER.COMPANY_ID.eq(companyId))
-                .execute() == 1
+                .execute() > 0
+
+            val result4 = dsl.deleteFrom(OFFICE)
+                .where(OFFICE.COMPANY_ID.eq(companyId))
+                .execute() > 0
+
+            dsl.deleteFrom(PROFESSIONS_COMPANIES_FEEDBACK)
+                .where(PROFESSIONS_COMPANIES_FEEDBACK.COMPANY_ID.eq(companyId))
+                .execute()
+
+            // Удаляем зависимые записи из order_dates
+            dsl.deleteFrom(ORDER_DATES)
+                .where(ORDER_DATES.COMPANY_PROFESSION_ID.`in`(
+                    dsl.select(COMPANY_PROFESSION.ID)
+                        .from(COMPANY_PROFESSION)
+                        .where(COMPANY_PROFESSION.COMPANY_ID.eq(companyId))
+                ))
+                .execute()
+
+            val result3 = dsl.deleteFrom(COMPANY_PROFESSION)
+                .where(COMPANY_PROFESSION.COMPANY_ID.eq(companyId))
+                .execute() > 0
 
             val returnResult = dsl.deleteFrom(COMPANY)
                 .where(COMPANY.ID.eq(companyId))
                 .execute() == 1
 
-            val result3 = dsl.deleteFrom(COMPANY_PROFESSION)
-                .where(COMPANY_PROFESSION.COMPANY_ID.eq(companyId))
-                .execute() == 1
-
-            returnResult || result2 || result3
+            returnResult || result2 || result3 || result4
         }
+
 }

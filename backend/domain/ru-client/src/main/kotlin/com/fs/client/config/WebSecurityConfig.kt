@@ -39,6 +39,12 @@ class WebSecurityConfig(
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         return http
+            .headers { headers ->
+                headers
+                    .contentSecurityPolicy { csp ->
+                        csp.policyDirectives("default-src 'self'; script-src 'self' https://trusted-cdn.com")
+                    }
+            }
             .cors {it.disable() }
             .csrf { it.disable() }
             .authorizeHttpRequests { requests ->

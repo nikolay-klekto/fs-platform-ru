@@ -16,6 +16,7 @@ type Query {
     getAllCompanies: [Company]
     getAllAvailableCompanies: [Company]
     getAllCompaniesIndustries: [String]
+    getAllCompanyStatusesForTable: [String]
     getAllCompaniesByProfessionId(id: ID!): [Company]
     getAllCompaniesByCountryCode(code: ID!): [Company]
     getAllCompaniesByCityId(id: ID!): [Company]

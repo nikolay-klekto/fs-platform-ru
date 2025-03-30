@@ -55,6 +55,11 @@ class CompanyController(
         return companyRepository.getAllCompaniesByCityId(id)
     }
 
+    @QueryMapping
+    suspend fun getAllCompanyStatusesForTable(): List<String> {
+        return companyRepository.getAllCompanyStatusesForTable()
+    }
+
     @MutationMapping
     suspend fun addCompany(@Argument company: CompanyModel): CompanyModel {
         return companyRepository.insertCompany(company)
