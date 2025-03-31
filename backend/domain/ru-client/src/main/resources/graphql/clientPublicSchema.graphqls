@@ -288,7 +288,7 @@ input OrderInsertInput {
 input CompanyInput {
     id: ID
     companyIndustry: String
-    legalCapacityStatus: LegalCapacityStatus
+    legalCapacityStatus: String
     name: String
     site: String
     shortDescription: String
