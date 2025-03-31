@@ -75,7 +75,7 @@ open class CompaniesPhotoController() {
                     .body("error: файл слишком большой! Максимальный размер: $maxSize байт.")
             }
 
-            val uploadPath = Path.of(uploadDir)
+            val uploadPath = Path.of(uploadLogoDir)
             println("Путь загрузки: $uploadPath")
 
             if (!Files.exists(uploadPath)) {
