@@ -43,7 +43,7 @@
     }
 
     .text36px_desktop {
-        @apply text-[36px] 4xl:text-10xl 3xl:text-9xl 2xl:text-7xl;
+        @apply text-[36px] 4xl:text-13xl 3xl:text-9xl 2xl:text-7xl;
     }
     .text32px_desktop {
         @apply text-[32px] 4xl:text-10xl 3xl:text-6xl 2xl:text-6xl;
@@ -61,7 +61,7 @@
         @apply text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg;
     }
     .text20px_desktop {
-        @apply text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg;
+        @apply text-5xl 4xl:text-5xl 3xl:text-2xl 2xl:text-lg;
     }
     .text15px_desktop {
         @apply text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base;
