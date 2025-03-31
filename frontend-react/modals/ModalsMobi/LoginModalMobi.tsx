@@ -99,11 +99,11 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         Вход
                     </h1>
                     <form onSubmit={handleSubmit} className="flex w-4/5 flex-col align-middle">
-                        <div className="mb-2">
+                    <div className="mb-2">
                             <EnhancedInput
                                 type="email"
                                 name="email"
-                                placeholder="Почта"
+                                placeholder="Ваш e-mail"
                                 value={formData.email}
                                 onBlur={() => handleInputBlur('email')}
                                 validate={(value) => validateEmailMobi(value)}
@@ -121,10 +121,11 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
                             )}
                         </div>
+
                         <div className="relative mb-2">
                             <PasswordInputMobi
                                 value={formData.password}
-                                label="Пароль"
+                                label="Пароль*"
                                 placeholder="Пароль"
                                 onChange={(value) => handleChange('password', value)}
                                 onError={(error) => handleError('password', error)}
@@ -139,6 +140,9 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         <button className="text14px_mobi self-end border-transparent bg-transparent font-semibold text-[#878797] underline">
                             Забыли пароль?
                         </button>
+                        <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
+                            *Обязательное поле для ввода
+                        </p>
                         {formError && <p className="error-form-mobi-custom">Заполните необходимые поля</p>}
                         <Button
                             type="submit"
