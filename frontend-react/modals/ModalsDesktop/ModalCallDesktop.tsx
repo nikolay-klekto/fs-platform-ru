@@ -85,9 +85,12 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="mx-[75px] max-w-md flex-col rounded-lg text-center">
-                            <h1 className="text-13xl bg-gradient-desktop mb-[2.56rem] mt-[53px] bg-clip-text font-medium leading-[44px] text-transparent">
+                            <h1 className=" mb-[10px] text-left text-13xl bg-gradient-desktop mt-[53px] bg-clip-text font-medium leading-[44px] text-transparent">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </h1>
+                            <p className="mb-[27px] text-[#878797] text-[18px] text-left">
+                                Заполните поля – и мы с вами свяжемся
+                            </p>
                         </div>
                         <form onSubmit={handleSubmit}>
                             <div className="mb-5 flex w-full flex-col px-[75px]">
@@ -136,8 +139,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     label="Номер телефона*"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
-                                    mask="+375 (99) 999-99-99"
-                                    maskPlaceholder="_"
                                 />
                                 {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
                             </div>
@@ -160,7 +161,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
-                                <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
+                                <p className="mb-[13px] mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
                                     *Обязательное поле для ввода
                                 </p>
                                 {Object.keys(errors).length > 0 && (
