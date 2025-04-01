@@ -110,9 +110,9 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
                                 className={`${
                                     inputTouched.email && validateEmailMobi(formData.email).styleError
-                                        ? 'border-[#bc8070] focus:border-[#bc8070] '
+                                        ? 'border-[#bc8070] focus:border-[#bc8070]'
                                         : 'border-[#878797] focus:border-[#878797]'
-                                } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
+                                } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white input-custom`}
                                 label="Почта*"
                                 labelClassName="mb-1 text-2xl font-medium text-white"
                                 wrapperClassName="w-full"
@@ -123,27 +123,27 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         </div>
 
                         <div className="relative mb-2">
-                            <PasswordInputMobi
-                                value={formData.password}
-                                label="Пароль*"
-                                placeholder="Пароль"
-                                onChange={(value) => handleChange('password', value)}
-                                onError={(error) => handleError('password', error)}
-                                labelClassName="label-form-mobi-custom"
-                                inputClassName="input-form-mobi-custom"
-                                errorClassName="error-form-mobi-custom"
-                                inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
-                                inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                                required={true}
-                            />
+                        <PasswordInputMobi
+                            value={formData.password}
+                            label="Пароль*"
+                            placeholder="Пароль"
+                            onChange={(value) => handleChange('password', value)}
+                            onError={(error) => handleError('password', error)}
+                            labelClassName="label-form-mobi-custom"
+                            inputClassName="input-form-mobi-custom input-custom"
+                            errorClassName="error-form-mobi-custom"
+                            inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
+                            inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
+                            required={true}
+                        />
                         </div>
-                        <button className="text14px_mobi self-end border-transparent bg-transparent font-semibold text-[#878797] underline">
+                        <button className="text14px_mobi self-end border-transparent bg-transparent font-semibold text-[#878797] underline button-custom">
                             Забыли пароль?
                         </button>
-                        <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
+                        <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652] paragraph-custom">
                             *Обязательное поле для ввода
                         </p>
-                        {formError && <p className="error-form-mobi-custom">Заполните необходимые поля</p>}
+                        {formError && <p className="error-form-mobi-custom error-custom">Заполните необходимые поля</p>}
                         <Button
                             type="submit"
                             variant="default"
