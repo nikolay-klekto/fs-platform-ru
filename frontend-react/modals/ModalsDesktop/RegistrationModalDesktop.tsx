@@ -150,18 +150,18 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const [inputTouched, setInputTouched] = useState({
         email: false,
-        phone: false, // изменено с phoneNumber на phone
+        phone: false,
     })
 
     const handleInputBlur = (field: keyof typeof inputTouched) => {
         console.log(`Touched ${field}`)
 
         setInputTouched((prev) => {
-            if (prev[field]) return prev // Теперь TypeScript знает, что `field` существует в `inputTouched`
+            if (prev[field]) return prev
 
             return {
                 ...prev,
-                [field]: true, // Обновляем состояние для указанного поля
+                [field]: true,
             }
         })
     }
