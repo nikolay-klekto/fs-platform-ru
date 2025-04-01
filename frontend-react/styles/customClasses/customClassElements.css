@@ -137,8 +137,8 @@
     }
 
     .input-form-desktop-custom {
-        @apply py-2 px-4 mt-1 text-white border-2 text18px_desktop border-[#878797] bg-[#101030] rounded-[50px] placeholder:text18px_desktop  placeholder:font-medium placeholder:text-[#353652] focus:border-[#878797] focus:outline-none
-        focus:bg-[#1f203f];
+        @apply py-2 px-4 mt-1 text-white border-2 text18px_desktop font-medium border-[#878797] bg-[#101030] rounded-[50px] placeholder:text18px_desktop 
+        placeholder:font-medium placeholder:text-[#353652] focus:outline-none focus:bg-[#1f203f] focus:border-[#878797];
     }
     .label-form-desktop-custom {
         @apply text-white text15px_desktop font-semibold;
