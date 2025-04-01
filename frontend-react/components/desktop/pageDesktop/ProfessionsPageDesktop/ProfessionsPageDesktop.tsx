@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ProfessionsTypeOfInternshipSelectDesktop from './ProfessionsTypeOfInternshipSelectDesktop'
 import ProfessionsSelectDesktop from './ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './ProfessionCardPageDesktop'
 import ProfessionsPaginationDesktop from './ProfessionsPaginationDesktop'
@@ -65,6 +66,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                         <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
                     </Button>
                 </div>
+                <ProfessionsTypeOfInternshipSelectDesktop onCategoryChange={handleCategoryChange} />{' '}
                 <ProfessionsSelectDesktop onCategoryChange={handleCategoryChange} />{' '}
             </div>
 
