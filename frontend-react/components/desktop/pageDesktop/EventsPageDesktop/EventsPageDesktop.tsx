@@ -3,11 +3,11 @@
 import React, { useState } from 'react'
 
 import { content } from './content'
-import EventsCardDesktop from './EventsCardDesktop'
-import EventsPaginationDesktop from './EventsPaginationDesktop'
-import EventsSelectSearchDesktop from './EventsSelectSearchDesktop'
-import EventsSelectSearchDateDesktop from './EventsSelectSearchDateDesctop'
-import EventsSelectSearchCityDesktop from './EventsSelectSearchCityDesktop'
+import EventsCardDesktop from './components/EventsCardDesktop'
+import EventsPaginationDesktop from './components/EventsPaginationDesktop'
+import EventsSelectSearchDesktop from './components/EventsSelectSearchDesktop'
+import EventsSelectSearchDateDesktop from './components/EventsSelectSearchDateDesctop'
+import EventsSelectSearchCityDesktop from './components/EventsSelectSearchCityDesktop'
 
 const EventsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)

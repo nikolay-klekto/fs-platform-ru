@@ -1,5 +1,5 @@
 import React from 'react'
-import ContactsMobi from '../../layout/ContactsMobi/ContactsMobi'
+import ContactsMobi from './components/ContactsMobi'
 
 const ContactsPageMobi: React.FC = () => {
     return (

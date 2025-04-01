@@ -1,5 +1,5 @@
 import React from 'react'
-import ContactsDesktop from '../../layout/ContactsDesktop/ContactsDesktop'
+import ContactsDesktop from '../ContactsPageDesctop/ContactsDesktop'
 
 const ContactsPageDesktop: React.FC = () => {
     return (

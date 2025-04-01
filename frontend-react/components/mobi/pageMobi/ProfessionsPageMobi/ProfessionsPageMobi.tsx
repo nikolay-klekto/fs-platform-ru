@@ -1,14 +1,14 @@
 'use client'
 import React, { useState } from 'react'
-import ProfessionCardPageMobi from './ProfessionCardPageMobi'
-import ProfessionsPaginationMobi from './ProfessionsPaginationMobi'
-import ProfessionSendMobi from './ProfessionSendMobi'
-import { content } from './content'
+import ProfessionCardPageMobi from './components/ProfessionCardPageMobi'
+import ProfessionsPaginationMobi from './components/ProfessionsPaginationMobi'
+import ProfessionSendMobi from './components/ProfessionSendMobi'
+import { content } from './data/content'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
 import { useModal } from '@/context/ContextModal'
-import ProfessionsSelectMobi from './ProfessionsSelectMobi'
+import ProfessionsSelectMobi from './components/ProfessionsSelectMobi'
 
 const ProfessionsPageMobi: React.FC = () => {
     const { openModal } = useModal()
