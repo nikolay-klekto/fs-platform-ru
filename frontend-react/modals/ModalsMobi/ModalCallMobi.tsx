@@ -73,7 +73,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                             <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className=" rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 py-[40px]">
-                            <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
+                            <p className="text-4xl font-semibold text-transparent bg-sub-title-gradient-mobi bg-clip-text text-center mb-4">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </p>
                             <p className="pb-4 pl-3 text-base font-medium text-[#878797] md:text-lg">
@@ -89,10 +89,14 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         value={formData.name}
                                         validate={(value) => validateNameMobi(value)}
                                         onChange={(value) => setFormData((prev) => ({ ...prev, name: value }))}
-                                        className={`border-2 ${
-                                            errors.name ? 'border-[#bc8070]' : 'border-[#878797]'
-                                        } h-11 w-full rounded-[50px] bg-transparent p-4 text-base font-medium text-[#878797] placeholder:text-sm placeholder:font-medium placeholder:text-[#353652]`}
-                                        label="Ваше имя"
+                                        className={`
+                                            h-12 w-full rounded-[50px] border-2 
+                                            ${errors.name ? 'border-[#bc8070]' : 'border-[#878797]'} 
+                                            bg-transparent px-4 py-2 
+                                            text-4xl font-medium text-muted-foreground 
+                                            placeholder:text-[#353652] placeholder:text-xl
+                                          `}
+                                        label="Ваше имя*"
                                         labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
                                         // externalError={errors.name}
@@ -112,12 +116,12 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                             errors.phone || (inputTouched.phone && phoneValidation.styleError)
                                                 ? 'border-[#bc8070] focus:border-[#bc8070]'
                                                 : 'border-[#878797] focus:border-[#878797]'
-                                        } h-11 w-full rounded-[50px] bg-transparent p-4 text-base font-medium text-[#878797] placeholder:text-sm placeholder:font-medium placeholder:text-[#353652]`}
-                                        label="Номер телефона"
-                                        labelClassName="mb-1 text-2xl font-medium text-white"
+                                        } h-12 w-full rounded-[50px]  bg-transparent px-4 py-2 
+                                            text-4xl font-medium text-muted-foreground 
+                                            placeholder:text-[#353652] placeholder:text-xl`}
+                                        label="Номер телефона*"
+                                        labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
-                                        /*  mask="+375 (99) 999-99-99"
-                                        maskPlaceholder="_" */
                                     />
                                     {errors.phone && <p className="mt-1 text-sm  text-[#bc8070]">{errors.phone}</p>}
                                 </div>
@@ -129,7 +133,9 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         placeholder="Удобное время для звонка"
                                         value={formData.time}
                                         onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                        className="h-11 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-base font-medium text-[#878797] placeholder:text-sm placeholder:font-medium placeholder:text-[#353652]"
+                                        className="h-12 w-full rounded-[50px] border-2 border-[#878797]  bg-transparent px-4 py-2 
+                                            text-4xl font-medium text-muted-foreground 
+                                            placeholder:text-[#353652] placeholder:text-xl"
                                         label="Удобное время для звонка"
                                         labelClassName="text-white text-xl"
                                         wrapperClassName="w-full"
