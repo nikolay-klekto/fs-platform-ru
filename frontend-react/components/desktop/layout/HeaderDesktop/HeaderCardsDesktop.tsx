@@ -15,6 +15,7 @@ const HeaderCardsDesktop: React.FC = () => {
                     currency="BYN"
                     time="неделя"
                     tooltipMessage="Вы получаете стажировку наблюдателя, но с рабочими задачами под ваш уровень и человеком, который в случае чего поможет подтянуть знания"
+                    disableCurrencyTranslation={true}
                 />
                 <HeaderCardItemDesktop
                     textBlack="Стажировка"
@@ -24,6 +25,7 @@ const HeaderCardsDesktop: React.FC = () => {
                     currency="BYN"
                     time="неделя"
                     tooltipMessage="На стажировке вас ждет ментор, обзорные экскурсии и рабочее место, без необходимости работать"
+                    disableCurrencyTranslation={true}
                 />
             </div>
         </>
