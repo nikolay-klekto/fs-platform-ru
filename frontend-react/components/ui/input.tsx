@@ -187,10 +187,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         <input
                             type={type}
                             className={cn(
-                                inputVariants({ variant, size, rounded }),
-                                isFocused && 'ring-2 ring-ring ring-offset-2',
                                 className,
                                 styleErrorClass && 'custom_error_style_input',
+                                isFocused && 'ring-2 ring-ring ring-offset-2',
                             )}
                             ref={ref}
                             name={name}
