@@ -110,7 +110,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     className={`${
                                         inputTouched.name && validateNameDesktop(formData.name).styleError
                                             ? 'border-[#bc8070]'
-                                            : 'border-[#878797]'
+                                            : 'input-form-desktop-custom border-[#878797]'
                                     } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0`}
                                     label="Ваше имя*"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
@@ -134,7 +134,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     className={`${
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
                                             ? 'border-[#bc8070] focus:border-[#bc8070]'
-                                            : 'border-[#878797] focus:border-[#878797]'
+                                            : 'input-form-desktop-custom border-[#878797] focus:border-[#878797]'
                                     } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0`}
                                     label="Номер телефона*"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
@@ -155,7 +155,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     className={`${
                                         inputTouched.time && !formData.time.trim()
                                             ? 'border-[#bc8070]'
-                                            : 'border-[#878797]'
+                                            : 'input-form-desktop-custom border-[#878797]'
                                     } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0`}
                                     label="Удобное время для звонка"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
