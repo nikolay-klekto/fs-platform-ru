@@ -2,11 +2,11 @@
 
 import React from 'react'
 import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
-import ProfessionCardDesktop from '@/components/desktop/layout/ProfessionsSectionDesktop/ProfessionCardDesktop'
+import ProfessionCardDesktop from './ItemsProfessionSection/ProfessionCardDesktop'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import ProfessionSendDesktop from './ItemsProfessionSection/ProfessionSendDesktop'
-import { content } from '@/components/desktop/layout/ProfessionsSectionDesktop/content'
+import { content } from './data/content'
 import { useModal } from '@/context/ContextModal'
 
 interface IProfessionsSection {

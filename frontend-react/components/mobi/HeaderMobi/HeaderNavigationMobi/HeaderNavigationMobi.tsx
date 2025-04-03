@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { content } from '@/components/mobi/pageMobi/HomePageMobi/components/HeaderMobi/HeaderMainMobi/ItemHeaderMobi/ItemHeaderNavigationMobi/data/content'
+import { content } from '@/components/mobi/HeaderMobi/HeaderNavigationMobi/data/content'
 
 const HeaderNavigationMobi: React.FC = () => {
     const pathname = usePathname()

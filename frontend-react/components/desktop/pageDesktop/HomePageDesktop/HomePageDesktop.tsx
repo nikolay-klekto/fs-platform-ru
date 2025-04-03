@@ -4,11 +4,15 @@ import HeaderCardsDesktop from './components/HeaderCardsDesktop/HeaderCardsDeskt
 import ProfessionsSectionDesktop from './components/ProfessionSectionDesktop/ProfessionsSectionDesktop'
 import HowWeWorkDesktop from './components/HowWeWork/HowWeWorkDesktop'
 import PromoDesktop from './components/PromoDesktop'
-import EventsSectionDesktop from './components/EventsDesktop/EventsSectionDesktop'
+import EventsSectionDesktop from './components/EventsSectionDesktop/EventsSectionDesktop'
+import HeaderDesktop from '@/components/desktop/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/FooterDesktop/FooterDesktop'
+
 const HomePageDesktop: React.FC = () => {
     return (
         <>
-            <div>
+            <HeaderDesktop />
+            <div className="bg-[url('/background/main.webp')] bg-cover bg-no-repeat">
                 <div className="bg-header-main-gradient-desktop">
                     <div className="paddings-desktop-custom container flex justify-between">
                         <HeaderMainDesktop />
@@ -20,6 +24,7 @@ const HomePageDesktop: React.FC = () => {
                 <PromoDesktop />
                 <EventsSectionDesktop />
             </div>
+            <FooterDesktop />
         </>
     )
 }

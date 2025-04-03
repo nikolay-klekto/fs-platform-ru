@@ -2,12 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
-import HeaderMobi from '@/components/mobi/pageMobi/HomePageMobi/components/HeaderMobi/HeaderMainMobi/ItemHeaderMobi/HeaderMobi'
-import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import EventsPageDesktop from '@/components/desktop/pageDesktop/EventsPageDesktop/EventsPageDesktop'
-
+import EventsPageMobi from '@/components/mobi/pageMobi/EventsPageMobi/EventsPageMobi'
 export default function Profevents() {
     const [isClient, setIsClient] = useState(false)
 
@@ -26,20 +22,11 @@ export default function Profevents() {
         <div>
             {isDesktop ? (
                 <>
-                    <HeaderDesktop />
-                    <main className="bg-[#101030] text-white">
-                        <EventsPageDesktop />
-                    </main>
-                    <FooterDesktop />
+                    <EventsPageDesktop />
                 </>
             ) : (
                 <>
-                    <div className="h-[20px] bg-[#101030]"></div>
-                    <HeaderMobi />
-                    <main className="bg-[#101030] text-white">
-                        <EventsPageDesktop />
-                    </main>
-                    <FooterMobi />
+                    <EventsPageMobi />
                 </>
             )}
         </div>

@@ -4,12 +4,12 @@ import { cn } from '@/lib/utils'
 
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
-import { EnhancedTextareaDesktop } from '../../shared/TextareaDesktop'
-import { validateNameDesktop } from '../../commonDesktop/validate/validateNameDesktop'
-import { validateEmailDesktop } from '../../commonDesktop/validate/validateEmailDesktop'
-import { validatePhoneDesktop } from '../../commonDesktop/validate/validatePhoneDesktop'
-import { validateRoleDesktop } from '../../commonDesktop/validate/validateRoleDesktop'
-import { validateTextareaDesktop } from '../../commonDesktop/validate/validateTextareaDesktop'
+import { EnhancedTextareaDesktop } from '../../../shared/TextareaDesktop'
+import { validateNameDesktop } from '../../../commonDesktop/validate/validateNameDesktop'
+import { validateEmailDesktop } from '../../../commonDesktop/validate/validateEmailDesktop'
+import { validatePhoneDesktop } from '../../../commonDesktop/validate/validatePhoneDesktop'
+import { validateRoleDesktop } from '../../../commonDesktop/validate/validateRoleDesktop'
+import { validateTextareaDesktop } from '../../../commonDesktop/validate/validateTextareaDesktop'
 import { contentContactsDesktop, contentSocialContactsDesktop } from './data/content'
 
 interface IFormData {

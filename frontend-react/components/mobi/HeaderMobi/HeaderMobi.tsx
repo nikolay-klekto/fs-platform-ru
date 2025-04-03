@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useModal } from '@/context/ContextModal'
 import Link from 'next/link'
-import HeaderNavigationMobi from '../../../../layout/HeaderMobi/HeaderNavigationMobi/HeaderNavigationMobi'
+import HeaderNavigationMobi from './HeaderNavigationMobi/HeaderNavigationMobi'
 import {
     ShoppingCartIconMobi,
     LogoIconMobi,

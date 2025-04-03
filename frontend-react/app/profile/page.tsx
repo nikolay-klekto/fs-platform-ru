@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import ProfileDesktop from '@/components/desktop/pageDesktop/ProfilePageDesktop/ProfileDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
-import HeaderMobi from '@/components/mobi/pageMobi/HomePageMobi/components/HeaderMobi/HeaderMainMobi/ItemHeaderMobi/HeaderMobi'
+import HeaderMobi from '@/components/mobi/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 
 export default function Profile() {

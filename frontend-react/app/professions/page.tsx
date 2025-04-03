@@ -2,10 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
-import HeaderMobi from '@/components/mobi/pageMobi/HomePageMobi/components/HeaderMobi/HeaderMainMobi/ItemHeaderMobi/HeaderMobi'
-import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import ProfessionsPageDesktop from '@/components/desktop/pageDesktop/ProfessionsPageDesktop/ProfessionsPageDesktop'
 import ProfessionsPageMobi from '@/components/mobi/pageMobi/ProfessionsPageMobi/ProfessionsPageMobi'
 export default function Professions() {
@@ -26,20 +22,11 @@ export default function Professions() {
         <div>
             {isDesktop ? (
                 <>
-                    <HeaderDesktop />
-                    <main className="bg-[#101030] text-white">
-                        <ProfessionsPageDesktop />
-                    </main>
-                    <FooterDesktop />
+                    <ProfessionsPageDesktop />
                 </>
             ) : (
                 <>
-                    <div className="h-[20px] bg-[#101030]"></div>
-                    <HeaderMobi />
-                    <main className="bg-[#101030] text-white">
-                        <ProfessionsPageMobi />
-                    </main>
-                    <FooterMobi />
+                    <ProfessionsPageMobi />
                 </>
             )}
         </div>
