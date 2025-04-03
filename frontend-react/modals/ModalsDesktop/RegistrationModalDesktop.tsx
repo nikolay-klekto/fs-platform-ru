@@ -190,7 +190,6 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
                             onError={(error) => handleError('phone', error)}
                             wrapperClassName="w-full"
-                            //className="placeholder:text-[#353652]"
                             required={true}
                         />
                     </div>

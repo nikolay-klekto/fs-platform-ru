@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
+import { validatePhoneMobi } from '../../commonMobi/validate/validatePhoneMobi'
 
-interface IPhoneInputDesktop {
+interface IPhoneInputMobi {
     value: string
     onChange: (value: string) => void
     onError: (value: string) => void
@@ -20,7 +20,7 @@ for (let i = 0; i < PHONE_MASK.length; i++) {
     }
 }
 
-const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
+const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     value,
     onChange,
     onError,
@@ -89,7 +89,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
         const error =
             required && (value === PHONE_MASK || !value)
                 ? 'Поле обязательно для заполнения'
-                : validatePhoneDesktop(value).textError
+                : validatePhoneMobi(value).textError
         setInternalError(error)
         onError(error)
         onChange(value)
@@ -141,4 +141,4 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     )
 }
 
-export default PhoneInputDesktop
+export default PhoneInputMobi

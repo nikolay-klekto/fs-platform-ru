@@ -4,8 +4,8 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
+import { PhoneInputMobi } from '@/components/mobi/shared/formInput/PhoneInputMobi'
 import { validateEmailMobi } from '@/components/mobi/commonMobi/validate/validateEmailMobi'
-import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 import PasswordInputMobi from '@/components/mobi/shared/formInput/PasswordInputMobi'
 import { useModal } from '@/context/ContextModal'
 
@@ -191,24 +191,12 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                             )}
                         </div>
                         <div className="mb-3">
-                            <EnhancedInput
-                                type="tel"
-                                name="phone"
-                                placeholder="Номер телефона"
+                            <PhoneInputMobi
                                 value={formData.phone}
-                                onBlur={() => handleInputBlur('phone')}
-                                validate={(value) => validatePhoneMobi(value)}
                                 onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
-                                className={`${
-                                    inputTouched.phone && validatePhoneMobi(formData.phone).styleError
-                                        ? 'border-[#bc8070] focus:border-[#bc8070]'
-                                        : 'border-[#878797] focus:border-[#878797]'
-                                } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
-                                label="Телефон*"
-                                labelClassName="mb-1 text-2xl font-medium text-white"
+                                onError={(error) => handleError('phone', error)}
                                 wrapperClassName="w-full"
-                                mask="+375 (99) 999-99-99"
-                                maskPlaceholder="_"
+                                required={true}
                             />
                             {inputInternalErrors.phone && (
                                 <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>
