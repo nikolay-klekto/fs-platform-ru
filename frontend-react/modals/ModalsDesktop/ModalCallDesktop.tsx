@@ -85,10 +85,10 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="mx-[75px] max-w-md flex-col rounded-lg text-center">
-                            <h1 className=" mb-[10px] text-left text-13xl bg-gradient-desktop mt-[53px] bg-clip-text font-medium leading-[44px] text-transparent">
+                            <h1 className=" mb-[10px] text-left text36px_desktop bg-gradient-desktop mt-[53px] bg-clip-text font-medium leading-[44px] text-transparent">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </h1>
-                            <p className="mb-[27px] text-[#878797] text-[18px] text-left">
+                            <p className="mb-[27px] text-[#878797] text18px_desktop text-left">
                                 Заполните поля – и мы с вами свяжемся
                             </p>
                         </div>
@@ -111,9 +111,9 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         inputTouched.name && validateNameDesktop(formData.name).styleError
                                             ? 'border-[#bc8070]'
                                             : 'input-form-desktop-custom border-[#878797]'
-                                    } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0`}
+                                    } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text18px_desktop font-medium text-white focus-visible:ring-offset-0`}
                                     label="Ваше имя*"
-                                    labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
+                                    labelClassName="mb-2 text15px_desktop leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
                                 {errors.name && <p className="error-form-desktop-custom">{errors.name}</p>}
@@ -135,9 +135,9 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
                                             ? 'border-[#bc8070] focus:border-[#bc8070]'
                                             : 'input-form-desktop-custom border-[#878797] focus:border-[#878797]'
-                                    } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0`}
+                                    } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text18px_desktop font-medium text-white focus-visible:ring-offset-0`}
                                     label="Номер телефона*"
-                                    labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
+                                    labelClassName="mb-2 text15px_desktop leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
                                 {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
@@ -156,17 +156,17 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         inputTouched.time && !formData.time.trim()
                                             ? 'border-[#bc8070]'
                                             : 'input-form-desktop-custom border-[#878797]'
-                                    } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0`}
+                                    } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text18px_desktop font-medium text-white focus-visible:ring-offset-0`}
                                     label="Удобное время для звонка"
-                                    labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
+                                    labelClassName="mb-2 text15px_desktop leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
-                                <p className="mb-[13px] mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
-                                    *Обязательное поле для ввода
-                                </p>
                                 {Object.keys(errors).length > 0 && (
                                     <p className="error-form-desktop-custom mb-3">Заполните обязательные поля</p>
                                 )}
+                                <p className="mb-[13px] mt-2 text15px_desktop font-medium leading-[18px] text-[#353652]">
+                                    *Обязательное поле для ввода
+                                </p>
                             </div>
                             <div className="mb-3 px-[75px]">
                                 <EnhancedInput
@@ -191,18 +191,18 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             </div>
                             {errors.consent && <p className="error-form-desktop-custom px-[75px]">{errors.consent}</p>}
                             <div className="mx-auto mt-5">
-                                <p className="px-[75px] text-2xl font-medium text-[#353652]">
+                                <p className="px-[75px] text15px_desktop font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
                                     <a
                                         href="href"
-                                        className="hover:cursor ml-1 text-2xl font-medium leading-[18px] text-[#353652] underline"
+                                        className="hover:cursor ml-1 text15px_desktop font-medium leading-[18px] text-[#353652] underline"
                                     >
                                         Конфиденциальность
                                     </a>{' '}
                                     <br />и{' '}
                                     <a
                                         href="href"
-                                        className="mb-4 text-2xl font-medium leading-[18px] text-[#353652] underline"
+                                        className="mb-4 text15px_desktop font-medium leading-[18px] text-[#353652] underline"
                                     >
                                         Условия использования
                                     </a>
@@ -234,7 +234,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="mx-auto flex max-w-md flex-col rounded-lg p-3">
-                            <h1 className="text-13xl bg-gradient-desktop mb-6 mt-10 bg-clip-text text-center font-medium leading-[44px] text-transparent">
+                            <h1 className="text36px_desktop bg-gradient-desktop mb-6 mt-10 bg-clip-text text-center font-medium leading-[44px] text-transparent">
                                 ЗАЯВКА ПРИНЯТА
                             </h1>
                             <p className="text-justify text-4xl font-medium leading-[22px] text-[#878797] shadow-md">
