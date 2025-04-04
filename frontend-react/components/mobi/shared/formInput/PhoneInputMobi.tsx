@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { validatePhoneMobi } from '../../commonMobi/validate/validatePhoneMobi'
+import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 
 interface IPhoneInputMobi {
     value: string
@@ -51,7 +51,6 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
             e.preventDefault()
             const pos = inputRef.current?.selectionStart
             if (pos === undefined || pos === null || pos === 0) return
-            // Ищем предыдущую позицию для ввода цифры
             for (let i = pos - 1; i >= 0; i--) {
                 if (digitPositions.includes(i)) {
                     if (newValue[i] !== '_') {
@@ -63,18 +62,15 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 }
             }
         } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Tab') {
-            // Навигационные клавиши разрешаем без изменений
             return
         } else if (e.key >= '0' && e.key <= '9') {
             e.preventDefault()
             const pos = inputRef.current?.selectionStart
             if (pos === undefined || pos === null) return
-            // Ищем ближайшую позицию для ввода цифры
             const nextPos = digitPositions.find((p) => p >= pos)
             if (nextPos === undefined) return
             newValue = newValue.substring(0, nextPos) + e.key + newValue.substring(nextPos + 1)
             setInputValue(newValue)
-            // Перемещаем курсор на следующую позицию ввода
             const following = digitPositions.find((p) => p > nextPos)
             const caretPos = following !== undefined ? following : nextPos + 1
             setTimeout(() => setCaretToPosition(caretPos), 0)
@@ -84,7 +80,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
 
         validateValue(newValue)
     }
-    ////////////не
+
     const validateValue = (value: string) => {
         const error =
             required && (value === PHONE_MASK || !value)
@@ -100,11 +96,9 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     }
 
     const handleFocus = () => {
-        // Если инпут еще не изменен (полностью маска), ставим курсор в начало.
         if (inputValue === PHONE_MASK) {
             setCaretToPosition(digitPositions[0])
         } else {
-            // Если инпут уже изменен, ставим курсор в конец введенных цифр
             const rawDigits = inputValue.replace(/\D/g, '')
             const pos = Math.min(digitPositions.length, rawDigits.length)
             setCaretToPosition(digitPositions[pos - 1] || digitPositions[0])
@@ -112,7 +106,6 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     }
 
     const handleClick = () => {
-        // При клике на инпут сразу ставим курсор в начало, если еще не введены данные
         if (inputValue === PHONE_MASK) {
             setCaretToPosition(digitPositions[0])
         }
@@ -129,6 +122,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 type="tel"
                 name="phone"
                 value={inputValue}
+                onChange={() => {}}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}
                 onClick={handleClick}
