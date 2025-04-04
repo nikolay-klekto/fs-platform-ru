@@ -1,7 +1,6 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
-import { SearchIconMobi, CheckedBoxIconMobi } from '@/components/assets/iconsMobi'
-import { FiltersIconMobi } from '@/components/assets/icons'
+import { SearchIconMobi, CheckedBoxIconMobi, FiltersIconMobi } from '@/components/assets/iconsMobi'
 
 interface ISelectItem {
     value: string

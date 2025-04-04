@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { ForwardIconDesktop } from '@/components/assets/icons'
+import { ForwardIconDesktop } from '@/components/assets/iconsDesktop'
 import { HelpTooltipDesktop } from '@/components/ui/tooltip'
 
 interface IHeaderCardItem {

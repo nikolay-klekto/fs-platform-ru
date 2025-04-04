@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { EnhancedInput } from '@/components/ui/input'
-import { SendIconMobi } from '@/components/assets/icons'
+import { SendIconMobi } from '@/components/assets/iconsMobi'
 
 const ProfessionSendMobi: React.FC = () => {
     const [useRequest, setUseRequest] = useState('')
