@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from 'react'
 import {
     ChevronDownIconDesktop,
     LineDate,
-    CalendarIcons,
+    CalendarIconsDesktop,
     QuestionMark,
     CheckedBoxIcon,
-} from '@/components/assets/icons'
+} from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 
@@ -219,7 +219,7 @@ const EventsSelectSearchDateDesktop = () => {
                                     role="button"
                                     tabIndex={0}
                                 >
-                                    <CalendarIcons />
+                                    <CalendarIconsDesktop />
                                     <input
                                         type="text"
                                         value={inputValues.from}
@@ -256,7 +256,7 @@ const EventsSelectSearchDateDesktop = () => {
                                     role="button"
                                     tabIndex={0}
                                 >
-                                    <CalendarIcons />
+                                    <CalendarIconsDesktop />
                                     <input
                                         type="text"
                                         value={inputValues.to}

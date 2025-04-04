@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { EyeOffPasswordDesktop, EyeOnPasswordDesktop, PasswordGeneratorDesktop } from '@/components/assets/icons'
+import { EyeOffPasswordDesktop, EyeOnPasswordDesktop, PasswordGeneratorDesktop } from '@/components/assets/iconsDesktop'
 import { validatePasswordMobi } from '@/components/mobi/commonMobi/validate/validatePasswordMobi'
 import { generatePassword } from '@/components/mobi/commonMobi/generatePasswordMobi'
 

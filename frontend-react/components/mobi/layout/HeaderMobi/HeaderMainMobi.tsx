@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ForwardIconMobi } from '@/components/assets/icons'
+import { ForwardIconMobi } from '@/components/assets/iconsMobi'
 import HeaderMobi from './HeaderMobi'
 
 const HeaderMainMobi: React.FC = () => {

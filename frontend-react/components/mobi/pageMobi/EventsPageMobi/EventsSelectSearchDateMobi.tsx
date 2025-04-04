@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
-import { ChevronDownIcon, LineDate, CalendarIcons, CheckedBoxIcon, QuestionMark } from '@/components/assets/icons'
+import {
+    ChevronDownIcon,
+    LineDate,
+    CalendarIconsDesktop,
+    CheckedBoxIcon,
+    QuestionMark,
+} from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 
 import { Calendar } from '@/components/ui/calendar'
@@ -137,7 +143,7 @@ const EventsSelectSearchDateMobi = () => {
                                     role="button"
                                     tabIndex={0}
                                 >
-                                    <CalendarIcons />
+                                    <CalendarIconsDesktop />
                                     <input
                                         type="text"
                                         value={inputValues.from}
@@ -175,7 +181,7 @@ const EventsSelectSearchDateMobi = () => {
                                     role="button"
                                     tabIndex={0}
                                 >
-                                    <CalendarIcons />
+                                    <CalendarIconsDesktop />
                                     <input
                                         type="text"
                                         value={inputValues.to}

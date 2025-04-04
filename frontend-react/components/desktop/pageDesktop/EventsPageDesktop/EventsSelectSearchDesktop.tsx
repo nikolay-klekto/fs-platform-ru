@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ChevronDownIconDesktop, CheckedBoxIcon, QuestionMark } from '@/components/assets/icons'
+import { ChevronDownIconDesktop, CheckedBoxIcon, QuestionMark } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 
 interface ISelectItem {

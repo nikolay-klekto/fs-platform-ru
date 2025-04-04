@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import FunscrutLogo from './FunscrutLogo'
 import { Button } from '@/components/ui/button'
-import { ForwardIconDesktop } from '@/components/assets/icons'
+import { ForwardIconDesktop } from '@/components/assets/iconsDesktop'
 
 const HeaderMainDesktop: React.FC = () => {
     return (
