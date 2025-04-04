@@ -126,6 +126,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                             target: { name: 'phone', value, type: 'text', checked: false },
                                         } as React.ChangeEvent<HTMLInputElement>)
                                     }
+                                    onBlur={() => handleInputBlur('phone')}
                                     onError={(error) =>
                                         setErrors((prev) => ({
                                             ...prev,

@@ -5,6 +5,7 @@ interface IPhoneInputDesktop {
     value: string
     onChange: (value: string) => void
     onError: (value: string) => void
+    onBlur?: (value: string) => void
     className?: string
     labelClassName?: string
     wrapperClassName?: string

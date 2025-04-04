@@ -5,6 +5,7 @@ interface IPhoneInputMobi {
     value: string
     onChange: (value: string) => void
     onError: (value: string) => void
+    onBlur?: (value: string) => void
     className?: string
     labelClassName?: string
     wrapperClassName?: string
@@ -128,9 +129,9 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={PHONE_MASK}
-                className={`input-form-desktop-custom w-full placeholder:text-[#353652] ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                className={`input-form-mobi-custom w-full placeholder:text-[#353652] ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
-            {internalError && <p className={'error-form-desktop-custom'}>{internalError}</p>}
+            {internalError && <p className={'error-form-mobi-custom'}>{internalError}</p>}
         </div>
     )
 }
