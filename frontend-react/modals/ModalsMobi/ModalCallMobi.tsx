@@ -4,7 +4,6 @@ import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validateNameMobi'
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
-import { useModal } from '@/context/ContextModal'
 
 interface IFormData {
     name: string

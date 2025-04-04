@@ -121,8 +121,13 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                 id="phone"
                 type="tel"
                 name="phone"
+                autoComplete="tel"
                 value={inputValue}
-                onChange={() => {}}
+                onChange={(e) => {
+                    const newValue = e.target.value
+                    setInputValue(newValue)
+                    validateValue(newValue)
+                }}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}
                 onClick={handleClick}

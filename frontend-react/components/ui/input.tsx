@@ -179,6 +179,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                 )}
                 {!isCheckbox && (
                     <input
+                        id={name}
                         type={type}
                         className={cn(
                             inputVariants({ variant, size, rounded }),
