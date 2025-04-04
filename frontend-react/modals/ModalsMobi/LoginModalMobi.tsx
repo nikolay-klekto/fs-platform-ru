@@ -110,11 +110,11 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
                                 className={`${
                                     inputTouched.email && validateEmailMobi(formData.email).styleError
-                                        ? 'border-[#bc8070] focus:border-[#bc8070]'
+                                        ? 'border-[#bc8070] focus:border-[#bc8070] '
                                         : 'border-[#878797] focus:border-[#878797]'
-                                } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white input-custom`}
+                                } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
                                 label="Почта*"
-                                labelClassName="mb-1 text-2xl font-medium text-white"
+                                labelClassName="mb-1 text14px_mobi font-medium text-white"
                                 wrapperClassName="w-full"
                             />
                             {inputInternalErrors.email && (
@@ -123,33 +123,33 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         </div>
 
                         <div className="relative mb-2">
-                        <PasswordInputMobi
-                            value={formData.password}
-                            label="Пароль*"
-                            placeholder="Пароль"
-                            onChange={(value) => handleChange('password', value)}
-                            onError={(error) => handleError('password', error)}
-                            labelClassName="label-form-mobi-custom"
-                            inputClassName="input-form-mobi-custom input-custom"
-                            errorClassName="error-form-mobi-custom"
-                            inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
-                            inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            required={true}
-                        />
+                            <PasswordInputMobi
+                                value={formData.password}
+                                label="Пароль*"
+                                placeholder="Пароль"
+                                onChange={(value) => handleChange('password', value)}
+                                onError={(error) => handleError('password', error)}
+                                labelClassName="label-form-mobi-custom"
+                                inputClassName="input-form-mobi-custom"
+                                errorClassName="error-form-mobi-custom"
+                                inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
+                                inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
+                                required={true}
+                            />
                         </div>
-                        <button className="text14px_mobi self-end border-transparent bg-transparent font-semibold text-[#878797] underline button-custom">
+                        <button className="text14px_mobi self-end border-transparent bg-transparent font-semibold text-[#878797] underline">
                             Забыли пароль?
                         </button>
-                        <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652] paragraph-custom">
+                        <p className="mt-2 text14px_mobi font-medium leading-[18px] text-[#353652]">
                             *Обязательное поле для ввода
                         </p>
-                        {formError && <p className="error-form-mobi-custom error-custom">Заполните необходимые поля</p>}
+                        {formError && <p className="error-form-mobi-custom">Заполните необходимые поля</p>}
                         <Button
                             type="submit"
                             variant="default"
                             size="btn_modal_desktop"
                             disabled={formError}
-                            className="bg-gradient-desktop sm_xl:text-3xl sm_l:text-2xl sm_s:text-xl hover:bg-gradient-desktop-hover mx-auto mt-6 w-4/5 rounded-[50px] text-4xl font-medium sm:text-xl md:text-4xl"
+                            className="bg-gradient-desktop sm_xl:text28px_mobi sm_l:text18px_mobi sm_s:text16px_mobi hover:bg-gradient-desktop-hover mx-auto mt-6 w-4/5 rounded-[50px] text-4xl font-medium sm:text-xl md:text-4xl"
                         >
                             Войти
                         </Button>
