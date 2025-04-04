@@ -99,11 +99,11 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         Вход
                     </h1>
                     <form onSubmit={handleSubmit} className="flex w-4/5 flex-col align-middle">
-                        <div className="mb-2">
+                    <div className="mb-2">
                             <EnhancedInput
                                 type="email"
                                 name="email"
-                                placeholder="Почта"
+                                placeholder="Ваш e-mail"
                                 value={formData.email}
                                 onBlur={() => handleInputBlur('email')}
                                 validate={(value) => validateEmailMobi(value)}
@@ -114,17 +114,18 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         : 'border-[#878797] focus:border-[#878797]'
                                 } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
                                 label="Почта*"
-                                labelClassName="mb-1 text-2xl font-medium text-white"
+                                labelClassName="mb-1 text14px_mobi font-medium text-white"
                                 wrapperClassName="w-full"
                             />
                             {inputInternalErrors.email && (
                                 <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
                             )}
                         </div>
+
                         <div className="relative mb-2">
                             <PasswordInputMobi
                                 value={formData.password}
-                                label="Пароль"
+                                label="Пароль*"
                                 placeholder="Пароль"
                                 onChange={(value) => handleChange('password', value)}
                                 onError={(error) => handleError('password', error)}
@@ -139,13 +140,16 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         <button className="text14px_mobi self-end border-transparent bg-transparent font-semibold text-[#878797] underline">
                             Забыли пароль?
                         </button>
+                        <p className="mt-2 text14px_mobi font-medium leading-[18px] text-[#353652]">
+                            *Обязательное поле для ввода
+                        </p>
                         {formError && <p className="error-form-mobi-custom">Заполните необходимые поля</p>}
                         <Button
                             type="submit"
                             variant="default"
                             size="btn_modal_desktop"
                             disabled={formError}
-                            className="bg-gradient-desktop sm_xl:text-3xl sm_l:text-2xl sm_s:text-xl hover:bg-gradient-desktop-hover mx-auto mt-6 w-4/5 rounded-[50px] text-4xl font-medium sm:text-xl md:text-4xl"
+                            className="bg-gradient-desktop sm_xl:text28px_mobi sm_l:text18px_mobi sm_s:text16px_mobi hover:bg-gradient-desktop-hover mx-auto mt-6 w-4/5 rounded-[50px] text-4xl font-medium sm:text-xl md:text-4xl"
                         >
                             Войти
                         </Button>
