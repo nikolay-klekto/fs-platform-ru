@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { EnhancedInput } from '@/components/ui/input'
 import PhoneInputDesktop from '@/components/desktop/shared/formInput/PhoneInputDesktop'
 import { validateNameDesktop } from '@/components/desktop/commonDesktop/validate/validateNameDesktop'
+import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 
 interface IFormData {
     name: string
@@ -64,17 +65,51 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
             ...prevData,
             [name]: type === 'checkbox' ? checked : value,
         }))
-        setErrors((prevErrors) => ({
-            ...prevErrors,
-            [name]: '',
-        }))
+        if (name === 'name') {
+            const result = validateNameDesktop(value)
+            if (result.status) {
+                setErrors((prev) => ({
+                    ...prev,
+                    name: '',
+                }))
+            }
+        }
+
+        if (name === 'phone') {
+            const result = validatePhoneDesktop(value)
+            if (result.status) {
+                setErrors((prev) => ({
+                    ...prev,
+                    phone: '',
+                }))
+            }
+        }
     }
 
-    const handleInputBlur = (field: 'phone' | 'name' | 'time') => {
+    const handleInputBlur = (field: 'name') => {
         setInputTouched((prev) => ({
             ...prev,
             [field]: true,
         }))
+
+        let error = ''
+        if (field === 'name') {
+            error = validateNameDesktop(formData.name)?.textError
+        } else if (field === 'phone') {
+            error = validatePhoneDesktop(formData.phone)?.textError
+        }
+
+        if (error) {
+            setErrors((prev) => ({
+                ...prev,
+                [field]: error,
+            }))
+        } else {
+            setErrors((prev) => ({
+                ...prev,
+                [field]: '',
+            }))
+        }
     }
 
     const hasErrors = Object.values(errors).some((err) => err?.trim())
@@ -121,21 +156,27 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             <div className="mb-5 flex w-full flex-col px-[75px]">
                                 <PhoneInputDesktop
                                     value={formData.phone}
+                                    //onBlur={() => handleInputBlur('phone')}
+                                    onError={(error) => {
+                                        setErrors((prev) => ({
+                                            ...prev,
+                                            phone: error,
+                                        }))
+                                        console.log('Ошибки: ', errors)
+                                    }}
                                     onChange={(value: string) =>
                                         handleChange({
                                             target: { name: 'phone', value, type: 'text', checked: false },
                                         } as React.ChangeEvent<HTMLInputElement>)
                                     }
-                                    onBlur={() => handleInputBlur('phone')}
-                                    onError={(error) =>
-                                        setErrors((prev) => ({
-                                            ...prev,
-                                            phone: error || '',
-                                        }))
-                                    }
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
-                                    wrapperClassName="w-full"
+                                    wrapperClassName="w-full gap-0"
                                     required={true}
+                                    className={`${
+                                        inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
+                                            ? 'border-[#bc8070] focus:border-[#bc8070]'
+                                            : 'border-[#878797] focus:border-[#878797]'
+                                    }`}
                                 />
                                 {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
                             </div>
@@ -147,7 +188,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     placeholder="Удобное время для звонка"
                                     maxLength={100}
                                     value={formData.time}
-                                    onBlur={() => handleInputBlur('time')}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
                                     className="h-10 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0"
                                     label="Удобное время для звонка"

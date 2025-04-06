@@ -14,7 +14,7 @@ export const validateNameDesktop = (name: string): { status: boolean; textError:
     }
     return {
         status: true,
-        textError: 'Обязательное поле для ввода',
+        textError: '',
         styleError: false,
     }
 }

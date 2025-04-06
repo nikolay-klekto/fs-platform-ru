@@ -25,6 +25,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     value,
     onChange,
     onError,
+    onBlur,
     className,
     labelClassName,
     wrapperClassName,
@@ -32,7 +33,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
-    const [internalError, setInternalError] = useState<string | null>(null)
+    const [error, setError] = useState<string | null>(null)
 
     const setCaretToPosition = (pos: number) => {
         if (inputRef.current) {
@@ -87,13 +88,16 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
             required && (value === PHONE_MASK || !value)
                 ? 'Поле обязательно для заполнения'
                 : validatePhoneDesktop(value).textError
-        setInternalError(error)
+        setError(error)
         onError(error)
         onChange(value)
+
+        return error
     }
 
     const handleBlur = () => {
         validateValue(inputValue)
+        onBlur?.(inputValue)
     }
 
     const handleFocus = () => {
@@ -134,9 +138,8 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={PHONE_MASK}
-                className={`input-form-desktop-custom w-full placeholder:text-[#353652] ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                className={`input-form-desktop-custom w-full font-medium placeholder:text-[#353652] ${error ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
-            {internalError && <p className={'error-form-desktop-custom'}>{internalError}</p>}
         </div>
     )
 }

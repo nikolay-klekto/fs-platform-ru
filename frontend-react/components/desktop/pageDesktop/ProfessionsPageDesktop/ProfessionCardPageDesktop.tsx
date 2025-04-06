@@ -7,6 +7,7 @@ interface IProfessionCard {
     profession: string
     image: string
     price: string
+    category?: string
     onClick: () => void
 }
 
