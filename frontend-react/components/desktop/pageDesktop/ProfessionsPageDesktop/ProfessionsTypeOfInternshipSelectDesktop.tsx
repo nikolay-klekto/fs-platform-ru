@@ -59,7 +59,7 @@ const ProfessionsTypeOfInternshipSelectDesktop = ({
         <div className="relative z-[3]" ref={selectRef}>
             <Button
                 variant={'select_btn_desktop'}
-                size={'select_btn_desktop'}
+                size={'select_btn_desktop_prof_internship'}
                 onClick={handleSelectToggle}
                 className={`${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
@@ -70,7 +70,7 @@ const ProfessionsTypeOfInternshipSelectDesktop = ({
             </Button>
             {isOpen && (
                 <div
-                    className="3xl:w-[300px] absolute top-[80px] z-50 w-[337px] rounded-[42px] p-[2px] 2xl:w-[270px]"
+                    className="3xl:w-[300px] absolute top-[80px] z-50 w-[281px] rounded-[42px] p-[2px] 2xl:w-[214px]"
                     style={{
                         background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
                     }}
