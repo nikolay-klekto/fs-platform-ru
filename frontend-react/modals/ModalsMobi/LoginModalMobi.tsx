@@ -149,7 +149,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             variant="default"
                             size="btn_modal_desktop"
                             disabled={formError}
-                            className="bg-gradient-desktop sm_xl:text28px_mobi sm_l:text18px_mobi sm_s:text16px_mobi hover:bg-gradient-desktop-hover mx-auto mt-6 w-4/5 rounded-[50px] text-4xl font-medium sm:text-xl md:text-4xl"
+                            className="bg-gradient-desktop sm_xl:text-3xl sm_l:text-2xl sm_s:text-xl hover:bg-gradient-desktop-hover mx-auto mt-6 w-4/5 rounded-[50px] text-4xl font-medium sm:text-xl md:text-4xl"
                         >
                             Войти
                         </Button>
