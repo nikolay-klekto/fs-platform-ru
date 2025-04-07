@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ChevronDownIconDesktop, CheckedBoxIcon, QuestionMark } from '@/components/assets/iconsDesktop'
+import { ChevronDownIconDesktop, CheckedBoxIconDesktop, QuestionMarkDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 
 interface ISelectItem {
@@ -120,7 +120,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                             className="absolute inset-0 size-full cursor-pointer opacity-0"
                         />
                         {isChecked ? (
-                            <CheckedBoxIcon
+                            <CheckedBoxIconDesktop
                                 style={{
                                     position: 'absolute',
                                     width: '30px',
@@ -140,7 +140,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                     <div className="pl-[14px]">{children}</div>
                 </div>
                 <div className="justify-items-end">
-                    <QuestionMark />
+                    <QuestionMarkDesktop />
                 </div>
             </div>
         )

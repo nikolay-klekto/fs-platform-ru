@@ -552,7 +552,7 @@ export const CheckedBoxIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
     )
 }
 
-export const QuestionMark: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const QuestionMarkDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -563,7 +563,7 @@ export const QuestionMark: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const LineDate: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LineDateDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="22" height="2" viewBox="0 0 18 2" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M1 1H21" stroke="#878797" strokeWidth="2" strokeLinecap="round" />

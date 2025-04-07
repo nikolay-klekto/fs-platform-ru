@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
-import { ForwardIconMobi } from '@/components/assets/iconsDesktop'
+import { ForwardIconMobi } from '@/components/assets/iconsMobi'
 
 const ProfessionSendMobi: React.FC = () => {
     const [useRequest, setUseRequest] = useState('')

@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import {
     ChevronDownIconDesktop,
-    LineDate,
+    LineDateDesktop,
     CalendarIconsDesktop,
-    QuestionMark,
-    CheckedBoxIcon,
+    QuestionMarkDesktop,
+    CheckedBoxIconDesktop,
 } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
@@ -241,7 +241,7 @@ const EventsSelectSearchDateDesktop = () => {
                                 )}
                             </div>
 
-                            <LineDate className="mt-5" />
+                            <LineDateDesktop className="mt-5" />
 
                             <div className="relative flex flex-col" ref={toCalendarRef}>
                                 <p>До</p>
@@ -344,7 +344,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                             className="absolute inset-0 size-full cursor-pointer opacity-0"
                         />
                         {isChecked ? (
-                            <CheckedBoxIcon
+                            <CheckedBoxIconDesktop
                                 style={{
                                     position: 'absolute',
                                     width: '30px',
@@ -364,7 +364,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                     <div className="pl-[14px]">{children}</div>
                 </div>
                 <div className="justify-items-end">
-                    <QuestionMark />
+                    <QuestionMarkDesktop />
                 </div>
             </div>
         )

@@ -6,7 +6,7 @@ import { content } from './content'
 import EventsCardDesktop from './EventsCardDesktop'
 import EventsPaginationDesktop from './EventsPaginationDesktop'
 import EventsSelectSearchDesktop from './EventsSelectSearchDesktop'
-import EventsSelectSearchDateDesktop from './EventsSelectSearchDateDesctop'
+import EventsSelectSearchDateDesktop from './EventsSelectSearchDateDesktop'
 import EventsSelectSearchCityDesktop from './EventsSelectSearchCityDesktop'
 
 const EventsPageDesktop: React.FC = () => {
