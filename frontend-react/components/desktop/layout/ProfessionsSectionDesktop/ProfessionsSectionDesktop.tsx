@@ -5,7 +5,6 @@ import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
 import ProfessionCardDesktop from '@/components/desktop/layout/ProfessionsSectionDesktop/ProfessionCardDesktop'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-// import ProfessionSendDesktop from './ProfessionSendDesktop'
 import { content } from '@/components/desktop/layout/ProfessionsSectionDesktop/content'
 import { useModal } from '@/context/ContextModal'
 
@@ -45,7 +44,6 @@ const ProfessionsSectionDesktop: React.FC<IProfessionsSection> = ({ cardsToShow 
                     />
                 ))}
             </div>
-            {/* <ProfessionSendDesktop /> */}
         </div>
     )
 }
