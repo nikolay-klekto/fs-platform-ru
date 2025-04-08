@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import SelectInternshipTypeDesktop from './ProfessionsTypeOfInternshipSelectDesktop'
+import SelectInternshipTypeDesktop from './SelectInternshipTypeDesktop'
 import ProfessionsSelectDesktop from './ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './ProfessionCardPageDesktop'
 import ProfessionsPaginationDesktop from './ProfessionsPaginationDesktop'
