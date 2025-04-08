@@ -276,7 +276,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             </p>
                         </div>
                         <div className="mb-[67px] flex items-center justify-center">
-                            <Link href="href">
+                            <Link href="/professions">
                                 <Button
                                     variant="default"
                                     size="btn_modal_desktop"

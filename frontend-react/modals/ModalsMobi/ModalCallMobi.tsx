@@ -4,6 +4,7 @@ import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validateNameMobi'
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
+import Link from 'next/link'
 
 interface IFormData {
     name: string
@@ -207,12 +208,13 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 сайте.
                             </p>
                             <div className="bg-sub-title-gradient-mobi mx-auto my-2 flex w-[180px] items-center justify-center rounded-[50px] p-[3px]">
-                                <button
-                                    type="button"
-                                    className="h-10 w-full rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"
+                                <Link
+                                    href="/professions"
+                                    onClick={onClose}
+                                    className="flex h-10 w-full items-center justify-center rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"
                                 >
                                     Смотреть
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
