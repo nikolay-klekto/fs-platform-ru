@@ -14,7 +14,7 @@ interface ISelectOption {
     label: string
 }
 
-const ProfessionsTypeOfInternshipSelectDesktop = ({
+const SelectInternshipTypeDesktop = ({
     onCategoryChange,
 }: {
     onCategoryChange: (categories: string[]) => void
@@ -148,4 +148,4 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
 
 SelectItem.displayName = 'SelectItem'
 
-export default ProfessionsTypeOfInternshipSelectDesktop
+export default SelectInternshipTypeDesktop
