@@ -59,7 +59,7 @@ const ProfessionsTypeOfInternshipSelectDesktop = ({
         <div className="relative z-[3]" ref={selectRef}>
             <Button
                 variant={'select_btn_desktop'}
-                size={'select_btn_desktop_prof_internship'}
+                size={'select_btn_type_internship_desktop'}
                 onClick={handleSelectToggle}
                 className={`${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
