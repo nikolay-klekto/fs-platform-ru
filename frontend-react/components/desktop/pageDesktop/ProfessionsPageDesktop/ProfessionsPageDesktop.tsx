@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import ProfessionsTypeOfInternshipSelectDesktop from './ProfessionsTypeOfInternshipSelectDesktop'
+import SelectInternshipTypeDesktop from './ProfessionsTypeOfInternshipSelectDesktop'
 import ProfessionsSelectDesktop from './ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './ProfessionCardPageDesktop'
 import ProfessionsPaginationDesktop from './ProfessionsPaginationDesktop'
@@ -66,7 +66,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                     </Button>
                 </div>
                 <div className="flex items-center gap-[20px] ml-[5%]">
-                    <ProfessionsTypeOfInternshipSelectDesktop onCategoryChange={handleCategoryChange} />
+                    <SelectInternshipTypeDesktop onCategoryChange={handleCategoryChange} />
                     <ProfessionsSelectDesktop onCategoryChange={handleCategoryChange} />
                 </div>
             </div>
