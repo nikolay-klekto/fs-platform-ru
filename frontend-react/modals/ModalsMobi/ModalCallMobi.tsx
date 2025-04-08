@@ -5,6 +5,7 @@ import { EnhancedInput } from '@/components/ui/input'
 import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validateNameMobi'
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 import { useModal } from '@/context/ContextModal'
+import Link from 'next/link'
 
 interface IFormData {
     name: string
@@ -32,9 +33,9 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         if (!formData.name.trim()) {
             newErrors.name = 'Поле обязательно для заполнения'
         }
-        if (!formData.phone.trim()) {
-            newErrors.phone = 'Поле обязательно для заполнения'
-        }
+        // if (!formData.phone.trim()) {
+        //     newErrors.phone = 'Поле обязательно для заполнения'
+        // }
         if (!formData.consent) {
             newErrors.consent = 'Необходимо согласие'
         }
@@ -49,17 +50,17 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         }
     }
 
-    const [inputTouched, setInputTouched] = useState({
-        email: false,
-        phone: false,
-    })
+    // const [inputTouched, setInputTouched] = useState({
+    //     email: false,
+    //     phone: false,
+    // })
 
-    const handleInputBlur = (field: 'phone') => {
-        setInputTouched((prev) => ({
-            ...prev,
-            [field]: true,
-        }))
-    }
+    // const handleInputBlur = (field: 'phone') => {
+    //     setInputTouched((prev) => ({
+    //         ...prev,
+    //         [field]: true,
+    //     }))
+    // }
     return (
         <>
             {step === 'form' && (
@@ -98,7 +99,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     />
                                     {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
                                 </div>
-                                <div className="mb-3 flex w-full flex-col p-0.5">
+                                {/* <div className="mb-3 flex w-full flex-col p-0.5">
                                     <EnhancedInput
                                         type="tel"
                                         name="phone"
@@ -119,7 +120,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         maskPlaceholder="_"
                                     />
                                     {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
-                                </div>
+                                </div> */}
                                 <div className="mb-3 flex w-full flex-col p-0.5">
                                     <EnhancedInput
                                         type="text"
@@ -183,12 +184,11 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 сайте.
                             </p>
                             <div className="bg-sub-title-gradient-mobi mx-auto my-2 flex w-[180px] items-center justify-center rounded-[50px] p-[3px]">
-                                <button
-                                    type="button"
-                                    className="h-10 w-full rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"
-                                >
-                                    Смотреть
-                                </button>
+                                <Link href="/professions" onClick={onClose} className='w-full'>
+                                    <div className="flex h-10 w-full items-center justify-center rounded-[50px] bg-[#101030] text-3xl font-semibold text-white">
+                                        Смотреть
+                                    </div>
+                                </Link>
                             </div>
                         </div>
                     </div>
