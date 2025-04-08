@@ -76,7 +76,7 @@ const buttonVariants = cva(
                     '3xl:w-[260px] 3xl:px-[20px] h-[64px] w-[290px] px-[30px] py-[20px] 2xl:w-[230px] 2xl:px-[20px]',
                 select_btn_desktop_date:
                     '3xl:w-[180px] 3xl:px-[20px] h-[64px] w-[200px] px-[30px] py-[20px] 2xl:w-[160px] 2xl:px-[20px]',
-                select_btn_desktop_prof_internship:
+                select_btn_type_internship_desktop:
                     '3xl:w-[300px] 3xl:px-[20px] h-[64px] w-[281px] px-[30px] py-[20px] 2xl:w-[214px] 2xl:px-[20px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'sm_s:size-[52px] size-[55px] sm:size-[50px]',
