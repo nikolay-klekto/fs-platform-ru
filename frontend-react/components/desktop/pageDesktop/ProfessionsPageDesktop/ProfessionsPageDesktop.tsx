@@ -47,8 +47,8 @@ const ProfessionsPageDesktop: React.FC = () => {
             <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
             <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
             <h1 className="title80px_desktop relative z-[1]">Профессии</h1>
-            <div className="relative z-[1] flex items-center py-[80px] gap-[5%] sm:gap-[8%] md:gap-[10%] lg:gap-[12%]">
-                <div className="relative w-full sm:w-[600px] md:w-[700px] lg:w-[741px] xl:w-[800px]">
+            <div className="relative z-[1] flex items-center py-[80px] gap-[5%]">
+                <div className="relative w-full">
                     <EnhancedInput
                         type="text"
                         value={searchQuery}
@@ -65,7 +65,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                         <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
                     </Button>
                 </div>
-                <div className="flex items-center gap-[20px] sm:gap-[30px] lg:gap-[40px] ml-[5%] sm:ml-[8%] md:ml-[10%] lg:ml-[12%]">
+                <div className="flex items-center gap-[20px] ml-[5%]">
                     <ProfessionsTypeOfInternshipSelectDesktop onCategoryChange={handleCategoryChange} />
                     <ProfessionsSelectDesktop onCategoryChange={handleCategoryChange} />
                 </div>
