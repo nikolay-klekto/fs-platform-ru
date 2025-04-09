@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { MapPin, CalendarCheck, Calendar, Clock4, Users, Ellipsis, Banknote, X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
-import { ForwardIconDesktop } from '@/components/assets/icons'
+import { ForwardIconDesktop } from '@/components/assets/iconsDesktop'
 import { contentModalEvents } from './content'
 import ModalEventsCardDesktop from './ModalEventsCardDesktop'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Map, CalendarIcons, User, ForwardIconWhite } from '@/components/assets/icons'
+import { MapMobi, CalendarIconsMobi, UserMobi, ForwardIconWhiteMobi } from '@/components/assets/iconsMobi'
 import Image from 'next/image'
 import React from 'react'
 
@@ -43,16 +43,16 @@ const EventsCardMobi: React.FC<IEventsCard> = ({ title, category, image, date, w
 
                         <div className="text28px_events text-gradient_desktop_custom pb-[4px] uppercase">{title}</div>
                         <div className="text18px_desktop flex gap-[15px]">
-                            <Map /> {date} ({week}) в {time}
+                            <MapMobi /> {date} ({week}) в {time}
                         </div>
                         <div className="text18px_desktop flex gap-[15px]">
-                            <CalendarIcons /> {city}, {place}
+                            <CalendarIconsMobi /> {city}, {place}
                         </div>
                         <div className="text18px_desktop flex gap-[15px]">
-                            <User /> {company}
+                            <UserMobi /> {company}
                         </div>
                         <Button variant="circleDarkBlue" size="circle_desktop" className="absolute bottom-0 right-0 ">
-                            <ForwardIconWhite />
+                            <ForwardIconWhiteMobi />
                         </Button>
                     </div>
                 </div>

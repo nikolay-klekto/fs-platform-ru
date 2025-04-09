@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { ArrowBtn } from '@/components/assets/icons'
+import { ArrowBtnDesktop } from '@/components/assets/iconsDesktop'
 import { useModal } from '@/context/ContextModal'
 
 const PromoDesktop: React.FC = () => {
@@ -40,7 +40,7 @@ const PromoDesktop: React.FC = () => {
                         className="group-hover:button-shadow_right_desktop_custom"
                         onClick={() => openModal('registration_desktop', 'desktop')}
                     >
-                        <ArrowBtn width="57%" height="57%" />
+                        <ArrowBtnDesktop width="57%" height="57%" />
                     </Button>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { TelegramIconDesktop, InstagramIconDesktop, LinkedInIconDesktop } from '@/components/assets/icons'
+import { TelegramIconDesktop, InstagramIconDesktop, LinkedInIconDesktop } from '@/components/assets/iconsDesktop'
 
 interface IFooterIconLink {
     id: number

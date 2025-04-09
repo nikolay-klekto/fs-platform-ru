@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
-import { ChevronDownIcon, LineDate, CalendarIcons, CheckedBoxIcon, QuestionMark } from '@/components/assets/icons'
+import {
+    ChevronDownIconMobi,
+    LineDateMobi,
+    CalendarIconsMobi,
+    CheckedBoxIconMobi,
+    QuestionMarkMobi,
+} from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
 
 import { Calendar } from '@/components/ui/calendar'
@@ -110,7 +116,7 @@ const EventsSelectSearchDateMobi = () => {
                 className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Дата
-                <ChevronDownIcon
+                <ChevronDownIconMobi
                     className={`h-[15px] w-[27px] transition-transform  duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
                 />
             </Button>
@@ -137,7 +143,7 @@ const EventsSelectSearchDateMobi = () => {
                                     role="button"
                                     tabIndex={0}
                                 >
-                                    <CalendarIcons />
+                                    <CalendarIconsMobi />
                                     <input
                                         type="text"
                                         value={inputValues.from}
@@ -159,7 +165,7 @@ const EventsSelectSearchDateMobi = () => {
                                 )}
                             </div>
 
-                            <LineDate className="mt-5" />
+                            <LineDateMobi className="mt-5" />
 
                             {/* Календарь "До" */}
                             <div className="relative flex flex-col">
@@ -175,7 +181,7 @@ const EventsSelectSearchDateMobi = () => {
                                     role="button"
                                     tabIndex={0}
                                 >
-                                    <CalendarIcons />
+                                    <CalendarIconsMobi />
                                     <input
                                         type="text"
                                         value={inputValues.to}
@@ -264,7 +270,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                             className="absolute inset-0 size-full cursor-pointer opacity-0"
                         />
                         {isChecked ? (
-                            <CheckedBoxIcon
+                            <CheckedBoxIconMobi
                                 style={{
                                     position: 'absolute',
                                     width: '30px',
@@ -284,7 +290,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                     <div className="pl-[14px]">{children}</div>
                 </div>
                 <div className="justify-items-end">
-                    <QuestionMark />
+                    <QuestionMarkMobi />
                 </div>
             </div>
         )

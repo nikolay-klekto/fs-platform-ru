@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { ChevronDownIcon, SearchIcon } from '@/components/assets/icons'
+import { ChevronDownIconMobi, SearchIconMobi } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
 interface ISelectItem {
     value: string
@@ -61,7 +61,7 @@ const EventsSelectSearchCityMobi = () => {
                 className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Город
-                <ChevronDownIcon
+                <ChevronDownIconMobi
                     className={`h-[15px] w-[27px] transition-transform  duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
                 />
             </Button>
@@ -81,7 +81,7 @@ const EventsSelectSearchCityMobi = () => {
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className="text-18px flex h-11 w-full rounded-md bg-transparent py-3 outline-none placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
                             />
-                            <SearchIcon
+                            <SearchIconMobi
                                 className="mr-2 size-4 shrink-0 opacity-50"
                                 onClick={() => console.log('Search icon clicked!')}
                             />

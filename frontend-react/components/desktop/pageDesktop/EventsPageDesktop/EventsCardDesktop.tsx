@@ -2,7 +2,12 @@
 import React from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { Map, CalendarIcons, User, ForwardIconWhite } from '@/components/assets/icons'
+import {
+    MapDesktop,
+    CalendarIconsDesktop,
+    UserDesktop,
+    ForwardIconWhiteDesktop,
+} from '@/components/assets/iconsDesktop'
 
 interface IEventsCard {
     title: string
@@ -52,16 +57,16 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
 
                         <div className="text28px_events text-gradient_desktop_custom pb-[4px] uppercase">{title}</div>
                         <div className="text18px_desktop flex gap-[15px]">
-                            <Map /> {date} ({week}) в {time}
+                            <MapDesktop /> {date} ({week}) в {time}
                         </div>
                         <div className="text18px_desktop flex gap-[15px]">
-                            <CalendarIcons /> {city}, {place}
+                            <CalendarIconsDesktop /> {city}, {place}
                         </div>
                         <div className="text18px_desktop flex gap-[15px]">
-                            <User /> {company}
+                            <UserDesktop /> {company}
                         </div>
                         <Button variant="circleDarkBlue" size="circle_desktop" className="absolute bottom-0 right-0 ">
-                            <ForwardIconWhite />
+                            <ForwardIconWhiteDesktop />
                         </Button>
                     </div>
                 </div>

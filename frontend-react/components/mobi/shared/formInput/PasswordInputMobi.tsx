@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { EyeOffPasswordDesktop, EyeOnPasswordDesktop, PasswordGeneratorDesktop } from '@/components/assets/icons'
+import { EyeOffPasswordMobi, EyeOnPasswordMobi, PasswordGeneratorMobi } from '@/components/assets/iconsMobi'
 import { validatePasswordMobi } from '@/components/mobi/commonMobi/validate/validatePasswordMobi'
 import { generatePassword } from '@/components/mobi/commonMobi/generatePasswordMobi'
 
@@ -85,7 +85,7 @@ const PasswordInputMobi: React.FC<IPasswordInput> = ({
                     onClick={() => setShowPassword((prev) => !prev)}
                     className="sm_l:w-[16px] sm_s:w-[16px] absolute right-4  top-1/2 flex -translate-y-1/2 items-center text-[#878797] sm:w-[16px]"
                 >
-                    {showPassword ? <EyeOnPasswordDesktop /> : <EyeOffPasswordDesktop />}
+                    {showPassword ? <EyeOnPasswordMobi /> : <EyeOffPasswordMobi />}
                 </button>
                 {showGenerateButton && (
                     <button
@@ -93,7 +93,7 @@ const PasswordInputMobi: React.FC<IPasswordInput> = ({
                         onClick={handleGeneratePassword}
                         className="sm_l:w-[16px] sm_s:w-[16px] absolute right-4 top-[-55%] flex items-center text-[#878797] sm:w-[16px]"
                     >
-                        <PasswordGeneratorDesktop />
+                        <PasswordGeneratorMobi />
                     </button>
                 )}
             </div>
