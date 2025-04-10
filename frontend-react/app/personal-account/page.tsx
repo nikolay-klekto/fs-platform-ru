@@ -27,7 +27,7 @@ export default function PersonalAccount() {
             ) : (
                 <>
                     <main className="min-h-screen grow bg-[#101030]">
-                        <PersonalAccountMobi />
+                        <ProfilePageMobi />
                     </main>
                 </>
             )}

@@ -45,7 +45,6 @@ const ProfessionsSectionDesktop: React.FC<IProfessionsSection> = ({ cardsToShow 
                     />
                 ))}
             </div>
-            <ProfessionSendDesktop />
         </div>
     )
 }

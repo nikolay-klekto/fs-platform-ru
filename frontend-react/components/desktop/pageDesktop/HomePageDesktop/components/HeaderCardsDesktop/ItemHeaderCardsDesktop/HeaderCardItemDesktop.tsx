@@ -12,6 +12,7 @@ interface IHeaderCardItem {
     currency: string
     time: string
     tooltipMessage: string
+    disableCurrencyTranslation?: boolean
 }
 
 const HeaderCardItemDesktop: React.FC<IHeaderCardItem> = ({
@@ -22,6 +23,7 @@ const HeaderCardItemDesktop: React.FC<IHeaderCardItem> = ({
     currency,
     time,
     tooltipMessage,
+    disableCurrencyTranslation = true,
 }) => {
     return (
         <>
@@ -52,7 +54,8 @@ const HeaderCardItemDesktop: React.FC<IHeaderCardItem> = ({
                     >
                         от{' '}
                         <span className="text32px_desktop font-medium">
-                            {price} {currency}/ {time}
+                            {price} <span translate={disableCurrencyTranslation ? 'no' : 'yes'}>{currency}</span> /{' '}
+                            {time}
                         </span>
                     </div>
                     <Button
