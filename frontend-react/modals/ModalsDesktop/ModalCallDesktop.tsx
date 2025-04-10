@@ -164,7 +164,9 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     *Обязательное поле для ввода
                                 </p>
                                 {Object.keys(errors).length > 0 && (
-                                    <p className="error-form-desktop-custom mb-3">Заполните обязательные поля</p>
+                                    <p className="mb-3 text-sm text-[#878797] leading-[18px]">
+                                        Заполните обязательные поля
+                                    </p>
                                 )}
                             </div>
                             <div className="mb-3 px-[75px]">
