@@ -23,7 +23,7 @@ const EventsSectionDesktop: React.FC = () => {
 
     return (
         <div className="p-no-right-padding container py-[10vh]">
-            <TitleDesktop title={'МЕРОПРИЯТИЯ'} href="/profevents" />
+            <TitleDesktop title={'МЕРОПРИЯТИЯ'} href="/events" />
             <div
                 ref={contentRef}
                 onScroll={handleScroll}

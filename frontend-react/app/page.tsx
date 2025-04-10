@@ -7,15 +7,15 @@ import { useModal } from '@/context/ContextModal'
 
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
-    const { openModal } = useModal() // ✅ исправлено
+    const { openModal } = useModal()
 
     useEffect(() => {
         setIsClient(true)
 
         const hasSeenCookies = localStorage.getItem('hasSeenCookies')
         if (!hasSeenCookies) {
-            openModal('cookie_desktop', 'desktop') // ✅ показываем модалку через контекст
-            localStorage.setItem('hasSeenCookies', 'true') // ✅ сохраняем, что модалка уже была
+            openModal('cookie_desktop', 'desktop')
+            localStorage.setItem('hasSeenCookies', 'true')
         }
     }, [openModal])
 

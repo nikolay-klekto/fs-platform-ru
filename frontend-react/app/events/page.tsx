@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import EventsPageDesktop from '@/components/desktop/pageDesktop/EventsPageDesktop/EventsPageDesktop'
 import EventsPageMobi from '@/components/mobi/pageMobi/EventsPageMobi/EventsPageMobi'
-export default function Profevents() {
+
+export default function Events() {
     const [isClient, setIsClient] = useState(false)
 
     useEffect(() => {

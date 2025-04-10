@@ -6,7 +6,7 @@ import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 const ContactsPageMobi: React.FC = () => {
     return (
         <>
-            <div className="h-[20px] bg-[#101030]"> </div>
+            {/* <div className="h-[20px] bg-[#101030]"> </div> */}
 
             <HeaderMobi />
             <main className="bg-[#101030] text-white">

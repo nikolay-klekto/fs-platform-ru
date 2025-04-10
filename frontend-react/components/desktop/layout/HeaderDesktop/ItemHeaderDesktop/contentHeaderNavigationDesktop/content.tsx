@@ -22,7 +22,7 @@ export const content: IHeaderNavigation[] = [
     },
     {
         title: 'Мероприятия',
-        link: '/profevents',
+        link: '/events',
         id: '4',
     },
     {

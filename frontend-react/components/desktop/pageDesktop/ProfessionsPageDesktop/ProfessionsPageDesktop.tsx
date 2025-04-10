@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import SelectInternshipTypeDesktop from './SelectInternshipTypeDesktop'
-import ProfessionsSelectDesktop from './ProfessionsSelectDesktop'
-import ProfessionCardPageDesktop from './ProfessionCardPageDesktop'
-import ProfessionsPaginationDesktop from './ProfessionsPaginationDesktop'
-import ProfessionSearchDesktop from './ProfessionSendDesktop'
-import { content } from './content'
+import SelectInternshipTypeDesktop from './components/SelectInternshipTypeDesktop'
 import ProfessionsSelectDesktop from './components/ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './components/ProfessionCardPageDesktop'
 import ProfessionsPaginationDesktop from './components/ProfessionsPaginationDesktop'
@@ -49,34 +44,6 @@ const ProfessionsPageDesktop: React.FC = () => {
     }
 
     return (
-        <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
-            <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
-            <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
-            <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
-            <h1 className="title80px_desktop relative z-[1]">Профессии</h1>
-            <div className="relative z-[1] flex items-center py-[80px] gap-[5%]">
-                <div className="relative w-full">
-                    <EnhancedInput
-                        type="text"
-                        value={searchQuery}
-                        onChange={setSearchQuery}
-                        variant={'gradient_desktop'}
-                        size={'gradient_search_desktop'}
-                        rounded={'full'}
-                        className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
-                        wrapperClassName={`h-[64px] justify-between flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
-                        onBlur={() => setIsFocused(false)}
-                        placeholder="Поиск"
-                    />
-                    <Button variant={'circle_btn_gradient_desktop'} size={'circle_btn_gradient_desktop'}>
-                        <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
-                    </Button>
-                </div>
-                <div className="flex items-center gap-[20px] ml-[5%]">
-                    <SelectInternshipTypeDesktop onCategoryChange={handleCategoryChange} />
-                    <ProfessionsSelectDesktop onCategoryChange={handleCategoryChange} />
-                </div>
-            </div>
         <>
             <HeaderDesktop />
             <div className="bg-[#101030] text-white">
@@ -85,8 +52,8 @@ const ProfessionsPageDesktop: React.FC = () => {
                     <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
                     <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
                     <h1 className="title80px_desktop relative z-[1]">Профессии</h1>
-                    <div className="relative z-[1] flex items-center justify-between py-[80px]">
-                        <div className="relative">
+                    <div className="relative z-[1] flex items-center py-[80px] gap-[5%]">
+                        <div className="relative w-full">
                             <EnhancedInput
                                 type="text"
                                 value={searchQuery}
@@ -95,8 +62,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                                 size={'gradient_search_desktop'}
                                 rounded={'full'}
                                 className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
-                                wrapperClassName={`2xl:w-[600px] relative 4xl:max-w-[700px] 3xl:w-[650px] h-[64px] w-[741px] justify-between flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
-                                onFocus={() => setIsFocused(true)}
+                                wrapperClassName={`h-[64px] justify-between flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
                                 onBlur={() => setIsFocused(false)}
                                 placeholder="Поиск"
                             />
@@ -104,7 +70,10 @@ const ProfessionsPageDesktop: React.FC = () => {
                                 <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
                             </Button>
                         </div>
-                        <ProfessionsSelectDesktop onCategoryChange={handleCategoryChange} />{' '}
+                        <div className="flex items-center gap-[20px] ml-[5%]">
+                            <SelectInternshipTypeDesktop onCategoryChange={handleCategoryChange} />
+                            <ProfessionsSelectDesktop onCategoryChange={handleCategoryChange} />
+                        </div>
                     </div>
 
                     {filteredContent.length > 0 ? (

@@ -36,7 +36,7 @@ export const contentFooterDesktop: IFooterSection[] = [
             { id: 1, name: 'Главная', href: '/' },
             { id: 2, name: 'Профессии', href: '/professions' },
             { id: 3, name: 'Компании', href: '/companies' },
-            { id: 4, name: 'Мероприятия', href: '/profevents' },
+            { id: 4, name: 'Мероприятия', href: '/events' },
         ],
     },
     {
