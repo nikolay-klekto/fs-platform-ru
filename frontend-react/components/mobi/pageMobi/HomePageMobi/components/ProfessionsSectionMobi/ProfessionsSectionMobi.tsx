@@ -4,7 +4,7 @@ import React from 'react'
 import TitleMobi from '@/components/mobi/shared/TitleMobi'
 import ProfessionCardMobi from './ItemsProfessionSection/ProfessionCardMobi'
 import ProfessionSendMobi from './ItemsProfessionSection/ProfessionSendMobi'
-import { content } from './data/content'
+import { content } from './contentProfessionsSectionMobi/content'
 import { useModal } from '@/context/ContextModal'
 
 const ProfessionsSectionMobi: React.FC = () => {

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import HeaderCardItemDesktop from './HeaderCardItemDesktop/HeaderCardItemDesktop'
+import HeaderCardItemDesktop from './ItemHeaderCardsDesktop/HeaderCardItemDesktop'
 
 const HeaderCardsDesktop: React.FC = () => {
     return (

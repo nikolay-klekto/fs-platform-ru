@@ -1,6 +1,6 @@
-import { IContent, contentOrderPayment } from './OrderPaymentCardMobi/content'
+import { IContent, contentOrderPayment } from './ItemOrderPaymentMobi/contentOrderPaymentCardMobi/content'
 import { Button } from '@/components/ui/button'
-import OrderPaymentCardMobi from './OrderPaymentCardMobi/OrderPaymentCardMobi'
+import OrderPaymentCardMobi from './ItemOrderPaymentMobi/OrderPaymentCardMobi'
 import Link from 'next/link'
 
 const OrderPaymentMobi: React.FC = () => {

@@ -3,25 +3,21 @@ import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/HomePageDesktop'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
-import ModalCookieDesktop from '@/components/desktop/layout/ModalDesktop/ModalCookieDesktop'
+import { useModal } from '@/context/ContextModal'
 
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
-    const [showCookies, setShowCookies] = useState(false)
+    const { openModal } = useModal() // ✅ исправлено
 
     useEffect(() => {
         setIsClient(true)
 
         const hasSeenCookies = localStorage.getItem('hasSeenCookies')
         if (!hasSeenCookies) {
-            setShowCookies(true)
+            openModal('cookie_desktop', 'desktop') // ✅ показываем модалку через контекст
+            localStorage.setItem('hasSeenCookies', 'true') // ✅ сохраняем, что модалка уже была
         }
-    }, [])
-
-    const handleCloseCookies = () => {
-        setShowCookies(false)
-        localStorage.setItem('hasSeenCookies', 'true')
-    }
+    }, [openModal])
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 1240px)',
@@ -35,7 +31,6 @@ export default function Home() {
             {isDesktop ? (
                 <>
                     <HomePageDesktop />
-                    {showCookies && <ModalCookieDesktop onClose={handleCloseCookies} />}
                 </>
             ) : (
                 <>

@@ -1,12 +1,12 @@
 import React from 'react'
-import HeaderMainDesktop from './components/HeaderMainDesktop'
+import HeaderMainDesktop from './components/HeaderMainDesktop/HeaderMainDesktop'
 import HeaderCardsDesktop from './components/HeaderCardsDesktop/HeaderCardsDesktop'
 import ProfessionsSectionDesktop from './components/ProfessionSectionDesktop/ProfessionsSectionDesktop'
-import HowWeWorkDesktop from './components/HowWeWork/HowWeWorkDesktop'
-import PromoDesktop from './components/PromoDesktop'
+import HowWeWorkDesktop from './components/HowWeWorkDesktop/HowWeWorkDesktop'
+import PromoDesktop from './components/PromoDesktop/PromoDesktop'
 import EventsSectionDesktop from './components/EventsSectionDesktop/EventsSectionDesktop'
-import HeaderDesktop from '@/components/desktop/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/FooterDesktop/FooterDesktop'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const HomePageDesktop: React.FC = () => {
     return (

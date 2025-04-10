@@ -3,14 +3,14 @@ import React, { useState } from 'react'
 import ProfessionCardPageMobi from './components/ProfessionCardPageMobi'
 import ProfessionsPaginationMobi from './components/ProfessionsPaginationMobi'
 import ProfessionSendMobi from './components/ProfessionSendMobi'
-import { content } from './data/content'
+import { content } from './contentProfessionsPageMobi/content'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
 import { useModal } from '@/context/ContextModal'
 import ProfessionsSelectMobi from './components/ProfessionsSelectMobi'
-import HeaderMobi from '@/components/mobi/HeaderMobi/HeaderMobi'
-import FooterMobi from '@/components/mobi/FooterMobi/FooterMobi'
+import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
+import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 
 const ProfessionsPageMobi: React.FC = () => {
     const { openModal } = useModal()

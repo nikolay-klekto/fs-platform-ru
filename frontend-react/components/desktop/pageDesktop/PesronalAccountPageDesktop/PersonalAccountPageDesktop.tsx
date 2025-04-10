@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { content } from './data/content'
-import HeaderDesktop from '@/components/desktop/HeaderDesktop/HeaderDesktop'
+import { content } from './contentPersonalAccountPageDesktop/content'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 
-const PersonalAccountDesktop: React.FC = () => {
+const PersonalAccountPageDesktop: React.FC = () => {
     const [currentComponent, setCurrentComponent] = useState<React.ReactElement | null>(null)
     const [activeId, setActiveId] = useState(1)
 
@@ -60,4 +60,4 @@ const PersonalAccountDesktop: React.FC = () => {
     )
 }
 
-export default PersonalAccountDesktop
+export default PersonalAccountPageDesktop

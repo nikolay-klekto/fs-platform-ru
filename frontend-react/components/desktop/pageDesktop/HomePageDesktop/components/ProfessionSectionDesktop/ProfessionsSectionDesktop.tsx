@@ -6,7 +6,7 @@ import ProfessionCardDesktop from './ItemsProfessionSection/ProfessionCardDeskto
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import ProfessionSendDesktop from './ItemsProfessionSection/ProfessionSendDesktop'
-import { content } from './data/content'
+import { content } from './contentProfessionsSectionDesktop/content'
 import { useModal } from '@/context/ContextModal'
 
 interface IProfessionsSection {

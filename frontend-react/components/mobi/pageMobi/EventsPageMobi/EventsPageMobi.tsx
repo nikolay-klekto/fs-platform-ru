@@ -2,14 +2,14 @@
 
 import React, { useState } from 'react'
 
-import { content } from './data/content'
+import { content } from './contentEventsPageMobi/content'
 import EventsCardMobi from './components/EventsCardMobi'
 import EventsPaginationMobi from './components/EventsPaginationMobi'
 import EventsSelectSearchMobi from './components/EventsSelectSearchMobi'
 import EventsSelectSearchDateMobi from './components/EventsSelectSearchDateMobi'
 import EventsSelectSearchCityMobi from './components/EventsSelectSearchCityMobi'
-import FooterMobi from '@/components/mobi/FooterMobi/FooterMobi'
-import HeaderMobi from '@/components/mobi/HeaderMobi/HeaderMobi'
+import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
+import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 
 const EventsPageDesktop: React.FC = () => {
     //const [searchQuery, setSearchQuery] = useState('')

@@ -1,7 +1,7 @@
 import React from 'react'
 import TitleMobi from '@/components/mobi/shared/TitleMobi'
 import ItemEventsMobi from '@/components/mobi/pageMobi/HomePageMobi/components/EventsSectionMobi/ItemEventsMobi/ItemEventsMobi'
-import { content } from './data/content'
+import { content } from './contentEventsSectionMobi/content'
 const EventsSectionMobi: React.FC = () => {
     return (
         <div className="mx-auto flex flex-col px-[14px] py-[60px] align-middle">

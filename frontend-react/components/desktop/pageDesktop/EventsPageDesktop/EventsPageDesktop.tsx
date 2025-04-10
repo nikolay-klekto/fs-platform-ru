@@ -2,14 +2,14 @@
 
 import React, { useState } from 'react'
 
-import { content } from './data/content'
+import { content } from './contentEventsPageDesktop/content'
 import EventsCardDesktop from './components/EventsCardDesktop'
 import EventsPaginationDesktop from './components/EventsPaginationDesktop'
 import EventsSelectSearchDesktop from './components/EventsSelectSearchDesktop'
 import EventsSelectSearchDateDesktop from './components/EventsSelectSearchDateDesctop'
 import EventsSelectSearchCityDesktop from './components/EventsSelectSearchCityDesktop'
-import HeaderDesktop from '@/components/desktop/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/FooterDesktop/FooterDesktop'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const EventsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)

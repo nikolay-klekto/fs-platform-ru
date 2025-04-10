@@ -1,11 +1,10 @@
 'use client'
-
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import ContactsPageDesktop from '@/components/desktop/pageDesktop/ContactsPageDesktop/ContactsPageDesktop'
-import ContactsPageMobi from '@/components/mobi/pageMobi/ContactsPageMobi/ContactsPageMobi'
+import PersonalAccountDesktop from '@/components/desktop/pageDesktop/PesronalAccountPageDesktop/PersonalAccountPageDesktop'
+import PersonalAccountMobi from '@/components/mobi/pageMobi/PersonalAccountPageMobi/PersonalAccountPageMobi'
 
-export default function Contacts() {
+export default function PersonalAccount() {
     const [isClient, setIsClient] = useState(false)
 
     useEffect(() => {
@@ -23,11 +22,13 @@ export default function Contacts() {
         <div>
             {isDesktop ? (
                 <>
-                    <ContactsPageDesktop />
+                    <PersonalAccountDesktop />
                 </>
             ) : (
                 <>
-                    <ContactsPageMobi />
+                    <main className="min-h-screen grow bg-[#101030]">
+                        <PersonalAccountMobi />
+                    </main>
                 </>
             )}
         </div>

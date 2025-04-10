@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
 import ItemEventsDesktop from './ItemEventsDesktop/ItemEventsDesktop'
-import { contentEventsSection } from './data/content'
+import { contentEventsSection } from './contentEventsSectionDesktop/content'
 const EventsSectionDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)

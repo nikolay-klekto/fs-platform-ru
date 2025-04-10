@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import HeaderCardsItemMobi from './HeaderCardsItemMobi/HeaderCardsItemMobi'
+import HeaderCardsItemMobi from './ItemHeaderCardsMobi/HeaderCardsItemMobi'
 
 const HeaderCardsMobi: React.FC = () => {
     return (

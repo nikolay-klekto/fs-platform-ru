@@ -3,13 +3,13 @@ import ProfessionsSelectDesktop from './components/ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './components/ProfessionCardPageDesktop'
 import ProfessionsPaginationDesktop from './components/ProfessionsPaginationDesktop'
 import ProfessionSearchDesktop from './components/ProfessionSendDesktop'
-import { content } from './data/content'
+import { content } from './contentProfessionsPageDesktop/content'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
 import { useModal } from '@/context/ContextModal'
-import HeaderDesktop from '@/components/desktop/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/FooterDesktop/FooterDesktop'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const ProfessionsPageDesktop: React.FC = () => {
     const { openModal } = useModal()

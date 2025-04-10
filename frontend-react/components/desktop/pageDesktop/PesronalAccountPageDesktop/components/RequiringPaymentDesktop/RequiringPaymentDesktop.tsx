@@ -1,16 +1,16 @@
-import RequiringPaymentCardMobi from './ItemRequiringPaymentMobi/RequiringPaymentCardMobi'
-import { content } from '@/components/mobi/pageMobi/PersonalAccountPageMobi/components/RequiringPaymentMobi/ItemRequiringPaymentMobi/contentRequiringPaymentCardMobi/content'
-import { Button } from '@/components/ui/button'
+import RequiringPaymentCardDesktop from './ItemRequiringPaymentDesktop/RequiringPaymentCardDesktop'
 import Link from 'next/link'
+import { content } from '@/components/desktop/pageDesktop/PesronalAccountPageDesktop/componets/RequiringPaymentDesktop/data/content'
+import { Button } from '@/components/ui/button'
 
-const RequiringPaymentMobi: React.FC = () => {
+const RequiringPaymentDesktop: React.FC = () => {
     if (!content) {
         return (
-            <div className="flex flex-col items-center  pt-[77px]">
+            <div className="flex flex-col items-center pb-[370px] pt-[80px]">
                 <p className="mb-4 text-[#353652] hover:underline">Ваша корзина пуста</p>
                 <Link href={'/professions'}>
-                    <Button variant={'select_mobi'} size={'registration_mobi'} className="w-[294px] text-[17px]">
-                        Выбрать стажировку
+                    <Button variant={'send_btn_desktop'} size={'send_btn_desktop'}>
+                        Выбрать профессию
                     </Button>
                 </Link>
             </div>
@@ -18,10 +18,10 @@ const RequiringPaymentMobi: React.FC = () => {
     }
     return (
         <>
-            <div className="py-[44px]">
-                <div className="flex flex-wrap justify-center gap-[34px] self-end pb-[87px] md:gap-[12px] 2xl:pt-[75px]">
+            <div className="3xl:pt-[50px] pb-[49px] pt-[80px] 2xl:pt-[40px]">
+                <div className="grid grid-cols-2 justify-between gap-[34px] self-end pb-[87px]">
                     {content.map((item) => (
-                        <RequiringPaymentCardMobi
+                        <RequiringPaymentCardDesktop
                             key={item.id}
                             profession={item.profession}
                             company_name={item.company_name}
@@ -31,14 +31,15 @@ const RequiringPaymentMobi: React.FC = () => {
                             location={item.location}
                             image={item.image}
                             price={item.price}
+                            tooltipMessage="Удалить из корзины"
                         />
                     ))}
                 </div>
-                <Button variant={'select_mobi'} size={'registration_mobi'} className="w-[294px] text-[17px]">
+                <Button className="flex justify-self-center" variant={'send_btn_desktop'} size={'send_btn_desktop'}>
                     Очистить всё
                 </Button>
             </div>
         </>
     )
 }
-export default RequiringPaymentMobi
+export default RequiringPaymentDesktop
