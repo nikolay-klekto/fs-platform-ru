@@ -109,7 +109,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             <EnhancedInput
                                 type="email"
                                 name="email"
-                                placeholder="Почта"
+                                placeholder="Ваш e-mail"
                                 value={formData.email}
                                 onBlur={() => handleInputBlur('email')}
                                 validate={(value) => validateEmailMobi(value)}
@@ -120,7 +120,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         : 'border-[#878797] focus:border-[#878797]'
                                 } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
                                 label="Почта*"
-                                labelClassName="mb-1 text-2xl font-medium text-white"
+                                labelClassName="mb-1 text14px_mobi font-medium text-white"
                                 wrapperClassName="w-full"
                             />
                             {inputInternalErrors.email && (
