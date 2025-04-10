@@ -12,7 +12,7 @@ interface IPhoneInputDesktop {
     required?: boolean
 }
 
-const PHONE_MASK = '+375(__)___-__-__'
+const PHONE_MASK = '+375 (__) ___-__-__'
 
 const digitPositions: number[] = []
 for (let i = 0; i < PHONE_MASK.length; i++) {

@@ -47,11 +47,16 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         return Object.keys(newErrors).length === 0
     }
 
+    const normalizePhone = (value: string) => {
+        return value.replace(/[^\d+]/g, '')
+    }
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        if (validateForm()) {
-            setStep('accepted')
-        }
+        if (!validateForm()) return
+
+        const cleanedPhone = normalizePhone(formData.phone)
+        setStep('accepted')
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

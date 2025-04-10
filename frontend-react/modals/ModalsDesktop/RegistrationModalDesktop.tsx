@@ -123,6 +123,11 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         })
     }
     const router = useRouter()
+
+    const normalizePhone = (value: string) => {
+        return value.replace(/[^\d+]/g, '')
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         client.resetStore()
@@ -131,7 +136,9 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
             return
         }
 
-        const result = await register(formData.email, formData.phoneNumber, formData.password)
+        const cleanedPhone = normalizePhone(formData.phoneNumber)
+
+        const result = await register(formData.email, cleanedPhone, formData.password)
         if (result.success) {
             onClose()
             router.push('/personalaccount')
