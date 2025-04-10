@@ -6,7 +6,7 @@ import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDeskt
 import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/HomePageDesktop'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
-import ModalCookieDesktop from '@/components/desktop/layout/ModalDesktop/ModalCookieDesktop'
+import ModalCookieDesktop from '@/modals/ModalsDesktop/ModalCookieDesktop'
 
 export default function Home() {
     const [isClient, setIsClient] = useState(false)

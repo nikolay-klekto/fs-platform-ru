@@ -121,7 +121,6 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
                             )}
                         </div>
-
                         <div className="relative mb-2">
                             <PasswordInputMobi
                                 value={formData.password}
