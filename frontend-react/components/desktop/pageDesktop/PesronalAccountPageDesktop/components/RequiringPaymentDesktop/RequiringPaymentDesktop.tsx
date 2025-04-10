@@ -1,6 +1,6 @@
 import RequiringPaymentCardDesktop from './ItemRequiringPaymentDesktop/RequiringPaymentCardDesktop'
 import Link from 'next/link'
-import { content } from '@/components/desktop/pageDesktop/PesronalAccountPageDesktop/componets/RequiringPaymentDesktop/data/content'
+import { content } from '@/components/desktop/pageDesktop/PesronalAccountPageDesktop/components/RequiringPaymentDesktop/contentRequiringPaymentDesktop/content'
 import { Button } from '@/components/ui/button'
 
 const RequiringPaymentDesktop: React.FC = () => {
