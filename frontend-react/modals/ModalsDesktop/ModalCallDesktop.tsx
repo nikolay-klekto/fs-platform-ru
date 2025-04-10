@@ -136,8 +136,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     label="Номер телефона*"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
-                                    // mask="+375 (99) 999-99-99"
-                                    // maskPlaceholder="_"
                                 />
                                 {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
                             </div>
