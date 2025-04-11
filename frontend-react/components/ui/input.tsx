@@ -2,7 +2,6 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/icons'
-//import InputMask from 'react-input-mask'
 
 const inputVariants = cva(
     'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
@@ -67,8 +66,6 @@ export interface IEnhancedInput
     placeholder?: string
     name?: string
     checked?: boolean
-    mask?: string
-    maskPlaceholder?: string
 }
 
 const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
@@ -89,9 +86,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             wrapperClassName,
             labelClassName,
             placeholder,
-            mask,
             checked,
-            //maskPlaceholder = '_',
             ...props
         },
         ref,
@@ -182,26 +177,26 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         {label}
                     </label>
                 )}
-                {!isCheckbox &&
-                    (mask ? null : ( // </InputMask> //     )} //         <input {...inputProps} ref={ref} type={type} name={name} placeholder={placeholder} /> //     {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => ( // > //     {...props} //     )} //         styleErrorClass && 'custom_error_style_input', //         className, //         isFocused && 'ring-2 ring-ring ring-offset-2', //         inputVariants({ variant, size, rounded }), //     className={cn( //     onFocus={handleFocus} //     onBlur={handleBlur} //     onChange={handleChange} //     value={internalValue as string} //     maskPlaceholder={maskPlaceholder} //     mask={mask} // <InputMask
-                        <input
-                            type={type}
-                            className={cn(
-                                inputVariants({ variant, size, rounded }),
-                                isFocused && 'ring-2 ring-ring ring-offset-2',
-                                className,
-                                styleErrorClass && 'custom_error_style_input',
-                            )}
-                            ref={ref}
-                            name={name}
-                            placeholder={placeholder}
-                            value={internalValue.toString()}
-                            onChange={handleChange}
-                            onFocus={handleFocus}
-                            onBlur={handleBlur}
-                            {...props}
-                        />
-                    ))}
+                {!isCheckbox && (
+                    <input
+                        id={name}
+                        type={type}
+                        className={cn(
+                            inputVariants({ variant, size, rounded }),
+                            isFocused && 'ring-2 ring-ring ring-offset-2',
+                            className,
+                            styleErrorClass && 'custom_error_style_input',
+                        )}
+                        ref={ref}
+                        name={name}
+                        placeholder={placeholder}
+                        value={internalValue.toString()}
+                        onChange={handleChange}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                        {...props}
+                    />
+                )}
                 {(helperText || internalError !== '') && (
                     <span className={cn('text-xs', internalError ? 'text-destructive' : 'text-muted-foreground')}>
                         {internalError || helperText}
