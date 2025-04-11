@@ -54,7 +54,7 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     <EnhancedInput
                         type="email"
                         name="email"
-                        placeholder="Почта"
+                        placeholder="Ваш e-mail"
                         value={passwordData.email}
                         onBlur={() => handleInputBlur('email')}
                         validate={(value) => validateEmailDesktop(value)}
@@ -64,14 +64,13 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 ? 'border-[#bc8070] '
                                 : 'border-[#878797] '
                         }  h-13 w-full max-w-[426px] rounded-[20px] border-2 bg-transparent text-4xl font-medium opacity-80 placeholder:text-[#353652]/40`}
-                        label="Почта*"
+                        label="Почта"
                         labelClassName="mb-1 text15px_desktop font-medium text-white"
                         wrapperClassName="w-full max-w-[426px]"
                     />
                     {inputInternalErrors.email && (
                         <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
                     )}
-                    <p className="text15px_desktop mt-2 font-medium text-[#353652]">*Обязательное поле для ввода</p>
                 </div>
                 <div className="mt-2 px-[76px]">
                     <p className="text15px_desktop font-medium text-[#353652]">
