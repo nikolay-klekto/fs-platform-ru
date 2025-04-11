@@ -2,10 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
-import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
-import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 
 export default function Companies() {
     const [isClient, setIsClient] = useState(false)
@@ -25,19 +21,15 @@ export default function Companies() {
         <div>
             {isDesktop ? (
                 <>
-                    <HeaderDesktop />
                     <main className="bg-[#101030] text-white">
                         <h1>Companies</h1>
                     </main>
-                    <FooterDesktop />
                 </>
             ) : (
                 <>
-                    <HeaderMobi />
                     <main className="bg-[#101030] text-white">
                         <h1>Companies</h1>
                     </main>
-                    <FooterMobi />
                 </>
             )}
         </div>

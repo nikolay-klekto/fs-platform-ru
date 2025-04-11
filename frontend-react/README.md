@@ -10,7 +10,8 @@
 ## Структура проекта
 
 -   components
-    -   layout
+    -   desktop
+     -  mobi
     -   shared
     -   ui
 -   constants
@@ -130,13 +131,34 @@ _Примечание: в папке **ui** размещены общие пер
 ```
 
 Логика размещения компонентов:
+- Каждый компонент лежит в отдельной папке.  
+- Переиспользуемые компоненты (например, Header, Footer) хранятся в /components/desktop/layout или /components/mobi/layot.
+- Каждая страница размещается в своей папке внутри /pageDesktop или /pageMobi.
+- Компоненты страниц выносятся отдельно в папку components в папке страницы
+- Контентные данные хранятся в папке рядом с компонентом наименование папок с контентом contentНаименованиеСтраницы или contentНаименованиеКомпонента
 
--   Главные (родительские) компоненты расположены в папках
-
+Структура компонентов:
+-   Простой компонент → отдельная папка с одним файлом.
 ```
-/pageDesktop/layout
-    или
-/pageMobi/layout
+/components
+/desktop
+/Footer
+    FooterDesktop.tsx
+```
+-   Сложный компонент → папка с:
+-  -    основным компонентом
+-  -    папками-дочерними компонентами
+-   -   папкой contentНаименованиеКомпонента (если нужно)
+
+Подкомпоненты сложных компонентов, представляющие повторяющиеся элементы (например, карточки), размещаются в папках, начинающихся с Item.
+```
+/components
+/desktop
+/pageDesktop
+    /HeaderDesktop - HeaderDesktop.tsx
+    /ItemHeaderDesktop - HeaderNavigationDesktop.tsx
+        /data - content.tsx
+
 ```
 
 -   Подкомпоненты размещаются в одноименных папках
@@ -144,14 +166,10 @@ _Примечание: в папке **ui** размещены общие пер
 ```
 /components
  /desktop
-  /layout
-    FooterDesktop.tsx
-    HeaderDesktop.tsx
-    /ProfessionSectionDesktop
-      ProfessionsSectionDesktop.tsx
-    /HowWeWork
-      content.tsx
-      HowWeWorkDesktop.tsx
+  /pageDesktop
+    /HomePageDesktop
+      HomePageDesktop.tsx
+   
 ```
 
 ## 2. Наименования (принципы)

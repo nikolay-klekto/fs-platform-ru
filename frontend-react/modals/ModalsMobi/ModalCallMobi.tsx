@@ -153,11 +153,19 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         value={formData.time}
                                         onBlur={() => handleInputBlur('time')}
                                         onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                        className="h-10 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] md:placeholder:text-2xl"
+                                        className="h-11 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-base font-medium text-[#878797] placeholder:text-sm placeholder:font-medium placeholder:text-[#353652]"
                                         label="Удобное время для звонка"
                                         labelClassName="text-white text-xl"
                                         wrapperClassName="w-full"
                                     />
+                                    <p className="mt-2 text-sm font-medium leading-[18px] text-[#353652] ">
+                                        *Обязательное поле для ввода
+                                    </p>
+                                    {Object.keys(errors).length > 0 && (
+                                        <p className="mb-3 mt-2 text-sm font-medium text-[#bc8070] leading-[18px]">
+                                            Заполните обязательные поля
+                                        </p>
+                                    )}
                                 </div>
                                 <div className="mb-2 flex items-center pt-4">
                                     <input

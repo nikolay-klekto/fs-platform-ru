@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import SelectInternshipTypeDesktop from './SelectInternshipTypeDesktop'
-import ProfessionsSelectDesktop from './ProfessionsSelectDesktop'
-import ProfessionCardPageDesktop from './ProfessionCardPageDesktop'
-import ProfessionsPaginationDesktop from './ProfessionsPaginationDesktop'
-import ProfessionSearchDesktop from './ProfessionSendDesktop'
-import { content } from './content'
+import SelectInternshipTypeDesktop from './components/SelectInternshipTypeDesktop'
+import ProfessionsSelectDesktop from './components/ProfessionsSelectDesktop'
+import ProfessionCardPageDesktop from './components/ProfessionCardPageDesktop'
+import ProfessionsPaginationDesktop from './components/ProfessionsPaginationDesktop'
+import ProfessionSearchDesktop from './components/ProfessionSendDesktop'
+import { content } from './contentProfessionsPageDesktop/content'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
 import { useModal } from '@/context/ContextModal'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const ProfessionsPageDesktop: React.FC = () => {
     const { openModal } = useModal()
@@ -42,69 +44,77 @@ const ProfessionsPageDesktop: React.FC = () => {
     }
 
     return (
-        <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
-            <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
-            <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
-            <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
-            <h1 className="title80px_desktop relative z-[1]">Профессии</h1>
-            <div className="relative z-[1] flex items-center py-[80px] gap-[5%]">
-                <div className="relative w-full">
-                    <EnhancedInput
-                        type="text"
-                        value={searchQuery}
-                        onChange={setSearchQuery}
-                        variant={'gradient_desktop'}
-                        size={'gradient_search_desktop'}
-                        rounded={'full'}
-                        className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
-                        wrapperClassName={`h-[64px] justify-between flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
-                        onBlur={() => setIsFocused(false)}
-                        placeholder="Поиск"
-                    />
-                    <Button variant={'circle_btn_gradient_desktop'} size={'circle_btn_gradient_desktop'}>
-                        <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
-                    </Button>
-                </div>
-                <div className="flex items-center gap-[20px] ml-[5%]">
-                    <SelectInternshipTypeDesktop onCategoryChange={handleCategoryChange} />
-                    <ProfessionsSelectDesktop onCategoryChange={handleCategoryChange} />
+        <>
+            <HeaderDesktop />
+            <div className="bg-[#101030] text-white">
+                <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
+                    <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
+                    <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
+                    <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
+                    <h1 className="title80px_desktop relative z-[1]">Профессии</h1>
+                    <div className="relative z-[1] flex items-center py-[80px] gap-[5%]">
+                        <div className="relative w-full">
+                            <EnhancedInput
+                                type="text"
+                                value={searchQuery}
+                                onChange={setSearchQuery}
+                                variant={'gradient_desktop'}
+                                size={'gradient_search_desktop'}
+                                rounded={'full'}
+                                className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
+                                wrapperClassName={`h-[64px] justify-between flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
+                                onBlur={() => setIsFocused(false)}
+                                placeholder="Поиск"
+                            />
+                            <Button variant={'circle_btn_gradient_desktop'} size={'circle_btn_gradient_desktop'}>
+                                <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
+                            </Button>
+                        </div>
+                        <div className="flex items-center gap-[20px] ml-[5%]">
+                            <SelectInternshipTypeDesktop onCategoryChange={handleCategoryChange} />
+                            <ProfessionsSelectDesktop onCategoryChange={handleCategoryChange} />
+                        </div>
+                    </div>
+
+                    {filteredContent.length > 0 ? (
+                        <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
+                            {filteredContent
+                                .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
+                                .map((item) => (
+                                    <ProfessionCardPageDesktop
+                                        key={item.id}
+                                        image={item.image}
+                                        profession={item.profession}
+                                        price={item.price.toString()}
+                                        onClick={() => {
+                                            openModal('profession_modal_desktop', 'desktop', {
+                                                profession: item.profession,
+                                                professionId: item.id,
+                                            })
+                                        }}
+                                        category={item.category}
+                                    />
+                                ))}
+                        </div>
+                    ) : (
+                        <p className="text-center text-white text-4xl mt-20 mb-20 min-h-[250px]">Ничего не найдено</p>
+                    )}
+
+                    {totalPages <= 1 && <div className="h-[80px]"></div>}
+
+                    {totalPages > 1 && filteredContent.length > 0 && (
+                        <ProfessionsPaginationDesktop
+                            totalPages={totalPages}
+                            currentPage={currentPage}
+                            onPageChange={handlePageChange}
+                        />
+                    )}
+
+                    <ProfessionSearchDesktop />
                 </div>
             </div>
-
-            {filteredContent.length > 0 ? (
-                <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
-                    {filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
-                        <ProfessionCardPageDesktop
-                            key={item.id}
-                            image={item.image}
-                            profession={item.profession}
-                            price={item.price.toString()}
-                            onClick={() => {
-                                openModal('profession_modal_desktop', 'desktop', {
-                                    profession: item.profession,
-                                    professionId: item.id,
-                                })
-                            }}
-                            category={item.category}
-                        />
-                    ))}
-                </div>
-            ) : (
-                <p className="text-center text-white text-4xl mt-20 mb-20 min-h-[250px]">Ничего не найдено</p>
-            )}
-
-            {totalPages <= 1 && <div className="h-[80px]"></div>}
-
-            {totalPages > 1 && filteredContent.length > 0 && (
-                <ProfessionsPaginationDesktop
-                    totalPages={totalPages}
-                    currentPage={currentPage}
-                    onPageChange={handlePageChange}
-                />
-            )}
-
-            <ProfessionSearchDesktop />
-        </div>
+            <FooterDesktop />
+        </>
     )
 }
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Modal from '@/components/ui/modal'
 import { ChevronLeft } from 'lucide-react'
-import RequiringPaymentMobi from '../../layout/RequiringPaymentMobi/RequiringPaymentMobi'
-import OrderPaymentMobi from '../../layout/OrderPaymentMobi/OrderPaymentMobi'
+import RequiringPaymentMobi from '@/components/mobi/pageMobi/PersonalAccountPageMobi/components/RequiringPaymentMobi/RequiringPaymentMobi'
+import OrderPaymentMobi from '@/components/mobi/pageMobi/PersonalAccountPageMobi/components/OrderPaymentMobi/OrderPaymentMobi'
 
 const ProfilePageMobi: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false)

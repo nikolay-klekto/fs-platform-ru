@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { content } from '@/components/desktop/layout/PersonalAccountDesktop/content'
+import { content } from '@/components/desktop/pageDesktop/PesronalAccountPageDesktop/contentPersonalAccountPageDesktop/content'
 
 const ProfilePageDesktop: React.FC = () => {
     const [currentComponent, setCurrentComponent] = useState<React.ReactElement | null>(null)
