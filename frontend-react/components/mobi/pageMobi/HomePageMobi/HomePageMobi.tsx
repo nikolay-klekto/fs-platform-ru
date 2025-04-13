@@ -12,9 +12,9 @@ const HomePageMobi: React.FC = () => {
             <div>
                 <HeaderMainMobi />
                 <HeaderCardsMobi />
-            </div>
-            <ProfessionsSectionMobi />
+            </div>            
             <HowWeWorkMobi />
+            <ProfessionsSectionMobi />
             <PromoMobi />
             <EventsSectionMobi />
         </>

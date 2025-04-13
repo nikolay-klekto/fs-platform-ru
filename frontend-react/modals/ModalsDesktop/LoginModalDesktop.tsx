@@ -89,13 +89,18 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         openModal('registration_desktop', 'desktop')
     }
 
+    const openForgotPasswordModal = () => {
+        onClose()
+        openModal('forgot_password_desktop', 'desktop')
+    }
+
     return (
         <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div className="mx-auto flex w-[73%] flex-col items-center justify-center pb-[30px] pt-[40px]">
                 <button onClick={onClose} className="absolute right-[5%] top-[5%] w-[7%]">
                     <X size={41} color="#878797" className="w-full opacity-50 hover:opacity-100" />
                 </button>
-                <h2 className="text36px_desktop text-gradient_desktop_custom 3xl:mb-5 4xl:mb-6 mb-7 inline font-medium uppercase 2xl:mb-4">
+                <h2 className="text36px_desktop text-gradient_desktop_custom mb-7 inline font-medium uppercase 2xl:mb-4 3xl:mb-5 4xl:mb-6">
                     Вход
                 </h2>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle">
@@ -146,7 +151,11 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     </div>
                     <div className={`flex w-full ${formError ? 'justify-between' : 'justify-end'}`}>
                         {formError && <p className="error-form-desktop-custom">Введите e-mail и пароль</p>}
-                        <button className="text15px_desktop border-transparent bg-transparent font-semibold text-[#878797]">
+                        <button
+                            type="button"
+                            className="text15px_desktop bg-transparent font-semibold text-[#878797]"
+                            onClick={openForgotPasswordModal}
+                        >
                             Забыли пароль?
                         </button>
                     </div>
@@ -167,7 +176,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] text-5xl font-semibold disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
+                        className="mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
                     >
                         Войти
                     </Button>

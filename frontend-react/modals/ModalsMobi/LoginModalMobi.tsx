@@ -85,6 +85,12 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         onClose()
         openModal('registration_desktop', 'desktop')
     }
+
+    const openForgotPassowrdModal = () => {
+        onClose()
+        openModal('forgot_password_mobi', 'mobi')
+    }
+
     return (
         <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
             <div className="relative w-full max-w-md">
@@ -95,7 +101,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     <X size={30} color="#878797" />
                 </button>
                 <div className="relative flex max-w-[500px]  flex-col items-center rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat">
-                    <h1 className="text18px_mobi bg-sub-title-gradient-mobi mx-auto mb-1 mt-6 inline bg-clip-text font-semibold uppercase text-transparent">
+                    <h1 className="text18px_mobi mx-auto mb-1 mt-6 inline bg-sub-title-gradient-mobi bg-clip-text font-semibold uppercase text-transparent">
                         Вход
                     </h1>
                     <form onSubmit={handleSubmit} className="flex w-4/5 flex-col align-middle">
@@ -103,7 +109,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             <EnhancedInput
                                 type="email"
                                 name="email"
-                                placeholder="Почта"
+                                placeholder="Ваш e-mail"
                                 value={formData.email}
                                 onBlur={() => handleInputBlur('email')}
                                 validate={(value) => validateEmailMobi(value)}
@@ -114,7 +120,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         : 'border-[#878797] focus:border-[#878797]'
                                 } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
                                 label="Почта*"
-                                labelClassName="mb-1 text-2xl font-medium text-white"
+                                labelClassName="mb-1 text14px_mobi font-medium text-white"
                                 wrapperClassName="w-full"
                             />
                             {inputInternalErrors.email && (
@@ -136,7 +142,10 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 required={true}
                             />
                         </div>
-                        <button className="text14px_mobi self-end border-transparent bg-transparent font-semibold text-[#878797] underline">
+                        <button
+                            onClick={openForgotPassowrdModal}
+                            className="text14px_mobi self-end border-transparent bg-transparent font-semibold text-[#878797] underline"
+                        >
                             Забыли пароль?
                         </button>
                         {formError && <p className="error-form-mobi-custom">Заполните необходимые поля</p>}
@@ -145,7 +154,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             variant="default"
                             size="btn_modal_desktop"
                             disabled={formError}
-                            className="bg-gradient-desktop sm_xl:text-3xl sm_l:text-2xl sm_s:text-xl hover:bg-gradient-desktop-hover mx-auto mt-6 w-4/5 rounded-[50px] text-4xl font-medium sm:text-xl md:text-4xl"
+                            className="mx-auto mt-6 w-4/5 rounded-[50px] bg-gradient-desktop text-4xl font-medium hover:bg-gradient-desktop-hover sm:text-xl md:text-4xl sm_s:text-xl sm_l:text-2xl sm_xl:text-3xl"
                         >
                             Войти
                         </Button>

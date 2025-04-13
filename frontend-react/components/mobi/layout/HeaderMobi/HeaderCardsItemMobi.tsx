@@ -12,6 +12,7 @@ interface IHeaderCardItem {
     price: number
     currency: string
     tooltipMessage: string
+    disableCurrencyTranslation?: boolean
 }
 
 const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
@@ -21,6 +22,7 @@ const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
     price,
     currency,
     tooltipMessage,
+    disableCurrencyTranslation = true,
 }) => {
     return (
         <>
@@ -34,16 +36,18 @@ const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
                 }}
             >
                 <HelpTooltipMobi tooltipMessage={tooltipMessage} />
-                <div className="relative flex flex-1 flex-col items-center justify-center gap-[17px]">
-                    <div className="sm_s:text-3xl sm_s:leading-[24px] px-[30px] text-justify text-5xl font-medium leading-[32px] text-white sm:text-3xl sm:leading-[24px]">
-                        {textBlack}{' '}
-                        <span className="bg-sub-title-gradient-mobi20 rounded-[20px] px-[4px] font-bold text-white sm:px-[2px]">
-                            {textColor}
-                        </span>{' '}
-                        {textBlackBr}
-                    </div>
-                    <div className="text28px_mobi font-medium text-white">
-                        {price} {currency}
+                <div className="relative flex h-full w-full flex-col items-center justify-center gap-[17px] pb-8">
+                    <div className="flex flex-col items-center justify-center text-center">
+                        <div className="sm_s:text-3xl sm_s:leading-[24px] px-[30px] text-justify text-5xl font-medium leading-[32px] text-white sm:text-3xl sm:leading-[24px]">
+                            {textBlack}{' '}
+                            <span className="bg-sub-title-gradient-mobi20 rounded-[20px] px-[4px] font-bold text-white sm:px-[2px]">
+                                {textColor}
+                            </span>{' '}
+                            {textBlackBr}
+                        </div>
+                        <div className="text28px_mobi font-medium text-white">
+                            {price} <span translate={disableCurrencyTranslation ? 'no' : 'yes'}>{currency}</span>
+                        </div>
                     </div>
                     <Button variant="circleBlue" size="circleMobi" className="absolute bottom-0 right-0">
                         <ArrowWhiteMobi />
