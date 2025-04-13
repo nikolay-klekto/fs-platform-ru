@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
+import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
 import { EnhancedTextareaMobi } from '../../shared/TextareaMobi'
@@ -44,6 +45,7 @@ const ContactsMobi: React.FC = () => {
     })
 
     const [formError, setFormError] = React.useState('')
+    const { toast } = useToast()
 
     const handleChange = (field: keyof IFormData, value: string) => {
         setFormData((prev) => ({
@@ -92,6 +94,10 @@ const ContactsMobi: React.FC = () => {
 
         setFormError('')
         console.log('Форма отправлена:', formData)
+
+        toast({
+            description: 'Спасибо! Ваша заявка была успешно отправлена',
+        })
     }
 
     return (

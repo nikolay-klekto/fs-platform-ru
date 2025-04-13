@@ -8,6 +8,7 @@ import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import ContactsPageDesktop from '@/components/desktop/pageDesktop/ContactsPageDesktop/ContactsPageDesktop'
 import ContactsPageMobi from '@/components/mobi/pageMobi/ContactsPageMobi/ContactsPageMobi'
+import { Toaster } from '@/components/ui/toaster'
 
 export default function Contacts() {
     const [isClient, setIsClient] = useState(false)
@@ -43,6 +44,7 @@ export default function Contacts() {
                     <FooterMobi />
                 </>
             )}
+            <Toaster />
         </div>
     )
 }
