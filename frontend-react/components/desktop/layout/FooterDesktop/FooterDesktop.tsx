@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { LogoIconDesktop } from '@/components/assets/icons'
-import { contentFooterDesktop, contentFooterImagesDesktop } from './content'
+import { contentFooterDesktop, contentFooterImagesDesktop } from './contentFooterDesktop/content'
 
 const FooterDesktop: React.FC = () => {
     return (

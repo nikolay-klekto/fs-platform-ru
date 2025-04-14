@@ -8,7 +8,7 @@ import ModalConfirmOrderDeleteDesktop from '@/modals/ModalsDesktop/ModalConfirmD
 import ModalCallMobi from '@/modals/ModalsMobi/ModalCallMobi'
 import RegistrationModalMobi from '@/modals/ModalsMobi/RegistrationModalMobi'
 import LoginModalMobi from '@/modals/ModalsMobi/LoginModalMobi'
-import ProfessionModalDesktop from '@/components/desktop/layout/ProfessionModalDesktop/ProfessionModalDesktop'
+import ProfessionModalDesktop from '@/components/desktop/pageDesktop/ProfessionsModalDesktop/ProfessionModalDesktop'
 import ProfessionModalMobi from '@/components/mobi/layout/ProfessionModalMobi/ProfessionModalMobi'
 import ModalOrderPlacedDesktop from '@/modals/ModalsDesktop/ModalOrderPlacedDesktop'
 import ModalContractTerminatedDesktop from '@/modals/ModalsDesktop/ModalContractTerminatedDesktop'
@@ -16,6 +16,9 @@ import ModalContractTerminatedMobi from './ModalsMobi/ModalStatusMobi/ModalContr
 import ModalOrderAcceptedMobi from './ModalsMobi/ModalStatusMobi/ModalOrderAcceptedMobi'
 import ModalFeedbackDesktop from './ModalsDesktop/ModalFeedbackDesktop'
 import ModalEventsDesktop from './ModalsDesktop/ModalEventsDesktop/ModalEventsDesktop'
+import ModalForgotPasswordDesktop from './ModalsDesktop/ModalForgotPasswordDesktop'
+import ModalForgotPasswordMobi from './ModalsMobi/ModalForgotPasswordMobi'
+import ModalCookieDesktop from './ModalsDesktop/ModalCookieDesktop'
 
 interface IModalContent {
     onClose: () => void
@@ -71,6 +74,14 @@ export const modals = {
             id: 'events_desktop',
             content: ({ onClose }: IModalContent) => <ModalEventsDesktop onClose={onClose} />,
         },
+        {
+            id: 'forgot_password_desktop',
+            content: ({ onClose }: IModalContent) => <ModalForgotPasswordDesktop onClose={onClose} />,
+        },
+        {
+            id: 'cookie_desktop',
+            content: ({ onClose }: IModalContent) => <ModalCookieDesktop onClose={onClose} />,
+        },
     ],
     mobi: [
         {
@@ -99,6 +110,10 @@ export const modals = {
         {
             id: 'order_accepted_mobi',
             content: ({ onClose }: IModalContent) => <ModalOrderAcceptedMobi onClose={onClose} />,
+        },
+        {
+            id: 'forgot_password_mobi',
+            content: ({ onClose }: IModalContent) => <ModalForgotPasswordMobi onClose={onClose} />,
         },
     ],
 }
