@@ -1,22 +1,25 @@
 import React from 'react'
-import HeaderMainMobi from '../../layout/HeaderMobi/HeaderMainMobi'
-import HeaderCardsMobi from '../../layout/HeaderMobi/HeaderCardsMobi'
-import ProfessionsSectionMobi from '../../layout/ProfessionsSectionMobi/ProfessionsSectionMobi'
-import HowWeWorkMobi from '../../layout/HowWeWorkMobi/HowWeWorkMobi'
-import PromoMobi from '../../layout/PromoMobi/PromoMobi'
-import EventsSectionMobi from '../../layout/EventsSectionMobi/EventsSectionMobi'
+import HeaderMainMobi from './components/HeaderMainMobi/HeaderMainMobi'
+import HeaderCardsMobi from './components/HeaderCardsMobi/HeaderCardsMobi'
+import ProfessionsSectionMobi from './components/ProfessionsSectionMobi/ProfessionsSectionMobi'
+import HowWeWorkMobi from './components/HowWeWorkMobi/HowWeWorkMobi'
+import PromoMobi from './components/PromoMobi/PromoMobi'
+import EventsSectionMobi from './components/EventsSectionMobi/EventsSectionMobi'
+import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 
 const HomePageMobi: React.FC = () => {
     return (
         <>
-            <div>
+            <div className="bg-[#101030]">
                 <HeaderMainMobi />
                 <HeaderCardsMobi />
-            </div>            
-            <HowWeWorkMobi />
-            <ProfessionsSectionMobi />
-            <PromoMobi />
-            <EventsSectionMobi />
+
+                <HowWeWorkMobi />
+                <ProfessionsSectionMobi />
+                <PromoMobi />
+                <EventsSectionMobi />
+            </div>
+            <FooterMobi />
         </>
     )
 }
