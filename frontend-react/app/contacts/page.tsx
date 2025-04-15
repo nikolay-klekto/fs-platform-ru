@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import ContactsPageDesktop from '@/components/desktop/pageDesktop/ContactsPageDesktop/ContactsPageDesktop'
 import ContactsPageMobi from '@/components/mobi/pageMobi/ContactsPageMobi/ContactsPageMobi'
+import { Toaster } from '@/components/ui/toaster'
 
 export default function Contacts() {
     const [isClient, setIsClient] = useState(false)
@@ -30,6 +31,7 @@ export default function Contacts() {
                     <ContactsPageMobi />
                 </>
             )}
+            <Toaster />
         </div>
     )
 }
