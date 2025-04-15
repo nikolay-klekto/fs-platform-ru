@@ -93,12 +93,35 @@ const ContactsDesktop: React.FC = () => {
         const hasErrors = Object.values(fieldErrors).some((error) => error)
         if (hasErrors) return
 
-        setFormError('')
-        console.log('Форма отправлена:', formData)
-
         toast({
             description: 'Спасибо! Ваша заявка была успешно отправлена',
         })
+
+        setFormData({
+            name: '',
+            email: '',
+            tel: '',
+            role: '',
+            message: '',
+        })
+
+        setFieldErrors({
+            name: false,
+            email: false,
+            tel: false,
+            role: false,
+            message: false,
+        })
+
+        setEmptyFields({
+            name: false,
+            email: false,
+            tel: false,
+            message: false,
+        })
+
+        setFormError('')
+        console.log('Форма отправлена:', formData)
     }
 
     return (
