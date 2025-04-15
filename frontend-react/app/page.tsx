@@ -1,30 +1,23 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/HomePageDesktop'
-import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
-import ModalCookieDesktop from '@/modals/ModalsDesktop/ModalCookieDesktop'
+import { useModal } from '@/context/ContextModal'
 
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
-    const [showCookies, setShowCookies] = useState(false)
+    const { openModal } = useModal()
 
     useEffect(() => {
         setIsClient(true)
 
         const hasSeenCookies = localStorage.getItem('hasSeenCookies')
         if (!hasSeenCookies) {
-            setShowCookies(true)
+            openModal('cookie_desktop', 'desktop')
+            localStorage.setItem('hasSeenCookies', 'true')
         }
-    }, [])
-
-    const handleCloseCookies = () => {
-        setShowCookies(false)
-        localStorage.setItem('hasSeenCookies', 'true')
-    }
+    }, [openModal])
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 1240px)',
@@ -37,19 +30,11 @@ export default function Home() {
         <div>
             {isDesktop ? (
                 <>
-                    <HeaderDesktop />
-                    <main className="bg-[url('/background/main.webp')] bg-cover bg-no-repeat">
-                        <HomePageDesktop />
-                    </main>
-                    <FooterDesktop />
-                    {showCookies && <ModalCookieDesktop onClose={handleCloseCookies} />}
+                    <HomePageDesktop />
                 </>
             ) : (
                 <>
-                    <main className="bg-[#101030]">
-                        <HomePageMobi />
-                    </main>
-                    <FooterMobi />
+                    <HomePageMobi />
                 </>
             )}
         </div>
