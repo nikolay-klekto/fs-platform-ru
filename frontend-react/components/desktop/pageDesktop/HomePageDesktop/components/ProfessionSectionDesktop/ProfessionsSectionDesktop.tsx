@@ -5,7 +5,6 @@ import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
 import ProfessionCardDesktop from './ItemsProfessionSection/ProfessionCardDesktop'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import ProfessionSendDesktop from './ItemsProfessionSection/ProfessionSendDesktop'
 import { content } from './contentProfessionsSectionDesktop/content'
 import { useModal } from '@/context/ContextModal'
 
