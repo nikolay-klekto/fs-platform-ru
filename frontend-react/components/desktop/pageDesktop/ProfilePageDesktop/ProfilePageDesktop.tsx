@@ -36,11 +36,11 @@ const ProfilePageDesktop: React.FC = () => {
                                 <button
                                     key={item.id}
                                     onClick={() => handleButtonClick(item.component, item.id)}
-                                    className={`text18px_desktop cursor-pointer font-medium text-transparent underline-offset-8 
+                                    className={`text18px_desktop cursor-pointer font-bold underline-offset-8 transition-all duration-300 ease-in-out
                                         ${
                                             item.id === activeId
-                                                ? 'bg-gradient-desktop bg-clip-text underline decoration-[#6C41F3]'
-                                                : 'hover:bg-gradient-desktop hover:[#3B51A8] text-[#878797] hover:bg-clip-text hover:underline'
+                                                ? 'bg-gradient-desktop bg-clip-text text-transparent underline decoration-[#6C41F3] decoration-4'
+                                                : 'hover:[#3B51A8] text-[#878797] decoration-4 hover:bg-gradient-desktop hover:bg-clip-text hover:underline'
                                         }`}
                                 >
                                     {item.title}
