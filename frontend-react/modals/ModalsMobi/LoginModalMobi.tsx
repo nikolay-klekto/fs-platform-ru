@@ -118,8 +118,8 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     inputTouched.email && validateEmailMobi(formData.email).styleError
                                         ? 'border-[#bc8070] focus:border-[#bc8070] '
                                         : 'border-[#878797] focus:border-[#878797]'
-                                } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
-                                label="Почта*"
+                                } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white focus:ring-0 focus:ring-offset-0`}
+                                label="Почта"
                                 labelClassName="mb-1 text14px_mobi font-medium text-white"
                                 wrapperClassName="w-full"
                             />
