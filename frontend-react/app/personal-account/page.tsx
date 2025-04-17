@@ -1,8 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import PersonalAccountDesktop from '@/components/desktop/pageDesktop/PesronalAccountPageDesktop/PersonalAccountPageDesktop'
-import PersonalAccountMobi from '@/components/mobi/pageMobi/PersonalAccountPageMobi/PersonalAccountPageMobi'
+import PersonalAccountPageDesktop from '@/components/desktop/pageDesktop/PesronalAccountPageDesktop/PersonalAccountPageDesktop'
+import PersonalAccountPageMobi from '@/components/mobi/pageMobi/PersonalAccountPageMobi/PersonalAccountPageMobi'
 
 export default function PersonalAccount() {
     const [isClient, setIsClient] = useState(false)
@@ -22,13 +22,11 @@ export default function PersonalAccount() {
         <div>
             {isDesktop ? (
                 <>
-                    <PersonalAccountDesktop />
+                    <PersonalAccountPageDesktop />
                 </>
             ) : (
                 <>
-                    <main className="min-h-screen grow bg-[#101030]">
-                        <ProfilePageMobi />
-                    </main>
+                    <PersonalAccountPageMobi />
                 </>
             )}
         </div>

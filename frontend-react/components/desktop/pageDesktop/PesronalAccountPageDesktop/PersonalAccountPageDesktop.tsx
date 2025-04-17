@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { content } from './contentPersonalAccountPageDesktop/content'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '../../layout/FooterDesktop/FooterDesktop'
 
 const PersonalAccountPageDesktop: React.FC = () => {
     const [currentComponent, setCurrentComponent] = useState<React.ReactElement | null>(null)
@@ -56,6 +57,7 @@ const PersonalAccountPageDesktop: React.FC = () => {
                 </div>
             </div>
             <div />
+            <FooterDesktop />
         </>
     )
 }
