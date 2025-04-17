@@ -25,7 +25,7 @@ const FooterDesktop: React.FC = () => {
                         <div className="flex w-full max-w-[1190px] justify-around">
                             {contentFooterDesktop.map((section) => (
                                 <div key={section.id}>
-                                    <p className="pb-7 text-4xl font-bold text-white">{section.title}</p>
+                                    <p className="pb-7 text-4xl font-bold text-white uppercase">{section.title}</p>
                                     <ul>
                                         {section.links.map((link) => (
                                             <li
