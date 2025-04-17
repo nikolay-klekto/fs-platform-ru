@@ -18,6 +18,7 @@ const ProfessionsPageDesktop: React.FC = () => {
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+    const [selectedInternshipTypes, setselectedIntenshipTypes] = useState<string[]>([])
 
     const cardsPerPage = 12
 
@@ -26,7 +27,11 @@ const ProfessionsPageDesktop: React.FC = () => {
             searchQuery.length < 3 || item.profession.toLowerCase().includes(searchQuery.toLowerCase().trim())
         const matchesCategory =
             selectedCategories.length === 0 || selectedCategories.some((category) => item.category === category)
-        return matchesSearch && matchesCategory
+        const matchesIntenshipTypes =
+            selectedInternshipTypes.length === 0 ||
+            selectedInternshipTypes.some((internshipType) => item.internshipType === internshipType)
+
+        return matchesSearch && matchesCategory && matchesIntenshipTypes
     })
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
@@ -41,6 +46,9 @@ const ProfessionsPageDesktop: React.FC = () => {
 
     const handleCategoryChange = (categories: string[]) => {
         setSelectedCategories(categories)
+    }
+    const handleIntenshipType = (categories: string[]) => {
+        setselectedIntenshipTypes(categories)
     }
 
     return (
@@ -71,7 +79,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                             </Button>
                         </div>
                         <div className="flex items-center gap-[20px] ml-[5%]">
-                            <SelectInternshipTypeDesktop onCategoryChange={handleCategoryChange} />
+                            <SelectInternshipTypeDesktop onCategoryChange={handleIntenshipType} />
                             <ProfessionsSelectDesktop onCategoryChange={handleCategoryChange} />
                         </div>
                     </div>
