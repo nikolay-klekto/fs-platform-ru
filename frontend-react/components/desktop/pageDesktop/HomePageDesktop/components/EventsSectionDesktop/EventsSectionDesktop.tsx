@@ -27,7 +27,7 @@ const EventsSectionDesktop: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom mt-[10vh] flex max-w-full select-none gap-8 overflow-x-scroll"
+                className="no-scrollbar_custom container mt-[6vh] flex select-none gap-8 overflow-x-scroll"
             >
                 {contentEventsSection.map((item) => (
                     <ItemEventsDesktop
