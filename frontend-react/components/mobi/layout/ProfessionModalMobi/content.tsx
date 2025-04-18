@@ -3,7 +3,7 @@ interface IProfessionAbout {
     text: string
 }
 
-interface IInternshipCompanies {
+export interface IInternshipCompanies {
     id: number
     image: {
         src: string

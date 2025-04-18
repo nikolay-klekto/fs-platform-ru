@@ -2,6 +2,7 @@ import React from 'react'
 import HeaderMainDesktop from './components/HeaderMainDesktop/HeaderMainDesktop'
 import HeaderCardsDesktop from './components/HeaderCardsDesktop/HeaderCardsDesktop'
 import ProfessionsSectionDesktop from './components/ProfessionSectionDesktop/ProfessionsSectionDesktop'
+import CompaniesSectionDesktop from '../../layout/CompaniesSectionDesktop/CompaniesSectionDesktop'
 import HowWeWorkDesktop from './components/HowWeWorkDesktop/HowWeWorkDesktop'
 import PromoDesktop from './components/PromoDesktop/PromoDesktop'
 import EventsSectionDesktop from './components/EventsSectionDesktop/EventsSectionDesktop'
@@ -21,6 +22,7 @@ const HomePageDesktop: React.FC = () => {
                 </div>
                 <HowWeWorkDesktop />
                 <ProfessionsSectionDesktop />
+                <CompaniesSectionDesktop />
                 <PromoDesktop />
                 <EventsSectionDesktop />
             </div>
