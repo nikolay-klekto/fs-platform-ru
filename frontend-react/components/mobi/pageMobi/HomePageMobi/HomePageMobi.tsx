@@ -5,7 +5,7 @@ import ProfessionsSectionMobi from './components/ProfessionsSectionMobi/Professi
 import HowWeWorkMobi from './components/HowWeWorkMobi/HowWeWorkMobi'
 import PromoMobi from './components/PromoMobi/PromoMobi'
 import EventsSectionMobi from './components/EventsSectionMobi/EventsSectionMobi'
-import CompaniesSectionMobi from './components/CompaniesSectionMobi/CompaniesSectionMobi'
+import CompaniesSectionMobi from '../../layout/CompaniesSectionMobi/CompaniesSectionMobi'
 
 const HomePageMobi: React.FC = () => {
     return (
@@ -13,12 +13,12 @@ const HomePageMobi: React.FC = () => {
             <div className="bg-[#101030]">
                 <HeaderMainMobi />
                 <HeaderCardsMobi />
-                <HowWeWorkMobi />
-                <ProfessionsSectionMobi />
-                <CompaniesSectionMobi />
-                <PromoMobi />
-                <EventsSectionMobi />
             </div>
+            <HowWeWorkMobi />
+            <ProfessionsSectionMobi />
+            <CompaniesSectionMobi />
+            <PromoMobi />
+            <EventsSectionMobi />
         </>
     )
 }
