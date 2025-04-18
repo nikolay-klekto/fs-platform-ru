@@ -5,6 +5,7 @@ import ProfessionsSectionMobi from '../../layout/ProfessionsSectionMobi/Professi
 import HowWeWorkMobi from '../../layout/HowWeWorkMobi/HowWeWorkMobi'
 import PromoMobi from '../../layout/PromoMobi/PromoMobi'
 import EventsSectionMobi from '../../layout/EventsSectionMobi/EventsSectionMobi'
+import CompaniesSectionMobi from '../../layout/CompaniesSectionMobi/CompaniesSectionMobi'
 
 const HomePageMobi: React.FC = () => {
     return (
@@ -12,9 +13,10 @@ const HomePageMobi: React.FC = () => {
             <div>
                 <HeaderMainMobi />
                 <HeaderCardsMobi />
-            </div>            
+            </div>
             <HowWeWorkMobi />
             <ProfessionsSectionMobi />
+            <CompaniesSectionMobi />
             <PromoMobi />
             <EventsSectionMobi />
         </>
