@@ -20,8 +20,8 @@ const ItemEventsDesktop: React.FC<IEventSection> = ({ image, title, date, onWidt
     }, [onWidthChange])
 
     return (
-        <div ref={itemRef} className="flex min-w-[27%] max-w-[27%] flex-col">
-            <div className="relative aspect-[4/3] w-full">
+        <div ref={itemRef} className=" flex min-w-[27%] max-w-[27%] flex-col pt-[4vh]">
+            <div className="hover:button-shadow_around_desktop_custom relative aspect-[4/3] w-full cursor-pointer rounded-[3.125rem]">
                 <Image
                     src={image}
                     fill
