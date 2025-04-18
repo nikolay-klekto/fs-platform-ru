@@ -55,7 +55,7 @@ const HeaderCardItemDesktop: React.FC<IHeaderCardItem> = ({
                         от{' '}
                         <span className="text32px_desktop font-medium">
                             {price} <span translate={disableCurrencyTranslation ? 'no' : 'yes'}>{currency}</span> /{' '}
-                            {time}
+                            <span className="text-xl 2xl:text-base 3xl:text-xl">{time}</span>
                         </span>
                     </div>
                     <Button
