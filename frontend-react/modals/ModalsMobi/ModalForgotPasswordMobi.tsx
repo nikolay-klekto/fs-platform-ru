@@ -32,6 +32,9 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
             [field]: true,
         }))
     }
+    const isEmailValid = !Boolean(validateEmailMobi(passwordData.email).styleError)
+    const isFormValid = isEmailValid && passwordData.email.trim() !== ''
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
     return (
         <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
@@ -73,8 +76,16 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
                     </p>
                     <button
                         type="submit"
-                        className=" mx-auto mt-7 flex h-12 w-[85%] items-center justify-center rounded-[50px] bg-sub-title-gradient-mobi text-3xl font-semibold 
-                        text-white disabled:bg-[#878797] md:text-4xl"
+                        onClick={() => {
+                            setIsSubmitted(true)
+                            setInputTouched((prev) => ({ ...prev, email: true }))
+                        }}
+                        className={`mx-auto mt-7 flex h-12 w-[85%] items-center justify-center rounded-[50px]  text-3xl font-semibold 
+                        md:text-4xl ${
+                            !isSubmitted || isFormValid
+                                ? 'bg-sub-title-gradient-mobi  text-white  hover:bg-gradient-desktop-hover'
+                                : 'bg-[#878797] text-[#353652] hover:bg-[#878797]'
+                        }`}
                     >
                         Далее
                     </button>

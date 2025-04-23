@@ -36,6 +36,9 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
         }))
     }
 
+    const isEmailValid = !Boolean(validateEmailDesktop(passwordData.email).styleError)
+    const isFormValid = isEmailValid && passwordData.email.trim() !== ''
+    const [isSubmitted, setIsSubmitted] = useState(false)
     return (
         <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div>
@@ -89,7 +92,15 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         type="submit"
                         variant="default"
                         size="btn_modal_desktop"
-                        className="mx-auto flex h-16 w-[70%] items-center justify-center rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:bg-[#878797]"
+                        onClick={() => {
+                            setIsSubmitted(true)
+                            setInputTouched((prev) => ({ ...prev, email: true }))
+                        }}
+                        className={`mx-auto flex h-16 w-[70%] items-center justify-center rounded-[50px] text-5xl font-semibold ${
+                            !isSubmitted || isFormValid
+                                ? 'bg-gradient-desktop hover:bg-gradient-desktop-hover'
+                                : 'bg-[#878797] text-[#353652] hover:bg-[#878797]'
+                        }`}
                     >
                         Далее
                     </Button>
