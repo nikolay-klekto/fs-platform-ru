@@ -8,8 +8,8 @@ const inputVariants = cva(
     {
         variants: {
             variant: {
-                default:
-                    'border-input bg-background focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2',
+                default: 'border-input bg-background',
+                // focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2
                 gradient_desktop:
                     'flex border-0 text-5xl text-[#878797] caret-[#878797] outline-none placeholder:font-semibold placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
                 search_mobi:
