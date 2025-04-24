@@ -25,9 +25,9 @@ export default function PersonalAccount() {
                     <PersonalAccountPageDesktop />
                 </>
             ) : (
-                <main className="min-h-screen grow bg-[#101030]">
+                <>
                     <PersonalAccountPageMobi />
-                </main>
+                </>
             )}
         </div>
     )
