@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useToast } from '@/hooks/use-toast'
+import { useModal } from '@/context/ContextModal'
 
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
@@ -22,6 +23,8 @@ interface IFormData {
 }
 
 const ContactsDesktop: React.FC = () => {
+    const { openModal } = useModal()
+
     const [formData, setFormData] = useState<IFormData>({
         name: '',
         email: '',
@@ -131,7 +134,11 @@ const ContactsDesktop: React.FC = () => {
                 <div className="radial-gradient_desktop 3xl:top-[410px] right-[50px] top-[310px] 2xl:top-[560px]"></div>
                 <div className="3xl:mr-20 relative z-[1] mr-32 flex max-w-[541px] flex-col gap-7 2xl:mb-28 2xl:mr-0 2xl:max-w-none 2xl:self-start">
                     <h2 className="text-26xl 3xl:text-23xl font-semibold uppercase">Cвяжитесь с нами</h2>
-                    <Button variant="send_btn_desktop" size="contacts_btn_desktop">
+                    <Button
+                        variant="send_btn_desktop"
+                        size="contacts_btn_desktop"
+                        onClick={() => openModal('join_team_modal_desktop', 'desktop')}
+                    >
                         Хочу в команду
                     </Button>
                 </div>

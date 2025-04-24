@@ -19,6 +19,8 @@ import ModalEventsDesktop from './ModalsDesktop/ModalEventsDesktop/ModalEventsDe
 import ModalForgotPasswordDesktop from './ModalsDesktop/ModalForgotPasswordDesktop'
 import ModalForgotPasswordMobi from './ModalsMobi/ModalForgotPasswordMobi'
 import ModalCookieDesktop from './ModalsDesktop/ModalCookieDesktop'
+import ModalJoinTeamDesktop from './ModalsDesktop/ModalJoinTeamDesktop'
+//import ModalJoinTeamMobi from './ModalsMobi/ModalJoinTeamMobi'
 
 interface IModalContent {
     onClose: () => void
@@ -82,6 +84,10 @@ export const modals = {
             id: 'cookie_desktop',
             content: ({ onClose }: IModalContent) => <ModalCookieDesktop onClose={onClose} />,
         },
+        {
+            id: 'join_team_modal_desktop',
+            content: ({ onClose }: IModalContent) => <ModalJoinTeamDesktop onClose={onClose} />,
+        },
     ],
     mobi: [
         {
@@ -114,6 +120,10 @@ export const modals = {
         {
             id: 'forgot_password_mobi',
             content: ({ onClose }: IModalContent) => <ModalForgotPasswordMobi onClose={onClose} />,
+        },
+        {
+            id: 'join_team_modal_mobi',
+            content: ({ onClose }: IModalContent) => <ModalJoinTeamMobi onClose={onClose} />,
         },
     ],
 }
