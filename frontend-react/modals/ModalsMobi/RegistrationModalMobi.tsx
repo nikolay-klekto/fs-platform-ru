@@ -148,7 +148,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
             const result = await register(formData.email, cleanedPhone, formData.password)
             if (result.success) {
                 onClose()
-                router.push('/personalaccount')
+                router.push('/personal-account')
             } else {
                 setInputInternalErrors((prevErrors) => ({
                     ...prevErrors,
