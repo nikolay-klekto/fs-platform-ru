@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Modal from '@/components/ui/modal'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -35,6 +35,38 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
         profession: false,
         consent: false,
     })
+
+    const fileInputRef = useRef<HTMLInputElement>(null)
+    const [selectedFile, setSelectedFile] = useState<File | null>(null)
+
+    const openFileDialog = () => {
+        fileInputRef.current?.click()
+    }
+    const MAX_FILE_SIZE_MB = 5
+    const ALLOWED_FILE_TYPES = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    ]
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (!file) return
+
+        const isFileSizeValid = file.size <= MAX_FILE_SIZE_MB * 1024 * 1024
+        if (!isFileSizeValid) {
+            alert('Файл слишком большой. Максимальный размер 5MB.')
+            return
+        }
+
+        const isFileTypeValid = ALLOWED_FILE_TYPES.includes(file.type)
+        if (!isFileTypeValid) {
+            alert('Неверный формат файла. Разрешены только PDF, DOC, DOCX.')
+            return
+        }
+
+        setSelectedFile(file)
+    }
 
     const validateForm = () => {
         const newErrors = {
@@ -139,10 +171,29 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         </p>
                     )}
                     <div className="mb-[44px] flex items-center gap-[12px]">
-                        <AttachFileIconDesktop />
-                        <p className="text-[24px] font-semibold leading-[100%] tracking-normal text-[#FFFFFF]">
-                            Прикрепите резюме
-                        </p>
+                        <button
+                            type="button"
+                            onClick={openFileDialog}
+                            className="bg-gradient-desktop hover:bg-gradient-desktop-hover flex size-[58px] items-center justify-center rounded-full"
+                        >
+                            <AttachFileIconDesktop className="text-white" />
+                        </button>
+                        {selectedFile ? (
+                            <p className="text-[24px] font-semibold leading-[100%] tracking-normal text-[#FFFFFF]">
+                                Файл прикреплен
+                            </p>
+                        ) : (
+                            <p className="text-[24px] font-semibold leading-[100%] tracking-normal text-[#FFFFFF]">
+                                Прикрепите резюме
+                            </p>
+                        )}
+                        <input
+                            type="file"
+                            ref={fileInputRef}
+                            onChange={handleFileChange}
+                            accept=".pdf,.doc,.docx"
+                            className="hidden"
+                        />
                     </div>
                     <div className="mb-[14px]">
                         <EnhancedInput
