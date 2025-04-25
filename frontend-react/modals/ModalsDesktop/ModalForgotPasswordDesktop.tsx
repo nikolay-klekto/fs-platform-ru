@@ -61,9 +61,9 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         onChange={(value) => setPasswordData((prev) => ({ ...prev, email: value }))}
                         className={`${
                             inputTouched.email && validateEmailDesktop(passwordData.email).styleError
-                                ? 'border-[#bc8070] '
-                                : 'border-[#878797] '
-                        }  h-13 w-full max-w-[426px] rounded-[20px] border-2 bg-transparent text-4xl font-medium opacity-80 placeholder:text-[#353652]/40`}
+                                ? 'border-[#bc8070] focus:border-[#bc8070] '
+                                : 'border-[#878797] focus:border-[#878797]'
+                        }  h-13 palceholder:pl-[20px] w-full max-w-[426px] rounded-[50px] border-2 bg-transparent pl-[20px]  text18px_desktop font-medium opacity-80 placeholder:text-[#353652]/40 focus:ring-0 focus:ring-offset-0`}
                         label="Почта"
                         labelClassName="mb-1 text15px_desktop font-medium text-white"
                         wrapperClassName="w-full max-w-[426px]"
@@ -89,7 +89,7 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         type="submit"
                         variant="default"
                         size="btn_modal_desktop"
-                        className="mx-auto flex h-14 w-[90%] items-center justify-center rounded-[50px] bg-gradient-desktop text-2xl font-semibold hover:bg-gradient-desktop-hover disabled:bg-[#878797]"
+                        className="mx-auto flex h-16 w-[70%] items-center justify-center rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:bg-[#878797]"
                     >
                         Далее
                     </Button>

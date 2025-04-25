@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { LessIconMobi, MoreIconMobi } from '@/components/assets/icons'
+import { LessIconMobi, MoreIconMobi } from '@/components/assets/iconsMobi'
 
 interface IProfessionsPagination {
     totalPages: number
