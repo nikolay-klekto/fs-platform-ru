@@ -3,7 +3,7 @@
 import React from 'react'
 import HeaderNavigationDesktop from './ItemHeaderDesktop/HeaderNavigationDesktop'
 import Link from 'next/link'
-import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/components/assets/icons'
+import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 import { useModal } from '@/context/ContextModal'
 
