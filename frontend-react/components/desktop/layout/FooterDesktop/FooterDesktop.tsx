@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { LogoIconDesktop } from '@/components/assets/icons'
+import { LogoIconDesktop } from '@/components/assets/iconsDesktop'
 import { contentFooterDesktop, contentFooterImagesDesktop } from './contentFooterDesktop/content'
 
 const FooterDesktop: React.FC = () => {
