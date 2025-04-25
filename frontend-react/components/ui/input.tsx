@@ -9,8 +9,8 @@ const inputVariants = cva(
     {
         variants: {
             variant: {
-                default:
-                    'border-input bg-background focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2',
+                default: 'border-input bg-background',
+                // focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2
                 gradient_desktop:
                     'flex border-0 text-5xl text-[#878797] caret-[#878797] outline-none placeholder:font-semibold placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
                 search_mobi:
@@ -67,8 +67,6 @@ export interface IEnhancedInput
     placeholder?: string
     name?: string
     checked?: boolean
-    mask?: string
-    maskPlaceholder?: string
 }
 
 const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
@@ -89,9 +87,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             wrapperClassName,
             labelClassName,
             placeholder,
-            mask,
             checked,
-            //maskPlaceholder = '_',
             ...props
         },
         ref,
@@ -182,26 +178,26 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         {label}
                     </label>
                 )}
-                {!isCheckbox &&
-                    (mask ? null : ( // </InputMask> //     )} //         <input {...inputProps} ref={ref} type={type} name={name} placeholder={placeholder} /> //     {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => ( // > //     {...props} //     )} //         styleErrorClass && 'custom_error_style_input', //         className, //         isFocused && 'ring-2 ring-ring ring-offset-2', //         inputVariants({ variant, size, rounded }), //     className={cn( //     onFocus={handleFocus} //     onBlur={handleBlur} //     onChange={handleChange} //     value={internalValue as string} //     maskPlaceholder={maskPlaceholder} //     mask={mask} // <InputMask
-                        <input
-                            type={type}
-                            className={cn(
-                                inputVariants({ variant, size, rounded }),
-                                isFocused && 'ring-2 ring-ring ring-offset-2',
-                                className,
-                                styleErrorClass && 'custom_error_style_input',
-                            )}
-                            ref={ref}
-                            name={name}
-                            placeholder={placeholder}
-                            value={internalValue.toString()}
-                            onChange={handleChange}
-                            onFocus={handleFocus}
-                            onBlur={handleBlur}
-                            {...props}
-                        />
-                    ))}
+                {!isCheckbox && (
+                    <input
+                        id={name}
+                        type={type}
+                        className={cn(
+                            inputVariants({ variant, size, rounded }),
+                            isFocused && 'ring-2 ring-ring ring-offset-2',
+                            className,
+                            styleErrorClass && 'custom_error_style_input',
+                        )}
+                        ref={ref}
+                        name={name}
+                        placeholder={placeholder}
+                        value={internalValue.toString()}
+                        onChange={handleChange}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                        {...props}
+                    />
+                )}
                 {(helperText || internalError !== '') && (
                     <span className={cn('text-xs', internalError ? 'text-destructive' : 'text-muted-foreground')}>
                         {internalError || helperText}

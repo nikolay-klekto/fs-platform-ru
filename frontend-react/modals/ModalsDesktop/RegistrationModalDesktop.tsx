@@ -7,9 +7,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
-import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
 import { useModal } from '@/context/ContextModal'
+import PhoneInputDesktop from '@/components/desktop/shared/formInput/PhoneInputDesktop'
+import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 import { useAuth } from '@/hooks/useAuth'
 
 interface IRegistrationFormData {
@@ -122,6 +123,11 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         })
     }
     const router = useRouter()
+
+    const normalizePhone = (value: string) => {
+        return value.replace(/[^\d+]/g, '')
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         client.resetStore()
@@ -130,10 +136,12 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
             return
         }
 
-        const result = await register(formData.email, formData.phoneNumber, formData.password)
+        const cleanedPhone = normalizePhone(formData.phoneNumber)
+
+        const result = await register(formData.email, cleanedPhone, formData.password)
         if (result.success) {
             onClose()
-            router.push('/personalaccount')
+            router.push('/personal-account')
         } else {
             setInputInternalErrors((prevErrors) => ({
                 ...prevErrors,
@@ -153,7 +161,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         phoneNumber: false,
     })
 
-    const handleInputBlur = (field: 'phone' | 'email') => {
+    const handleInputBlur = (field: 'email') => {
         setInputTouched((prev) => ({
             ...prev,
             [field]: true,
@@ -197,24 +205,17 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         )}
                     </div>
                     <div className="mb-5">
-                        <EnhancedInput
-                            type="tel"
-                            name="phone"
-                            placeholder="Номер телефона"
+                        <PhoneInputDesktop
                             value={formData.phoneNumber}
-                            onBlur={() => handleInputBlur('phone')}
-                            validate={(value) => validatePhoneDesktop(value)}
                             onChange={(value) => setFormData((prev) => ({ ...prev, phoneNumber: value }))}
+                            onError={(error) => handleError('phone', error)}
+                            wrapperClassName="w-full"
+                            required={true}
                             className={`${
                                 inputTouched.phoneNumber && validatePhoneDesktop(formData.phoneNumber).styleError
                                     ? 'border-[#bc8070] focus:border-[#bc8070]'
                                     : 'border-[#878797] focus:border-[#878797]'
-                            } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
-                            label="Телефон"
-                            labelClassName="mb-1 text-2xl font-medium text-white"
-                            wrapperClassName="w-full"
-                            // mask="+375 (99) 999-99-99"
-                            // maskPlaceholder="_"
+                            }`}
                         />
                         {inputInternalErrors.phone && (
                             <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>
