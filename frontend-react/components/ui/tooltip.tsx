@@ -4,7 +4,7 @@ import * as React from 'react'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 import { cn } from '@/lib/utils'
-import { HelpIconDesktop, TrashIcon } from '@/components/assets/icons'
+import { HelpIconDesktop, TrashIconDesktop } from '@/components/assets/iconsDesktop'
 import { HelpIconMobi } from '@/components/assets/iconsMobi'
 
 interface IHelpTooltip {
@@ -158,7 +158,7 @@ export const TrashTooltipDesktop: React.FC<IHelpTooltip> = ({ tooltipMessage }) 
         <Tooltip>
             <TooltipTrigger asChild>
                 <button>
-                    <TrashIcon />
+                    <TrashIconDesktop />
                 </button>
             </TooltipTrigger>
             <TooltipContent

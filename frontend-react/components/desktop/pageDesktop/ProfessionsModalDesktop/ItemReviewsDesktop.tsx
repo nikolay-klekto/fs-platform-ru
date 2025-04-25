@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useRef, useEffect } from 'react'
-import { AvatarIconDesktop } from '@/components/assets/icons'
+import { AvatarIconDesktop } from '@/components/assets/iconsDesktop'
 
 interface IItemReviewsDesktop {
     question: string
