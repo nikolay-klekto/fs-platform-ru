@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { LessIconDesktop, MoreIconDesktop } from '@/components/assets/icons'
+import { LessIconDesktop, MoreIconDesktop } from '@/components/assets/iconsDesktop'
 
 interface IProfessionsPagination {
     totalPages: number
@@ -42,6 +42,9 @@ const EventsPaginationDesktop: React.FC<IProfessionsPagination> = ({ totalPages,
 
     return (
         <div className="relative z-[2] mb-[88px] mt-[73px] flex items-center justify-center gap-5">
+<<<<<<< HEAD:frontend-react/components/desktop/pageDesktop/EventsPageDesktop/EventsPaginationDesktop.tsx
+            <button onClick={() => onPageChange(Math.max(1, currentPage - 1))} disabled={currentPage === 1}>
+=======
             <button
                 onClick={() => onPageChange(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
@@ -49,6 +52,7 @@ const EventsPaginationDesktop: React.FC<IProfessionsPagination> = ({ totalPages,
                     currentPage === 1 ? 'cursor-not-allowed text-[#878797]' : 'cursor-pointer text-[#FFFFFFCC]'
                 }`}
             >
+>>>>>>> dev-front-react:frontend-react/components/desktop/pageDesktop/EventsPageDesktop/components/EventsPaginationDesktop.tsx
                 <LessIconDesktop />
             </button>
 
