@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react'
+import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import PhoneInputDesktop from '@/components/desktop/shared/formInput/PhoneInputDesktop'
-import { AttachFileIconDesktop, CloseModalBtnDesktop } from '@/components/assets/iconsDesktop'
+import { AttachFileIconDesktop } from '@/components/assets/iconsDesktop'
 
 interface IFormData {
     name: string
@@ -29,11 +30,13 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
         phoneNumber: boolean
         profession: boolean
         consent: boolean
+        fileError: string | null
     }>({
         name: false,
         phoneNumber: false,
         profession: false,
         consent: false,
+        fileError: null,
     })
 
     const fileInputRef = useRef<HTMLInputElement>(null)
@@ -42,7 +45,7 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const openFileDialog = () => {
         fileInputRef.current?.click()
     }
-    const MAX_FILE_SIZE_MB = 5
+    const MAX_FILE_SIZE_MB = 0.005
     const ALLOWED_FILE_TYPES = [
         'application/pdf',
         'application/msword',
@@ -55,17 +58,18 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
         const isFileSizeValid = file.size <= MAX_FILE_SIZE_MB * 1024 * 1024
         if (!isFileSizeValid) {
-            alert('Файл слишком большой. Максимальный размер 5MB.')
+            setErrors((prev) => ({ ...prev, fileError: 'Файл слишком большой. Максимальный размер 5MB.' }))
             return
         }
 
         const isFileTypeValid = ALLOWED_FILE_TYPES.includes(file.type)
         if (!isFileTypeValid) {
-            alert('Неверный формат файла. Разрешены только PDF, DOC, DOCX.')
+            setErrors((prev) => ({ ...prev, fileError: 'Неверный формат файла. Разрешены только PDF, DOC, DOCX.' }))
             return
         }
 
         setSelectedFile(file)
+        setErrors((prev) => ({ ...prev, fileError: null }))
     }
 
     const validateForm = () => {
@@ -74,6 +78,7 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
             phoneNumber: !formData.phoneNumber.trim(),
             profession: !formData.profession.trim(),
             consent: !formData.consent,
+            fileError: null,
         }
 
         setErrors(newErrors)
@@ -112,10 +117,35 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
         return value.replace(/[^\d+]/g, '')
     }
 
+    const renderErrors = () => {
+        const hasFieldErrors = errors.name || errors.phoneNumber || errors.profession || errors.consent
+        const hasFileError = !!errors.fileError
+
+        return (
+            <>
+                {hasFieldErrors && (
+                    <p className="mb-[8px] text-[18px] font-medium leading-[100%] tracking-normal text-[#bc8070]">
+                        Заполните обязательные поля
+                    </p>
+                )}
+                {hasFileError && (
+                    <p className="mb-[8px] text-[18px] font-medium leading-[100%] tracking-normal text-[#bc8070]">
+                        {errors.fileError}
+                    </p>
+                )}
+                {!hasFieldErrors && !hasFileError && (
+                    <p className="mb-[14px] text-[18px] font-medium leading-[100%] tracking-normal text-[#353652]">
+                        *Обязательное поле для ввода
+                    </p>
+                )}
+            </>
+        )
+    }
+
     return (
         <Modal onClose={onClose} size="large" showCloseButton={false}>
-            <button className="absolute right-[36px] top-[36px]" onClick={onClose}>
-                <CloseModalBtnDesktop />
+            <button onClick={onClose} className="absolute right-[30px] top-[30px]">
+                <X size={71} color="#878797" className="opacity-50 hover:opacity-100" />
             </button>
             <div className="flex flex-col p-[100px]">
                 <h2 className="text-gradient_desktop_custom mb-[10px] text-center text-[48px] font-medium uppercase leading-[100%] tracking-normal">
@@ -161,15 +191,7 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         placeholder="Укажите вашу профессию"
                         wrapperClassName="w-full"
                     />
-                    {Object.values(errors).some(Boolean) ? (
-                        <p className="mb-[14px] text-[18px] font-medium leading-[100%] tracking-normal text-[#bc8070]">
-                            Заполните обязательные поля
-                        </p>
-                    ) : (
-                        <p className="mb-[14px] text-[18px] font-medium leading-[100%] tracking-normal text-[#353652]">
-                            *Обязательное поле для ввода
-                        </p>
-                    )}
+                    <div>{renderErrors()}</div>
                     <div className="mb-[44px] flex items-center gap-[12px]">
                         <button
                             type="button"
@@ -230,7 +252,7 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         variant={'header_desktop_btn_gradient'}
                         size={'select_btn_desktop'}
                         disabled={Object.values(errors).some(Boolean)}
-                        className="treacking-0 mx-auto block text-[32px] font-semibold leading-[100%]"
+                        className={`*:treacking-0 mx-auto block text-[32px] font-semibold leading-[100%] ${Object.values(errors).some(Boolean) ? 'bg-[#878797] disabled:opacity-100' : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'}`}
                     >
                         Оставить заявку
                     </Button>
