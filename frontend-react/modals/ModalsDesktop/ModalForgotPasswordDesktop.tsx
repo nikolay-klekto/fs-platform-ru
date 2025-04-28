@@ -66,7 +66,8 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             inputTouched.email && validateEmailDesktop(passwordData.email).styleError
                                 ? 'border-[#bc8070] focus:border-[#bc8070] '
                                 : 'border-[#878797] focus:border-[#878797]'
-                        }  h-13 palceholder:pl-[20px] w-full max-w-[426px] rounded-[50px] border-2 bg-transparent pl-[20px]  text18px_desktop font-medium opacity-80 placeholder:text-[#353652]/40 focus:ring-0 focus:ring-offset-0`}
+                        }  palceholder:pl-[20px] h-12 w-full max-w-[426px] rounded-[50px]
+ border-2 bg-transparent pl-[20px] font-medium opacity-80 placeholder:text-[18px]  placeholder:text-[#353652]/40 focus:ring-0 focus:ring-offset-0 placeholder:2xl:text-xl placeholder:3xl:text-2xl placeholder:4xl:text-4xl`}
                         label="Почта"
                         labelClassName="mb-1 text15px_desktop font-medium text-white"
                         wrapperClassName="w-full max-w-[426px]"
