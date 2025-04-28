@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChevronDownIcon, CheckedBoxIcon, QuestionMark } from '@/components/assets/icons'
+import { ChevronDownIconMobi, CheckedBoxIconMobi, QuestionMarkMobi } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
 
 interface ISelectItem {
@@ -46,7 +46,7 @@ const EventsSelectSearchMobi = () => {
                 className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Мероприятия
-                <ChevronDownIcon
+                <ChevronDownIconMobi
                     className={`h-[15px] w-[27px] transition-transform  duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
                 />
             </Button>
@@ -106,7 +106,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                             className="absolute inset-0 size-full cursor-pointer opacity-0"
                         />
                         {isChecked ? (
-                            <CheckedBoxIcon
+                            <CheckedBoxIconMobi
                                 style={{
                                     position: 'absolute',
                                     width: '30px',
@@ -126,7 +126,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                     <div className="pl-[14px]">{children}</div>
                 </div>
                 <div className="justify-items-end">
-                    <QuestionMark />
+                    <QuestionMarkMobi />
                 </div>
             </div>
         )
