@@ -5,7 +5,7 @@ import {
     TelegramIconDesktop,
     LinkedInIconDesktop,
     PhoneIconDesktop,
-} from '@/components/assets/icons'
+} from '@/components/assets/iconsDesktop'
 
 interface IContacts {
     id: number
