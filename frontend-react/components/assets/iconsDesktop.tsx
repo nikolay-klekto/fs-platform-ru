@@ -661,26 +661,3 @@ export const AttachFileIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
         </svg>
     )
 }
-
-export const CloseModalBtnDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
-    return (
-        <svg width="70" height="86" viewBox="0 0 70 86" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-            <path
-                d="M52.5 21.7422L17.5 64.2891"
-                stroke="white"
-                stroke-opacity="0.8"
-                stroke-width="5.28302"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-            <path
-                d="M17.5 21.7422L52.5 64.2891"
-                stroke="white"
-                stroke-opacity="0.8"
-                stroke-width="5.28302"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-        </svg>
-    )
-}
