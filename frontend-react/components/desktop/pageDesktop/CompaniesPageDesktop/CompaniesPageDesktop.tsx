@@ -7,12 +7,12 @@ import { content } from './contenCompaniesPageDesktop/content'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
-// import { useModal } from '@/context/ContextModal'
+import { useModal } from '@/context/ContextModal'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const CompaniesPageDesktop: React.FC = () => {
-    // const { openModal } = useModal()
+    const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
@@ -51,7 +51,7 @@ const CompaniesPageDesktop: React.FC = () => {
                     <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
                     <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
                     <h1 className="title80px_desktop relative z-[1]">Компании</h1>
-                    <div className="relative z-[1] flex items-center py-[80px] gap-[5%]">
+                    <div className="relative z-[1] flex items-center gap-[5%] pt-[65px] pb-[80px]">
                         <div className="relative w-full">
                             <EnhancedInput
                                 type="text"
@@ -69,7 +69,7 @@ const CompaniesPageDesktop: React.FC = () => {
                                 <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
                             </Button>
                         </div>
-                        <div className="flex items-center gap-[20px] ml-[5%]">
+                        <div className="ml-[23%] flex items-center gap-[20px]">
                             <CompaniesSelectDesktop onCategoryChange={handleCategoryChange} />
                         </div>
                     </div>
@@ -83,18 +83,19 @@ const CompaniesPageDesktop: React.FC = () => {
                                         image={item.image}
                                         industry={item.industry}
                                         price={item.price.toString()}
-                                        // onClick={() => {
-                                        //     openModal('profession_modal_desktop', 'desktop', {
-                                        //         profession: item.companyName,
-                                        //         professionId: item.id,
-                                        //     })
-                                        // }}
+                                        // сейчас оставлена ссылку на модалку профессии, далее здесь будет ссылка на карточку компании
+                                        onClick={() => {
+                                            openModal('profession_modal_desktop', 'desktop', {
+                                                profession: item.companyName,
+                                                professionId: item.id,
+                                            })
+                                        }}
                                         companyName={item.companyName}
                                     />
                                 ))}
                         </div>
                     ) : (
-                        <p className="text-center text-white text-4xl mt-20 mb-20 min-h-[250px]">Ничего не найдено</p>
+                        <p className="my-20 min-h-[250px] text-center text-4xl text-white">Ничего не найдено</p>
                     )}
 
                     {totalPages <= 1 && <div className="h-[80px]"></div>}

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { LessIconDesktop, MoreIconDesktop } from '@/components/assets/icons'
+import { LessIconDesktop, MoreIconDesktop } from '@/components/assets/iconsDesktop'
 
 interface ICompaniesPagination {
     totalPages: number

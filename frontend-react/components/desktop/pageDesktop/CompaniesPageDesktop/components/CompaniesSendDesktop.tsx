@@ -10,7 +10,7 @@ const CompaniesSendDesktop: React.FC = () => {
         setUseRequest('')
     }
     return (
-        <div className="relative z-[2] flex flex-col gap-[36px]">
+        <div className="relative z-[2] flex flex-col gap-[80px]">
             <div className="text36px_desktop mx-auto text-center font-medium uppercase">
                 <p>ХОТИТЕ ПОРАБОТАТЬ В ДРУГОЙ КОМПАНИИ? ДАЙТЕ НАМ ЗНАТЬ!</p>
             </div>

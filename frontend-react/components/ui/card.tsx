@@ -27,7 +27,7 @@ const cardVariants = cva('border-none', {
             profession_page_mobi:
                 'aspect-[164/193] w-[164px] max-w-[210px] flex-shrink flex-grow overflow-hidden rounded-[24px] px-[10px] py-[12px] md:aspect-[164/193] md:w-[185px]',
             companies_page_desktop:
-                'aspect-[340/400] w-[340px] max-w-full  px-[20px] py-[21px] 2xl:px-[15px] 2xl:py-[20px]',
+                'aspect-[340/400] w-[340px] max-w-full  px-[20px] pt-[21px] pb-[23px] 2xl:px-[15px] 2xl:py-[20px]',
         },
         rounded: {
             default: 'rounded-[50px]',
@@ -56,7 +56,7 @@ const cardTitleVariants = cva('font-medium', {
             profession_page_desktop:
                 '4xl:text-6xl 3xl:text-5xl truncate bg-white bg-opacity-[70%] text-7xl font-medium text-[#101030] 2xl:text-4xl',
             profession_page_mobi: 'bg-white bg-opacity-[70%] text-[13px] font-medium text-[#101030]',
-            companies_page_desktop: 'text-[21px] font-medium text-white',
+            companies_page_desktop: 'text-[21px] font-semibold text-white',
         },
         size: {
             default: 'text-[24px]',
