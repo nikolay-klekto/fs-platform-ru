@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { LessIcon, MoreIcon } from '@/components/assets/icons'
+import { LessIconDesktop, MoreIconDesktop } from '@/components/assets/iconsDesktop'
 
 interface IProfessionsPagination {
     totalPages: number
@@ -42,8 +42,18 @@ const EventsPaginationDesktop: React.FC<IProfessionsPagination> = ({ totalPages,
 
     return (
         <div className="relative z-[2] mb-[88px] mt-[73px] flex items-center justify-center gap-5">
+<<<<<<< HEAD:frontend-react/components/desktop/pageDesktop/EventsPageDesktop/EventsPaginationDesktop.tsx
             <button onClick={() => onPageChange(Math.max(1, currentPage - 1))} disabled={currentPage === 1}>
-                <LessIcon />
+=======
+            <button
+                onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className={`transition-colors duration-300 ${
+                    currentPage === 1 ? 'cursor-not-allowed text-[#878797]' : 'cursor-pointer text-[#FFFFFFCC]'
+                }`}
+            >
+>>>>>>> dev-front-react:frontend-react/components/desktop/pageDesktop/EventsPageDesktop/components/EventsPaginationDesktop.tsx
+                <LessIconDesktop />
             </button>
 
             <div className="flex items-end justify-center gap-5">
@@ -56,9 +66,7 @@ const EventsPaginationDesktop: React.FC<IProfessionsPagination> = ({ totalPages,
                         <button
                             key={`page-${page}`}
                             className={`text-7xl font-medium ${
-                                currentPage === page
-                                    ? 'text-gradient_desktop_custom border-b-2 border-indigo-500 text-[32px]'
-                                    : 'text-[FFFFCC]'
+                                currentPage === page ? 'text-gradient_desktop_custom' : 'text-[#FFFFFFCC]'
                             }`}
                             onClick={() => onPageChange(page)}
                         >
@@ -71,8 +79,11 @@ const EventsPaginationDesktop: React.FC<IProfessionsPagination> = ({ totalPages,
             <button
                 onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
                 disabled={currentPage === totalPages}
+                className={`transition-colors duration-300 ${
+                    currentPage >= totalPages ? 'cursor-not-allowed text-[#878797]' : 'cursor-pointer text-[#FFFFFFCC]'
+                }`}
             >
-                <MoreIcon />
+                <MoreIconDesktop />
             </button>
         </div>
     )
