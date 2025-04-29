@@ -38,7 +38,7 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
 
     return (
         <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
-            <div className="relative mx-4 w-full max-w-[346px]">
+            <div className="relative mx-4 w-full max-w-[346px] sm_s:max-w-[320px] sm_s:mx-1">
                 <button
                     onClick={onClose}
                     className="absolute right-1 top-0 translate-x-1 rounded-[50px] bg-[#101030] bg-opacity-[80%]"

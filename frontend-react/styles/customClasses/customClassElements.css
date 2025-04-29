@@ -52,7 +52,7 @@
         @apply text-[30px] 4xl:text-9xl 3xl:text-8xl 2xl:text-6xl !important;
     }
     .text28px_desktop {
-        @apply text-[28px] 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl;
+        @apply text-[28px] 4xl:text-9xl 3xl:text-7xl 2xl:text-5xl;
     }
     .text24px_desktop {
         @apply text-[24px] 4xl:text-6xl 3xl:text-5xl 2xl:text-4xl;
@@ -144,7 +144,7 @@
         @apply text-white text15px_desktop font-semibold;
     }
     .error-form-desktop-custom {
-        @apply mt-1 text-[#bc8070] text15px_desktop font-medium;
+        @apply text15px_desktop font-medium;
     }
 
     .input-form-mobi-custom {
