@@ -17,13 +17,13 @@ const HeaderNavigationDesktop: React.FC = () => {
                         key={item.id}
                         className={
                             isActive(item.link)
-                                ? 'flex size-full items-center justify-center rounded-[3.125rem] bg-gradient-desktop text-center text-white'
-                                : 'text-gradient_desktop_custom flex size-full items-center justify-center text-center hover:bg-gradient-desktop-hover'
+                                ? 'flex size-full items-center justify-center rounded-[3.125rem] bg-gradient-desktop text-center text-white transition-all duration-300 ease-in-out'
+                                : 'text-gradient_desktop_custom flex size-full items-center justify-center text-center transition-all duration-300 ease-in-out hover:bg-gradient-desktop-hover'
                         }
                     >
                         <Link
                             href={item.link}
-                            className="font-cyrillic whitespace-nowrap px-6 text-3xl font-bold uppercase leading-loose 2xl:px-2 2xl:text-xl 3xl:px-2 3xl:text-2xl 4xl:text-3xl 4xl:px-4"
+                            className="font-cyrillic whitespace-nowrap px-6 text-3xl font-bold uppercase leading-loose transition-all duration-300 ease-in-out 2xl:px-2 2xl:text-xl 3xl:px-2 3xl:text-2xl 4xl:px-6 4xl:text-3xl"
                         >
                             {item.title}
                         </Link>
