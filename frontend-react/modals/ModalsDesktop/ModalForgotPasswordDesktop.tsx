@@ -71,12 +71,12 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         label="Почта"
                         labelClassName="mb-1 text15px_desktop font-medium text-white"
                         wrapperClassName="w-full max-w-[426px]"
+                        helperText={inputInternalErrors.email || undefined}
+                        helperTextClassName="mt-[14px]"
                     />
-                    {inputInternalErrors.email && (
-                        <p className="error-form-desktop-custom" helperTextClassName="text-[15px]">
-                            {inputInternalErrors.email}
-                        </p>
-                    )}
+                    {/* {inputInternalErrors.email && (
+                        <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
+                    )} */}
                 </div>
                 <div className="mt-[2px] px-[76px]">
                     <p className="text15px_desktop font-medium text-[#353652]">
@@ -102,7 +102,7 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         className={`mx-auto flex h-16 w-[70%] items-center justify-center rounded-[50px] text-5xl font-semibold ${
                             !isSubmitted || isFormValid
                                 ? 'bg-gradient-desktop hover:bg-gradient-desktop-hover'
-                                : 'bg-[#878797] text-[#353652] hover:bg-[#878797]'
+                                : 'bg-[#878797] text-[#CBD6EF] hover:bg-[#878797]'
                         }`}
                     >
                         Далее

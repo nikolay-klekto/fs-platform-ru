@@ -38,7 +38,7 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
 
     return (
         <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
-            <div className="relative mx-4 w-full max-w-[346px] sm_s:max-w-[320px] sm_s:mx-1">
+            <div className="relative mx-4 w-full max-w-[346px] sm_l:max-w-[320px] sm_l:mx-1 sm_s:mx-0 sm:max-w-[310px] sm:mx-0">
                 <button
                     onClick={onClose}
                     className="absolute right-1 top-0 translate-x-1 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
@@ -68,7 +68,7 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
                             wrapperClassName="w-full"
                         />
                         {inputInternalErrors.email && (
-                            <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
+                            <p className="text15px_desktop font-medium">{inputInternalErrors.email}</p>
                         )}
                     </div>
                     <p className="custom-grey text12px_mobi mt-2 py-[2px] pl-[13px] font-medium ">
@@ -84,7 +84,7 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
                         md:text-4xl ${
                             !isSubmitted || isFormValid
                                 ? 'bg-sub-title-gradient-mobi  text-white  hover:bg-gradient-desktop-hover'
-                                : 'bg-[#878797] text-[#353652] hover:bg-[#878797]'
+                                : 'bg-[#878797] text-[#CBD6EF] hover:bg-[#878797]'
                         }`}
                     >
                         Далее

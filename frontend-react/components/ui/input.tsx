@@ -61,9 +61,9 @@ export interface IEnhancedInput
     onBlur?: () => void
     label?: string
     helperText?: string
+    helperTextClassName?: string
     wrapperClassName?: string
     labelClassName?: string
-    helperTextClassName?: string
     placeholder?: string
     name?: string
     checked?: boolean
@@ -83,10 +83,10 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             onBlur,
             label,
             helperText,
+            helperTextClassName,
             name,
             wrapperClassName,
             labelClassName,
-            helperTextClassName,
             placeholder,
             checked,
             ...props
@@ -200,7 +200,13 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                     />
                 )}
                 {(helperText || internalError !== '') && (
-                    <p className={cn(internalError ? 'text-[#BC8070] ' : 'text-muted-foreground', helperTextClassName)}>
+                    <p
+                        className={cn(
+                            'text-xs',
+                            helperTextClassName,
+                            internalError ? 'text-[#BC8070] ' : 'text-muted-foreground',
+                        )}
+                    >
                         {internalError || helperText}
                     </p>
                 )}
