@@ -224,6 +224,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     }
                                     label="Я согласен(а) на обработку персональных данных"
                                     wrapperClassName="flex gap-2 pb-2"
+                                    checkboxIconSize="w-[18px]"
                                     labelClassName={`${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                                 />
                             </div>

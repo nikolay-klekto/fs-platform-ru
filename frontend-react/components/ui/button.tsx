@@ -88,6 +88,7 @@ const buttonVariants = cva(
                 hover_button_date_desktop:
                     '3xl:w-[270px] 3xl:px-[20px] h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px]',
                 confirm_btn_desktop: 'h-[64px] w-[250px]',
+                join_team_btn_desktop: 'h-[100px] w-[430px]',
             },
         },
         defaultVariants: {

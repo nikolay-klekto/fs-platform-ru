@@ -124,17 +124,17 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
         return (
             <>
                 {hasFieldErrors && (
-                    <p className="mb-[8px] text-[18px] font-medium leading-[100%] tracking-normal text-[#bc8070]">
+                    <p className="mb-[14px] text-4xl font-medium leading-[100%] tracking-normal text-[#bc8070]">
                         Заполните обязательные поля
                     </p>
                 )}
                 {hasFileError && (
-                    <p className="mb-[8px] text-[18px] font-medium leading-[100%] tracking-normal text-[#bc8070]">
+                    <p className="mb-[14px] text-4xl font-medium leading-[100%] tracking-normal text-[#bc8070]">
                         {errors.fileError}
                     </p>
                 )}
                 {!hasFieldErrors && !hasFileError && (
-                    <p className="mb-[14px] text-[18px] font-medium leading-[100%] tracking-normal text-[#353652]">
+                    <p className="mb-[14px] text-4xl font-medium leading-[100%] tracking-normal text-[#353652]">
                         *Обязательное поле для ввода
                     </p>
                 )}
@@ -143,15 +143,15 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
     }
 
     return (
-        <Modal onClose={onClose} size="large" showCloseButton={false}>
+        <Modal onClose={onClose} size="large-lg" showCloseButton={false}>
             <button onClick={onClose} className="absolute right-[30px] top-[30px]">
                 <X size={71} color="#878797" className="opacity-50 hover:opacity-100" />
             </button>
             <div className="flex flex-col p-[100px]">
-                <h2 className="text-gradient_desktop_custom mb-[10px] text-center text-[48px] font-medium uppercase leading-[100%] tracking-normal">
+                <h2 className="text-gradient_desktop_custom 3xl:text-17xl text-18xl 2xl:text-15xl mb-[10px] text-center font-medium uppercase leading-[100%] tracking-normal">
                     Хотите работать у нас?
                 </h2>
-                <p className="treacking-[0] mb-[33px] text-[28px] leading-[100%] text-[#878797]">
+                <p className="treacking-[0] 3xl:text-7xl mb-[33px] text-9xl leading-[100%] text-[#878797] 2xl:text-7xl">
                     Заполните поля – и мы с вами свяжемся
                 </p>
                 <form>
@@ -161,33 +161,33 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         value={formData.name}
                         onBlur={() => handleBlur('name')}
                         onChange={handleChange('name')}
-                        className={`${
+                        className={`mb-6 h-20 w-full items-center rounded-[50px] border-2 bg-transparent pl-8 text-9xl font-medium text-white placeholder:text-9xl placeholder:text-[#353652] focus-visible:ring-offset-0 ${
                             errors.name ? 'border-[#bc8070]' : 'border-[#878797]'
-                        } mb-[24px] h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white placeholder:text-[#353652] focus-visible:ring-offset-0`}
+                        }`}
                         label="Ваше имя*"
-                        labelClassName="font-semibold text-[20px] text-white mb-[16px] leading-[100%] tracking-normal"
+                        labelClassName="font-semibold text-[20px] text-white mb-[10px] leading-[100%] tracking-normal"
                         placeholder="Ваше имя*"
                         wrapperClassName="w-full"
                     />
                     <PhoneInputDesktop
                         value={formData.phoneNumber}
-                        className={`mb-[24px] ${errors.phoneNumber ? 'border-[#bc8070]' : 'border-[#878797]'}`}
+                        className={`mb-6 h-20 items-center pl-8 text-9xl placeholder:text-9xl ${errors.phoneNumber ? 'border-[#bc8070]' : 'border-[#878797]'}`}
                         onBlur={() => handleBlur('phoneNumber')}
                         onChange={handleChange('phoneNumber')}
                         onError={() => {}}
-                        labelClassName="font-semibold text-[20px] text-white mb-[16px] leading-[100%] tracking-normal"
+                        labelClassName="font-semibold text-[20px] text-white mb-[10px] leading-[100%] tracking-normal"
                     />
                     <EnhancedInput
                         type="text"
                         name="profession"
                         value={formData.profession}
-                        className={`${
+                        className={`mb-6 h-20 w-full items-center rounded-[50px] border-2 bg-transparent pl-8 text-9xl font-medium text-white placeholder:text-9xl placeholder:text-[#353652] focus-visible:ring-offset-0 ${
                             errors.profession ? 'border-[#bc8070]' : 'border-[#878797]'
-                        } mb-[24px] h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white placeholder:text-[#353652] focus-visible:ring-offset-0`}
+                        }`}
                         onBlur={() => handleBlur('profession')}
                         onChange={handleChange('profession')}
                         label="Укажите профессию*"
-                        labelClassName="font-semibold text-[20px] text-white mb-[16px] leading-[100%] tracking-normal"
+                        labelClassName="font-semibold text-[20px] text-white mb-[10px] leading-[100%] tracking-normal"
                         placeholder="Укажите вашу профессию"
                         wrapperClassName="w-full"
                     />
@@ -225,24 +225,25 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             onBlur={() => handleBlur('consent')}
                             onChange={handleChange('consent')}
                             label="Я согласен(а) на обработку персональных данных"
-                            labelClassName={`${formData.consent ? 'text-white' : 'text-[#878797]'}`}
+                            labelClassName={`text-[24px] ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
+                            checkboxIconSize="w-[28px]"
+                            wrapperClassName="gap-4"
                         />
                     </div>
                     {errors.consent ? (
-                        <p className="mb-[31px] text-[18px] font-medium leading-[100%] tracking-normal text-[#bc8070]">
+                        <p className="mb-[31px] text-4xl font-medium leading-[100%] tracking-normal text-[#bc8070]">
                             Подтвердите согласие на обработку данных
                         </p>
                     ) : (
                         ''
                     )}
-                    <p className="mb-[40px] text-[24px] font-medium leading-[100%] tracking-normal text-[#353652]">
+                    <p className="mb-[40px] text-[24px] font-medium leading-[100%] tracking-normal text-[#353652] ">
                         Защита от спама reCAPTCHA{' '}
-                        <a href="/example" className="underline">
+                        <a href="/example" className="leading-[100%] underline underline-offset-[5px]">
                             Конфиденциальность
                         </a>{' '}
-                        и
-                        <a href="/example" className="underline">
-                            {' '}
+                        и{' '}
+                        <a href="/example" className="leading-[100%] underline underline-offset-[5px]">
                             Условия использования
                         </a>
                     </p>
@@ -250,9 +251,9 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         type="submit"
                         onClick={handleSubmit}
                         variant={'header_desktop_btn_gradient'}
-                        size={'select_btn_desktop'}
+                        size={'join_team_btn_desktop'}
                         disabled={Object.values(errors).some(Boolean)}
-                        className={`*:treacking-0 mx-auto block text-[32px] font-semibold leading-[100%] ${Object.values(errors).some(Boolean) ? 'bg-[#878797] disabled:opacity-100' : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'}`}
+                        className={`*:treacking-0 text-11xl mx-auto block font-semibold leading-[100%] ${Object.values(errors).some(Boolean) ? 'bg-[#878797] disabled:opacity-100' : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'}`}
                     >
                         Оставить заявку
                     </Button>
