@@ -38,9 +38,8 @@ const PersonalAccountPageDesktop: React.FC = () => {
                             <div className="flex flex-1 justify-between">
                                 {content.map((item) =>
                                     item.title === 'МОЙ ПРОФИЛЬ' ? (
-                                        <Link href="/profile">
+                                        <Link href="/profile" key={item.id}>
                                             <button
-                                                key={item.id}
                                                 className={`text18px_desktop cursor-pointer font-bold underline-offset-8 transition-all duration-300 ease-in-out
                                             ${
                                                 item.id === activeId
