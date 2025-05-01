@@ -131,7 +131,6 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 placeholder={PHONE_MASK}
                 className={`input-form-mobi-custom w-full font-medium placeholder:text-[#353652] ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
-            {internalError && <p className={'error-form-mobi-custom'}>{internalError}</p>}
         </div>
     )
 }

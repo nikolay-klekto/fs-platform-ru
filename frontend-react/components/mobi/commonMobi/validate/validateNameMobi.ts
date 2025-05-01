@@ -14,7 +14,7 @@ export const validateNameMobi = (name: string): { status: boolean; textError: st
     }
     return {
         status: true,
-        textError: 'Обязательное поле для ввода',
+        textError: '',
         styleError: false,
     }
 }
