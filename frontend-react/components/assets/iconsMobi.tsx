@@ -746,3 +746,14 @@ export const AttachFileIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => 
         </svg>
     )
 }
+
+export const ChevronLeftIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="13" height="24" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M0.176958 12.1433C0.175187 11.9938 0.203845 11.8455 0.26109 11.708C0.318336 11.5705 0.402901 11.4468 0.509348 11.345L10.481 1.08043C10.9242 0.624231 11.6111 0.624231 12.0543 1.08043C12.4975 1.53664 12.4975 2.24375 12.0543 2.69995L2.85823 12.1661L12.0322 21.6095C12.4754 22.0657 12.4754 22.7728 12.0322 23.229C11.589 23.6852 10.902 23.6852 10.4589 23.229L0.487188 12.9645C0.265595 12.7364 0.154799 12.4399 0.154799 12.1661L0.176958 12.1433Z"
+                fill="white"
+            />
+        </svg>
+    )
+}

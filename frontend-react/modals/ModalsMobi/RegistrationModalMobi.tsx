@@ -217,6 +217,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 onError={(error) => handleError('phone', error)}
                                 wrapperClassName="w-full"
                                 required={true}
+                                showInternalError={true}
                             />
                             {inputInternalErrors.phone && (
                                 <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>

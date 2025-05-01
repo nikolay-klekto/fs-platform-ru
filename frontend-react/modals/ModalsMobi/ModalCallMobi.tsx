@@ -137,6 +137,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                                 phone: error || '',
                                             }))
                                         }
+                                        showInternalError={true}
                                         className={`border-2 focus:border-2`}
                                         labelClassName="text-2xl leading-[18px] font-medium text-white mb-0"
                                         wrapperClassName="w-full"

@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeftIconMobi, AttachFileIconMobi } from '@/components/assets/iconsMobi'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
-import { AttachFileIconMobi } from '@/components/assets/iconsMobi'
 
 interface IFormData {
     name: string
@@ -119,17 +118,17 @@ const JoinTeamMobi: React.FC = () => {
         return (
             <>
                 {hasFieldErrors && (
-                    <p className="mb-[8px] text-[18px] font-medium leading-[100%] tracking-normal text-[#bc8070]">
+                    <p className="mb-4 text-sm font-medium leading-[100%] tracking-normal text-[#bc8070]">
                         Заполните обязательные поля
                     </p>
                 )}
                 {hasFileError && (
-                    <p className="mb-[8px] text-[18px] font-medium leading-[100%] tracking-normal text-[#bc8070]">
+                    <p className="mb-4 text-sm font-medium leading-[100%] tracking-normal text-[#bc8070]">
                         {errors.fileError}
                     </p>
                 )}
                 {!hasFieldErrors && !hasFileError && (
-                    <p className="mb-[14px] text-[18px] font-medium leading-[100%] tracking-normal text-[#353652]">
+                    <p className="mb-4 text-sm font-medium leading-[100%] tracking-normal text-[#353652]">
                         *Обязательное поле для ввода
                     </p>
                 )}
@@ -138,68 +137,69 @@ const JoinTeamMobi: React.FC = () => {
     }
 
     return (
-        <>
-            <div className="flex gap-[20px] align-middle">
-                <ChevronLeft />
-                <h2 className="text-gradient_desktop_custom mb-[10px] text-center text-[48px] font-medium uppercase leading-[100%] tracking-normal">
+        <main className="px-[15px] pb-[100px] pt-[20px]">
+            <div className="mb-5 flex items-center gap-4 p-[10px]">
+                <ChevronLeftIconMobi />
+                <h2 className="text-7xl font-medium uppercase leading-[100%] tracking-normal text-white">
                     Хотите работать у нас?
                 </h2>
             </div>
-            <p className="treacking-[0] mb-[33px] text-[28px] leading-[100%] text-[#878797]">
+            <p className="treacking-[0] mb-7 text-3xl leading-[100%] text-[#878797]">
                 Заполните поля – и мы с вами свяжемся
             </p>
-            <form>
+            <form className="max-w-[500px]">
                 <EnhancedInput
                     type="text"
                     name="name"
                     value={formData.name}
                     onBlur={() => handleBlur('name')}
                     onChange={handleChange('name')}
-                    className={`${
+                    className={`mb-[12px] h-10 w-full items-center rounded-[50px] border-2 bg-transparent pl-4 text-xl font-medium text-white placeholder:text-2xl placeholder:text-[#353652] focus-visible:ring-offset-0 ${
                         errors.name ? 'border-[#bc8070]' : 'border-[#878797]'
-                    } mb-[24px] h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white placeholder:text-[#353652] focus-visible:ring-offset-0`}
+                    } `}
                     label="Ваше имя*"
-                    labelClassName="font-semibold text-[20px] text-white mb-[16px] leading-[100%] tracking-normal"
-                    placeholder="Ваше имя*"
+                    labelClassName="font-semibold text-[10px] text-white leading-[100%] tracking-normal"
+                    placeholder="Ваше имя"
                     wrapperClassName="w-full"
                 />
                 <PhoneInputMobi
                     value={formData.phoneNumber}
-                    className={`mb-[24px] ${errors.phoneNumber ? 'border-[#bc8070]' : 'border-[#878797]'}`}
+                    className={`mb-[12px] mt-0 items-center border-2 pl-4 placeholder:text-2xl ${errors.phoneNumber ? 'border-[#bc8070]' : 'border-2 border-[#878797]'}`}
                     onBlur={() => handleBlur('phoneNumber')}
                     onChange={handleChange('phoneNumber')}
                     onError={() => {}}
-                    labelClassName="font-semibold text-[20px] text-white mb-[16px] leading-[100%] tracking-normal"
+                    labelClassName="font-semibold text-[10px] text-white leading-[100%] tracking-normal mb-[0px]"
+                    showInternalError={false}
                 />
                 <EnhancedInput
                     type="text"
                     name="profession"
                     value={formData.profession}
-                    className={`${
+                    className={`mb-[10px] h-10 w-full items-center rounded-[50px] border-2 bg-transparent pl-4 text-xl font-medium text-white placeholder:text-2xl placeholder:text-[#353652] focus-visible:ring-offset-0 ${
                         errors.profession ? 'border-[#bc8070]' : 'border-[#878797]'
-                    } mb-[24px] h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white placeholder:text-[#353652] focus-visible:ring-offset-0`}
+                    } `}
                     onBlur={() => handleBlur('profession')}
                     onChange={handleChange('profession')}
                     label="Укажите профессию*"
-                    labelClassName="font-semibold text-[20px] text-white mb-[16px] leading-[100%] tracking-normal"
+                    labelClassName="font-semibold text-[10px] text-white leading-[100%] tracking-normal"
                     placeholder="Укажите вашу профессию"
                     wrapperClassName="w-full"
                 />
                 <div>{renderErrors()}</div>
-                <div className="mb-[44px] flex items-center gap-[12px]">
+                <div className="mb-4 flex items-center gap-2">
                     <button
                         type="button"
                         onClick={openFileDialog}
-                        className="bg-gradient-desktop hover:bg-gradient-desktop-hover flex size-[58px] items-center justify-center rounded-full"
+                        className="bg-gradient-desktop hover:bg-gradient-desktop-hover flex size-[27px] items-center justify-center rounded-full"
                     >
                         <AttachFileIconMobi className="text-white" />
                     </button>
                     {selectedFile ? (
-                        <p className="text-[24px] font-semibold leading-[100%] tracking-normal text-[#FFFFFF]">
+                        <p className="text-base font-semibold leading-[100%] tracking-normal text-[#FFFFFF]">
                             Файл прикреплен
                         </p>
                     ) : (
-                        <p className="text-[24px] font-semibold leading-[100%] tracking-normal text-[#FFFFFF]">
+                        <p className="text-base font-semibold leading-[100%] tracking-normal text-[#FFFFFF]">
                             Прикрепите резюме
                         </p>
                     )}
@@ -211,7 +211,7 @@ const JoinTeamMobi: React.FC = () => {
                         className="hidden"
                     />
                 </div>
-                <div className="mb-[14px]">
+                <div className="mb-3">
                     <EnhancedInput
                         type="checkbox"
                         name="consent"
@@ -219,23 +219,24 @@ const JoinTeamMobi: React.FC = () => {
                         onBlur={() => handleBlur('consent')}
                         onChange={handleChange('consent')}
                         label="Я согласен(а) на обработку персональных данных"
-                        labelClassName={`${formData.consent ? 'text-white' : 'text-[#878797]'}`}
+                        labelClassName={`text-[12px] font-medium ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
+                        checkboxIconSize="w-[14px]"
                     />
                 </div>
                 {errors.consent ? (
-                    <p className="mb-[31px] text-[18px] font-medium leading-[100%] tracking-normal text-[#bc8070]">
+                    <p className="mb-3 text-base font-medium leading-[100%] tracking-normal text-[#bc8070]">
                         Подтвердите согласие на обработку данных
                     </p>
                 ) : (
                     ''
                 )}
-                <p className="mb-[40px] text-[24px] font-medium leading-[100%] tracking-normal text-[#353652]">
+                <p className="mb-7 text-base font-medium leading-[100%] tracking-normal text-[#353652]">
                     Защита от спама reCAPTCHA{' '}
-                    <a href="/example" className="underline">
+                    <a href="/example" className="leading-[100%] underline underline-offset-2">
                         Конфиденциальность
                     </a>{' '}
                     и
-                    <a href="/example" className="underline">
+                    <a href="/example" className="leading-[100%] underline underline-offset-2">
                         {' '}
                         Условия использования
                     </a>
@@ -243,15 +244,15 @@ const JoinTeamMobi: React.FC = () => {
                 <Button
                     type="submit"
                     onClick={handleSubmit}
-                    variant={'header_desktop_btn_gradient'}
-                    size={'select_btn_desktop'}
+                    variant={'header_mobi_btn_gradient'}
+                    size={'join_team_btn_mobi'}
                     disabled={Object.values(errors).some(Boolean)}
-                    className={`*:treacking-0 mx-auto block text-[32px] font-semibold leading-[100%] ${Object.values(errors).some(Boolean) ? 'bg-[#878797] disabled:opacity-100' : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'}`}
+                    className={`*:treacking-0 block text-xl font-semibold leading-[100%] ${Object.values(errors).some(Boolean) ? 'bg-[#878797] disabled:opacity-100' : 'bg-gradient-mobi hover:bg-gradient-mobi-hover'}`}
                 >
                     Оставить заявку
                 </Button>
             </form>
-        </>
+        </main>
     )
 }
 
