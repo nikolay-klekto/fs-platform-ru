@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
-import { SearchIconMobi, CheckedBoxIconMobi, FiltersIconMobi } from '@/components/assets/iconsMobi'
+import { CheckedBoxIconMobi, FiltersIconMobi } from '@/components/assets/iconsMobi'
 
 interface ISelectItem {
     value: string
@@ -14,13 +14,17 @@ interface ISelectOption {
     label: string
 }
 
-const ProfessionsSelectMobi = () => {
+interface ProfessionsSelectMobiProps {
+    selectedCategories: string[]
+    setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>
+}
+
+const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedCategories, setSelectedCategories }) => {
     const [isOpen, setIsOpen] = useState(false)
-    const [selectedOptions, setSelectedOptions] = useState<string[]>([])
     const selectRef = useRef<HTMLDivElement>(null)
 
     const toggleOption = (value: string) => {
-        setSelectedOptions((prev) =>
+        setSelectedCategories((prev) =>
             prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value],
         )
     }
@@ -28,18 +32,6 @@ const ProfessionsSelectMobi = () => {
     const handleSelectToggle = () => {
         setIsOpen((prev) => !prev)
     }
-    // const handleClickOutside = (event: MouseEvent) => {
-    //     if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
-    //         setIsOpen(false)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     document.addEventListener('mousedown', handleClickOutside)
-    //     return () => {
-    //         document.removeEventListener('mousedown', handleClickOutside)
-    //     }
-    // }, [])
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -63,15 +55,15 @@ const ProfessionsSelectMobi = () => {
     }, [isOpen])
 
     const options: ISelectOption[] = [
-        { value: 'IT', label: 'IT-отрасль' },
-        { value: 'healthcare', label: 'Здравоохранение' },
-        { value: 'art', label: 'Искусство' },
-        { value: 'sport', label: 'Спорт' },
-        { value: 'field5', label: 'Отрасль 5' },
-        { value: 'field6', label: 'Отрасль 6' },
-        { value: 'field7', label: 'Отрасль 7' },
-        { value: 'field8', label: 'Отрасль 8' },
-        { value: 'field9', label: 'Отрасль 9' },
+        { value: 'IT-отрасль', label: 'IT-отрасль' },
+        { value: 'Здравоохранение', label: 'Здравоохранение' },
+        { value: 'Искусство', label: 'Искусство' },
+        { value: 'Спорт', label: 'Спорт' },
+        { value: 'Отрасль 5', label: 'Отрасль 5' },
+        { value: 'Отрасль 6', label: 'Отрасль 6' },
+        { value: 'Отрасль 7', label: 'Отрасль 7' },
+        { value: 'Отрасль 8', label: 'Отрасль 8' },
+        { value: 'Отрасль 9', label: 'Отрасль 9' },
     ]
 
     const [isFilterActive, setIsFilterActive] = useState(false)
@@ -81,10 +73,8 @@ const ProfessionsSelectMobi = () => {
     }
 
     const clearSelection = () => {
-        setSelectedOptions([])
+        setSelectedCategories([])
     }
-
-    const [searchTerm, setSearchTerm] = useState('')
 
     return (
         <div className="relative z-[3]" ref={selectRef}>
@@ -109,18 +99,16 @@ const ProfessionsSelectMobi = () => {
                                 </button>
                             </div>
                             <div className="flex max-h-[calc(6*64px)] flex-col overflow-y-auto scroll-smooth pr-1">
-                                {options
-                                    .filter((option) => option.label.toLowerCase().includes(searchTerm.toLowerCase()))
-                                    .map((option) => (
-                                        <SelectItem
-                                            key={option.value}
-                                            value={option.value}
-                                            isChecked={selectedOptions.includes(option.value)}
-                                            onClick={() => toggleOption(option.value)}
-                                        >
-                                            {option.label}
-                                        </SelectItem>
-                                    ))}
+                                {options.map((option) => (
+                                    <SelectItem
+                                        key={option.value}
+                                        value={option.value}
+                                        isChecked={selectedCategories.includes(option.value)}
+                                        onClick={() => toggleOption(option.value)}
+                                    >
+                                        {option.label}
+                                    </SelectItem>
+                                ))}
                             </div>
                         </div>
                     </div>
