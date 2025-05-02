@@ -60,6 +60,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target
+        console.log('value: ', value, 'checked: ', checked)
         setFormData((prevData) => ({
             ...prevData,
             [name]: type === 'checkbox' ? checked : value,
@@ -89,15 +90,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 setErrors((prev) => ({
                     ...prev,
                     consent: checked ? '' : 'Подтвердите согласие на обработку данных',
-                }))
-            }
-        }
-
-        if (name === 'consent') {
-            if (checked) {
-                setErrors((prev) => ({
-                    ...prev,
-                    consent: '',
                 }))
             }
         }
