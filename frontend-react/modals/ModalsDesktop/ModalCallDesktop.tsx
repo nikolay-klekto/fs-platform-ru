@@ -60,6 +60,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target
+        console.log('value: ', value, 'checked: ', checked)
         setFormData((prevData) => ({
             ...prevData,
             [name]: type === 'checkbox' ? checked : value,
@@ -88,7 +89,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
             if (checked) {
                 setErrors((prev) => ({
                     ...prev,
-                    consent: '',
+                    consent: checked ? '' : 'Подтвердите согласие на обработку данных',
                 }))
             }
         }
@@ -121,7 +122,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
     }
 
     const hasErrors = Object.values(errors).some((err) => err?.trim())
-    const hasEmptyFields = !formData.name.trim() || !formData.phone.trim() || !formData.consent
 
     return (
         <>
@@ -188,7 +188,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                             : 'border-[#878797] focus:border-[#878797]'
                                     } h-12 p-4 text-4xl focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
                                 />
-                                <div className="h-5 mb-2">
+                                <div className="mb-2 h-5">
                                     {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
                                 </div>
                             </div>
@@ -214,7 +214,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     </p>
                                 )}
                             </div>
-                            <div className="px-[75px] h-5">
+                            <div className="h-5 px-[75px]">
                                 <EnhancedInput
                                     type="checkbox"
                                     id="consent"
@@ -260,7 +260,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     type="submit"
                                     variant="default"
                                     size="btn_modal_desktop"
-                                    disabled={hasErrors || hasEmptyFields}
+                                    disabled={hasErrors}
                                     className={`mx-auto h-16 rounded-full px-20 text-5xl font-semibold leading-[24.38px] hover:bg-gradient-desktop-hover  disabled:opacity-100 ${
                                         hasErrors ? 'bg-[#878797]' : 'bg-gradient-desktop'
                                     }`}

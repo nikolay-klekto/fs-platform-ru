@@ -117,7 +117,6 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
     }
 
     const hasErrors = Object.values(errors).some((err) => err?.trim())
-    const hasEmptyFields = !formData.name.trim() || !formData.phone.trim() || !formData.consent
 
     return (
         <>
@@ -241,11 +240,11 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 </div>
                                 <Button
                                     type="submit"
-                                    disabled={hasEmptyFields || hasErrors}
+                                    disabled={hasErrors}
                                     className={`
                                         mx-auto mt-1 h-12 w-4/5 rounded-[50px] 
                                         text-3xl font-semibold text-white md:text-4xl
-                                        ${hasEmptyFields || hasErrors ? 'bg-[#878797]' : 'bg-sub-title-gradient-mobi'}
+                                        ${hasErrors ? 'bg-[#878797]' : 'bg-sub-title-gradient-mobi'}
                                         disabled:cursor-not-allowed disabled:opacity-100
                                     `}
                                 >
