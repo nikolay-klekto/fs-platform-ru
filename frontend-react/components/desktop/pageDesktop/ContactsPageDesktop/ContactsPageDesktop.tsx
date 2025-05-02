@@ -1,12 +1,16 @@
 import React from 'react'
-import ContactsDesktop from '../../layout/ContactsDesktop/ContactsDesktop'
+import ContactsDesktop from './components/ContactsDesktop/ContactsDesktop'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const ContactsPageDesktop: React.FC = () => {
     return (
         <>
-            <div className="container">
+            <HeaderDesktop />
+            <main className="bg-[#101030] text-white">
                 <ContactsDesktop />
-            </div>
+            </main>
+            <FooterDesktop />
         </>
     )
 }
