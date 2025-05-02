@@ -14,7 +14,7 @@ interface ISelectOption {
     label: string
 }
 
-const SelectInternshipTypeDesktop = ({ onCategoryChange }: { onCategoryChange: (categories: string[]) => void }) => {
+const CompaniesSelectDesktop = ({ onCategoryChange }: { onCategoryChange: (categories: string[]) => void }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
     const selectRef = useRef<HTMLDivElement>(null)
@@ -47,26 +47,30 @@ const SelectInternshipTypeDesktop = ({ onCategoryChange }: { onCategoryChange: (
     }, [selectedOptions, onCategoryChange])
 
     const options: ISelectOption[] = [
-        { value: 'Наблюдатель', label: 'Наблюдатель' },
-        { value: 'Участник', label: 'Участник' },
+        { value: 'IT-отрасль', label: 'IT-отрасль' },
+        { value: 'Здравоохранение', label: 'Здравоохранение' },
+        { value: 'Искусство', label: 'Искусство' },
+        { value: 'Спорт', label: 'Спорт' },
+        { value: 'field5', label: 'Отрасль 5' },
+        { value: 'field6', label: 'Отрасль 6' },
     ]
 
     return (
         <div className="relative z-[3]" ref={selectRef}>
             <Button
                 variant={'select_btn_desktop'}
-                size={'select_btn_type_internship_desktop'}
+                size={'select_btn_desktop'}
                 onClick={handleSelectToggle}
                 className={`${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
-                Вид стажировки
+                Отрасль профессии
                 <ChevronDownIconDesktop
                     className={`h-[15px] w-[27px] transition-transform duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
                 />
             </Button>
             {isOpen && (
                 <div
-                    className="3xl:w-[300px] absolute top-[80px] z-50 w-[281px] rounded-[42px] p-[2px] 2xl:w-[214px]"
+                    className="3xl:w-[300px] absolute top-[80px] z-50 w-[337px] rounded-[42px] p-[2px] 2xl:w-[270px]"
                     style={{
                         background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
                     }}
@@ -144,4 +148,4 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
 
 SelectItem.displayName = 'SelectItem'
 
-export default SelectInternshipTypeDesktop
+export default CompaniesSelectDesktop
