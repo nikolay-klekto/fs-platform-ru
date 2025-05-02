@@ -98,7 +98,12 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
                                     Очистить
                                 </button>
                             </div>
-                            <div className="flex max-h-[calc(6*64px)] flex-col overflow-y-auto scroll-smooth pr-1">
+                            <div
+                                className="scrollbar-thin scrollbar-thumb-[#878797] scrollbar-track-transparent mobi-scroll flex max-h-[calc(6*64px)] flex-col overflow-y-auto scroll-smooth pr-[8px]"
+                                style={{
+                                    scrollbarGutter: 'stable',
+                                }}
+                            >
                                 {options.map((option) => (
                                     <SelectItem
                                         key={option.value}
