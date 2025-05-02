@@ -7,6 +7,7 @@ interface ISelectItem {
     children: React.ReactNode
     isChecked: boolean
     onClick: () => void
+    className?: string
 }
 
 interface ISelectOption {
@@ -76,6 +77,9 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
         setSelectedCategories([])
     }
 
+    const selected = options.filter((o) => selectedCategories.includes(o.value))
+    const unselected = options.filter((o) => !selectedCategories.includes(o.value))
+
     return (
         <div className="relative z-[3]" ref={selectRef}>
             <FiltersIconMobi
@@ -99,17 +103,38 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
                                 </button>
                             </div>
                             <div
-                                className="scrollbar-thin scrollbar-thumb-[#878797] scrollbar-track-transparent mobi-scroll flex max-h-[calc(6*64px)] flex-col overflow-y-auto scroll-smooth pr-[8px]"
+                                className="scrollbar-thin scrollbar-thumb-[#878797] scrollbar-track-transparent mobi-scroll flex max-h-[calc(6*62px)] flex-col overflow-y-auto scroll-smooth pr-[8px]"
                                 style={{
                                     scrollbarGutter: 'stable',
                                 }}
                             >
-                                {options.map((option) => (
+                                {selected.length > 0 && (
+                                    <>
+                                        {' '}
+                                        <div className="mb-1 text-base text-[#878797]">Выбранные</div>
+                                        {selected.map((option) => (
+                                            <SelectItem
+                                                key={option.value}
+                                                value={option.value}
+                                                isChecked={selectedCategories.includes(option.value)}
+                                                onClick={() => toggleOption(option.value)}
+                                                className="translate-y-0 opacity-100 transition-all duration-300 ease-out"
+                                            >
+                                                {option.label}
+                                            </SelectItem>
+                                        ))}
+                                        {unselected.length > 0 && selected.length > 0 && (
+                                            <div className="mb-1 mt-5 text-base text-[#878797]">Остальные</div>
+                                        )}
+                                    </>
+                                )}
+                                {unselected.map((option) => (
                                     <SelectItem
                                         key={option.value}
                                         value={option.value}
-                                        isChecked={selectedCategories.includes(option.value)}
+                                        isChecked={false}
                                         onClick={() => toggleOption(option.value)}
+                                        className="translate-y-0 opacity-100 transition-all duration-300 ease-out"
                                     >
                                         {option.label}
                                     </SelectItem>
@@ -124,14 +149,14 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
 }
 
 const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
-    ({ children, isChecked, onClick, ...props }, forwardedRef) => {
+    ({ children, isChecked, onClick, className = '', ...props }, forwardedRef) => {
         return (
             <div
                 className={`relative z-[3] flex cursor-pointer items-center gap-[20px] p-[16px] text-3xl font-medium leading-[20px] ${
                     isChecked
                         ? 'mb-[10px] rounded-[18px] bg-[rgba(95,74,243,0.06)] text-white'
                         : 'mb-[10px] bg-transparent text-[#878797]'
-                }`}
+                } ${className ?? ''}`}
                 {...props}
                 ref={forwardedRef}
                 onClick={onClick}
