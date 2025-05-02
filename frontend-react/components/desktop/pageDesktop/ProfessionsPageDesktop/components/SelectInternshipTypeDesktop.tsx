@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { ChevronDownIconDesktop, CheckedBoxIconDesktop } from '@/components/assets/icons'
+import { ChevronDownIconDesktop, CheckedBoxIconDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 
 interface ISelectItem {
@@ -14,11 +14,7 @@ interface ISelectOption {
     label: string
 }
 
-const SelectInternshipTypeDesktop = ({
-    onCategoryChange,
-}: {
-    onCategoryChange: (categories: string[]) => void
-}) => {
+const SelectInternshipTypeDesktop = ({ onCategoryChange }: { onCategoryChange: (categories: string[]) => void }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
     const selectRef = useRef<HTMLDivElement>(null)

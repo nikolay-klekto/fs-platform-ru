@@ -51,22 +51,15 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
         return Object.keys(newErrors).length === 0
     }
 
-    const normalizePhone = (value: string) => {
-        return value.replace(/[^\d+]/g, '')
-    }
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         const isValid = validateForm()
         if (!isValid) return
-
-        const cleanedPhone = normalizePhone(formData.phone)
         setStep('accepted')
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target
-        console.log('name:', name, 'value:', value, 'type:', type, 'checked: ', checked)
         setFormData((prevData) => ({
             ...prevData,
             [name]: type === 'checkbox' ? checked : value,
@@ -76,7 +69,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
             if (result.status) {
                 setErrors((prev) => ({
                     ...prev,
-                    name: '',
+                    name: result.status ? '' : result.textError,
                 }))
             }
         }
@@ -86,7 +79,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
             if (result.status) {
                 setErrors((prev) => ({
                     ...prev,
-                    phone: '',
+                    phone: result.status ? '' : result.textError,
                 }))
             }
         }
@@ -99,7 +92,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 }))
             }
         }
-        console.log(errors)
     }
 
     const handleInputBlur = (field: 'phone' | 'name') => {
@@ -129,6 +121,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
     }
 
     const hasErrors = Object.values(errors).some((err) => err?.trim())
+    const hasEmptyFields = !formData.name.trim() || !formData.phone.trim() || !formData.consent
 
     return (
         <>
@@ -174,7 +167,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             <div className="flex w-full flex-col px-[75px]">
                                 <PhoneInputDesktop
                                     value={formData.phone}
-                                    //onBlur={() => handleInputBlur('phone')}
+                                    onBlur={() => handleInputBlur('phone')}
                                     onError={(error) => {
                                         setErrors((prev) => ({
                                             ...prev,
@@ -216,7 +209,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 {hasErrors ? (
                                     <p className="error-form-desktop-custom mb-3">Заполните обязательные поля</p>
                                 ) : (
-                                    <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
+                                    <p className="mb-3 mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
                                         *Обязательное поле для ввода
                                     </p>
                                 )}
@@ -266,11 +259,9 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     type="submit"
                                     variant="default"
                                     size="btn_modal_desktop"
-                                    disabled={hasErrors}
-                                    className={`mx-auto h-16 rounded-full px-20 text-5xl font-semibold leading-[24.38px] ${
-                                        hasErrors
-                                            ? 'bg-[#878797] disabled:opacity-100'
-                                            : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'
+                                    disabled={hasErrors || hasEmptyFields}
+                                    className={`mx-auto h-16 rounded-full px-20 text-5xl font-semibold leading-[24.38px] hover:bg-gradient-desktop-hover  disabled:opacity-100 ${
+                                        hasErrors ? 'bg-[#878797]' : 'bg-gradient-desktop'
                                     }`}
                                 >
                                     Оставить заявку

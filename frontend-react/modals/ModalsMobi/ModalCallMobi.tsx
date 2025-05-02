@@ -6,6 +6,7 @@ import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validate
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 interface IFormData {
     name: string
@@ -48,21 +49,15 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         return Object.keys(newErrors).length === 0
     }
 
-    const normalizePhone = (value: string) => {
-        return value.replace(/[^\d+]/g, '')
-    }
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        if (!validateForm()) return
-
-        const cleanedPhone = normalizePhone(formData.phone)
+        const isValid = validateForm()
+        if (!isValid) return
         setStep('accepted')
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target
-        console.log('name:', name, 'value:', value, 'type:', type, 'checked: ', checked)
         setFormData((prevData) => ({
             ...prevData,
             [name]: type === 'checkbox' ? checked : value,
@@ -88,14 +83,11 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         }
 
         if (name === 'consent') {
-            if (checked) {
-                setErrors((prev) => ({
-                    ...prev,
-                    consent: '',
-                }))
-            }
+            setErrors((prev) => ({
+                ...prev,
+                consent: checked ? '' : 'Необходимо согласие',
+            }))
         }
-        console.log(errors)
     }
 
     const handleInputBlur = (field: 'phone' | 'name') => {
@@ -125,6 +117,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
     }
 
     const hasErrors = Object.values(errors).some((err) => err?.trim())
+    const hasEmptyFields = !formData.name.trim() || !formData.phone.trim() || !formData.consent
 
     return (
         <>
@@ -145,7 +138,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 Заполните поля – и мы с вами свяжемся
                             </p>
                             <form className="flex flex-col items-start pl-2 pr-1" onSubmit={handleSubmit}>
-                                <div className="mb-3 flex w-full flex-col p-0.5">
+                                <div className="flex w-full flex-col p-0.5">
                                     <EnhancedInput
                                         type="text"
                                         name="name"
@@ -167,9 +160,11 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
                                     />
-                                    {errors.name && <p className="mt-1 text-sm text-[#bc8070]">{errors.name}</p>}
+                                    <div className="h-5 mb-2">
+                                        {errors.name && <p className="mt-1 text-sm text-[#bc8070]">{errors.name}</p>}
+                                    </div>
                                 </div>
-                                <div className="mb-3 flex w-full flex-col p-0.5">
+                                <div className="flex w-full flex-col p-0.5">
                                     <PhoneInputMobi
                                         value={formData.phone}
                                         onChange={(value: string) =>
@@ -189,9 +184,11 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         wrapperClassName="w-full"
                                         required={true}
                                     />
-                                    {errors.phone && <p className="mt-1 text-sm text-[#bc8070]">{errors.phone}</p>}
+                                    <div className="h-5 mb-2">
+                                        {errors.phone && <p className="mt-1 text-sm text-[#bc8070]">{errors.phone}</p>}
+                                    </div>
                                 </div>
-                                <div className="mb-3 flex w-full flex-col p-0.5">
+                                <div className="flex w-full flex-col p-0.5">
                                     <EnhancedInput
                                         type="text"
                                         id="time"
@@ -205,7 +202,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         wrapperClassName="w-full"
                                     />
                                     {hasErrors ? (
-                                        <p className="mb-3 mt-2 text-sm font-medium leading-[18px] text-[#bc8070]">
+                                        <p className="mt-2 text-sm font-medium leading-[18px] text-[#bc8070]">
                                             Заполните обязательные поля
                                         </p>
                                     ) : (
@@ -239,16 +236,21 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         Я согласен(а) на обработку персональных данных
                                     </label>
                                 </div>
-                                {errors.consent && <p className="mt-1 text-sm text-[#bc8070]">{errors.consent}</p>}
-                                <button
+                                <div className="h-5 mb-2">
+                                    {errors.consent && <p className="mt-1 text-sm text-[#bc8070]">{errors.consent}</p>}
+                                </div>
+                                <Button
                                     type="submit"
-                                    disabled={hasErrors}
-                                    className={`mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] bg-sub-title-gradient-mobi text-3xl font-semibold text-white md:text-4xl  ${
-                                        hasErrors ? 'bg-[#878797] disabled:opacity-100' : 'bg-sub-title-gradient-mobi'
-                                    }`}
+                                    disabled={hasEmptyFields || hasErrors}
+                                    className={`
+                                        mx-auto mt-1 h-12 w-4/5 rounded-[50px] 
+                                        text-3xl font-semibold text-white md:text-4xl
+                                        ${hasEmptyFields || hasErrors ? 'bg-[#878797]' : 'bg-sub-title-gradient-mobi'}
+                                        disabled:cursor-not-allowed disabled:opacity-100
+                                    `}
                                 >
                                     Отправить заявку
-                                </button>
+                                </Button>
                             </form>
                         </div>
                     </div>
