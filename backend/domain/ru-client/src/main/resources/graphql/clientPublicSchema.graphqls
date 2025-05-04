@@ -66,6 +66,9 @@ type Query {
     getOrderDatesByProfessionCompanyId(companyProfessionId: ID!): [OrderDates]
 
     getInternshipTypesAndPricesByCompanyProfessionId(companyId: ID!, professionId: ID!): [InternshipPricesModel]
+
+    getEducationOptions:[ClientEducationModel]
+    getEmploymentOptions:[ClientEmploymentModel]
 }
 
 type Mutation {
@@ -192,6 +195,16 @@ type ClientsLetters{
     clientType: String
     comment: String
     dateCreated: String
+}
+
+type ClientEducationModel{
+    educationForView: String
+    educationForQuery: String
+}
+
+type ClientEmploymentModel{
+    employmentForView: String
+    employmentForQuery: String
 }
 
 type ConstantsModel{

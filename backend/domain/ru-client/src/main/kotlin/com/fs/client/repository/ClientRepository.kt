@@ -2,9 +2,7 @@ package com.fs.client.repository
 
 import com.fs.client.converter.ClientModelConverter
 import com.fs.client.repository.blocked.ClientBlockingRepository
-import com.fs.client.ru.AuthorizationClientModel
-import com.fs.client.ru.ClientInputModel
-import com.fs.client.ru.ClientModel
+import com.fs.client.ru.*
 import com.fs.client.service.PasswordService
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
@@ -116,4 +114,70 @@ abstract class ClientRepository(
                 false
             }
         }
+
+    fun getEducationOptions(): List<ClientEducationModel> {
+        return listOf(
+            ClientEducationModel(
+                educationForView = "Неполное среднее образование",
+                educationForQuery = "LOWER_SECONDARY"
+            ),
+            ClientEducationModel(
+                educationForView = "Среднее образование",
+                educationForQuery = "SECONDARY"
+            ),
+            ClientEducationModel(
+                educationForView = "Неполное высшее образование",
+                educationForQuery = "INCOMPLETE_HIGHER"
+            ),
+            ClientEducationModel(
+                educationForView = "Высшее образование",
+                educationForQuery = "HIGHER"
+            ),
+            ClientEducationModel(
+                educationForView = "Магистратура",
+                educationForQuery = "MAGISTRACY"
+            ),
+            ClientEducationModel(
+                educationForView = "Другое",
+                educationForQuery = "OTHER"
+            )
+        )
+    }
+
+    fun getEmploymentOptions(): List<ClientEmploymentModel> {
+        return listOf(
+            ClientEmploymentModel(
+                employmentForView = "Сотрудник / Работник",
+                employmentForQuery = "EMPLOYEE"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Школьник",
+                employmentForQuery = "SCHOOL_BOY"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Студент",
+                employmentForQuery = "STUDENT"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Безработный",
+                employmentForQuery = "UNEMPLOYED"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Работодатель",
+                employmentForQuery = "EMPLOYER"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Самозанятый",
+                employmentForQuery = "SELF_EMPLOYED"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Пенсионер",
+                employmentForQuery = "PENSIONER"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Другое",
+                employmentForQuery = "OTHER"
+            )
+        )
+    }
 }

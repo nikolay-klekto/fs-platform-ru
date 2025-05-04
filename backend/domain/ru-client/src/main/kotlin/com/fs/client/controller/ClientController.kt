@@ -1,10 +1,7 @@
 package com.fs.client.controller
 
 import com.fs.client.repository.ClientRepository
-import com.fs.client.ru.AuthorizationClientModel
-import com.fs.client.ru.ClientInputModel
-import com.fs.client.ru.ClientModel
-import com.fs.client.ru.PartnerModel
+import com.fs.client.ru.*
 import com.fs.service.ru.errors.ErrorModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
@@ -26,6 +23,16 @@ class ClientController(private val clientRepository: ClientRepository) {
     @QueryMapping
     suspend fun getAllClients(): List<ClientModel> {
         return clientRepository.getAllClients()
+    }
+
+    @QueryMapping
+    suspend fun getEducationOptions(): List<ClientEducationModel> {
+        return clientRepository.getEducationOptions()
+    }
+
+    @QueryMapping
+    suspend fun getEmploymentOptions(): List<ClientEmploymentModel> {
+        return clientRepository.getEmploymentOptions()
     }
 
     @MutationMapping
