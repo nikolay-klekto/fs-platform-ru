@@ -47,7 +47,7 @@ const CompaniesSelectDesktop = ({ onCategoryChange }: { onCategoryChange: (categ
     }, [selectedOptions, onCategoryChange])
 
     const options: ISelectOption[] = [
-        { value: 'IT-отрасль', label: 'IT-отрасль' },
+        { value: 'IT-компания', label: 'IT-компания' },
         { value: 'Здравоохранение', label: 'Здравоохранение' },
         { value: 'Искусство', label: 'Искусство' },
         { value: 'Спорт', label: 'Спорт' },

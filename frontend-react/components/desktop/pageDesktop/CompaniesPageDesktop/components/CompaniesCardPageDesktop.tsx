@@ -22,10 +22,9 @@ const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName,
                 <Card
                     variant={'companies_page_desktop'}
                     size={'companies_page_desktop'}
-                    // style={{ backgroundImage: `url(${image})` }}
                     rounded="rounded_20"
                     onClick={onClick}
-                    className="relative z-10"
+                    className="relative z-5"
                 >
                     <CardTitle variant={'companies_page_desktop'} size={'companies_page_desktop'}>
                         {industry}
