@@ -5,9 +5,9 @@ import { Card, CardTitle, CardFooter, CardContent } from '@/components/ui/card'
 
 interface ICompanieCard {
     companyName: string
-    industry: string
     image: string
     price: string
+    industry?: string
     onClick: () => void
 }
 
@@ -16,21 +16,21 @@ const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName,
         <>
             <div className="relative overflow-hidden rounded-[20px] ">
                 <div
-                // className="absolute inset-0 z-0 rounded-[20px] bg-cover bg-center opacity-80"
+                    className="absolute inset-0 z-0 rounded-[20px] bg-center opacity-80 pointer-events-none"
+                    style={{ backgroundImage: `url(${image})`, backgroundSize: '150%', backgroundPosition: 'center' }}
                 />
-
                 <Card
                     variant={'companies_page_desktop'}
                     size={'companies_page_desktop'}
-                    style={{ backgroundImage: `url(${image})` }}
+                    // style={{ backgroundImage: `url(${image})` }}
                     rounded="rounded_20"
                     onClick={onClick}
-                    // className="relative z-10"
+                    className="relative z-10"
                 >
                     <CardTitle variant={'companies_page_desktop'} size={'companies_page_desktop'}>
                         {industry}
                     </CardTitle>
-                    <CardContent className="text-semibold flex grow items-end  px-[10px] pb-[7px] text-[30px] text-white">
+                    <CardContent className="text-semibold flex grow items-end  px-[10px] pb-[7px] text-11xl  text-white 2xl:text-6xl 3xl:text-8xl 4xl:text-10xl">
                         {companyName}
                     </CardContent>
                     <CardFooter

@@ -74,7 +74,7 @@ const CompaniesPageDesktop: React.FC = () => {
                         </div>
                     </div>
                     {filteredContent.length > 0 ? (
-                        <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
+                        <div className="grid grid-cols-[repeat(auto-fit,_minmax(340px,_1fr))] justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
                             {filteredContent
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (
