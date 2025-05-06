@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from 'react'
 import { content } from './contentPersonalAccountPageDesktop/content'
-import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const PersonalAccountPageDesktop: React.FC = () => {
     const [currentComponent, setCurrentComponent] = useState<React.ReactElement | null>(null)
@@ -27,7 +25,6 @@ const PersonalAccountPageDesktop: React.FC = () => {
 
     return (
         <>
-            <HeaderDesktop />
             <div className="min-h-[60vh] grow bg-[#101030]">
                 <div className="relative overflow-hidden">
                     <div className="radial-gradient_desktop left-[-369px] top-[-330px]"></div>

@@ -8,8 +8,6 @@ import EventsPaginationDesktop from './components/EventsPaginationDesktop'
 import EventsSelectSearchDesktop from './components/EventsSelectSearchDesktop'
 import EventsSelectSearchDateDesktop from './components/EventsSelectSearchDateDesctop'
 import EventsSelectSearchCityDesktop from './components/EventsSelectSearchCityDesktop'
-import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const EventsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
@@ -22,7 +20,6 @@ const EventsPageDesktop: React.FC = () => {
 
     return (
         <>
-            <HeaderDesktop />
             <div className="bg-[#101030] text-white">
                 <div className="3xl:p-[76px_130px_150px_130px] container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px]">
                     <h1 className="title80px_desktop relative z-[1]">Мероприятия</h1>
@@ -54,7 +51,6 @@ const EventsPageDesktop: React.FC = () => {
                     />
                 </div>
             </div>
-            <FooterDesktop />
         </>
     )
 }

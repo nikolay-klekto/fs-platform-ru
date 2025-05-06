@@ -9,8 +9,6 @@ import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
 import { useModal } from '@/context/ContextModal'
-import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const ProfessionsPageDesktop: React.FC = () => {
     const { openModal } = useModal()
@@ -53,7 +51,6 @@ const ProfessionsPageDesktop: React.FC = () => {
 
     return (
         <>
-            <HeaderDesktop />
             <div className="bg-[#101030] text-white">
                 <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
                     <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
@@ -121,7 +118,6 @@ const ProfessionsPageDesktop: React.FC = () => {
                     <ProfessionSearchDesktop />
                 </div>
             </div>
-            <FooterDesktop />
         </>
     )
 }
