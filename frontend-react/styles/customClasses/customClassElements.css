@@ -144,7 +144,7 @@
         @apply text-white text15px_desktop font-semibold;
     }
     .error-form-desktop-custom {
-        @apply text15px_desktop font-medium;
+        @apply text15px_desktop font-medium text-[#BC8070];
     }
 
     .input-form-mobi-custom {
@@ -155,7 +155,7 @@
         @apply text-white text14px_mobi font-medium;
     }
     .error-form-mobi-custom {
-        @apply mt-1 text-[#bc8070] text12px_mobi font-medium;
+        @apply text-[#bc8070] text12px_mobi font-medium;
     }
 
     .custom_error_style_input {

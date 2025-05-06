@@ -200,13 +200,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                     />
                 )}
                 {(helperText || internalError !== '') && (
-                    <p
-                        className={cn(
-                            'text-xs',
-                            helperTextClassName,
-                            internalError ? 'text-[#BC8070] ' : 'text-muted-foreground',
-                        )}
-                    >
+                    <p className={cn(helperTextClassName, internalError ? 'text-[#BC8070] ' : 'text-muted-foreground')}>
                         {internalError || helperText}
                     </p>
                 )}

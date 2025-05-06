@@ -67,18 +67,14 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 ? 'border-[#bc8070] focus:border-[#bc8070] '
                                 : 'border-[#878797] focus:border-[rgb(135,135,151)]'
                         }  h-[50px] w-full max-w-[426px] rounded-[50px] border-2 bg-transparent 
- mb-[14px] pl-[20px] text-[18px] 4xl:text-4xl 3xl:text-2xl 2xl:text-xl font-medium opacity-80   placeholder:text-[#353652]/40 focus:ring-0 focus:ring-offset-0 `}
+ mb-[2px] pl-[20px] text-[18px] 4xl:text-4xl 3xl:text-2xl 2xl:text-xl font-medium opacity-80   placeholder:text-[#353652]/40 focus:ring-0 focus:ring-offset-0  `}
                         label="Почта"
                         labelClassName="mb-1 text15px_desktop font-medium text-white"
                         wrapperClassName="w-full max-w-[426px]"
-                        helperText={inputInternalErrors.email || undefined}
-                        helperTextClassName="mt-[14px]"
+                        helperTextClassName="error-form-desktop-custom mt-[12px]"
                     />
-                    {/* {inputInternalErrors.email && (
-                        <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
-                    )} */}
                 </div>
-                <div className="mt-[2px] px-[76px]">
+                <div className="mt-[14px] px-[76px] ">
                     <p className="text15px_desktop font-medium text-[#353652]">
                         Защита от спама reCAPTCHA{' '}
                         <a href="href" className="hover:cursor text15px_desktop font-medium  text-[#353652] underline">

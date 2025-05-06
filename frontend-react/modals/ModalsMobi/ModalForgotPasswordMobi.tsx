@@ -66,12 +66,13 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
                             label="Почта"
                             labelClassName="text14px_mobi font-medium text-white"
                             wrapperClassName="w-full"
+                            helperTextClassName="error-form-mobi-custom mt-[10px]"
                         />
-                        {inputInternalErrors.email && (
+                        {/* {inputInternalErrors.email && (
                             <p className="text15px_desktop font-medium">{inputInternalErrors.email}</p>
-                        )}
+                        )} */}
                     </div>
-                    <p className="custom-grey text12px_mobi mt-2 py-[2px] pl-[13px] font-medium ">
+                    <p className="custom-grey text12px_mobi mt-[10px] py-[2px] pl-[13px] font-medium ">
                         Введите e-mail, указанный при регистрации
                     </p>
                     <button
