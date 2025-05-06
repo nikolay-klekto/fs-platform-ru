@@ -144,7 +144,7 @@ const JoinTeamMobi: React.FC = () => {
                     Хотите работать у нас?
                 </h2>
             </div>
-            <p className="treacking-[0] mb-7 text-3xl leading-[100%] text-[#878797]">
+            <p className="treacking-[0] mb-7 text-2xl leading-[100%] text-[#878797]">
                 Заполните поля – и мы с вами свяжемся
             </p>
             <form className="max-w-[500px]">
@@ -219,7 +219,7 @@ const JoinTeamMobi: React.FC = () => {
                         onBlur={() => handleBlur('consent')}
                         onChange={handleChange('consent')}
                         label="Я согласен(а) на обработку персональных данных"
-                        labelClassName={`text-[12px] font-medium ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
+                        labelClassName={`text-[11px] font-medium ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                         checkboxIconSize="w-[14px]"
                     />
                 </div>

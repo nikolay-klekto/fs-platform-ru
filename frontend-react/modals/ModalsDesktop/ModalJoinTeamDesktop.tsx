@@ -145,7 +145,7 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
     return (
         <Modal onClose={onClose} size="large-lg" showCloseButton={false}>
             <button onClick={onClose} className="absolute right-[30px] top-[30px]">
-                <X size={71} color="#878797" className="opacity-50 hover:opacity-100" />
+                <X size={71} color="white" className="opacity-[80%]" />
             </button>
             <div className="flex flex-col p-[100px]">
                 <h2 className="text-gradient_desktop_custom 3xl:text-17xl text-18xl 2xl:text-15xl mb-[10px] text-center font-medium uppercase leading-[100%] tracking-normal">
@@ -166,7 +166,7 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         }`}
                         label="Ваше имя*"
                         labelClassName="font-semibold text-[20px] text-white mb-[10px] leading-[100%] tracking-normal"
-                        placeholder="Ваше имя*"
+                        placeholder="Ваше имя"
                         wrapperClassName="w-full"
                     />
                     <PhoneInputDesktop
@@ -225,7 +225,7 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             onBlur={() => handleBlur('consent')}
                             onChange={handleChange('consent')}
                             label="Я согласен(а) на обработку персональных данных"
-                            labelClassName={`text-[24px] ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
+                            labelClassName={`text-[23px] 2xl:text-[21px] ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                             checkboxIconSize="w-[28px]"
                             wrapperClassName="gap-4"
                         />
