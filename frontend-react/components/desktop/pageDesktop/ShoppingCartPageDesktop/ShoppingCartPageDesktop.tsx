@@ -1,0 +1,41 @@
+'use client'
+
+import React from 'react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+
+const ShoppingCartPageDesktop: React.FC = () => {
+    const isAuthorised = false
+
+    return (
+        <div className="bg-[#101030] text-white">
+            <div className="container relative min-h-screen overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
+                <div className="radial-gradient_desktop left-0 top-[-330px]"></div>
+                <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
+                <div className="radial-gradient_desktop bottom-[-425px] left-0"></div>
+                <div className="relative z-[1] flex w-full flex-col items-center justify-center gap-[5%] py-[80px]">
+                    {isAuthorised ? (
+                        <p>You have to log in</p>
+                    ) : (
+                        <div className="flex flex-col items-center justify-center gap-10">
+                            <div className="w-[65%] text-center text-7xl opacity-50">
+                                <p>Ваша корзина пуста</p>
+                                <p>
+                                    Загляните на главную, чтобы выбрать понравившуюся стажировку, либо войдите в Ваш
+                                    аккаунт
+                                </p>
+                            </div>
+                            <Link href={'/professions'}>
+                                <Button variant={'send_btn_desktop'} size={'send_btn_desktop'}>
+                                    Выбрать профессию
+                                </Button>
+                            </Link>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default ShoppingCartPageDesktop

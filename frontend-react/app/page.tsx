@@ -4,6 +4,8 @@ import { useMediaQuery } from 'react-responsive'
 import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/HomePageDesktop'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
 import { useModal } from '@/context/ContextModal'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
@@ -30,7 +32,9 @@ export default function Home() {
         <div>
             {isDesktop ? (
                 <>
+                    <HeaderDesktop />
                     <HomePageDesktop />
+                    <FooterDesktop />
                 </>
             ) : (
                 <>
