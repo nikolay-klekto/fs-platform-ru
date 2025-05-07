@@ -15,7 +15,6 @@ const REGISTER_MUTATION = gql`
     }
 `
 
-
 export const useAuth = () => {
     const [customError, setCustomError] = useState<string | null>(null)
     const [registerMutation, { error, loading, client }] = useMutation(REGISTER_MUTATION, {
