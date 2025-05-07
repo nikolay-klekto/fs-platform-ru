@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-
+import CompaniesPageMobi from '@/components/mobi/pageMobi/CompaniesPageMobi/CompaniesPageMobi'
 export default function Companies() {
     const [isClient, setIsClient] = useState(false)
 
@@ -28,7 +28,7 @@ export default function Companies() {
             ) : (
                 <>
                     <main className="bg-[#101030] text-white">
-                        <h1>Companies</h1>
+                        <CompaniesPageMobi />
                     </main>
                 </>
             )}
