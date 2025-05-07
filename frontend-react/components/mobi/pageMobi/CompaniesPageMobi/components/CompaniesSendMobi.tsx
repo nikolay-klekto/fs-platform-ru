@@ -16,15 +16,17 @@ const ProfessionSendMobi: React.FC = () => {
                 <p>Дайте нам знать!</p>
             </div>
             <div className="justify-bitween mx-auto flex h-[34px] w-full max-w-[400px] items-center gap-[15px]">
-                <EnhancedInput
-                    type="text"
-                    value={useRequest}
-                    onChange={(value) => setUseRequest(value)}
-                    variant={'search_mobi'}
-                    size={'send_mobi'}
-                    rounded={'rounded_20'}
-                    wrapperClassName="justify-bitween h-[30px] rounded-[20px] border-box w-full border-[1.25px] border-[#878797] bg-transparent"
-                />
+                <div className="relative size-full p-[1.3px] rounded-[20px] bg-transparent hover:bg-gradient-mobi-menu transition">
+                    <EnhancedInput
+                        type="text"
+                        value={useRequest}
+                        onChange={(value) => setUseRequest(value)}
+                        variant={'search_mobi'}
+                        size={'send_mobi'}
+                        rounded={'rounded_20'}
+                        wrapperClassName="justify-bitween h-[30px] rounded-[20px] border-box w-full border-[1.25px] bg-[#101030] border-[#878797]"
+                    />
+                </div>
                 <SendIconMobi onClick={handleSendRequest} />
             </div>
         </div>

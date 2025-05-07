@@ -15,7 +15,6 @@ import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 const CompaniesPageMobi: React.FC = () => {
     const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
-    //const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const cardsPerPage = 6
@@ -32,10 +31,11 @@ const CompaniesPageMobi: React.FC = () => {
         setSelectedCategories(categories)
     }
 
-    const handleSearch = () => {
-        console.log('Поиск компаний:', searchQuery)
-        setSearchQuery('')
-    }
+    // const handleSearch = () => {
+    //     console.log('Поиск компаний:', searchQuery)
+    //     setSearchQuery('')
+    // }
+
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
@@ -49,19 +49,21 @@ const CompaniesPageMobi: React.FC = () => {
                         <h1 className="title28px_mobi_custom">Компании</h1>
                         <div className="flex items-center gap-[21px] py-[30px]">
                             <div className="relative w-full max-w-[282px]">
-                                <EnhancedInput
-                                    type="text"
-                                    value={searchQuery}
-                                    onChange={(value) => setSearchQuery(value)}
-                                    variant={'search_mobi'}
-                                    size={'search_companies_mobi'}
-                                    rounded={'full'}
-                                    wrapperClassName={
-                                        'relative h-[48px] border-[2px] border-[#878797] bg-transparent flex-1 justify-bitween flex rounded-[50px]'
-                                    }
-                                    placeholder="Поиск"
-                                />
-                                <Button variant="circle_btn_mobi" size="circle_btn_mobi" onClick={handleSearch}>
+                                <div className="relative p-[2.5px] rounded-[50px] bg-transparent hover:bg-gradient-mobi-menu transition">
+                                    <EnhancedInput
+                                        type="text"
+                                        value={searchQuery}
+                                        onChange={setSearchQuery}
+                                        variant={'search_mobi'}
+                                        size={'search_companies_mobi'}
+                                        rounded={'full'}
+                                        wrapperClassName={
+                                            'relative h-[48px] border-[2px] border-[#878797] bg-[#101030] flex-1 justify-bitween flex rounded-[50px]'
+                                        }
+                                        placeholder="Поиск"
+                                    />
+                                </div>
+                                <Button variant="circle_btn_mobi" size="circle_btn_mobi">
                                     <Search color="#878797" width={24} height={24} strokeWidth={2} />
                                 </Button>
                             </div>
@@ -76,6 +78,7 @@ const CompaniesPageMobi: React.FC = () => {
                                         image={item.image}
                                         industry={item.industry}
                                         price={item.price.toString()}
+                                        // здесь будет открываться страница компании, пока оставлена ссылка на профессии
                                         onClick={() => {
                                             openModal('profession_modal_mobi', 'mobi', {
                                                 profession: item.companyName,

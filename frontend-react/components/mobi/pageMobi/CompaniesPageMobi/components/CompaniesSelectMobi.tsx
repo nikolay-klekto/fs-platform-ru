@@ -28,11 +28,6 @@ const ProfessionsSelectMobi = ({ onCategoryChange }: { onCategoryChange: (catego
     const handleSelectToggle = () => {
         setIsOpen((prev) => !prev)
     }
-    const handleClickOutside = (event: MouseEvent) => {
-        if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
-            setIsOpen(false)
-        }
-    }
 
     useEffect(() => {
         onCategoryChange(selectedOptions)
