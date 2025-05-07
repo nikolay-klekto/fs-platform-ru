@@ -6,7 +6,7 @@ import Image from 'next/image'
 import {
     contentInternshipCompaniesDesktop,
     IInternshipCompanies,
-} from '@/components/desktop/layout/ProfessionModalDesktop/content'
+} from '@/components/desktop/pageDesktop/ProfessionsModalDesktop/data/content'
 
 const CompaniesSectionDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
@@ -58,7 +58,7 @@ const CompaniesSectionDesktop: React.FC = () => {
                 <div
                     ref={contentRef}
                     onScroll={handleScroll}
-                    className="no-scrollbar_custom flex w-full select-none gap-[13vw] overflow-y-visible overflow-x-scroll"
+                    className="no-scrollbar_custom flex w-full select-none gap-[9vw] overflow-y-visible overflow-x-scroll"
                 >
                     {contentInternshipCompaniesDesktop.map((item: IInternshipCompanies) => (
                         <div
