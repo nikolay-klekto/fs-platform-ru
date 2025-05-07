@@ -13,16 +13,16 @@ const ShoppingCartPageDesktop: React.FC = () => {
         <>
             <HeaderDesktop />
             <div className="bg-[#101030] text-white">
-                <div className="container relative min-h-screen overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
-                    <div className="radial-gradient_desktop left-0 top-[-330px]"></div>
+                <div className="relative min-h-screen overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
+                    <div className="radial-gradient_desktop absolute left-0 top-[-330px]"></div>
                     <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
-                    <div className="radial-gradient_desktop bottom-[-425px] left-0"></div>
+                    <div className="radial-gradient_desktop bottom-[-200px] left-0"></div>
                     <div className="relative z-[1] flex w-full flex-col items-center justify-center gap-[5%] py-[80px]">
                         {isAuthorised ? (
                             <p>You have to log in</p>
                         ) : (
                             <div className="flex flex-col items-center justify-center gap-10">
-                                <div className="w-[65%] text-center text-7xl opacity-50">
+                                <div className="w-[65%] text-center text-7xl text-[#353652]">
                                     <p>Ваша корзина пуста</p>
                                     <p>
                                         Загляните на главную, чтобы выбрать понравившуюся стажировку, либо войдите в Ваш
