@@ -6,7 +6,7 @@ import ItemCompaniesMobi from '@/components/mobi/layout/ProfessionModalMobi/Item
 
 const CompaniesSectionMobi: React.FC = () => {
     return (
-        <section className="flex max-w-full flex-col gap-4 px-[15px] py-[60px] sm:gap-[15px] sm:pt-[15px]">
+        <section className="flex max-w-full flex-col gap-4 px-[15px] pb-[60px] sm:gap-[15px] sm:pt-[15px]">
             <TitleMobi title="Компании" href="/companies" />
             <div className="scrollbar_custom mx-auto mb-[20px] flex w-full gap-2 overflow-y-hidden overflow-x-scroll py-[20px]">
                 {contentInternshipCompaniesMobi.map((item) => (
