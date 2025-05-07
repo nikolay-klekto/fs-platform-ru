@@ -50,8 +50,8 @@ const CompaniesSectionDesktop: React.FC = () => {
     }, [])
 
     return (
-        <section className="flex flex-col gap-[80px] py-[100px]">
-            <div className="mb-35xl container">
+        <section className="container flex flex-col gap-[80px] py-[100px]">
+            <div className="mb-35xl">
                 <TitleDesktop title="Компании" href="/companies" />
             </div>
             <div className="flex flex-col overflow-x-auto pt-10">
