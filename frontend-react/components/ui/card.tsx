@@ -27,7 +27,7 @@ const cardVariants = cva('border-none', {
             profession_page_mobi:
                 'aspect-[164/193] w-[164px] max-w-[210px] flex-shrink flex-grow overflow-hidden rounded-[24px] px-[10px] py-[12px] md:aspect-[164/193] md:w-[185px]',
             companies_page_desktop:
-                'aspect-[340/400] w-[340px] max-w-full  px-[20px] py-[25px] 2xl:px-[15px] 2xl:py-[20px] ',
+                'aspect-[340/400] w-[340px] max-w-full  px-[20px] py-[21px] 2xl:px-[15px] 2xl:py-[20px] ',
         },
         rounded: {
             default: 'rounded-[50px]',
@@ -63,9 +63,9 @@ const cardTitleVariants = cva('font-medium', {
             profession_home_desktop: 'w-fit px-[20px] py-[10px]',
             profession_home_mobi: 'w-fit px-[15px] py-[10px] ',
             profession_page_desktop:
-                '3xl:px-[15px] 4xl:px-[15px] 4xl:max-w-full w-fit max-w-full  rounded-[25px] px-[20px] py-[2px] 2xl:px-[10px]',
+                'w-fit max-w-full rounded-[25px] px-[20px] py-[2px]  2xl:px-[10px] 3xl:px-[15px] 4xl:max-w-full 4xl:px-[15px]',
             profession_page_mobi: 'w-fit max-w-full truncate px-[10px] py-[3px]',
-            companies_page_desktop: '4xl:max-w-full w-fit max-w-full',
+            companies_page_desktop: 'w-fit max-w-full 4xl:max-w-full',
         },
         rounded: {
             default: 'rounded-[50px]',
@@ -98,8 +98,10 @@ const cardFooterVariants = cva('p-0', {
             profession_home_desktop: 'w-fit px-[15px] py-[5px] pb-3 2xl:px-[10px]',
             profession_home_mobi: 'w-fit px-[15px] py-[5px]',
             profession_page_desktop:
-                '4xl:px-[15px] 3xl:px-[15px] 4xl:py-[4px] 3xl:py-[2px] w-fit px-[20px] py-[5px] 2xl:px-[10px] 2xl:py-0',
+                'w-fit px-[20px] py-[5px] 2xl:px-[10px] 2xl:py-0 3xl:px-[15px] 3xl:py-[2px] 4xl:px-[15px] 4xl:py-[4px]',
             profession_page_mobi: 'w-fit px-[10px] py-[2px]',
+            companies_page_desktop:
+                'w-fit px-[17px] py-[1px] 2xl:px-[10px] 2xl:py-0 3xl:px-[15px] 3xl:py-[2px] 4xl:px-[17px] 4xl:py-[1px]',
         },
         rounded: {
             default: 'rounded-[50px]',

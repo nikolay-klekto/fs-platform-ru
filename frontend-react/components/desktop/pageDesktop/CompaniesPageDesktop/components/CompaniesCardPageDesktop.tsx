@@ -14,9 +14,9 @@ interface ICompanieCard {
 const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName, price, industry, onClick }) => {
     return (
         <>
-            <div className="relative overflow-hidden rounded-[20px] ">
+            <div className="relative overflow-hidden rounded-[20px] hover:button-shadow_around_desktop_custom ">
                 <div
-                    className="absolute inset-0 z-0 rounded-[20px] bg-center opacity-80 pointer-events-none"
+                    className="absolute inset-0 z-0 rounded-[20px] bg-center opacity-80 "
                     style={{ backgroundImage: `url(${image})`, backgroundSize: '150%', backgroundPosition: 'center' }}
                 />
                 <Card
@@ -29,17 +29,17 @@ const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName,
                     <CardTitle variant={'companies_page_desktop'} size={'companies_page_desktop'}>
                         {industry}
                     </CardTitle>
-                    <CardContent className="text-semibold flex grow items-end  px-[10px] pb-[7px] text-11xl  text-white 2xl:text-6xl 3xl:text-8xl 4xl:text-10xl">
+                    <CardContent className="font-semibold flex grow items-end p-0 px-[10px] text-11xl text-white 2xl:text-6xl 3xl:text-8xl 4xl:text-10xl">
                         {companyName}
                     </CardContent>
                     <CardFooter
                         variant={'profession_page_desktop'}
-                        size={'profession_page_desktop'}
+                        size={'companies_page_desktop'}
                         rounded={'rounded_25'}
                     >
-                        <p className="text-7xl leading-[40px]  tracking-normal text-[#878797] 2xl:text-3xl 3xl:text-4xl  4xl:text-4xl">
+                        <p className="text-10xl leading-[40px]  tracking-normal text-[#878797] 2xl:text-5xl 3xl:text-7xl  4xl:text-9xl">
                             от{' '}
-                            <span className="bg-gradient-desktop bg-clip-text text-8xl text-transparent 2xl:text-4xl 3xl:text-5xl 4xl:text-6xl">
+                            <span className="bg-gradient-desktop bg-clip-text text-8xl text-transparent 2xl:text-4xl 3xl:text-5xl 4xl:text-7xl">
                                 {price} BYN/
                             </span>
                             неделя
