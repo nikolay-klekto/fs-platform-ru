@@ -9,6 +9,7 @@ import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validat
 import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
 import { useModal } from '@/context/ContextModal'
 import { useLogin } from '@/hooks/useLogin'
+import { useRouter } from 'next/navigation'
 
 export const LoginModalDesktop = ({ onClose }: { onClose: () => void }) => {
     const [formData, setFormData] = useState({
@@ -31,14 +32,31 @@ export const LoginModalDesktop = ({ onClose }: { onClose: () => void }) => {
         setFormErrors(errors)
         return !Object.values(errors).some(Boolean)
     }
-
+    const router = useRouter()
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-
         if (!validateForm()) return
 
-        await login(formData.email, formData.password)
+        const result = await login(formData.email, formData.password)
+
+        if (result.success) {
+            onClose()
+            router.push('/personal-account')
+        } else {
+            setFormErrors((prevErrors) => ({
+                ...prevErrors,
+                email: result.errorMessage || 'Ошибка авторизации',
+            }))
+        }
     }
+
+    // const handleSubmit = async (e: React.FormEvent) => {
+    //     e.preventDefault()
+
+    //     if (!validateForm()) return
+
+    //     await login(formData.email, formData.password)
+    // }
 
     const handleChange = (field: 'email' | 'password', value: string) => {
         setFormData((prev) => ({ ...prev, [field]: value }))
