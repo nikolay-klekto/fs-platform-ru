@@ -9,6 +9,8 @@ import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
 import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
 import { useModal } from '@/context/ContextModal'
+import { useLogin } from '@/hooks/useLogin'
+import { useRouter } from 'next/navigation'
 
 interface ILoginFormData {
     email: string
@@ -31,6 +33,8 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
     })
 
     const [formError, setFormError] = useState(false)
+    const { login, error: apiError, loading } = useLogin()
+    const router = useRouter()
 
     const handleError = (field: string, error: string | null) => {
         setInputInternalErrors((prevErrors) => ({
@@ -41,9 +45,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const validateForm = useCallback((): boolean => {
         const hasEmptyFields = formData.email === '' || formData.password === ''
-
         const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
-
         return hasEmptyFields || hasInternalErrors
     }, [formData.email, formData.password, inputInternalErrors])
 
@@ -52,17 +54,29 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
             ...prev,
             [field]: value,
         }))
+        if (inputInternalErrors[field]) {
+            setInputInternalErrors((prev) => ({ ...prev, [field]: null }))
+        }
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         if (validateForm()) {
             setFormError(true)
-            console.log('Ошибка: Заполните все поля корректно или исправьте ошибки')
-        } else {
-            setFormError(false)
-            console.log('Форма входа отправлена:', formData)
+            return
+        }
+
+        const result = await login(formData.email, formData.password)
+
+        if (result.success) {
             onClose()
+            router.push('/personal-account')
+        } else {
+            setInputInternalErrors((prev) => ({
+                ...prev,
+                email: result.errorMessage || 'Ошибка авторизации',
+            }))
+            setFormError(true)
         }
     }
 
@@ -117,7 +131,9 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 setFormError(!validateForm)
                             }}
                             className={`${
-                                (inputTouched.email && validateEmailDesktop(formData.email).styleError) || formError
+                                (inputTouched.email && validateEmailDesktop(formData.email).styleError) ||
+                                formError ||
+                                inputInternalErrors.email
                                     ? 'border-[#bc8070] focus:bg-[#1f203f]'
                                     : 'input-form-desktop-custom border-[#878797]'
                             } h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium text-white outline-none placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
@@ -144,13 +160,14 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             errorClassName="error-form-desktop-custom"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            formError={formError}
+                            formError={formError || !!inputInternalErrors.password}
                             showGenerateButton={true}
                             required={true}
                         />
                     </div>
-                    <div className={`flex w-full ${formError ? 'justify-between' : 'justify-end'}`}>
-                        {formError && <p className="error-form-desktop-custom">Введите e-mail и пароль</p>}
+                    <div className={`flex w-full ${formError || apiError ? 'justify-between' : 'justify-end'}`}>
+                        {formError && !apiError && <p className="error-form-desktop-custom">Введите e-mail и пароль</p>}
+                        {apiError && <p className="error-form-desktop-custom">{apiError}</p>}
                         <button
                             type="button"
                             className="text15px_desktop bg-transparent font-semibold text-[#878797]"
@@ -175,10 +192,10 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         type="submit"
                         variant="default"
                         size="btn_modal_desktop"
-                        disabled={formError}
+                        disabled={formError || loading}
                         className="mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
                     >
-                        Войти
+                        {loading ? 'Вход...' : 'Войти'}
                     </Button>
                 </form>
                 <div className="text15px_desktop mt-5 flex justify-center">
