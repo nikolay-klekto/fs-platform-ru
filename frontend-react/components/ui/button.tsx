@@ -18,7 +18,7 @@ const buttonVariants = cva(
                 select_desktop:
                     'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white',
                 send_btn_desktop:
-                    'button-border-desktop hover:bg-gradient-desktop 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white hover:border-0 2xl:text-3xl',
+                    'button-border-desktop hover:bg-gradient-desktop 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white hover:border-2 2xl:text-3xl',
                 select_mobi: 'button-border-mobi rounded-[50px] border-2 border-transparent bg-[#101030] text-white',
                 accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
                 accent_mobi: 'flex items-center rounded-[50px] bg-white',
@@ -81,12 +81,12 @@ const buttonVariants = cva(
                 circleDesk: 'size-[68px]',
                 circleMobi: 'sm_s:size-[52px] size-[55px] sm:size-[50px]',
                 contacts_btn_desktop: '3xl:h-[62px] 3xl:w-[256px] h-[65px] w-[262px] 2xl:h-[59px] 2xl:w-[250px]',
-                contacts_btn_send_desktop: '3xl:h-[65px] 3xl:w-[283px] h-[68.5px] w-[289px] 2xl:h-[62px] 2xl:w-[277px]',
-                contacts_btn_mobi: 'sm_s:w-[156px] h-[39.5px] w-[159px] flex-shrink-0 sm:w-[152px]',
-                contacts_btn_send_mobi: 'sm_s:w-[140px] h-[35px] w-[145px] flex-shrink-0 sm:w-[136px]',
+                contacts_btn_send_desktop: 'h-[68.5px] w-[289px] 2xl:h-[62px] 2xl:w-[277px] 3xl:h-[65px] 3xl:w-[283px]',
+                contacts_btn_mobi: 'h-[39.5px] w-[159px] flex-shrink-0 sm:w-[152px] sm_s:w-[156px]',
+                contacts_btn_send_mobi: 'h-[35px] w-[145px] flex-shrink-0 sm:w-[136px] sm_s:w-[140px]',
                 circle_modal_desk: 'size-[54px]',
                 hover_button_date_desktop:
-                    '3xl:w-[270px] 3xl:px-[20px] h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px]',
+                    'h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px] 3xl:w-[270px] 3xl:px-[20px]',
                 confirm_btn_desktop: 'h-[64px] w-[250px]',
             },
         },
