@@ -28,7 +28,7 @@ const ShoppingCartPageDesktop: React.FC = () => {
                                     </p>
                                 </div>
                                 <Link href={'/professions'}>
-                                    <Button variant={'send_btn_desktop'} size={'send_btn_desktop'}>
+                                    <Button variant={'send_btn_desktop'} size={'contacts_btn_desktop'}>
                                         Выбрать профессию
                                     </Button>
                                 </Link>
