@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
@@ -132,9 +133,11 @@ const ContactsMobi: React.FC = () => {
             <div className="px-[15px] pt-10">
                 <div className="flex flex-col gap-4 pb-10">
                     <h2 className="text-9xl font-medium uppercase">Cвяжитесь с нами</h2>
-                    <Button variant="select_mobi" size="contacts_btn_mobi">
-                        Хочу в команду
-                    </Button>
+                    <Link href="/join-team">
+                        <Button variant="select_mobi" size="contacts_btn_mobi">
+                            Хочу в команду
+                        </Button>
+                    </Link>
                 </div>
                 <div className="flex w-full justify-between">
                     <div className="flex flex-col">

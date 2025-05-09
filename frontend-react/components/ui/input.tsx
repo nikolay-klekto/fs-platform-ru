@@ -66,6 +66,7 @@ export interface IEnhancedInput
     labelClassName?: string
     placeholder?: string
     name?: string
+    checkboxIconSize?: string
     checked?: boolean
 }
 
@@ -88,6 +89,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             labelClassName,
             placeholder,
             checked,
+            checkboxIconSize,
             ...props
         },
         ref,
@@ -156,7 +158,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         className={cn(
                             'text15px_desktop font-medium text-[#878797]',
                             labelClassName,
-                            isCheckbox && 'flex items-center gap-2',
+                            isCheckbox && 'flex items-center gap-4',
                         )}
                     >
                         {isCheckbox && (
@@ -169,9 +171,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 onClick={handleCheckboxToggle}
                             >
                                 {internalValue ? (
-                                    <CheckedBoxFormDesktop className="w-[16px]" />
+                                    <CheckedBoxFormDesktop className={checkboxIconSize} />
                                 ) : (
-                                    <UncheckedBoxFormDesktop className="w-[16px]" />
+                                    <UncheckedBoxFormDesktop className={checkboxIconSize} />
                                 )}
                             </button>
                         )}
