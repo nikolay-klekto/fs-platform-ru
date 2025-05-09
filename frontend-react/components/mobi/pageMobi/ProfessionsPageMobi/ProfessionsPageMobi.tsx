@@ -72,7 +72,7 @@ const ProfessionsPageMobi: React.FC = () => {
                         </div>
                         {filteredContent.length > 0 ? (
                             <>
-                                <div className="flex flex-wrap justify-center gap-[20px] sm_xl:gap-[15px]">
+                                <div className="flex flex-wrap justify-center gap-4">
                                     {filteredContent
                                         .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                         .map((item) => (
