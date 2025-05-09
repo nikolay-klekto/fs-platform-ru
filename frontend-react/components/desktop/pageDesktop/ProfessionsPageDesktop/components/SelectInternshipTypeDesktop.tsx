@@ -14,11 +14,7 @@ interface ISelectOption {
     label: string
 }
 
-const SelectInternshipTypeDesktop = ({
-    onCategoryChange,
-}: {
-    onCategoryChange: (categories: string[]) => void
-}) => {
+const SelectInternshipTypeDesktop = ({ onCategoryChange }: { onCategoryChange: (categories: string[]) => void }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
     const selectRef = useRef<HTMLDivElement>(null)
