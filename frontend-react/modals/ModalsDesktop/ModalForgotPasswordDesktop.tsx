@@ -21,9 +21,9 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
         email: '',
     })
 
-    const [inputInternalErrors] = useState<{ [key: string]: string | null }>({
-        email: '',
-    })
+    // const [inputInternalErrors] = useState<{ [key: string]: string | null }>({
+    //     email: '',
+    // })
 
     const [inputTouched, setInputTouched] = useState({
         email: false,
@@ -39,11 +39,12 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const isEmailValid = !Boolean(validateEmailDesktop(passwordData.email).styleError)
     const isFormValid = isEmailValid && passwordData.email.trim() !== ''
     const [isSubmitted, setIsSubmitted] = useState(false)
+
     return (
         <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div>
                 <button onClick={onClose} className="absolute right-7 top-6">
-                    <X size={41} color="white" className="opacity-50 hover:opacity-100" />
+                    <X size={41} color="white" className="opacity-80 hover:opacity-100" />
                 </button>
             </div>
             <div className=" flex max-w-[578px] flex-col">
@@ -86,7 +87,7 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         </a>
                     </p>
                 </div>
-                <div className="mb-6 mt-5 flex justify-center">
+                <div className="mb-10 mt-7 flex justify-center">
                     <Button
                         type="submit"
                         variant="default"
