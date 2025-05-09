@@ -24,7 +24,7 @@ const ProfessionSendDesktop: React.FC = () => {
                     size={'gradient_desktop'}
                     rounded={'full'}
                     className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
-                    wrapperClassName={`justify-bitween 4xl:w-[750px] 3xl:w-[700px] relative flex h-[64px] w-[800px] rounded-[50px] p-[3px] 2xl:w-[600px] ${isFocused ? 'border-[3px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
+                    wrapperClassName={`h-[64px] justify-between flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
                 />
