@@ -16,7 +16,6 @@ const ProfessionsPageMobi: React.FC = () => {
     const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-    //const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
 
@@ -49,7 +48,7 @@ const ProfessionsPageMobi: React.FC = () => {
                     <div className="px-[15px] py-[40px]">
                         <h1 className="title28px_mobi_custom">Профессии</h1>
                         <div className="flex items-center gap-[20px] py-[30px]">
-                            <div className="relative w-full md:max-w-[430px]">
+                            <div className="relative w-full rounded-full transition-all duration-300 focus-within:ring-2 focus-within:ring-[#5F4AF3] md:max-w-[430px]">
                                 <EnhancedInput
                                     type="text"
                                     value={searchQuery}
