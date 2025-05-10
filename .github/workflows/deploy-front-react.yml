@@ -30,7 +30,7 @@ jobs:
         working-directory: frontend-react
 
       - name: Build React app
-        run: npm run build && npm run export
+        run: npm run build
         working-directory: frontend-react
 
       - name: Check contents of build folder
