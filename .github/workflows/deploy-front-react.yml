@@ -1,4 +1,4 @@
-name: Build and Deploy React App
+name: Build and Deploy React App (Next.js SSR)
 
 on:
   push:
@@ -29,19 +29,27 @@ jobs:
         run: npm ci
         working-directory: frontend-react
 
-      - name: Build React app
+      - name: Build app
         run: npm run build
         working-directory: frontend-react
 
-      - name: Check contents of build folder
-        run: ls -la
-        working-directory: frontend-react/out
+      - name: Prepare deployment folder
+        run: |
+          mkdir deploy
+          cp -r frontend-react/.next deploy/.next
+          cp -r frontend-react/public deploy/public
+          cp frontend-react/package*.json deploy/
+          cp frontend-react/next.config.js deploy/ || true
+        # добавь другие нужные файлы, если есть
 
-      - name: Upload build artifact
+      - name: Archive deployment folder
+        run: tar -czf react-app.tar.gz deploy
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: react-build
-          path: frontend-react/out
+          name: react-build-package
+          path: react-app.tar.gz
 
   deploy:
     if: needs.build.result == 'success'
@@ -49,26 +57,30 @@ jobs:
     needs: build
 
     steps:
-      - name: Download build artifact
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: react-build
-          path: ./build
+          name: react-build-package
+          path: .
 
-      - name: Copy build to server
+      - name: Copy to server and deploy
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          scp -o StrictHostKeyChecking=no -r ./build root@${{ secrets.IP_DOMAIN }}:/home/Nikolay/funScrut/frontend-react/build
+          scp -o StrictHostKeyChecking=no react-app.tar.gz root@${{ secrets.IP_DOMAIN }}:/home/Nikolay/react-app.tar.gz
 
-      - name: Restart Docker (frontend only)
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
           ssh -o StrictHostKeyChecking=no root@${{ secrets.IP_DOMAIN }} << 'EOF'
-          cd /home/Nikolay/funScrut
+          cd /home/Nikolay
+          rm -rf funScrut/frontend-react/.next
+          tar -xzf react-app.tar.gz
+          cp -r deploy/.next funScrut/frontend-react/.next
+          cp -r deploy/public funScrut/frontend-react/public
+          cp deploy/package*.json funScrut/frontend-react/
+          cp deploy/next.config.js funScrut/frontend-react/ || true
+          rm -rf deploy react-app.tar.gz
+          cd funScrut
           docker compose up -d --build react-app
           EOF
