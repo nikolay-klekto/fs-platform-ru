@@ -40,7 +40,6 @@ jobs:
           cp -r frontend-react/public deploy/public
           cp frontend-react/package*.json deploy/
           cp frontend-react/next.config.js deploy/ || true
-        # добавь другие нужные файлы, если есть
 
       - name: Archive deployment folder
         run: tar -czf react-app.tar.gz deploy
