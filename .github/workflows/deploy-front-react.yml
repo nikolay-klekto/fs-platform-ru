@@ -30,18 +30,18 @@ jobs:
         working-directory: frontend-react
 
       - name: Build React app
-        run: npm run build
+        run: npm run build && npm run export
         working-directory: frontend-react
 
-      - name: Show build folder contents
+      - name: Check contents of build folder
         run: ls -la
-        working-directory: frontend-react/build
+        working-directory: frontend-react/out
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: react-build
-          path: frontend-react/build
+          path: frontend-react/out
 
   deploy:
     if: needs.build.result == 'success'
