@@ -39,7 +39,7 @@ jobs:
           cp -r frontend-react/.next deploy/.next
           cp -r frontend-react/public deploy/public
           cp frontend-react/package*.json deploy/
-          cp frontend-react/next.config.js deploy/ || true
+          cp frontend-react/next.config.mjs deploy/ || true
 
       - name: Archive deployment folder
         run: tar -czf react-app.tar.gz deploy
@@ -78,7 +78,7 @@ jobs:
           cp -r deploy/.next funScrut/frontend-react/.next
           cp -r deploy/public funScrut/frontend-react/public
           cp deploy/package*.json funScrut/frontend-react/
-          cp deploy/next.config.js funScrut/frontend-react/ || true
+          cp deploy/next.config.mjs funScrut/frontend-react/ || true
           rm -rf deploy react-app.tar.gz
           cd funScrut
           docker compose up -d --build react-app
