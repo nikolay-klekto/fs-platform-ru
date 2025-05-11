@@ -5,9 +5,7 @@ import React, { useState } from 'react'
 import { content } from './contentEventsPageMobi/content'
 import EventsCardMobi from './components/EventsCardMobi'
 import EventsPaginationMobi from './components/EventsPaginationMobi'
-// import EventsSelectSearchMobi from './components/EventsSelectSearchMobi'
-// import EventsSelectSearchDateMobi from './components/EventsSelectSearchDateMobi'
-// import EventsSelectSearchCityMobi from './components/EventsSelectSearchCityMobi'
+import EventsFilterModalMobi from '../../../../modals/ModalsMobi/ModalFilterEventsMobi/EventsFilterModalMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import { FiltersIconMobi } from '@/components/assets/iconsMobi'
@@ -17,11 +15,14 @@ const EventsPageMobi: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
     const totalPages = Math.ceil(content.length / cardsPerPage)
+    const [showFilter, setShowFilter] = useState(false)
 
-    // const handleSearch = () => {
-    //console.log('Поиск мероприятия:', searchQuery)
-    //setSearchQuery('')
-    //}
+    // const [filters, setFilters] = useState({
+    //     category: null,
+    //     date: null,
+    //     city: null,
+    // })
+
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
@@ -34,14 +35,9 @@ const EventsPageMobi: React.FC = () => {
                     <div className="relative overflow-hidden px-[16px] pt-[40px]">
                         <div className="mb-10 flex items-center justify-between pr-[4px]">
                             <h1 className="text28px_mobi relative uppercase">Мероприятия</h1>
-                            <FiltersIconMobi className={`size-[24px] text-white`} />
+                            <FiltersIconMobi className={`size-[24px] text-white`} onClick={() => setShowFilter(true)} />
+                            {showFilter && <EventsFilterModalMobi onClose={() => setShowFilter(false)} />}
                         </div>
-
-                        {/* <div className="relative z-[1] flex items-center justify-end gap-[30px] pt-[24px] pb-[24px]">
-                            <EventsSelectSearchMobi />
-                            <EventsSelectSearchDateMobi />
-                            <EventsSelectSearchCityMobi />
-                        </div> */}
                         <div className="flex flex-col items-center gap-[24px]">
                             {content.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
                                 <EventsCardMobi
