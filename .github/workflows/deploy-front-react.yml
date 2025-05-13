@@ -10,9 +10,6 @@ on:
 
 jobs:
   build:
-    if: |
-      (github.event_name == 'push' && contains(github.event.head_commit.message, '[deploy-front]')) ||
-      (github.event_name == 'pull_request' && contains(github.event.pull_request.title, '[deploy-front]'))
     runs-on: ubuntu-latest
 
     steps:
