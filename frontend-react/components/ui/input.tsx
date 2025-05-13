@@ -24,6 +24,12 @@ const inputVariants = cva(
                 contacts_page_error_mobi:
                     'border-[1.18px] border-[#bc8070] bg-transparent text-xl ring-offset-transparent placeholder:text-xs placeholder:font-medium focus:border-2 focus:ring-transparent md:placeholder:text-base',
                 events_date_desktop: 'h-[22px] border-none bg-transparent placeholder-gray-500 outline-none',
+                profile_page_desktop:
+                    'placeholder:text-[#353652] bg-transparent border-[#878797] focus:border-[#878797] border-2 text-4xl font-medium ring-offset-transparent placeholder:font-medium focus:border-[2px] focus:ring-transparent',
+                profile_page_filled_input_desktop:
+                    'text-[#ffffff] bg-[#353652] border-[#878797] focus:border-[#878797] border-2 text-4xl font-medium ring-offset-transparent placeholder:font-medium focus:border-[2px] focus:ring-transparent',
+                profile_page_error_desktop:
+                    'placeholder:text-[#353652] bg-transparent border-[#bc8070] focus:border-[#bc8070] border-2 text-4xl ring-offset-transparent placeholder:font-medium focus:border-[2px] focus:ring-transparent',
             },
             size: {
                 default: 'h-10 px-3 py-2',
@@ -34,6 +40,7 @@ const inputVariants = cva(
                 contacts_page_desktop: 'h-[53px] w-[453px] px-4 py-3.5 2xl:w-[520px]',
                 contacts_page_info_desktop: '3xl:w-[452px] h-[53px] w-[484px] px-4 py-3.5 2xl:w-[520px]',
                 contacts_page_mobi: 'h-[28.5px] max-w-[346px] px-4 py-2 md:h-[32px]',
+                profile_page_desktop: 'h-[50px] w-[426px] px-[20px] py-[14px]',
             },
             rounded: {
                 default: 'rounded-md',
