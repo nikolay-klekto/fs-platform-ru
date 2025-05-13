@@ -42,6 +42,9 @@ const buttonVariants = cva(
                 hover_button_date:
                     'hover:button-border-desktop-date 4xl:text-2xl 3xl:text-xl rounded-[90px] border border-[#878797] bg-[#1F203F] text-[18px] hover:bg-[#28295B] 2xl:text-lg',
                 cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
+                cancel_btn_profile_desktop: 'text-[20px] font-medium text-[#878797] underline hover:text-white',
+                save_btn_profile_desktop:
+                    'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white hover:border-0',
             },
             size: {
                 default: 'h-10 px-4 py-2',
@@ -88,6 +91,8 @@ const buttonVariants = cva(
                 hover_button_date_desktop:
                     '3xl:w-[270px] 3xl:px-[20px] h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px]',
                 confirm_btn_desktop: 'h-[64px] w-[250px]',
+                save_btn_profile_desktop: 'h-[64px] w-[267px]',
+                cancel_btn_profile_desktop: 'p-0',
             },
         },
         defaultVariants: {

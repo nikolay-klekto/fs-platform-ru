@@ -205,4 +205,13 @@
         background-position: center;
         background-repeat: no-repeat;
     }
+    .select_profile_desktop_custom {
+        @apply h-[50px] appearance-none border-2 border-[#878797] leading-none outline-none text-[#353652] text-4xl font-medium rounded-[50px] bg-transparent bg-no-repeat bg-[center_right_20px] px-[20px] py-[14px];
+    }
+    .label_profile_desktop_custom {
+        @apply text-2xl font-medium;
+    }
+    .ul_profile_desktop_custom {
+        @apply flex flex-col justify-normal gap-[15px] border-2 border-[#878797] text-[#353652] text-4xl font-medium rounded-[25px] bg-[#1F203F] bg-no-repeat bg-[center_right_20px] px-[21px] pt-[23px] pb-[31px];
+    }
 }
