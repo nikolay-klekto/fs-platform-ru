@@ -11,7 +11,7 @@ export default function Companies() {
     }, [])
 
     const isDesktop = useMediaQuery({
-        query: '(min-width: 768px)',
+        query: '(min-width: 769px)',
     })
 
     if (!isClient) {
@@ -27,9 +27,7 @@ export default function Companies() {
                 </>
             ) : (
                 <>
-                    <main className="bg-[#101030] text-white">
-                        <CompaniesPageMobi />
-                    </main>
+                    <CompaniesPageMobi />
                 </>
             )}
         </div>

@@ -44,12 +44,12 @@ const CompaniesPageMobi: React.FC = () => {
         <>
             <div className="h-[20px] bg-[#101030]">
                 <HeaderMobi />
-                <div className="bg-[#101030] text-white">
+                <main className="bg-[#101030] text-white">
                     <div className="px-[15px] py-[40px]">
                         <h1 className="title28px_mobi_custom">Компании</h1>
                         <div className="flex items-center gap-[21px] py-[30px]">
                             <div className="relative w-full max-w-[282px]">
-                                <div className="relative p-[2.5px] rounded-[50px] bg-transparent hover:bg-gradient-mobi-menu transition">
+                                <div className="relative rounded-[50px] bg-transparent p-[2.5px] transition">
                                     <EnhancedInput
                                         type="text"
                                         value={searchQuery}
@@ -96,7 +96,7 @@ const CompaniesPageMobi: React.FC = () => {
                         />
                         <CompaniesSendMobi />
                     </div>
-                </div>
+                </main>
                 <FooterMobi />
             </div>
         </>

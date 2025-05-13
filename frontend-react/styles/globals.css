@@ -116,6 +116,18 @@
         background-origin: border-box;
         background-clip: padding-box, border-box;
     }
+
+
+::-webkit-scrollbar {
+    width: 2px; 
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(135, 135, 151, 1); 
+   
+}
+
+
 }
 @layer base {
     * {
