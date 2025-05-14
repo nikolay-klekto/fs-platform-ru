@@ -60,6 +60,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target
+        console.log('name:', name, 'value:', value, 'type:', type, 'checked: ', checked)
         setFormData((prevData) => ({
             ...prevData,
             [name]: type === 'checkbox' ? checked : value,
@@ -92,6 +93,16 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 }))
             }
         }
+
+        if (name === 'consent') {
+            if (checked) {
+                setErrors((prev) => ({
+                    ...prev,
+                    consent: '',
+                }))
+            }
+        }
+        console.log(errors)
     }
 
     const handleInputBlur = (field: 'phone' | 'name') => {
@@ -230,8 +241,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         } as React.ChangeEvent<HTMLInputElement>)
                                     }
                                     label="Я согласен(а) на обработку персональных данных"
-                                    wrapperClassName="flex gap-2 pb-2"
-                                    checkboxIconSize="w-[18px]"
+                                    wrapperClassName="flex gap-2"
                                     labelClassName={`${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                                 />
                             </div>
