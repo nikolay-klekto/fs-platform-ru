@@ -60,7 +60,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target
-        console.log('value: ', value, 'checked: ', checked)
         setFormData((prevData) => ({
             ...prevData,
             [name]: type === 'checkbox' ? checked : value,
@@ -153,9 +152,9 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     }
                                     className={`${
                                         inputTouched.name && validateNameDesktop(formData.name).styleError
-                                            ? 'border-[#bc8070] focus:bg-[#1f203f]'
-                                            : 'input-form-desktop-custom border-[#878797]'
-                                    } h-12 w-full rounded-[50px] border-2 bg-transparent p-4 text-4xl font-medium text-white focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
+                                            ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070] focus:bg-[#1f203f]'
+                                            : 'border-[#878797] bg-transparent'
+                                    } input-form-desktop-custom h-12 w-full rounded-[50px] border-2 p-4 text-4xl font-medium text-white focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
                                     label="Ваше имя*"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
@@ -184,7 +183,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     required={true}
                                     className={`${
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
-                                            ? 'border-[#bc8070] focus:border-[#bc8070]'
+                                            ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]'
                                             : 'border-[#878797] focus:border-[#878797]'
                                     } h-12 p-4 text-4xl focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
                                 />

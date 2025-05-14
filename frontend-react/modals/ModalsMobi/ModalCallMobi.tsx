@@ -7,6 +7,7 @@ import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validat
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { CheckedBoxFormMobi, UncheckedBoxFormMobi } from '@/components/assets/iconsMobi'
 
 interface IFormData {
     name: string
@@ -152,14 +153,14 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         }
                                         className={`border-2 ${
                                             inputTouched.name && validateNameMobi(formData.name).styleError
-                                                ? 'border-[#bc8070] focus:border-[#bc8070]'
-                                                : 'border-[#878797] focus:border-[#878797]'
-                                        } h-10 w-full rounded-[50px] bg-transparent p-4 text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] focus:bg-[#1f203f] focus:ring-0 focus:ring-offset-0 md:placeholder:text-2xl`}
+                                                ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070] focus:bg-[#1f203f]'
+                                                : 'border-[#878797] bg-transparent focus:border-[#878797]'
+                                        } h-10 w-full rounded-[50px] p-4 text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] focus:bg-[#1f203f] focus:ring-0 focus:ring-offset-0 md:placeholder:text-2xl`}
                                         label="Ваше имя"
                                         labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
                                     />
-                                    <div className="h-5 mb-2">
+                                    <div className="mb-2 h-5">
                                         {errors.name && <p className="mt-1 text-sm text-[#bc8070]">{errors.name}</p>}
                                     </div>
                                 </div>
@@ -183,7 +184,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         wrapperClassName="w-full"
                                         required={true}
                                     />
-                                    <div className="h-5 mb-2">
+                                    <div className="mb-2 h-5">
                                         {errors.phone && <p className="mt-1 text-sm text-[#bc8070]">{errors.phone}</p>}
                                     </div>
                                 </div>
@@ -211,31 +212,32 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     )}
                                 </div>
                                 <div className="mb-2 flex items-center pt-4">
-                                    <input
-                                        type="checkbox"
-                                        id="consent"
-                                        name="consent"
-                                        checked={formData.consent}
-                                        onChange={(e) => {
-                                            handleChange({
-                                                target: {
-                                                    name: 'consent',
-                                                    value: e.target.checked.toString(),
-                                                    type: 'checkbox',
-                                                    checked: e.target.checked,
-                                                },
-                                            } as React.ChangeEvent<HTMLInputElement>)
-                                        }}
-                                        className="mr-2 inline-block size-4 appearance-none rounded-[2px] border-2 border-[#878797] checked:border-transparent checked:bg-[#878797]"
-                                    />
                                     <label
                                         htmlFor="consent"
-                                        className="ml-1 cursor-pointer text-xs font-medium text-[#878797] md:text-sm"
+                                        className="ml-1 flex cursor-pointer items-center gap-2 text-xs font-medium text-[#878797] md:text-sm"
                                     >
-                                        Я согласен(а) на обработку персональных данных
+                                        <input
+                                            type="checkbox"
+                                            id="consent"
+                                            name="consent"
+                                            checked={formData.consent}
+                                            onChange={(e) => {
+                                                handleChange({
+                                                    target: {
+                                                        name: 'consent',
+                                                        value: e.target.checked.toString(),
+                                                        type: 'checkbox',
+                                                        checked: e.target.checked,
+                                                    },
+                                                } as React.ChangeEvent<HTMLInputElement>)
+                                            }}
+                                            className="mr-2 hidden size-4 appearance-none rounded-[2px] border-2 border-[#878797] checked:border-transparent checked:bg-[#878797]"
+                                        />
+                                        {!formData.consent ? <UncheckedBoxFormMobi /> : <CheckedBoxFormMobi />}Я
+                                        согласен(а) на обработку персональных данных
                                     </label>
                                 </div>
-                                <div className="h-5 mb-2">
+                                <div className="mb-2 h-5">
                                     {errors.consent && <p className="mt-1 text-sm text-[#bc8070]">{errors.consent}</p>}
                                 </div>
                                 <Button

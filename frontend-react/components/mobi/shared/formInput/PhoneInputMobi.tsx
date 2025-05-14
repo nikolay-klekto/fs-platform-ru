@@ -115,7 +115,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
 
     return (
         <div className={`flex w-full flex-col gap-1.5 ${wrapperClassName}`}>
-            <label htmlFor="phone" className={`mb-1 text-2xl font-medium text-white ${labelClassName}`}>
+            <label htmlFor="phone" className={`text-2xl font-medium text-white ${labelClassName}`}>
                 Номер телефона*
             </label>
             <input
@@ -130,7 +130,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={PHONE_MASK}
-                className={`input-form-mobi-custom w-full border-2 font-medium placeholder:text-[#353652] focus:border-2 ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                className={`input-form-mobi-custom w-full font-medium placeholder:text-[#353652] ${internalError ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
         </div>
     )
