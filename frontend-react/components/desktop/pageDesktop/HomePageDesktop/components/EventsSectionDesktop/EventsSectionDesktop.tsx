@@ -1,25 +1,50 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
 import ItemEventsDesktop from './ItemEventsDesktop/ItemEventsDesktop'
 import { contentEventsSection } from './contentEventsSectionDesktop/content'
+
 const EventsSectionDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
-    const [itemWidth, setItemWidth] = useState<number>(0)
+    const [contentWidth, setContentWidth] = useState<number>(0)
+    const [visibleWidth, setVisibleWidth] = useState<number>(0)
+
+    useEffect(() => {
+        const updateSizes = () => {
+            if (contentRef.current) {
+                setContentWidth(contentRef.current.scrollWidth)
+                setVisibleWidth(contentRef.current.clientWidth)
+            }
+        }
+
+        updateSizes()
+        window.addEventListener('resize', updateSizes)
+
+        return () => {
+            window.removeEventListener('resize', updateSizes)
+        }
+    }, [contentEventsSection])
 
     const handleScroll = () => {
         if (contentRef.current && scrollbarRef.current) {
-            scrollbarRef.current.scrollLeft = contentRef.current.scrollLeft
+            const scrollRatio =
+                contentRef.current.scrollLeft / (contentRef.current.scrollWidth - contentRef.current.clientWidth)
+            const scrollbarScrollLeft =
+                scrollRatio * (scrollbarRef.current.scrollWidth - scrollbarRef.current.clientWidth)
+            scrollbarRef.current.scrollLeft = scrollbarScrollLeft
         }
     }
 
     const handleScrollbarScroll = () => {
         if (contentRef.current && scrollbarRef.current) {
-            contentRef.current.scrollLeft = scrollbarRef.current.scrollLeft
+            const scrollRatio =
+                scrollbarRef.current.scrollLeft / (scrollbarRef.current.scrollWidth - scrollbarRef.current.clientWidth)
+            const contentScrollLeft = scrollRatio * (contentRef.current.scrollWidth - contentRef.current.clientWidth)
+            contentRef.current.scrollLeft = contentScrollLeft
         }
     }
 
-    const scrollbarWidth = `${((contentEventsSection.length * itemWidth) / window.innerWidth) * 150}%`
+    const scrollbarWidth = contentWidth > visibleWidth ? `${(contentWidth / visibleWidth) * 100}%` : '100%'
 
     return (
         <div className="py-[10vh]">
@@ -32,13 +57,7 @@ const EventsSectionDesktop: React.FC = () => {
                 className="no-scrollbar_custom container mt-[6vh] flex select-none gap-8 overflow-x-scroll"
             >
                 {contentEventsSection.map((item) => (
-                    <ItemEventsDesktop
-                        image={item.image}
-                        title={item.title}
-                        date={item.date}
-                        key={item.id}
-                        onWidthChange={setItemWidth}
-                    />
+                    <ItemEventsDesktop image={item.image} title={item.title} date={item.date} key={item.id} />
                 ))}
             </div>
             <div
@@ -51,4 +70,5 @@ const EventsSectionDesktop: React.FC = () => {
         </div>
     )
 }
+
 export default EventsSectionDesktop
