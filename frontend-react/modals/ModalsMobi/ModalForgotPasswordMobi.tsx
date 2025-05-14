@@ -56,12 +56,12 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
     return (
         <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
             <div
-                className="relative mx-4 w-full max-w-[346px] sm_l:max-w-[320px] sm_l:mx-1 sm_s:mx-0 sm:max-w-[310px] sm:mx-0"
+                className="relative sm:mx-1 max-w-[346px] sm:max-w-[320px] rounded-[25px] overflow-hidden mx-auto overflow-hidden"
                 ref={modalRef}
             >
                 <button
                     onClick={onClose}
-                    className="absolute right-1 top-0 translate-x-1 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
+                    className="absolute right-3 top-1 translate-x-1 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                 >
                     <X size={24} color="#878797" className="hover:opacity-100" />
                 </button>
