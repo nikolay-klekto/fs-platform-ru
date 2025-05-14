@@ -60,7 +60,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target
-        console.log('value: ', value, 'checked: ', checked)
         setFormData((prevData) => ({
             ...prevData,
             [name]: type === 'checkbox' ? checked : value,

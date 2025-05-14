@@ -212,23 +212,6 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     )}
                                 </div>
                                 <div className="mb-2 flex items-center pt-4">
-                                    <input
-                                        type="checkbox"
-                                        id="consent"
-                                        name="consent"
-                                        checked={formData.consent}
-                                        onChange={(e) => {
-                                            handleChange({
-                                                target: {
-                                                    name: 'consent',
-                                                    value: e.target.checked.toString(),
-                                                    type: 'checkbox',
-                                                    checked: e.target.checked,
-                                                },
-                                            } as React.ChangeEvent<HTMLInputElement>)
-                                        }}
-                                        className="mr-2 inline-block size-4 appearance-none rounded-[2px] border-2 border-[#878797] checked:border-transparent checked:bg-[#878797]"
-                                    />
                                     <label
                                         htmlFor="consent"
                                         className="ml-1 flex cursor-pointer items-center gap-2 text-xs font-medium text-[#878797] md:text-sm"
