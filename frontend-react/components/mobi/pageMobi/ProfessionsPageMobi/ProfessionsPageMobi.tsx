@@ -47,7 +47,7 @@ const ProfessionsPageMobi: React.FC = () => {
                 <div className="bg-[#101030] text-white">
                     <div className="px-[15px] py-[40px]">
                         <h1 className="title28px_mobi_custom">Профессии</h1>
-                        <div className="flex items-center gap-[20px] py-[30px]">
+                        <div className="flex items-center gap-[20px] py-[30px] md:justify-between">
                             <div className="relative w-full rounded-full  md:max-w-[430px]">
                                 <EnhancedInput
                                     type="text"

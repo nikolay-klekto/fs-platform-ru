@@ -83,7 +83,7 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
     return (
         <div className="relative z-[3]" ref={selectRef}>
             <FiltersIconMobi
-                className={`size-[24px] text-white`}
+                className={`size-[24px] text-white md:size-[30px]`}
                 onClick={() => {
                     handleFilterIconClick()
                     handleSelectToggle()
