@@ -265,6 +265,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             }}
                             label="Я согласен(а) на получение рассылки"
                             wrapperClassName="flex gap-2 pb-2"
+                            checkboxIconSize="w-[18px]"
                             labelClassName={`${formData.subscribe ? 'text-white' : 'text-[#878797]'}`}
                         />
                     </div>
@@ -284,6 +285,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             onChange={(value) => setFormData((prev) => ({ ...prev, agree: Boolean(value) }))}
                             label="Я согласен(а) на обработку персональных данных"
                             wrapperClassName="flex gap-2 pb-2"
+                            checkboxIconSize="w-[18px]"
                             labelClassName={`${formData.agree ? 'text-white' : 'text-[#878797]'}`}
                         />
                         {errors.agree && <p className="error-form-desktop-custom">{errors.agree}</p>}
