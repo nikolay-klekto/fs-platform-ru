@@ -36,7 +36,7 @@ const Dropdown = ({ options, selectedOption, onChange, label, className, onBlur 
     return (
         <div
             ref={dropdownRef}
-            className={`relative ${label && 'label_profile_desktop_custom flex flex-col gap-[10px]'} `}
+            className={`relative ${label && 'label_profile_desktop_custom flex flex-col gap-[10px]'} ${selectedOption && 'text-[#878797]'} `}
             onBlur={handleBlur}
             tabIndex={0}
         >
