@@ -104,12 +104,12 @@ const JoinTeamMobi: React.FC = () => {
         const isValid = validateForm()
         if (!isValid) return
 
-        const cleanedPhone = normalizePhone(formData.phoneNumber)
+        //const cleanedPhone = normalizePhone(formData.phoneNumber)
     }
 
-    const normalizePhone = (value: string) => {
-        return value.replace(/[^\d+]/g, '')
-    }
+    // const normalizePhone = (value: string) => {
+    //     return value.replace(/[^\d+]/g, '')
+    // }
 
     const renderErrors = () => {
         const hasFieldErrors = errors.name || errors.phoneNumber || errors.profession || errors.consent
