@@ -2,13 +2,14 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import EventsFilterCategoryMobi from './components/EventsFilterCategoryMobi'
+import EventsFilterDateMobi from './components/EventsFilterDateMobi'
 
 interface Props {
     onClose: () => void
 }
 
 const EventsFilterModalMobi: React.FC<Props> = ({ onClose }) => {
-    const [selectedCategory, setSelectedCategory] = useState<string | null>('Выставка/презентация')
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const modalRef = useRef<HTMLDivElement>(null)
     const dragStartY = useRef<number | null>(null)
 
@@ -83,14 +84,20 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose }) => {
 
                 <div className="mb-8 flex items-center justify-between">
                     <h2 className="text-[20px] font-semibold">Фильтр</h2>
-                    <button className="text-[12px] font-medium text-[#878797] underline">Очистить</button>
+                    <button
+                        className="text-[12px] font-medium text-[#878797] underline"
+                        onClick={() => {
+                            setSelectedCategories([]) // Clear category filter
+                            // setSelectedCity(null)
+                            // setSelectedDate(null)
+                        }}
+                    >
+                        Очистить
+                    </button>
                 </div>
 
-                <EventsFilterCategoryMobi
-                    selectedCategory={selectedCategory}
-                    onSelect={(cat) => setSelectedCategory(cat)}
-                />
-
+                <EventsFilterCategoryMobi selectedCategories={selectedCategories} onChange={setSelectedCategories} />
+                <EventsFilterDateMobi />
                 <div className="h-[40px]" />
 
                 {/* <button
