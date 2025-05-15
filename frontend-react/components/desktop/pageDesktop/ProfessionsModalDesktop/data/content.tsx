@@ -10,7 +10,7 @@ export const contentProfessionAboutDesktop: IProfessionAbout[] = [
     },
 ]
 
-interface IInternshipCompanies {
+export interface IInternshipCompanies {
     id: number
     image: {
         src: string

@@ -5,6 +5,7 @@ import ProfessionsSectionDesktop from './components/ProfessionSectionDesktop/Pro
 import HowWeWorkDesktop from './components/HowWeWorkDesktop/HowWeWorkDesktop'
 import PromoDesktop from './components/PromoDesktop/PromoDesktop'
 import EventsSectionDesktop from './components/EventsSectionDesktop/EventsSectionDesktop'
+import CompaniesSectionDesktop from './components/CompaniesSectionDesktop/CompaniesSectionDesktop'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
@@ -21,6 +22,7 @@ const HomePageDesktop: React.FC = () => {
                 </div>
                 <HowWeWorkDesktop />
                 <ProfessionsSectionDesktop />
+                <CompaniesSectionDesktop />
                 <PromoDesktop />
                 <EventsSectionDesktop />
             </div>
