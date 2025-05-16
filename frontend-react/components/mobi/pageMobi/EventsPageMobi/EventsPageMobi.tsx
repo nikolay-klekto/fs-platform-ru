@@ -22,7 +22,6 @@ const EventsPageMobi: React.FC = () => {
     //     date: null,
     //     city: null,
     // })
-
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
