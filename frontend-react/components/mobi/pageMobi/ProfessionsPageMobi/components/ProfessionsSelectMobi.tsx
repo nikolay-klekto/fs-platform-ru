@@ -1,12 +1,13 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
-import { SearchIconMobi, CheckedBoxIconMobi, FiltersIconMobi } from '@/components/assets/iconsMobi'
+import { CheckedBoxIconMobi, FiltersIconMobi } from '@/components/assets/iconsMobi'
 
 interface ISelectItem {
     value: string
     children: React.ReactNode
     isChecked: boolean
     onClick: () => void
+    className?: string
 }
 
 interface ISelectOption {
@@ -14,13 +15,17 @@ interface ISelectOption {
     label: string
 }
 
-const ProfessionsSelectMobi = () => {
+interface ProfessionsSelectMobiProps {
+    selectedCategories: string[]
+    setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>
+}
+
+const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedCategories, setSelectedCategories }) => {
     const [isOpen, setIsOpen] = useState(false)
-    const [selectedOptions, setSelectedOptions] = useState<string[]>([])
     const selectRef = useRef<HTMLDivElement>(null)
 
     const toggleOption = (value: string) => {
-        setSelectedOptions((prev) =>
+        setSelectedCategories((prev) =>
             prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value],
         )
     }
@@ -28,90 +33,107 @@ const ProfessionsSelectMobi = () => {
     const handleSelectToggle = () => {
         setIsOpen((prev) => !prev)
     }
-    const handleClickOutside = (event: MouseEvent) => {
-        if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
-            setIsOpen(false)
-        }
-    }
 
     useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+                setIsOpen(false)
+            }
+        }
+
+        if (isOpen) {
+            document.body.style.overflow = 'hidden'
+            document.addEventListener('mousedown', handleClickOutside)
+        } else {
+            document.body.style.overflow = ''
             document.removeEventListener('mousedown', handleClickOutside)
         }
-    }, [])
+
+        return () => {
+            document.body.style.overflow = ''
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [isOpen])
 
     const options: ISelectOption[] = [
-        { value: 'IT', label: 'IT-отрасль' },
-        { value: 'healthcare', label: 'Здравоохранение' },
-        { value: 'art', label: 'Искусство' },
-        { value: 'sport', label: 'Спорт' },
-        { value: 'field5', label: 'Отрасль 5' },
-        { value: 'field6', label: 'Отрасль 6' },
+        { value: 'IT-отрасль', label: 'IT-отрасль' },
+        { value: 'Здравоохранение', label: 'Здравоохранение' },
+        { value: 'Искусство', label: 'Искусство' },
+        { value: 'Спорт', label: 'Спорт' },
+        { value: 'Отрасль 5', label: 'Отрасль 5' },
+        { value: 'Отрасль 6', label: 'Отрасль 6' },
+        { value: 'Отрасль 7', label: 'Отрасль 7' },
+        { value: 'Отрасль 8', label: 'Отрасль 8' },
+        { value: 'Отрасль 9', label: 'Отрасль 9' },
     ]
 
-    const [isFilterActive, setIsFilterActive] = useState(false)
-
-    const handleFilterIconClick = () => {
-        setIsFilterActive(!isFilterActive)
-    }
-
     const clearSelection = () => {
-        setSelectedOptions([])
+        setSelectedCategories([])
     }
 
-    const [searchTerm, setSearchTerm] = useState('')
+    const selected = options.filter((o) => selectedCategories.includes(o.value))
+    const unselected = options.filter((o) => !selectedCategories.includes(o.value))
 
     return (
         <div className="relative z-[3]" ref={selectRef}>
             <FiltersIconMobi
-                className={`size-[32px] ${isFilterActive ? 'text-white' : 'text-[#878797]'}`}
+                className={`size-[24px] ${selectedCategories.length > 0 ? 'text-white' : 'text-[#878797]'} md:size-[30px]`}
                 onClick={() => {
-                    handleFilterIconClick()
                     handleSelectToggle()
                 }}
             />
             {isOpen && (
-                <div
-                    className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[337px] rounded-[42px] p-[2px] 2xl:w-[270px]"
-                    style={{
-                        background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
-                    }}
-                >
-                    <div className="flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
-                        <div className="mb-2 flex items-center justify-between px-2 text-white">
-                            <span className="text-3xl font-semibold">Отрасль профессии</span>
-                            <button className="text-base text-[#878797] underline" onClick={clearSelection}>
-                                Очистить
-                            </button>
-                        </div>
-
-                        <div className="border-white-300 flex items-center rounded-[50px] border px-3">
-                            <input
-                                type="text"
-                                placeholder="Поиск"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="text-14px flex h-11 w-full rounded-md bg-transparent py-3 outline-none placeholder:text-gray-700 disabled:cursor-not-allowed disabled:opacity-50"
-                            />
-                            <SearchIconMobi
-                                className="mr-2 size-6 shrink-0 opacity-50"
-                                onClick={() => console.log('Search icon clicked!')}
-                            />
-                        </div>
-
-                        {options
-                            .filter((option) => option.label.toLowerCase().includes(searchTerm.toLowerCase()))
-                            .map((option) => (
-                                <SelectItem
-                                    key={option.value}
-                                    value={option.value}
-                                    isChecked={selectedOptions.includes(option.value)}
-                                    onClick={() => toggleOption(option.value)}
+                <div className="fixed inset-0 z-50" style={{ background: 'rgba(0, 0, 0, 0.7)' }}>
+                    <div ref={selectRef} className="fixed left-0 top-0 z-50 w-full">
+                        <div className="flex flex-col gap-1 rounded-b-[40px] bg-[#1F203F] px-[14px] pb-[18px]">
+                            <div className="mb-[34px] mt-[30px] flex items-center justify-between px-2 text-white">
+                                <span className="text-3xl font-semibold leading-[20px]">Выберите отрасль</span>
+                                <button
+                                    className="text-base font-medium leading-[15px] text-[#878797] underline"
+                                    onClick={clearSelection}
                                 >
-                                    {option.label}
-                                </SelectItem>
-                            ))}
+                                    Очистить
+                                </button>
+                            </div>
+                            <div
+                                className="scrollbar-thin scrollbar-thumb-[#878797] scrollbar-track-transparent mobi-scroll flex max-h-[calc(6*62px)] flex-col overflow-y-auto scroll-smooth pr-[8px]"
+                                style={{
+                                    scrollbarGutter: 'stable',
+                                }}
+                            >
+                                {selected.length > 0 && (
+                                    <>
+                                        {' '}
+                                        <div className="mb-1 text-base text-[#878797]">Выбранные</div>
+                                        {selected.map((option) => (
+                                            <SelectItem
+                                                key={option.value}
+                                                value={option.value}
+                                                isChecked={selectedCategories.includes(option.value)}
+                                                onClick={() => toggleOption(option.value)}
+                                                className="translate-y-0 opacity-100 transition-all duration-300 ease-out"
+                                            >
+                                                {option.label}
+                                            </SelectItem>
+                                        ))}
+                                        {unselected.length > 0 && selected.length > 0 && selected.length !== 5 && (
+                                            <div className="mb-1 mt-5 text-base text-[#878797]">Остальные</div>
+                                        )}
+                                    </>
+                                )}
+                                {unselected.map((option) => (
+                                    <SelectItem
+                                        key={option.value}
+                                        value={option.value}
+                                        isChecked={false}
+                                        onClick={() => toggleOption(option.value)}
+                                        className="translate-y-0 opacity-100 transition-all duration-300 ease-out"
+                                    >
+                                        {option.label}
+                                    </SelectItem>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
@@ -120,12 +142,14 @@ const ProfessionsSelectMobi = () => {
 }
 
 const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
-    ({ children, isChecked, onClick, ...props }, forwardedRef) => {
+    ({ children, isChecked, onClick, className = '', ...props }, forwardedRef) => {
         return (
             <div
-                className={`text-14px relative z-[3] flex cursor-pointer items-center gap-[14px] border-b-2 border-[#353632] p-[15px] ${
-                    isChecked ? 'text-white' : 'bg-transparent text-[#878797]'
-                }`}
+                className={`relative z-[3] flex cursor-pointer items-center gap-[20px] p-[16px] text-3xl font-medium leading-[20px] ${
+                    isChecked
+                        ? 'mb-[10px] rounded-[18px] bg-[rgba(95,74,243,0.06)] text-white'
+                        : 'mb-[10px] bg-transparent text-[#878797]'
+                } ${className ?? ''}`}
                 {...props}
                 ref={forwardedRef}
                 onClick={onClick}
