@@ -61,7 +61,7 @@ const ProfessionsSelectDesktop = ({ onCategoryChange }: { onCategoryChange: (cat
                 variant={'select_btn_desktop'}
                 size={'select_btn_desktop'}
                 onClick={handleSelectToggle}
-                className={`${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
+                className={`${isOpen ? ' border-2 ' : 'bg-[#101030]'}`}
             >
                 Отрасль профессии
                 <ChevronDownIconDesktop

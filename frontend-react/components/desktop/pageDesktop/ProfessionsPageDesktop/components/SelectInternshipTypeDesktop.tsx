@@ -57,7 +57,7 @@ const SelectInternshipTypeDesktop = ({ onCategoryChange }: { onCategoryChange: (
                 variant={'select_btn_desktop'}
                 size={'select_btn_type_internship_desktop'}
                 onClick={handleSelectToggle}
-                className={`${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
+                className={`${isOpen ? ' border-2 ' : 'bg-[#101030]'}`}
             >
                 Вид стажировки
                 <ChevronDownIconDesktop
@@ -71,7 +71,7 @@ const SelectInternshipTypeDesktop = ({ onCategoryChange }: { onCategoryChange: (
                         background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
                     }}
                 >
-                    <div className="flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
+                    <div className="flex flex-col gap-1 rounded-[42px] bg-[rgb(31,32,63)] p-3">
                         {options.map((option) => (
                             <SelectItem
                                 key={option.value}
