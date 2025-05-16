@@ -16,7 +16,7 @@ const ProfessionSendMobi: React.FC = () => {
                 <p>Дайте нам знать!</p>
             </div>
             <div className="justify-bitween mx-auto flex h-[34px] w-full max-w-[400px] items-center gap-[15px]">
-                <div className="relative size-full p-[1.3px] rounded-[20px] bg-transparent transition">
+                <div className="relative size-full rounded-[20px] bg-transparent p-[1.3px] transition">
                     <EnhancedInput
                         type="text"
                         value={useRequest}

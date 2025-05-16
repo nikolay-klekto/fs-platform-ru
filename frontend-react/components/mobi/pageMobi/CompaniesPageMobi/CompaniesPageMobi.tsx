@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CompaniesCardPageMobi from './components/CompaniesCardPageMobi'
 import CompaniesPaginationMobi from './components/CompaniesPaginationMobi'
 import CompaniesSendMobi from './components/CompaniesSendMobi'
@@ -18,7 +18,6 @@ const CompaniesPageMobi: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const cardsPerPage = 6
-    const totalPages = Math.ceil(content.length / cardsPerPage)
 
     const filteredContent = content.filter((item) => {
         const matchesSearch =
@@ -27,18 +26,23 @@ const CompaniesPageMobi: React.FC = () => {
         return matchesSearch && matchesCategory
     })
 
+    const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
+    const safeCurrentPage = Math.min(currentPage, totalPages || 1)
+
     const handleCategoryChange = (categories: string[]) => {
         setSelectedCategories(categories)
     }
 
-    // const handleSearch = () => {
-    //     console.log('Поиск компаний:', searchQuery)
-    //     setSearchQuery('')
-    // }
-
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
+
+    useEffect(() => {
+        const newTotalPages = Math.ceil(filteredContent.length / cardsPerPage)
+        if (currentPage > newTotalPages) {
+            setCurrentPage(1)
+        }
+    }, [currentPage, filteredContent])
 
     return (
         <>
@@ -71,7 +75,7 @@ const CompaniesPageMobi: React.FC = () => {
                         </div>
                         <div className="flex flex-wrap justify-center gap-[20px] sm_xl:gap-[15px]">
                             {filteredContent
-                                .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
+                                .slice((safeCurrentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (
                                     <CompaniesCardPageMobi
                                         key={item.id}
@@ -91,7 +95,7 @@ const CompaniesPageMobi: React.FC = () => {
                         </div>
                         <CompaniesPaginationMobi
                             totalPages={totalPages}
-                            currentPage={currentPage}
+                            currentPage={safeCurrentPage}
                             onPageChange={handlePageChange}
                         />
                         <CompaniesSendMobi />

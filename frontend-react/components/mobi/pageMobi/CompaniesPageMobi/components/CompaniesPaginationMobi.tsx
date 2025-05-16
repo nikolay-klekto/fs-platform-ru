@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { LessIconMobi, MoreIconMobi } from '@/components/assets/iconsMobi'
 
 interface IProfessionsPagination {
@@ -25,6 +25,12 @@ const ProfessionsPaginationMobi: React.FC<IProfessionsPagination> = ({ totalPage
             onPageChange(visibleStart + 1)
         }
     }
+
+    useEffect(() => {
+        if (currentPage < visibleStart || currentPage > visibleStart + 2) {
+            setVisibleStart(Math.min(1, currentPage - 1))
+        }
+    }, [currentPage, visibleStart])
 
     return (
         <div className="mx-auto mb-[30px] mt-[25px] flex w-[150px] items-center justify-between">

@@ -69,7 +69,7 @@ const ProfessionsSelectMobi = ({ onCategoryChange }: { onCategoryChange: (catego
     }, [])
 
     return (
-        <div className="relative z-[3]" ref={selectRef}>
+        <div className="relative z-[3]">
             <FiltersIconMobi
                 className={`size-[32px] ${isFilterActive ? 'text-white' : 'text-[#878797]'}`}
                 onClick={() => {
@@ -80,7 +80,10 @@ const ProfessionsSelectMobi = ({ onCategoryChange }: { onCategoryChange: (catego
             {isOpen && (
                 <div className="fixed inset-0 z-50" style={{ background: 'rgba(0, 0, 0, 0.7)' }}>
                     <div className="fixed left-0 top-0 z-50 w-full rounded-[40px] ">
-                        <div className="flex flex-col rounded-b-[40px] bg-[#1F203F] px-[14px] pb-[50px] pt-[18px]">
+                        <div
+                            className="flex flex-col rounded-b-[40px] bg-[#1F203F] px-[14px] pb-[50px] pt-[18px] "
+                            ref={selectRef}
+                        >
                             <div className="mb-[33px] mt-[10px] flex items-center justify-between text-white">
                                 <span className="text-3xl font-semibold">Выберите отрасль</span>
                                 <button className="text-base text-[#878797] underline" onClick={clearSelection}>
