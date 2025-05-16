@@ -55,7 +55,7 @@ const buttonVariants = cva(
                 arrow_registration_mobi: 'size-[51px] rounded-full',
                 select_mobi: 'h-[40px] w-full max-w-[188px] ',
                 gradient_circle_mobi: 'aspect-square size-[44px] p-[10px]',
-                btn_modal_desktop: 'h-12 max-w-[272px] rounded-md ',
+                btn_modal_desktop: 'h-12 max-w-[272px] rounded-md',
                 btn_modal_mobi: 'h-11 max-w-[272px] rounded-md',
                 icon: 'size-10',
                 wide_desktop: '3xl:h-14 h-[4.25rem] px-[30px] 2xl:h-12',
