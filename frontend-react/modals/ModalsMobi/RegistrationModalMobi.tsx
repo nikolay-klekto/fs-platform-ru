@@ -217,6 +217,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 onError={(error) => handleError('phone', error)}
                                 wrapperClassName="w-full"
                                 required={true}
+                                showInternalError={true}
                             />
                             {inputInternalErrors.phone && (
                                 <p className="error-form-desktop-custom">{inputInternalErrors.phone}</p>
@@ -264,6 +265,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 onChange={(value) => setFormData((prev) => ({ ...prev, subscribe: value === 'true' }))}
                                 label="Я согласен(а) на обработку персональных данных"
                                 wrapperClassName="flex gap-2 pb-2"
+                                checkboxIconSize="w-[20px]"
                                 labelClassName={`${formData.subscribe ? 'text-white' : 'text-[#878797]'}`}
                             />
                         </div>
@@ -283,6 +285,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 onChange={(value) => setFormData((prev) => ({ ...prev, agree: value === 'true' }))}
                                 label="Я согласен(а) получать новости о стажировках"
                                 wrapperClassName="flex gap-2 pb-2"
+                                checkboxIconSize="w-[20px]"
                                 labelClassName={`${formData.agree ? 'text-white' : 'text-[#878797]'}`}
                             />
                             {errors.agree && <p className="error-form-desktop-custom">{errors.agree}</p>}
