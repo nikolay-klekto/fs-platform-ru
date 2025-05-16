@@ -18,7 +18,7 @@ const buttonVariants = cva(
                 select_desktop:
                     'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white',
                 send_btn_desktop:
-                    'button-border-desktop hover:bg-gradient-desktop 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white hover:border-0 2xl:text-3xl',
+                    'button-border-desktop border-2 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white  2xl:text-3xl',
                 select_mobi: 'button-border-mobi rounded-[50px] border-2 border-transparent bg-[#101030] text-white',
                 accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
                 accent_mobi: 'flex items-center rounded-[50px] bg-white',
@@ -30,11 +30,12 @@ const buttonVariants = cva(
                     'flex items-center justify-center bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 header_desktop_btn_gradient:
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
+                header_mobi_btn_gradient: 'bg-gradient-mobi rounded-[50px] text-white',
                 circle_btn_gradient_desktop:
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover absolute flex items-center justify-center rounded-[50px] text-white',
                 circle_btn_mobi: 'absolute right-0 top-1/2 -translate-y-1/2',
                 select_btn_desktop:
-                    'button-border-desktop hover:hover-border-gradient 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] border-2 text-5xl font-semibold 2xl:text-3xl',
+                    'button-border-desktop 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] border-2 text-5xl font-semibold  2xl:text-3xl',
                 circle: 'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
                 circleBlue: 'rounded-[50%] bg-[#382D90]',
                 circleDarkBlue: 'rounded-[50%] bg-[#272744]',
@@ -77,17 +78,19 @@ const buttonVariants = cva(
                 select_btn_desktop_date:
                     '3xl:w-[180px] 3xl:px-[20px] h-[64px] w-[200px] px-[30px] py-[20px] 2xl:w-[160px] 2xl:px-[20px]',
                 select_btn_type_internship_desktop:
-                    '3xl:w-[300px] 3xl:px-[20px] h-[64px] w-[281px] px-[30px] py-[20px] 2xl:w-[214px] 2xl:px-[20px]',
+                    '3xl:w-[250px] 3xl:px-[20px] h-[64px] w-[281px] p-[20px] 2xl:w-[214px] 2xl:px-[12px]',
                 circleDesk: 'size-[68px]',
                 circleMobi: 'sm_s:size-[52px] size-[55px] sm:size-[50px]',
                 contacts_btn_desktop: '3xl:h-[62px] 3xl:w-[256px] h-[65px] w-[262px] 2xl:h-[59px] 2xl:w-[250px]',
-                contacts_btn_send_desktop: '3xl:h-[65px] 3xl:w-[283px] h-[68.5px] w-[289px] 2xl:h-[62px] 2xl:w-[277px]',
-                contacts_btn_mobi: 'sm_s:w-[156px] h-[39.5px] w-[159px] flex-shrink-0 sm:w-[152px]',
-                contacts_btn_send_mobi: 'sm_s:w-[140px] h-[35px] w-[145px] flex-shrink-0 sm:w-[136px]',
+                contacts_btn_send_desktop: 'h-[68.5px] w-[289px] 2xl:h-[62px] 2xl:w-[277px] 3xl:h-[65px] 3xl:w-[283px]',
+                contacts_btn_mobi: 'h-[39.5px] w-[159px] flex-shrink-0 sm:w-[152px] sm_s:w-[156px]',
+                contacts_btn_send_mobi: 'h-[35px] w-[145px] flex-shrink-0 sm:w-[136px] sm_s:w-[140px]',
                 circle_modal_desk: 'size-[54px]',
                 hover_button_date_desktop:
-                    '3xl:w-[270px] 3xl:px-[20px] h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px]',
+                    'h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px] 3xl:w-[270px] 3xl:px-[20px]',
                 confirm_btn_desktop: 'h-[64px] w-[250px]',
+                join_team_btn_desktop: 'h-[100px] w-[430px]',
+                join_team_btn_mobi: 'h-[44px] w-[187px]',
             },
         },
         defaultVariants: {
