@@ -14,7 +14,7 @@ interface ICompanieCard {
 const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName, price, industry, onClick }) => {
     return (
         <>
-            <div className="relative overflow-hidden rounded-[20px] hover:button-shadow_around_desktop_custom ">
+            <div className="hover:button-shadow_around_desktop_custom relative overflow-hidden rounded-[20px] ">
                 <div
                     className="absolute inset-0 z-0 rounded-[20px] bg-center opacity-80 "
                     style={{ backgroundImage: `url(${image})`, backgroundSize: '150%', backgroundPosition: 'center' }}
