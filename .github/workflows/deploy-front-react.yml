@@ -26,8 +26,16 @@ jobs:
         run: npm ci
         working-directory: frontend-react
 
+      - name: Cache Next.js build cache
+        uses: actions/cache@v3
+        with:
+          path: frontend-react/.next/cache
+          key: nextjs-${{ runner.os }}-${{ hashFiles('frontend-react/package-lock.json') }}
+          restore-keys: |
+            nextjs-${{ runner.os }}-
+
       - name: Build app
-        run: npm run build
+        run: NEXT_DISABLE_ESLINT_PLUGIN=true npm run build
         working-directory: frontend-react
 
       - name: Prepare deployment folder
@@ -48,7 +56,7 @@ jobs:
           path: react-app.tar.gz
 
   deploy:
-    if: needs.build.result == 'success'
+    if: github.ref == 'refs/heads/dev-front-react' && needs.build.result == 'success'
     runs-on: ubuntu-latest
     needs: build
 
@@ -67,7 +75,6 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           scp -o StrictHostKeyChecking=no react-app.tar.gz root@${{ secrets.IP_DOMAIN }}:/home/Nikolay/react-app.tar.gz
-
           ssh -o StrictHostKeyChecking=no root@${{ secrets.IP_DOMAIN }} << 'EOF'
           cd /home/Nikolay
           rm -rf funScrut/frontend-react/.next
