@@ -99,7 +99,7 @@ const ProfessionsPageMobi: React.FC = () => {
                                 )}
                             </>
                         ) : (
-                            <p className="my-20 min-h-[250px] text-center text-xl text-white">Ничего не найдено</p>
+                            <p className="my-16 min-h-[60px] text-center text-xl text-white">Ничего не найдено</p>
                         )}
 
                         <ProfessionSendMobi />
