@@ -10,6 +10,7 @@ interface IPhoneInputDesktop {
     labelClassName?: string
     wrapperClassName?: string
     required?: boolean
+    onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 const PHONE_MASK = '+375 (__) ___-__-__'
@@ -30,6 +31,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     labelClassName,
     wrapperClassName,
     required = false,
+    onKeyDown,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -134,7 +136,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                     validateValue(newValue)
                 }}
                 onFocus={handleFocus}
-                onKeyDown={handleKeyDown}
+                onKeyDown={onKeyDown}
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={PHONE_MASK}
