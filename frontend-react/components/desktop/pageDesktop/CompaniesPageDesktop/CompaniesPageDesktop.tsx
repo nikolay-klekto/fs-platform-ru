@@ -60,7 +60,7 @@ const CompaniesPageDesktop: React.FC = () => {
                                 variant={'gradient_desktop'}
                                 size={'gradient_search_desktop'}
                                 rounded={'full'}
-                                className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
+                                className={`${isFocused ? 'border-2' : 'bg-[#101030]'}`}
                                 wrapperClassName={`h-[64px] justify-between flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
                                 onBlur={() => setIsFocused(false)}
                                 placeholder="Поиск"
