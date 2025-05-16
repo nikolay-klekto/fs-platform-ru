@@ -55,17 +55,14 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
 
     return (
         <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
-            <div
-                className="relative sm:mx-1 max-w-[346px] sm:max-w-[320px] rounded-[25px] overflow-hidden mx-auto overflow-hidden"
-                ref={modalRef}
-            >
+            <div className="relative w-full max-w-[346px] sm:mx-2 sm_s:mx-3 " ref={modalRef}>
                 <button
                     onClick={onClose}
-                    className="absolute right-3 top-1 translate-x-1 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
+                    className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                 >
-                    <X size={24} color="#878797" className="hover:opacity-100" />
+                    <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
                 </button>
-                <div className="  bg-[url('/background/Subtract_modalCaForgotPass_png.png')] bg-cover bg-[right_top] bg-no-repeat py-[40px]">
+                <div className="  rounded-[35px] bg-[url('/background/Subtract_modalCaForgotPass_png.png')] bg-cover bg-[right_top] bg-no-repeat py-[40px]">
                     <p className="mb-5 bg-sub-title-gradient-mobi bg-clip-text text-center text-4xl font-semibold text-transparent md:text-4xl">
                         ЗАБЫЛИ ПАРОЛЬ?
                     </p>
@@ -92,7 +89,7 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
                             <p className="text15px_desktop font-medium">{inputInternalErrors.email}</p>
                         )} */}
                     </div>
-                    <p className="custom-grey text12px_mobi mt-[10px] py-[2px] pl-[13px] font-medium ">
+                    <p className="custom-grey text12px_mobi mt-[10px] py-[2px] pl-[13px] pr-[12px]font-medium ">
                         Введите e-mail, указанный при регистрации
                     </p>
                     <button
