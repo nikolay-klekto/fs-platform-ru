@@ -190,8 +190,7 @@ const EventsSelectSearchDateDesktop = () => {
                 variant={'select_btn_desktop'}
                 size={'select_btn_desktop_date'}
                 onClick={handleSelectToggle}
-                // className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
-                className={`w-full px-[16px] 2xl:w-[230px] 2xl:px-[20px] h-[64px] py-[20px] ${isOpen ? 'bg-gradient-desktop' : 'bg-[#101030]'}`}
+                className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Дата
                 <ChevronDownIconDesktop
