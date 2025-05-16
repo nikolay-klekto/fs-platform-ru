@@ -67,11 +67,11 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
         { value: 'Отрасль 9', label: 'Отрасль 9' },
     ]
 
-    const [isFilterActive, setIsFilterActive] = useState(false)
+    // const [isFilterActive, setIsFilterActive] = useState(false)
 
-    const handleFilterIconClick = () => {
-        setIsFilterActive(!isFilterActive)
-    }
+    // const handleFilterIconClick = () => {
+    //     setIsFilterActive(!isFilterActive)
+    // }
 
     const clearSelection = () => {
         setSelectedCategories([])
@@ -83,9 +83,9 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
     return (
         <div className="relative z-[3]" ref={selectRef}>
             <FiltersIconMobi
-                className={`size-[24px] text-white md:size-[30px]`}
+                className={`size-[24px] ${selectedCategories.length > 0 ? 'text-white' : 'text-[#878797]'} md:size-[30px]`}
                 onClick={() => {
-                    handleFilterIconClick()
+                    // handleFilterIconClick()
                     handleSelectToggle()
                 }}
             />
