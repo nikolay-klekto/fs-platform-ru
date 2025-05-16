@@ -30,6 +30,7 @@ const buttonVariants = cva(
                     'flex items-center justify-center bg-white hover:bg-white hover:shadow-lg hover:shadow-[#3B51A8]',
                 header_desktop_btn_gradient:
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
+                header_mobi_btn_gradient: 'bg-gradient-mobi rounded-[50px] text-white',
                 circle_btn_gradient_desktop:
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover absolute flex items-center justify-center rounded-[50px] text-white',
                 circle_btn_mobi: 'absolute right-0 top-1/2 -translate-y-1/2',
@@ -88,6 +89,8 @@ const buttonVariants = cva(
                 hover_button_date_desktop:
                     '3xl:w-[270px] 3xl:px-[20px] h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px]',
                 confirm_btn_desktop: 'h-[64px] w-[250px]',
+                join_team_btn_desktop: 'h-[100px] w-[430px]',
+                join_team_btn_mobi: 'h-[44px] w-[187px]',
             },
         },
         defaultVariants: {
