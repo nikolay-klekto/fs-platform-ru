@@ -95,7 +95,7 @@ const CompaniesPageMobi: React.FC = () => {
                                             />
                                         ))}
                                 </div>
-                                {totalPages > 1 && (
+                                {totalPages >= 1 && (
                                     <CompaniesPaginationMobi
                                         totalPages={totalPages}
                                         currentPage={safeCurrentPage}
