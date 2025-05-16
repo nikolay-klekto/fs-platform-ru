@@ -122,12 +122,6 @@
         @apply bg-gradient-desktop bg-clip-text text-[1.5625rem] font-semibold text-transparent 2xl:text-[1.375rem];
     }
 
-.hover-border-gradient:hover {
-  background-image: linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-}
-
     .custom-grey {
         color: #878797;
     }
