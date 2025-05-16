@@ -73,31 +73,39 @@ const CompaniesPageMobi: React.FC = () => {
                             </div>
                             <CompaniesSelectMobi onCategoryChange={handleCategoryChange} />
                         </div>
-                        <div className="flex flex-wrap justify-center gap-[20px] sm_xl:gap-[15px]">
-                            {filteredContent
-                                .slice((safeCurrentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
-                                .map((item) => (
-                                    <CompaniesCardPageMobi
-                                        key={item.id}
-                                        image={item.image}
-                                        industry={item.industry}
-                                        price={item.price.toString()}
-                                        // здесь будет открываться страница компании, пока оставлена ссылка на профессии
-                                        onClick={() => {
-                                            openModal('profession_modal_mobi', 'mobi', {
-                                                profession: item.companyName,
-                                                professionId: item.id,
-                                            })
-                                        }}
-                                        companyName={item.companyName}
+                        {filteredContent.length > 0 ? (
+                            <>
+                                <div className="flex flex-wrap justify-center gap-[20px] sm_xl:gap-[15px]">
+                                    {filteredContent
+                                        .slice((safeCurrentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
+                                        .map((item) => (
+                                            <CompaniesCardPageMobi
+                                                key={item.id}
+                                                image={item.image}
+                                                industry={item.industry}
+                                                price={item.price.toString()}
+                                                // здесь будет открываться страница компании, пока оставлена ссылка на профессии
+                                                onClick={() => {
+                                                    openModal('profession_modal_mobi', 'mobi', {
+                                                        profession: item.companyName,
+                                                        professionId: item.id,
+                                                    })
+                                                }}
+                                                companyName={item.companyName}
+                                            />
+                                        ))}
+                                </div>
+                                {totalPages > 1 && (
+                                    <CompaniesPaginationMobi
+                                        totalPages={totalPages}
+                                        currentPage={safeCurrentPage}
+                                        onPageChange={handlePageChange}
                                     />
-                                ))}
-                        </div>
-                        <CompaniesPaginationMobi
-                            totalPages={totalPages}
-                            currentPage={safeCurrentPage}
-                            onPageChange={handlePageChange}
-                        />
+                                )}
+                            </>
+                        ) : (
+                            <p className="my-16 min-h-[60px] text-center text-xl text-white">Ничего не найдено</p>
+                        )}
                         <CompaniesSendMobi />
                     </div>
                 </main>
