@@ -11,7 +11,7 @@ export default function Companies() {
     }, [])
 
     const isDesktop = useMediaQuery({
-        query: '(min-width: 769px)',
+        query: '(min-width: 1240px)',
     })
 
     if (!isClient) {
