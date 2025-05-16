@@ -17,10 +17,6 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
         email: '',
     })
 
-    // const [inputInternalErrors] = useState<{ [key: string]: string | null }>({
-    //     email: '',
-    // // })
-
     const [inputTouched, setInputTouched] = useState({
         email: false,
         phone: false,
@@ -85,11 +81,8 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
                             wrapperClassName="w-full"
                             helperTextClassName="error-form-mobi-custom mt-[10px]"
                         />
-                        {/* {inputInternalErrors.email && (
-                            <p className="text15px_desktop font-medium">{inputInternalErrors.email}</p>
-                        )} */}
                     </div>
-                    <p className="custom-grey text12px_mobi mt-[10px] py-[2px] pl-[13px] pr-[12px]font-medium ">
+                    <p className="custom-grey text12px_mobi pr-[12px]font-medium mt-[10px] py-[2px] pl-[13px] ">
                         Введите e-mail, указанный при регистрации
                     </p>
                     <button
@@ -98,7 +91,7 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
                             setIsSubmitted(true)
                             setInputTouched((prev) => ({ ...prev, email: true }))
                         }}
-                        className={`mx-auto mt-7 mb-2 flex h-12 w-[85%] items-center justify-center rounded-[50px]  text-3xl font-semibold 
+                        className={`mx-auto mb-2 mt-7 flex h-12 w-[85%] items-center justify-center rounded-[50px]  text-3xl font-semibold 
                         md:text-4xl ${
                             !isSubmitted || isFormValid
                                 ? 'bg-sub-title-gradient-mobi  text-white  hover:bg-gradient-desktop-hover'
