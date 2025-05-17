@@ -2,7 +2,6 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
-//import InputMask from 'react-input-mask'
 
 const inputVariants = cva(
     'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
@@ -63,6 +62,7 @@ export interface IEnhancedInput
     onBlur?: () => void
     label?: string
     helperText?: string
+    helperTextClassName?: string
     wrapperClassName?: string
     labelClassName?: string
     placeholder?: string
@@ -85,6 +85,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             onBlur,
             label,
             helperText,
+            helperTextClassName,
             name,
             wrapperClassName,
             labelClassName,
@@ -202,9 +203,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                     />
                 )}
                 {(helperText || internalError !== '') && (
-                    <span className={cn('text-xs', internalError ? 'text-destructive' : 'text-muted-foreground')}>
+                    <p className={cn(helperTextClassName, internalError ? 'text-[#BC8070] ' : 'text-muted-foreground')}>
                         {internalError || helperText}
-                    </span>
+                    </p>
                 )}
             </div>
         )

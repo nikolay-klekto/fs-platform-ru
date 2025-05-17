@@ -52,19 +52,19 @@
         @apply text-[30px] 4xl:text-9xl 3xl:text-8xl 2xl:text-6xl !important;
     }
     .text28px_desktop {
-        @apply text-[28px] 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl;
+        @apply text-[28px] 4xl:text-9xl 3xl:text-7xl 2xl:text-5xl;
     }
     .text24px_desktop {
         @apply text-[24px] 4xl:text-6xl 3xl:text-5xl 2xl:text-4xl;
     }
     .text18px_desktop {
-        @apply text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg;
+        @apply text-[18px] 4xl:text-4xl 3xl:text-2xl 2xl:text-xl;
     }
     .text20px_desktop {
         @apply text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg;
     }
     .text15px_desktop {
-        @apply text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base;
+        @apply text-2xl 4xl:text-2xl 3xl:text-lg 2xl:text-base;
     }
     .text46px_desktop {
         @apply text-18xl 3xl:text-17xl 2xl:text-16xl;
@@ -138,13 +138,13 @@
 
     .input-form-desktop-custom {
         @apply py-2 px-4 mt-1 text-white border-2 text18px_desktop border-[#878797] bg-[#101030] rounded-[50px] placeholder:text18px_desktop  placeholder:font-medium placeholder:text-[#353652] focus:border-[#878797] focus:outline-none
-        focus:bg-[#1f203f];
+        focus:bg-[rgb(31,32,63)];
     }
-    .label-form-desktop-custom {
+      .label-form-desktop-custom {
         @apply text-white text15px_desktop font-semibold;
     }
     .error-form-desktop-custom {
-        @apply mt-1 text-[#bc8070] text15px_desktop font-medium;
+        @apply text15px_desktop font-medium text-[#BC8070];
     }
 
     .input-form-mobi-custom {
@@ -155,7 +155,7 @@
         @apply text-white text14px_mobi font-medium;
     }
     .error-form-mobi-custom {
-        @apply mt-1 text-[#bc8070] text12px_mobi font-medium;
+        @apply text-[#bc8070] text12px_mobi font-medium;
     }
 
     .custom_error_style_input {
