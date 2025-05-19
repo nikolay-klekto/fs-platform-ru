@@ -3,10 +3,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
 import Image from 'next/image'
-import {
-    contentInternshipCompaniesDesktop,
-    IInternshipCompanies,
-} from '@/components/desktop/pageDesktop/ProfessionsModalDesktop/data/content'
+import { contentInternshipCompaniesDesktop, IInternshipCompanies } from './data/content'
 
 const CompaniesSectionDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
@@ -26,7 +23,7 @@ const CompaniesSectionDesktop: React.FC = () => {
         }
     }
 
-    const handleScrollbarScroll = () => {
+    const handleScrollbarScroll: () => void = () => {
         if (contentRef.current && scrollbarRef.current) {
             contentRef.current.scrollLeft = scrollbarRef.current.scrollLeft
         }
@@ -50,15 +47,15 @@ const CompaniesSectionDesktop: React.FC = () => {
     }, [])
 
     return (
-        <section className="container flex flex-col gap-[80px] py-[100px]">
-            <div className="mb-35xl">
+        <section className="flex flex-col gap-[80px] py-[100px]">
+            <div className="mb-35xl container">
                 <TitleDesktop title="Компании" href="/companies" />
             </div>
-            <div className="flex flex-col overflow-x-auto pt-10">
+            <div className="container flex flex-col overflow-x-auto pt-10">
                 <div
                     ref={contentRef}
                     onScroll={handleScroll}
-                    className="no-scrollbar_custom flex w-full select-none gap-[9vw] overflow-y-visible overflow-x-scroll"
+                    className="no-scrollbar_custom flex w-full select-none gap-[9vw] overflow-y-visible overflow-x-scroll px-24"
                 >
                     {contentInternshipCompaniesDesktop.map((item: IInternshipCompanies) => (
                         <div

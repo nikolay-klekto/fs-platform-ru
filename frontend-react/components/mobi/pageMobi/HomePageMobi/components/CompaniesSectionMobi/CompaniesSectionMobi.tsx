@@ -2,7 +2,7 @@
 
 import TitleMobi from '@/components/mobi/shared/TitleMobi'
 import { contentInternshipCompaniesMobi } from '@/components/mobi/layout/ProfessionModalMobi/content'
-import ItemCompaniesMobi from '@/components/mobi/layout/ProfessionModalMobi/ItemCompaniesMobi'
+import ItemCompaniesMobi from './ItemCompaniesMobi/ItemCompaniesMobi'
 
 const CompaniesSectionMobi: React.FC = () => {
     return (
