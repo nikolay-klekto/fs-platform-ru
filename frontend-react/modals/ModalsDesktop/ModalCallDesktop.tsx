@@ -159,9 +159,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
-                                <div className="h-5 mb-2">
-                                    {errors.name && <p className="error-form-desktop-custom">{errors.name}</p>}
-                                </div>
                             </div>
                             <div className="flex w-full flex-col px-[75px]">
                                 <PhoneInputDesktop
@@ -185,9 +182,9 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
                                             ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]'
                                             : 'border-[#878797] focus:border-[#878797]'
-                                    } h-12 p-4 text-4xl focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
+                                    } h-12 w-full p-4 text-4xl focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
                                 />
-                                <div className="mb-2 h-5">
+                                <div className="flex mb-2 h-5">
                                     {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
                                 </div>
                             </div>
@@ -199,7 +196,12 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     placeholder="Удобное время для звонка"
                                     maxLength={100}
                                     value={formData.time}
-                                    onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
+                                    onChange={(value) =>
+                                        setFormData((prev) => ({
+                                            ...prev,
+                                            time: value.replace(/[^\d:]/g, ''),
+                                        }))
+                                    }
                                     className="h-12 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-4xl font-medium text-white     focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                                     label="Удобное время для звонка"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
@@ -213,7 +215,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     </p>
                                 )}
                             </div>
-                            <div className="h-5 px-[75px]">
+                            <div className="px-[75px]">
                                 <EnhancedInput
                                     type="checkbox"
                                     id="consent"
@@ -230,11 +232,11 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         } as React.ChangeEvent<HTMLInputElement>)
                                     }
                                     label="Я согласен(а) на обработку персональных данных"
-                                    wrapperClassName="flex gap-2"
-                                    labelClassName={`${formData.consent ? 'text-white' : 'text-[#878797]'}`}
+                                    wrapperClassName="flex gap-1 pb-2"
+                                    checkboxIconSize="w-[18px]"
+                                    labelClassName={`${formData.consent ? 'text-white' : 'text-[#878797]'} text-2xl`}
                                 />
                             </div>
-                            {errors.consent && <p className="error-form-desktop-custom px-[75px]">{errors.consent}</p>}
                             <div>
                                 <p className="px-[75px] mb-2 text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
@@ -257,7 +259,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 <Button
                                     type="submit"
                                     variant="default"
-                                    size="btn_modal_desktop"
+                                    size="send_btn_desktop"
                                     disabled={hasErrors}
                                     className={`mx-auto h-16 rounded-full px-20 text-5xl font-semibold leading-[24.38px] hover:bg-gradient-desktop-hover  disabled:opacity-100 ${
                                         hasErrors ? 'bg-[#878797]' : 'bg-gradient-desktop'
