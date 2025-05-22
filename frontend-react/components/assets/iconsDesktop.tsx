@@ -298,7 +298,7 @@ export const EyeOnPasswordDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) =
 
 export const CheckedBoxFormDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M9 11L12 14L22 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             <path
                 d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16"
@@ -313,7 +313,7 @@ export const CheckedBoxFormDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
 
 export const UncheckedBoxFormDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
                 d="M19 17V3C19 1.89543 18.1046 1 17 1H3C2.46957 1 1.96086 1.21071 1.58579 1.58579C1.21071 1.96086 1 2.46957 1 3V17C1 17.5304 1.21071 18.0391 1.58579 18.4142C1.96086 18.7893 2.46957 19 3 19H17C17.5304 19 18.0391 18.7893 18.4142 18.4142C18.7893 18.0391 19 17.5304 19 17Z"
                 stroke="#878797"
@@ -616,6 +616,42 @@ export const TrashIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
+        </svg>
+    )
+}
+
+export const AttachFileIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg
+            className="circle_btn_gradient_desktop"
+            width="56"
+            height="58"
+            viewBox="0 0 56 58"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+        >
+            <path
+                d="M24.1335 23.0938V35.5466C24.1479 36.4572 24.5197 37.3256 25.1687 37.9645C25.8178 38.6033 26.692 38.9614 27.6027 38.9614C28.5134 38.9614 29.3876 38.6033 30.0366 37.9645C30.6857 37.3256 31.0575 36.4572 31.0719 35.5466L31.0831 19.2242C31.0926 18.4459 30.9474 17.6735 30.6561 16.9517C30.3648 16.2299 29.9331 15.5731 29.3861 15.0194C28.839 14.4657 28.1875 14.0261 27.4693 13.726C26.7511 13.426 25.9805 13.2715 25.2022 13.2715C24.4238 13.2715 23.6532 13.426 22.935 13.726C22.2168 14.0261 21.5653 14.4657 21.0182 15.0194C20.4712 15.5731 20.0395 16.2299 19.7482 16.9517C19.4569 17.6735 19.3117 18.4459 19.3212 19.2242V35.6565C19.3053 36.7522 19.5074 37.8402 19.9158 38.8571C20.3241 39.874 20.9306 40.7996 21.6998 41.5801C22.4691 42.3606 23.3858 42.9803 24.3967 43.4034C25.4076 43.8264 26.4925 44.0442 27.5884 44.0442C28.6842 44.0442 29.7691 43.8264 30.7801 43.4034C31.791 42.9803 32.7077 42.3606 33.4769 41.5801C34.2462 40.7996 34.8526 39.874 35.261 38.8571C35.6693 37.8402 35.8715 36.7522 35.8556 35.6565V20.3011"
+                stroke="white"
+                stroke-width="2.27296"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+            />
+            <defs>
+                <linearGradient
+                    id="paint0_linear_331_18459"
+                    x1="-4.5327"
+                    y1="29.3185"
+                    x2="55.6874"
+                    y2="29.3185"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#8333F3" />
+                    <stop offset="0.485532" stop-color="#5F4AF3" />
+                    <stop offset="1" stop-color="#3B51A8" />
+                </linearGradient>
+            </defs>
         </svg>
     )
 }

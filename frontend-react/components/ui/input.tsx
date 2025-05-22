@@ -2,7 +2,6 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
-//import InputMask from 'react-input-mask'
 
 const inputVariants = cva(
     'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
@@ -29,7 +28,8 @@ const inputVariants = cva(
                 default: 'h-10 px-3 py-2',
                 gradient_search_desktop: 'size-full py-[20px] pl-[20px] pr-[70px]',
                 gradient_desktop: 'size-full p-[20px]',
-                search_mobi: 'size-full py-[15px] pl-[10px] pr-[45px]',
+                search_mobi: 'size-full py-[16px] pl-[10px] pr-[20px]',
+                search_companies_mobi: 'size-full py-[15px]  pl-[20px]',
                 send_mobi: 'size-full px-[10px]',
                 contacts_page_desktop: 'h-[53px] w-[453px] px-4 py-3.5 2xl:w-[520px]',
                 contacts_page_info_desktop: '3xl:w-[452px] h-[53px] w-[484px] px-4 py-3.5 2xl:w-[520px]',
@@ -62,10 +62,12 @@ export interface IEnhancedInput
     onBlur?: () => void
     label?: string
     helperText?: string
+    helperTextClassName?: string
     wrapperClassName?: string
     labelClassName?: string
     placeholder?: string
     name?: string
+    checkboxIconSize?: string
     checked?: boolean
 }
 
@@ -83,11 +85,13 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             onBlur,
             label,
             helperText,
+            helperTextClassName,
             name,
             wrapperClassName,
             labelClassName,
             placeholder,
             checked,
+            checkboxIconSize,
             ...props
         },
         ref,
@@ -156,7 +160,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         className={cn(
                             'text15px_desktop font-medium text-[#878797]',
                             labelClassName,
-                            isCheckbox && 'flex items-center gap-2',
+                            isCheckbox && 'flex items-center gap-4',
                         )}
                     >
                         {isCheckbox && (
@@ -169,9 +173,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 onClick={handleCheckboxToggle}
                             >
                                 {internalValue ? (
-                                    <CheckedBoxFormDesktop className="w-[16px]" />
+                                    <CheckedBoxFormDesktop className={checkboxIconSize} />
                                 ) : (
-                                    <UncheckedBoxFormDesktop className="w-[16px]" />
+                                    <UncheckedBoxFormDesktop className={checkboxIconSize} />
                                 )}
                             </button>
                         )}
@@ -199,14 +203,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                     />
                 )}
                 {(helperText || internalError !== '') && (
-                    <span
-                        className={cn(
-                            'text-base',
-                            internalError ? 'error-form-desktop-custom' : 'text-muted-foreground',
-                        )}
-                    >
+                    <p className={cn(helperTextClassName, internalError ? 'text-[#BC8070] ' : 'text-muted-foreground')}>
                         {internalError || helperText}
-                    </span>
+                    </p>
                 )}
             </div>
         )
