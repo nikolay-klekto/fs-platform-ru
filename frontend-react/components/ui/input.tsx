@@ -199,7 +199,12 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                     />
                 )}
                 {(helperText || internalError !== '') && (
-                    <span className={cn('text-xs', internalError ? 'text-destructive' : 'text-muted-foreground')}>
+                    <span
+                        className={cn(
+                            'text-base',
+                            internalError ? 'error-form-desktop-custom' : 'text-muted-foreground',
+                        )}
+                    >
                         {internalError || helperText}
                     </span>
                 )}

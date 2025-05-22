@@ -18,6 +18,7 @@ interface IPasswordInput {
     showGenerateButton?: boolean
     required?: boolean
     formError?: boolean
+    showErrorMessage?: boolean
 }
 
 const PasswordInputDesktop: React.FC<IPasswordInput> = ({
