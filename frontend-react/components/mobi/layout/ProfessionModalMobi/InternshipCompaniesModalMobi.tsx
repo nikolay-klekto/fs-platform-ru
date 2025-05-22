@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useRef } from 'react'
-import { contentInternshipCompaniesMobi } from './content'
+import { contentCompaniesMobi } from './content'
 import ItemCompaniesMobi from './ItemCompaniesMobi'
 
 const InternshipCompaniesModalMobi: React.FC = () => {
@@ -29,7 +29,7 @@ const InternshipCompaniesModalMobi: React.FC = () => {
                 onScroll={handleScroll}
                 className="no-scrollbar_custom flex select-none gap-2 overflow-x-scroll"
             >
-                {contentInternshipCompaniesMobi.map((item) => (
+                {contentCompaniesMobi.map((item) => (
                     <ItemCompaniesMobi key={item.id} image={item.image} onWidthChange={() => {}} />
                 ))}
             </div>
