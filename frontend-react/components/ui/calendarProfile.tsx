@@ -2,16 +2,23 @@
 
 import * as React from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { DayPicker } from 'react-day-picker'
-import { format } from 'date-fns'
+import { DayPicker, DayPickerSingleProps } from 'react-day-picker'
 import { ru } from 'date-fns/locale'
 
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>
+export type CalendarProps = Omit<DayPickerSingleProps, 'mode'> & {
+    onCloseAction: (date: Date) => Promise<void>
+}
 
-function CalendarProfile({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
+function CalendarProfile({
+                             className,
+                             classNames,
+                             showOutsideDays = true,
+                             onCloseAction,
+                             ...props
+                         }: CalendarProps) {
     const [selectedDate, setSelectedDate] = React.useState(new Date(1999, 8, 20))
 
     const handleDayClick = (day: Date | undefined) => {
@@ -30,9 +37,9 @@ function CalendarProfile({ className, classNames, showOutsideDays = true, ...pro
             </button>
             <button
                 className="bg-purple-600 text-white text-sm px-4 py-1 rounded-full"
-                onClick={() =>
-                    alert(`Дата сохранена: ${format(selectedDate, 'dd MMMM yyyy', { locale: ru })}`)
-                }
+                onClick={async () => {
+                    await onCloseAction(selectedDate)
+                }}
             >
                 Сохранить
             </button>
@@ -42,6 +49,7 @@ function CalendarProfile({ className, classNames, showOutsideDays = true, ...pro
     return (
         <div className="relative bg-[#1a1a2e] rounded-lg p-4">
             <DayPicker
+                mode="single"
                 showOutsideDays={showOutsideDays}
                 className={cn('p-3', className)}
                 classNames={{
@@ -87,9 +95,8 @@ function CalendarProfile({ className, classNames, showOutsideDays = true, ...pro
                     ),
                 }}
                 locale={ru}
-                mode="single"
                 selected={selectedDate}
-                onClick={handleDayClick}
+                onDayClick={handleDayClick}
                 defaultMonth={new Date(1999, 8)}
                 fromYear={1998}
                 toYear={2000}
