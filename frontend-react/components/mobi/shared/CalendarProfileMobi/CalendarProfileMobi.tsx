@@ -66,7 +66,26 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
         setIsOpen(false);
     };
 
-    const getVisibleItems = (items: any[], currentIndex: number) => {
+    const handleDayChange = (index: number) => {
+        setVisibleDayIndex(
+            (visibleDayIndex + (index - 1) + days.length) % days.length
+        );
+    };
+
+    const handleMonthChange = (index: number) => {
+        setVisibleMonthIndex(
+            (visibleMonthIndex + (index - 1) + months.length) % months.length
+        );
+    };
+
+    const handleYearChange = (index: number) => {
+        setVisibleYearIndex(
+            (visibleYearIndex + (index - 1) + years.length) % years.length
+        );
+    };
+
+
+    const getVisibleItems = (items: (string | number)[], currentIndex: number): (string | number)[] => {
         const prevIndex = (currentIndex - 1 + items.length) % items.length;
         const nextIndex = (currentIndex + 1) % items.length;
         return [items[prevIndex], items[currentIndex], items[nextIndex]];
@@ -85,6 +104,14 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
                             <div className="flex flex-col items-center">
                                 {visibleDays.map((day, index) => (
                                     <div
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' || e.key === ' ') {
+                                                e.preventDefault();
+                                                handleDayChange(index);
+                                            }
+                                        }}
+                                        role="button"
+                                        tabIndex={0}
                                         key={day}
                                         className={`text16px_mobi py-2 cursor-pointer relative w-[60px] ${
                                             index === 1 ? 'font-bold' : 'opacity-50'
@@ -111,6 +138,14 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
                             <div className="flex flex-col items-center">
                                 {visibleMonths.map((month, index) => (
                                     <div
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' || e.key === ' ') {
+                                                e.preventDefault();
+                                                handleMonthChange(index);
+                                            }
+                                        }}
+                                        role="button"
+                                        tabIndex={0}
                                         key={month}
                                         className={`text16px_mobi py-2 cursor-pointer relative w-[60px] ${
                                             index === 1 ? 'font-bold' : 'opacity-50'
@@ -138,6 +173,14 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
                                 {visibleYears.map((year, index) => (
                                     <div
                                         key={year}
+                                        role="button"
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' || e.key === ' ') {
+                                                e.preventDefault();
+                                                handleYearChange(index);
+                                            }
+                                        }}
+                                        tabIndex={0}
                                         className={`text16px_mobi py-2 cursor-pointer relative w-[60px] ${
                                             index === 1 ? 'font-bold' : 'opacity-50'
                                         } ${

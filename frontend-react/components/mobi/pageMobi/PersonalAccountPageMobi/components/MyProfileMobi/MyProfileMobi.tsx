@@ -159,28 +159,31 @@ const MyProfileMobi: React.FC = () => {
                     <div className="flex flex-col">
                         <label htmlFor="birthDate" className="mb-1 text-2xl font-medium text-white">Дата
                             рождения</label>
-                        <div className="relative">
-                            <div
-                                className="flex h-[50px] items-center gap-1 rounded-[42px] border-2 border-[#878797] px-3 "
-                                onClick={() => setIsCalendarOpen(true)}
-                            >
-                                <CalendarIconsMobi/>
-                                <input
-                                    id="birthDate"
-                                    name="birthDate"
-                                    value={formData.birthDate}
-                                    onChange={handleChange}
-                                    onBlur={() => handleInputBlur('birthDate')}
-                                    className="w-full border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500"
-                                    placeholder="__.__.____"
-                                    type="text"
-                                    readOnly
-                                />
-                            </div>
-                            {errors.birthDate && (
-                                <p className="mt-1 text-red-500 text-sm">{errors.birthDate}</p>
-                            )}
+                        <div
+                            className="flex h-[50px] items-center gap-1 rounded-[42px] border-2 border-[#878797] px-3"
+                            onClick={() => setIsCalendarOpen(true)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    setIsCalendarOpen(true);
+                                }
+                            }}
+                            role="button"
+                            tabIndex={0}
+                        >
+                            <CalendarIconsMobi/>
+                            <input
+                                id="birthDate"
+                                name="birthDate"
+                                value={formData.birthDate}
+                                onChange={handleChange}
+                                onBlur={() => handleInputBlur('birthDate')}
+                                className="w-full border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500"
+                                placeholder="__.__.____"
+                                type="text"
+                                readOnly
+                            />
                         </div>
+
 
                         {isCalendarOpen && (
                             <DatePickerCalendar
@@ -225,6 +228,13 @@ const MyProfileMobi: React.FC = () => {
                             <div
                                 className={`input-form-mobi-custom flex items-center justify-between cursor-pointer ${errors.education ? 'border-[#bc8070]' : ''}`}
                                 onClick={() => setIsEducationOpen(!isEducationOpen)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        setIsCalendarOpen(true);
+                                    }
+                                }}
+                                role="button"
+                                tabIndex={0}
                             >
                                 <span className={formData.education ? 'text-white' : 'text-gray-500'}>
                                     {formData.education
@@ -245,6 +255,13 @@ const MyProfileMobi: React.FC = () => {
                                         {educationOptions.map((option) => (
                                             <div
                                                 key={option.value}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === 'Enter' || e.key === ' ') {
+                                                        setIsCalendarOpen(true);
+                                                    }
+                                                }}
+                                                role="button"
+                                                tabIndex={0}
                                                 className={`cursor-pointer py-[10px] px-[7px] text-[14px] font-medium border-b border-[#878797] last:border-b-0 ${formData.education === option.value
                                                     ? 'text-white'
                                                     : 'bg-transparent text-[#878797]'
