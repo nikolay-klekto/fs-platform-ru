@@ -7,6 +7,7 @@ import ProfilePageDesktop from '@/components/desktop/pageDesktop/ProfilePageDesk
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
+import ProfilePageMobi from '@/components/mobi/pageMobi/ProfilePageMobi/ProfilePageMobi'
 
 export default function Profile() {
     const [isClient, setIsClient] = useState(false)
@@ -37,7 +38,7 @@ export default function Profile() {
                     <div className="h-[20px] bg-[#101030]"></div>
                     <HeaderMobi />
                     <main className="bg-[#101030] text-white">
-                        <h1>Личный профиль</h1>
+                        <ProfilePageMobi />
                     </main>
                     <FooterMobi />
                 </>
