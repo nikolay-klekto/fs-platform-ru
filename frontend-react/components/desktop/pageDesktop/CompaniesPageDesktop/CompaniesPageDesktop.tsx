@@ -98,7 +98,7 @@ const CompaniesPageDesktop: React.FC = () => {
                                 ))}
                         </div>
                     ) : (
-                        <p className="my-20 min-h-[250px] text-center text-4xl text-white">Ничего не найдено</p>
+                        <p className="my-20 h-[150px] text-center text-4xl text-white">Ничего не найдено</p>
                     )}
 
                     {totalPages <= 1 && <div className="h-[80px]"></div>}
