@@ -81,7 +81,7 @@ export const modals = {
         },
         {
             id: 'cookie_desktop',
-            content: ({ onClose }: IModalContent) => <ModalCookieDesktop onClose={onClose} />,
+            content: ({ onClose }: IModalContent) => <ModalCookieDesktop onCloseAction={onClose} />,
         },
         {
             id: 'join_team_modal_desktop',

@@ -3,6 +3,7 @@ import Modal from '@/components/ui/modal'
 import { ChevronLeft } from 'lucide-react'
 import RequiringPaymentMobi from '@/components/mobi/pageMobi/PersonalAccountPageMobi/components/RequiringPaymentMobi/RequiringPaymentMobi'
 import OrderPaymentMobi from '@/components/mobi/pageMobi/PersonalAccountPageMobi/components/OrderPaymentMobi/OrderPaymentMobi'
+import MyProfileMobi from "@/components/mobi/pageMobi/PersonalAccountPageMobi/components/MyProfileMobi/MyProfileMobi";
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 
@@ -20,7 +21,7 @@ const PersonalAccountPageMobi: React.FC = () => {
     const getContentText = () => {
         switch (selectedOption) {
             case 'МОЙ ПРОФИЛЬ':
-                return 'Раздел с информацией'
+                return <MyProfileMobi/>
             case 'ТРЕБУЮЩИЕ ОПЛАТЫ':
                 return <OrderPaymentMobi />
             case 'КОРЗИНА':
@@ -36,10 +37,9 @@ const PersonalAccountPageMobi: React.FC = () => {
             <div className="min-h-screen grow bg-[#101030]">
                 <div className="flex flex-col items-center justify-center bg-[#101030] px-[15px] pt-[40px]">
                     <h2 className="title28px_mobi_custom mb-4">ЛИЧНЫЙ КАБИНЕТ</h2>
-
                     <div
                         className="text-text22px_mobi hover:bg-sub-title-gradient-mobi relative 
-                cursor-pointer text-[#878797] hover:bg-clip-text hover:text-transparent "
+                cursor-pointer text-[#878797] hover:bg-clip-text hover:text-transparent text-center"
                     >
                         <button
                             className="bg-sub-title-gradient-mobi flex items-center bg-clip-text text-transparent underline decoration-[#6C41F3] decoration-1 underline-offset-4"
