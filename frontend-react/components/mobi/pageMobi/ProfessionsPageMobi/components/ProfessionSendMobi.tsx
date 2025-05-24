@@ -10,7 +10,7 @@ const ProfessionSendMobi: React.FC = () => {
         setUseRequest('')
     }
     return (
-        <div className="flex flex-col gap-[17px]">
+        <div className="mt-[30px] flex flex-col gap-[17px]">
             <div className="text-[14px] font-medium uppercase  md:text-center">
                 <p>Хотите поработать в другой компании?</p>
                 <p>Дайте нам знать!</p>
