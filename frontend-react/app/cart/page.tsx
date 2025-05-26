@@ -13,7 +13,7 @@ export default function Companies() {
     }, [])
 
     const isDesktop = useMediaQuery({
-        query: '(min-width: 768px)',
+        query: '(min-width: 1240px)',
     })
 
     if (!isClient) {
@@ -23,15 +23,11 @@ export default function Companies() {
         <div>
             {isDesktop ? (
                 <>
-                    <main className="min-h-screen bg-[#101030] text-white">
-                        <ShoppingCartPageDesktop />
-                    </main>
+                    <ShoppingCartPageDesktop />
                 </>
             ) : (
                 <>
-                    <main className="bg-[#101030] text-white">
-                        <ShoppingCartPageMobi />
-                    </main>
+                    <ShoppingCartPageMobi />
                 </>
             )}
         </div>
