@@ -12,7 +12,7 @@ export default function PersonalAccount() {
     }, [])
 
     const isDesktop = useMediaQuery({
-        query: '(min-width: 769px)',
+        query: '(min-width: 1240px)',
     })
 
     if (!isClient) {
