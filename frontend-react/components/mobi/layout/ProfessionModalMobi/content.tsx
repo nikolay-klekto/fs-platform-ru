@@ -3,7 +3,7 @@ interface IProfessionAbout {
     text: string
 }
 
-interface IInternshipCompanies {
+interface ICompanies {
     id: number
     image: {
         src: string
@@ -26,12 +26,12 @@ export const contentProfessionAboutMobi: IProfessionAbout[] = [
     },
 ]
 
-export const contentInternshipCompaniesMobi: IInternshipCompanies[] = [
+export const contentCompaniesMobi: ICompanies[] = [
     {
         id: 1,
         image: {
             src: '/images/epamLogo.png',
-            alt: 'company-logo',
+            alt: 'Epam logo',
             width: 53,
             height: 20,
         },
@@ -40,7 +40,7 @@ export const contentInternshipCompaniesMobi: IInternshipCompanies[] = [
         id: 2,
         image: {
             src: '/images/epamLogo.png',
-            alt: 'company-logo',
+            alt: 'Epam logo',
             width: 53,
             height: 20,
         },
@@ -49,7 +49,7 @@ export const contentInternshipCompaniesMobi: IInternshipCompanies[] = [
         id: 3,
         image: {
             src: '/images/epamLogo.png',
-            alt: 'company-logo',
+            alt: 'Epam logo',
             width: 53,
             height: 20,
         },
@@ -58,7 +58,7 @@ export const contentInternshipCompaniesMobi: IInternshipCompanies[] = [
         id: 4,
         image: {
             src: '/images/epamLogo.png',
-            alt: 'company-logo',
+            alt: 'Epam logo',
             width: 53,
             height: 20,
         },
@@ -67,7 +67,7 @@ export const contentInternshipCompaniesMobi: IInternshipCompanies[] = [
         id: 5,
         image: {
             src: '/images/epamLogo.png',
-            alt: 'company-logo',
+            alt: 'Epam logo',
             width: 53,
             height: 20,
         },
@@ -76,7 +76,7 @@ export const contentInternshipCompaniesMobi: IInternshipCompanies[] = [
         id: 6,
         image: {
             src: '/images/epamLogo.png',
-            alt: 'company-logo',
+            alt: 'Epam logo',
             width: 53,
             height: 20,
         },
@@ -85,7 +85,7 @@ export const contentInternshipCompaniesMobi: IInternshipCompanies[] = [
         id: 7,
         image: {
             src: '/images/epamLogo.png',
-            alt: 'company-logo',
+            alt: 'Epam logo',
             width: 53,
             height: 20,
         },
