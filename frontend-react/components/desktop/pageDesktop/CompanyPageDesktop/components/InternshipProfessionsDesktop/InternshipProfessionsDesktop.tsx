@@ -50,7 +50,7 @@ const InternshipProfessionsDesktop: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll"
+                className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_38px)] overflow-x-scroll"
             >
                 {contentInternshipProfessionsDesktop.map((item) => (
                     <ItemCompaniesDesktop key={item.id} image={item.image} name={item.name} onWidthChange={() => {}} />

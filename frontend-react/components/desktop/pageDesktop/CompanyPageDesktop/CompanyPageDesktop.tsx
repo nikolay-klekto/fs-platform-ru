@@ -34,7 +34,7 @@ const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
                 </div>
 
                 <div className="flex flex-col px-[58px]">
-                    <h2 className="mb-15 text-[80px] font-medium uppercase text-white">КОМПАНИЯ EPAM </h2>
+                    <h2 className="mb-15 title80px_desktop font-medium uppercase text-white">КОМПАНИЯ EPAM </h2>
                     <div className="relative max-h-[613px] w-full">
                         <Image
                             src="/images/EpamForCompanyPage.png"
@@ -47,19 +47,21 @@ const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
 
                     {contentCompanyAboutDesktop.map((item) => (
                         <div key={item.id}>
-                            <p className="max-w-[1803px] py-[57px] text-[32px] text-[rgb(135,135,151)]">{item.text}</p>
+                            <p className="text32px_desktop max-w-[1803px] py-[57px] text-[rgb(135,135,151)]">
+                                {item.text}
+                            </p>
                             <div className="flex flex-row">
                                 <div>
-                                    <div className="flex items-start text-[32px] font-medium text-[#878797]">
+                                    <div className="text32px_desktop flex items-start font-medium text-[#878797]">
                                         <span>Адрес офиса:</span>
                                         <div className="ml-[10px]">
-                                            <p className="text-[32px] text-white">{item.adress1}</p>
-                                            <p className="text-[32px] text-white">{item.adress2}</p>
+                                            <p className="text32px_desktop text-white">{item.adress1}</p>
+                                            <p className="text32px_desktop text-white">{item.adress2}</p>
                                         </div>
                                     </div>
-                                    <div className="mt-[10px] flex items-start text-[32px] font-medium text-[#878797]">
+                                    <div className="mt-[10px] flex items-start text32px_desktop font-medium text-[#878797]">
                                         <span>Время работы:</span>
-                                        <div className="ml-[10px] text-[32px] text-white">{item.time}</div>
+                                        <div className="ml-[10px] text32px_desktop text-white">{item.time}</div>
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-[10px] pl-[29px]">
@@ -75,8 +77,10 @@ const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
                                             alt="map-pin"
                                             className="size-[37px] cursor-pointer"
                                         />
-                                        <div className="bg-[#353652]-800 absolute left-full top-1/2 z-10 ml-2 h-[53px] w-[333px] -translate-y-1/2 whitespace-nowrap rounded-[50px] px-3 py-1 text-[21px] text-white opacity-0 transition-opacity duration-200 group-hover:opacity-80">
-                                            Открыть в Google карте
+                                        <div className="absolute z-10 top-0 opacity-0 transition-opacity duration-200 group-hover:opacity-80">
+                                            <div className="flex h-[73px] w-[333px] items-center justify-center whitespace-nowrap rounded-[50px] bg-[url('/background/GoogleMap.png')] bg-cover bg-no-repeat pb-[14px] pt-[30px] text-[21px] text-white">
+                                                Открыть в Google карте
+                                            </div>
                                         </div>
                                     </a>
                                     <a
@@ -91,8 +95,10 @@ const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
                                             alt="map-pin"
                                             className="size-[37px] cursor-pointer"
                                         />
-                                        <div className="bg-[#353652]-800 absolute left-full top-1/2 z-10 ml-2 w-[333px] -translate-y-1/2 whitespace-nowrap rounded-[50px] px-3 py-1 text-[21px] text-white opacity-0 transition-opacity duration-200 group-hover:opacity-80">
-                                            Открыть в Google карте
+                                        <div className="absolute z-10 top-0 opacity-0 transition-opacity duration-200 group-hover:opacity-80">
+                                            <div className="flex h-[73px] w-[333px] items-center justify-center whitespace-nowrap rounded-[50px] bg-[url('/background/GoogleMap.png')] bg-cover bg-no-repeat pb-[14px] pt-[30px] text-[21px] text-white">
+                                                Открыть в Google карте
+                                            </div>
                                         </div>
                                     </a>
                                 </div>
@@ -100,9 +106,11 @@ const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
                         </div>
                     ))}
 
-                    <h3 className="mt-[118px] text-[48px] uppercase text-white">ПРОФЕССИИ В ЭТОЙ КОМПАНИИ</h3>
+                    <h3 className="mb-[63px] mt-[118px] text-[48px] uppercase text-white">ПРОФЕССИИ В ЭТОЙ КОМПАНИИ</h3>
                     <InternshipProfessionsDesktop />
-                    <h3 className="mb-[81px] mt-[175px] text-[48px] uppercase text-white">ПРЕИМУЩЕСТВА КОМПАНИИ</h3>
+                    <h3 className="mb-[81px] mt-[175px] 3xl:mt-[115px] 2xl:mt-[80px] text-[48px] uppercase text-white">
+                        ПРЕИМУЩЕСТВА КОМПАНИИ
+                    </h3>
                     <ReviewsDesktop />
                 </div>
             </div>

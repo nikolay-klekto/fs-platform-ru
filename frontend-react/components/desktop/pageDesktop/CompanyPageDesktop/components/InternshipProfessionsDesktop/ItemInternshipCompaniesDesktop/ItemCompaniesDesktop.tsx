@@ -30,13 +30,10 @@ const ItemCompaniesDesktop: React.FC<IItemCompaniesDesktop> = ({ image, name, on
         return () => {
             window.removeEventListener('resize', updateWidth)
         }
-    }, [])
+    }, [onWidthChange])
 
     return (
-        <div
-            ref={itemRef}
-            className="relative flex h-auto w-[clamp(160px,_14vw,_328px)] shrink-0 rounded-[60px] px-2 pb-[clamp(16px,_1.5vw,_28px)] pt-6 text-center"
-        >
+        <div ref={itemRef} className="relative flex h-auto max-w-[328px] shrink-0 rounded-[60px] text-center">
             <Image
                 src={image.src}
                 alt={image.alt}
@@ -45,8 +42,8 @@ const ItemCompaniesDesktop: React.FC<IItemCompaniesDesktop> = ({ image, name, on
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 className="rounded-[60px]"
             />
-            <div className="bg-white rounded-[10px] absolute bottom-12 left-8">
-                <p className="3xl:text-4xl text-[19px] text-[#878797] 2xl:text-3xl">{name}</p>
+            <div className="absolute bottom-12 left-8 rounded-[10px] bg-white">
+                <p className="text-[19px] text-[#878797] 2xl:text-3xl 3xl:text-4xl">{name}</p>
             </div>
         </div>
     )
