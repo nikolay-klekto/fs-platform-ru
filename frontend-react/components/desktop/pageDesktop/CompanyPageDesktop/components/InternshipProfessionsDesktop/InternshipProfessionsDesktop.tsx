@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useRef, useEffect, useState } from 'react'
-import { contentInternshipProfessionsDesktop } from '../../contentCompanyPageDesktop/content'
+import { contentInternshipProfessionsDesktop } from './contentInternshipProfessionsDesktop/content'
 import ItemCompaniesDesktop from './ItemInternshipCompaniesDesktop/ItemCompaniesDesktop'
 
 const InternshipProfessionsDesktop: React.FC = () => {
