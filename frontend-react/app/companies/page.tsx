@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import CompaniesPageMobi from '@/components/mobi/pageMobi/CompaniesPageMobi/CompaniesPageMobi'
-import CompanyPageDesktop from '@/components/desktop/pageDesktop/CompanyPageDesktop/CompanyPageDesktop'
+import CompaniesPageDesktop from '@/components/desktop/pageDesktop/CompaniesPageDesktop/CompaniesPageDesktop'
+
 export default function Companies() {
     const [isClient, setIsClient] = useState(false)
 
@@ -22,7 +23,7 @@ export default function Companies() {
         <div>
             {isDesktop ? (
                 <>
-                    <CompanyPageDesktop />
+                    <CompaniesPageDesktop />
                 </>
             ) : (
                 <>
