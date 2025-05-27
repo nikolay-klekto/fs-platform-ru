@@ -3,7 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { contentCompanyAboutDesktop } from './contentCompanyPageDesktop/content'
-// import { contentCompaniesDesktop } from '@/data/content' // тут будет путь к контенту с названиями компаний
+// import { contentCompaniesPageDesktop } from '@/components/desktop/pageDesktop/CompaniesPageDesktop/contentCompaniesPageDesktop/content'
 import InternshipProfessionsDesktop from './components/InternshipProfessionsDesktop/InternshipProfessionsDesktop'
 import ReviewsDesktop from './components/ReviewsDesktop/ReviewsDesktop'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
@@ -12,7 +12,6 @@ import Link from 'next/link'
 
 interface ICompanyDesktop {
     company: string
-    // companyId: number | null
 }
 
 const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
@@ -20,13 +19,17 @@ const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
         <>
             <HeaderDesktop />
             <div className="bg-[#101030] text-white">
-                <div className="flex items-center space-x-1 pl-[65px] pt-[60px] pb-[29px] text-[20px] text-gray-500">
+                <div className="flex items-center space-x-1 pb-[29px] pl-[65px] pt-[60px] text-[20px] text-gray-500">
                     <Link href="/" className="hover:underline">
                         Главная
                     </Link>
                     <span>/</span>
                     <Link href="/companies" className="hover:underline">
                         Компании
+                    </Link>
+                    <span>/</span>
+                    <Link href="/company" className="hover:underline">
+                        Компания Еpam
                     </Link>
                 </div>
 
@@ -86,7 +89,7 @@ const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
                                         <img
                                             src="/images/map-pin.png"
                                             alt="map-pin"
-                                            className="h-[37px] w-[37px] cursor-pointer"
+                                            className="size-[37px] cursor-pointer"
                                         />
                                         <div className="bg-[#353652]-800 absolute left-full top-1/2 z-10 ml-2 w-[333px] -translate-y-1/2 whitespace-nowrap rounded-[50px] px-3 py-1 text-[21px] text-white opacity-0 transition-opacity duration-200 group-hover:opacity-80">
                                             Открыть в Google карте
