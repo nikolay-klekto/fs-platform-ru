@@ -63,7 +63,12 @@ node - v
         - pics (screenshots) of your result.
     6. To check PR, attach the teamlead to conduct a code review, without their approval we do not merge this PR (except for emergency cases, which are discussed separately in the chat)
     7. After approval, merge the feature branch into the working one, select **Squash and merge**
-    8. Delete the feature branch
+    8. After a successful merge, delete your branch and move the task to the **TEST** column.
+    9. Then the task goes through testing:
+    - If everything works correctly, move the task to the **DONE** column.
+    - If any issues are found, leave a comment in the task and move it to the rework after testing column.
+    - In this case, create a new branch with the same name but with the `fix_test_bag_` prefix, so the tester can easily track it.
+    - Additionally, **in Jira**, clearly state what was fixed — not only in the PR description.
 
 ```
 All correspondence in the repository, names of commits, PR, etc. provided in English.

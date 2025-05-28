@@ -79,6 +79,11 @@
         background-origin: border-box;
         background-clip: padding-box, border-box;
     }
+    .button-border-desktop:hover {
+        background-image: 
+           linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8), 
+           linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8); 
+    }
     .button-border-desktop-date {
         position: relative;
         box-sizing: border-box;
@@ -116,6 +121,18 @@
         background-origin: border-box;
         background-clip: padding-box, border-box;
     }
+
+
+::-webkit-scrollbar {
+    width: 2px; 
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(135, 135, 151, 1); 
+   
+}
+
+
 }
 @layer base {
     * {
