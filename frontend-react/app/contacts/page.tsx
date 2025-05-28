@@ -14,7 +14,7 @@ export default function Contacts() {
     }, [])
 
     const isDesktop = useMediaQuery({
-        query: '(min-width: 768px)',
+        query: '(min-width: 1240px)',
     })
 
     if (!isClient) {
