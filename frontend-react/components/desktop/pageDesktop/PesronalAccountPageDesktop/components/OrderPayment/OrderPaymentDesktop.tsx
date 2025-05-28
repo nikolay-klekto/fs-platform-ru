@@ -18,7 +18,7 @@ const OrderPaymentDesktop: React.FC = () => {
     }
     return (
         <>
-            <div className="3xl:pt-[50px] pb-[49px] pt-[80px] 2xl:pt-[40px] grid">
+            <div className="3xl:pt-[50px] pb-[49px] pt-[80px] 2xl:pt-[40px]">
                 <div className="grid grid-cols-2 justify-between gap-[34px] self-end pb-[87px]">
                     {contentOrderPayment.map((item) => (
                         <OrderPaymentCardDesktop
