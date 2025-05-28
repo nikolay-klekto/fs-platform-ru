@@ -24,9 +24,12 @@ const ProfessionCardPageMobi: React.FC<IProfessionCard> = ({ image, profession, 
                     {profession}
                 </CardTitle>
                 <CardFooter variant={'profession_page_mobi'} size={'profession_page_mobi'} rounded={'rounded_12'}>
-                    <p className="bg-gradient-mobi w-fit bg-clip-text  text-xl text-transparent">
-                        {price} BYN/
-                        <span className="text-base text-[#878797]">неделя</span>
+                    <p className="text-base text-[#878797]">
+                        от{' '}
+                        <span className="w-fit bg-gradient-mobi bg-clip-text  text-xl text-transparent">
+                            {price} BYN/
+                        </span>
+                        неделя
                     </p>
                 </CardFooter>
             </Card>
