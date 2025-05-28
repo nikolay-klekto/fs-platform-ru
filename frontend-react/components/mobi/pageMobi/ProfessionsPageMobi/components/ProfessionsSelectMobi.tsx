@@ -117,7 +117,7 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
                                             </SelectItem>
                                         ))}
                                         {unselected.length > 0 && selected.length > 0 && selected.length !== 5 && (
-                                            <div className="mb-1 mt-5 text-base text-[#878797]">Остальные</div>
+                                            <div className="mb-1 mt-5 text-base text-[#878797]">Все отрасли</div>
                                         )}
                                     </>
                                 )}
