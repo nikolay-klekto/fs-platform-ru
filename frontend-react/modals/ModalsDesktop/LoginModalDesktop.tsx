@@ -133,6 +133,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
                             required={true}
+                            formError={formError.show && formData.password === ''}
                         />
                     </div>
 
