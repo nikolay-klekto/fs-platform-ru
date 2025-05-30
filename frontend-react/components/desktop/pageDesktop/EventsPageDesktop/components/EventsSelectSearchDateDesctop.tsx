@@ -65,6 +65,12 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                 [key]: parsedDate,
             }))
         }
+        if (!value) {
+            setDates((prev) => ({
+                ...prev,
+                [key]: null,
+            }))
+        }
     }
 
     const isValidDate = (dateStr: string): boolean => {
@@ -144,13 +150,12 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
 
         switch (type) {
             case 'today':
-                newFromDate = new Date(now)
-                newToDate = new Date(now)
+                newFromDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+                newToDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 0, 23, 59, 59, 999)
                 break
             case 'tomorrow':
-                newFromDate = new Date(now)
-                newFromDate.setDate(now.getDate() + 1)
-                newToDate = new Date(newFromDate)
+                newFromDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0)
+                newToDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 23, 59, 59, 999)
                 break
             case 'this-week':
                 const day = now.getDay() === 0 ? 7 : now.getDay()
