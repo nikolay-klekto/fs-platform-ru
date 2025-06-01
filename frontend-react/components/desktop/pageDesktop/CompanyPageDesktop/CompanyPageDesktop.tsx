@@ -28,7 +28,7 @@ const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
                         Компании
                     </Link>
                     <span>/</span>
-                    <Link href="/company" className="hover:underline">
+                    <Link href="/company" className="hover:underline text-white">
                         Компания Еpam
                     </Link>
                 </div>
@@ -108,7 +108,7 @@ const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
 
                     <h3 className="mb-[63px] mt-[118px] text-[48px] uppercase text-white">ПРОФЕССИИ В ЭТОЙ КОМПАНИИ</h3>
                     <InternshipProfessionsDesktop />
-                    <h3 className="mb-[81px] mt-[175px] 3xl:mt-[115px] 2xl:mt-[80px] text-[48px] uppercase text-white">
+                    <h3 className="mb-[81px] mt-[120px] 3xl:mt-[100px] 2xl:mt-[80px] text-[48px] uppercase text-white">
                         ПРЕИМУЩЕСТВА КОМПАНИИ
                     </h3>
                     <ReviewsDesktop />

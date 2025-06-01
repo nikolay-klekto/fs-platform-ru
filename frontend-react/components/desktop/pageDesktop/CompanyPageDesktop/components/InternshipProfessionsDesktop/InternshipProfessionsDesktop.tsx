@@ -8,6 +8,7 @@ const InternshipProfessionsDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [scrollbarWidth, setScrollbarWidth] = useState(0)
+    const [needsScroll, setNeedsScroll] = useState(false)
 
     const calculateScrollbarWidth = () => {
         if (!contentRef.current || !scrollbarRef.current) return 0
@@ -28,22 +29,27 @@ const InternshipProfessionsDesktop: React.FC = () => {
         }
     }
 
+    const checkIfNeedsScroll = () => {
+        if (!contentRef.current) return
+        const scrollable = contentRef.current.scrollWidth > contentRef.current.clientWidth
+        setNeedsScroll(scrollable)
+    }
+
     useEffect(() => {
-        const handleResize = () => {
-            if (contentRef.current && scrollbarRef.current) {
-                const calculatedScrollbarWidth = calculateScrollbarWidth()
-                setScrollbarWidth(calculatedScrollbarWidth)
-            }
-        }
-
-        window.addEventListener('resize', handleResize)
-
-        handleResize()
-
-        return () => {
-            window.removeEventListener('resize', handleResize)
-        }
+        checkIfNeedsScroll()
+        window.addEventListener('resize', checkIfNeedsScroll)
+        return () => window.removeEventListener('resize', checkIfNeedsScroll)
     }, [])
+
+    useEffect(() => {
+        if (needsScroll) {
+            const timeout = setTimeout(() => {
+                const width = calculateScrollbarWidth()
+                setScrollbarWidth(width)
+            }, 0)
+            return () => clearTimeout(timeout)
+        }
+    }, [needsScroll])
 
     return (
         <>
@@ -56,13 +62,15 @@ const InternshipProfessionsDesktop: React.FC = () => {
                     <ItemCompaniesDesktop key={item.id} image={item.image} name={item.name} onWidthChange={() => {}} />
                 ))}
             </div>
-            <div
-                ref={scrollbarRef}
-                onScroll={handleScrollbarScroll}
-                className="scrollbar_custom relative mx-auto mt-[clamp(25px,_2vw,_40px)] h-2 w-[65%] cursor-pointer overflow-x-scroll"
-            >
-                <div className="h-full" style={{ width: `${scrollbarWidth}px` }}></div>
-            </div>
+            {needsScroll && (
+                <div
+                    ref={scrollbarRef}
+                    onScroll={handleScrollbarScroll}
+                    className="scrollbar_custom relative ml-[314px] mr-[321px]  mt-[92px] w-[65%] cursor-pointer overflow-x-scroll"
+                >
+                    <div className="absolute h-2 bg-transparent" style={{ width: `${scrollbarWidth}px` }}></div>
+                </div>
+            )}
         </>
     )
 }
