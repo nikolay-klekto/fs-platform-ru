@@ -19,7 +19,6 @@ const EventsPageDesktop: React.FC = () => {
         from: null,
         to: null,
     })
-    filteredContent.forEach((item) => console.log(item))
 
     useEffect(() => {
         const parseDate = (dateStr: string): Date => {
@@ -27,11 +26,11 @@ const EventsPageDesktop: React.FC = () => {
             return new Date(year, month - 1, day)
         }
 
+        const from = dates.from
+        const to = dates.to
+
         const filtered = content.filter((item) => {
             const itemDate = parseDate(item.date)
-            const from = dates.from
-            const to = dates.to
-
             if (from && to) return itemDate >= from && itemDate <= to
             if (from) return itemDate >= from
             if (to) return itemDate <= to
@@ -39,8 +38,11 @@ const EventsPageDesktop: React.FC = () => {
         })
 
         setFilteredContent(filtered)
+        setCurrentPage(1)
+        console.log(dates)
     }, [dates])
 
+    const isEmpty = filteredContent.length === 0
     const cardsPerPage = 6
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
     const paginatedCards = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
@@ -61,26 +63,36 @@ const EventsPageDesktop: React.FC = () => {
                         <EventsSelectSearchCityDesktop />
                     </div>
                     <div className="min-h-[100vh] 3xl:gap-[25px] 4xl:gap-[30px] flex flex-wrap justify-center gap-[36px] 2xl:gap-[20px]">
-                        {paginatedCards.map((item) => (
-                            <EventsCardDesktop
-                                key={item.id}
-                                title={item.title}
-                                category={item.category}
-                                image={item.image}
-                                date={item.date}
-                                time={item.time}
-                                week={item.week}
-                                city={item.city}
-                                place={item.place}
-                                company={item.company}
-                            />
-                        ))}
+                        {!isEmpty ? (
+                            <>
+                                {paginatedCards.map((item) => (
+                                    <EventsCardDesktop
+                                        key={item.id}
+                                        title={item.title}
+                                        category={item.category}
+                                        image={item.image}
+                                        date={item.date}
+                                        time={item.time}
+                                        week={item.week}
+                                        city={item.city}
+                                        place={item.place}
+                                        company={item.company}
+                                    />
+                                ))}
+                            </>
+                        ) : (
+                            <div>
+                                <h1 className="pt-10 text-4xl opacity-20">Нет мероприятий по данным категориям</h1>
+                            </div>
+                        )}
                     </div>
-                    <EventsPaginationDesktop
-                        totalPages={totalPages}
-                        currentPage={currentPage}
-                        onPageChange={handlePageChange}
-                    />
+                    {totalPages > 1 && (
+                        <EventsPaginationDesktop
+                            totalPages={totalPages}
+                            currentPage={currentPage}
+                            onPageChange={handlePageChange}
+                        />
+                    )}
                 </div>
             </div>
             <FooterDesktop />

@@ -45,7 +45,7 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
                 }}
             >
                 <div>
-                    <div className="mx-[20px] mb-[40px] mt-[20px] flex flex-col gap-[26px]">
+                    <div className="relative mx-[20px] mb-[40px] mt-[20px] flex flex-col gap-[26px]">
                         <div className="relative aspect-[4/3] w-full">
                             <Image
                                 src={image}
@@ -65,7 +65,7 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
                         <div className="text18px_desktop flex gap-[15px]">
                             <UserDesktop /> {company}
                         </div>
-                        <Button variant="circleDarkBlue" size="circle_desktop" className="absolute bottom-0 right-0 ">
+                        <Button variant="circleDarkBlue" size="circle_desktop" className="absolute -bottom-16 -right-5">
                             <ForwardIconWhiteDesktop />
                         </Button>
                     </div>

@@ -159,11 +159,14 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                 break
             case 'this-week':
                 const day = now.getDay() === 0 ? 7 : now.getDay()
-                const startOfWeek = new Date(now)
-                const endOfWeek = new Date(now)
 
+                const startOfWeek = new Date(now)
                 startOfWeek.setDate(now.getDate() - (day - 1))
+                startOfWeek.setHours(0, 0, 0, 0)
+
+                const endOfWeek = new Date(now)
                 endOfWeek.setDate(now.getDate() + (7 - day))
+                endOfWeek.setHours(23, 59, 59, 999)
 
                 newFromDate = startOfWeek
                 newToDate = endOfWeek
