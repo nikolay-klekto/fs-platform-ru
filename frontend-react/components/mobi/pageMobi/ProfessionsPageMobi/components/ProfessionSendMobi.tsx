@@ -12,8 +12,8 @@ const ProfessionSendMobi: React.FC = () => {
     return (
         <div className="mt-[30px] flex flex-col gap-[17px]">
             <div className="text-[14px] font-medium uppercase">
-                <p>Хотите поработать в другой компании?</p>
-                <p>Дайте нам знать!</p>
+                <p>ВАС ИНТЕРЕСУЮТ ДРУГИЕ ПРОФЕССИИ?</p>
+                <p>НАПИШИТЕ, И МЫ НАЙДЕМ СТАЖИРОВКУ ДЛЯ ВАС!</p>
             </div>
             <div className="justify-bitween mx-auto flex h-[34px] w-full max-w-[400px] items-center gap-[15px]">
                 <EnhancedInput
