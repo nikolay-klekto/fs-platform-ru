@@ -66,7 +66,7 @@ const EventsSelectSearchDesktop = () => {
             </Button>
             {isOpen && (
                 <div
-                    className="absolute right-0 top-[80px] z-50 w-[420px] rounded-[42px] p-[2px]"
+                    className="absolute right-0 xl:left-0 top-[80px] z-50 w-[420px] rounded-[42px] p-[2px]"
                     style={{
                         background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
                     }}
