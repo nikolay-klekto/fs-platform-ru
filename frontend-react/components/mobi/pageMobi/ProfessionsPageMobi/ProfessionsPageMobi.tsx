@@ -47,8 +47,8 @@ const ProfessionsPageMobi: React.FC = () => {
                 <div className="bg-[#101030] text-white">
                     <div className="px-[15px] py-[40px]">
                         <h1 className="title28px_mobi_custom">Профессии</h1>
-                        <div className="flex items-center gap-[20px] py-[30px] md:justify-between">
-                            <div className="relative w-full rounded-full  md:max-w-[430px]">
+                        <div className="flex items-center gap-[20px] py-[30px] md:justify-center">
+                            <div className="relative w-full max-w-[386px] rounded-full [@media(min-width:617px)]:max-w-[600px]">
                                 <EnhancedInput
                                     type="text"
                                     value={searchQuery}
@@ -57,7 +57,7 @@ const ProfessionsPageMobi: React.FC = () => {
                                     size={'search_mobi'}
                                     rounded={'full'}
                                     wrapperClassName={
-                                        'relative h-[48px] border-[2px] border-[#878797] bg-transparent flex-1 justify-bitween flex rounded-[50px] px-[10px]'
+                                        'relative h-[48px] border-[2px] border-[#878797] bg-transparent flex-1 justify-between flex rounded-[50px] px-[10px]'
                                     }
                                     placeholder="Поиск"
                                 />
