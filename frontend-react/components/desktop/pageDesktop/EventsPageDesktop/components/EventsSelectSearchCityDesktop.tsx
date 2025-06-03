@@ -67,7 +67,7 @@ const EventsSelectSearchCityDesktop = () => {
             </Button>
             {isOpen && (
                 <div
-                    className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[400px] rounded-[42px] p-[2px] 2xl:w-[270px]"
+                    className="absolute right-0 top-[80px] z-50 w-[430px] rounded-[42px] p-[2px]"
                     style={{
                         background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
                     }}
