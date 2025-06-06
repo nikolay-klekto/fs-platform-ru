@@ -276,7 +276,7 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                                         value={inputValues.to}
                                         placeholder="__.__.____"
                                         onChange={(e) => handleInputChange('to', e.target.value)}
-                                        onFocus={() => setOpenCalendars((prev) => ({ ...prev, from: true }))}
+                                        onFocus={() => setOpenCalendars((prev) => ({ ...prev, to: true }))}
                                         className="4xl:text-2xl 3xl:text-xl w-[81px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:w-[75px] 2xl:text-lg"
                                     />
                                 </div>
