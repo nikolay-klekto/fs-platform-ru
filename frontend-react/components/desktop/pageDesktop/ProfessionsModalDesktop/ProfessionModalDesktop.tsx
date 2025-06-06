@@ -3,7 +3,7 @@
 import React from 'react'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
-import { contentProfessionAboutDesktop } from './data/content'
+import { contentProfessionAboutDesktop } from './contentProfessionsModalDesktop/content'
 import InternshipCompaniesModalDesktop from './InternshipCompaniesModalDesktop'
 import ReviewsModalDesktop from './ReviewsModalDesktop'
 
