@@ -55,7 +55,7 @@ const CompaniesSectionDesktop: React.FC = () => {
                 <div
                     ref={contentRef}
                     onScroll={handleScroll}
-                    className="no-scrollbar_custom container flex w-full select-none gap-[9vw] overflow-y-visible overflow-x-scroll px-24"
+                    className="no-scrollbar_custom container flex w-full select-none gap-[9vw] overflow-y-visible overflow-x-scroll px-12"
                 >
                     {contentCompaniesDesktop.map((item) => (
                         <div
