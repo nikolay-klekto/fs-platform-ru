@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useRef, useEffect, useState } from 'react'
-import { contentReviewsDesktop } from './data/content'
-import ItemReviewsDesktop from './ItemReviewsDesktop'
+import { contentInternshipnamesDesktop } from './contentInternshipCompaniesDesktop/content'
+import ItemInternshipCompaniesDesktop from './ItemInternshipCompaniesDesktop/ItemCompaniesDesktop'
 
-const ReviewsModalDesktop: React.FC = () => {
+const InternshipCompaniesDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [scrollbarWidth, setScrollbarWidth] = useState(0)
@@ -46,17 +46,19 @@ const ReviewsModalDesktop: React.FC = () => {
     }, [])
 
     return (
-        <div>
+        <>
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll"
+                className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll"
             >
-                {contentReviewsDesktop.map((item) => (
-                    <ItemReviewsDesktop
+                {contentInternshipnamesDesktop.map((item) => (
+                    <ItemInternshipCompaniesDesktop
                         key={item.id}
-                        question={item.question}
-                        answer={item.answer}
+                        image={item.image}
+                        name={item.name}
+                        price={item.price}
+                        industry={item.industry}
                         onWidthChange={() => {}}
                     />
                 ))}
@@ -64,12 +66,12 @@ const ReviewsModalDesktop: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="scrollbar_custom relative mx-auto mt-[clamp(25px,_2vw,_40px)] h-[14px] w-[65%] cursor-pointer overflow-x-scroll"
+                className="scrollbar_custom relative mx-auto mt-[clamp(25px,_2vw,_40px)] h-2 w-[65%] cursor-pointer overflow-x-scroll"
             >
-                <div className="absolute h-2" style={{ width: `${scrollbarWidth}px` }}></div>
+                <div className="h-full" style={{ width: `${scrollbarWidth}px` }}></div>
             </div>
-        </div>
+        </>
     )
 }
 
-export default ReviewsModalDesktop
+export default InternshipCompaniesDesktop

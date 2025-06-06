@@ -1,47 +1,41 @@
 'use client'
 
-import React from 'react'
-import { X } from 'lucide-react'
-import Modal from '@/components/ui/modal'
-import { contentProfessionAboutDesktop } from './data/content'
-import InternshipCompaniesModalDesktop from './InternshipCompaniesModalDesktop'
-import ReviewsModalDesktop from './ReviewsModalDesktop'
+import React, { useRef, useEffect } from 'react'
 
-interface IProfessionModal {
-    onClose: () => void
-    profession: string
-    professionId: number | null
+interface IItemReviewsDesktop {
+    question: string
+    answer: string
+    onWidthChange: (width: number) => void
 }
 
-const ProfessionModalDesktop: React.FC<IProfessionModal> = ({ onClose, profession }) => {
+const ItemReviewsDesktop: React.FC<IItemReviewsDesktop> = ({ question, answer, onWidthChange }) => {
+    const itemRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const updateWidth = () => {
+            if (itemRef.current) {
+                onWidthChange(itemRef.current.offsetWidth)
+            }
+        }
+
+        updateWidth()
+        window.addEventListener('resize', updateWidth)
+
+        return () => {
+            window.removeEventListener('resize', updateWidth)
+        }
+    }, [])
+
     return (
-        <Modal onClose={onClose} size="large-l" showCloseButton={false} className="px-[clamp(180px,_14vw,_277px)]">
-            <div className="modal-padding-content-lg-dsk flex flex-col">
-                <button onClick={onClose} className="absolute right-[36px] top-[23px]">
-                    <X size={41} className="color-[#878797] opacity-50 hover:opacity-80"></X>
-                </button>
-                <h2 className="text46px_desktop text-gradient_desktop_custom mb-[5px] font-medium uppercase">
-                    {profession}
-                </h2>
-                {contentProfessionAboutDesktop.map((item) => (
-                    <p
-                        key={item.id}
-                        className="text18px_modal_desktop mr-[clamp(56px,_4.6vw,_88px)] max-w-[1190px] text-[#878797]"
-                    >
-                        {item.text}
-                    </p>
-                ))}
-                <h3 className="text28px_modal_desktop mb-[clamp(25px,_2vw,_39px)] mt-[clamp(33px,_2.7vw,_52px)] uppercase">
-                    компании для стажировки:
-                </h3>
-                <InternshipCompaniesModalDesktop />
-                <h3 className="text28px_modal_desktop mb-[clamp(26px,_2vw,_40px)] mt-[clamp(32px,_2.6vw,_50px)] uppercase">
-                    отзывы о профессии
-                </h3>
-                <ReviewsModalDesktop />
+        <div ref={itemRef} className="flex shrink-0">
+            <div className="w-[clamp(350px,_40vw,_565px)]">
+                <div className="rounded-[25px] border-2 border-[#878797] p-[clamp(9px,_0.7vw,_15px)]">
+                    <p className="text18px_modal_desktop mb-[clamp(6px,_0.5vw,_10px)] text-white">{question}</p>
+                    <p className="text15px_desktop text-[#878797]">{answer}</p>
+                </div>
             </div>
-        </Modal>
+        </div>
     )
 }
 
-export default ProfessionModalDesktop
+export default ItemReviewsDesktop

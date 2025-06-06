@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import SelectInternshipTypeDesktop from './components/SelectInternshipTypeDesktop'
 import ProfessionsSelectDesktop from './components/ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './components/ProfessionCardPageDesktop'
@@ -8,12 +9,10 @@ import { content } from './contentProfessionsPageDesktop/content'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
-import { useModal } from '@/context/ContextModal'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const ProfessionsPageDesktop: React.FC = () => {
-    const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
@@ -60,7 +59,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                     <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
                     <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
                     <h1 className="title80px_desktop relative z-[1]">Профессии</h1>
-                    <div className="relative z-[1] flex items-center py-[80px] gap-[5%]">
+                    <div className="relative z-[1] flex items-center gap-[5%] py-[80px]">
                         <div className="relative w-full">
                             <EnhancedInput
                                 type="text"
@@ -89,19 +88,27 @@ const ProfessionsPageDesktop: React.FC = () => {
                             {filteredContent
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (
-                                    <ProfessionCardPageDesktop
-                                        key={item.id}
-                                        image={item.image}
-                                        profession={item.profession}
-                                        price={item.price.toString()}
-                                        onClick={() => {
-                                            openModal('profession_modal_desktop', 'desktop', {
-                                                profession: item.profession,
-                                                professionId: item.id,
-                                            })
-                                        }}
-                                        category={item.category}
-                                    />
+                                    // <ProfessionCardPageDesktop
+                                    //     key={item.id}
+                                    //     image={item.image}
+                                    //     profession={item.profession}
+                                    //     price={item.price.toString()}
+                                    //     onClick={() => {
+                                    //         openModal('profession_modal_desktop', 'desktop', {
+                                    //             profession: item.profession,
+                                    //             professionId: item.id,
+                                    //         })
+                                    //     }}
+                                    //     category={item.category}
+                                    // />
+                                    <Link href={`/profession`} key={item.id}>
+                                        <ProfessionCardPageDesktop
+                                            key={item.id}
+                                            image={item.image}
+                                            profession={item.profession}
+                                            price={item.price.toString()}
+                                        />
+                                    </Link>
                                 ))}
                         </div>
                     ) : (
