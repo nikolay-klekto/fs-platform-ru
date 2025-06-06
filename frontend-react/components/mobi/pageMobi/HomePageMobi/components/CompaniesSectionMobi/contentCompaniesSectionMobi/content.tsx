@@ -3,8 +3,6 @@ interface ICompanies {
     image: {
         src: string
         alt: string
-        width: number
-        height: number
     }
 }
 
@@ -14,8 +12,6 @@ export const contentCompaniesMobi: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 53,
-            height: 20,
         },
     },
     {
@@ -23,8 +19,6 @@ export const contentCompaniesMobi: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 53,
-            height: 20,
         },
     },
     {
@@ -32,8 +26,6 @@ export const contentCompaniesMobi: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 53,
-            height: 20,
         },
     },
     {
@@ -41,8 +33,6 @@ export const contentCompaniesMobi: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 53,
-            height: 20,
         },
     },
     {
@@ -50,8 +40,6 @@ export const contentCompaniesMobi: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 53,
-            height: 20,
         },
     },
     {
@@ -59,8 +47,6 @@ export const contentCompaniesMobi: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 53,
-            height: 20,
         },
     },
     {
@@ -68,8 +54,6 @@ export const contentCompaniesMobi: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 53,
-            height: 20,
         },
     },
 ]

@@ -5,6 +5,7 @@ import ProfessionsSectionMobi from './components/ProfessionsSectionMobi/Professi
 import HowWeWorkMobi from './components/HowWeWorkMobi/HowWeWorkMobi'
 import PromoMobi from './components/PromoMobi/PromoMobi'
 import EventsSectionMobi from './components/EventsSectionMobi/EventsSectionMobi'
+import CompaniesSectionMobi from './components/CompaniesSectionMobi/CompaniesSectionMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 
 const HomePageMobi: React.FC = () => {
@@ -16,6 +17,7 @@ const HomePageMobi: React.FC = () => {
 
                 <HowWeWorkMobi />
                 <ProfessionsSectionMobi />
+                <CompaniesSectionMobi />
                 <PromoMobi />
                 <EventsSectionMobi />
             </div>

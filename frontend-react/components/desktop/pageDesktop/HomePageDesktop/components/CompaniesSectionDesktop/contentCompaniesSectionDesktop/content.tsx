@@ -3,8 +3,6 @@ interface ICompanies {
     image: {
         src: string
         alt: string
-        width: number
-        height: number
     }
 }
 
@@ -14,8 +12,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
     {
@@ -23,8 +19,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
     {
@@ -32,8 +26,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
     {
@@ -41,8 +33,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
     {
@@ -50,8 +40,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
     {
@@ -59,8 +47,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
     {
@@ -68,8 +54,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
     {
@@ -77,8 +61,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
     {
@@ -86,8 +68,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
     {
@@ -95,8 +75,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
     {
@@ -104,8 +82,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
     {
@@ -113,8 +89,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
     {
@@ -122,8 +96,6 @@ export const contentCompaniesDesktop: ICompanies[] = [
         image: {
             src: '/images/epamLogo.png',
             alt: 'Epam logo',
-            width: 104,
-            height: 40,
         },
     },
 ]

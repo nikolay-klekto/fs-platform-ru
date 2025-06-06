@@ -66,8 +66,8 @@ const CompaniesSectionDesktop: React.FC = () => {
                             <Image
                                 src={item.image.src}
                                 alt={item.image.alt}
-                                width={item.image.width}
-                                height={item.image.height}
+                                width={104}
+                                height={40}
                                 style={{ width: '100%', height: 'auto' }}
                                 className="relative z-10"
                             />
