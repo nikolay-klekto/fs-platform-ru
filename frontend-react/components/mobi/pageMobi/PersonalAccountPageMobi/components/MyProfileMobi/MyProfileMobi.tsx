@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useCallback, useState } from "react";
 import { Button } from '@/components/ui/button'
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
@@ -130,37 +132,37 @@ const MyProfileMobi: React.FC = () => {
                 <div className="flex flex-col justify-start gap-[25px]">
                     <div className="flex flex-col">
                         <label htmlFor="surname"
-                               className="text14px_mobi mb-1 text-2xl font-medium text-white">Имя*</label>
+                               className="text14px_mobi text-[#878797] mb-1 text-2xl bg-transparent font-medium">Имя*</label>
                         <input
                             id="name"
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
                             onBlur={() => handleInputBlur('name')}
-                            className={`input-form-mobi-custom ${errors.name && inputTouched.name ? 'border-[#BC8070]' : ''}`}
+                            className={`input-form-mobi-custom h-[44px] text14px_mobi ${errors.name && inputTouched.name ? 'border-[#BC8070]' : ''}`}
                             placeholder="Ваше имя"
                             type="text"
                         />
                     </div>
                     <div className="flex flex-col">
                         <label htmlFor="surname"
-                               className="text14px_mobi mb-1 text-2xl font-medium text-white">Фамилия*</label>
+                               className="text14px_mobi mb-1 text-2xl font-medium text-[#878797] ">Фамилия*</label>
                         <input
                             id="surname"
                             name="surname"
                             value={formData.surname}
                             onChange={handleChange}
                             onBlur={() => handleInputBlur('surname')}
-                            className={`input-form-mobi-custom ${errors.surname && inputTouched.surname ? 'border-[#BC8070]' : ''}`}
+                            className={`input-form-mobi-custom h-[44px] ${errors.surname && inputTouched.surname ? 'border-[#BC8070]' : ''}`}
                             placeholder="Ваша фамилия"
                             type="text"
                         />
                     </div>
                     <div className="flex flex-col">
-                        <label htmlFor="birthDate" className="mb-1 text-2xl font-medium text-white">Дата
+                        <label htmlFor="birthDate" className="mb-1 text-2xl font-medium text-[#878797]">Дата
                             рождения</label>
                         <div
-                            className="flex h-[50px] items-center gap-1 rounded-[42px] border-2 border-[#878797] px-3"
+                            className="input-form-mobi-custom flex h-[44px] items-center gap-1 rounded-[42px] border-2 border-[#878797] px-3"
                             onClick={() => setIsCalendarOpen(true)}
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter' || e.key === ' ') {
@@ -177,14 +179,12 @@ const MyProfileMobi: React.FC = () => {
                                 value={formData.birthDate}
                                 onChange={handleChange}
                                 onBlur={() => handleInputBlur('birthDate')}
-                                className="w-full border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500"
+                                className="w-full border-none bg-transparent text-[#878797] text-[16px] outline-none placeholder:text-gray-500"
                                 placeholder="__.__.____"
                                 type="text"
                                 readOnly
                             />
                         </div>
-
-
                         {isCalendarOpen && (
                             <DatePickerCalendar
                                 value={formData.birthDate || `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`}
@@ -199,34 +199,34 @@ const MyProfileMobi: React.FC = () => {
                         onError={(error) => handleError('phone', error)}
                         wrapperClassName="w-full"
                         required={true}
+                        className='h-[44px]'
                     />
-                    <div>
+                    <form noValidate className='flex w-full flex-col gap-1.5 w-full'>
                         <EnhancedInput
                             type="email"
                             name="email"
                             placeholder="Почта"
                             value={formData.email}
                             onBlur={() => handleInputBlur('email')}
-                            validate={(value) => validateEmailMobi(value)}
                             onChange={(value) => setFormData((prev) => ({...prev, email: value}))}
                             className={`${inputTouched.email && validateEmailMobi(formData.email).styleError
-                                ? 'border-[#bc8070]'
+                                ? 'border-[#878797]'
                                 : 'border-[#878797]'
-                            } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
+                            } h-[44px] w-full rounded-[20px] bg-transparent p-3 text-xl font-medium`}
                             label="Почта*"
-                            labelClassName="mb-1 text-2xl font-medium text-white"
+                            labelClassName="mb-1 text-2xl font-medium text-[#878797]"
                             wrapperClassName="w-full"
                         />
                         {inputInternalErrors.email && (
                             <p className="error-form-mobi-custom !text-[#bc8070]">{inputInternalErrors.email}</p>
                         )}
-                    </div>
+                    </form>
                     <div className="flex flex-col">
                         <label htmlFor="education"
-                               className="text14px_mobi mb-1 text-2xl font-medium text-white">Образование</label>
+                               className="text14px_mobi mb-1 text-2xl font-medium text-[#878797]">Образование</label>
                         <div className="relative">
                             <div
-                                className={`input-form-mobi-custom flex items-center justify-between cursor-pointer ${errors.education ? 'border-[#bc8070]' : ''}`}
+                                className={`input-form-mobi-custom flex h-[44px] text-[14px] items-center justify-between cursor-pointer ${errors.education ? 'border-[#bc8070]' : ''}`}
                                 onClick={() => setIsEducationOpen(!isEducationOpen)}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter' || e.key === ' ') {
@@ -236,7 +236,7 @@ const MyProfileMobi: React.FC = () => {
                                 role="button"
                                 tabIndex={0}
                             >
-                                <span className={formData.education ? 'text-white' : 'text-gray-500'}>
+                                <span className={formData.education ? 'text-[#878797]' : 'text-gray-500'}>
                                     {formData.education
                                         ? educationOptions.find(opt => opt.value === formData.education)?.label
                                         : 'образование'}

@@ -1,6 +1,9 @@
+'use client'
+
 import React, { useState } from 'react'
-import Modal from '@/components/ui/modal'
 import { ChevronLeft } from 'lucide-react'
+
+import Modal from '@/components/ui/modal'
 import RequiringPaymentMobi from '@/components/mobi/pageMobi/PersonalAccountPageMobi/components/RequiringPaymentMobi/RequiringPaymentMobi'
 import OrderPaymentMobi from '@/components/mobi/pageMobi/PersonalAccountPageMobi/components/OrderPaymentMobi/OrderPaymentMobi'
 import MyProfileMobi from "@/components/mobi/pageMobi/PersonalAccountPageMobi/components/MyProfileMobi/MyProfileMobi";
