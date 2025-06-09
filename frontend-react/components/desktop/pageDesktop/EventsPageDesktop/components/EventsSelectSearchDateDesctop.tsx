@@ -199,7 +199,7 @@ const EventsSelectSearchDateDesktop = () => {
             </Button>
             {isOpen && (
                 <div
-                    className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[430px] rounded-[42px] p-[2px] 2xl:w-[270px]"
+                    className="absolute right-0 top-[80px] z-50 w-[430px] rounded-[42px] p-[2px]"
                     style={{
                         background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
                     }}
@@ -209,7 +209,7 @@ const EventsSelectSearchDateDesktop = () => {
                             <div className="relative flex flex-col" ref={fromCalendarRef}>
                                 <p>От</p>
                                 <div
-                                    className="desktop 3xl:w-[120px] flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border border-[#878797] 2xl:w-[110px]"
+                                    className="desktop flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border border-[#878797]"
                                     onClick={() => toggleCalendar('from')}
                                     onKeyDown={(e) => {
                                         if (e.key === 'Enter' || e.key === ' ') {
@@ -226,7 +226,7 @@ const EventsSelectSearchDateDesktop = () => {
                                         placeholder="__.__.____"
                                         onChange={(e) => handleInputChange('from', e.target.value)}
                                         onFocus={() => setOpenCalendars((prev) => ({ ...prev, from: true }))}
-                                        className="4xl:text-2xl 3xl:text-xl w-[81px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:w-[75px] 2xl:text-lg"
+                                        className="w-[115px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500  2xl:text-lg 3xl:text-xl 4xl:text-2xl"
                                     />
                                 </div>
                                 {openCalendars.from && (
@@ -246,7 +246,7 @@ const EventsSelectSearchDateDesktop = () => {
                             <div className="relative flex flex-col" ref={toCalendarRef}>
                                 <p>До</p>
                                 <div
-                                    className="desktop 3xl:w-[120px] flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border border-[#878797] 2xl:w-[110px]"
+                                    className="desktop flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border border-[#878797]"
                                     onClick={() => toggleCalendar('to')}
                                     onKeyDown={(e) => {
                                         if (e.key === 'Enter' || e.key === ' ') {
@@ -263,7 +263,7 @@ const EventsSelectSearchDateDesktop = () => {
                                         placeholder="__.__.____"
                                         onChange={(e) => handleInputChange('to', e.target.value)}
                                         onFocus={() => setOpenCalendars((prev) => ({ ...prev, from: true }))}
-                                        className="4xl:text-2xl 3xl:text-xl w-[81px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:w-[75px] 2xl:text-lg"
+                                        className="w-[115px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:text-lg 3xl:text-xl 4xl:text-2xl"
                                     />
                                 </div>
                                 {openCalendars.to && (
@@ -278,10 +278,12 @@ const EventsSelectSearchDateDesktop = () => {
                                 )}
                             </div>
                         </div>
+
                         <Button
                             variant={'hover_button_date'}
                             size={'hover_button_date_desktop'}
                             onClick={() => handleDatePreset('today')}
+                            className="2xl:w-full"
                         >
                             Сегодня
                         </Button>
@@ -289,6 +291,7 @@ const EventsSelectSearchDateDesktop = () => {
                             variant={'hover_button_date'}
                             size={'hover_button_date_desktop'}
                             onClick={() => handleDatePreset('tomorrow')}
+                            className="2xl:w-full"
                         >
                             Завтра
                         </Button>
@@ -296,6 +299,7 @@ const EventsSelectSearchDateDesktop = () => {
                             variant={'hover_button_date'}
                             size={'hover_button_date_desktop'}
                             onClick={() => handleDatePreset('this-week')}
+                            className="2xl:w-full"
                         >
                             На этой неделе
                         </Button>
@@ -303,6 +307,7 @@ const EventsSelectSearchDateDesktop = () => {
                             variant={'hover_button_date'}
                             size={'hover_button_date_desktop'}
                             onClick={() => handleDatePreset('this-month')}
+                            className="2xl:w-full"
                         >
                             В этом месяце
                         </Button>
