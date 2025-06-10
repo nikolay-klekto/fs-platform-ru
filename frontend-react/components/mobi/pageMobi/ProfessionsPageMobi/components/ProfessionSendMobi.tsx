@@ -10,12 +10,12 @@ const ProfessionSendMobi: React.FC = () => {
         setUseRequest('')
     }
     return (
-        <div className="mt-[30px] flex flex-col gap-[17px]">
-            <div className="text-[14px] font-medium uppercase">
-                <p>ВАС ИНТЕРЕСУЮТ ДРУГИЕ ПРОФЕССИИ?</p>
-                <p>НАПИШИТЕ, И МЫ НАЙДЕМ СТАЖИРОВКУ ДЛЯ ВАС!</p>
+        <div className="mt-[30px] flex flex-col gap-[17px] md:items-center">
+            <div className="text-[14px] font-medium uppercase md:text-left">
+                <p>Вас интересуют другие профессии?</p>
+                <p>Напишите, и мы найдем старжировку для вас!</p>
             </div>
-            <div className="justify-bitween mx-auto flex h-[34px] w-full max-w-[400px] items-center gap-[15px]">
+            <div className="mx-auto flex h-[34px] w-full max-w-[400px] items-center justify-between gap-[15px]">
                 <EnhancedInput
                     type="text"
                     value={useRequest}
@@ -23,7 +23,7 @@ const ProfessionSendMobi: React.FC = () => {
                     variant={'search_mobi'}
                     size={'send_mobi'}
                     rounded={'rounded_20'}
-                    wrapperClassName="justify-bitween h-[30px] rounded-[20px] border-box w-full border-[1.25px] border-[#878797] bg-transparent"
+                    wrapperClassName="justify-between h-[30px] rounded-[20px] border-box w-full border-[1.25px] border-[#878797] bg-transparent"
                 />
                 <SendIconMobi onClick={handleSendRequest} />
             </div>
