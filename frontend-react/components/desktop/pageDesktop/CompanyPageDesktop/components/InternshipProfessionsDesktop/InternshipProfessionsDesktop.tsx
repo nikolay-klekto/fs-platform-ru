@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from 'react'
 import { contentInternshipProfessionsDesktop } from './contentInternshipProfessionsDesktop/content'
-import ItemCompaniesDesktop from './ItemInternshipCompaniesDesktop/ItemCompaniesDesktop'
+import ItemProfessionsDesktop from './ItemInternshipProfessionsDesktop/ItemProfessionsDesktop'
 
 const InternshipProfessionsDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
@@ -56,10 +56,13 @@ const InternshipProfessionsDesktop: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_38px)] overflow-x-scroll"
+                className="no-scrollbar_custom flex w-full select-none snap-x snap-mandatory gap-[clamp(16px,_1.3vw,_38px)] overflow-x-auto"
             >
                 {contentInternshipProfessionsDesktop.map((item) => (
-                    <ItemCompaniesDesktop key={item.id} image={item.image} name={item.name} onWidthChange={() => {}} />
+                    <div key={item.id} className="shrink-0 snap-start">
+                        {' '}
+                        <ItemProfessionsDesktop image={item.image} name={item.name} onWidthChange={() => {}} />
+                    </div>
                 ))}
             </div>
             {needsScroll && (

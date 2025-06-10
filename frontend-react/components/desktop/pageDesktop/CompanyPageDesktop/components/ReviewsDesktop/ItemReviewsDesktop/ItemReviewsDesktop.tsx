@@ -30,8 +30,8 @@ const ItemReviewsDesktop: React.FC<IItemReviewsDesktop> = ({ question, answer, o
         <div ref={itemRef} className="flex shrink-0">
             <div className="w-[clamp(350px,_40vw,_565px)]">
                 <div className="rounded-[25px] border-2 border-[#878797] p-[clamp(9px,_0.7vw,_15px)]">
-                    <p className="text18px_modal_desktop mb-[clamp(6px,_0.5vw,_10px)] text-white">{question}</p>
-                    <p className="text15px_desktop text-[#878797]">{answer}</p>
+                    <p className="text26px_desktop mb-[clamp(6px,_0.5vw,_10px)] text-white">{question}</p>
+                    <p className="text22px_desktop text-[#878797]">{answer}</p>
                 </div>
             </div>
         </div>

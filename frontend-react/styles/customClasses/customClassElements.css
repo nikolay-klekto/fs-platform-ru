@@ -31,8 +31,11 @@
         scrollbar-width: none;
     }
 
-    .title80px_desktop {
-        @apply text-white text-35xl 4xl:text-27xl 3xl:text-25xl 2xl:text-21xl font-semibold uppercase;
+.title160px_desktop {
+        @apply text-white text-[160px] 4xl:text-[150px] 3xl:text-[128px] 2xl:text-[115px] font-semibold uppercase;
+    }
+        .title80px_desktop {
+        @apply text-white text-35xl 4xl:text-35xl 3xl:text-27xl 2xl:text-25xl font-semibold uppercase;
     }
     .title28px_mobi_custom {
         @apply text-white text-9xl font-medium uppercase;
@@ -60,6 +63,15 @@
     .text18px_desktop {
         @apply text-[18px] 4xl:text-4xl 3xl:text-2xl 2xl:text-xl;
     }
+.text26px_desktop {
+        @apply text-8xl 4xl:text-8xl 3xl:text-6xl 2xl:text-4xl;
+    }
+
+    .text22px_desktop {
+        @apply text-6xl 4xl:text-6xl 3xl:text-3xl 2xl:text-2xl;
+    }
+
+
     .text20px_desktop {
         @apply text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg;
     }
