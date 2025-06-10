@@ -44,7 +44,7 @@ const PersonalAccountPageDesktop: React.FC = () => {
                                             ${
                                                 item.id === activeId
                                                     ? 'bg-gradient-desktop bg-clip-text text-transparent underline decoration-[#6C41F3] decoration-4'
-                                                    : 'hover:[#3B51A8] text-[#878797] decoration-4 hover:bg-gradient-desktop hover:bg-clip-text hover:underline'
+                                                    : 'hover:[#3B51A8] hover:bg-gradient-desktop text-[#878797] decoration-4 hover:bg-clip-text hover:underline'
                                             }`}
                                     >
                                         {item.title}

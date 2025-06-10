@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { content } from '@/components/desktop/pageDesktop/PesronalAccountPageDesktop/contentPersonalAccountPageDesktop/content'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const ProfilePageDesktop: React.FC = () => {
     const [currentComponent, setCurrentComponent] = useState<React.ReactElement | null>(null)
@@ -25,7 +27,8 @@ const ProfilePageDesktop: React.FC = () => {
 
     return (
         <>
-            <div className="relative overflow-hidden">
+            <HeaderDesktop />
+            <main className="relative overflow-hidden">
                 <div className="radial-gradient_desktop left-[-369px] top-[-330px]"></div>
                 <div className="radial-gradient_desktop right-[50px] top-[933px]"></div>
                 <div className="container">
@@ -40,7 +43,7 @@ const ProfilePageDesktop: React.FC = () => {
                                         ${
                                             item.id === activeId
                                                 ? 'bg-gradient-desktop bg-clip-text text-transparent underline decoration-[#6C41F3] decoration-4'
-                                                : 'hover:[#3B51A8] text-[#878797] decoration-4 hover:bg-gradient-desktop hover:bg-clip-text hover:underline'
+                                                : 'hover:[#3B51A8] hover:bg-gradient-desktop text-[#878797] decoration-4 hover:bg-clip-text hover:underline'
                                         }`}
                                 >
                                     {item.title}
@@ -50,7 +53,8 @@ const ProfilePageDesktop: React.FC = () => {
                     </div>
                     <div>{currentComponent}</div>
                 </div>
-            </div>
+            </main>
+            <FooterDesktop />
         </>
     )
 }
