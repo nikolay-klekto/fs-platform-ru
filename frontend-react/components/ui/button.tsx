@@ -35,7 +35,7 @@ const buttonVariants = cva(
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover absolute flex items-center justify-center rounded-[50px] text-white',
                 circle_btn_mobi: 'absolute right-0 top-1/2 -translate-y-1/2',
                 select_btn_desktop:
-                    'button-border-desktop 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] border-2 text-5xl font-semibold  2xl:text-3xl',
+                    'button-border-desktop 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] text-5xl font-semibold  2xl:text-3xl',
                 circle: 'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
                 circleBlue: 'rounded-[50%] bg-[#382D90]',
                 circleDarkBlue: 'rounded-[50%] bg-[#272744]',

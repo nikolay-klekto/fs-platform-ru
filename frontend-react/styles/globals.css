@@ -74,14 +74,10 @@
     .button-border-desktop {
         position: relative;
         box-sizing: border-box;
-        border: 4px solid transparent;
+        border: 2px solid transparent;
         background-image: linear-gradient(#101030, #101030), linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
         background-origin: border-box;
         background-clip: padding-box, border-box;
-    }
-    .button-border-desktop:hover {
-        background-image: linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8),
-            linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
     }
 
     .button-border-desktop-date {
