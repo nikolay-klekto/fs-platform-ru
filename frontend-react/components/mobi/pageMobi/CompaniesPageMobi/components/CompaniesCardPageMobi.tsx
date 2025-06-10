@@ -29,13 +29,13 @@ const ProfessionCardPageMobi: React.FC<IProfessionCard> = ({ image, companyName,
                     <CardTitle variant={'companies_page_mobi'} size={'companies_page_mobi'}>
                         {industry}
                     </CardTitle>
-                    <CardContent className="font-semibold flex grow items-end p-0 px-[4px] text-2xl text-white 2xl:text-base 3xl:text-lg 4xl:text-xl">
+                    <CardContent className="flex grow items-end p-0 px-[4px] text-2xl font-semibold text-white 2xl:text-base 3xl:text-lg 4xl:text-xl">
                         {companyName}
                     </CardContent>
 
                     <CardFooter variant={'companies_page_mobi'} size={'companies_page_mobi'} rounded={'rounded_12'}>
                         <p
-                            className="3xl:sm text-lg tracking-normal text-[#878797]
+                            className="3xl:text-sm text-lg tracking-normal text-[#878797]
                     2xl:text-xs  4xl:text-base"
                         >
                             от{' '}

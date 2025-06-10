@@ -14,6 +14,8 @@ const cardVariants = cva('border-none', {
                 'hover:button-shadow_around_desktop_custom relative flex cursor-pointer flex-col justify-between border-none bg-cover bg-center',
             profession_page_mobi: 'flex flex-col justify-between border-none bg-cover bg-center bg-no-repeat',
             companies_page_mobi: 'flex flex-col justify-between border-none bg-cover bg-center bg-no-repeat',
+            companies_page_desktop:
+                'hover:button-shadow_around_desktop_custom relative flex cursor-pointer flex-col justify-between border-none bg-cover bg-center',
         },
         size: {
             default: '',
@@ -27,6 +29,8 @@ const cardVariants = cva('border-none', {
                 'aspect-[164/193] w-[164px] max-w-[210px] flex-shrink flex-grow overflow-hidden rounded-[24px] px-[10px] py-[12px] md:aspect-[164/193] md:w-[185px]',
             companies_page_mobi:
                 'aspect-[165/193] w-[165px] max-w-[210px] flex-shrink flex-grow overflow-hidden rounded-[10px] p-[10px] md:aspect-[164/193] md:w-[185px]',
+            companies_page_desktop:
+                'aspect-[340/400] w-[340px] max-w-full  px-[20px] py-[21px] 2xl:px-[15px] 2xl:py-[20px] ',
         },
 
         rounded: {
@@ -36,6 +40,7 @@ const cardVariants = cva('border-none', {
             rounded_38: 'rounded-[38px]',
             rounded_24: 'rounded-[24px]',
             rounded_10: 'rounded-[10px]',
+            rounded_20: 'rounded-[20px]',
         },
     },
     defaultVariants: {
@@ -57,6 +62,7 @@ const cardTitleVariants = cva('font-medium', {
                 'truncate bg-white bg-opacity-[70%] text-7xl font-medium text-[#101030] 2xl:text-4xl 3xl:text-5xl 4xl:text-6xl',
             profession_page_mobi: 'bg-white bg-opacity-[70%] text-[13px] font-medium text-[#101030]',
             companies_page_mobi: 'text-[10px] font-semibold text-white',
+            companies_page_desktop: 'text-7xl font-semibold text-white 2xl:text-4xl  3xl:text-5xl 4xl:text-6xl',
         },
         size: {
             default: 'text-[24px]',
@@ -66,6 +72,7 @@ const cardTitleVariants = cva('font-medium', {
                 'w-fit max-w-full rounded-[25px] px-[20px] py-[2px]  2xl:px-[10px] 3xl:px-[15px] 4xl:max-w-full 4xl:px-[15px]',
             profession_page_mobi: 'w-fit max-w-full truncate px-[10px] py-[3px]',
             companies_page_mobi: 'w-fit max-w-full truncate',
+            companies_page_desktop: 'w-fit max-w-full 4xl:max-w-full',
         },
         rounded: {
             default: 'rounded-[50px]',
@@ -102,6 +109,8 @@ const cardFooterVariants = cva('p-0', {
                 'w-fit px-[20px] py-[5px] 2xl:px-[10px] 2xl:py-0 3xl:px-[15px] 3xl:py-[2px] 4xl:px-[15px] 4xl:py-[4px]',
             profession_page_mobi: 'w-fit px-[10px] py-[2px]',
             companies_page_mobi: 'w-fit px-[8px] py-[2px]',
+            companies_page_desktop:
+                '4xl:w-max-full w-fit py-px pl-[17px] pr-[15px] 2xl:px-[10px] 2xl:py-0 3xl:px-[15px] 3xl:py-[2px] 4xl:py-px 4xl:pl-[15px]',
         },
         rounded: {
             default: 'rounded-[50px]',

@@ -35,7 +35,9 @@ const HeaderDesktop: React.FC = () => {
                         </Button>
                     </div>
                     <div className="mr-[12px] max-w-[50px] 2xl:max-w-[40px] 3xl:max-w-[40px]">
-                        <ShoppingCartIconDesktop className="h-auto w-full cursor-pointer" />
+                        <Link href="/cart">
+                            <ShoppingCartIconDesktop className="h-auto w-full cursor-pointer" />
+                        </Link>
                     </div>
                     <div className="max-w-[50px] 2xl:max-w-[36px] 3xl:max-w-[36px]">
                         <ProfileIconDesktop
