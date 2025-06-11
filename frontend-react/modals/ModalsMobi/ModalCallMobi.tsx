@@ -7,7 +7,7 @@ import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validat
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { CheckedBoxFormMobi, UncheckedBoxFormMobi } from '@/components/assets/iconsMobi'
+import { CheckedBoxFormMobi, UncheckedBoxFormMobi, ErrorUncheckedBoxFormMobi } from '@/components/assets/iconsMobi'
 
 interface IFormData {
     name: string
@@ -27,30 +27,25 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         time: '',
         consent: false,
     })
-    const [errors, setErrors] = useState<{ [key: string]: string }>({})
+    const [errors, setErrors] = useState<{ [key: string]: boolean }>({})
     const [step, setStep] = useState<'form' | 'accepted' | null>('form')
-    const [inputTouched, setInputTouched] = useState({
-        name: false,
-        phone: false,
-        time: false,
-    })
 
     const validateForm = () => {
-        const newErrors: { [key: string]: string } = {}
-        if (!formData.name.trim()) {
-            newErrors.name = 'Поле обязательно для заполнения'
-        }
-        if (!formData.phone.trim()) {
-            newErrors.phone = 'Поле обязательно для заполнения'
+        const newErrors: { [key: string]: boolean } = {}
+
+        if (!validatePhoneMobi(formData.phone).status) {
+            newErrors.phone = true
         }
         if (!formData.consent) {
-            newErrors.consent = 'Необходимо согласие'
+            newErrors.consent = true
         }
+
         setErrors(newErrors)
         return Object.keys(newErrors).length === 0
     }
 
     const handleSubmit = (e: React.FormEvent) => {
+        console.log(formData)
         e.preventDefault()
         const isValid = validateForm()
         if (!isValid) return
@@ -64,12 +59,13 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
             [name]: type === 'checkbox' ? checked : value,
         }))
         if (name === 'name') {
-            const result = validateNameMobi(value)
-            if (result.status) {
-                setErrors((prev) => ({
-                    ...prev,
-                    name: '',
-                }))
+            if (name) {
+                setFormData((prevData) => {
+                    return {
+                        ...prevData,
+                        name: value,
+                    }
+                })
             }
         }
 
@@ -78,46 +74,32 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
             if (result.status) {
                 setErrors((prev) => ({
                     ...prev,
-                    phone: '',
+                    phone: result.status ? false : true,
                 }))
             }
+            validateForm()
         }
 
         if (name === 'consent') {
-            setErrors((prev) => ({
-                ...prev,
-                consent: checked ? '' : 'Необходимо согласие',
-            }))
+            if (checked) {
+                setErrors((prev) => ({
+                    ...prev,
+                    consent: checked ? false : true,
+                }))
+            }
+            validateForm()
         }
     }
 
-    const handleInputBlur = (field: 'phone' | 'name') => {
-        setInputTouched((prev) => ({
+    const handleInputBlur = () => {
+        const isValid = validatePhoneMobi(formData.phone).status
+        setErrors((prev) => ({
             ...prev,
-            [field]: true,
+            phone: !isValid,
         }))
-
-        let error = ''
-        if (field === 'name') {
-            error = validateNameMobi(formData.name)?.textError
-        } else if (field === 'phone') {
-            error = validatePhoneMobi(formData.phone)?.textError
-        }
-
-        if (error) {
-            setErrors((prev) => ({
-                ...prev,
-                [field]: error,
-            }))
-        } else {
-            setErrors((prev) => ({
-                ...prev,
-                [field]: '',
-            }))
-        }
     }
 
-    const hasErrors = Object.values(errors).some((err) => err?.trim())
+    const hasErrors = Object.values(errors).some((err) => err === true)
 
     return (
         <>
@@ -145,24 +127,20 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         placeholder="Ваше имя"
                                         value={formData.name}
                                         validate={(value) => validateNameMobi(value)}
-                                        onBlur={() => handleInputBlur('name')}
                                         onChange={(value: string) =>
                                             handleChange({
                                                 target: { name: 'name', value, type: 'text', checked: false },
                                             } as React.ChangeEvent<HTMLInputElement>)
                                         }
                                         className={`border-2 ${
-                                            inputTouched.name && validateNameMobi(formData.name).styleError
+                                            hasErrors && validateNameMobi(formData.name).styleError
                                                 ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070] focus:bg-[#1f203f]'
                                                 : 'border-[#878797] bg-transparent focus:border-[#878797]'
                                         } h-10 w-full rounded-[50px] p-4 text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] focus:bg-[#1f203f] focus:ring-0 focus:ring-offset-0 md:placeholder:text-2xl`}
                                         label="Ваше имя"
-                                        labelClassName="text-white text-xl font-medium"
+                                        labelClassName="mb-2 text-white text-xl font-medium"
                                         wrapperClassName="w-full"
                                     />
-                                    <div className="mb-2 h-5">
-                                        {errors.name && <p className="mt-1 text-sm text-[#bc8070]">{errors.name}</p>}
-                                    </div>
                                 </div>
                                 <div className="flex w-full flex-col p-0.5">
                                     <PhoneInputMobi
@@ -172,21 +150,17 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                                 target: { name: 'phone', value, type: 'text', checked: false },
                                             } as React.ChangeEvent<HTMLInputElement>)
                                         }
-                                        onBlur={() => handleInputBlur('phone')}
-                                        onError={(error) =>
-                                            setErrors((prev) => ({
-                                                ...prev,
-                                                phone: error || '',
-                                            }))
-                                        }
-                                        className={`border-2 focus:border-2 focus:ring-0 focus:ring-offset-0`}
-                                        labelClassName="text-2xl leading-[18px] font-medium text-white mb-0"
+                                        onBlur={() => handleInputBlur()}
+                                        onError={() => {}}
+                                        className={`mb-6 border-2 focus:border-2 focus:ring-0 focus:ring-offset-0 ${
+                                            hasErrors && validatePhoneMobi(formData.phone).styleError
+                                                ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]'
+                                                : 'border-[#878797] focus:border-[#878797]'
+                                        }`}
+                                        labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white mb-0"
                                         wrapperClassName="w-full"
                                         required={true}
                                     />
-                                    <div className="mb-2 h-5">
-                                        {errors.phone && <p className="mt-1 text-sm text-[#bc8070]">{errors.phone}</p>}
-                                    </div>
                                 </div>
                                 <div className="flex w-full flex-col p-0.5">
                                     <EnhancedInput
@@ -198,7 +172,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
                                         className="h-11 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-base font-medium text-[#878797] placeholder:text-sm placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus:ring-offset-0"
                                         label="Удобное время для звонка"
-                                        labelClassName="text-white text-xl"
+                                        labelClassName="mb-2 text-white text-xl"
                                         wrapperClassName="w-full"
                                     />
                                     {hasErrors ? (
@@ -214,7 +188,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 <div className="mb-2 flex items-center pt-4">
                                     <label
                                         htmlFor="consent"
-                                        className="ml-1 flex cursor-pointer items-center gap-2 text-xs font-medium text-[#878797] md:text-sm"
+                                        className="mb-1 flex cursor-pointer items-center gap-2 text-xs font-medium text-[#878797] md:text-sm"
                                     >
                                         <input
                                             type="checkbox"
@@ -230,15 +204,19 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                                         checked: e.target.checked,
                                                     },
                                                 } as React.ChangeEvent<HTMLInputElement>)
+                                                validateForm()
                                             }}
                                             className="mr-2 hidden size-4 appearance-none rounded-[2px] border-2 border-[#878797] checked:border-transparent checked:bg-[#878797]"
                                         />
-                                        {!formData.consent ? <UncheckedBoxFormMobi /> : <CheckedBoxFormMobi />}Я
-                                        согласен(а) на обработку персональных данных
+                                        {!formData.consent ? (
+                                            <UncheckedBoxFormMobi />
+                                        ) : hasErrors ? (
+                                            <ErrorUncheckedBoxFormMobi />
+                                        ) : (
+                                            <CheckedBoxFormMobi />
+                                        )}
+                                        Cогласен(а) на обработку персональных данных
                                     </label>
-                                </div>
-                                <div className="mb-2 h-5">
-                                    {errors.consent && <p className="mt-1 text-sm text-[#bc8070]">{errors.consent}</p>}
                                 </div>
                                 <Button
                                     type="submit"
@@ -246,8 +224,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     className={`
                                         mx-auto mt-1 h-12 w-4/5 rounded-[50px] 
                                         text-3xl font-semibold text-white md:text-4xl
-                                        ${hasErrors ? 'bg-[#878797]' : 'bg-sub-title-gradient-mobi'}
-                                        disabled:cursor-not-allowed disabled:opacity-100
+                                        ${hasErrors ? 'bg-[#878797]' : 'bg-gradient-mobi'}
                                     `}
                                 >
                                     Отправить заявку
