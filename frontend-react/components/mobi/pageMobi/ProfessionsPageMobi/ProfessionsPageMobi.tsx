@@ -18,10 +18,12 @@ const ProfessionsPageMobi: React.FC = () => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
+    const minSearchLength = 3
 
     const filteredContent = content.filter((item) => {
         const matchesSearch =
-            searchQuery.length < 3 || item.profession.toLowerCase().includes(searchQuery.toLowerCase().trim())
+            searchQuery.length < minSearchLength ||
+            item.profession.toLowerCase().includes(searchQuery.toLowerCase().trim())
         const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(item.category)
         return matchesSearch && matchesCategory
     })
