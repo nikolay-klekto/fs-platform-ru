@@ -1,7 +1,11 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
-import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
+import {
+    CheckedBoxFormDesktop,
+    UncheckedBoxFormDesktop,
+    ErrorUncheckedBoxFormDesktop,
+} from '@/components/assets/iconsDesktop'
 
 const inputVariants = cva(
     'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
@@ -68,6 +72,7 @@ export interface IEnhancedInput
     placeholder?: string
     name?: string
     checkboxIconSize?: string
+    hasErrors?: boolean
     checked?: boolean
 }
 
@@ -85,13 +90,13 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             onBlur,
             label,
             helperText,
-            helperTextClassName,
             name,
             wrapperClassName,
             labelClassName,
             placeholder,
             checked,
             checkboxIconSize,
+            hasErrors,
             ...props
         },
         ref,
@@ -174,6 +179,8 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                             >
                                 {internalValue ? (
                                     <CheckedBoxFormDesktop className={checkboxIconSize} />
+                                ) : hasErrors ? (
+                                    <ErrorUncheckedBoxFormDesktop className={checkboxIconSize} />
                                 ) : (
                                     <UncheckedBoxFormDesktop className={checkboxIconSize} />
                                 )}
@@ -202,11 +209,18 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         {...props}
                     />
                 )}
-                {(helperText || internalError !== '') && (
-                    <p className={cn(helperTextClassName, internalError ? 'text-[#BC8070] ' : 'text-muted-foreground')}>
-                        {internalError || helperText}
-                    </p>
-                )}
+                <div className="flex mb-2 h-3">
+                    {(helperText || internalError) && (
+                        <span
+                            className={cn(
+                                'text-[0.8125rem]',
+                                internalError ? 'text-[#bc8070]' : 'text-muted-foreground',
+                            )}
+                        >
+                            {internalError || helperText}
+                        </span>
+                    )}
+                </div>
             </div>
         )
     },
