@@ -62,9 +62,6 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
         { value: 'Спорт', label: 'Спорт' },
         { value: 'Отрасль 5', label: 'Отрасль 5' },
         { value: 'Отрасль 6', label: 'Отрасль 6' },
-        { value: 'Отрасль 7', label: 'Отрасль 7' },
-        { value: 'Отрасль 8', label: 'Отрасль 8' },
-        { value: 'Отрасль 9', label: 'Отрасль 9' },
     ]
 
     const clearSelection = () => {
@@ -86,7 +83,7 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
                 <div className="fixed inset-0 z-50" style={{ background: 'rgba(0, 0, 0, 0.7)' }}>
                     <div ref={selectRef} className="fixed left-0 top-0 z-50 w-full">
                         <div className="flex flex-col gap-1 rounded-b-[40px] bg-[#1F203F] px-[14px] pb-[18px]">
-                            <div className="mb-[34px] mt-[30px] flex items-center justify-between px-2 text-white">
+                            <div className="mb-[10px] mt-[30px] flex items-center justify-between px-2 text-white">
                                 <span className="text-3xl font-semibold leading-[20px]">Выберите отрасль</span>
                                 <button
                                     className="text-base font-medium leading-[15px] text-[#878797] underline"
@@ -96,31 +93,35 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
                                 </button>
                             </div>
                             <div
-                                className="scrollbar-thin scrollbar-thumb-[#878797] scrollbar-track-transparent mobi-scroll flex max-h-[calc(6*62px)] flex-col overflow-y-auto scroll-smooth pr-[8px]"
+                                className="scrollbar-thin scrollbar-thumb-[#878797] scrollbar-track-transparent mobi-scroll flex max-h-[calc(8*62px)] flex-col overflow-y-auto scroll-smooth pr-[8px]"
                                 style={{
+                                    minHeight: '420px',
+                                    maxHeight: '500px',
                                     scrollbarGutter: 'stable',
                                 }}
                             >
-                                {selected.length > 0 && (
-                                    <>
-                                        {' '}
-                                        <div className="mb-1 text-base text-[#878797]">Выбранные</div>
-                                        {selected.map((option) => (
-                                            <SelectItem
-                                                key={option.value}
-                                                value={option.value}
-                                                isChecked={selectedCategories.includes(option.value)}
-                                                onClick={() => toggleOption(option.value)}
-                                                className="translate-y-0 opacity-100 transition-all duration-300 ease-out"
-                                            >
-                                                {option.label}
-                                            </SelectItem>
-                                        ))}
-                                        {unselected.length > 0 && selected.length > 0 && selected.length !== 5 && (
-                                            <div className="mb-1 mt-5 text-base text-[#878797]">Другие отрасли</div>
-                                        )}
-                                    </>
-                                )}
+                                <>
+                                    {' '}
+                                    <div
+                                        className={`mb-1 pl-4 text-base text-[#878797] ${selected.length === 0 ? 'invisible' : ''}`}
+                                    >
+                                        Выбранные
+                                    </div>
+                                    {selected.map((option) => (
+                                        <SelectItem
+                                            key={option.value}
+                                            value={option.value}
+                                            isChecked={selectedCategories.includes(option.value)}
+                                            onClick={() => toggleOption(option.value)}
+                                            className="translate-y-0 opacity-100 transition-all duration-300 ease-out"
+                                        >
+                                            {option.label}
+                                        </SelectItem>
+                                    ))}
+                                    {unselected.length > 0 && selected.length > 0 && (
+                                        <div className="mb-1 pl-4 text-base text-[#878797]">Другие отрасли</div>
+                                    )}
+                                </>
                                 {unselected.map((option) => (
                                     <SelectItem
                                         key={option.value}
