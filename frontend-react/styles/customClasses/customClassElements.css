@@ -9,6 +9,12 @@
         @apply bg-white shadow-md rounded-lg p-4;
     }
 
+.scrollbar_custom {
+  scrollbar-width: thin;
+  scrollbar-color: #898997 transparent;
+}
+
+
     .scrollbar_custom::-webkit-scrollbar {
         height: 4px;
     }

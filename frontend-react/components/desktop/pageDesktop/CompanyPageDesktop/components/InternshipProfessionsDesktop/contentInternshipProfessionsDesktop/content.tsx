@@ -17,7 +17,7 @@ export const contentInternshipProfessionsDesktop: IInternshipProfessions[] = [
             width: 320,
             height: 400,
         },
-        name: 'Программист',
+        name: 'Программист frontend разработчик',
     },
     {
         id: 2,

@@ -57,8 +57,8 @@ const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
                                     <div className="flex flex-col">
                                         <div className="text32px_desktop flex items-start font-medium text-[#878797]">
                                             <span>Адрес офиса:</span>
-                                            <div className="ml-[10px]">
-                                                <p className="text32px_desktop  font-semibold text-white">
+                                            <div className="ml-[10px] ">
+                                                <p className="text32px_desktop  font-semibold text-white 3xl:mb-[20px] 2xl:mb-[20px] ">
                                                     {item.adress1}
                                                 </p>
                                                 <p className="text32px_desktop   font-semibold text-white">

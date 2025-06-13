@@ -1,6 +1,5 @@
 'use client'
-
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import Image from 'next/image'
 
 interface IItemCompaniesDesktop {
@@ -11,29 +10,21 @@ interface IItemCompaniesDesktop {
         height: number
     }
     name: string
-    onWidthChange: (width: number) => void
 }
 
-const ItemCompaniesDesktop: React.FC<IItemCompaniesDesktop> = ({ image, name, onWidthChange }) => {
-    const itemRef = useRef<HTMLDivElement>(null)
+interface IItemCompaniesDesktop {
+    image: {
+        src: string
+        alt: string
+        width: number
+        height: number
+    }
+    name: string
+}
 
-    useEffect(() => {
-        const updateWidth = () => {
-            if (itemRef.current) {
-                onWidthChange(itemRef.current.offsetWidth)
-            }
-        }
-
-        updateWidth()
-        window.addEventListener('resize', updateWidth)
-
-        return () => {
-            window.removeEventListener('resize', updateWidth)
-        }
-    }, [onWidthChange])
-
+const ItemCompaniesDesktop: React.FC<IItemCompaniesDesktop> = ({ image, name }) => {
     return (
-        <div ref={itemRef} className="relative flex h-auto max-w-[328px] shrink-0 rounded-[60px] text-center">
+        <div className="relative flex h-auto max-w-[328px] shrink-0 cursor-pointer rounded-[60px] text-center">
             <Image
                 src={image.src}
                 alt={image.alt}
@@ -42,8 +33,8 @@ const ItemCompaniesDesktop: React.FC<IItemCompaniesDesktop> = ({ image, name, on
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 className="rounded-[60px]"
             />
-            <div className="absolute bottom-12 left-8 rounded-[10px] bg-white">
-                <p className="text-[19px] text-[#878797] 2xl:text-3xl 3xl:text-4xl">{name}</p>
+            <div className="absolute bottom-6 left-6 max-w-[210px] rounded-[23px] bg-white">
+                <p className="text22px_desktop truncate px-[24px] font-medium text-[#101030]">{name}</p>
             </div>
         </div>
     )
