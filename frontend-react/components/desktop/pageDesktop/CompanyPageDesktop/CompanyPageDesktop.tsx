@@ -9,11 +9,7 @@ import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDeskt
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import Link from 'next/link'
 
-interface ICompanyDesktop {
-    company: string
-}
-
-const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
+const CompanyDesktop: React.FC = () => {
     return (
         <>
             <HeaderDesktop />
@@ -58,7 +54,7 @@ const CompanyDesktop: React.FC<ICompanyDesktop> = ({ company }) => {
                                         <div className="text32px_desktop flex items-start font-medium text-[#878797]">
                                             <span>Адрес офиса:</span>
                                             <div className="ml-[10px] ">
-                                                <p className="text32px_desktop  font-semibold text-white 3xl:mb-[20px] 2xl:mb-[20px] ">
+                                                <p className="text32px_desktop  font-semibold text-white 2xl:mb-[20px] 3xl:mb-[20px] ">
                                                     {item.adress1}
                                                 </p>
                                                 <p className="text32px_desktop   font-semibold text-white">
