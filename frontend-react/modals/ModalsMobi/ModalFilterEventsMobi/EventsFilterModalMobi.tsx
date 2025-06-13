@@ -10,7 +10,9 @@ interface Props {
 
 const EventsFilterModalMobi: React.FC<Props> = ({ onClose }) => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-    const [selectedDate, setSelectedDate] = useState('')
+    const [shortDates, setShortDates] = useState<string[]>([])
+    const [scope, setScope] = useState<string | null>(null)
+
     const modalRef = useRef<HTMLDivElement>(null)
     const dragStartY = useRef<number | null>(null)
 
@@ -89,7 +91,8 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose }) => {
                         className="text-[12px] font-medium text-[#878797] underline"
                         onClick={() => {
                             setSelectedCategories([]) // Clear category filter
-                            setSelectedDate('') // Clear date filter
+                            setScope('')
+                            setShortDates([]) // Clear date filter
                             // setSelectedCity(null)
                         }}
                     >
@@ -98,7 +101,12 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose }) => {
                 </div>
 
                 <EventsFilterCategoryMobi selectedCategories={selectedCategories} onChange={setSelectedCategories} />
-                <EventsFilterDateMobi selected={selectedDate} onChange={setSelectedDate} />
+                <EventsFilterDateMobi
+                    shortDates={shortDates}
+                    onShortDatesChange={setShortDates}
+                    scope={scope}
+                    onScopeChange={setScope}
+                />
                 <div className="h-[40px]" />
 
                 {/* <button
