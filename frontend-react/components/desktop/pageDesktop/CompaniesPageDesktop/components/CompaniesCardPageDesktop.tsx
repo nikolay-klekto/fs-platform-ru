@@ -8,10 +8,9 @@ interface ICompanieCard {
     image: string
     price: string
     industry?: string
-    onClick: () => void
 }
 
-const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName, price, industry, onClick }) => {
+const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName, price, industry }) => {
     return (
         <>
             <div className="hover:button-shadow_around_desktop_custom relative overflow-hidden rounded-[20px] ">
@@ -23,7 +22,6 @@ const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName,
                     variant={'companies_page_desktop'}
                     size={'companies_page_desktop'}
                     rounded="rounded_20"
-                    onClick={onClick}
                     className="z-5 relative"
                 >
                     <CardTitle variant={'companies_page_desktop'} size={'companies_page_desktop'}>
