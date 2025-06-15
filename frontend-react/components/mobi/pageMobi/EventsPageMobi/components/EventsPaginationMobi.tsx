@@ -1,81 +1,67 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { LessIconMobi, MoreIconMobi } from '@/components/assets/iconsMobi'
 
-interface IProfessionsPagination {
+interface IEventsPagination {
     totalPages: number
     currentPage: number
     onPageChange: (page: number) => void
 }
 
-const EventsPaginationMobi: React.FC<IProfessionsPagination> = ({ totalPages, currentPage, onPageChange }) => {
-    const siblingsCount = 2
+const ProfessionsPaginationMobi: React.FC<IEventsPagination> = ({ totalPages, currentPage, onPageChange }) => {
+    const [visibleStart, setVisibleStart] = useState(1)
+    const visibleEnd = visibleStart + 2
 
-    const getPageNumbers = () => {
-        const pages: number[] = []
-        const startPage = Math.max(2, currentPage - siblingsCount)
-        const endPage = Math.min(totalPages - 1, currentPage + siblingsCount)
-
-        pages.push(1)
-
-        if (startPage > 2) {
-            pages.push(-1)
+    const handleLessClick = () => {
+        if (visibleStart > 1) {
+            setVisibleStart(visibleStart - 1)
+            onPageChange(visibleStart - 1)
         }
-
-        for (let i = startPage; i <= endPage; i++) {
-            pages.push(i)
+    }
+    const handleMoreClick = () => {
+        if (visibleEnd < totalPages) {
+            setVisibleStart(visibleStart + 1)
+            onPageChange(visibleStart + 1)
         }
-
-        if (endPage < totalPages - 1) {
-            pages.push(-1)
-        }
-
-        if (totalPages > 1) {
-            pages.push(totalPages)
-        }
-
-        return pages
     }
 
-    const pageNumbers = getPageNumbers()
-
     return (
-        <div className="relative z-[2] mb-[88px] mt-[73px] flex items-center justify-center gap-5">
-            <button onClick={() => onPageChange(Math.max(1, currentPage - 1))} disabled={currentPage === 1}>
-                <LessIconMobi />
-            </button>
+        <div className="mx-auto mb-[30px] mt-[25px] flex w-[150px] items-center justify-between">
+            <LessIconMobi
+                width={'10'}
+                height={'19'}
+                className={visibleStart === 1 ? 'text-[#878797]' : 'text-[#FFFFFFCC]'}
+                onClick={visibleStart > 1 ? handleLessClick : undefined}
+            />
 
-            <div className="flex items-end justify-center gap-5">
-                {pageNumbers.map((page, index) =>
-                    page === -1 ? (
-                        <span key={`dots-${index}`} className="text-2xl font-medium text-gray-500">
-                            ...
-                        </span>
-                    ) : (
+            {[...Array(totalPages)]
+                .map((_, index) => index + 1)
+                .filter((pageNumber) => pageNumber >= visibleStart && pageNumber <= visibleEnd)
+                .map((pageNumber) => {
+                    return (
                         <button
-                            key={`page-${page}`}
-                            className={`text-7xl font-medium ${
-                                currentPage === page
-                                    ? 'text-gradient_desktop_custom border-b-2 border-indigo-500 text-[32px]'
-                                    : 'text-[FFFFCC]'
+                            key={pageNumber}
+                            className={`text-5xl font-medium ${
+                                currentPage === pageNumber ? 'text-gradient_mobi_custom' : 'text-[#FFFFFFCC]'
                             }`}
-                            onClick={() => onPageChange(page)}
+                            onClick={() => {
+                                onPageChange(pageNumber)
+                                window.scrollTo({ top: 0, behavior: 'smooth' })
+                            }}
                         >
-                            {page}
+                            {pageNumber}
                         </button>
-                    ),
-                )}
-            </div>
-
-            <button
-                onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages}
-            >
-                <MoreIconMobi />
-            </button>
+                    )
+                })}
+            <MoreIconMobi
+                width={'10'}
+                height={'19'}
+                className={visibleEnd >= totalPages ? 'text-[#878797]' : 'text-[#FFFFFFCC]'}
+                onClick={visibleEnd < totalPages ? handleMoreClick : undefined}
+            />
         </div>
     )
 }
 
-export default EventsPaginationMobi
+export default ProfessionsPaginationMobi

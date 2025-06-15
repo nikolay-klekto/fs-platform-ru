@@ -45,7 +45,10 @@ const ProfessionsPaginationMobi: React.FC<IProfessionsPagination> = ({ totalPage
                             className={`text-5xl font-medium ${
                                 currentPage === pageNumber ? 'text-gradient_mobi_custom' : 'text-[#FFFFFFCC]'
                             }`}
-                            onClick={() => onPageChange(pageNumber)}
+                            onClick={() => {
+                                onPageChange(pageNumber)
+                                window.scrollTo({ top: 0, behavior: 'smooth' })
+                            }}
                         >
                             {pageNumber}
                         </button>
