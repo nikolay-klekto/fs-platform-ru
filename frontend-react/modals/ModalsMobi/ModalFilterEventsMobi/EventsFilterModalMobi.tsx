@@ -3,6 +3,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import EventsFilterCategoryMobi from './components/EventsFilterCategoryMobi'
 import EventsFilterDateMobi from './components/EventsFilterDateMobi'
+import EventsFilterCityMobi from './components/EventsFilterCityMobi'
+import EventsSearchCityMobi from './components/EventsSearchCityMobi'
 
 interface Props {
     onClose: () => void
@@ -11,6 +13,8 @@ interface Props {
 const EventsFilterModalMobi: React.FC<Props> = ({ onClose }) => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [shortDates, setShortDates] = useState<string[]>([])
+    const [selectedCities, setSelectedCities] = useState<string[]>([]) // <<<<
+    const [cityModalOpen, setCityModalOpen] = useState(false)
     const [scope, setScope] = useState<string | null>(null)
 
     const modalRef = useRef<HTMLDivElement>(null)
@@ -57,20 +61,19 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose }) => {
             onClose()
         }
     }
+    const handleBackdropKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            onClose()
+        }
+    }
 
     return (
         <div
             role="button"
             tabIndex={0}
             onClick={handleBackdropClick}
-            onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        onClose()
-                    }
-                }
-            }}
-            className="fixed inset-0 z-[1] flex flex-col bg-black/80 backdrop-blur-sm"
+            onKeyDown={handleBackdropKeyDown}
+            className="fixed inset-0 z-[1] flex flex-col bg-black/70 "
         >
             <div
                 ref={modalRef}
@@ -90,10 +93,10 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose }) => {
                     <button
                         className="text-[12px] font-medium text-[#878797] underline"
                         onClick={() => {
-                            setSelectedCategories([]) // Clear category filter
+                            setSelectedCategories([])
                             setScope('')
-                            setShortDates([]) // Clear date filter
-                            // setSelectedCity(null)
+                            setShortDates([])
+                            setSelectedCities([])
                         }}
                     >
                         Очистить
@@ -107,7 +110,23 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose }) => {
                     scope={scope}
                     onScopeChange={setScope}
                 />
-                <div className="h-[40px]" />
+                <EventsFilterCityMobi
+                    selectedCities={selectedCities}
+                    onSelect={() => setCityModalOpen(true)}
+                    onRemoveCity={(city) => setSelectedCities(selectedCities.filter((c) => c !== city))}
+                />
+
+                {cityModalOpen && (
+                    <EventsSearchCityMobi
+                        selectedCities={selectedCities}
+                        onSelect={(city) => {
+                            setSelectedCities((prev) => (prev.includes(city) ? prev : [...prev, city]))
+                            setCityModalOpen(false)
+                        }}
+                        onClear={() => setSelectedCities([])}
+                        onClose={() => setCityModalOpen(false)}
+                    />
+                )}
 
                 {/* <button
                     onClick={onClose}

@@ -1,135 +1,176 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { ChevronDownIconMobi, SearchIconMobi } from '@/components/assets/iconsMobi'
-import { Button } from '@/components/ui/button'
-interface ISelectItem {
-    value: string
-    children: React.ReactNode
-    isChecked: boolean
-    onClick: () => void
+'use client'
+
+import React from 'react'
+import { ChevronLeftIconMobi } from '@/components/assets/iconsMobi'
+
+interface Props {
+    selectedCities: string[]
+    onSelect: () => void
+    onRemoveCity?: (city: string) => void
 }
 
-interface ISelectOption {
-    value: string
-    label: string
-}
-
-const EventsSelectSearchCityMobi = () => {
-    const [isOpen, setIsOpen] = useState(false)
-    const [selectedOptions, setSelectedOptions] = useState<string[]>([])
-    const [searchTerm, setSearchTerm] = useState('')
-    const dropdownRef = useRef<HTMLDivElement>(null)
-
-    const toggleOption = (value: string) => {
-        setSelectedOptions((prev) =>
-            prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value],
-        )
-    }
-
-    const handleSelectToggle = () => {
-        setIsOpen((prev) => !prev)
-    }
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setIsOpen(false)
-            }
-        }
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [])
-
-    const options: ISelectOption[] = [
-        { value: 'brest', label: 'Брест' },
-        { value: 'vitebsk', label: 'Витебск' },
-        { value: 'gomel', label: 'Гомель' },
-        { value: 'grodno', label: 'Гродно' },
-        { value: 'mogilev', label: 'Могилев' },
-        { value: 'minsk', label: 'Минск' },
-    ]
-
-    const filteredOptions = options.filter((option) => option.label.toLowerCase().includes(searchTerm.toLowerCase()))
-
+const EventsFilterCityMobi: React.FC<Props> = ({ selectedCities, onSelect }) => {
     return (
-        <div className="relative z-[3]" ref={dropdownRef}>
-            <Button
-                variant={'select_btn_desktop'}
-                size={'select_btn_desktop_date'}
-                onClick={handleSelectToggle}
-                className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
+        <div className="mb-8">
+            <button
+                type="button"
+                onClick={onSelect}
+                className="flex w-full items-center gap-2 rounded-xl px-0 py-2 text-left transition active:bg-[#222246]"
             >
-                Город
-                <ChevronDownIconMobi
-                    className={`h-[15px] w-[27px] transition-transform  duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
-                />
-            </Button>
-            {isOpen && (
-                <div
-                    className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[400px] rounded-[42px] p-[2px] 2xl:w-[270px]"
-                    style={{
-                        background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
-                    }}
-                >
-                    <div className="flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
-                        <div className="border-white-300 flex items-center rounded-[50px] border px-3">
-                            <input
-                                type="text"
-                                placeholder="Поиск"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="text-18px flex h-11 w-full rounded-md bg-transparent py-3 outline-none placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
-                            />
-                            <SearchIconMobi
-                                className="mr-2 size-4 shrink-0 opacity-50"
-                                onClick={() => console.log('Search icon clicked!')}
-                            />
+                <span className="text-[18px] font-semibold text-white">Город</span>
+                <ChevronLeftIconMobi className="size-[14px] rotate-180 text-white" />
+            </button>
+
+            {selectedCities.length > 0 && (
+                <div className="mt-6 flex flex-wrap gap-2">
+                    {selectedCities.map((city) => (
+                        <div
+                            key={city}
+                            className="flex items-center rounded-full border border-white bg-transparent px-[18px] py-2 text-[16px] font-medium text-white"
+                        >
+                            {city}
                         </div>
-                        {filteredOptions.map((option) => (
-                            <SelectItem
-                                key={option.value}
-                                value={option.value}
-                                isChecked={selectedOptions.includes(option.value)}
-                                onClick={() => toggleOption(option.value)}
-                            >
-                                {option.label}
-                            </SelectItem>
-                        ))}
-                    </div>
+                    ))}
                 </div>
             )}
         </div>
     )
 }
 
-const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
-    ({ children, isChecked, onClick, ...props }, forwardedRef) => {
-        return (
-            <div
-                className={`hover:border-hover text-[18px]font-medium relative z-[3] flex cursor-pointer items-center justify-between p-[15px] text-white ${
-                    isChecked ? 'border-selected border-y-2 bg-[#28295B]' : 'bg-transparent'
-                }`}
-                {...props}
-                ref={forwardedRef}
-                onClick={onClick}
-                role="menuitem"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault()
-                        onClick()
-                    }
-                }}
-            >
-                <div className="flex ">
-                    <div className="pl-[14px]">{children}</div>
-                </div>
-            </div>
-        )
-    },
-)
+export default EventsFilterCityMobi
 
-SelectItem.displayName = 'SelectItem'
+// import React, { useState, useRef, useEffect } from 'react'
+// import { ChevronDownIconMobi, SearchIconMobi } from '@/components/assets/iconsMobi'
+// import { Button } from '@/components/ui/button'
+// interface ISelectItem {
+//     value: string
+//     children: React.ReactNode
+//     isChecked: boolean
+//     onClick: () => void
+// }
 
-export default EventsSelectSearchCityMobi
+// interface ISelectOption {
+//     value: string
+//     label: string
+// }
+
+// const EventsSelectSearchCityMobi = () => {
+//     const [isOpen, setIsOpen] = useState(false)
+//     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
+//     const [searchTerm, setSearchTerm] = useState('')
+//     const dropdownRef = useRef<HTMLDivElement>(null)
+
+//     const toggleOption = (value: string) => {
+//         setSelectedOptions((prev) =>
+//             prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value],
+//         )
+//     }
+
+//     const handleSelectToggle = () => {
+//         setIsOpen((prev) => !prev)
+//     }
+
+//     useEffect(() => {
+//         const handleClickOutside = (event: MouseEvent) => {
+//             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+//                 setIsOpen(false)
+//             }
+//         }
+//         document.addEventListener('mousedown', handleClickOutside)
+//         return () => {
+//             document.removeEventListener('mousedown', handleClickOutside)
+//         }
+//     }, [])
+
+//     const options: ISelectOption[] = [
+//         { value: 'brest', label: 'Брест' },
+//         { value: 'vitebsk', label: 'Витебск' },
+//         { value: 'gomel', label: 'Гомель' },
+//         { value: 'grodno', label: 'Гродно' },
+//         { value: 'mogilev', label: 'Могилев' },
+//         { value: 'minsk', label: 'Минск' },
+//     ]
+
+//     const filteredOptions = options.filter((option) => option.label.toLowerCase().includes(searchTerm.toLowerCase()))
+
+//     return (
+//         <div className="relative z-[3]" ref={dropdownRef}>
+//             <Button
+//                 variant={'select_btn_desktop'}
+//                 size={'select_btn_desktop_date'}
+//                 onClick={handleSelectToggle}
+//                 className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
+//             >
+//                 Город
+//                 <ChevronDownIconMobi
+//                     className={`h-[15px] w-[27px] transition-transform  duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
+//                 />
+//             </Button>
+//             {isOpen && (
+//                 <div
+//                     className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[400px] rounded-[42px] p-[2px] 2xl:w-[270px]"
+//                     style={{
+//                         background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
+//                     }}
+//                 >
+//                     <div className="flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
+//                         <div className="border-white-300 flex items-center rounded-[50px] border px-3">
+//                             <input
+//                                 type="text"
+//                                 placeholder="Поиск"
+//                                 value={searchTerm}
+//                                 onChange={(e) => setSearchTerm(e.target.value)}
+//                                 className="text-18px flex h-11 w-full rounded-md bg-transparent py-3 outline-none placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
+//                             />
+//                             <SearchIconMobi
+//                                 className="mr-2 size-4 shrink-0 opacity-50"
+//                                 onClick={() => console.log('Search icon clicked!')}
+//                             />
+//                         </div>
+//                         {filteredOptions.map((option) => (
+//                             <SelectItem
+//                                 key={option.value}
+//                                 value={option.value}
+//                                 isChecked={selectedOptions.includes(option.value)}
+//                                 onClick={() => toggleOption(option.value)}
+//                             >
+//                                 {option.label}
+//                             </SelectItem>
+//                         ))}
+//                     </div>
+//                 </div>
+//             )}
+//         </div>
+//     )
+// }
+
+// const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
+//     ({ children, isChecked, onClick, ...props }, forwardedRef) => {
+//         return (
+//             <div
+//                 className={`hover:border-hover text-[18px]font-medium relative z-[3] flex cursor-pointer items-center justify-between p-[15px] text-white ${
+//                     isChecked ? 'border-selected border-y-2 bg-[#28295B]' : 'bg-transparent'
+//                 }`}
+//                 {...props}
+//                 ref={forwardedRef}
+//                 onClick={onClick}
+//                 role="menuitem"
+//                 tabIndex={0}
+//                 onKeyDown={(e) => {
+//                     if (e.key === 'Enter' || e.key === ' ') {
+//                         e.preventDefault()
+//                         onClick()
+//                     }
+//                 }}
+//             >
+//                 <div className="flex ">
+//                     <div className="pl-[14px]">{children}</div>
+//                 </div>
+//             </div>
+//         )
+//     },
+// )
+
+// SelectItem.displayName = 'SelectItem'
+
+// export default EventsSelectSearchCityMobi
