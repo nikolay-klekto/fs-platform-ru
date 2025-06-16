@@ -23,7 +23,11 @@ const EventsFilterDateMobi: React.FC<Props> = ({ shortDates, onShortDatesChange,
     }
 
     const handleScopeClick = (option: string) => {
-        onScopeChange(option)
+        if (scope === option) {
+            onScopeChange(null)
+        } else {
+            onScopeChange(option)
+        }
         onShortDatesChange([])
     }
 

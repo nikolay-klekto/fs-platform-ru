@@ -13,7 +13,7 @@ interface Props {
 const EventsFilterModalMobi: React.FC<Props> = ({ onClose }) => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [shortDates, setShortDates] = useState<string[]>([])
-    const [selectedCities, setSelectedCities] = useState<string[]>([]) // <<<<
+    const [selectedCities, setSelectedCities] = useState<string[]>([])
     const [cityModalOpen, setCityModalOpen] = useState(false)
     const [scope, setScope] = useState<string | null>(null)
 
@@ -55,6 +55,13 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose }) => {
         }
         dragStartY.current = null
     }
+
+    // useEffect(() => {
+    //     if (cityModalOpen && modalRef.current) {
+    //         modalRef.current.style.transform = 'translateY(0px)'
+    //         modalRef.current.style.transition = ''
+    //     }
+    // }, [cityModalOpen])
 
     const handleBackdropClick = (e: React.MouseEvent) => {
         if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
@@ -119,10 +126,7 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose }) => {
                 {cityModalOpen && (
                     <EventsSearchCityMobi
                         selectedCities={selectedCities}
-                        onSelect={(city) => {
-                            setSelectedCities((prev) => (prev.includes(city) ? prev : [...prev, city]))
-                            setCityModalOpen(false)
-                        }}
+                        onChange={setSelectedCities}
                         onClear={() => setSelectedCities([])}
                         onClose={() => setCityModalOpen(false)}
                     />

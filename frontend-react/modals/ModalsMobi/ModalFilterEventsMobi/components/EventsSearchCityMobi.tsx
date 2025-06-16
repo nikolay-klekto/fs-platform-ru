@@ -5,7 +5,7 @@ import { ChevronDownIconMobi, SearchIconMobi } from '@/components/assets/iconsMo
 
 interface Props {
     selectedCities: string[]
-    onSelect: (city: string) => void
+    onChange: (cities: string[]) => void
     onClear: () => void
     onClose: () => void
 }
@@ -33,25 +33,34 @@ const cityList = [
     'Речица',
 ]
 
-const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onSelect, onClear, onClose }) => {
+const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onChange, onClear, onClose }) => {
     const [search, setSearch] = useState('')
     const scrollRef = useRef<HTMLDivElement>(null)
 
-    const filteredCities = useMemo(
-        () =>
-            cityList
-                .filter((city) => !selectedCities.includes(city))
-                .filter((city) => city.toLowerCase().startsWith(search.toLowerCase())),
-        [search, selectedCities],
+    const filteredCities = useMemo(() => {
+        return cityList.filter((city) => city.toLowerCase().startsWith(search.toLowerCase()))
+    }, [search])
+
+    const favorites = useMemo(
+        () => filteredCities.filter((city) => selectedCities.includes(city)),
+        [filteredCities, selectedCities],
+    )
+    const rest = useMemo(
+        () => filteredCities.filter((city) => !selectedCities.includes(city)),
+        [filteredCities, selectedCities],
     )
 
-    const exactMatchAlreadyPicked = cityList.some(
-        (city) => city.toLowerCase() === search.toLowerCase().trim() && selectedCities.includes(city),
-    )
+    function toggleCity(city: string) {
+        if (selectedCities.includes(city)) {
+            onChange(selectedCities.filter((c) => c !== city))
+        } else {
+            onChange([...selectedCities, city])
+        }
+    }
 
-    function handleSelect(city: string) {
-        onSelect(city)
-        onClose()
+    function handleClear() {
+        onClear()
+        setSearch('')
     }
 
     return (
@@ -76,13 +85,13 @@ const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onSelect, onCle
                     <button
                         className="px-[16px] text-[13px] font-medium text-[#878797] underline"
                         style={{ minWidth: 60, textAlign: 'right' }}
-                        onClick={onClear}
+                        onClick={handleClear}
                     >
                         Очистить
                     </button>
                 </div>
                 <div className="mx-4 mb-[18px] h-full rounded-[25px] bg-[#1F203F] p-2">
-                    <div className="relative mx-[12px] mb-[18px] flex items-center rounded-[50px] border-2 border-[#878797] bg-transparent">
+                    <div className="relative mx-px mb-[14px] flex items-center rounded-[50px] border-2 border-[#878797] bg-transparent">
                         <input
                             className="flex w-full rounded-[50px] bg-transparent py-[16px] pl-[16px] pr-12 text-[14px] font-medium not-italic leading-[17px] text-[#FFFFFF] placeholder-[#353652] outline-none"
                             placeholder="Поиск"
@@ -99,38 +108,57 @@ const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onSelect, onCle
                         style={{
                             WebkitOverflowScrolling: 'touch',
                             minHeight: 0,
-                            maxHeight: 'calc(70vh - 110px)',
+                            maxHeight: 'calc(70vh - 100px)',
                         }}
                     >
-                        <ul className="divide-y divide-[#24254d]">
-                            {filteredCities.length > 0 ? (
-                                filteredCities.map((city) => (
-                                    <li key={city}>
-                                        <button
-                                            className={`flex w-full items-center bg-transparent p-4 text-[14px] font-medium text-white/90 focus:outline-none`}
-                                            style={{
-                                                borderRadius: 12,
-                                                fontSize: 18,
-                                                minHeight: 48,
-                                                justifyContent: 'flex-start',
-                                            }}
-                                            onClick={() => handleSelect(city)}
-                                        >
-                                            {city}
-                                        </button>
+                        <ul className="space-y-1">
+                            {favorites.length > 0 && (
+                                <>
+                                    <li>
+                                        <div className="select-none px-4 pb-[14px] pt-2 text-[13px] font-medium text-[#878797]">
+                                            Выбранные
+                                        </div>
                                     </li>
-                                ))
-                            ) : exactMatchAlreadyPicked ? (
-                                <li>
-                                    <div className="px-4 py-6 text-center text-[16px] text-[#878797]">
-                                        Этот город уже выбран
-                                    </div>
-                                </li>
-                            ) : (
+                                    {favorites.map((city) => (
+                                        <li key={`fav-${city}`}>
+                                            <button
+                                                className="flex w-full items-center rounded-[16px] bg-[#23244a] p-4 text-[14px] font-medium text-white focus:outline-none"
+                                                onClick={() => toggleCity(city)}
+                                            >
+                                                {city}
+                                            </button>
+                                        </li>
+                                    ))}
+                                </>
+                            )}
+                            {favorites.length > 0 && rest.length > 0 && (
+                                <>
+                                    <li>
+                                        <div className="select-none px-4 pb-[14px] pt-4 text-[13px] font-medium text-[#878797]">
+                                            Все города
+                                        </div>
+                                    </li>
+                                </>
+                            )}
+
+                            {rest.length === 0 && favorites.length === 0 && (
                                 <li>
                                     <div className="px-4 py-6 text-center text-[16px] text-[#878797]">Не найдено</div>
                                 </li>
                             )}
+                            {rest.map((city, idx) => (
+                                <li key={`rest-${city}`}>
+                                    <button
+                                        className={`flex w-full items-center rounded-[12px] bg-transparent p-4 text-[14px] font-medium ${
+                                            selectedCities.includes(city) ? 'bg-[#23244a] text-white' : 'text-white/90'
+                                        } focus:outline-none`}
+                                        onClick={() => toggleCity(city)}
+                                    >
+                                        {city}
+                                    </button>
+                                    {idx !== rest.length - 1 && <div className="mx-4 border-b border-[#353652]" />}
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

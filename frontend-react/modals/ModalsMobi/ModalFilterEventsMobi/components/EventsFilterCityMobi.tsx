@@ -9,9 +9,9 @@ interface Props {
     onRemoveCity?: (city: string) => void
 }
 
-const EventsFilterCityMobi: React.FC<Props> = ({ selectedCities, onSelect }) => {
+const EventsFilterCityMobi: React.FC<Props> = ({ selectedCities, onSelect, onRemoveCity }) => {
     return (
-        <div className="mb-8">
+        <div className="mb-8 min-h-[90px]">
             <button
                 type="button"
                 onClick={onSelect}
@@ -22,14 +22,15 @@ const EventsFilterCityMobi: React.FC<Props> = ({ selectedCities, onSelect }) => 
             </button>
 
             {selectedCities.length > 0 && (
-                <div className="mt-6 flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-wrap gap-3">
                     {selectedCities.map((city) => (
-                        <div
+                        <button
                             key={city}
-                            className="flex items-center rounded-full border border-white bg-transparent px-[18px] py-2 text-[16px] font-medium text-white"
+                            onClick={() => onRemoveCity?.(city)}
+                            className="flex items-center justify-center rounded-full border border-white bg-[#353652] px-[14px] py-2 text-[14px] font-medium text-white transition-all duration-150 ease-in-out"
                         >
                             {city}
-                        </div>
+                        </button>
                     ))}
                 </div>
             )}
