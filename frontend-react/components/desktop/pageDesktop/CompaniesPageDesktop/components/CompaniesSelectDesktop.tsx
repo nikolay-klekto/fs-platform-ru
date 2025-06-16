@@ -14,7 +14,7 @@ interface ISelectOption {
     label: string
 }
 
-const ProfessionsSelectDesktop = ({ onCategoryChange }: { onCategoryChange: (categories: string[]) => void }) => {
+const CompaniesSelectDesktop = ({ onCategoryChange }: { onCategoryChange: (categories: string[]) => void }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
     const selectRef = useRef<HTMLDivElement>(null)
@@ -47,7 +47,7 @@ const ProfessionsSelectDesktop = ({ onCategoryChange }: { onCategoryChange: (cat
     }, [selectedOptions, onCategoryChange])
 
     const options: ISelectOption[] = [
-        { value: 'IT-отрасль', label: 'IT-отрасль' },
+        { value: 'IT-компания', label: 'IT-компания' },
         { value: 'Здравоохранение', label: 'Здравоохранение' },
         { value: 'Искусство', label: 'Искусство' },
         { value: 'Спорт', label: 'Спорт' },
@@ -61,7 +61,7 @@ const ProfessionsSelectDesktop = ({ onCategoryChange }: { onCategoryChange: (cat
                 variant={'select_btn_desktop'}
                 size={'select_btn_desktop'}
                 onClick={handleSelectToggle}
-                className={`${isOpen ? ' border-2 ' : 'bg-[#101030]'}`}
+                className={`${isOpen ? ' border-2' : 'bg-[#101030]'}`}
             >
                 Отрасль профессии
                 <ChevronDownIconDesktop
@@ -148,4 +148,4 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
 
 SelectItem.displayName = 'SelectItem'
 
-export default ProfessionsSelectDesktop
+export default CompaniesSelectDesktop

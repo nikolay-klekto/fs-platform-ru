@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
 
-const ProfessionSendDesktop: React.FC = () => {
+const CompaniesSendDesktop: React.FC = () => {
     const [isFocused, setIsFocused] = useState(false)
     const [useRequest, setUseRequest] = useState('')
 
@@ -10,10 +10,9 @@ const ProfessionSendDesktop: React.FC = () => {
         setUseRequest('')
     }
     return (
-        <div className="relative z-[2] flex flex-col gap-[36px]">
+        <div className="relative z-[2] flex flex-col gap-[80px]">
             <div className="text36px_desktop mx-auto text-center font-medium uppercase">
-                <p>Вас интересуют другие профессии?</p>
-                <p>Напишите, и мы найдем стажировку для вас</p>
+                <p>ХОТИТЕ ПОРАБОТАТЬ В ДРУГОЙ КОМПАНИИ? ДАЙТЕ НАМ ЗНАТЬ!</p>
             </div>
             <div className="justify-bitween mx-auto flex items-center gap-[45px]">
                 <EnhancedInput
@@ -24,7 +23,7 @@ const ProfessionSendDesktop: React.FC = () => {
                     size={'gradient_desktop'}
                     rounded={'full'}
                     className={`${isFocused ? 'bg-[#101030]' : 'bg-transparent'} transition-none`}
-                    wrapperClassName={`justify-bitween 4xl:w-[750px] 3xl:w-[700px] relative flex h-[64px] w-[800px] rounded-[50px] p-[3px] 2xl:w-[600px] ${isFocused ? 'bg-gradient-desktop ' : 'border-[3px] border-[#878797] bg-transparent'}`}
+                    wrapperClassName={`justify-bitween 4xl:w-[750px] 3xl:w-[700px] relative flex h-[64px] w-[800px] rounded-[50px] p-[3px] 2xl:w-[600px] ${isFocused ? 'bg-gradient-desktop border-none' : 'border-[3px] border-[#878797] bg-transparent'}`}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
                 />
@@ -40,4 +39,4 @@ const ProfessionSendDesktop: React.FC = () => {
         </div>
     )
 }
-export default ProfessionSendDesktop
+export default CompaniesSendDesktop
