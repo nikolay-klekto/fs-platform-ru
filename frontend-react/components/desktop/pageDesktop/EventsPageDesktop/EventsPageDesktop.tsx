@@ -39,7 +39,6 @@ const EventsPageDesktop: React.FC = () => {
 
         setFilteredContent(filtered)
         setCurrentPage(1)
-        console.log(dates)
     }, [dates])
 
     const isEmpty = filteredContent.length === 0
@@ -82,7 +81,7 @@ const EventsPageDesktop: React.FC = () => {
                             </>
                         ) : (
                             <div>
-                                <h2 className="pt-10 text-4xl opacity-20">Нет мероприятий по данным категориям</h2>
+                                <p className="pt-10 text-4xl opacity-20">Нет мероприятий по данным категориям</p>
                             </div>
                         )}
                     </div>
