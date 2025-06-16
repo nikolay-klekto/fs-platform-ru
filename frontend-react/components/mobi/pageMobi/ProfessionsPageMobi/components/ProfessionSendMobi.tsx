@@ -11,7 +11,7 @@ const ProfessionSendMobi: React.FC = () => {
     }
     return (
         <div className="mt-[30px] flex flex-col gap-[17px] md:items-center">
-            <div className="text-[14px] font-medium uppercase md:text-left">
+            <div className="text-[14px] font-medium uppercase md:text-center">
                 <p>Вас интересуют другие профессии?</p>
                 <p>Напишите, и мы найдем старжировку для вас!</p>
             </div>
