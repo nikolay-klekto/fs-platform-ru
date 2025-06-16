@@ -204,7 +204,7 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                 variant={'select_btn_desktop'}
                 size={'select_btn_desktop_date'}
                 onClick={handleSelectToggle}
-                className={` ${isOpen ? 'bg-gradient-desktop' : 'bg-[#101030] hover:bg-gradient-desktop'}`}
+                className={` ${isOpen ? 'bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Дата
                 <ChevronDownIconDesktop
