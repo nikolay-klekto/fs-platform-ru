@@ -41,7 +41,7 @@ const buttonVariants = cva(
                 circleDarkBlue: 'rounded-[50%] bg-[#272744]',
                 select_day: 'bg-gradient-desktop rounded-[90px] text-white',
                 hover_button_date:
-                    'button-border-desktop-date 4xl:text-2xl 3xl:text-xl 2xl:text-lg text-sm rounded-[90px] text-white',
+                    'hover:button-border-desktop-date border-2 border-[#878797] bg-[#1f203f] rounded-[90px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg text-sm rounded-[90px] text-white',
                 cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
             },
             size: {
