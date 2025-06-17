@@ -1,10 +1,11 @@
 'use client'
+
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import PersonalAccountPageDesktop from '@/components/desktop/pageDesktop/PesronalAccountPageDesktop/PersonalAccountPageDesktop'
-import PersonalAccountPageMobi from '@/components/mobi/pageMobi/PersonalAccountPageMobi/PersonalAccountPageMobi'
+import ShoppingCartPageDesktop from '@/components/desktop/pageDesktop/ShoppingCartPageDesktop/ShoppingCartPageDesktop'
+import ShoppingCartPageMobi from '@/components/mobi/pageMobi/ShoppingCartPageMobi/ShoppingCartPageMobi'
 
-export default function PersonalAccount() {
+export default function Companies() {
     const [isClient, setIsClient] = useState(false)
 
     useEffect(() => {
@@ -22,11 +23,11 @@ export default function PersonalAccount() {
         <div>
             {isDesktop ? (
                 <>
-                    <PersonalAccountPageDesktop />
+                    <ShoppingCartPageDesktop />
                 </>
             ) : (
                 <>
-                    <PersonalAccountPageMobi />
+                    <ShoppingCartPageMobi />
                 </>
             )}
         </div>
