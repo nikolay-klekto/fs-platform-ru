@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useState, useMemo, useRef } from 'react'
+import React, { useState, useMemo, useRef, useEffect } from 'react'
 import { ChevronDownIconMobi, SearchIconMobi } from '@/components/assets/iconsMobi'
+import { GradientButtonMobi } from '@/components/mobi/shared/GradientButtonMobi'
 
 interface Props {
     selectedCities: string[]
@@ -35,6 +36,7 @@ const cityList = [
 
 const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onChange, onClear, onClose }) => {
     const [search, setSearch] = useState('')
+    const [savedCities, setSavedCities] = useState(selectedCities)
     const scrollRef = useRef<HTMLDivElement>(null)
 
     const filteredCities = useMemo(() => {
@@ -42,30 +44,35 @@ const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onChange, onCle
     }, [search])
 
     const favorites = useMemo(
-        () => filteredCities.filter((city) => selectedCities.includes(city)),
-        [filteredCities, selectedCities],
+        () => filteredCities.filter((city) => savedCities.includes(city)),
+        [filteredCities, savedCities],
     )
     const rest = useMemo(
-        () => filteredCities.filter((city) => !selectedCities.includes(city)),
-        [filteredCities, selectedCities],
+        () => filteredCities.filter((city) => !savedCities.includes(city)),
+        [filteredCities, savedCities],
     )
 
     function toggleCity(city: string) {
-        if (selectedCities.includes(city)) {
-            onChange(selectedCities.filter((c) => c !== city))
+        if (savedCities.includes(city)) {
+            setSavedCities(savedCities.filter((c) => c !== city))
         } else {
-            onChange([...selectedCities, city])
+            setSavedCities([...savedCities, city])
         }
     }
 
     function handleClear() {
-        onClear()
+        setSavedCities([])
         setSearch('')
+        onClear()
     }
+
+    useEffect(() => {
+        setSavedCities(selectedCities)
+    }, [selectedCities])
 
     return (
         <div className="fixed inset-0 z-50 flex items-end">
-            <div className="relative flex h-[92vh] w-full max-w-full flex-col rounded-t-[40px] bg-[#101030] pb-4">
+            <div className="relative flex h-[92vh] w-full max-w-full flex-col rounded-t-[40px] bg-[#101030]">
                 <div className="mx-auto mb-2 flex h-[20px] w-full touch-none items-center justify-center pt-[24px]">
                     <div className="mx-auto mb-4 h-[4px] w-[40px] rounded-full bg-[#353652]" />{' '}
                 </div>
@@ -90,8 +97,8 @@ const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onChange, onCle
                         Очистить
                     </button>
                 </div>
-                <div className="mx-4 mb-[18px] h-full rounded-[25px] bg-[#1F203F] p-2">
-                    <div className="relative mx-px mb-[14px] flex items-center rounded-[50px] border-2 border-[#878797] bg-transparent">
+                <div className="relative mx-4 mb-[18px] h-full rounded-[25px] bg-[#1F203F] p-2">
+                    <div className="relative mx-1 mb-[14px] flex items-center rounded-[50px] border-2 border-[#878797] bg-transparent">
                         <input
                             className="flex w-full rounded-[50px] bg-transparent py-[16px] pl-[16px] pr-12 text-[14px] font-medium not-italic leading-[17px] text-[#FFFFFF] placeholder-[#353652] outline-none"
                             placeholder="Поиск"
@@ -108,7 +115,7 @@ const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onChange, onCle
                         style={{
                             WebkitOverflowScrolling: 'touch',
                             minHeight: 0,
-                            maxHeight: 'calc(70vh - 100px)',
+                            maxHeight: 'calc(60vh - 100px)',
                         }}
                     >
                         <ul className="space-y-1">
@@ -150,7 +157,7 @@ const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onChange, onCle
                                 <li key={`rest-${city}`}>
                                     <button
                                         className={`flex w-full items-center rounded-[12px] bg-transparent p-4 text-[14px] font-medium ${
-                                            selectedCities.includes(city) ? 'bg-[#23244a] text-white' : 'text-white/90'
+                                            savedCities.includes(city) ? 'bg-[#23244a] text-white' : 'text-white/90'
                                         } focus:outline-none`}
                                         onClick={() => toggleCity(city)}
                                     >
@@ -160,6 +167,14 @@ const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onChange, onCle
                                 </li>
                             ))}
                         </ul>
+                    </div>
+                    <div className="absolute bottom-0 left-0 flex w-full items-center justify-center px-4 pb-[23px]">
+                        <GradientButtonMobi
+                            onClick={() => {
+                                onChange(savedCities)
+                                onClose()
+                            }}
+                        />
                     </div>
                 </div>
             </div>

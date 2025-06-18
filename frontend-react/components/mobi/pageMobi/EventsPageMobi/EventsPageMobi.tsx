@@ -11,17 +11,28 @@ import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import { FiltersIconMobi } from '@/components/assets/iconsMobi'
 
 const EventsPageMobi: React.FC = () => {
-    //const [searchQuery, setSearchQuery] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
-    const totalPages = Math.ceil(content.length / cardsPerPage)
     const [showFilter, setShowFilter] = useState(false)
+    const [filters, setFilters] = useState<{
+        categories: string[]
+        dates: string[]
+        cities: string[]
+    }>({
+        categories: [],
+        dates: [],
+        cities: [],
+    })
 
-    // const [filters, setFilters] = useState({
-    //     category: null,
-    //     date: null,
-    //     city: null,
-    // })
+    const filteredEvents = content.filter(
+        (event) =>
+            (filters.categories.length === 0 || filters.categories.includes(event.category)) &&
+            (filters.dates.length === 0 || filters.dates.includes(event.date)) &&
+            (filters.cities.length === 0 || filters.cities.includes(event.city)),
+    )
+
+    const totalPages = Math.ceil(filteredEvents.length / cardsPerPage)
+
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
@@ -35,29 +46,48 @@ const EventsPageMobi: React.FC = () => {
                         <div className="mb-10 flex items-center justify-between pr-[4px]">
                             <h1 className="text28px_mobi relative uppercase">Мероприятия</h1>
                             <FiltersIconMobi className={`size-[24px] text-white`} onClick={() => setShowFilter(true)} />
-                            {showFilter && <EventsFilterModalMobi onClose={() => setShowFilter(false)} />}
+                            {/* {showFilter && <EventsFilterModalMobi onClose={() => setShowFilter(false)} />} */}
+                            {showFilter && (
+                                <EventsFilterModalMobi
+                                    onClose={() => setShowFilter(false)}
+                                    filters={filters}
+                                    onApply={setFilters}
+                                />
+                            )}
                         </div>
                         <div className="flex flex-col items-center gap-[24px]">
-                            {content.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
-                                <EventsCardMobi
-                                    key={item.id}
-                                    title={item.title}
-                                    category={item.category}
-                                    image={item.image}
-                                    date={item.date}
-                                    time={item.time}
-                                    week={item.week}
-                                    city={item.city}
-                                    place={item.place}
-                                    company={item.company}
-                                />
-                            ))}
+                            <div className="flex min-h-[300px] flex-col items-center justify-center gap-[24px]">
+                                {filteredEvents.length === 0 ? (
+                                    <div className="py-12 text-center text-[16px] text-[#878797]">
+                                        Нет мероприятий по выбранным фильтрам
+                                    </div>
+                                ) : (
+                                    filteredEvents
+                                        .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
+                                        .map((item) => (
+                                            <EventsCardMobi
+                                                key={item.id}
+                                                title={item.title}
+                                                category={item.category}
+                                                image={item.image}
+                                                date={item.date}
+                                                time={item.time}
+                                                week={item.week}
+                                                city={item.city}
+                                                place={item.place}
+                                                company={item.company}
+                                            />
+                                        ))
+                                )}
+                            </div>
                         </div>
-                        <EventsPaginationMobi
-                            totalPages={totalPages}
-                            currentPage={currentPage}
-                            onPageChange={handlePageChange}
-                        />
+                        {filteredEvents.length > 0 && (
+                            <EventsPaginationMobi
+                                totalPages={totalPages}
+                                currentPage={currentPage}
+                                onPageChange={handlePageChange}
+                            />
+                        )}
                     </div>
                 </div>
                 <FooterMobi />
