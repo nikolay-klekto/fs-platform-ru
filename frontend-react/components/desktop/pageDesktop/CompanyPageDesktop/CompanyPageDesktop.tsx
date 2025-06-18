@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
+import { MapPinIconDesktop } from '@/components/assets/iconsDesktop'
 import { contentCompanyAboutDesktop } from './contentCompanyPageDesktop/content'
 import InternshipProfessionsDesktop from './components/InternshipProfessionsDesktop/InternshipProfessionsDesktop'
 import ReviewsDesktop from './components/ReviewsDesktop/ReviewsDesktop'
@@ -15,7 +16,7 @@ const CompanyDesktop: React.FC = () => {
             <HeaderDesktop />
             <main className="bg-[#101030] text-white ">
                 <div className="container relative overflow-hidden  ">
-                    <div className="flex items-center space-x-1 pb-[29px] pl-[65px] pt-[60px] text-[20px] text-gray-500 ">
+                    <div className="relative z-20 flex items-center space-x-1 pb-[29px] pl-[65px] pt-[60px] text-[20px] text-gray-500 ">
                         <Link href="/" className="hover:underline">
                             Главная
                         </Link>
@@ -74,14 +75,10 @@ const CompanyDesktop: React.FC = () => {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >
-                                                <img
-                                                    src="/images/map-pin.png"
-                                                    alt="google map"
-                                                    className="size-[37px] cursor-pointer"
-                                                />
+                                                <MapPinIconDesktop />
                                             </a>
                                             <div className="pointer-events-none absolute left-0 top-0 z-10 opacity-0 transition-opacity duration-200 group-hover:opacity-80">
-                                                <div className="flex h-[73px] w-[333px] items-center justify-center whitespace-nowrap rounded-[50px] bg-[url('/background/GoogleMap.png')] bg-cover bg-no-repeat pb-[14px] pt-[30px] text-[21px] ">
+                                                <div className="flex h-[73px] w-[333px] items-center justify-center whitespace-nowrap rounded-[50px] bg-[url('/background/google-map.png')] bg-cover bg-no-repeat pb-[14px] pt-[30px] text-[21px] ">
                                                     Открыть в Google карте
                                                 </div>
                                             </div>
@@ -92,14 +89,10 @@ const CompanyDesktop: React.FC = () => {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >
-                                                <img
-                                                    src="/images/map-pin.png"
-                                                    alt="google map"
-                                                    className="size-[37px] cursor-pointer"
-                                                />
+                                                <MapPinIconDesktop />
                                             </a>
                                             <div className="pointer-events-none absolute left-0 top-0 z-10 opacity-0 transition-opacity duration-200 group-hover:opacity-80">
-                                                <div className="flex h-[73px] w-[333px] items-center justify-center whitespace-nowrap rounded-[50px] bg-[url('/background/GoogleMap.png')] bg-cover bg-no-repeat pb-[14px] pt-[30px] text-[21px] ">
+                                                <div className="flex h-[73px] w-[333px] items-center justify-center whitespace-nowrap rounded-[50px] bg-[url('/background/google-map.png')] bg-cover bg-no-repeat pb-[14px] pt-[30px] text-[21px] ">
                                                     Открыть в Google карте
                                                 </div>
                                             </div>
@@ -109,10 +102,12 @@ const CompanyDesktop: React.FC = () => {
                             </div>
                         ))}
 
-                        <h2 className="text-medium mb-[63px] mt-[118px] text-[48px] ">ПРОФЕССИИ В ЭТОЙ КОМПАНИИ</h2>
+                        <h2 className="mb-[63px] mt-[118px] text-[48px] font-medium uppercase ">
+                            Профессии в компании
+                        </h2>
                         <InternshipProfessionsDesktop />
-                        <h2 className="text-medium mb-[81px] mt-[120px] text-[48px] 2xl:mt-[80px] 3xl:mt-[100px]">
-                            ПРЕИМУЩЕСТВА КОМПАНИИ
+                        <h2 className="mb-[81px] mt-[120px] text-[48px] font-medium uppercase 2xl:mt-[80px] 3xl:mt-[100px]">
+                            Преимущества компании
                         </h2>
                         <ReviewsDesktop />
                     </div>
