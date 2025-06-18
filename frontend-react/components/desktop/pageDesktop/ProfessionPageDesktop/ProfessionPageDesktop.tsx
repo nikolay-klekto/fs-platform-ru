@@ -15,7 +15,7 @@ const ProfessionPageDesktop: React.FC = () => {
             <HeaderDesktop />
             <main className="bg-[#101030] text-white">
                 <div className="container relative overflow-hidden  ">
-                    <div className="flex items-center space-x-1 pb-[29px] pl-[65px] pt-[60px] text-[20px] text-gray-500">
+                    <div className="relative z-10 flex items-center space-x-1 pb-[29px] pl-[65px] pt-[60px] text-[20px] text-gray-500">
                         <Link href="/" className="hover:underline">
                             Главная
                         </Link>
@@ -35,7 +35,7 @@ const ProfessionPageDesktop: React.FC = () => {
                         </p>
                         <div className="relative max-h-[613px] w-full">
                             <Image
-                                src="/images/EpamForProfessionPage.png"
+                                src="/images/epam-for-profession-page.png"
                                 alt="EpamLogo"
                                 className="object-contain"
                                 width={1802}
@@ -49,10 +49,10 @@ const ProfessionPageDesktop: React.FC = () => {
                                 </p>
                             </div>
                         ))}
-                        <h2 className="mb-[63px] mt-[118px] text-[48px] uppercase">компании для стажировки:</h2>
+                        <h2 className="mb-[63px] mt-[118px] text-[48px] uppercase">Компании для стажировки:</h2>
                         <InternshipCompaniesDesktop />
                         <h2 className="mb-[81px] mt-[120px] text-[48px] uppercase  2xl:mt-[80px] 3xl:mt-[100px]">
-                            отзывы о профессии
+                            Отзывы о профессии
                         </h2>
                         <ReviewsDesktop />
                     </div>

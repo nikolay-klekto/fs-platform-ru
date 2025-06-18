@@ -12,9 +12,9 @@ interface IInternshipnames {
 }
 export const contentInternshipnamesDesktop: IInternshipnames[] = [
     {
-        name: 'Epam systems',
+        name: 'EPAM systems',
         image: {
-            src: '/images/epam.png',
+            src: '/images/EPAM.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -24,9 +24,9 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
         industry: 'IT-компания',
     },
     {
-        name: 'Epam systems',
+        name: 'EPAM systems',
         image: {
-            src: '/images/epam.png',
+            src: '/images/EPAM.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -36,9 +36,9 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
         industry: 'IT-компания',
     },
     {
-        name: 'Epam systems',
+        name: 'EPAM systems',
         image: {
-            src: '/images/epam.png',
+            src: '/images/EPAM.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -48,9 +48,9 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
         industry: 'IT-компания',
     },
     {
-        name: 'Epam systems',
+        name: 'EPAM systems',
         image: {
-            src: '/images/epam.png',
+            src: '/images/EPAM.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -60,9 +60,9 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
         industry: 'IT-компания',
     },
     {
-        name: 'Epam systems',
+        name: 'EPAM systems',
         image: {
-            src: '/images/epam.png',
+            src: '/images/EPAM.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -72,9 +72,9 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
         industry: 'IT-компания',
     },
     {
-        name: 'Epam systems',
+        name: 'EPAM systems',
         image: {
-            src: '/images/epam.png',
+            src: '/images/EPAM.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -84,10 +84,10 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
         industry: 'IT-компания',
     },
     {
-        name: 'Epam systems',
+        name: 'EPAM systems',
 
         image: {
-            src: '/images/epam.png',
+            src: '/images/EPAM.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -97,9 +97,9 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
         industry: 'IT-компания',
     },
     {
-        name: 'Epam systems',
+        name: 'EPAM systems',
         image: {
-            src: '/images/epam.png',
+            src: '/images/EPAM.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -109,9 +109,9 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
         industry: 'IT-компания',
     },
     {
-        name: 'Epam systems',
+        name: 'EPAM systems',
         image: {
-            src: '/images/epam.png',
+            src: '/images/EPAM.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -121,9 +121,9 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
         industry: 'IT-компания',
     },
     {
-        name: 'Epam systems',
+        name: 'EPAM systems',
         image: {
-            src: '/images/epam.png',
+            src: '/images/EPAM.png',
             alt: 'company-logo',
             width: 320,
             height: 400,

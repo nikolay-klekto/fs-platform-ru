@@ -45,10 +45,10 @@ const ItemCompaniesDesktop: React.FC<IItemCompaniesDesktop> = ({ image, name, in
                 className="rounded-[20px] opacity-60"
             />
             <div className="absolute inset-0 w-full flex flex-col justify-between items-start h-full  pl-[20px]">
-                <div className="text-[21px] mt-[21px] bold text-white">{industry}</div>
+                <div className="text-[21px] mt-[21px] font-semibold text-white">{industry}</div>
                 <div className="flex flex-col items-start">
-                    <div className="text-[30px] pl-[10px] text-white">{name}</div>
-                    <p className="bg-white w-full rounded-[50px] pl-[10px] mb-[23px] pr-[42px]  text-[24px] leading-[40px] tracking-normal text-[#878797]">
+                    <div className="text-[30px] pl-[10px] text-white font-semibold">{name}</div>
+                    <p className="bg-white w-full rounded-[50px] pl-[10px] mb-[23px] pr-[42px]  text-[24px] leading-[40px] tracking-normal text-[#878797] font-medium">
                         от{' '}
                         <span className="bg-gradient-desktop bg-clip-text text-[[28px] text-transparent ">
                             {price} BYN/

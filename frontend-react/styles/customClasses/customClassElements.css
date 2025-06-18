@@ -9,7 +9,16 @@
         @apply bg-white shadow-md rounded-lg p-4;
     }
 
-    .scrollbar_custom::-webkit-scrollbar {
+    @-moz-document url-prefix() {
+    .scrollbar_custom {
+    scrollbar-width:thin;
+    scrollbar-color: #898997 ;
+    background-color:rgba(255, 255, 255, 0.1) ;
+    min-height: 10px; 
+    border-radius: 4px;  }
+
+}
+.scrollbar_custom::-webkit-scrollbar {
         height: 4px;
     }
 
@@ -23,6 +32,10 @@
         border-radius: 4px;
     }
 
+     .scrollbar_custom::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
     .no-scrollbar_custom::-webkit-scrollbar {
         display: none;
     }
@@ -31,6 +44,10 @@
         scrollbar-width: none;
     }
 
+    .title160px_desktop {
+        @apply text-white text-[160px] 4xl:text-[150px] 3xl:text-[128px] 2xl:text-[115px] font-semibold uppercase;
+    }
+    
     .title80px_desktop {
         @apply text-white text-35xl 4xl:text-27xl 3xl:text-25xl 2xl:text-21xl font-semibold uppercase;
     }
@@ -54,15 +71,26 @@
     .text28px_desktop {
         @apply text-[28px] 4xl:text-9xl 3xl:text-7xl 2xl:text-5xl;
     }
+
+    .text26px_desktop {
+        @apply text-8xl 4xl:text-8xl 3xl:text-6xl 2xl:text-4xl;
+    }
+
     .text24px_desktop {
         @apply text-[24px] 4xl:text-6xl 3xl:text-5xl 2xl:text-4xl;
+    }
+
+    .text22px_desktop {
+        @apply text-6xl 4xl:text-6xl 3xl:text-3xl 2xl:text-2xl;
+    }
+
+ .text20px_desktop {
+        @apply text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg;
     }
     .text18px_desktop {
         @apply text-[18px] 4xl:text-4xl 3xl:text-2xl 2xl:text-xl;
     }
-    .text20px_desktop {
-        @apply text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg;
-    }
+   
     .text15px_desktop {
         @apply text-2xl 4xl:text-2xl 3xl:text-lg 2xl:text-base;
     }

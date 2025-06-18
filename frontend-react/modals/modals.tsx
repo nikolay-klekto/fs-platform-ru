@@ -8,7 +8,6 @@ import ModalConfirmOrderDeleteDesktop from '@/modals/ModalsDesktop/ModalConfirmD
 import ModalCallMobi from '@/modals/ModalsMobi/ModalCallMobi'
 import RegistrationModalMobi from '@/modals/ModalsMobi/RegistrationModalMobi'
 import LoginModalMobi from '@/modals/ModalsMobi/LoginModalMobi'
-import ProfessionModalDesktop from '@/components/desktop/pageDesktop/ProfessionsModalDesktop/ProfessionModalDesktop'
 import ProfessionModalMobi from '@/components/mobi/layout/ProfessionModalMobi/ProfessionModalMobi'
 import ModalOrderPlacedDesktop from '@/modals/ModalsDesktop/ModalOrderPlacedDesktop'
 import ModalContractTerminatedDesktop from '@/modals/ModalsDesktop/ModalContractTerminatedDesktop'
@@ -39,13 +38,6 @@ export const modals = {
         {
             id: 'login_desktop',
             content: ({ onClose }: IModalContent) => <LoginModalDesktop onClose={onClose} />,
-        },
-        {
-            id: 'profession_modal_desktop',
-            content: ({ onClose, modalProps }: IModalContent) => {
-                const { profession, professionId } = modalProps as { profession: string; professionId: number | null }
-                return <ProfessionModalDesktop onClose={onClose} profession={profession} professionId={professionId} />
-            },
         },
         {
             id: 'confirm_avoid_contract_desktop',

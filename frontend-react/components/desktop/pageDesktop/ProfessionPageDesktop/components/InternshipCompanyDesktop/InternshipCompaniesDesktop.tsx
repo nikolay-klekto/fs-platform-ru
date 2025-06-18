@@ -66,9 +66,9 @@ const InternshipCompaniesDesktop: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="scrollbar_custom relative mx-auto mt-[clamp(25px,_2vw,_40px)] h-2 w-[65%] cursor-pointer overflow-x-scroll"
+                className="scrollbar_custom relative mx-auto mt-[77px] mb-[192px] w-[65%] cursor-pointer overflow-x-scroll"
             >
-                <div className="h-full" style={{ width: `${scrollbarWidth}px` }}></div>
+                <div className="absolute h-2" style={{ width: `${scrollbarWidth}px` }}></div>
             </div>
         </>
     )
