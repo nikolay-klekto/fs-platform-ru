@@ -24,9 +24,15 @@ interface ProfessionsSelectMobiProps {
 const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedCategories, setSelectedCategories }) => {
     const [isOpen, setIsOpen] = useState(false)
     const selectRef = useRef<HTMLDivElement>(null)
+    const [pendingSelectedCategories, setPendingSelectedCategories] = useState(selectedCategories)
 
+    // const toggleOption = (value: string) => {
+    //     setSelectedCategories((prev) =>
+    //         prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value],
+    //     )
+    // }
     const toggleOption = (value: string) => {
-        setSelectedCategories((prev) =>
+        setPendingSelectedCategories((prev) =>
             prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value],
         )
     }
@@ -69,11 +75,12 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
     ]
 
     const clearSelection = () => {
+        setPendingSelectedCategories([])
         setSelectedCategories([])
     }
 
-    const selected = options.filter((o) => selectedCategories.includes(o.value))
-    const unselected = options.filter((o) => !selectedCategories.includes(o.value))
+    const selected = options.filter((o) => pendingSelectedCategories.includes(o.value))
+    const unselected = options.filter((o) => !pendingSelectedCategories.includes(o.value))
 
     return (
         <div className="relative z-[3]">
@@ -84,13 +91,7 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
                 }}
             />
             {isOpen && (
-                <div
-                    // role="button"
-                    // tabIndex={0}
-                    // onClick={handleBackdropClick}
-                    // onKeyDown={handleBackdropKeyDown}
-                    className="fixed inset-0 z-[1] flex flex-col bg-black/70 "
-                >
+                <div className="fixed inset-0 z-[1] flex flex-col bg-black/70 ">
                     <div className="fixed left-0 top-0 z-50 size-full shadow-2xl">
                         <div
                             ref={selectRef}
@@ -123,7 +124,7 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
                                     <SelectItem
                                         key={option.value}
                                         value={option.value}
-                                        isChecked={selectedCategories.includes(option.value)}
+                                        isChecked={pendingSelectedCategories.includes(option.value)}
                                         onClick={() => toggleOption(option.value)}
                                         className="translate-y-0 opacity-100 transition-all duration-300 ease-out"
                                     >
@@ -148,7 +149,7 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
                             <div className="absolute bottom-0 left-0 flex w-full items-center justify-center px-4 pb-[23px]">
                                 <GradientButtonMobi
                                     onClick={() => {
-                                        setSelectedCategories(selectedCategories)
+                                        setSelectedCategories(pendingSelectedCategories)
                                         setIsOpen(false)
                                     }}
                                 />
