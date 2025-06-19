@@ -1,6 +1,6 @@
 'use client'
-import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { CheckedBoxIconMobi, FiltersIconMobi } from '@/components/assets/iconsMobi'
+import React, { useState } from 'react'
+import { CheckedBoxIconMobi, FiltersIconMobi, CrossIconMobi } from '@/components/assets/iconsMobi'
 import { GradientButtonMobi } from '@/components/mobi/shared/GradientButtonMobi'
 
 interface ISelectItem {
@@ -23,14 +23,8 @@ interface ProfessionsSelectMobiProps {
 
 const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedCategories, setSelectedCategories }) => {
     const [isOpen, setIsOpen] = useState(false)
-    const selectRef = useRef<HTMLDivElement>(null)
     const [pendingSelectedCategories, setPendingSelectedCategories] = useState(selectedCategories)
 
-    // const toggleOption = (value: string) => {
-    //     setSelectedCategories((prev) =>
-    //         prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value],
-    //     )
-    // }
     const toggleOption = (value: string) => {
         setPendingSelectedCategories((prev) =>
             prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value],
@@ -40,30 +34,6 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
     const handleSelectToggle = () => {
         setIsOpen((prev) => !prev)
     }
-
-    const handleClickOutside = useCallback(
-        (event: MouseEvent) => {
-            if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
-                setIsOpen(false)
-            }
-        },
-        [selectRef, setIsOpen],
-    )
-
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden'
-            document.addEventListener('mousedown', handleClickOutside)
-        } else {
-            document.body.style.overflow = ''
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-
-        return () => {
-            document.body.style.overflow = ''
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [isOpen, handleClickOutside])
 
     const options: ISelectOption[] = [
         { value: 'IT-отрасль', label: 'IT-отрасль' },
@@ -77,6 +47,7 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
     const clearSelection = () => {
         setPendingSelectedCategories([])
         setSelectedCategories([])
+        setIsOpen(false)
     }
 
     const selected = options.filter((o) => pendingSelectedCategories.includes(o.value))
@@ -91,69 +62,72 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
                 }}
             />
             {isOpen && (
-                <div className="fixed inset-0 z-[1] flex flex-col bg-black/70 ">
-                    <div className="fixed left-0 top-0 z-50 size-full shadow-2xl">
-                        <div
-                            ref={selectRef}
-                            className="relative flex h-[92vh] flex-col gap-1 rounded-b-[40px] bg-[#1F203F] px-[14px] pb-[18px] shadow-2xl"
-                        >
-                            <div className="mb-[10px] mt-[30px] flex items-center justify-between px-2 text-white">
-                                <span className="text-3xl font-semibold leading-[20px]">Выберите отрасль</span>
-                                <button
-                                    className="text-base font-medium leading-[15px] text-[#878797] underline"
-                                    onClick={clearSelection}
-                                >
-                                    Очистить
-                                </button>
-                            </div>
-                            <div
-                                className="scrollbar-thin scrollbar-thumb-[#878797] scrollbar-track-transparent mobi-scroll flex max-h-[calc(8*62px)] flex-col overflow-y-auto scroll-smooth pr-[8px]"
-                                style={{
-                                    minHeight: '420px',
-                                    maxHeight: '500px',
-                                    scrollbarGutter: 'stable',
-                                }}
+                <div className="fixed left-0 top-0 z-50 size-full shadow-2xl">
+                    <div className="relative flex min-h-screen flex-col gap-1 bg-[#1F203F] px-[14px] pb-[18px] shadow-2xl">
+                        <div className="mb-[10px] mt-[30px] flex items-center justify-between px-2 text-white">
+                            <span className="text-3xl font-semibold leading-[20px]">Выберите отрасль</span>
+                            {/* <button
+                                className="text-base font-medium leading-[15px] text-[#878797] underline"
+                                onClick={clearSelection}
                             >
-                                {' '}
-                                <div
-                                    className={`mb-1 pl-4 text-base text-[#878797] ${selected.length === 0 ? 'invisible' : ''}`}
+                                Очистить
+                            </button> */}
+                            <button
+                                type="button"
+                                onClick={clearSelection}
+                                aria-label="Очистить"
+                                className="flex size-9 items-center justify-center rounded-full transition hover:bg-[#232355]"
+                            >
+                                <CrossIconMobi />
+                            </button>
+                        </div>
+                        <div
+                            className="scrollbar-thin scrollbar-thumb-[#878797] scrollbar-track-transparent mobi-scroll flex max-h-[calc(8*62px)] flex-col overflow-y-auto scroll-smooth pr-[8px]"
+                            style={{
+                                minHeight: '420px',
+                                maxHeight: '500px',
+                                scrollbarGutter: 'stable',
+                            }}
+                        >
+                            {' '}
+                            <div
+                                className={`mb-1 pl-4 text-base text-[#878797] ${selected.length === 0 ? 'invisible' : ''}`}
+                            >
+                                Выбранные
+                            </div>
+                            {selected.map((option) => (
+                                <SelectItem
+                                    key={option.value}
+                                    value={option.value}
+                                    isChecked={pendingSelectedCategories.includes(option.value)}
+                                    onClick={() => toggleOption(option.value)}
+                                    className="translate-y-0 opacity-100 transition-all duration-300 ease-out"
                                 >
-                                    Выбранные
-                                </div>
-                                {selected.map((option) => (
-                                    <SelectItem
-                                        key={option.value}
-                                        value={option.value}
-                                        isChecked={pendingSelectedCategories.includes(option.value)}
-                                        onClick={() => toggleOption(option.value)}
-                                        className="translate-y-0 opacity-100 transition-all duration-300 ease-out"
-                                    >
-                                        {option.label}
-                                    </SelectItem>
-                                ))}
-                                {unselected.length > 0 && selected.length > 0 && (
-                                    <div className="mb-1 pl-4 text-base text-[#878797]">Другие отрасли</div>
-                                )}
-                                {unselected.map((option) => (
-                                    <SelectItem
-                                        key={option.value}
-                                        value={option.value}
-                                        isChecked={false}
-                                        onClick={() => toggleOption(option.value)}
-                                        className="translate-y-0 opacity-100 transition-all duration-300 ease-out"
-                                    >
-                                        {option.label}
-                                    </SelectItem>
-                                ))}
-                            </div>
-                            <div className="absolute bottom-0 left-0 flex w-full items-center justify-center px-4 pb-[23px]">
-                                <GradientButtonMobi
-                                    onClick={() => {
-                                        setSelectedCategories(pendingSelectedCategories)
-                                        setIsOpen(false)
-                                    }}
-                                />
-                            </div>
+                                    {option.label}
+                                </SelectItem>
+                            ))}
+                            {unselected.length > 0 && selected.length > 0 && (
+                                <div className="mb-1 pl-4 text-base text-[#878797]">Другие отрасли</div>
+                            )}
+                            {unselected.map((option) => (
+                                <SelectItem
+                                    key={option.value}
+                                    value={option.value}
+                                    isChecked={false}
+                                    onClick={() => toggleOption(option.value)}
+                                    className="translate-y-0 opacity-100 transition-all duration-300 ease-out"
+                                >
+                                    {option.label}
+                                </SelectItem>
+                            ))}
+                        </div>
+                        <div className="absolute bottom-0 left-0 flex w-full items-center justify-center px-4 pb-[23px]">
+                            <GradientButtonMobi
+                                onClick={() => {
+                                    setSelectedCategories(pendingSelectedCategories)
+                                    setIsOpen(false)
+                                }}
+                            />
                         </div>
                     </div>
                 </div>

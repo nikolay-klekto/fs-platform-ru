@@ -27,10 +27,7 @@ const ProfessionsPageMobi: React.FC = () => {
             if (normalizedQuery.length >= minSearchLength && !profLower.includes(normalizedQuery)) {
                 return false
             }
-            if (selectedCategories.length > 0 && !selectedCategories.includes(category)) {
-                return false
-            }
-            return true
+            return !(selectedCategories.length > 0 && !selectedCategories.includes(category))
         })
     })()
 
