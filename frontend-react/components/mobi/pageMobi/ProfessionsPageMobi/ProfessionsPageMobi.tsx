@@ -11,6 +11,7 @@ import { useModal } from '@/context/ContextModal'
 import ProfessionsSelectMobi from './components/ProfessionsSelectMobi'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
+import GradientButtonMobi from '../../shared/GradientButtonMobi'
 
 const ProfessionsPageMobi: React.FC = () => {
     const { openModal } = useModal()
