@@ -20,13 +20,19 @@ const ProfessionsPageMobi: React.FC = () => {
     const cardsPerPage = 6
     const minSearchLength = 3
 
-    const filteredContent = content.filter((item) => {
-        const matchesSearch =
-            searchQuery.length < minSearchLength ||
-            item.profession.toLowerCase().includes(searchQuery.toLowerCase().trim())
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(item.category)
-        return matchesSearch && matchesCategory
-    })
+    const filteredContent = (() => {
+        const normalizedQuery = searchQuery.trim().toLowerCase()
+        return content.filter(({ profession = '', category }) => {
+            const profLower = profession.toLowerCase()
+            if (normalizedQuery.length >= minSearchLength && !profLower.includes(normalizedQuery)) {
+                return false
+            }
+            if (selectedCategories.length > 0 && !selectedCategories.includes(category)) {
+                return false
+            }
+            return true
+        })
+    })()
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
 
