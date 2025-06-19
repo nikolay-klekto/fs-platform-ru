@@ -59,9 +59,14 @@ const EventsPageMobi: React.FC = () => {
     console.log('allEvents', allEvents)
     // console.log('filters', filters)
 
-    const filteredEvents = useMemo(() => {
+    const sortedEvents = useMemo(() => {
         if (!allEvents) return []
-        return allEvents.filter((event) => {
+        return [...allEvents].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    }, [allEvents])
+
+    const filteredEvents = useMemo(() => {
+        // if (!allEvents) return []
+        return sortedEvents.filter((event) => {
             if (filters.categories.length > 0 && !filters.categories.includes(event.eventCategory.category))
                 return false
             if (filters.cities.length > 0 && !filters.cities.includes(event.city.name)) return false
@@ -78,7 +83,7 @@ const EventsPageMobi: React.FC = () => {
             }
             return true
         })
-    }, [allEvents, filters])
+    }, [sortedEvents, filters])
 
     const totalPages = Math.ceil(filteredEvents.length / cardsPerPage)
 
