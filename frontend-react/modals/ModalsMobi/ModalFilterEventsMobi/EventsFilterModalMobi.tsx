@@ -13,11 +13,14 @@ interface Props {
         categories: string[]
         dates: string[]
         cities: string[]
+        dateScope: string
     }
-    onApply: (filters: { categories: string[]; dates: string[]; cities: string[] }) => void
+    onApply: (filters: { categories: string[]; dates: string[]; cities: string[]; dateScope: string }) => void
+    categories: string[]
+    cities: string[]
 }
 
-const EventsFilterModalMobi: React.FC<Props> = ({ onClose, filters, onApply }) => {
+const EventsFilterModalMobi: React.FC<Props> = ({ onClose, filters, onApply, cities, categories }) => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>(filters.categories)
     const [shortDates, setShortDates] = useState<string[]>(filters.dates)
     const [selectedCities, setSelectedCities] = useState<string[]>(filters.cities)
@@ -80,6 +83,7 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose, filters, onApply }) =
                                 categories: [],
                                 dates: [],
                                 cities: [],
+                                dateScope: '',
                             })
                         }}
                     >
@@ -87,7 +91,11 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose, filters, onApply }) =
                     </button>
                 </div>
 
-                <EventsFilterCategoryMobi selectedCategories={selectedCategories} onChange={setSelectedCategories} />
+                <EventsFilterCategoryMobi
+                    selectedCategories={selectedCategories}
+                    onChange={setSelectedCategories}
+                    categories={categories}
+                />
                 <EventsFilterDateMobi
                     shortDates={shortDates}
                     onShortDatesChange={setShortDates}
@@ -106,6 +114,7 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose, filters, onApply }) =
                         onChange={setSelectedCities}
                         onClear={() => setSelectedCities([])}
                         onClose={() => setCityModalOpen(false)}
+                        cities={cities}
                     />
                 )}
                 <div className="flex justify-center">
@@ -115,6 +124,7 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose, filters, onApply }) =
                                 categories: selectedCategories,
                                 dates: shortDates,
                                 cities: selectedCities,
+                                dateScope: scope || '',
                             })
                             console.log(shortDates)
                             onClose()

@@ -9,39 +9,17 @@ interface Props {
     onChange: (cities: string[]) => void
     onClear: () => void
     onClose: () => void
+    cities: string[]
 }
 
-const cityList = [
-    'Минск',
-    'Гомель',
-    'Могилёв',
-    'Витебск',
-    'Гродно',
-    'Брест',
-    'Барановичи',
-    'Бобруйск',
-    'Борисов',
-    'Пинск',
-    'Орша',
-    'Мозырь',
-    'Новополоцк',
-    'Солигорск',
-    'Лида',
-    'Молодечно',
-    'Полоцк',
-    'Жодино',
-    'Светлогорск',
-    'Речица',
-]
-
-const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onChange, onClear, onClose }) => {
+const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onChange, onClear, onClose, cities }) => {
     const [search, setSearch] = useState('')
     const [savedCities, setSavedCities] = useState(selectedCities)
     const scrollRef = useRef<HTMLDivElement>(null)
 
     const filteredCities = useMemo(() => {
-        return cityList.filter((city) => city.toLowerCase().startsWith(search.toLowerCase()))
-    }, [search])
+        return cities.filter((city) => city.toLowerCase().startsWith(search.toLowerCase()))
+    }, [search, cities])
 
     const favorites = useMemo(
         () => filteredCities.filter((city) => savedCities.includes(city)),

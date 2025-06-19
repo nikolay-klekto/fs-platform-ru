@@ -5,18 +5,10 @@ import React from 'react'
 interface Props {
     selectedCategories: string[]
     onChange: (categories: string[]) => void
+    categories: string[]
 }
 
-const categories = [
-    'Выставка/презентация',
-    'Конференция',
-    'Мастер-класс/семинар/тренинг',
-    'Стажировка',
-    'День открытых дверей',
-    'Ярмарка вакансий',
-]
-
-const EventsFilterCategoryMobi: React.FC<Props> = ({ selectedCategories, onChange }) => {
+const EventsFilterCategoryMobi: React.FC<Props> = ({ selectedCategories, onChange, categories }) => {
     const toggleCategory = (cat: string) => {
         if (selectedCategories.includes(cat)) {
             onChange(selectedCategories.filter((c) => c !== cat))

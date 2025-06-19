@@ -10,7 +10,7 @@ interface IEventsCard {
     category: string
     image: string
     date: string
-    week: string
+    // week: string
     time: string
     city: string
     place: string
@@ -18,7 +18,10 @@ interface IEventsCard {
 }
 
 const EventsCardMobi: React.FC<IEventsCard> = ({ title, category, image, date, city, place, company }) => {
-    const [day, month] = date.split('.')
+    // const [day, month] = date.split('-')
+    const jsDate = new Date(date)
+    const day = jsDate.getDate().toString().padStart(2, '0')
+    const month = jsDate.getMonth()
     const monthNames = [
         'Января',
         'Февраля',
@@ -33,7 +36,8 @@ const EventsCardMobi: React.FC<IEventsCard> = ({ title, category, image, date, c
         'Ноября',
         'Декабря',
     ]
-    const displayMonth = monthNames[parseInt(month, 10) - 1]
+    // const displayMonth = monthNames[parseInt(month, 10) - 1]
+    const displayMonth = monthNames[month]
 
     return (
         <>
