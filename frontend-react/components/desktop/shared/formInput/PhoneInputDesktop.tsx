@@ -5,7 +5,7 @@ interface IPhoneInputDesktop {
     value: string
     onChange: (value: string) => void
     onError: (value: string) => void
-    onBlur?: (value: string) => void
+    onBlur?: React.FocusEventHandler<HTMLInputElement>
     className?: string
     labelClassName?: string
     wrapperClassName?: string
@@ -95,9 +95,9 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
         return error
     }
 
-    const handleBlur = () => {
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         validateValue(inputValue)
-        onBlur?.(inputValue)
+        onBlur?.(e)
     }
 
     const handleFocus = () => {
@@ -117,7 +117,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     }
 
     return (
-        <div className={`flex w-full flex-col gap-1.5 ${wrapperClassName}`}>
+        <div className={`flex w-full flex-col gap-1 ${wrapperClassName}`}>
             <label htmlFor="phone" className={`mb-1 text-2xl font-medium text-white ${labelClassName}`}>
                 Номер телефона*
             </label>

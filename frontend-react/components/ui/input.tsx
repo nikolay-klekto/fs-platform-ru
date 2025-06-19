@@ -1,11 +1,7 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
-import {
-    CheckedBoxFormDesktop,
-    UncheckedBoxFormDesktop,
-    ErrorUncheckedBoxFormDesktop,
-} from '@/components/assets/iconsDesktop'
+import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
 
 const inputVariants = cva(
     'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
@@ -63,7 +59,7 @@ export interface IEnhancedInput
     error?: string
     onChange?: (value: string) => void
     onFocus?: () => void
-    onBlur?: () => void
+    onBlur?: React.FocusEventHandler<HTMLInputElement>
     label?: string
     helperText?: string
     helperTextClassName?: string
@@ -142,9 +138,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             onFocus?.()
         }
 
-        const handleBlur = () => {
+        const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
             setIsFocused(false)
-            onBlur?.()
+            onBlur?.(e)
 
             if (internalValue) {
                 validateComponent(internalValue)
@@ -158,7 +154,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
         }
 
         return (
-            <div className={cn('flex flex-col gap-1.5', wrapperClassName)}>
+            <div className={cn('flex flex-col gap-1', wrapperClassName)}>
                 {label && (
                     <label
                         htmlFor={name}
@@ -180,7 +176,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 {internalValue ? (
                                     <CheckedBoxFormDesktop className={checkboxIconSize} />
                                 ) : hasErrors ? (
-                                    <ErrorUncheckedBoxFormDesktop className={checkboxIconSize} />
+                                    <UncheckedBoxFormDesktop stroke="#E99B9B" className={checkboxIconSize} />
                                 ) : (
                                     <UncheckedBoxFormDesktop className={checkboxIconSize} />
                                 )}
@@ -209,7 +205,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         {...props}
                     />
                 )}
-                <div className="flex mb-2 h-3">
+                <div className="flex h-4">
                     {(helperText || internalError) && (
                         <span
                             className={cn(
