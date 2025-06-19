@@ -19,8 +19,10 @@ type FiltersState = {
     dateScope: string
 }
 
+type EventType = (typeof fakeEvents)[number]
+
 const EventsPageMobi: React.FC = () => {
-    const [allEvents, setAllEvents] = useState(fakeEvents)
+    const [allEvents, setAllEvents] = useState<EventType[] | null>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [currentPage, setCurrentPage] = useState(1)
@@ -33,49 +35,51 @@ const EventsPageMobi: React.FC = () => {
         dateScope: '',
     })
 
+    const USE_FAKE_DATA = true
+
     useEffect(() => {
+        if (USE_FAKE_DATA) {
+            setAllEvents(fakeEvents)
+            setLoading(false)
+            return
+        }
         getAllActualEvents()
-            .then((data) => {
-                if (!data || !Array.isArray(data) || data.length === 0) {
-                    setAllEvents(fakeEvents)
-                } else {
-                    setAllEvents(fakeEvents) // fakeEvents = local, data=backend
-                }
-                setLoading(false)
-            })
-            .catch((err) => {
-                setError(err.message)
+            .then((data) => setAllEvents(data && Array.isArray(data) ? data : fakeEvents))
+            .catch(() => {
                 setAllEvents(fakeEvents)
-                setLoading(false)
+                setError('Ошибка загрузки событий')
             })
+            .finally(() => setLoading(false))
     }, [])
 
-    const categories = useMemo(() => Array.from(new Set(allEvents.map((e) => e.eventCategory.category))), [allEvents])
-    const cities = useMemo(() => Array.from(new Set(allEvents.map((e) => e.city.name))), [allEvents])
+    const categories = useMemo(
+        () => (allEvents ? Array.from(new Set(allEvents.map((e) => e.eventCategory.category))) : []),
+        [allEvents],
+    )
+    const cities = useMemo(() => (allEvents ? Array.from(new Set(allEvents.map((e) => e.city.name))) : []), [allEvents])
     console.log('allEvents', allEvents)
     // console.log('filters', filters)
 
-    const filteredEvents = allEvents.filter((event) => {
-        // console.log('Checking event:', event)
-        if (filters.categories.length > 0 && !filters.categories.includes(event.eventCategory.category)) return false
-
-        if (filters.cities.length > 0 && !filters.cities.includes(event.city.name)) return false
-
-        if (filters.dates && filters.dates.length > 0) {
-            let show = false
-            if (filters.dates.includes('Сегодня') && isToday(event.date)) show = true
-            if (filters.dates.includes('Завтра') && isTomorrow(event.date)) show = true
-            if (!show) return false
-        }
-
-        if (filters.dateScope) {
-            if (filters.dateScope === 'Эта неделя' && !isThisWeek(event.date)) return false
-            if (filters.dateScope === 'В этом месяце' && !isThisMonth(event.date)) return false
-            if (filters.dateScope === 'Ближайшие 3 месяца' && !isInNext3Months(event.date)) return false
-        }
-
-        return true
-    })
+    const filteredEvents = useMemo(() => {
+        if (!allEvents) return []
+        return allEvents.filter((event) => {
+            if (filters.categories.length > 0 && !filters.categories.includes(event.eventCategory.category))
+                return false
+            if (filters.cities.length > 0 && !filters.cities.includes(event.city.name)) return false
+            if (filters.dates && filters.dates.length > 0) {
+                let show = false
+                if (filters.dates.includes('Сегодня') && isToday(event.date)) show = true
+                if (filters.dates.includes('Завтра') && isTomorrow(event.date)) show = true
+                if (!show) return false
+            }
+            if (filters.dateScope) {
+                if (filters.dateScope === 'Эта неделя' && !isThisWeek(event.date)) return false
+                if (filters.dateScope === 'В этом месяце' && !isThisMonth(event.date)) return false
+                if (filters.dateScope === 'Ближайшие 3 месяца' && !isInNext3Months(event.date)) return false
+            }
+            return true
+        })
+    }, [allEvents, filters])
 
     const totalPages = Math.ceil(filteredEvents.length / cardsPerPage)
 
@@ -101,8 +105,8 @@ const EventsPageMobi: React.FC = () => {
         })
     }
 
-    if (loading) return <div className="p-8 text-center">Загрузка...</div>
-    if (error) return <div className="p-8 text-center text-red-400">Ошибка: {error}</div>
+    if (loading || !allEvents) return <div className="p-8 text-center">Загрузка...</div>
+    if (error) return <div className="p-8 text-center text-red-400">{error}</div>
 
     return (
         <>
