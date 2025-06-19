@@ -129,7 +129,7 @@ export const HelpTooltipDesktop: React.FC<IHelpTooltip> = ({ tooltipMessage }) =
 export const HelpTooltipMobi: React.FC<IHelpTooltip> = ({ tooltipMessage }) => (
     <Popover>
         <PopoverTrigger asChild>
-            <button className="mr-5 mt-5 flex self-end justify-self-start">
+            <button className="mr-5 mt-5 flex self-end justify-self-start absolute top-0 right-0">
                 <HelpIconMobi />
             </button>
         </PopoverTrigger>
