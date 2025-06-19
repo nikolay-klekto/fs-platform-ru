@@ -1,12 +1,12 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import EventsFilterCategoryMobi from './components/EventsFilterCategoryMobi'
 import EventsFilterDateMobi from './components/EventsFilterDateMobi'
 import EventsFilterCityMobi from './components/EventsFilterCityMobi'
 import EventsSearchCityMobi from './components/EventsSearchCityMobi'
 import { GradientButtonMobi } from '@/components/mobi/shared/GradientButtonMobi'
-
+import { useBackdropClose } from './components/useBackdropClose'
 interface Props {
     onClose: () => void
     filters: {
@@ -28,8 +28,6 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose, filters, onApply, cit
     const [cityModalOpen, setCityModalOpen] = useState(false)
     const [scope, setScope] = useState<string | null>(null)
 
-    const modalRef = useRef<HTMLDivElement>(null)
-
     useEffect(() => {
         document.body.classList.add('overflow-hidden')
         return () => {
@@ -43,16 +41,7 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose, filters, onApply, cit
         setSelectedCities(filters.cities)
     }, [filters])
 
-    const handleBackdropClick = (e: React.MouseEvent) => {
-        if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-            onClose()
-        }
-    }
-    const handleBackdropKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-            onClose()
-        }
-    }
+    const { modalRef, handleBackdropClick, handleBackdropKeyDown } = useBackdropClose(onClose)
 
     return (
         <div

@@ -20,6 +20,7 @@ type FiltersState = {
 }
 
 type EventType = (typeof fakeEvents)[number]
+const USE_FAKE_DATA = true
 
 const EventsPageMobi: React.FC = () => {
     const [allEvents, setAllEvents] = useState<EventType[] | null>(null)
@@ -34,8 +35,6 @@ const EventsPageMobi: React.FC = () => {
         cities: [],
         dateScope: '',
     })
-
-    const USE_FAKE_DATA = true
 
     useEffect(() => {
         if (USE_FAKE_DATA) {

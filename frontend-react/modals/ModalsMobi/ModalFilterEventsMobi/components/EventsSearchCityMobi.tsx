@@ -3,6 +3,7 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react'
 import { ChevronDownIconMobi, SearchIconMobi } from '@/components/assets/iconsMobi'
 import { GradientButtonMobi } from '@/components/mobi/shared/GradientButtonMobi'
+import { useBackdropClose } from './useBackdropClose'
 
 interface Props {
     selectedCities: string[]
@@ -48,9 +49,20 @@ const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onChange, onCle
         setSavedCities(selectedCities)
     }, [selectedCities])
 
+    const { modalRef, handleBackdropClick, handleBackdropKeyDown } = useBackdropClose(onClose)
+
     return (
-        <div className="fixed inset-0 z-50 flex items-end">
-            <div className="relative flex h-[92vh] w-full max-w-full flex-col rounded-t-[40px] bg-[#101030]">
+        <div
+            role="button"
+            onClick={handleBackdropClick}
+            onKeyDown={handleBackdropKeyDown}
+            tabIndex={0}
+            className="fixed inset-0 z-50 flex items-end"
+        >
+            <div
+                ref={modalRef}
+                className="relative flex h-[92vh] w-full max-w-full flex-col rounded-t-[40px] bg-[#101030]"
+            >
                 <div className="mx-auto mb-2 flex h-[20px] w-full touch-none items-center justify-center pt-[24px]">
                     <div className="mx-auto mb-4 h-[4px] w-[40px] rounded-full bg-[#353652]" />{' '}
                 </div>
