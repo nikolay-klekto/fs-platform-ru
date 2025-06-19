@@ -1,8 +1,7 @@
 'use client'
 
 
-import React, { useRef, useEffect } from 'react'
-import Image from 'next/image'
+import React, { useRef } from 'react'
 import { contentCompaniesMobi } from './content'
 import ItemCompaniesMobi from './ItemCompaniesMobi'
 
