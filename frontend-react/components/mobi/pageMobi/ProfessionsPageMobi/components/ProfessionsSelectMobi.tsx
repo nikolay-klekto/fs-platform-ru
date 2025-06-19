@@ -66,12 +66,6 @@ const ProfessionsSelectMobi: React.FC<ProfessionsSelectMobiProps> = ({ selectedC
                     <div className="relative flex min-h-screen flex-col gap-1 bg-[#1F203F] px-[14px] pb-[18px] shadow-2xl">
                         <div className="mb-[10px] mt-[30px] flex items-center justify-between px-2 text-white">
                             <span className="text-3xl font-semibold leading-[20px]">Выберите отрасль</span>
-                            {/* <button
-                                className="text-base font-medium leading-[15px] text-[#878797] underline"
-                                onClick={clearSelection}
-                            >
-                                Очистить
-                            </button> */}
                             <button
                                 type="button"
                                 onClick={clearSelection}
