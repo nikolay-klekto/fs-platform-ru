@@ -12,9 +12,7 @@ const CompaniesSectionDesktop: React.FC = () => {
 
     const calculateScrollbarWidth = () => {
         if (!contentRef.current || !scrollbarRef.current) return 0
-        const visibleContentWidth = contentRef.current.offsetWidth
-        const visibleScrollBarWidth = scrollbarRef.current.offsetWidth
-        return contentRef.current.scrollWidth - (visibleContentWidth - visibleScrollBarWidth)
+        return contentRef.current.scrollWidth - (contentRef.current.offsetWidth - scrollbarRef.current.offsetWidth)
     }
 
     const handleScroll = () => {
