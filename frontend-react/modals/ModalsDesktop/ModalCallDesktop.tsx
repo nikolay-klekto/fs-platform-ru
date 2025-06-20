@@ -93,7 +93,8 @@ const ModalCallDesktop = ({ onClose }: IModalContent) => {
                     name: true,
                 }))
             }
-            setFormData((prev) => ({ ...prev, name: value }))
+            const lettersValue = value.replace(/[^a-zA-Zа-яА-ЯёЁ]/g, '')
+            setFormData((prev) => ({ ...prev, name: lettersValue }))
         }
 
         if (name === 'phone') {
@@ -185,7 +186,6 @@ const ModalCallDesktop = ({ onClose }: IModalContent) => {
                                 <PhoneInputDesktop
                                     value={formData.phone}
                                     onBlur={handleInputBlur}
-                                    onError={() => {}}
                                     onChange={(value: string) => {
                                         handleChange({
                                             target: { name: 'phone', value, type: 'text', checked: false },

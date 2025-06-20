@@ -7,7 +7,7 @@ import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validat
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { CheckedBoxFormMobi, UncheckedBoxFormMobi, ErrorUncheckedBoxFormMobi } from '@/components/assets/iconsMobi'
+import { CheckedBoxFormMobi, UncheckedBoxFormMobi } from '@/components/assets/iconsMobi'
 
 interface IFormData {
     name: string
@@ -112,12 +112,9 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                         >
                             <X size={30} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
-                        <div className=" rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 py-[40px]">
+                        <div className="rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 pt-10 pb-9">
                             <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
                                 ЗАКАЗАТЬ ЗВОНОК
-                            </p>
-                            <p className="pb-4 pl-3 text-base font-medium text-[#878797] md:text-lg">
-                                Заполните поля – и мы с вами свяжемся
                             </p>
                             <form className="flex flex-col items-start pl-2 pr-1" onSubmit={handleSubmit}>
                                 <div className="flex w-full flex-col p-0.5">
@@ -138,7 +135,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                                 : 'border-[#878797] bg-transparent focus:border-[#878797]'
                                         } h-10 w-full rounded-[50px] p-4 text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] focus:bg-[#1f203f] focus:ring-0 focus:ring-offset-0 md:placeholder:text-2xl`}
                                         label="Ваше имя"
-                                        labelClassName="mb-2 text-white text-xl font-medium"
+                                        labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
                                     />
                                 </div>
@@ -157,7 +154,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                                 ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]'
                                                 : 'border-[#878797] focus:border-[#878797]'
                                         }`}
-                                        labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white mb-0"
+                                        labelClassName="text-2xl leading-[18px] font-medium text-white mb-0"
                                         wrapperClassName="w-full"
                                         required={true}
                                     />
@@ -170,22 +167,22 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         placeholder="Удобное время для звонка"
                                         value={formData.time}
                                         onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                        className="h-11 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-base font-medium text-[#878797] placeholder:text-sm placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus:ring-offset-0"
+                                        className="h-11 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-base font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus:ring-offset-0"
                                         label="Удобное время для звонка"
-                                        labelClassName="mb-2 text-white text-xl"
+                                        labelClassName="text-white text-xl"
                                         wrapperClassName="w-full"
                                     />
                                     {hasErrors ? (
-                                        <p className="mt-2 text-sm font-medium leading-[18px] text-[#bc8070]">
+                                        <p className="text-sm font-medium leading-[18px] text-[#bc8070]">
                                             Заполните обязательные поля
                                         </p>
                                     ) : (
-                                        <p className="mt-2 text-sm font-medium leading-[18px] text-[#353652] ">
+                                        <p className="text-sm font-medium leading-[18px] text-[#353652] ">
                                             *Обязательное поле для ввода
                                         </p>
                                     )}
                                 </div>
-                                <div className="mb-2 flex items-center pt-4">
+                                <div className="mb-2 flex items-center pt-1">
                                     <label
                                         htmlFor="consent"
                                         className="mb-1 flex cursor-pointer items-center gap-2 text-xs font-medium text-[#878797] md:text-sm"
@@ -211,7 +208,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         {!formData.consent ? (
                                             <UncheckedBoxFormMobi />
                                         ) : hasErrors ? (
-                                            <ErrorUncheckedBoxFormMobi />
+                                            <UncheckedBoxFormMobi stroke="#E99B9B" />
                                         ) : (
                                             <CheckedBoxFormMobi />
                                         )}
@@ -222,7 +219,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     type="submit"
                                     disabled={hasErrors}
                                     className={`
-                                        mx-auto mt-1 h-12 w-4/5 rounded-[50px] 
+                                        w-72 mx-auto mt-1 h-12 rounded-[50px] 
                                         text-3xl font-semibold text-white md:text-4xl
                                         ${hasErrors ? 'bg-[#878797]' : 'bg-gradient-mobi'}
                                     `}

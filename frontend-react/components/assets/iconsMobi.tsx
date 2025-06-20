@@ -642,7 +642,7 @@ export const CheckedBoxIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => 
 
 export const CheckedBoxFormMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M9 11L12 14L22 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             <path
                 d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16"
@@ -657,24 +657,10 @@ export const CheckedBoxFormMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => 
 
 export const UncheckedBoxFormMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
                 d="M19 17V3C19 1.89543 18.1046 1 17 1H3C2.46957 1 1.96086 1.21071 1.58579 1.58579C1.21071 1.96086 1 2.46957 1 3V17C1 17.5304 1.21071 18.0391 1.58579 18.4142C1.96086 18.7893 2.46957 19 3 19H17C17.5304 19 18.0391 18.7893 18.4142 18.4142C18.7893 18.0391 19 17.5304 19 17Z"
-                stroke="#878797"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-        </svg>
-    )
-}
-
-export const ErrorUncheckedBoxFormMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
-    return (
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-            <path
-                d="M19 17V3C19 1.89543 18.1046 1 17 1H3C2.46957 1 1.96086 1.21071 1.58579 1.58579C1.21071 1.96086 1 2.46957 1 3V17C1 17.5304 1.21071 18.0391 1.58579 18.4142C1.96086 18.7893 2.46957 19 3 19H17C17.5304 19 18.0391 18.7893 18.4142 18.4142C18.7893 18.0391 19 17.5304 19 17Z"
-                stroke="#E99B9B"
+                stroke={props.stroke || '#878797'}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"

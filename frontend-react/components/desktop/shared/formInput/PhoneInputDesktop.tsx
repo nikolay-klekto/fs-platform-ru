@@ -4,7 +4,6 @@ import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validat
 interface IPhoneInputDesktop {
     value: string
     onChange: (value: string) => void
-    onError: (value: string) => void
     onBlur?: React.FocusEventHandler<HTMLInputElement>
     className?: string
     labelClassName?: string
@@ -24,7 +23,6 @@ for (let i = 0; i < PHONE_MASK.length; i++) {
 const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     value,
     onChange,
-    onError,
     onBlur,
     className,
     labelClassName,
@@ -89,7 +87,6 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                 ? 'Поле обязательно для заполнения'
                 : validatePhoneDesktop(value).textError
         setError(error)
-        onError(error)
         onChange(value)
 
         return error
