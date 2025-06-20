@@ -1,5 +1,6 @@
 'use client'
 
+
 import React, { useRef } from 'react'
 import { contentCompaniesMobi } from './content'
 import ItemCompaniesMobi from './ItemCompaniesMobi'
