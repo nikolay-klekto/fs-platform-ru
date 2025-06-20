@@ -16,15 +16,17 @@ interface ISelectItem {
     onClick: () => void
 }
 
-const EventsSelectSearchDateDesktop = () => {
+type CustomDatepickerProps = {
+    dates: { from: Date | null; to: Date | null }
+    setDates: React.Dispatch<React.SetStateAction<{ from: Date | null; to: Date | null }>>
+}
+
+const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
+    const { dates, setDates } = props
     const [isOpen, setIsOpen] = useState(false)
     const [openCalendars, setOpenCalendars] = useState<{ from: boolean; to: boolean }>({
         from: false,
         to: false,
-    })
-    const [dates, setDates] = useState<{ from: Date | undefined; to: Date | undefined }>({
-        from: undefined,
-        to: undefined,
     })
 
     const [inputValues, setInputValues] = useState<{ from: string; to: string }>({
@@ -61,6 +63,12 @@ const EventsSelectSearchDateDesktop = () => {
             setDates((prev) => ({
                 ...prev,
                 [key]: parsedDate,
+            }))
+        }
+        if (!value) {
+            setDates((prev) => ({
+                ...prev,
+                [key]: null,
             }))
         }
     }
@@ -120,7 +128,7 @@ const EventsSelectSearchDateDesktop = () => {
     const handleDateChange = (key: 'from' | 'to', newDate: Date | undefined) => {
         setDates((prev) => ({
             ...prev,
-            [key]: newDate,
+            [key]: newDate ?? null,
         }))
         setInputValues((prev) => ({
             ...prev,
@@ -130,6 +138,9 @@ const EventsSelectSearchDateDesktop = () => {
             ...prev,
             [key]: false,
         }))
+        if (key === 'to') {
+            setIsOpen(false)
+        }
     }
 
     const handleDatePreset = (type: string) => {
@@ -139,20 +150,23 @@ const EventsSelectSearchDateDesktop = () => {
 
         switch (type) {
             case 'today':
-                newFromDate = new Date(now)
-                newToDate = new Date(now)
+                newFromDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+                newToDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 0, 23, 59, 59, 999)
                 break
             case 'tomorrow':
-                newFromDate = new Date(now)
-                newFromDate.setDate(now.getDate() + 1)
-                newToDate = new Date(newFromDate)
+                newFromDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0)
+                newToDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 23, 59, 59, 999)
                 break
             case 'this-week':
-                const startOfWeek = new Date(now)
-                const endOfWeek = new Date(now)
+                const day = now.getDay() === 0 ? 7 : now.getDay()
 
-                startOfWeek.setDate(now.getDate() - now.getDay())
-                endOfWeek.setDate(now.getDate() + (6 - now.getDay()))
+                const startOfWeek = new Date(now)
+                startOfWeek.setDate(now.getDate() - (day - 1))
+                startOfWeek.setHours(0, 0, 0, 0)
+
+                const endOfWeek = new Date(now)
+                endOfWeek.setDate(now.getDate() + (7 - day))
+                endOfWeek.setHours(23, 59, 59, 999)
 
                 newFromDate = startOfWeek
                 newToDate = endOfWeek
@@ -169,8 +183,8 @@ const EventsSelectSearchDateDesktop = () => {
         }
 
         setDates({
-            from: newFromDate,
-            to: newToDate,
+            from: newFromDate ?? null,
+            to: newToDate ?? null,
         })
 
         setInputValues({
@@ -190,7 +204,7 @@ const EventsSelectSearchDateDesktop = () => {
                 variant={'select_btn_desktop'}
                 size={'select_btn_desktop_date'}
                 onClick={handleSelectToggle}
-                className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
+                className={` ${isOpen ? 'bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Дата
                 <ChevronDownIconDesktop
@@ -262,7 +276,7 @@ const EventsSelectSearchDateDesktop = () => {
                                         value={inputValues.to}
                                         placeholder="__.__.____"
                                         onChange={(e) => handleInputChange('to', e.target.value)}
-                                        onFocus={() => setOpenCalendars((prev) => ({ ...prev, from: true }))}
+                                        onFocus={() => setOpenCalendars((prev) => ({ ...prev, to: true }))}
                                         className="4xl:text-2xl 3xl:text-xl w-[81px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:w-[75px] 2xl:text-lg"
                                     />
                                 </div>
@@ -270,7 +284,7 @@ const EventsSelectSearchDateDesktop = () => {
                                     <div className="absolute right-0 top-full z-20 mt-2">
                                         <Calendar
                                             mode="single"
-                                            selected={dates.to}
+                                            selected={dates.to ?? undefined}
                                             onSelect={(date) => handleDateChange('to', date)}
                                             className="size-full rounded-[50px] border-[#878797] bg-[#353652] shadow-lg"
                                         />
