@@ -1,15 +1,27 @@
 import React from 'react'
-import TitleMobi from '@/components/mobi/shared/TitleMobi'
 import SubTitleMobi from '@/components/mobi/shared/SubTitleMobi'
 import { Button } from '@/components/ui/button'
 import { content } from './contentHowWeWorkMobi/content'
+import TitleMobi from '@/components/mobi/shared/TitleMobi'
 
 const HowWeWorkMobi: React.FC = () => {
     const [showList, setShowList] = React.useState(true)
     return (
         <div className="max-w-full px-[15px] py-[60px] pt-[10px]">
-            <div className="sm_l:mb-[20px] sm_s:mb-[20px] mb-[30px] sm:mb-[15px]">
-                <TitleMobi title={'Как мы работаем'} href="#" />
+            <div
+                role="button"
+                tabIndex={0}
+                onClickCapture={(e: React.MouseEvent) => {
+                    e.preventDefault()
+                    setShowList((prev) => !prev)
+                }}
+                onKeyDown={(e: React.KeyboardEvent) => {
+                    e.preventDefault()
+                    setShowList((prev) => !prev)
+                }}
+                className="sm_l:mb-[20px] sm_s:mb-[20px] mb-[30px] sm:mb-[15px]"
+            >
+                <TitleMobi title={'Как мы работаем'} href={'#'} />
             </div>
             <div className="relative">
                 {(showList ? content.slice(0, 2) : content).map((item) => (
