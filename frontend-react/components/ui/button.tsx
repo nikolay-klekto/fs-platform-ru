@@ -18,7 +18,7 @@ const buttonVariants = cva(
                 select_desktop:
                     'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white',
                 send_btn_desktop:
-                    'button-border-desktop border-2 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white  2xl:text-3xl disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none',
+                    'button-border-desktop border-2 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white  2xl:text-3xl',
                 select_mobi: 'button-border-mobi rounded-[50px] border-2 border-transparent bg-[#101030] text-white',
                 accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
                 accent_mobi: 'flex items-center rounded-[50px] bg-white',
@@ -43,6 +43,8 @@ const buttonVariants = cva(
                 hover_button_date:
                     'hover:button-border-desktop-date 4xl:text-2xl 3xl:text-xl rounded-[90px] border border-[#878797] bg-[#1F203F] text-[18px] hover:bg-[#28295B] 2xl:text-lg',
                 cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
+                disabled:
+                    'button-border-desktop border-2 3xl:text-4xl rounded-[50px] text-[20px] font-semibold 2xl:text-3xl bg-[#878789] bg-none text-[#CBD6EF] opacity-100 hover:bg-none',
             },
             size: {
                 default: 'h-10 px-4 py-2',

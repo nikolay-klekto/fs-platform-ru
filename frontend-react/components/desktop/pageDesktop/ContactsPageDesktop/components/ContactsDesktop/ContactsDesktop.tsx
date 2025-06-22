@@ -89,7 +89,7 @@ const ContactsDesktop: React.FC = () => {
 
         const hasEmptyField = Object.values(newFieldErrors).some((error) => error)
         if (hasEmptyField) {
-            setFormError('Заполните обязательные поля')
+            setFormError('*Заполните обязательные поля')
             return
         }
 
@@ -283,12 +283,13 @@ const ContactsDesktop: React.FC = () => {
                                 wrapperClassName={'h-[272px]'}
                             />
                             <div className="flex h-[130px] flex-col justify-between">
-                                {formError && <p className={cn('text-xs', 'text-destructive')}>{formError}</p>}
+                                {formError && (
+                                    <p className={cn('text-5xl', 'error-form-desktop-custom')}>{formError}</p>
+                                )}
                                 <div className="mt-auto flex items-center justify-between 2xl:justify-start 2xl:gap-10">
                                     <Button
-                                        variant="send_btn_desktop"
+                                        variant={requiredFieldEmpty && !noUserActions ? 'disabled' : 'send_btn_desktop'}
                                         size="contacts_btn_send_desktop"
-                                        disabled={requiredFieldEmpty && !noUserActions}
                                     >
                                         Отправить
                                     </Button>
