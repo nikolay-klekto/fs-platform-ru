@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import ContactsDesktop from './components/ContactsDesktop/ContactsDesktop'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
@@ -7,9 +9,7 @@ const ContactsPageDesktop: React.FC = () => {
     return (
         <>
             <HeaderDesktop />
-            <main className="bg-[#101030] text-white">
-                <ContactsDesktop />
-            </main>
+            <ContactsDesktop />
             <FooterDesktop />
         </>
     )

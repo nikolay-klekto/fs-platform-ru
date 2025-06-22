@@ -9,10 +9,10 @@ import { EnhancedInput } from '@/components/ui/input'
 import { EnhancedTextareaDesktop } from '@/components/desktop/shared/TextareaDesktop'
 import { validateNameDesktop } from '@/components/desktop/commonDesktop/validate/validateNameDesktop'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
-import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 import { validateRoleDesktop } from '@/components/desktop/commonDesktop/validate/validateRoleDesktop'
 import { validateTextareaDesktop } from '@/components/desktop/commonDesktop/validate/validateTextareaDesktop'
 import { contentContactsDesktop, contentSocialContactsDesktop } from './contentContactsDesktop/content'
+import PhoneInputDesktop from '@/components/desktop/shared/formInput/PhoneInputDesktop'
 
 interface IFormData {
     name: string
@@ -127,14 +127,29 @@ const ContactsDesktop: React.FC = () => {
         console.log('Форма отправлена:', formData)
     }
 
+    const requiredFieldEmpty =
+        formData.name.trim() === '' ||
+        formData.email.trim() === '' ||
+        formData.tel.trim() === '' ||
+        formData.message.trim() === ''
+
+    const noUserActions =
+        formData.name.trim() === '' &&
+        formData.email.trim() === '' &&
+        formData.tel.trim() === '' &&
+        formData.message.trim() === ''
+
+    const basicStyles =
+        'w-[484px] 2xl:w-[520px] 3xl:w-[452px] h-[53px] px-4 py-3.5 border-2 rounded-[53px] bg-transparent text-5xl placeholder:font-medium ring-offset-transparent focus:ring-transparent'
+
     return (
-        <>
+        <main className="bg-[#101030] text-white">
             <div className="container relative flex justify-between overflow-hidden pb-[297px] pt-52 2xl:mx-auto 2xl:max-w-[1190px] 2xl:flex-col 2xl:items-center 2xl:pb-36 2xl:pt-28">
                 <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
                 <div className="radial-gradient_desktop right-[150px] top-[653px]"></div>
                 <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
                 <div className="3xl:mr-20 relative z-[1] mr-32 flex max-w-[541px] flex-col gap-7 2xl:mb-28 2xl:mr-0 2xl:max-w-none 2xl:self-start">
-                    <h2 className="text-26xl 3xl:text-23xl font-semibold uppercase">Cвяжитесь с нами</h2>
+                    <h1 className="text-26xl 3xl:text-23xl font-semibold uppercase">Свяжитесь с нами</h1>
                     <Button
                         variant="send_btn_desktop"
                         size="contacts_btn_desktop"
@@ -182,14 +197,14 @@ const ContactsDesktop: React.FC = () => {
                     </div>
                     <div className="mb-[63px] mt-[99px] h-px w-full rounded-full bg-white/50"></div>
                     <div>
-                        <h3 className="text-20xl font-semibold uppercase">Напишите нам</h3>
-                        <form onSubmit={handleSubmit} noValidate>
+                        <h2 className="text-20xl font-semibold uppercase">Напишите нам</h2>
+                        <form onSubmit={handleSubmit} noValidate autoComplete="off">
                             <div className="flex justify-between pb-12 pt-14">
                                 <div className="flex flex-col gap-[23px]">
                                     <EnhancedInput
                                         type="text"
                                         id="name"
-                                        placeholder="Имя*"
+                                        placeholder="Ваше имя*"
                                         variant={
                                             emptyFields.name ? 'contacts_page_error_desktop' : 'contacts_page_desktop'
                                         }
@@ -207,7 +222,9 @@ const ContactsDesktop: React.FC = () => {
                                     <EnhancedInput
                                         type="email"
                                         id="email"
-                                        placeholder="E-mail*"
+                                        name="email"
+                                        placeholder="Ваш e-mail*"
+                                        autoComplete="email"
                                         variant={
                                             emptyFields.email ? 'contacts_page_error_desktop' : 'contacts_page_desktop'
                                         }
@@ -224,22 +241,11 @@ const ContactsDesktop: React.FC = () => {
                                     />
                                 </div>
                                 <div className="flex flex-col gap-[23px] pl-3">
-                                    <EnhancedInput
-                                        type="tel"
-                                        id="tel"
-                                        placeholder="Телефон*"
-                                        variant={
-                                            emptyFields.tel ? 'contacts_page_error_desktop' : 'contacts_page_desktop'
-                                        }
-                                        size="contacts_page_info_desktop"
-                                        rounded="rounded_53"
+                                    <PhoneInputDesktop
                                         value={formData.tel}
-                                        onChange={(value) => handleChange('tel', value)}
-                                        validate={(value) => {
-                                            const validation = validatePhoneDesktop(value)
-                                            updateFieldError('tel', !validation.status)
-                                            return validation
-                                        }}
+                                        onChange={(value: string) => handleChange('tel', value)}
+                                        onError={(error: string) => updateFieldError('tel', !!error)}
+                                        className={`${basicStyles} ${emptyFields.tel ? 'border-[#bc8070]' : 'border-[#878797]'}`}
                                         wrapperClassName={'h-[76px]'}
                                     />
                                     <EnhancedInput
@@ -279,7 +285,11 @@ const ContactsDesktop: React.FC = () => {
                             <div className="flex h-[130px] flex-col justify-between">
                                 {formError && <p className={cn('text-xs', 'text-destructive')}>{formError}</p>}
                                 <div className="mt-auto flex items-center justify-between 2xl:justify-start 2xl:gap-10">
-                                    <Button variant="send_btn_desktop" size="contacts_btn_send_desktop">
+                                    <Button
+                                        variant="send_btn_desktop"
+                                        size="contacts_btn_send_desktop"
+                                        disabled={requiredFieldEmpty && !noUserActions}
+                                    >
                                         Отправить
                                     </Button>
                                     <p className="max-w-[663px] pl-3 text-[17px] font-medium text-white/20">
@@ -292,7 +302,7 @@ const ContactsDesktop: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </main>
     )
 }
 
