@@ -2,6 +2,7 @@
 
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
+import { AccountNavigationDesktop } from '../../shared/AccountNavigationDesktop/AccountNavigationDesktop'
 
 const ArchivePageDesktop: React.FC = () => {
     return (
@@ -14,6 +15,9 @@ const ArchivePageDesktop: React.FC = () => {
                     <div className="container">
                         <div className="relative z-10 flex items-center pt-10">
                             <h1 className="text46px_desktop pr-[100px] font-medium text-white">ЛИЧНЫЙ КАБИНЕТ</h1>
+                        </div>
+                        <div className="flex flex-1 justify-between">
+                            <AccountNavigationDesktop />
                         </div>
                     </div>
                 </div>

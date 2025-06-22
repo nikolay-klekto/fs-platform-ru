@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { content } from '@/components/desktop/pageDesktop/PesronalAccountPageDesktop/contentPersonalAccountPageDesktop/content'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
+import { AccountNavigationDesktop } from '../../shared/AccountNavigationDesktop/AccountNavigationDesktop'
 
 const ProfilePageDesktop: React.FC = () => {
     const [currentComponent, setCurrentComponent] = useState<React.ReactElement | null>(null)
@@ -35,20 +36,7 @@ const ProfilePageDesktop: React.FC = () => {
                     <div className="relative z-10 flex items-center pt-10">
                         <h2 className="text46px_desktop pr-[100px] font-medium text-white">ЛИЧНЫЙ КАБИНЕТ</h2>
                         <div className="flex flex-1 justify-between">
-                            {content.map((item) => (
-                                <button
-                                    key={item.id}
-                                    onClick={() => handleButtonClick(item.component, item.id)}
-                                    className={`text18px_desktop cursor-pointer font-bold underline-offset-8 transition-all duration-300 ease-in-out
-                                        ${
-                                            item.id === activeId
-                                                ? 'bg-gradient-desktop bg-clip-text text-transparent underline decoration-[#6C41F3] decoration-4'
-                                                : 'hover:[#3B51A8] hover:bg-gradient-desktop text-[#878797] decoration-4 hover:bg-clip-text hover:underline'
-                                        }`}
-                                >
-                                    {item.title}
-                                </button>
-                            ))}
+                            <AccountNavigationDesktop />
                         </div>
                     </div>
                     <div>{currentComponent}</div>
