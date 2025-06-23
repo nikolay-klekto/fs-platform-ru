@@ -4,8 +4,7 @@ import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validat
 interface IPhoneInputMobi {
     value: string
     onChange: (value: string) => void
-    onError: (value: string) => void
-    onBlur?: (value: string) => void
+    onBlur?: React.FocusEventHandler<HTMLInputElement>
     className?: string
     labelClassName?: string
     wrapperClassName?: string
@@ -25,8 +24,8 @@ for (let i = 0; i < PHONE_MASK.length; i++) {
 const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     value,
     onChange,
-    onError,
     className,
+    onBlur,
     labelClassName,
     wrapperClassName,
     required = false,
@@ -89,12 +88,12 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 ? 'Поле обязательно для заполнения'
                 : validatePhoneMobi(value).textError
         setInternalError(error)
-        onError(error)
         onChange(value)
     }
 
-    const handleBlur = () => {
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         validateValue(inputValue)
+        onBlur?.(e)
     }
 
     const handleFocus = () => {
