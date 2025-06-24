@@ -1,9 +1,11 @@
-import RequiringPaymentCardMobi from './ItemRequiringPaymentMobi/RequiringPaymentCardMobi'
-import { content } from '@/components/mobi/pageMobi/PersonalAccountPageMobi/components/RequiringPaymentMobi/ItemRequiringPaymentMobi/contentRequiringPaymentCardMobi/content'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+'use client'
 
-const RequiringPaymentMobi: React.FC = () => {
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import ItemCardShoppingCartMobi from '@/components/mobi/pageMobi/ShoppingCartPageMobi/components/ItemCardShoppingCartMobi/ItemCardShoppingCartMobi'
+import { content } from '@/components/mobi/pageMobi/ShoppingCartPageMobi/contentShoppingCartPageMobi/content'
+
+const ShoppingCartMobi: React.FC = () => {
     if (!content) {
         return (
             <div className="flex flex-col items-center  pt-[77px]">
@@ -18,10 +20,10 @@ const RequiringPaymentMobi: React.FC = () => {
     }
     return (
         <>
-            <div className="py-[44px]">
-                <div className="flex flex-wrap justify-center gap-[34px] self-end pb-[87px] md:gap-[12px] 2xl:pt-[75px]">
+            <div className="text-center">
+                <div className="flex flex-wrap justify-center gap-[34px] self-end pb-[50px] 2xl:pt-[75px]">
                     {content.map((item) => (
-                        <RequiringPaymentCardMobi
+                        <ItemCardShoppingCartMobi
                             key={item.id}
                             profession={item.profession}
                             company_name={item.company_name}
@@ -41,4 +43,4 @@ const RequiringPaymentMobi: React.FC = () => {
         </>
     )
 }
-export default RequiringPaymentMobi
+export default ShoppingCartMobi

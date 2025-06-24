@@ -1,10 +1,12 @@
-import { IContent, contentOrderPayment } from './ItemOrderPaymentMobi/contentOrderPaymentCardMobi/content'
-import { Button } from '@/components/ui/button'
-import OrderPaymentCardMobi from './ItemOrderPaymentMobi/OrderPaymentCardMobi'
-import Link from 'next/link'
+'use client'
 
-const OrderPaymentMobi: React.FC = () => {
-    if (!contentOrderPayment) {
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { IContent, content } from '@/components/mobi/pageMobi/DuePaymentsPageMobi/contentDuePaymentsPageMobi/content'
+import ItemCardDuePaymentsMobi from '@/components/mobi/pageMobi/DuePaymentsPageMobi/components/ItemCardDuePaymentsMobi/ItemCardDuePaymentsMobi'
+
+const DuePaymentsMobi: React.FC = () => {
+    if (!content) {
         return (
             <div className="flex flex-col items-center  pt-[57px]">
                 <p className="mb-4 text-[#353652] hover:underline">Заказов требующих оплаты нет</p>
@@ -20,8 +22,8 @@ const OrderPaymentMobi: React.FC = () => {
         <>
             <div className="py-[40px]">
                 <div className="flex flex-wrap justify-center gap-[34px] self-end pb-[87px] md:gap-[12px] 2xl:pt-[75px]">
-                    {contentOrderPayment.map((item: IContent) => (
-                        <OrderPaymentCardMobi
+                    {content.map((item: IContent) => (
+                        <ItemCardDuePaymentsMobi
                             key={item.id}
                             profession={item.profession}
                             company_name={item.company_name}
@@ -43,4 +45,4 @@ const OrderPaymentMobi: React.FC = () => {
         </>
     )
 }
-export default OrderPaymentMobi
+export default DuePaymentsMobi

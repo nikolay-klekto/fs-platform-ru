@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { TrashIconMobi } from '@/components/assets/iconsMobi'
 
-interface IRequiringPaymentCard {
+interface IItemCardShoppingCart {
     profession: string
     company_name: string
     start_day: string
@@ -16,7 +16,7 @@ interface IRequiringPaymentCard {
     onClick?: () => void
 }
 
-const RequiringPaymentCardMobi: React.FC<IRequiringPaymentCard> = ({
+const ItemCardShoppingCartMobi: React.FC<IItemCardShoppingCart> = ({
     profession,
     company_name,
     start_day,
@@ -30,7 +30,7 @@ const RequiringPaymentCardMobi: React.FC<IRequiringPaymentCard> = ({
     return (
         <div className="flex flex-col flex-wrap rounded-[40px] bg-[#272745] px-[12px] py-[40px]">
             <div className="flex flex-col gap-[20px] leading-none">
-                <div className="text18px_mobi text-gradient_mobi_custom pb-[10px]">ОФОРМЛЕНИЕ ЗАКАЗА</div>
+                <div className="text18px_mobi text-gradient_mobi_custom pb-[10px] uppercase">Оформление заказа</div>
                 <div className="relative h-[184px]">
                     <Image
                         src={image}
@@ -53,7 +53,7 @@ const RequiringPaymentCardMobi: React.FC<IRequiringPaymentCard> = ({
                     <div className="text12px_mobi font-medium text-[#878797]">Адрес офиса:</div>
                     <div className="text14px_mobi leading-[1.2] text-white">{location}</div>
                 </div>
-                <div className="flex items-center justify-between border-t-2 pt-[20px]">
+                <div className="pt-[20px]r flex items-center justify-between border-t-2">
                     <div className="text16px_mobi   font-semibold text-white">{price} BYN</div>
                     <button>
                         <TrashIconMobi />
@@ -67,4 +67,4 @@ const RequiringPaymentCardMobi: React.FC<IRequiringPaymentCard> = ({
     )
 }
 
-export default RequiringPaymentCardMobi
+export default ItemCardShoppingCartMobi

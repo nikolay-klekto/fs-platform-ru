@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { TrashIconMobi } from '@/components/assets/iconsMobi'
 
-interface IOrderPaymentCard {
+interface IItemCardDuePayments {
     profession: string
     company_name: string
     start_day: string
@@ -18,7 +18,7 @@ interface IOrderPaymentCard {
     onClick?: () => void
 }
 
-const OrderPaymentCardMobi: React.FC<IOrderPaymentCard> = ({
+const ItemCardDuePaymentsMobi: React.FC<IItemCardDuePayments> = ({
     profession,
     company_name,
     start_day,
@@ -73,4 +73,4 @@ const OrderPaymentCardMobi: React.FC<IOrderPaymentCard> = ({
     )
 }
 
-export default OrderPaymentCardMobi
+export default ItemCardDuePaymentsMobi
