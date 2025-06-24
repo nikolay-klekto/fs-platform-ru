@@ -50,10 +50,21 @@ abstract class CompanyRepository(
 
     open suspend fun getAllAvailableCompanies(): List<CompanyModel> =
         withContext(Dispatchers.IO) {
-            dsl.select(COMPANY.asterisk()).from(COMPANY)
+            dsl.select(
+                COMPANY.asterisk(),
+                DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5).`as`("price_per_week")
+            )
+                .from(COMPANY)
+                .join(COMPANY_PROFESSION).on(COMPANY.ID.eq(COMPANY_PROFESSION.COMPANY_ID))
                 .where(COMPANY.LEGAL_CAPACITY_STATUS.eq(CompanyLegalCapacityStatus.CAPABLE.name))
-                .map { it.into(Company::class.java) }
-                .map(converter::toModel)
+                .groupBy(COMPANY.ID)
+                .map { record ->
+                    val company = record.into(Company::class.java)
+                    val pricePerWeek = record.get("price_per_week", Double::class.java)
+                    converter.toModel(company).apply {
+                        this.pricePerWeek = pricePerWeek
+                    }
+                }
         }
 
     suspend fun getAllCompaniesByProfessionId(professionId: Long): List<CompanyModel> =

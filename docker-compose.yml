@@ -27,43 +27,43 @@ services:
         reservations:
           memory: 512m
 
-#  app2:
-#    image: ru-client:latest
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-Client
-#    ports:
-#      - "127.0.0.1:8184:8183"
-#    #    container_name: app
-#    depends_on:
-#      - service-db
-#    #       condition: service_healthy
-#    environment:
-#      - SERVER_PORT= 8183
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
-#    networks:
-#      - prometheus-grafana-network
-#    volumes:
-#      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
-#
-#  app3:
-#    image: ru-client:latest
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-Client
-#    ports:
-#      - "127.0.0.1:8185:8183"
-#    #    container_name: app
-#    depends_on:
-#      - service-db
-##       condition: service_healthy
-#    environment:
-#      - SERVER_PORT= 8183
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
-#    networks:
-#      - prometheus-grafana-network
-#    volumes:
-#      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
+  #  app2:
+  #    image: ru-client:latest
+  #    build:
+  #      context: .
+  #      dockerfile: Dockerfile-Client
+  #    ports:
+  #      - "127.0.0.1:8184:8183"
+  #    #    container_name: app
+  #    depends_on:
+  #      - service-db
+  #    #       condition: service_healthy
+  #    environment:
+  #      - SERVER_PORT= 8183
+  #      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+  #    networks:
+  #      - prometheus-grafana-network
+  #    volumes:
+  #      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
+  #
+  #  app3:
+  #    image: ru-client:latest
+  #    build:
+  #      context: .
+  #      dockerfile: Dockerfile-Client
+  #    ports:
+  #      - "127.0.0.1:8185:8183"
+  #    #    container_name: app
+  #    depends_on:
+  #      - service-db
+  ##       condition: service_healthy
+  #    environment:
+  #      - SERVER_PORT= 8183
+  #      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+  #    networks:
+  #      - prometheus-grafana-network
+  #    volumes:
+  #      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
 
   appAuth:
     image: ru-auth:latest
@@ -121,22 +121,22 @@ services:
       - prometheus-grafana-network
     restart: always
 
-#  gateway:
-#    image: ru-gateway:latest
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-Gateway
-#    ports:
-#      - "8081:8081"
-#    #    container_name: app
-#    depends_on:
-#      - service-db
-#    #       condition: service_healthy
-#    environment:
-#      - SERVER_PORT= 8081
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
-#    networks:
-#      - prometheus-grafana-network
+  #  gateway:
+  #    image: ru-gateway:latest
+  #    build:
+  #      context: .
+  #      dockerfile: Dockerfile-Gateway
+  #    ports:
+  #      - "8081:8081"
+  #    #    container_name: app
+  #    depends_on:
+  #      - service-db
+  #    #       condition: service_healthy
+  #    environment:
+  #      - SERVER_PORT= 8081
+  #      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+  #    networks:
+  #      - prometheus-grafana-network
 
   service-db:
     image: postgres:14.7-alpine
@@ -155,8 +155,8 @@ services:
       #      - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
       - ./infrastructure/db:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
-#      - ./infrastructure/db/postgresql.conf:/var/lib/postgresql/data/postgresql.conf  # Подключаем конфигурационный файл
-#    command: ["postgres", "-c", "config_file=/var/lib/postgresql/data/postgresql.conf"]  # Указываем путь к конфигурационному файлу
+    #      - ./infrastructure/db/postgresql.conf:/var/lib/postgresql/data/postgresql.conf  # Подключаем конфигурационный файл
+    #    command: ["postgres", "-c", "config_file=/var/lib/postgresql/data/postgresql.conf"]  # Указываем путь к конфигурационному файлу
     restart: unless-stopped
     networks:
       - prometheus-grafana-network
@@ -175,39 +175,45 @@ services:
     networks:
       - prometheus-grafana-network
 
-#  prometheus:
-#    image: prom/prometheus:v2.45.5
-#    container_name: prometheus-container
-#    ports:
-#      - "9090:9090"
-#    volumes:
-#      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-#    networks:
-#      - prometheus-grafana-network
-#
-#  grafana:
-#    image: grafana/grafana:10.4.2
-#    container_name: grafana-container
-#    #    volumes:
-#    #      - ./config/grafana/provisioning:/etc/grafana/provisioning
-#    ports:
-#      - "3000:3000"
-#    environment:
-#      - GF_SECURITY_ADMIN_USER=admin
-#      - GF_SECURITY_ADMIN_PASSWORD=admin
-#    depends_on:
-#      - prometheus
-#    networks:
-#      - prometheus-grafana-network
+  #  prometheus:
+  #    image: prom/prometheus:v2.45.5
+  #    container_name: prometheus-container
+  #    ports:
+  #      - "9090:9090"
+  #    volumes:
+  #      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  #    networks:
+  #      - prometheus-grafana-network
+  #
+  #  grafana:
+  #    image: grafana/grafana:10.4.2
+  #    container_name: grafana-container
+  #    #    volumes:
+  #    #      - ./config/grafana/provisioning:/etc/grafana/provisioning
+  #    ports:
+  #      - "3000:3000"
+  #    environment:
+  #      - GF_SECURITY_ADMIN_USER=admin
+  #      - GF_SECURITY_ADMIN_PASSWORD=admin
+  #    depends_on:
+  #      - prometheus
+  #    networks:
+  #      - prometheus-grafana-network
 
-#  react-app:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-React
-#    ports:
-#      - "80:80" # Указываем  внешний порт 80
-#    networks:
-#      - prometheus-grafana-network
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-React
+    ports:
+      - "3000:3000" # Указываем  внешний порт 80
+    volumes:
+      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
+      - /home/Nikolay/funScrut/photos/professions:/app/uploads/professions
+      - /home/Nikolay/funScrut/photos/companies/facade:/app/uploads/companies/facade
+      - /home/Nikolay/funScrut/photos/companies/logo:/app/uploads/companies/logo
+      - /home/Nikolay/funScrut/files/resumes:/app/uploads/resumes
+    networks:
+      - prometheus-grafana-network
 
   rabbitmq:
     image: rabbitmq:3.12-management
@@ -222,24 +228,24 @@ services:
     networks:
       - prometheus-grafana-network
 
-  tgContactCenterBot:
-    image: contact-center-bot-client:latest
-    build:
-      context: .
-      dockerfile: Dockerfile-TgBotContactCenter
-    ports:
-      - "8189:8189"
-    environment:
-      - SERVER_PORT=8189
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
-      - SPRING_RABBITMQ_HOST=rabbitmq
-      - SPRING_RABBITMQ_PORT=5672
-    depends_on:
-      - service-db
-      - rabbitmq
-    networks:
-      - prometheus-grafana-network
-    restart: unless-stopped
+#  tgContactCenterBot:
+#    image: contact-center-bot-client:latest
+#    build:
+#      context: .
+#      dockerfile: Dockerfile-TgBotContactCenter
+#    ports:
+#      - "8189:8189"
+#    environment:
+#      - SERVER_PORT=8189
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/fun_scrut
+#      - SPRING_RABBITMQ_HOST=rabbitmq
+#      - SPRING_RABBITMQ_PORT=5672
+#    depends_on:
+#      - service-db
+#      - rabbitmq
+#    networks:
+#      - prometheus-grafana-network
+#    restart: always
 
 networks:
   prometheus-grafana-network:

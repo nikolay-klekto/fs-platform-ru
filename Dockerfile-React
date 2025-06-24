@@ -1,27 +1,13 @@
-# Используем базовый образ Node.js
-FROM node:18 AS build
+FROM node:18
 
-# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем package.json и package-lock.json из папки frontend-react
 COPY frontend-react/package*.json ./
+COPY frontend-react/public ./public
+COPY frontend-react/.next ./.next
+COPY frontend-react/next.config.mjs ./
 
-# Устанавливаем зависимости
-RUN npm install
+RUN npm install --omit=dev
 
-# Копируем весь исходный код из папки frontend-react
-COPY frontend-react .
-
-# Создаем production build
-RUN npm run build
-
-# Используем nginx для запуска статической сборки
-FROM nginx:stable-alpine
-COPY --from=build /app/build /usr/share/nginx/html
-
-# Экспонируем порт для nginx
-EXPOSE 80
-
-# Запускаем nginx
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 3000
+CMD ["npm", "start"]
