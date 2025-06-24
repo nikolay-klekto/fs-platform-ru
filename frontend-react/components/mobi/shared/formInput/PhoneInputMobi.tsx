@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 
 interface IPhoneInputMobi {
     value: string
@@ -28,11 +27,9 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     onBlur,
     labelClassName,
     wrapperClassName,
-    required = false,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
-    const [internalError, setInternalError] = useState<string | null>(null)
 
     const setCaretToPosition = (pos: number) => {
         if (inputRef.current) {
@@ -79,20 +76,14 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
             e.preventDefault()
         }
 
-        validateValue(newValue)
+        handleChange(newValue)
     }
 
-    const validateValue = (value: string) => {
-        const error =
-            required && (value === PHONE_MASK || !value)
-                ? 'Поле обязательно для заполнения'
-                : validatePhoneMobi(value).textError
-        setInternalError(error)
+    const handleChange = (value: string) => {
         onChange(value)
     }
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        validateValue(inputValue)
         onBlur?.(e)
     }
 
@@ -129,7 +120,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={PHONE_MASK}
-                className={`input-form-mobi-custom w-full font-medium placeholder:text-[#353652] ${internalError ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                className={`input-form-mobi-custom w-full font-medium placeholder:text-[#353652] ${className}`}
             />
         </div>
     )

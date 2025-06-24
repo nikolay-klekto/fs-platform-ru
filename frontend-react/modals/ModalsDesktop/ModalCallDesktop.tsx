@@ -40,37 +40,28 @@ const ModalCallDesktop = ({ onClose }: IModalContent) => {
     const validateForm = () => {
         const newErrors: { [key: string]: boolean } = {}
 
+        const newMessages = {
+            phoneMessage: '',
+            emptyFieldMessage: '',
+        }
+
         if (!validatePhoneDesktop(formData.phone).status) {
             newErrors.phone = true
-            setErrorMessage((prev) => ({
-                ...prev,
-                phoneMessage: 'Номер телефона введён не полностью',
-            }))
+            newMessages.phoneMessage = 'Номер телефона введён не полностью'
         }
         if (!formData.name) {
             newErrors.name = true
-            setErrorMessage((prev) => ({
-                ...prev,
-                emptyFieldMessage: 'Введите обязательные поля',
-            }))
+            newMessages.emptyFieldMessage = 'Введите обязательные поля'
         }
         if (!formData.consent) {
             newErrors.consent = true
-            setErrorMessage((prev) => ({
-                ...prev,
-                emptyFieldMessage: 'Введите обязательные поля',
-            }))
+            newMessages.emptyFieldMessage = 'Введите обязательные поля'
         }
 
         setErrors(newErrors)
-        if (Object.keys(newErrors).length === 0) {
-            setErrorMessage((prev) => ({
-                ...prev,
-                phoneMessage: '',
-                emptyFieldMessage: '',
-            }))
-        }
-        return Object.keys(newErrors).length === 0
+        setErrorMessage(newMessages)
+
+        return !Object.values(newErrors).some((error) => error === true)
     }
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -82,65 +73,68 @@ const ModalCallDesktop = ({ onClose }: IModalContent) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: type === 'checkbox' ? checked : value,
+        const updatedValue = type === 'checkbox' ? checked : value
+
+        const safeValue = name === 'name' ? value.replace(/[^a-zA-Zа-яА-ЯёЁ]/g, '') : updatedValue
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: safeValue,
         }))
-        if (name === 'name') {
-            if (!value) {
-                setErrors((prev) => ({
-                    ...prev,
-                    name: true,
-                }))
-            }
-            const lettersValue = value.replace(/[^a-zA-Zа-яА-ЯёЁ]/g, '')
-            setFormData((prev) => ({ ...prev, name: lettersValue }))
-        }
 
-        if (name === 'phone') {
-            const result = validatePhoneDesktop(value)
-            if (result.status) {
-                setErrors((prev) => ({
-                    ...prev,
-                    phone: result.status ? false : true,
-                }))
-            }
-        }
+        setErrors((prev) => {
+            const updatedErrors = { ...prev }
 
-        if (name === 'consent') {
-            if (checked) {
-                setErrors((prev) => ({
-                    ...prev,
-                    consent: checked ? false : true,
-                }))
+            if (name === 'name') {
+                updatedErrors.name = !safeValue
             }
-        }
 
-        if (name === 'time') {
-            if (value) {
-                setFormData((prev) => ({
+            if (name === 'phone') {
+                const isValid = validatePhoneDesktop(value).status
+                updatedErrors.phone = !isValid
+
+                setErrorMessage((prev) => ({
                     ...prev,
-                    time: value,
+                    phoneMessage: isValid ? '' : 'Номер телефона введён не полностью',
                 }))
             }
+
+            if (name === 'consent') {
+                updatedErrors.consent = !checked
+            }
+
+            return updatedErrors
+        })
+
+        if (name === 'name' || name === 'consent') {
+            setErrorMessage((prev) => ({
+                ...prev,
+                emptyFieldMessage: '',
+            }))
         }
     }
 
     const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         const { name, value, checked } = e.target
 
-        if (name === 'phone') {
-            const result = validatePhoneDesktop(value)
-            setErrors((prev) => ({ ...prev, phone: !result.status }))
-        }
+        setErrors((prev) => {
+            const updatedErrors = { ...prev }
 
-        if (name === 'name') {
-            setErrors((prev) => ({ ...prev, name: !value.trim() }))
-        }
+            if (name === 'phone') {
+                const result = validatePhoneDesktop(value)
+                updatedErrors.phone = !result.status
+            }
 
-        if (name === 'consent') {
-            setErrors((prev) => ({ ...prev, consent: !checked }))
-        }
+            if (name === 'name') {
+                updatedErrors.name = !value
+            }
+
+            if (name === 'consent') {
+                updatedErrors.consent = !checked
+            }
+
+            return updatedErrors
+        })
     }
 
     const hasErrors = Object.values(errors).some((err) => err === true)
@@ -286,7 +280,7 @@ const ModalCallDesktop = ({ onClose }: IModalContent) => {
                                     variant="default"
                                     size="send_btn_desktop"
                                     disabled={hasErrors}
-                                    className={`mx-auto h-16 rounded-full px-20 text-5xl font-semibold leading-[24.38px] hover:bg-gradient-desktop-hover  disabled:opacity-100 ${
+                                    className={`mx-auto h-16 rounded-full px-20 text-5xl font-semibold leading-[24.38px] hover:bg-gradient-desktop-hover disabled:opacity-100 ${
                                         hasErrors ? 'bg-[#878797]' : 'bg-gradient-desktop'
                                     }`}
                                 >
