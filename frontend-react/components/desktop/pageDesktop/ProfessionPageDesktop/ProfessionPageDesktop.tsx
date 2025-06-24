@@ -2,12 +2,12 @@
 
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { contentProfessionAboutDesktop } from './contentProfessionPageDesktop/content'
 import InternshipCompaniesDesktop from './components/InternshipCompanyDesktop/InternshipCompaniesDesktop'
-import ReviewsDesktop from './components/ReviewsDesktop/ReviewsDesktop'
+import ProfessionReviewsDesktop from './components/ProfessionReviewsDesktop/ProfessionReviewsDesktop'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
-import Link from 'next/link'
 
 const ProfessionPageDesktop: React.FC = () => {
     return (
@@ -20,17 +20,17 @@ const ProfessionPageDesktop: React.FC = () => {
                             Главная
                         </Link>
                         <span>/</span>
-                        <Link href="/companies" className="hover:underline">
+                        <Link href="/professions" className="hover:underline">
                             Профессии
                         </Link>
                         <span>/</span>
-                        <Link href="/company" className="text-white hover:underline">
+                        <Link href="/profession" className="text-white hover:underline">
                             Программист
                         </Link>
                     </div>
                     <div className="flex flex-col px-[58px]">
                         <h1 className="mb-15 title80px_desktop font-medium uppercase text-white">Программист</h1>
-                        <p className="title160px_desktop text-[160px] absolute left-0 top-0 mt-[18px] pl-[85px] font-semibold uppercase opacity-[0.02] ">
+                        <p className="title160px_desktop absolute left-0 top-0 pl-[114px] pr-[146px] font-semibold uppercase opacity-[0.02] 2xl:mt-[25px] 3xl:mt-[18px] 4xl:mt-[8px]">
                             Программист
                         </p>
                         <div className="relative max-h-[613px] w-full">
@@ -44,17 +44,17 @@ const ProfessionPageDesktop: React.FC = () => {
                         </div>
                         {contentProfessionAboutDesktop.map((item) => (
                             <div key={item.id}>
-                                <p className="text32px_desktop max-w-[1803px] py-[57px] text-[rgb(135,135,151)]">
+                                <p className="text36px_desktop text-medium max-w-[1803px] py-[57px] text-[rgb(135,135,151)]">
                                     {item.text}
                                 </p>
                             </div>
                         ))}
-                        <h2 className="mb-[63px] mt-[118px] text-[48px] uppercase">Компании для стажировки:</h2>
-                        <InternshipCompaniesDesktop />
-                        <h2 className="mb-[81px] mt-[120px] text-[48px] uppercase  2xl:mt-[80px] 3xl:mt-[100px]">
-                            Отзывы о профессии
+                        <h2 className="mb-[63px] mt-[96px] text-[48px] font-medium uppercase">
+                            Компании для стажировки:
                         </h2>
-                        <ReviewsDesktop />
+                        <InternshipCompaniesDesktop />
+                        <h2 className="mb-[81px] text-[48px] font-medium uppercase ">Отзывы о профессии</h2>
+                        <ProfessionReviewsDesktop />
                     </div>
                 </div>
             </main>

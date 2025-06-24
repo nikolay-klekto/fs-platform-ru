@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import SelectInternshipTypeDesktop from './components/SelectInternshipTypeDesktop'
@@ -88,7 +89,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                             {filteredContent
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (
-                                    <Link href={`/profession`} key={item.id}>
+                                    <Link href={`/profession`} key={item.id} className="block">
                                         <ProfessionCardPageDesktop
                                             key={item.id}
                                             image={item.image}

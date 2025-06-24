@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useRef, useEffect, useState } from 'react'
-import { contentInternshipnamesDesktop } from './contentInternshipCompaniesDesktop/content'
+import { contentInternshipNamesDesktop } from './contentInternshipCompaniesDesktop/content'
 import ItemInternshipCompaniesDesktop from './ItemInternshipCompaniesDesktop/ItemCompaniesDesktop'
 
 const InternshipCompaniesDesktop: React.FC = () => {
@@ -52,7 +52,7 @@ const InternshipCompaniesDesktop: React.FC = () => {
                 onScroll={handleScroll}
                 className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll"
             >
-                {contentInternshipnamesDesktop.map((item) => (
+                {contentInternshipNamesDesktop.map((item) => (
                     <ItemInternshipCompaniesDesktop
                         key={item.id}
                         image={item.image}
@@ -66,7 +66,7 @@ const InternshipCompaniesDesktop: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="scrollbar_custom relative mx-auto mt-[77px] mb-[192px] w-[65%] cursor-pointer overflow-x-scroll"
+                className="scrollbar_custom relative mx-auto mt-[77px] mb-[192px] 3xl:mb-[160px] 2xl:mb-[120px] w-[65%] cursor-pointer overflow-x-scroll"
             >
                 <div className="absolute h-2" style={{ width: `${scrollbarWidth}px` }}></div>
             </div>

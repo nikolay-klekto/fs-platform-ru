@@ -44,13 +44,13 @@ const ItemCompaniesDesktop: React.FC<IItemCompaniesDesktop> = ({ image, name, in
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 className="rounded-[20px] opacity-60"
             />
-            <div className="absolute inset-0 w-full flex flex-col justify-between items-start h-full  pl-[20px]">
-                <div className="text-[21px] mt-[21px] font-semibold text-white">{industry}</div>
+            <div className="absolute inset-0 flex size-full flex-col items-start justify-between pl-[20px]">
+                <div className="mt-[21px] text-[21px] font-semibold text-white">{industry}</div>
                 <div className="flex flex-col items-start">
-                    <div className="text-[30px] pl-[10px] text-white font-semibold">{name}</div>
-                    <p className="bg-white w-full rounded-[50px] pl-[10px] mb-[23px] pr-[42px]  text-[24px] leading-[40px] tracking-normal text-[#878797] font-medium">
+                    <div className="pl-[10px] text-[30px] font-semibold text-white">{name}</div>
+                    <p className="mb-[23px] w-full rounded-[50px] bg-white pl-[10px] pr-[42px]  text-[24px] font-medium leading-[40px] tracking-normal text-[#878797]">
                         от{' '}
-                        <span className="bg-gradient-desktop bg-clip-text text-[[28px] text-transparent ">
+                        <span className="text-[[28px] bg-gradient-desktop bg-clip-text text-transparent ">
                             {price} BYN/
                         </span>
                         неделя

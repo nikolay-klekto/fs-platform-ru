@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useRef, useEffect, useState } from 'react'
-import { contentReviewsDesktop } from './contentReviewsDesktop/content'
-import ItemReviewsDesktop from './ItemReviewsDesktop/ItemReviewsDesktop'
+import { contentProfessionReviewsDesktop } from './contentProfessionReviewsDesktop/content'
+import ItemProfessionReviewsDesktop from './ItemProfessionReviewsDesktop/ItemProfessionReviewsDesktop'
 
 const ReviewsDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
@@ -52,8 +52,8 @@ const ReviewsDesktop: React.FC = () => {
                 onScroll={handleScroll}
                 className="no-scrollbar_custom flex w-full select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll"
             >
-                {contentReviewsDesktop.map((item) => (
-                    <ItemReviewsDesktop
+                {contentProfessionReviewsDesktop.map((item) => (
+                    <ItemProfessionReviewsDesktop
                         key={item.id}
                         question={item.question}
                         answer={item.answer}

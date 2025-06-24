@@ -1,4 +1,4 @@
-interface IInternshipnames {
+interface IInternshipNames {
     id: number
     image: {
         src: string
@@ -10,7 +10,7 @@ interface IInternshipnames {
     industry: string
     name: string
 }
-export const contentInternshipnamesDesktop: IInternshipnames[] = [
+export const contentInternshipNamesDesktop: IInternshipNames[] = [
     {
         name: 'EPAM systems',
         image: {
@@ -26,7 +26,7 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
     {
         name: 'EPAM systems',
         image: {
-            src: '/images/EPAM.png',
+            src: '/images/epam.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -38,7 +38,7 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
     {
         name: 'EPAM systems',
         image: {
-            src: '/images/EPAM.png',
+            src: '/images/epam.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -50,7 +50,7 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
     {
         name: 'EPAM systems',
         image: {
-            src: '/images/EPAM.png',
+            src: '/images/epam.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -62,7 +62,7 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
     {
         name: 'EPAM systems',
         image: {
-            src: '/images/EPAM.png',
+            src: '/images/epam.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -74,7 +74,7 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
     {
         name: 'EPAM systems',
         image: {
-            src: '/images/EPAM.png',
+            src: '/images/epam.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -87,7 +87,7 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
         name: 'EPAM systems',
 
         image: {
-            src: '/images/EPAM.png',
+            src: '/images/epam.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -99,7 +99,7 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
     {
         name: 'EPAM systems',
         image: {
-            src: '/images/EPAM.png',
+            src: '/images/epam.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -111,7 +111,7 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
     {
         name: 'EPAM systems',
         image: {
-            src: '/images/EPAM.png',
+            src: '/images/epam.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
@@ -123,7 +123,7 @@ export const contentInternshipnamesDesktop: IInternshipnames[] = [
     {
         name: 'EPAM systems',
         image: {
-            src: '/images/EPAM.png',
+            src: '/images/epam.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
