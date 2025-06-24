@@ -1,13 +1,13 @@
 import Link from 'next/link'
-import { contentOrderPayment } from './contentOrderPaymentDesktop/content'
+import { content } from '@/components/desktop/pageDesktop/DuePaymentsPageDesktop/contentDuePaymentsPageDesktop/content'
 import { Button } from '@/components/ui/button'
-import OrderPaymentCardDesktop from './ItemOrderPaymentDesktop/OrderPaymentCardDesktop'
+import ItemCardDuePaymentsDesktop from '../ItemCardDuePaymentsDesktop/ItemCardDuePaymentsDesktop'
 
-const OrderPaymentDesktop: React.FC = () => {
-    if (!contentOrderPayment) {
+const DuePaymentsDesktop: React.FC = () => {
+    if (!content) {
         return (
-            <div className="flex flex-col items-center pb-[370px] pt-[80px]">
-                <p className="mb-4 text-[#353652] hover:underline">Заказов требующих оплаты нет</p>
+            <div className="flex flex-col items-center pb-[370px]">
+                <p className="mb-4 text-7xl font-medium leading-[40px] text-[#353652]">Заказов требующих оплаты нет</p>
                 <Link href={'/professions'}>
                     <Button variant={'send_btn_desktop'} size={'send_btn_desktop'}>
                         Выбрать профессию
@@ -18,10 +18,10 @@ const OrderPaymentDesktop: React.FC = () => {
     }
     return (
         <>
-            <div className="3xl:pt-[50px] pb-[49px] pt-[80px] 2xl:pt-[40px] grid">
-                <div className="grid grid-cols-2 justify-between gap-[34px] self-end pb-[87px]">
-                    {contentOrderPayment.map((item) => (
-                        <OrderPaymentCardDesktop
+            <div className="grid pb-[49px]">
+                <div className="grid grid-cols-2 justify-between gap-[34px] self-end pb-[80px] 2xl:pb-[40px]">
+                    {content.map((item) => (
+                        <ItemCardDuePaymentsDesktop
                             key={item.id}
                             profession={item.profession}
                             company_name={item.company_name}
@@ -44,4 +44,4 @@ const OrderPaymentDesktop: React.FC = () => {
         </>
     )
 }
-export default OrderPaymentDesktop
+export default DuePaymentsDesktop

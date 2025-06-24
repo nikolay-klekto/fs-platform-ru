@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import DuePaymentsPageDesktop from '@/components/DuePaymentsPageDesktop'
-import DuePaymentsPageMobi from '@/components/DuePaymentsPageMobile'
+import DuePaymentsPageDesktop from '@/components/desktop/pageDesktop/DuePaymentsPageDesktop/DuePaymentsPageDesktop'
+import DuePaymentsPageMobi from '@/components/mobi/pageMobi/DuePaymentsPageMobi/DuePaymentsPageMobi'
 
 export default function DuePayments() {
     const [isClient, setIsClient] = useState(false)

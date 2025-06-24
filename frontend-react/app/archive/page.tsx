@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import ArchivePageDesktop from '@/components/ArchivePageDesktop'
-import ArchivePageMobi from '@/components/ArchivePageMobi'
+import ArchivePageDesktop from '@/components/desktop/pageDesktop/ArchivePageDesktop/ArchivePageDesktop'
+import ArchivePageMobi from '@/components/mobi/pageMobi/ArchivePageMobi/ArchivePageMobi'
 
 export default function Archive() {
     const [isClient, setIsClient] = useState(false)

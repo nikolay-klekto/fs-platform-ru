@@ -125,15 +125,13 @@ We organize components in a structured manner:
 
 ```
 /components
- /desktop
-  /layout
-    FooterDesktop.tsx
-    HeaderDesktop.tsx
-    /ProfessionSectionDesktop
-      ProfessionsSectionDesktop.tsx
-    /HowWeWork
-      content.tsx
-      HowWeWorkDesktop.tsx
+    /desktop
+        /pageDesktop
+            /HeaderDesktop - HeaderDesktop.tsx
+                /components
+                    /ItemCardHeaderDesktop - ItemCardHeaderDesktop.tsx
+                    /HeaderNavigationDesktop - HeaderNavigationDesktop.tsx
+                /contentHeaderDesktop - content.tsx
 ```
 
 ### Next.js Specific Folder Structure
