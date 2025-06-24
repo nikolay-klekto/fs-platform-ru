@@ -89,7 +89,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                             {filteredContent
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (
-                                    <Link href={`/profession`} key={item.id} className="block">
+                                    <Link href={`/profession`} key={item.id} className="w-[340px] max-w-full">
                                         <ProfessionCardPageDesktop
                                             key={item.id}
                                             image={item.image}

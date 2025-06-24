@@ -11,11 +11,11 @@ const cardVariants = cva('border-none', {
                 'hover:button-shadow_around_desktop_custom flex cursor-pointer flex-col justify-between border-none bg-cover bg-center',
             profession_home_mobi: 'flex shrink-0 grow-0 flex-col justify-between bg-cover bg-center',
             profession_page_desktop:
-                'hover:button-shadow_around_desktop_custom relative flex cursor-pointer flex-col justify-between border-none bg-cover bg-center',
-            profession_page_mobi: 'flex flex-col justify-between border-none bg-cover bg-center bg-no-repeat',
+                'hover:button-shadow_around_desktop_custom relative flex cursor-pointer flex-col justify-between border-none bg-cover bg-center overflow-hidden',
+            profession_page_mobi: 'flex flex-col justify-between border-none bg-cover bg-center bg-no-repeat ',
             companies_page_mobi: 'flex flex-col justify-between border-none bg-cover bg-center bg-no-repeat',
             companies_page_desktop:
-                'hover:button-shadow_around_desktop_custom relative flex cursor-pointer flex-col justify-between border-none bg-cover bg-center',
+                'hover:button-shadow_around_desktop_custom relative flex cursor-pointer flex-col justify-between border-none bg-cover bg-center ',
         },
         size: {
             default: '',

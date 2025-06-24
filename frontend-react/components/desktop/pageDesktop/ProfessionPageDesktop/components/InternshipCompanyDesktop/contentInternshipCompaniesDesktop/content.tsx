@@ -14,7 +14,7 @@ export const contentInternshipNamesDesktop: IInternshipNames[] = [
     {
         name: 'EPAM systems',
         image: {
-            src: '/images/EPAM.png',
+            src: '/images/epam.png',
             alt: 'company-logo',
             width: 320,
             height: 400,
