@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
 import { SlashIcon } from 'lucide-react'
 
 import {
@@ -14,6 +15,7 @@ import {
 type BreadcrumbEntry = {
     title: string
     href?: string
+    className?: string
 }
 
 interface BreadcrumbsProps {
@@ -35,9 +37,11 @@ export default function Breadcrumbs({
                         <React.Fragment key={index}>
                             <BreadcrumbItem>
                                 {isLast ? (
-                                    <BreadcrumbPage className="text-white">{item.title}</BreadcrumbPage>
+                                    <BreadcrumbPage className={cn('text-white', item.className)}>
+                                        {item.title}
+                                    </BreadcrumbPage>
                                 ) : (
-                                    <BreadcrumbLink asChild>
+                                    <BreadcrumbLink asChild className={item.className}>
                                         <Link href={item.href ?? '#'}>{item.title}</Link>
                                     </BreadcrumbLink>
                                 )}
