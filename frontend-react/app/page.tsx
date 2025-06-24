@@ -14,7 +14,9 @@ export default function Home() {
 
         const hasSeenCookies = localStorage.getItem('hasSeenCookies')
         if (!hasSeenCookies) {
-            openModal('cookie_desktop', 'desktop')
+            const modalKey = isDesktop ? 'cookie_desktop' : 'cookie_mobi'
+            const modalType = isDesktop ? 'desktop' : 'mobi'
+            openModal(modalKey, modalType)
             localStorage.setItem('hasSeenCookies', 'true')
         }
     }, [openModal])
