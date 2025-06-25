@@ -3,6 +3,7 @@ import { ChevronLeftIconMobi, AttachFileIconMobi } from '@/components/assets/ico
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
+import Link from 'next/link'
 
 interface IFormData {
     name: string
@@ -139,7 +140,9 @@ const JoinTeamMobi: React.FC = () => {
     return (
         <main className="px-[15px] pb-[100px] pt-[20px]">
             <div className="mb-5 flex items-center gap-4 p-[10px]">
-                <ChevronLeftIconMobi />
+                <Link href="/contacts">
+                    <ChevronLeftIconMobi />
+                </Link>
                 <h2 className="text-7xl font-medium uppercase leading-[100%] tracking-normal text-white">
                     Хотите работать у нас?
                 </h2>
