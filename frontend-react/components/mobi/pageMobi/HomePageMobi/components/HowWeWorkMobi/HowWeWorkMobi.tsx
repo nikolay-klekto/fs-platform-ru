@@ -7,22 +7,27 @@ import { content } from './contentHowWeWorkMobi/content'
 const HowWeWorkMobi: React.FC = () => {
     const [showList, setShowList] = React.useState(true)
     return (
-        <div className="max-w-full px-[15px] py-[60px] pt-[117px]">
-            <div className="sm_l:mb-[20px] sm_s:mb-[20px] mb-[30px] sm:mb-[15px]">
+        <div className="max-w-full px-[15px] py-[60px] pt-[117px] md:px-[26px]">
+            <div className="sm_l:mb-[20px] sm_s:mb-[20px] mb-[30px] sm:mb-[15px] md:mb-[40px]">
                 <TitleMobi title={'Как мы работаем'} href="#" />
             </div>
             <div className="relative">
                 {(showList ? content.slice(0, 2) : content).map((item) => (
                     <div key={item.id}>
-                        <div className="text-9xl text-[#353652]">{item.num}</div>
-                        <SubTitleMobi title={item.title} />
-                        <div className="flex flex-col border-b border-[#353652] pb-[20px] pt-[10px] ">
-                            {item.description.map((item, index) => (
-                                <span className="text-base font-medium text-[#878797]" key={index}>
-                                    {item}
-                                </span>
-                            ))}
+                        <div className="text-9xl text-[#353652] font-normal md:text-[clamp(2rem,10vw,4rem)]">
+                            {item.num}
                         </div>
+                        <SubTitleMobi title={item.title} />
+                        <ul className="flex flex-col border-b border-[#353652] pb-[20px] pt-[10px] ">
+                            {item.description.map((item, index) => (
+                                <li
+                                    className="text-base font-medium text-[#878797] before:content-['-'] before:mr-1 md:text-[clamp(0.5rem,4vw,1.5rem)]"
+                                    key={index}
+                                >
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 ))}
                 {showList && (
