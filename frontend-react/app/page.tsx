@@ -8,6 +8,9 @@ import { useModal } from '@/context/ContextModal'
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
     const { openModal } = useModal()
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1240px)',
+    })
 
     useEffect(() => {
         setIsClient(true)
@@ -19,11 +22,7 @@ export default function Home() {
             openModal(modalKey, modalType)
             localStorage.setItem('hasSeenCookies', 'true')
         }
-    }, [openModal])
-
-    const isDesktop = useMediaQuery({
-        query: '(min-width: 1240px)',
-    })
+    }, [openModal, isDesktop])
 
     if (!isClient) {
         return null
