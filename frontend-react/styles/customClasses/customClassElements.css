@@ -205,4 +205,40 @@
         background-position: center;
         background-repeat: no-repeat;
     }
+
+    .mobi-scroll::-webkit-scrollbar {
+        display: block;
+        width: 2px;
+        height: 8px;
+        padding: 1em;
+        margin: 1em auto;
+        /* outline: 2px dashed cornflowerblue; */
+        overflow-y: overlay;
+    }
+
+    .mobi-scroll::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 100vw;
+        margin-block: 0.5em;
+    }
+
+    .mobi-scroll::-webkit-scrollbar-thumb {
+        background-color: #878797;
+        border-radius: 100vw;
+        height: 57px;
+        box-shadow: 4px 0px 0px 4px #00000040 inset;
+    }
+
+    .mobi-scroll::-webkit-scrollbar-thumb:hover {
+        background-color: transparent;
+        border: 0px solid transparent;
+    }
+
+    .mobi-scroll::-webkit-scrollbar-track-piece:start {
+        background: transparent;
+    }
+
+    .mobi-scroll::-webkit-scrollbar-track-piece:end {
+        background: transparent;
+    }
 }
