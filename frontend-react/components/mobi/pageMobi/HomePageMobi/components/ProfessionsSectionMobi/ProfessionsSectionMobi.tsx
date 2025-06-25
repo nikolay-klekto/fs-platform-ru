@@ -23,7 +23,7 @@ const ProfessionsSectionMobi: React.FC = () => {
                         key={item.id}
                         image={item.image}
                         profession={item.profession}
-                        price={item.price.toString()}
+                        price={item.price ? item.price.toString() : null}
                         onClick={() => {
                             openModal('profession_modal_mobi', 'mobi', {
                                 profession: item.profession,

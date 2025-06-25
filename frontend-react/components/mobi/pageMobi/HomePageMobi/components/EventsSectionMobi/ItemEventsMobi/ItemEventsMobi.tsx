@@ -28,10 +28,12 @@ const ItemEventsMobi: React.FC<IEventSection> = ({ image, title, date, address }
                     </p>
                 </div>
                 <div className="absolute bottom-3.5 left-3.5 flex max-w-[85%] flex-col items-start pr-3.5">
-                    <p className="sm_l:text-4xl sm_s:text-2xl max-w-full overflow-hidden pb-3.5 text-4xl font-semibold uppercase text-white sm:text-2xl md:text-[clamp(25px,5vw,32px)]">
+                    <p className="sm_l:text-4xl sm_s:text-2xl max-w-full overflow-hidden pb-3.5 text-4xl font-semibold uppercase text-white sm:text-2xl md:text-[clamp(21px,5vw,32px)]">
                         {title}
                     </p>
-                    <p className="max-w-full truncate text-base font-medium text-[#878797] md:text-6xl">{address}</p>
+                    <p className="max-w-full truncate text-base font-medium text-[#878797] md:text-[clamp(15px,4vw,32px)]">
+                        {address}
+                    </p>
                 </div>
             </div>
         </div>
