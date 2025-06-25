@@ -188,7 +188,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                             } as React.ChangeEvent<HTMLInputElement>)
                                         }
                                         onBlur={handleInputBlur}
-                                        className={`mb-4 border-2 focus:border-2 focus:ring-0 focus:ring-offset-0 ${
+                                        className={`mb-4 border-2 text-xl focus:border-2 focus:ring-0 focus:ring-offset-0 ${
                                             errors.phone
                                                 ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]'
                                                 : 'border-[#878797] focus:border-[#878797]'
@@ -218,7 +218,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                                     },
                                                 } as React.ChangeEvent<HTMLInputElement>)
                                             }}
-                                            className="h-10 mb-3 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-base font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] focus:outline-none focus:border-[#878797] focus:ring-0 focus:ring-offset-0"
+                                            className="mb-3 h-10 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-xl font-medium text-white placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] focus:border-[#878797] focus:outline-none focus:ring-0 focus:ring-offset-0"
                                         />
                                     </label>
                                 </div>

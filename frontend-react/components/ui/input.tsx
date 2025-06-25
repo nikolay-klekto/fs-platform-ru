@@ -88,6 +88,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             helperText,
             name,
             wrapperClassName,
+            helperTextClassName,
             labelClassName,
             placeholder,
             checked,
@@ -205,16 +206,16 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         {...props}
                     />
                 )}
-                <div className="flex h-4">
+                <div className="flex h-4 text-[0.8125rem]">
                     {(helperText || internalError) && (
-                        <span
+                        <p
                             className={cn(
-                                'text-[0.8125rem]',
+                                helperTextClassName,
                                 internalError ? 'text-[#bc8070]' : 'text-muted-foreground',
                             )}
                         >
                             {internalError || helperText}
-                        </span>
+                        </p>
                     )}
                 </div>
             </div>

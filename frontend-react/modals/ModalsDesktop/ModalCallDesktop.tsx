@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal'
 import { X } from 'lucide-react'
@@ -137,7 +137,9 @@ const ModalCallDesktop = ({ onClose }: IModalContent) => {
         })
     }
 
-    const hasErrors = Object.values(errors).some((err) => err === true)
+    const hasErrors = useMemo(() => {
+        return Object.values(errors).some(Boolean)
+    }, [errors])
 
     return (
         <>
