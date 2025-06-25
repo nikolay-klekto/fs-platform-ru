@@ -7,7 +7,7 @@ import { content } from './contentHowWeWorkMobi/content'
 const HowWeWorkMobi: React.FC = () => {
     const [showList, setShowList] = React.useState(true)
     return (
-        <div className="max-w-full px-[15px] py-[60px] pt-[117px] md:px-[26px]">
+        <div className="max-w-full px-[15px] py-[60px] mt-[117px] md:px-[26px]">
             <div className="sm_l:mb-[20px] sm_s:mb-[20px] mb-[30px] sm:mb-[15px] md:mb-[40px]">
                 <TitleMobi title={'Как мы работаем'} href="#" />
             </div>
