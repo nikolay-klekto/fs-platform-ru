@@ -42,8 +42,6 @@ const ProfessionsPaginationMobi: React.FC<IEventsPagination> = ({ totalPages, cu
             <LessIconMobi
                 width={'10'}
                 height={'19'}
-                // className={currentPage === 1 ? 'pointer-events-none text-[#878797] opacity-50' : ''}
-                // onClick={currentPage > 1 ? handleLessClick : undefined}
                 className={lessDisabled ? 'pointer-events-none opacity-50' : ''}
                 onClick={lessDisabled ? undefined : handleLessClick}
             />
@@ -69,8 +67,6 @@ const ProfessionsPaginationMobi: React.FC<IEventsPagination> = ({ totalPages, cu
             <MoreIconMobi
                 width={'10'}
                 height={'19'}
-                // className={currentPage === totalPages ? 'pointer-events-none opacity-50' : ''}
-                // onClick={currentPage < totalPages ? handleMoreClick : undefined}
                 className={moreDisabled ? 'pointer-events-none opacity-50' : ''}
                 onClick={moreDisabled ? undefined : handleMoreClick}
             />
