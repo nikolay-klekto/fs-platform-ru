@@ -78,7 +78,7 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 <div className="mt-[14px] px-[76px] ">
                     <p className="text15px_desktop font-medium text-[#353652]">
                         Защита от спама reCAPTCHA{' '}
-                        <a href="href" className="hover:cursor text15px_desktop font-medium  text-[#353652] underline">
+                        <a href="/privacy-policy" className="hover:cursor text15px_desktop font-medium  text-[#353652] underline">
                             Конфиденциальность
                         </a>{' '}
                         и{' '}
