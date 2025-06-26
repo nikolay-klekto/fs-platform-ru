@@ -1,6 +1,5 @@
 'use client'
 
-import React, { useState } from 'react'
 import { LessIconMobi, MoreIconMobi } from '@/components/assets/iconsMobi'
 
 interface IEventsPagination {
@@ -9,20 +8,32 @@ interface IEventsPagination {
     onPageChange: (page: number) => void
 }
 
+const VISIBLE_PAGES = 3
+
 const ProfessionsPaginationMobi: React.FC<IEventsPagination> = ({ totalPages, currentPage, onPageChange }) => {
-    const [visibleStart, setVisibleStart] = useState(1)
-    const visibleEnd = visibleStart + 2
+    let visibleStart = currentPage - Math.floor(VISIBLE_PAGES / 2)
+    if (visibleStart < 1) visibleStart = 1
+    if (visibleStart > totalPages - VISIBLE_PAGES + 1) {
+        visibleStart = Math.max(1, totalPages - VISIBLE_PAGES + 1)
+    }
+    const visibleEnd = Math.min(visibleStart + VISIBLE_PAGES - 1, totalPages)
+
+    const arrowsDisabled = totalPages <= VISIBLE_PAGES
+
+    const lessDisabled = arrowsDisabled || currentPage === 1
+    const moreDisabled = arrowsDisabled || currentPage === totalPages
 
     const handleLessClick = () => {
-        if (visibleStart > 1) {
-            setVisibleStart(visibleStart - 1)
-            onPageChange(visibleStart - 1)
+        if (!lessDisabled) {
+            onPageChange(currentPage - 1)
+            window.scrollTo({ top: 0, behavior: 'smooth' })
         }
     }
+
     const handleMoreClick = () => {
-        if (visibleEnd < totalPages) {
-            setVisibleStart(visibleStart + 1)
-            onPageChange(visibleStart + 1)
+        if (!moreDisabled) {
+            onPageChange(currentPage + 1)
+            window.scrollTo({ top: 0, behavior: 'smooth' })
         }
     }
 
@@ -31,34 +42,37 @@ const ProfessionsPaginationMobi: React.FC<IEventsPagination> = ({ totalPages, cu
             <LessIconMobi
                 width={'10'}
                 height={'19'}
-                className={visibleStart === 1 ? 'text-[#878797]' : 'text-[#FFFFFFCC]'}
-                onClick={visibleStart > 1 ? handleLessClick : undefined}
+                // className={currentPage === 1 ? 'pointer-events-none text-[#878797] opacity-50' : ''}
+                // onClick={currentPage > 1 ? handleLessClick : undefined}
+                className={lessDisabled ? 'pointer-events-none opacity-50' : ''}
+                onClick={lessDisabled ? undefined : handleLessClick}
             />
-
-            {[...Array(totalPages)]
-                .map((_, index) => index + 1)
-                .filter((pageNumber) => pageNumber >= visibleStart && pageNumber <= visibleEnd)
-                .map((pageNumber) => {
-                    return (
-                        <button
-                            key={pageNumber}
-                            className={`text-5xl font-medium ${
-                                currentPage === pageNumber ? 'text-gradient_mobi_custom' : 'text-[#FFFFFFCC]'
-                            }`}
-                            onClick={() => {
+            {[...Array(visibleEnd - visibleStart + 1)].map((_, idx) => {
+                const pageNumber = visibleStart + idx
+                return (
+                    <button
+                        key={pageNumber}
+                        className={`text-5xl font-medium ${
+                            currentPage === pageNumber ? 'text-gradient_mobi_custom' : 'text-[#FFFFFFCC]'
+                        }`}
+                        onClick={() => {
+                            if (pageNumber !== currentPage) {
                                 onPageChange(pageNumber)
                                 window.scrollTo({ top: 0, behavior: 'smooth' })
-                            }}
-                        >
-                            {pageNumber}
-                        </button>
-                    )
-                })}
+                            }
+                        }}
+                    >
+                        {pageNumber}
+                    </button>
+                )
+            })}
             <MoreIconMobi
                 width={'10'}
                 height={'19'}
-                className={visibleEnd >= totalPages ? 'text-[#878797]' : 'text-[#FFFFFFCC]'}
-                onClick={visibleEnd < totalPages ? handleMoreClick : undefined}
+                // className={currentPage === totalPages ? 'pointer-events-none opacity-50' : ''}
+                // onClick={currentPage < totalPages ? handleMoreClick : undefined}
+                className={moreDisabled ? 'pointer-events-none opacity-50' : ''}
+                onClick={moreDisabled ? undefined : handleMoreClick}
             />
         </div>
     )

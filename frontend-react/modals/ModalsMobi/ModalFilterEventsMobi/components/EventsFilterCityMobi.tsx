@@ -17,7 +17,7 @@ const EventsFilterCityMobi: React.FC<Props> = ({ selectedCities, onSelect, onRem
                 onClick={onSelect}
                 className="flex w-full items-center gap-2 rounded-xl px-0 py-2 text-left transition active:bg-[#222246]"
             >
-                <span className="text18px_mobi font-semibold text-white">Город</span>
+                <span className="text22px_mobi font-semibold text-white">Город</span>
                 <ChevronLeftIconMobi className="size-[14px] rotate-180 text-white" />
             </button>
 
