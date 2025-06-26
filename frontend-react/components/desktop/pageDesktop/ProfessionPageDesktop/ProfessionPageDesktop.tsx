@@ -29,7 +29,7 @@ const ProfessionPageDesktop: React.FC = () => {
                         </Link>
                     </div>
                     <div className="flex flex-col px-[58px]">
-                        <h1 className="mb-15 title80px_desktop font-medium uppercase text-white">Программист</h1>
+                        <h1 className="mb-[45px] title80px_desktop font-medium uppercase text-white">Программист</h1>
                         <p className="title160px_desktop absolute left-0 top-0 pl-[114px] pr-[146px] font-semibold uppercase opacity-[0.02] 2xl:mt-[25px] 3xl:mt-[18px] 4xl:mt-[8px]">
                             Программист
                         </p>
@@ -50,7 +50,7 @@ const ProfessionPageDesktop: React.FC = () => {
                             </div>
                         ))}
                         <h2 className="mb-[63px] mt-[96px] text-[48px] font-medium uppercase">
-                            Компании для стажировки:
+                            Компании для стажировки
                         </h2>
                         <InternshipCompaniesDesktop />
                         <h2 className="mb-[81px] text-[48px] font-medium uppercase ">Отзывы о профессии</h2>
