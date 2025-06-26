@@ -140,7 +140,7 @@ const EventsSearchCityMobi: React.FC<Props> = ({ selectedCities, onChange, onCle
 
                             {rest.length === 0 && favorites.length === 0 && (
                                 <li>
-                                    <div className="px-4 py-6 text-center text-[16px] text-[#878797]">Не найдено</div>
+                                    <div className="text22px_mobi px-4 py-6 text-center text-[#878797]">Не найдено</div>
                                 </li>
                             )}
                             {rest.map((city, idx) => (

@@ -33,7 +33,7 @@ const EventsFilterDateMobi: React.FC<Props> = ({ shortDates, onShortDatesChange,
 
     return (
         <div className="mb-8">
-            <h3 className="mb-4 text-[16px] font-semibold text-white">Дата</h3>
+            <h3 className="text22px_mobi mb-4 font-semibold text-white">Дата</h3>
             <div className="flex flex-wrap gap-x-4 gap-y-2">
                 {shortDateOptions.map((option) => (
                     <button

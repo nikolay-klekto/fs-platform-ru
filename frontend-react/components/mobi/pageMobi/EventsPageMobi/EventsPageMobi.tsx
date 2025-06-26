@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState, useMemo } from 'react'
 
-import { fakeEvents } from './contentEventsPageMobi/fakeEvents'
-import { getAllActualEvents } from './lib/EventsApiMobi'
+import { fakeEvents } from './contentEventsPageMobi/content'
+import { getAllActualEvents } from '../../../../lib/api/events'
 import EventsCardMobi from './components/EventsCardMobi'
 import EventsPaginationMobi from './components/EventsPaginationMobi'
 import EventsFilterModalMobi from '../../../../modals/ModalsMobi/ModalFilterEventsMobi/EventsFilterModalMobi'
@@ -119,7 +119,7 @@ const EventsPageMobi: React.FC = () => {
                 <div className="bg-[#101030] text-white">
                     <div className="relative overflow-hidden px-[16px] pt-[40px]">
                         <div className="mb-10 flex items-center justify-between pr-[4px]">
-                            <h1 className="text28px_mobi relative uppercase">Мероприятия</h1>
+                            <h1 className="text28px_mobi relative font-medium uppercase">Мероприятия</h1>
                             <FiltersIconMobi
                                 className={`size-[24px] ${hasActiveFilters(filters) ? 'text-white' : 'text-[#878797]'}`}
                                 onClick={() => setShowFilter(true)}
@@ -138,12 +138,12 @@ const EventsPageMobi: React.FC = () => {
                             <div className="flex flex-wrap justify-center gap-[24px]">
                                 {filteredEvents.length === 0 ? (
                                     <div className="flex min-h-[300px] flex-col items-center gap-10">
-                                        <div className="text-center text-[14px] text-[#878797] md:text-[16px]">
+                                        <div className="text-center text-[14px] font-medium text-[#878797] md:text-[16px]">
                                             Нет мероприятий по выбранным фильтрам
                                         </div>
                                         <button
                                             onClick={resetFilters}
-                                            className="w-[188px] rounded-full border-2 border-[#3d50ad] bg-transparent py-2 text-[16px] font-medium text-white transition-all duration-200 active:opacity-80"
+                                            className="w-[188px] rounded-full border-2 border-[#3d50ad] bg-transparent py-2 text-[15px] font-medium text-white transition-all duration-200 active:opacity-80"
                                         >
                                             Вернуться назад
                                         </button>

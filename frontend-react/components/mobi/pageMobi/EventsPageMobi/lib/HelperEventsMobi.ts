@@ -1,6 +1,3 @@
-//filter by city one by one
-//date format???? ISO with -?
-
 export function isToday(dateStr: string) {
     const now = new Date()
     const d = new Date(dateStr)
@@ -18,17 +15,6 @@ export function isTomorrow(dateStr: string) {
         d.getDate() === tomorrow.getDate()
     )
 }
-
-// export function isThisWeek(dateStr: string) {
-//     const now = new Date()
-//     const d = new Date(dateStr)
-//     const start = new Date(now)
-//     start.setDate(now.getDate() - now.getDay())
-//     start.setHours(0, 0, 0, 0)
-//     const end = new Date(start)
-//     end.setDate(start.getDate() + 7)
-//     return d >= start && d < end
-// }
 
 export function isThisWeek(dateStr: string) {
     const now = new Date()

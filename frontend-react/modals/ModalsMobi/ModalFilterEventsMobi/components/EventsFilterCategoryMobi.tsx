@@ -18,7 +18,7 @@ const EventsFilterCategoryMobi: React.FC<Props> = ({ selectedCategories, onChang
     }
     return (
         <div className="mb-8">
-            <h3 className="mb-4 text-[16px] font-semibold text-white">Категория мероприятия</h3>
+            <h3 className="text22px_mobi mb-4 font-semibold text-white">Категория мероприятия</h3>
             <div className="flex flex-wrap gap-2">
                 {categories.map((cat) => {
                     const selected = selectedCategories.includes(cat)

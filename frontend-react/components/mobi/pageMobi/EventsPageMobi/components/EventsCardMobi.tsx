@@ -55,13 +55,13 @@ const EventsCardMobi: React.FC<IEventsCard> = ({ title, category, image, date, c
                 <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[rgba(12,12,12,0)] to-[#232341]"></div>
 
                 <div className="absolute right-[3.76%] top-[4.42%] z-[3] flex h-[70px] w-[58px] flex-col items-center justify-center rounded-[15px] bg-white/80 px-[4px] text-center text-[#0B0B0B] shadow-md">
-                    <div className="text-[18px] font-semibold leading-[22px]">{day}</div>
+                    <div className="text22px_mobi font-semibold leading-[22px]">{day}</div>
                     <div className="text-[12px] font-medium leading-[15px] text-[#878797]">{displayMonth}</div>
                 </div>
                 <div className="absolute inset-x-[3.5%] bottom-[5.5%] z-[3] bg-transparent text-white">
-                    <div className="mb-[8px] text-[18px] font-semibold uppercase leading-[22px]">{title}</div>
+                    <div className="text22px_mobi mb-[8px] font-semibold uppercase leading-[22px]">{title}</div>
 
-                    <div className="text-[12px] leading-[15px] text-[#878797]">
+                    <div className="text-[12px] font-medium leading-[15px] text-[#878797]">
                         {company}, {city}, {place}
                     </div>
                 </div>
