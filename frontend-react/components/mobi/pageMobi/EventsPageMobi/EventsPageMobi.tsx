@@ -10,7 +10,7 @@ import EventsFilterModalMobi from '../../../../modals/ModalsMobi/ModalFilterEven
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import { FiltersIconMobi } from '@/components/assets/iconsMobi'
-import { isToday, isTomorrow, isThisWeek, isThisMonth, isInNext3Months } from './lib/HelperEventsMobi'
+import { isToday, isTomorrow, isThisWeek, isThisMonth, isInNext3Months } from './lib/dateHelpers'
 
 type FiltersState = {
     categories: string[]
