@@ -12,13 +12,13 @@ const textareaVariants = cva(
                 contacts_page:
                     'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent focus:border-[3px] focus:ring-transparent',
                 contacts_page_error_mobi:
-                    'border-[1.18px] border-[#bc8070] bg-transparent text-xs ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent',
+                    'border-[1.18px] border-[#bc8070] bg-transparent text-xs ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent md:text-xl md:placeholder:text-xl',
                 contacts_page_mobi:
-                    'border-[1.18px] border-[#878797] bg-transparent text-xs ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent',
+                    'border-[1.18px] border-[#878797] bg-transparent text-xs ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent md:text-xl md:placeholder:text-xl',
             },
             size: {
                 default: 'h-10 px-3 py-2',
-                contacts_page_mobi: 'h-[82px] max-w-[446px] px-4 py-2 md:h-[86px]',
+                contacts_page_mobi: 'h-[82px] px-4 py-2 md:h-[86px]',
             },
             rounded: {
                 default: 'rounded-md',

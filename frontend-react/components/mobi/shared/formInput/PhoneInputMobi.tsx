@@ -27,7 +27,6 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     onChange,
     onError,
     className,
-    labelClassName,
     wrapperClassName,
     required = false,
     showInternalError,
@@ -116,9 +115,6 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
 
     return (
         <div className={`flex w-full flex-col gap-1.5 ${wrapperClassName}`}>
-            <label htmlFor="phone" className={`mb-1 text-2xl font-medium text-white ${labelClassName}`}>
-                Номер телефона*
-            </label>
             <input
                 ref={inputRef}
                 id="phone"
@@ -131,7 +127,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={inputValue !== '' ? PHONE_MASK : 'Телефон*'}
-                className={`input-form-mobi-custom w-full border-2 font-medium placeholder:text-[#353652] focus:border-2 ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                className={`input-form-mobi-custom placeholder:text-muted-foreground h-[29.5px] w-full border-[1.18px] font-medium placeholder:text-xs focus:border-2 md:h-[38px] md:placeholder:text-xl ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
             {showInternalError !== false && internalError && (
                 <p className={'error-form-mobi-custom'}>{internalError}</p>

@@ -154,7 +154,7 @@ const ContactsMobi: React.FC = () => {
                                     key={item.id}
                                     className={`${item.id !== contentContactsMobi.length ? 'pb-[20px]' : ''}`}
                                 >
-                                    <p className="pb-2.5px text-base font-semibold text-white/50">{item.title}</p>
+                                    <p className="pb-[2.5px] text-base font-semibold text-white/50">{item.title}</p>
                                     {item.href ? (
                                         <a
                                             href={item.href}
