@@ -8,11 +8,14 @@ const ShoppingCartPageMobi: React.FC = () => {
         <>
             <div className="h-[20px] bg-[#101030]"></div>
             <HeaderMobi />
-            <div className="flex justify-center overflow-hidden bg-[#101030] text-white">
-                <div className="relative min-h-screen overflow-x-visible p-[76px_15px_200px_15px] xl:px-[212px] lg:px-[180px] md:px-8 sm_l:pt-[60px] sm_s:pt-[50px] sm:pt-[45px]">
-                    <div className="relative z-10 flex w-full flex-col items-center justify-center gap-[5%] py-[80px]">
-                        <div className="flex flex-col items-center justify-center gap-12">
-                            <div className="text-md text-center opacity-20 xl:w-[65%]">
+            <main className="flex justify-center overflow-hidden bg-[#101030] text-white">
+                <div className="relative min-h-screen overflow-x-visible px-[15px] xl:px-[212px] lg:px-[180px] md:px-8 pt-[40px]">
+                    <div className="relative z-10 flex w-full flex-col items-center justify-center gap-[5%] ">
+                        <div className="flex flex-col items-center justify-center px-[15px]">
+                            <h2 className="title28px_mobi_custom sm_s:text-[24px] sm:text-[24px]">личный кабинет</h2>
+                        </div>
+                        <div className="flex flex-col items-center justify-center pt-[89px]">
+                            <div className="pb-[47px] xl:w-[65%] text-center text16px_mobi font-semibold text-[#353652]">
                                 <p>Ваша корзина пуста</p>
                                 <p>
                                     Загляните на главную, чтобы выбрать понравившуюся стажировку, либо войдите в Ваш
@@ -27,7 +30,7 @@ const ShoppingCartPageMobi: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </main>
         </>
     )
 }
