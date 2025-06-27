@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { contentInternshipProfessionsDesktop } from './contentInternshipProfessionsDesktop/content'
-import ItemInternshipProfessionsDesktop from './ItemInternshipProfessionsDesktop/ItemInternshipProfessionsDesktop'
+'use client'
 
-const InternshipProfessionsDesktop: React.FC = () => {
+import React, { useRef, useEffect, useState } from 'react'
+import { content } from './contentCompanyAdvantageDesktop/content'
+import ItemCompanyAdvantageDesktop from './ItemCompanyAdvantageDesktop/ItemCompanyAdvantageDesktop'
+
+const ReviewsDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [scrollbarWidth, setScrollbarWidth] = useState(0)
@@ -48,13 +50,13 @@ const InternshipProfessionsDesktop: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll"
+                className="no-scrollbar_custom flex w-full select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll"
             >
-                {contentInternshipProfessionsDesktop.map((item) => (
-                    <ItemInternshipProfessionsDesktop
+                {content.map((item) => (
+                    <ItemCompanyAdvantageDesktop
                         key={item.id}
-                        image={item.image}
-                        name={item.name}
+                        question={item.question}
+                        answer={item.answer}
                         onWidthChange={() => {}}
                     />
                 ))}
@@ -62,7 +64,7 @@ const InternshipProfessionsDesktop: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="scrollbar_custom relative mb-[120px] mx-auto mt-[92px] w-[65%] cursor-pointer overflow-x-scroll"
+                className="scrollbar_custom relative mx-auto mt-[52px] mb-[132px] w-[65%] cursor-pointer overflow-x-scroll"
             >
                 <div className="absolute h-2" style={{ width: `${scrollbarWidth}px` }}></div>
             </div>
@@ -70,4 +72,4 @@ const InternshipProfessionsDesktop: React.FC = () => {
     )
 }
 
-export default InternshipProfessionsDesktop
+export default ReviewsDesktop

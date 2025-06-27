@@ -3,14 +3,14 @@
 import React from 'react'
 import Image from 'next/image'
 import { MapPinIconDesktop } from '@/components/assets/iconsDesktop'
-import { contentCompanyAboutDesktop } from './contentCompanyPageDesktop/content'
-import InternshipProfessionsDesktop from './components/InternshipProfessionsDesktop/InternshipProfessionsDesktop'
-import ReviewsDesktop from './components/ReviewsDesktop/ReviewsDesktop'
+import { content } from './contentCompanyPageDesktop/content'
+import InternshipProfessionsDesktop from './components/ProfessionsInCompanyDeskto/ProfessionsInCompanyDesktop'
+import ReviewsDesktop from './components/ReviewsDesktop/CompanyAdvantageDesktop'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import Link from 'next/link'
 
-const CompanyDesktop: React.FC = () => {
+const CompanyPageDesktop: React.FC = () => {
     return (
         <>
             <HeaderDesktop />
@@ -45,7 +45,7 @@ const CompanyDesktop: React.FC = () => {
                             />
                         </div>
 
-                        {contentCompanyAboutDesktop.map((item) => (
+                        {content.map((item) => (
                             <div key={item.id}>
                                 <p className="text32px_desktop max-w-[1803px] py-[57px] text-[rgb(135,135,151)]">
                                     {item.text}
@@ -118,4 +118,4 @@ const CompanyDesktop: React.FC = () => {
     )
 }
 
-export default CompanyDesktop
+export default CompanyPageDesktop

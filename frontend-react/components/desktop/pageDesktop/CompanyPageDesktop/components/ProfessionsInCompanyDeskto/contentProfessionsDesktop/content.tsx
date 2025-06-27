@@ -1,4 +1,4 @@
-interface IInternshipProfessions {
+interface IContent {
     id: number
     image: {
         src: string
@@ -8,7 +8,7 @@ interface IInternshipProfessions {
     }
     name: string
 }
-export const contentInternshipProfessionsDesktop: IInternshipProfessions[] = [
+export const content: IContent[] = [
     {
         id: 1,
         image: {

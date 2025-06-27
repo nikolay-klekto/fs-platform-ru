@@ -2,13 +2,13 @@
 
 import React, { useRef, useEffect } from 'react'
 
-interface IItemReviewsDesktop {
+interface IItemCompanyAdvantageDesktop {
     question: string
     answer: string
     onWidthChange: (width: number) => void
 }
 
-const ItemReviewsDesktop: React.FC<IItemReviewsDesktop> = ({ question, answer, onWidthChange }) => {
+const ItemCompanyAdvantageDesktop: React.FC<IItemCompanyAdvantageDesktop> = ({ question, answer, onWidthChange }) => {
     const itemRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -38,4 +38,4 @@ const ItemReviewsDesktop: React.FC<IItemReviewsDesktop> = ({ question, answer, o
     )
 }
 
-export default ItemReviewsDesktop
+export default ItemCompanyAdvantageDesktop

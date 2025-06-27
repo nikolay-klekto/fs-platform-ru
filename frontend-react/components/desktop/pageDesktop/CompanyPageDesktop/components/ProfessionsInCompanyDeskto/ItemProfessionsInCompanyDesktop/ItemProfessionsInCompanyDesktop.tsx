@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react'
 import Image from 'next/image'
 
-interface IItemCompaniesDesktop {
+interface IItemProfessionsInCompanyDesktop {
     image: {
         src: string
         alt: string
@@ -13,7 +13,11 @@ interface IItemCompaniesDesktop {
     onWidthChange: (width: number) => void
 }
 
-const ItemCompaniesDesktop: React.FC<IItemCompaniesDesktop> = ({ image, name, onWidthChange }) => {
+const ItemProfessionsInCompanyDesktop: React.FC<IItemProfessionsInCompanyDesktop> = ({
+    image,
+    name,
+    onWidthChange,
+}) => {
     const itemRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -51,4 +55,4 @@ const ItemCompaniesDesktop: React.FC<IItemCompaniesDesktop> = ({ image, name, on
     )
 }
 
-export default ItemCompaniesDesktop
+export default ItemProfessionsInCompanyDesktop
