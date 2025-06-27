@@ -130,7 +130,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 onKeyDown={handleKeyDown}
                 onClick={handleClick}
                 onBlur={handleBlur}
-                placeholder={PHONE_MASK}
+                placeholder={inputValue !== '' ? PHONE_MASK : 'Телефон*'}
                 className={`input-form-mobi-custom w-full border-2 font-medium placeholder:text-[#353652] focus:border-2 ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
             {showInternalError !== false && internalError && (

@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/classnames-order */
 import * as React from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
@@ -84,7 +85,7 @@ const buttonVariants = cva(
                 contacts_btn_desktop: '3xl:h-[62px] 3xl:w-[256px] h-[65px] w-[262px] 2xl:h-[59px] 2xl:w-[250px]',
                 contacts_btn_send_desktop: 'h-[68.5px] w-[289px] 2xl:h-[62px] 2xl:w-[277px] 3xl:h-[65px] 3xl:w-[283px]',
                 contacts_btn_mobi: 'h-[39.5px] w-[159px] flex-shrink-0 sm:w-[152px] sm_s:w-[156px]',
-                contacts_btn_send_mobi: 'h-[35px] w-[145px] flex-shrink-0 sm:w-[136px] sm_s:w-[140px]',
+                contacts_btn_send_mobi: 'h-[35px] w-[146px] flex-shrink-0 sm:w-[136px] sm_s:w-[140px]',
                 circle_modal_desk: 'size-[54px]',
                 hover_button_date_desktop:
                     'h-[50px] w-[400px] px-[30px] py-[20px] 2xl:w-[240px] 2xl:px-[20px] 3xl:w-[270px] 3xl:px-[20px]',
