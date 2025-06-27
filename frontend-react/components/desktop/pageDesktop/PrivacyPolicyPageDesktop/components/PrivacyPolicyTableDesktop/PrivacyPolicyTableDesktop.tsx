@@ -1,8 +1,8 @@
 import React from 'react'
-import { PrivacyPolicyTableRow, tdClass } from './PrivacyPolisyTableRow'
-import { rows } from '../tableRowsData'
+import { PrivacyPolicyTableRowDesktop, tdClass } from '../PrivacyPolicyTableRowDesktop/PrivacyPolisyTableRowDesktop'
+import { rows } from '../../contentPrivacyPolicyPageDesktop/content'
 
-export const PrivacyPolicyTable: React.FC = () => {
+export const PrivacyPolicyPageTableDesktop: React.FC = () => {
     return (
         <div className="overflow-x-auto">
             <table className="  mb-[50px]">
@@ -23,7 +23,7 @@ export const PrivacyPolicyTable: React.FC = () => {
                 </thead>
                 <tbody>
                     {rows.map((row) => (
-                        <PrivacyPolicyTableRow key={row.rowNumber} row={row} />
+                        <PrivacyPolicyTableRowDesktop key={row.rowNumber} row={row} />
                     ))}
                 </tbody>
             </table>

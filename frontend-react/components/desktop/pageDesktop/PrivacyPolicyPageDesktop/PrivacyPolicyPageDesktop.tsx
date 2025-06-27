@@ -1,38 +1,38 @@
 import React from 'react'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
-import { PrivacyPolicyTable } from './components/PrivacyPolicyTable'
+import { PrivacyPolicyPageTableDesktop } from './components/PrivacyPolicyTableDesktop/PrivacyPolicyTableDesktop'
 
-const PrivasyPolisyDesktop: React.FC = () => {
-    const h3Styles = 'text32px_desktop montserrat.variable font-medium uppercase'
-    const h3StylesMb40 = h3Styles + ' mb-[40px]'
+const PrivasyPolisyPageDesktop: React.FC = () => {
+    const h3StylesMb50 = 'mb-[50px] text32px_desktop  montserrat.variable font-medium uppercase'
+    const h3StylesMb15 = 'mb-[15px] text32px_desktop  montserrat.variable font-medium uppercase'
 
-    const pStyles = 'text24px_desktop text-[#B3B3BD]'
+    const pStyles = 'mb-[15px] text24px_desktop 4xl:!text-[24px] text-[#B3B3BD]'
     return (
         <>
             <HeaderDesktop />
             <div className="bg-[#101030] text-white">
                 <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
-                    <h2 className="text-center mb-24 font-medium text46px_desktop text-white ">
+                    <h2 className=" mb-[74px] text46px_desktop text-center font-medium  text-white ">
                         ПОЛИТИКА ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ
                     </h2>
 
-                    <section className="mb-[90px]">
-                        <h3 className={h3Styles + ' mb-[90px]'}>НАШИ КОНТАКТЫ:</h3>
-                        <h3 className={h3Styles + ' mb-[90px]'}>АДРЕС МЕСТОНАХОЖДЕНИЯ КОМПАНИИ:</h3>
-                        <h3 className={h3Styles + ' mb-[40px]'}>1. ОБЩИЕ ПОЛОЖЕНИЯ</h3>
-                        <p className={pStyles + ' mb-[45px]'}>
+                    <section>
+                        <h3 className={h3StylesMb50}>НАШИ КОНТАКТЫ:</h3>
+                        <h3 className={h3StylesMb50}>АДРЕС МЕСТОНАХОЖДЕНИЯ КОМПАНИИ:</h3>
+                        <h3 className={h3StylesMb15}>1. ОБЩИЕ ПОЛОЖЕНИЯ</h3>
+                        <p className={pStyles}>
                             Политика разработана в соответствии с требованиями законодательства Республики Беларусь и
                             применяется к отношениям, связанным с обработкой персональных данных ООО “Фанскрут” (далее –
                             Компания, Оператор, Мы, Нами, Нас) персональных данных пользователей сайта funscrut.by
                             (далее - Сайт), клиентов и поставщиков, их представителей.
                         </p>
-                        <p className={pStyles + ' mb-[70px]'}>
+                        <p className={pStyles}>
                             Политика не применяется к обработке персональных данных в процессе трудовой деятельности и
                             при осуществлении административных процедур в отношении работников и бывших работников,
                         </p>
-                        <h3 className={h3Styles + ' mb-[40px]'}>2. УСЛОВНЫЕ ОБОЗНАЧЕНИЯ</h3>
-                        <p className={pStyles + 'whitespace-pre-line'}>
+                        <h3 className={h3StylesMb15}>2. УСЛОВНЫЕ ОБОЗНАЧЕНИЯ</h3>
+                        <p className={pStyles + ' whitespace-pre-line'}>
                             {
                                 'Закон – Закон от 07.05.2021 № 99-З «О защите персональных данных»;\nГК – Гражданский Кодекс Республики Беларусь от 07.12.1998 г. №218-З.'
                             }
@@ -40,21 +40,21 @@ const PrivasyPolisyDesktop: React.FC = () => {
                     </section>
 
                     <section>
-                        <h3 className={h3Styles + ' mb-[35px]'}>
+                        <h3 className={h3StylesMb15}>
                             3. КАКИЕ ПЕРСОНАЛЬНЫЕ ДАННЫЕ, ДЛЯ КАКИХ ЦЕЛЕЙ, В ТЕЧЕНИЕ КАКОГО СРОКА И НА КАКОМ ОСНОВАНИИ
                             МЫ ОБРАБАТЫВАЕМ?
                         </h3>
                         <div className="overflow-x-auto">
-                            <PrivacyPolicyTable />
+                            <PrivacyPolicyPageTableDesktop />
                         </div>
-                        <p className={pStyles + ' mb-[50px] italic'}>
+                        <p className={pStyles + ' italic'}>
                             *Обработка Ваших персональных данных представляет собой совокупность действий, или же
                             какое-либо отдельное действие, которое Мы совершаем с Вашими персональными данными.
                             Обработка может включать в себя сбор, систематизацию, хранение, изменение, использование,
                             обезличивание, блокирование, распространение, предоставление, удаление Ваших персональных
                             данных.
                         </p>
-                        <p className={pStyles + ' mb-[50px] italic'}>
+                        <p className={pStyles + ' italic'}>
                             **Давая свое согласие на обработку Ваших персональных данных Нам, Вы соглашаетесь на
                             совершение Нами следующих действий с Вашими данными: сбор, систематизация, хранение,
                             изменение, использование, обезличивание, блокирование, распространение, предоставление,
@@ -64,15 +64,15 @@ const PrivasyPolisyDesktop: React.FC = () => {
                     </section>
 
                     <section>
-                        <h3 className={h3StylesMb40}>4. ПРЕКРАЩЕНИЕ ОБРАБОТКИ ВАШИХ ПЕРСОНАЛЬНЫХ ДАННЫХ</h3>
+                        <h3 className={h3StylesMb15}>4. ПРЕКРАЩЕНИЕ ОБРАБОТКИ ВАШИХ ПЕРСОНАЛЬНЫХ ДАННЫХ</h3>
                         <p className={pStyles}>Обработка Ваших данных прекращается:</p>
-                        <ul className={pStyles + ' list-disc pl-[30px] mb-[50px]'}>
+                        <ul className={pStyles + ' list-disc pl-[30px]'}>
                             <li>Когда мы достигли целей, для которых обрабатывали Ваши персональные данные;</li>
                             <li>Когда срок обработки Ваших персональных данных истек;</li>
                             <li>Когда Вы сделали запрос на отзыв Вашего согласия на обработку персональных данных;</li>
                             <li>Когда обработка Ваших персональных данных являлась неправомерной.</li>
                         </ul>
-                        <h3 className={h3StylesMb40}>5. НАША ПОЛИТИКА В ОТНОШЕНИИ ФАЙЛОВ COOKIE</h3>
+                        <h3 className={h3StylesMb15}>5. НАША ПОЛИТИКА В ОТНОШЕНИИ ФАЙЛОВ COOKIE</h3>
                         <p className={pStyles}>
                             Для того, чтобы улучшить работу Сайта и сделать более удобным для пользования Вами, Мы можем
                             использовать файлы cookie.  Cookie – это небольшие текстовые файлы, сохраняемые на Сайте в
@@ -91,7 +91,7 @@ const PrivasyPolisyDesktop: React.FC = () => {
                             Мы не передаем куки третьим лицам и не используем их для Вашей идентификации. Нами
                             используются следующие типы файлов cookie:
                         </p>
-                        <ol className={pStyles + ' list-decimal list-inside mb-[50px]'}>
+                        <ol className={pStyles + ' list-decimal list-inside'}>
                             <li>
                                 Необходимые – такие файлы нужны для корректного функционирования Сайта. Например, при
                                 навигации или доступе к защищенным разделам Сайта.
@@ -110,7 +110,7 @@ const PrivasyPolisyDesktop: React.FC = () => {
                             </li>
                         </ol>
 
-                        <h3 className={h3StylesMb40}>6. ПЕРЕДАЧА ТРЕТЬИМ ЛИЦАМ ВАШИХ ПЕРСОНАЛЬНЫХ ДАННЫХ</h3>
+                        <h3 className={h3StylesMb15}>6. ПЕРЕДАЧА ТРЕТЬИМ ЛИЦАМ ВАШИХ ПЕРСОНАЛЬНЫХ ДАННЫХ</h3>
                         <p className={pStyles}>
                             В некоторых случаях Мы можем передавать Ваши персональные данные третьим лицам:
                         </p>
@@ -123,7 +123,7 @@ const PrivasyPolisyDesktop: React.FC = () => {
                         </ol>
                         <p className={pStyles}>
                             Google Analytics – сервис веб-аналитики, предоставляемый компанией Google, Inc. Адрес:
-                            Google, Google Data Protection Office, 1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA.{' '} 
+                            Google, Google Data Protection Office, 1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA.{' '}
                             <a
                                 href="https://support.google.com/analytics/answer/6004245"
                                 target="_blank"
@@ -133,9 +133,9 @@ const PrivasyPolisyDesktop: React.FC = () => {
                                 Политика обработки персональных данных Google Analytics.
                             </a>
                         </p>
-                        <p className={pStyles + ' mb-[50px]'}>
+                        <p className={pStyles}>
                             Яндекс Метрика – сервис веб-аналитики, предоставляемый ООО «Яндекс». Адрес: г. Москва, ул.
-                            Льва Толстого, д. 16, 119021.{' '} 
+                            Льва Толстого, д. 16, 119021.{' '}
                             <a
                                 href="https://yandex.ru/legal/metrica_termsofuse/ru/"
                                 target="_blank"
@@ -146,17 +146,17 @@ const PrivasyPolisyDesktop: React.FC = () => {
                             </a>
                         </p>
 
-                        <h3 className={h3StylesMb40}>7. ТРАНСГРАНИЧНАЯ ПЕРЕДАЧА ВАШИХ ЛИЧНЫХ ДАННЫХ</h3>
-                        <p className={pStyles + ' mb-[60px]'}>
+                        <h3 className={h3StylesMb15}>7. ТРАНСГРАНИЧНАЯ ПЕРЕДАЧА ВАШИХ ЛИЧНЫХ ДАННЫХ</h3>
+                        <p className={pStyles}>
                             Мы не осуществляем трансграничную передачу Ваших персональных данных. При необходимости
                             обработки персональных данных вне территории Республики Беларусь Мы руководствуется
                             требованиями законодательства Республики Беларусь к трансграничной передаче и обработке
                             персональных данных.
                         </p>
-                        <h3 className={h3Styles + ' mb-[35px]'}>
+                        <h3 className={h3StylesMb15}>
                             8. ВАШИ ПРАВА, КОТОРЫЕ МЫ ОБЯЗАНЫ РЕАЛИЗОВАТЬ В СЛУЧАЕ ОБРАБОТКИ ВАШИХ ПЕРСОНАЛЬНЫХ ДАННЫХ
                         </h3>
-                        <ol className={pStyles + ' list-decimal list-inside mb-[45px]'}>
+                        <ol className={pStyles + ' list-decimal list-inside'}>
                             <li>
                                 Потребовать от нас внести изменения, если персональные данные устарели, неполные или
                                 неточные: В срок до 15 календарных дней с момента получения запроса мы внесем изменения
@@ -197,8 +197,8 @@ const PrivasyPolisyDesktop: React.FC = () => {
 
                         <p className={pStyles}>в письменной форме на адрес:</p>
                         <p className={pStyles}>или</p>
-                        <p className={pStyles + ' mb-[45px]'}>в виде электронного документа на электронный адрес: </p>
-                        <p className={pStyles + ' mb-[50px]'}>
+                        <p className={pStyles}>в виде электронного документа на электронный адрес: </p>
+                        <p className={pStyles}>
                             Ваш запрос о реализации одного или нескольких из указанных выше прав должен содержать:
                             фамилию, имя, отчество (если таковое имеется); адрес; дату рождения; суть требований;
                             идентификационный номер или номер документа, удостоверяющего личность (при отсутствии
@@ -207,13 +207,13 @@ const PrivasyPolisyDesktop: React.FC = () => {
                             подпись. Ответ на Ваше заявление будет направлен в форме, соответствующей форме подачи
                             заявления, если в самом заявлении не указано иное.
                         </p>
-                        <p className={pStyles + ' mb-[60px]'}>
+                        <p className={pStyles}>
                             Право на обжалование действий (бездействия) и решений Оператора (№ 6), связанных с
                             обработкой персональных данных, осуществляется порядке, установленном законодательством
                             Республики Беларусь об обращениях граждан и юридических лиц.
                         </p>
-                        <h3 className={h3StylesMb40}>9. ОБНОВЛЕНИЕ НАСТОЯЩЕЙ ПОЛИТИКИ</h3>
-                        <p className={pStyles + 'mb-[310px'}>
+                        <h3 className={h3StylesMb15}>9. ОБНОВЛЕНИЕ НАСТОЯЩЕЙ ПОЛИТИКИ</h3>
+                        <p className={pStyles + ' mb-[310px'}>
                             Мы оставляем за собой право вносить изменения в настоящую Политику. Если изменения будут
                             существенными, мы направим вам дополнительное уведомление на указанный вами адрес
                             электронной почты. Новая редакция Политики вступает в силу с момента ее размещения на Сайте.
@@ -226,4 +226,4 @@ const PrivasyPolisyDesktop: React.FC = () => {
     )
 }
 
-export default PrivasyPolisyDesktop
+export default PrivasyPolisyPageDesktop

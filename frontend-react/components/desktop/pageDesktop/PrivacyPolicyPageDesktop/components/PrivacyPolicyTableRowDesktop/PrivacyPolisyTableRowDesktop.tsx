@@ -24,7 +24,7 @@ const renderCellContent = (text: string) => {
 
     return <p className="whitespace-pre-line">{text}</p>
 }
-export const PrivacyPolicyTableRow: React.FC<TableRowProps> = ({ row }) => {
+export const PrivacyPolicyTableRowDesktop: React.FC<TableRowProps> = ({ row }) => {
     return (
         <tr className="align-top">
             <td className={tdClass}>{renderCellContent(row.goal)}</td>
