@@ -68,16 +68,16 @@ const ModalProfessionNotifyDesktop: React.FC<IModalProfessionNotifyContent> = ({
     return (
         <Modal onClose={onClose} size="semilarge" showCloseButton={false}>
             <div className="max-w-[701px]">
-                <button onClick={onClose} className="absolute right-7 top-6">
-                    <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
+                <button onClick={onClose} className="absolute right-[19px] top-[15px]">
+                    <X size={41} color="#FFFFFFCC" className="opacity-80 hover:opacity-100" />
                 </button>
                 <div className="mx-12 flex-col rounded-lg text-center">
-                    <h4 className="mb-[22px] mt-[43px] bg-gradient-desktop bg-clip-text text-9xl font-medium leading-[100%] text-transparent uppercase">
+                    <h4 className="mb-[14px] mt-[25px] bg-gradient-desktop bg-clip-text text-9xl font-medium leading-[100%] text-transparent uppercase">
                         Когда профессия станет доступна, куда вам сообщить?
                     </h4>
                 </div>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col px-20">
-                    <div className="pb-[22px]">
+                    <div className="mb-[26px]">
                         <EnhancedInput
                             type="email"
                             name="email"
@@ -88,7 +88,7 @@ const ModalProfessionNotifyDesktop: React.FC<IModalProfessionNotifyContent> = ({
                             label="Почта"
                             labelClassName="text-white text-2xl pl-[6.52px]"
                             variant="gradient_desktop"
-                            className={`h-10 w-full rounded-[50px] border-2 border-[#878797] bg-transparent pl-[18.65px] text-[18px] font-medium text-white focus:outline-none focus:ring-0 ${
+                            className={`text18px_desktop h-[50px] w-full rounded-[50px] border-2 border-[#878797] bg-transparent pl-[18.65px] font-medium text-white focus:outline-none focus:ring-0 ${
                                 formError && (inputErrors.email || (formError && !formData.email))
                                     ? 'border-[#BC8070] ring-0'
                                     : ''
@@ -96,33 +96,37 @@ const ModalProfessionNotifyDesktop: React.FC<IModalProfessionNotifyContent> = ({
                         />
                         {inputErrors.email && <p className="error-form-desktop-custom">{inputErrors.email}</p>}
                     </div>
-                    <div className="flex flex-col items-start gap-[20px] px-[7px]">
+                    {formError && (
+                        <p className="mb-[14px] ml-[7px] text-[15px] text-[#BC8070] ">Заполните обязательные поля</p>
+                    )}
+                    <div className="flex flex-col items-start gap-[20px] ">
                         <EnhancedInput
                             type="checkbox"
                             name="consent"
                             checked={formData.consent}
                             onChange={(value) => handleChange('consent', value === 'true')}
                             label="Я согласен(а) на обработку персональных данных"
+                            labelClassName="text-[15px] text-[#878797] pl-[6.52px]"
                             checkboxIconSize="w-[18px]"
                             className={formError && !formData.consent ? 'border-2 border-[#BC8070]' : ''}
                         />
-                        <p className="text15px_desktop font-medium text-[#353652]">
-                            Защита от спама reCAPTCHA{' '}
-                            <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
+                        <p className="ml-[7px] flex w-[412px] flex-wrap justify-start text-[15px] font-medium leading-[100%] text-[#353652] ">
+                            <p className="w-[234px]">Защита от спама reCAPTCHA</p>
+                            <Link href="/" target="_blank" rel="noopener noreferrer" className="ml-[3px] underline ">
                                 Конфиденциальность
-                            </Link>{' '}
-                            и{' '}
-                            <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
+                            </Link>
+                            <p>и</p>
+                            <Link href="/" target="_blank" rel="noopener noreferrer" className="ml-[11px] underline">
                                 Условия использования
                             </Link>
                         </p>
                     </div>
-                    <div className="my-[19px] flex justify-center">
+                    <div className="mb-[25.65px] mt-[16px] flex justify-center">
                         <Button
                             type="submit"
                             variant="default"
                             disabled={formError === true}
-                            className={`h-14 max-w-[220px] rounded-full px-16 text-3xl font-semibold leading-[100%] ${
+                            className={`h-[52.35px] w-[220px] rounded-full text-3xl font-semibold leading-[100%] ${
                                 formError === true
                                     ? 'bg-[#878797] disabled:opacity-100'
                                     : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'
