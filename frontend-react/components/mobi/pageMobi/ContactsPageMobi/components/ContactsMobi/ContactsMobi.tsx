@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
@@ -52,7 +51,6 @@ const ContactsMobi: React.FC = () => {
 
     const [disableSubmit, setDisableSubmit] = useState(false)
 
-    const [formError, setFormError] = React.useState('')
     const { toast } = useToast()
 
     const handleChange = (field: keyof IFormData, value: string) => {
@@ -83,7 +81,6 @@ const ContactsMobi: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        setFormError('')
 
         const newFieldErrors = {
             name: formData.name.trim() === '',
@@ -97,7 +94,6 @@ const ContactsMobi: React.FC = () => {
 
         const hasEmptyField = Object.values(newFieldErrors).some((error) => error)
         if (hasEmptyField) {
-            setFormError('Заполните обязательные поля')
             return
         }
 
@@ -131,7 +127,6 @@ const ContactsMobi: React.FC = () => {
             message: false,
         })
 
-        setFormError('')
         console.log('Форма отправлена:', formData)
     }
 
@@ -191,27 +186,11 @@ const ContactsMobi: React.FC = () => {
                                     }}
                                     wrapperClassName={'h-[46px]'}
                                 />
-                                {/* <EnhancedInput
-                                    type="tel"
-                                    id="tel"
-                                    placeholder="Ваш телефон*"
-                                    variant={emptyFields.tel ? 'contacts_page_error_mobi' : 'contacts_page_mobi'}
-                                    size="contacts_page_mobi"
-                                    rounded="rounded_30"
-                                    value={formData.tel}
-                                    onChange={(value) => handleChange('tel', value)}
-                                    validate={(value) => {
-                                        const validation = validatePhoneMobi(value)
-                                        updateFieldError('tel', !validation.status)
-                                        return validation
-                                    }}
-                                    wrapperClassName={'h-[46px]'}
-                                /> */}
                                 <PhoneInputMobi
                                     value={formData.tel}
                                     onChange={(value) => handleChange('tel', value)}
                                     onError={() => {
-                                        throw new Error('Error with handling tel error')
+                                        throw new Error('Error with phone input occured')
                                     }}
                                 ></PhoneInputMobi>
                                 <EnhancedInput
@@ -265,7 +244,6 @@ const ContactsMobi: React.FC = () => {
                                 />
                             </div>
                             <div className="sm_s:h-[108px] flex h-[70px] flex-col justify-between sm:h-[108px]">
-                                {disableSubmit && <p className={cn('text-xs', 'text-destructive')}>{formError}</p>}
                                 <div
                                     className={
                                         'sm_s:flex-col sm_s:justify-between sm_s:items-start sm_s:gap-2 mt-auto  flex items-center gap-[19px] sm:flex-col sm:items-start sm:justify-between sm:gap-2 md:gap-7'
@@ -279,7 +257,7 @@ const ContactsMobi: React.FC = () => {
                                         <div
                                             className={`w-[calc(100%+6px)] -m-[3px] h-[calc(100%+6px)] flex items-center justify-center border- rounded-[50px] ${disableSubmit ? 'bg-[#878797] border-spacing-1 border-[#878797]' : ''}`}
                                         >
-                                            Смотреть все
+                                            Отправить
                                         </div>
                                     </Button>
                                     <p className="w-full text-[8px] font-medium text-white/20 md:max-w-[60%] md:text-xs  ">

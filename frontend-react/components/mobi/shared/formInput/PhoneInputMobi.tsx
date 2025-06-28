@@ -29,7 +29,6 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     className,
     wrapperClassName,
     required = false,
-    showInternalError,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -45,6 +44,8 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     useEffect(() => {
         setInputValue(value)
     }, [value])
+
+    const [placeholder, setPlaceholder] = useState('Телефон*')
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         let newValue = inputValue || PHONE_MASK
@@ -80,7 +81,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
             e.preventDefault()
         }
 
-        validateValue(newValue)
+        //validateValue(newValue)
     }
 
     const validateValue = (value: string) => {
@@ -104,6 +105,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
             const rawDigits = inputValue.replace(/\D/g, '')
             const pos = Math.min(digitPositions.length, rawDigits.length)
             setCaretToPosition(digitPositions[pos - 1] || digitPositions[0])
+            setPlaceholder(PHONE_MASK)
         }
     }
 
@@ -126,12 +128,9 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 onKeyDown={handleKeyDown}
                 onClick={handleClick}
                 onBlur={handleBlur}
-                placeholder={inputValue !== '' ? PHONE_MASK : 'Телефон*'}
-                className={`input-form-mobi-custom placeholder:text-muted-foreground h-[29.5px] w-full border-[1.18px] font-medium placeholder:text-xs focus:border-2 md:h-[38px] md:placeholder:text-xl ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                placeholder={placeholder}
+                className={`input-form-mobi-custom placeholder:text-muted-foreground h-[29.5px] w-full border-[1.18px] font-medium placeholder:text-xs focus:border-2 md:h-[38px] md:placeholder:text-xl ${internalError ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
-            {showInternalError !== false && internalError && (
-                <p className={'error-form-mobi-custom'}>{internalError}</p>
-            )}
         </div>
     )
 }
