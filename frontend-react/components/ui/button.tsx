@@ -21,7 +21,7 @@ const buttonVariants = cva(
                     'button-border-desktop border-2 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white  2xl:text-3xl',
                 select_mobi: 'button-border-mobi rounded-[50px] border-2 border-transparent bg-[#101030] text-white',
                 send_btn_mobi:
-                    'button-border-mobi border-2 rounded-[50px] md:text-[15px] sm_xl:text-[14px] sm_l:text-[14px] sm_s:text-[13px] sm:text-[12px] font-semibold text-white',
+                    'button-border-mobi border-2 rounded-[50px] text-[13px] md:text-[15px] lg:text-[17px] xl:text-[17px] 2xl:text-[17px] font-semibold text-white',
                 accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
                 accent_mobi: 'flex items-center rounded-[50px] bg-white',
                 registration_desktop:
@@ -71,7 +71,7 @@ const buttonVariants = cva(
                 send_btn_desktop: 'h-[64px] w-[272px] 2xl:w-[200px]',
                 cookie_btn_desktop: '3xl:w-[250px] h-[64px] w-[237px]',
                 cookie_btn_mobi:
-                    'md:h-[47px] md:w-[205px] sm_xl:h-[47px] sm_xl:w-[195px] sm_l:h-[40px] sm_l:w-[195px] sm_s:h-[40px] sm_s:w-full sm:h-[40px] sm:w-full h-[64px] w-[237px] sm:text-wrap',
+                    'h-[47px] w-[195px] md:w-[205px] lg:h-[64px] lg:w-[237px] xl:h-[64px] xl:w-[237px] 2xl:h-[64px] 2xl:w-[237px] text-wrap',
                 circle_btn_gradient_desktop: 'right-0 top-1/2 size-[60px] -translate-y-1/2 rounded-full',
                 circle_btn_mobi: 'h-0 px-[11px] py-0',
                 gradient_btn_desktop: '3xl:w-[250px] h-[64px] w-[272px] 2xl:w-[250px]',

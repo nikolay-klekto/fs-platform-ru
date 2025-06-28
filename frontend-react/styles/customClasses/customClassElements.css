@@ -94,6 +94,9 @@
     .text12px_mobi {
         @apply text-base md:text-base sm_xl:text-sm sm_l:text-xs sm_s:text-xs sm:text-xs;
     }
+    .text13px_cookie_mobi {
+        @apply text-[13px] md:text-[15px] lg:text-[17px] xl:text-[17px] 2xl:text-[17px];
+    }
 
     .text-gradient_desktop_custom {
         @apply bg-gradient-desktop bg-clip-text text-transparent;
@@ -140,7 +143,7 @@
         @apply py-2 px-4 mt-1 text-white border-2 text18px_desktop border-[#878797] bg-[#101030] rounded-[50px] placeholder:text18px_desktop  placeholder:font-medium placeholder:text-[#353652] focus:border-[#878797] focus:outline-none
         focus:bg-[rgb(31,32,63)];
     }
-      .label-form-desktop-custom {
+    .label-form-desktop-custom {
         @apply text-white text15px_desktop font-semibold;
     }
     .error-form-desktop-custom {
@@ -160,6 +163,14 @@
 
     .custom_error_style_input {
         @apply border-red-500;
+    }
+
+    .modal-position-cookie-mobi {
+        @apply fixed bottom-5 right-1/2 translate-x-1/2 z-50 md:right-5 md:translate-x-0 lg:right-5 lg:translate-x-0 xl:right-5 xl:translate-x-0 2xl:right-5 2xl:translate-x-0;
+    }
+
+    .modal-size-cookie-mobi {
+        @apply h-fit w-[92%] max-w-[596px] sm:w-full md:h-[195px] lg:h-[204px] xl:h-[204px] 2xl:h-[204px];
     }
 
     .modal-padding-content-lg-dsk {
