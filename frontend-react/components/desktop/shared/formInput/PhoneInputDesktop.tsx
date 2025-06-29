@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 
 interface IPhoneInputDesktop {
@@ -118,6 +118,9 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
 
     return (
         <div className={`flex w-full flex-col gap-1.5 ${wrapperClassName}`}>
+            <label htmlFor="phone" className={`mb-1 text-2xl font-medium text-white ${labelClassName}`}>
+                Номер телефона*
+            </label>
             <input
                 ref={inputRef}
                 id="phone"

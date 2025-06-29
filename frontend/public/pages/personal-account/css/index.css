@@ -225,16 +225,7 @@ body,
   Убираем внешние отступы вертикали нужным тегам,
   у которых есть атрибут class
  */
-:where(h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-dl):where([class]) {
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
   margin-block: 0;
 }
 
@@ -354,8 +345,7 @@ svg * {
   border: 0 !important;
   padding: 0 !important;
   white-space: nowrap !important;
-  -webkit-clip-path: inset(100%) !important;
-          clip-path: inset(100%) !important;
+  clip-path: inset(100%) !important;
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
 }
@@ -397,32 +387,19 @@ svg * {
 }
 
 :root {
-  --color-basic-white: #FFFFFF;
+  --color-basic-white: #ffffff;
   --color-basic-grey: #878797;
   --color-basic-dark-grey-light: #343f42;
   --color-basic-dark-grey: #353652;
-  --color-basic-blue: #1F203F;
+  --color-basic-blue: #1f203f;
   --color-basic-dark-blue: #101030;
-  --color-accent-brown: #BC8070;
-  --color-accent-purple: #8333F3;
-  --color-accent-purple-gradient: linear-gradient(
-      90deg, #8333F3 0%,
-      #5f4af3 48.55%,
-      #3b51a8 100%);
-  --color-accent-purple-light-gradient:linear-gradient(
-      90deg, #a875f1 0%,
-      #8d7ef3 48.55%,
-      #6c7cba 100%);
-  --color-accent-purple-gradient: linear-gradient(
-      90deg, #8333F3 0%,
-      #5f4af3 48.55%,
-      #3b51a8 100%);
-  --color-accent-purple-light-gradient:linear-gradient(
-      90deg, #a875f1 0%,
-      #8d7ef3 48.55%,
-      #6c7cba 100%);
-  --color-accent-purple-light-radial-gradient:radial-gradient(
-      #30217B, #8917A5);
+  --color-accent-brown: #bc8070;
+  --color-accent-purple: #8333f3;
+  --color-accent-purple-gradient: linear-gradient(90deg, #8333f3 0%, #5f4af3 48.55%, #3b51a8 100%);
+  --color-accent-purple-light-gradient: linear-gradient(90deg, #a875f1 0%, #8d7ef3 48.55%, #6c7cba 100%);
+  --color-accent-purple-gradient: linear-gradient(90deg, #8333f3 0%, #5f4af3 48.55%, #3b51a8 100%);
+  --color-accent-purple-light-gradient: linear-gradient(90deg, #a875f1 0%, #8d7ef3 48.55%, #6c7cba 100%);
+  --color-accent-purple-light-radial-gradient: radial-gradient(#30217b, #8917a5);
   --color-transparent-grey: rgba(255, 255, 255, 0.1);
   --color-transparent-purple: rgba(16, 16, 48, 0.7);
   --color-transparent-dark: rgba(0, 0, 0, 0.7);
@@ -472,7 +449,11 @@ a {
   color: inherit;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   margin: 0;
   padding: 0;
   font-weight: 500;
@@ -528,16 +509,7 @@ body,
   Убираем внешние отступы вертикали нужным тегам,
   у которых есть атрибут class
  */
-:where(h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-dl):where([class]) {
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
   margin-block: 0;
 }
 
@@ -657,8 +629,7 @@ svg * {
   border: 0 !important;
   padding: 0 !important;
   white-space: nowrap !important;
-  -webkit-clip-path: inset(100%) !important;
-          clip-path: inset(100%) !important;
+  clip-path: inset(100%) !important;
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
 }
@@ -700,32 +671,19 @@ svg * {
 }
 
 :root {
-  --color-basic-white: #FFFFFF;
+  --color-basic-white: #ffffff;
   --color-basic-grey: #878797;
   --color-basic-dark-grey-light: #343f42;
   --color-basic-dark-grey: #353652;
-  --color-basic-blue: #1F203F;
+  --color-basic-blue: #1f203f;
   --color-basic-dark-blue: #101030;
-  --color-accent-brown: #BC8070;
-  --color-accent-purple: #8333F3;
-  --color-accent-purple-gradient: linear-gradient(
-      90deg, #8333F3 0%,
-      #5f4af3 48.55%,
-      #3b51a8 100%);
-  --color-accent-purple-light-gradient:linear-gradient(
-      90deg, #a875f1 0%,
-      #8d7ef3 48.55%,
-      #6c7cba 100%);
-  --color-accent-purple-gradient: linear-gradient(
-      90deg, #8333F3 0%,
-      #5f4af3 48.55%,
-      #3b51a8 100%);
-  --color-accent-purple-light-gradient:linear-gradient(
-      90deg, #a875f1 0%,
-      #8d7ef3 48.55%,
-      #6c7cba 100%);
-  --color-accent-purple-light-radial-gradient:radial-gradient(
-      #30217B, #8917A5);
+  --color-accent-brown: #bc8070;
+  --color-accent-purple: #8333f3;
+  --color-accent-purple-gradient: linear-gradient(90deg, #8333f3 0%, #5f4af3 48.55%, #3b51a8 100%);
+  --color-accent-purple-light-gradient: linear-gradient(90deg, #a875f1 0%, #8d7ef3 48.55%, #6c7cba 100%);
+  --color-accent-purple-gradient: linear-gradient(90deg, #8333f3 0%, #5f4af3 48.55%, #3b51a8 100%);
+  --color-accent-purple-light-gradient: linear-gradient(90deg, #a875f1 0%, #8d7ef3 48.55%, #6c7cba 100%);
+  --color-accent-purple-light-radial-gradient: radial-gradient(#30217b, #8917a5);
   --color-transparent-grey: rgba(255, 255, 255, 0.1);
   --color-transparent-purple: rgba(16, 16, 48, 0.7);
   --color-transparent-dark: rgba(0, 0, 0, 0.7);
@@ -757,7 +715,6 @@ svg * {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-width: -moz-fit-content;
   min-width: fit-content;
   height: var(--button-height);
   padding-inline: 40px;
@@ -980,8 +937,7 @@ svg * {
   position: relative;
   color: transparent;
   /*-webkit-background-clip: text;*/
-  -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
   background-image: var(--color-accent-purple-gradient);
 }
 .personal-account__menu-item:first-child a::before {
@@ -1019,8 +975,7 @@ svg * {
   transition: 0.2s;
   color: transparent;
   /*-webkit-background-clip: text;*/
-  -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
   background-image: var(--color-accent-purple-gradient);
 }
 .personal-account__menu-dropdown {
@@ -1062,8 +1017,7 @@ svg * {
   background-color: var(--color-basic-dark-blue);
   color: transparent;
   /*-webkit-background-clip: text;*/
-  -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
   background-image: var(--color-accent-purple-gradient);
   text-transform: uppercase;
   font-weight: 600;
@@ -1103,15 +1057,13 @@ svg * {
   transition: 0.2s;
   color: transparent;
   /*-webkit-background-clip: text;*/
-  -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
   background-image: var(--color-accent-purple-gradient);
 }
 .personal-account__menu-dropdown-item.active a {
   color: transparent;
   /*-webkit-background-clip: text;*/
-  -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
   background-image: var(--color-accent-purple-gradient);
 }
 .personal-account__menu-dropdown-item:last-child {
@@ -1160,7 +1112,6 @@ svg * {
   .personal-account__cart-catalog-item {
     width: 100%;
     justify-content: center;
-    height: -moz-fit-content;
     height: fit-content;
   }
 }
@@ -1177,15 +1128,12 @@ svg * {
 }
 .personal-account__cart-catalog-item-title {
   display: flex;
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   margin-bottom: 30px;
   color: transparent;
   /*-webkit-background-clip: text;*/
-  -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
   background-image: var(--color-accent-purple-gradient);
   font-weight: 500;
   font-size: 28px;
@@ -1196,7 +1144,8 @@ svg * {
     font-size: 18px;
   }
 }
-.personal-account .personal-account__cart-catalog-item-content div, .personal-account__cart-catalog-item-content .personal-account div {
+.personal-account .personal-account__cart-catalog-item-content div,
+.personal-account__cart-catalog-item-content .personal-account div {
   display: flex;
 }
 .personal-account__cart-catalog-item-content {
@@ -1281,7 +1230,6 @@ svg * {
 }
 @media (max-width: 939px) {
   .personal-account__cart-catalog-item-content div span:nth-of-type(2) {
-    height: -moz-fit-content;
     height: fit-content;
     font-size: clamp(23px, 1.1979166667vw, 23px);
   }
@@ -1303,7 +1251,6 @@ svg * {
 }
 .personal-account__cart-catalog-item-price {
   padding-top: 20px;
-  width: -moz-fit-content;
   width: fit-content;
   margin-bottom: 13px;
   width: 100%;
@@ -1346,7 +1293,6 @@ svg * {
   }
 }
 .personal-account__cart-catalog-item-remove-card {
-  width: -moz-fit-content;
   width: fit-content;
   display: flex;
   justify-content: center;
@@ -1452,8 +1398,7 @@ svg * {
     width: 100%;
     height: 100%;
     border-radius: 25px;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
     margin-bottom: 20px;
   }
 }
@@ -1484,19 +1429,16 @@ svg * {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  -moz-column-gap: 50px;
-       column-gap: 50px;
+  column-gap: 50px;
 }
 @media (max-width: 1550px) {
   .header__inner {
-    -moz-column-gap: 30px;
-         column-gap: 30px;
+    column-gap: 30px;
   }
 }
 @media (max-width: 1065px) {
   .header__inner {
-    -moz-column-gap: 20px;
-         column-gap: 20px;
+    column-gap: 20px;
   }
 }
 .header__icon-phone {
@@ -1624,19 +1566,16 @@ svg * {
 .header__icons {
   display: flex;
   align-items: center;
-  -moz-column-gap: 50px;
-       column-gap: 50px;
+  column-gap: 50px;
 }
 @media (max-width: 1550px) {
   .header__icons {
-    -moz-column-gap: 30px;
-         column-gap: 30px;
+    column-gap: 30px;
   }
 }
 @media (max-width: 1065px) {
   .header__icons {
-    -moz-column-gap: 20px;
-         column-gap: 20px;
+    column-gap: 20px;
   }
 }
 @media (max-width: 1260px) {
@@ -1646,14 +1585,12 @@ svg * {
 }
 @media (max-width: 1023px) {
   .header__icons {
-    -moz-column-gap: 25px;
-         column-gap: 25px;
+    column-gap: 25px;
   }
 }
 @media (max-width: 375.2px) {
   .header__icons {
-    -moz-column-gap: 16px;
-         column-gap: 16px;
+    column-gap: 16px;
   }
 }
 .header__icons-basket svg {
@@ -1782,4 +1719,4 @@ svg * {
     height: 2.1px;
     box-shadow: 0 -6px var(--color-basic-white), 0 6px var(--color-basic-white);
   }
-}
+} /*# sourceMappingURL=index.css.map */

@@ -15,9 +15,9 @@ const inputVariants = cva(
                 search_mobi:
                     'flex border-0 bg-transparent text-xl text-[#878797] outline-none placeholder:text-[14px] placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
                 contacts_page_desktop:
-                    'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent placeholder:font-medium focus:ring-transparent',
+                    'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent placeholder:font-medium focus:border-[3px] focus:ring-transparent',
                 contacts_page_error_desktop:
-                    'border-2 border-[#bc8070] bg-transparent text-5xl ring-offset-transparent placeholder:font-medium focus:ring-transparent',
+                    'border-2 border-[#bc8070] bg-transparent text-5xl ring-offset-transparent placeholder:font-medium focus:border-[3px] focus:ring-transparent',
                 contacts_page_mobi:
                     'border-[1.18px] border-[#878797] bg-transparent text-xl ring-offset-transparent placeholder:text-xs placeholder:font-medium focus:border-2 focus:ring-transparent md:placeholder:text-base',
                 contacts_page_error_mobi:
@@ -75,7 +75,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
     (
         {
             className,
-            id,
             type,
             variant,
             size,
@@ -93,7 +92,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             placeholder,
             checked,
             checkboxIconSize,
-            autoComplete,
             ...props
         },
         ref,
@@ -186,7 +184,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                 )}
                 {!isCheckbox && (
                     <input
-                        id={id}
+                        id={name}
                         type={type}
                         className={cn(
                             inputVariants({ variant, size, rounded }),
@@ -201,7 +199,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         onChange={handleChange}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
-                        autoComplete={autoComplete}
                         {...props}
                     />
                 )}

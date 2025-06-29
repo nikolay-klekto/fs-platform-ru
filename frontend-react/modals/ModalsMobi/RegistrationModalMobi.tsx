@@ -9,7 +9,7 @@ import { validateEmailMobi } from '@/components/mobi/commonMobi/validate/validat
 import PasswordInputMobi from '@/components/mobi/shared/formInput/PasswordInputMobi'
 import { useModal } from '@/context/ContextModal'
 import { useAuth } from '@/hooks/useAuth'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 interface IRegistrationFormData {
     email: string

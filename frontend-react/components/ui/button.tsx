@@ -43,8 +43,6 @@ const buttonVariants = cva(
                 hover_button_date:
                     'hover:button-border-desktop-date 4xl:text-2xl 3xl:text-xl rounded-[90px] border border-[#878797] bg-[#1F203F] text-[18px] hover:bg-[#28295B] 2xl:text-lg',
                 cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
-                disabled:
-                    'button-border-desktop border-2 3xl:text-4xl rounded-[50px] text-[20px] font-semibold 2xl:text-3xl bg-[#878789] bg-none text-[#CBD6EF] opacity-100 hover:bg-none',
             },
             size: {
                 default: 'h-10 px-4 py-2',
