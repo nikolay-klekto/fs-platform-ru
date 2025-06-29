@@ -8,6 +8,7 @@ import com.fs.service.ru.errors.ErrorModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jooq.DSLContext
+import java.time.LocalDateTime
 
 abstract class ClientResetPasswordRepository(
     open val dsl: DSLContext,
@@ -19,7 +20,8 @@ abstract class ClientResetPasswordRepository(
         withContext(Dispatchers.IO) {
             val newClientPasswordModel = ClientsResetPasswords(
                 clientEmail = email,
-                code = generateResetCode()
+                code = generateResetCode(),
+                dateCreated = LocalDateTime.now()
             )
 
             if (clientBlockingRepository.isEmailExist(newClientPasswordModel.clientEmail!!)) {
@@ -40,7 +42,7 @@ abstract class ClientResetPasswordRepository(
     suspend fun checkCode(newClientPasswordModel: ClientsResetPasswords): ErrorModel<String> =
         withContext(Dispatchers.IO) {
             val clientEmail = newClientPasswordModel.clientEmail!!
-            if (isEmailExistInPasswordStore(clientEmail)) {
+            if (isEmailExistInPasswordStoreAndTimeIsNotExpired(clientEmail)) {
                 val rightCode = dsl.select(CLIENTS_RESET_PASSWORDS.CODE).from(CLIENTS_RESET_PASSWORDS)
                     .where(CLIENTS_RESET_PASSWORDS.CLIENT_EMAIL.eq(clientEmail))
                     .first()
@@ -54,7 +56,7 @@ abstract class ClientResetPasswordRepository(
                     ErrorModel(null, "Пароль неверный, попробуйте заново")
                 }
             } else {
-                ErrorModel(null, "Пожалуйста, попробуйте заново")
+                ErrorModel(null, "Этот код уже недействителен. Получите новый, чтобы сменить пароль.")
             }
         }
 
@@ -66,10 +68,28 @@ abstract class ClientResetPasswordRepository(
                 .map { it.into(Int::class.java) } > 0
         }
 
+    private suspend fun isEmailExistInPasswordStoreAndTimeIsNotExpired(email: String): Boolean =
+        withContext(Dispatchers.IO) {
+            val twoMinutesAgo = LocalDateTime.now().minusMinutes(2)
+
+            val count = dsl.selectCount()
+                .from(CLIENTS_RESET_PASSWORDS)
+                .where(
+                    CLIENTS_RESET_PASSWORDS.CLIENT_EMAIL.eq(email)
+                        .and(CLIENTS_RESET_PASSWORDS.DATE_CREATED.greaterOrEqual(twoMinutesAgo))
+                )
+                .fetchOne(0, Int::class.java) ?: 0  // если null, считаем 0
+
+            count > 0
+        }
+
+
+
     suspend fun update(newClientPasswordModel: ClientsResetPasswords): Boolean =
         withContext(Dispatchers.IO) {
             dsl.update(CLIENTS_RESET_PASSWORDS)
                 .set(CLIENTS_RESET_PASSWORDS.CODE, newClientPasswordModel.code)
+                .set(CLIENTS_RESET_PASSWORDS.DATE_CREATED, newClientPasswordModel.dateCreated)
                 .where(CLIENTS_RESET_PASSWORDS.CLIENT_EMAIL.eq(newClientPasswordModel.clientEmail))
                 .execute() == 1
         }

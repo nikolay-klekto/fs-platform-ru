@@ -5,6 +5,7 @@ package com.fs.domain.jooq.tables.pojos
 
 
 import java.io.Serializable
+import java.time.LocalDateTime
 
 
 /**
@@ -14,7 +15,8 @@ import java.io.Serializable
 data class ClientsResetPasswords(
     var id: Long? = null,
     var clientEmail: String? = null,
-    var code: Int? = null
+    var code: Int? = null,
+    var dateCreated: LocalDateTime? = null
 ): Serializable {
 
 
@@ -24,6 +26,7 @@ data class ClientsResetPasswords(
         sb.append(id)
         sb.append(", ").append(clientEmail)
         sb.append(", ").append(code)
+        sb.append(", ").append(dateCreated)
 
         sb.append(")")
         return sb.toString()
