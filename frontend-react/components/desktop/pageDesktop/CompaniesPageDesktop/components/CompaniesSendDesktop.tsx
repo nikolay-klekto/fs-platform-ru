@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
+import { useModal } from '@/context/ContextModal'
 
 const CompaniesSendDesktop: React.FC = () => {
     const [isFocused, setIsFocused] = useState(false)
     const [useRequest, setUseRequest] = useState('')
+    const { openModal } = useModal()
 
-    const handleSendRequest = () => {
-        setUseRequest('')
-    }
     return (
         <div className="relative z-[2] flex flex-col gap-[80px]">
             <div className="text36px_desktop mx-auto text-center font-medium uppercase">
@@ -31,7 +30,11 @@ const CompaniesSendDesktop: React.FC = () => {
                     variant={'send_btn_desktop'}
                     size={'send_btn_desktop'}
                     className="3xl:text-4xl 2xl:text-3xl"
-                    onClick={handleSendRequest}
+                    onClick={(): void => {
+                        if (useRequest.trim() !== '') {
+                            openModal('modal_company_notify_desktop', 'desktop')
+                        }
+                    }}
                 >
                     Отправить
                 </Button>
