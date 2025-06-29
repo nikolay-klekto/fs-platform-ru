@@ -235,7 +235,8 @@ const ContactsDesktop: React.FC = () => {
                                         id="name"
                                         placeholder="Ваше имя*"
                                         variant={
-                                            touchedFields.name && (formData.name.trim() === '' || fieldErrors.name)
+                                            emptyFields.name ||
+                                            (touchedFields.name && (formData.name.trim() === '' || fieldErrors.name))
                                                 ? 'contacts_page_error_desktop'
                                                 : 'contacts_page_desktop'
                                         }
@@ -258,7 +259,8 @@ const ContactsDesktop: React.FC = () => {
                                         placeholder="Ваш e-mail*"
                                         autoComplete="email"
                                         variant={
-                                            touchedFields.email && (formData.email.trim() === '' || fieldErrors.email)
+                                            emptyFields.email ||
+                                            (touchedFields.email && (formData.email.trim() === '' || fieldErrors.email))
                                                 ? 'contacts_page_error_desktop'
                                                 : 'contacts_page_desktop'
                                         }
@@ -333,7 +335,8 @@ const ContactsDesktop: React.FC = () => {
                                 id="message"
                                 placeholder="Опишите свой вопрос*"
                                 variant={
-                                    touchedFields.message && (formData.message.trim() === '' || fieldErrors.message)
+                                    emptyFields.message ||
+                                    (touchedFields.message && (formData.message.trim() === '' || fieldErrors.message))
                                         ? 'contacts_page_error_desktop'
                                         : 'contacts_page_desktop'
                                 }
