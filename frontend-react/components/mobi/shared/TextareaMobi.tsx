@@ -12,9 +12,9 @@ const textareaVariants = cva(
                 contacts_page:
                     'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent focus:border-[3px] focus:ring-transparent',
                 contacts_page_error_mobi:
-                    'border-[1.18px] border-[#bc8070] bg-[#1f203f] text-xs ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent md:text-xl md:placeholder:text-xl',
+                    'border-[1.18px] border-[#bc8070] bg-[#1f203f] text-xs ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent md:text-xl md:placeholder:text-xs',
                 contacts_page_mobi:
-                    'border-[1.18px] border-[#878797] bg-transparent text-xs ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent md:text-xl md:placeholder:text-xl',
+                    'border-[1.18px] border-[#878797] bg-transparent text-xs ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent md:text-xl md:placeholder:text-xs',
             },
             size: {
                 default: 'h-10 px-3 py-2',

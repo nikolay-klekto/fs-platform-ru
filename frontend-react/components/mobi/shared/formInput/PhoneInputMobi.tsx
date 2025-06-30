@@ -129,7 +129,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={placeholder}
-                className={`input-form-mobi-custom placeholder:text-muted-foreground h-[29.5px] w-full border-[1.18px] font-medium placeholder:text-xs focus:border-2 md:h-[38px] md:placeholder:text-xl ${internalError ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                className={`input-form-mobi-custom placeholder:text-muted-foreground md:placeholder:text-xs h-[29.5px] w-full border-[1.18px] font-medium placeholder:text-xs focus:border-2 md:h-[38px] ${internalError ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
         </div>
     )

@@ -169,7 +169,7 @@ const ContactsMobi: React.FC = () => {
                     <div className="pt-[58px]">
                         <h2 className="text-9xl font-medium uppercase">Напишите нам</h2>
                         <form onSubmit={handleSubmit} noValidate>
-                            <div className="flex flex-col gap-2.5 pb-0.5 pt-5">
+                            <div className="flex flex-col gap-5 pb-0.5 pt-5">
                                 <EnhancedInput
                                     type="text"
                                     id="name"
@@ -269,7 +269,7 @@ const ContactsMobi: React.FC = () => {
                         </form>
                     </div>
                     <div className="sm_s:grid-cols-1 sm_s:gap-5 grid w-full grid-cols-2 gap-5 pb-[39.3px] pt-[49.2px] sm:grid-cols-1 sm:gap-5">
-                        <div className="flex h-[73px] flex-col justify-between">
+                        <div className="mb-[98px] flex h-[73px] flex-col justify-between">
                             {contentSocialContactsFirstMobi.map((item) => (
                                 <a key={item.id} href={item.href} className="flex max-w-[300px] items-center gap-2">
                                     <div>

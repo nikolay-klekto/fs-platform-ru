@@ -140,7 +140,7 @@
         @apply py-2 px-4 mt-1 text-white border-2 text18px_desktop border-[#878797] bg-[#101030] rounded-[50px] placeholder:text18px_desktop  placeholder:font-medium placeholder:text-[#353652] focus:border-[#878797] focus:outline-none
         focus:bg-[rgb(31,32,63)];
     }
-      .label-form-desktop-custom {
+    .label-form-desktop-custom {
         @apply text-white text15px_desktop font-semibold;
     }
     .error-form-desktop-custom {
@@ -148,8 +148,12 @@
     }
 
     .input-form-mobi-custom {
-        @apply py-2 px-4 mt-1 text-white border text14px_mobi border-[#878797] bg-[#101030] rounded-[50px] placeholder:text14px_mobi  placeholder:font-medium placeholder:text-[#353652] focus:border focus:border-[#878797] focus:outline-none
-        focus:bg-[#1f203f];
+        @apply py-2 px-4 mt-1 text-white border text14px_mobi border-[#878797] bg-[#101030] rounded-[50px] placeholder:text14px_mobi placeholder:font-medium placeholder:text-[#353652] placeholder:transition-colors duration-300
+        focus:border focus:border-[#878797]
+        focus:outline-none focus:placeholder:text-white transition;
+    }
+    .input-form-mobi-custom::placeholder {
+        @apply text-[10px];
     }
     .label-form-mobi-custom {
         @apply text-white text14px_mobi font-medium;
