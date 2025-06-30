@@ -12,8 +12,11 @@ interface ISelectOption {
     value: string
     label: string
 }
+interface EventsSelectSearchCityDesktopProps {
+    onSelect: (values: { value: string; label: string }[]) => void
+}
 
-const EventsSelectSearchCityDesktop = () => {
+const EventsSelectSearchCityDesktop: React.FC<EventsSelectSearchCityDesktopProps> = ({ onSelect }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
     const [searchTerm, setSearchTerm] = useState('')
@@ -40,6 +43,11 @@ const EventsSelectSearchCityDesktop = () => {
             document.removeEventListener('mousedown', handleClickOutside)
         }
     }, [])
+
+    useEffect(() => {
+        const selected = options.filter((option) => selectedOptions.includes(option.value))
+        onSelect(selected)
+    }, [selectedOptions])
 
     const options: ISelectOption[] = [
         { value: 'brest', label: 'Брест' },

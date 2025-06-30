@@ -16,7 +16,11 @@ interface ISelectItem {
     onClick: () => void
 }
 
-const EventsSelectSearchDateDesktop = () => {
+interface EventsSelectSearchDateDesktopProps {
+    onSelect: (values: { value: string; label: string }[]) => void
+}
+
+const EventsSelectSearchDateDesktop: React.FC<EventsSelectSearchDateDesktopProps> = ({ onSelect }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [openCalendars, setOpenCalendars] = useState<{ from: boolean; to: boolean }>({
         from: false,
@@ -108,6 +112,21 @@ const EventsSelectSearchDateDesktop = () => {
             document.removeEventListener('mousedown', handleClickOutside)
         }
     }, [])
+
+    useEffect(() => {
+        if (dates.from && dates.to) {
+            const fromStr = inputValues.from
+            const toStr = inputValues.to
+            onSelect([
+                {
+                    label: `${fromStr} — ${toStr}`,
+                    value: `${dates.from.toISOString()}_${dates.to.toISOString()}`,
+                },
+            ])
+        } else {
+            onSelect([])
+        }
+    }, [dates, inputValues])
 
     const toggleCalendar = (calendar: DateKey) => {
         setOpenCalendars((prev) => {

@@ -14,7 +14,11 @@ interface ISelectOption {
     label: string
 }
 
-const EventsSelectSearchDesktop = () => {
+interface EventsSelectSearchDesktopProps {
+    onSelect: (values: { value: string; label: string }[]) => void
+}
+
+const EventsSelectSearchDesktop: React.FC<EventsSelectSearchDesktopProps> = ({ onSelect }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
     const dropdownRef = useRef<HTMLDivElement>(null)
@@ -41,6 +45,11 @@ const EventsSelectSearchDesktop = () => {
             document.removeEventListener('mousedown', handleClickOutside)
         }
     }, [])
+
+    useEffect(() => {
+        const selected = options.filter((option) => selectedOptions.includes(option.value))
+        onSelect(selected)
+    }, [selectedOptions])
 
     const options: ISelectOption[] = [
         { value: 'fairs', label: 'Выставки/презентации' },
