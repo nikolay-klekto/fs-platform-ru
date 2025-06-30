@@ -3,8 +3,6 @@ interface IContent {
     image: {
         src: string
         alt: string
-        width: number
-        height: number
     }
     name: string
 }
@@ -14,8 +12,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_1.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист frontend разработчик',
     },
@@ -24,8 +20,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_1.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист',
     },
@@ -34,8 +28,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_2.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист',
     },
@@ -44,8 +36,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_2.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист',
     },
@@ -54,8 +44,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_3.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист',
     },
@@ -64,8 +52,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_3.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист',
     },
@@ -74,8 +60,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_3.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист',
     },
@@ -84,8 +68,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_3.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист',
     },
@@ -94,8 +76,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_4.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист',
     },
@@ -104,8 +84,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_4.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист',
     },
@@ -114,8 +92,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_4.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист',
     },
@@ -124,8 +100,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_4.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист',
     },
@@ -134,8 +108,6 @@ export const content: IContent[] = [
         image: {
             src: '/images/profession_4.jpg',
             alt: 'company-logo',
-            width: 320,
-            height: 400,
         },
         name: 'Программист',
     },

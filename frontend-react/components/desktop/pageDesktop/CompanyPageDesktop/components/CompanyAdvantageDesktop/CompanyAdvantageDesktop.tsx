@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useState, useLayoutEffect } from 'react'
 import { content } from './contentCompanyAdvantageDesktop/content'
 import ItemCompanyAdvantageDesktop from './ItemCompanyAdvantageDesktop/ItemCompanyAdvantageDesktop'
 
@@ -28,7 +28,7 @@ const ReviewsDesktop: React.FC = () => {
         }
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const handleResize = () => {
             if (contentRef.current && scrollbarRef.current) {
                 const calculatedScrollbarWidth = calculateScrollbarWidth()
@@ -43,7 +43,7 @@ const ReviewsDesktop: React.FC = () => {
         return () => {
             window.removeEventListener('resize', handleResize)
         }
-    }, [])
+    }, [calculateScrollbarWidth])
 
     return (
         <>

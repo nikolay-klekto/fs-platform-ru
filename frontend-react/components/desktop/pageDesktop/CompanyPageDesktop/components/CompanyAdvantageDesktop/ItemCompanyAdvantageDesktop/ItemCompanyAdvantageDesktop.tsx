@@ -24,7 +24,7 @@ const ItemCompanyAdvantageDesktop: React.FC<IItemCompanyAdvantageDesktop> = ({ q
         return () => {
             window.removeEventListener('resize', updateWidth)
         }
-    }, [])
+    }, [onWidthChange])
 
     return (
         <div ref={itemRef} className="flex shrink-0">

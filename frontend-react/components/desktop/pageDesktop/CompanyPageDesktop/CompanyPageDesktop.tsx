@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { MapPinIconDesktop } from '@/components/assets/iconsDesktop'
 import { content } from './contentCompanyPageDesktop/content'
 import InternshipProfessionsDesktop from './components/ProfessionsInCompanyDeskto/ProfessionsInCompanyDesktop'
-import ReviewsDesktop from './components/ReviewsDesktop/CompanyAdvantageDesktop'
+import CompanyAdvantageDesktop from './components/CompanyAdvantageDesktop/CompanyAdvantageDesktop'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import Link from 'next/link'
@@ -109,7 +109,7 @@ const CompanyPageDesktop: React.FC = () => {
                         <h2 className="mb-[81px] mt-[120px] text-[48px] font-medium uppercase 2xl:mt-[80px] 3xl:mt-[100px]">
                             Преимущества компании
                         </h2>
-                        <ReviewsDesktop />
+                        <CompanyAdvantageDesktop />
                     </div>
                 </div>
             </main>

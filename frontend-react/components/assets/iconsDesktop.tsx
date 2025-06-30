@@ -662,7 +662,7 @@ export const AttachFileIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
     )
 }
 
-export const MapPinIconDesktop: React.FC<SVGProps<SVGSVGElement>> = () => {
+export const MapPinIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -671,6 +671,7 @@ export const MapPinIconDesktop: React.FC<SVGProps<SVGSVGElement>> = () => {
                 strokeWidth="3.08333"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                {...props}
             />
             <path
                 d="M18.5 20.042C21.0543 20.042 23.125 17.9713 23.125 15.417C23.125 12.8627 21.0543 10.792 18.5 10.792C15.9457 10.792 13.875 12.8627 13.875 15.417C13.875 17.9713 15.9457 20.042 18.5 20.042Z"
