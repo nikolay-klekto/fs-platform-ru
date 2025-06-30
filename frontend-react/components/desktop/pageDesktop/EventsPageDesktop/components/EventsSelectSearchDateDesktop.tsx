@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { IMaskInput } from 'react-imask'
 import {
     ChevronDownIconDesktop,
     LineDateDesktop,
@@ -58,17 +59,18 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
             [key]: formattedValue,
         }))
 
+        if (!value) {
+            setDates((prev) => ({
+                ...prev,
+                [key]: null,
+            }))
+        }
+
         if (isValidDate(formattedValue)) {
             const parsedDate = parseDate(formattedValue)
             setDates((prev) => ({
                 ...prev,
                 [key]: parsedDate,
-            }))
-        }
-        if (!value) {
-            setDates((prev) => ({
-                ...prev,
-                [key]: null,
             }))
         }
     }
@@ -204,7 +206,7 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                 variant={'select_btn_desktop'}
                 size={'select_btn_desktop_date'}
                 onClick={handleSelectToggle}
-                className={` ${isOpen ? 'bg-gradient-desktop' : 'bg-[#101030]'}`}
+                className={` ${isOpen ? 'is-open' : 'bg-[#101030]'}`}
             >
                 Дата
                 <ChevronDownIconDesktop
@@ -234,11 +236,12 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                                     tabIndex={0}
                                 >
                                     <CalendarIconsDesktop />
-                                    <input
-                                        type="text"
-                                        value={inputValues.from}
+                                    <IMaskInput
+                                        mask="00.00.0000"
+                                        lazy={false}
                                         placeholder="__.__.____"
-                                        onChange={(e) => handleInputChange('from', e.target.value)}
+                                        value={inputValues.from}
+                                        onAccept={(value) => handleInputChange('from', value)}
                                         onFocus={() => setOpenCalendars((prev) => ({ ...prev, from: true }))}
                                         className="4xl:text-2xl 3xl:text-xl w-[81px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:w-[75px] 2xl:text-lg"
                                     />
@@ -271,11 +274,12 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                                     tabIndex={0}
                                 >
                                     <CalendarIconsDesktop />
-                                    <input
-                                        type="text"
-                                        value={inputValues.to}
+                                    <IMaskInput
+                                        mask="00.00.0000"
+                                        lazy={false}
                                         placeholder="__.__.____"
-                                        onChange={(e) => handleInputChange('to', e.target.value)}
+                                        value={inputValues.to}
+                                        onAccept={(value) => handleInputChange('to', value)}
                                         onFocus={() => setOpenCalendars((prev) => ({ ...prev, to: true }))}
                                         className="4xl:text-2xl 3xl:text-xl w-[81px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:w-[75px] 2xl:text-lg"
                                     />

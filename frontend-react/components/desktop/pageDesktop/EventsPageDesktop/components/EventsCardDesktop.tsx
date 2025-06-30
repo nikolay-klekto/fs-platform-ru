@@ -65,7 +65,11 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
                         <div className="text18px_desktop flex gap-[15px]">
                             <UserDesktop /> {company}
                         </div>
-                        <Button variant="circleDarkBlue" size="circle_desktop" className="absolute -bottom-16 -right-5">
+                        <Button
+                            variant="circleDarkBlue"
+                            size="circle_desktop"
+                            className="absolute -right-4 2xl:-bottom-[4.3rem] 2xl:-right-[1.2rem] -bottom-[4.1rem] 2xl:h-18 2xl:p-[16px]"
+                        >
                             <ForwardIconWhiteDesktop />
                         </Button>
                     </div>
