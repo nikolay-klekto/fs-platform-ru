@@ -7,7 +7,7 @@ const PromoMobi: React.FC = () => {
     const { openModal } = useModal()
 
     return (
-        <div className="w-full px-[20px]">
+        <div className="w-full px-[20px] md:pt-14">
             <div
                 style={{
                     backgroundImage: 'url(/background/background-promo.webp)',
@@ -17,7 +17,7 @@ const PromoMobi: React.FC = () => {
                 <h3 className="sm_s:text-7xl m-0 mb-[30px] text-8xl font-medium leading-tight text-white sm:text-7xl md:text-[clamp(40px,8vw,54px)]">
                     РЕГИСТРИРУЙСЯ, ВЫБИРАЙ ПРОФЕССИЮ И&nbsp;КОМПАНИЮ, ПОЛУЧАЙ НОВЫЕ ЗНАНИЯ И ОПЫТ
                 </h3>
-                <p className="text-[12px] leading-tight tracking-wide text-white mb-10 md:mb-20 md:text-7xl">
+                <p className="mb-10 text-[12px] leading-tight tracking-wide text-white md:mb-20 md:text-7xl">
                     Пройди стажировку в абсолютно разных компаниях на многообразнейших понравившихся профессиях
                 </p>
                 <div className="flex">
