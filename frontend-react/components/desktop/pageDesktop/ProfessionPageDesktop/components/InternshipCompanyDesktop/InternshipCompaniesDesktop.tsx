@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useRef, useEffect, useState } from 'react'
-import { contentInternshipNamesDesktop } from './contentInternshipCompaniesDesktop/content'
+import { content } from './contentInternshipCompanyDesktop/content'
 import ItemInternshipCompaniesDesktop from './ItemInternshipCompaniesDesktop/ItemCompaniesDesktop'
 
 const InternshipCompaniesDesktop: React.FC = () => {
@@ -52,7 +52,7 @@ const InternshipCompaniesDesktop: React.FC = () => {
                 onScroll={handleScroll}
                 className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll"
             >
-                {contentInternshipNamesDesktop.map((item) => (
+                {content.map((item) => (
                     <ItemInternshipCompaniesDesktop
                         key={item.id}
                         image={item.image}

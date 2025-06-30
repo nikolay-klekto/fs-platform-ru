@@ -1,10 +1,10 @@
-interface IProfessionReviews {
+interface IContent {
     id: number
     question: string
     answer: string
 }
 
-export const contentProfessionReviewsDesktop: IProfessionReviews[] = [
+export const content: IContent[] = [
     {
         id: 1,
         question: 'Необычные моменты произошедшие с Вами в процессе работы?',
