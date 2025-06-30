@@ -1,5 +1,5 @@
 import React from 'react'
-import { AccountNavigationMobi } from '../../shared/AccountNavigationMobi/AccountNavigationMobi'
+import { AccountNavigationMobi } from '../../layout/AccountNavigationMobi/AccountNavigationMobi'
 import HeaderMobi from '../../layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '../../layout/FooterMobi/FooterMobi'
 

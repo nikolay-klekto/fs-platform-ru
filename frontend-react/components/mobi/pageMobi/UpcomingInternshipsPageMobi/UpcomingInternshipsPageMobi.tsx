@@ -2,7 +2,7 @@
 
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
-import { AccountNavigationMobi } from '@/components/mobi/shared/AccountNavigationMobi/AccountNavigationMobi'
+import { AccountNavigationMobi } from '@/components/mobi/layout/AccountNavigationMobi/AccountNavigationMobi'
 
 const UpcomingInternshipsPageMobi: React.FC = () => {
     return (

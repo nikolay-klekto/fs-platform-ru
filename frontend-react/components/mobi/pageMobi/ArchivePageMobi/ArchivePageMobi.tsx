@@ -2,7 +2,7 @@
 
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
-import { AccountNavigationMobi } from '../../shared/AccountNavigationMobi/AccountNavigationMobi'
+import { AccountNavigationMobi } from '../../layout/AccountNavigationMobi/AccountNavigationMobi'
 
 const ArchivePageMobi: React.FC = () => {
     return (

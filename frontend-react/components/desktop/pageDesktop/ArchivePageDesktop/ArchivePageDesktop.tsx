@@ -2,7 +2,7 @@
 
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
-import { AccountNavigationDesktop } from '@/components/desktop/shared/AccountNavigationDesktop/AccountNavigationDesktop'
+import { AccountNavigationDesktop } from '@/components/desktop/layout/AccountNavigationDesktop/AccountNavigationDesktop'
 
 const ArchivePageDesktop: React.FC = () => {
     return (

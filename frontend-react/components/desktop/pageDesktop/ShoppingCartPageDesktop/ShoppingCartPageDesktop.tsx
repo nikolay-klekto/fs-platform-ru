@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import { content } from './contentShoppingCartPageDesktop/content'
-import { AccountNavigationDesktop } from '../../shared/AccountNavigationDesktop/AccountNavigationDesktop'
+import { AccountNavigationDesktop } from '../../layout/AccountNavigationDesktop/AccountNavigationDesktop'
 import ItemCardShoppingCartDesktop from './components/ItemCardShoppingCartDesktop/ItemCardShoppingCartDesktop'
 
 const isAuth = true
