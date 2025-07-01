@@ -6,7 +6,7 @@ export const PrivacyPolicyPageTableDesktop: React.FC = () => {
     return (
         <div className="overflow-x-auto">
             <table className="  mb-[50px]">
-                <thead>
+                <thead className="bg-[#1c1c3b]">
                     <tr className="border-collapse border text-left align-top">
                         <th className={tdClass + ' font-semibold'}>Цель обработки Ваших персональных данных</th>
                         <th className={tdClass + ' font-semibold'}>
