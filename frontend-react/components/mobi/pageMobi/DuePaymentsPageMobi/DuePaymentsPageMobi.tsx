@@ -1,11 +1,11 @@
-import React from 'react'
+'use client'
 
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
-import { AccountNavigationMobi } from '@/components/mobi/layout/AccountNavigationMobi/AccountNavigationMobi'
-import ShoppingCartMobi from './components/ShoppingCartMobi/ShoppingCartMobi'
+import { AccountNavigationMobi } from '../../layout/AccountNavigationMobi/AccountNavigationMobi'
+import DuePaymentsMobi from './components/DuePaymentsMobi/DuePaymentsMobi'
 
-const ShoppingCartPageMobi: React.FC = () => {
+const DuePaymentsPageMobi: React.FC = () => {
     return (
         <>
             <HeaderMobi />
@@ -13,11 +13,12 @@ const ShoppingCartPageMobi: React.FC = () => {
                 <div className="flex flex-col items-center justify-center bg-[#101030] px-[15px] pt-[40px]">
                     <h1 className="title28px_mobi_custom mb-4 uppercase">Личный кабинет</h1>
                     <AccountNavigationMobi />
-                    <ShoppingCartMobi />
+                    <DuePaymentsMobi />
                 </div>
             </main>
             <FooterMobi />
         </>
     )
 }
-export default ShoppingCartPageMobi
+
+export default DuePaymentsPageMobi
