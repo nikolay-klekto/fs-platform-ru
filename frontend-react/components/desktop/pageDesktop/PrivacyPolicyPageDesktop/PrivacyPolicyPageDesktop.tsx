@@ -12,7 +12,7 @@ const PrivasyPolisyPageDesktop: React.FC = () => {
         <>
             <HeaderDesktop />
             <div className="bg-[#101030] text-white">
-                <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
+                <div className="container relative overflow-hidden p-[83px_68px_240px_60px]">
                     <h2 className=" mb-[74px] text46px_desktop text-center font-medium  text-white ">
                         ПОЛИТИКА ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ
                     </h2>
@@ -213,7 +213,7 @@ const PrivasyPolisyPageDesktop: React.FC = () => {
                             Республики Беларусь об обращениях граждан и юридических лиц.
                         </p>
                         <h3 className={h3StylesMb15}>9. ОБНОВЛЕНИЕ НАСТОЯЩЕЙ ПОЛИТИКИ</h3>
-                        <p className={pStyles + ' mb-[310px'}>
+                        <p className={pStyles}>
                             Мы оставляем за собой право вносить изменения в настоящую Политику. Если изменения будут
                             существенными, мы направим вам дополнительное уведомление на указанный вами адрес
                             электронной почты. Новая редакция Политики вступает в силу с момента ее размещения на Сайте.
