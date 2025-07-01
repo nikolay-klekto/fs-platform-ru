@@ -115,10 +115,13 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                             validate={validateEmailDesktop}
                             onChange={(value) => handleChange('email', value)}
                             variant="gradient_desktop"
-                            className={`h-10 w-full rounded-[20px] border-2 border-[#878797] bg-transparent p-3 text-xl font-medium text-white focus:outline-none focus:ring-0"
+                            className={`h-10 w-full rounded-[20px] border-2 border-[#878797] bg-transparent p-3 text-[18px] font-medium text-white focus:outline-none focus:ring-0"
                             ${showEmailError ? 'border-[#BC8070]' : 'border-[#878797]'}
                             `}
                         />
+                        {formError && (
+                            <p className="error-form-desktop-custom mt-[13.88px]">Заполните обязательные поля</p>
+                        )}
                     </div>
                     <div className="relative flex h-[40px] items-center py-2">
                         <div className="relative">
@@ -141,19 +144,21 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                         <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
                             Конфиденциальность
                         </Link>{' '}
+                    </p>
+                    <p className="text15px_desktop mt-3 font-medium text-[#353652]">
+                        {' '}
                         и{' '}
                         <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
                             Условия использования
                         </Link>
                     </p>
-                    {formError && <p className="error-form-desktop-custom">Заполните необходимые поля</p>}
                     <Button
                         type="submit"
                         disabled={isButtonDisabled}
                         className={
                             isButtonDisabled
-                                ? 'mx-auto mt-6 h-[52.35px] w-[220px] rounded-[40.44px] font-semibold text-white pointer-events-none cursor-not-allowed bg-[#878789]'
-                                : 'hover:bg-gradient-desktop-hover mx-auto mt-6 h-[52.35px] w-[220px] rounded-[40.44px] bg-gradient-to-r from-[#8333F3] via-[#5F4AF3] to-[#3B51A8] text-lg font-semibold transition-all duration-300 hover:shadow-lg'
+                                ? 'mx-auto mt-6 h-[52.35px] w-[220px] rounded-[40.44px] font-semibold text-white pointer-events-none cursor-not-allowed bg-[#878797] text-base'
+                                : 'hover:bg-gradient-desktop-hover mx-auto mt-6 h-[52.35px] w-[220px] rounded-[40.44px] bg-gradient-to-r from-[#8333F3] via-[#5F4AF3] to-[#3B51A8] text-base font-semibold transition-all duration-300 hover:shadow-lg'
                         }
                     >
                         Отправить
