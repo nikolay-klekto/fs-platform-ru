@@ -24,7 +24,6 @@ const ModalProfessionNotifyDesktop: React.FC<IModalProfessionNotifyContent> = ({
     const [inputErrors, setInputErrors] = useState<{ email: string | null }>({
         email: null,
     })
-
     const [formError, setFormError] = useState(false)
 
     const validateForm = useCallback((): boolean => {
@@ -83,33 +82,34 @@ const ModalProfessionNotifyDesktop: React.FC<IModalProfessionNotifyContent> = ({
                             name="email"
                             placeholder="Ваш e-mail"
                             value={formData.email}
-                            validate={validateEmailDesktop}
                             onChange={(value) => handleChange('email', value)}
                             label="Почта"
                             labelClassName="text-white text-2xl pl-[6.52px]"
                             variant="gradient_desktop"
-                            className={`text18px_desktop h-[50px] w-full rounded-[50px] border-2 border-[#878797] bg-transparent pl-[18.65px] font-medium text-white focus:outline-none focus:ring-0 ${
-                                formError && (inputErrors.email || (formError && !formData.email))
-                                    ? 'border-[#BC8070] ring-0'
-                                    : ''
-                            }}`}
+                            className={`text18px_desktop h-[50px] w-full rounded-[50px] border-2 border-[#878797] bg-transparent pl-[18.65px] font-medium text-white placeholder:text-4xl focus:outline-none focus:ring-0 ${
+                                formError && !formData.email ? 'border-[#BC8070] ring-0' : ''
+                            }`}
                         />
-                        {inputErrors.email && <p className="error-form-desktop-custom">{inputErrors.email}</p>}
                     </div>
                     {formError && (
                         <p className="mb-[14px] ml-[7px] text-[15px] text-[#BC8070] ">Заполните обязательные поля</p>
                     )}
                     <div className="flex flex-col items-start gap-[20px] ">
-                        <EnhancedInput
-                            type="checkbox"
-                            name="consent"
-                            checked={formData.consent}
-                            onChange={(value) => handleChange('consent', value === 'true')}
-                            label="Я согласен(а) на обработку персональных данных"
-                            labelClassName="text-[15px] text-[#878797] pl-[6.52px]"
-                            checkboxIconSize="w-[18px]"
-                            className={formError && !formData.consent ? 'border-2 border-[#BC8070]' : ''}
-                        />
+                        <div className="relative">
+                            <EnhancedInput
+                                type="checkbox"
+                                name="consent"
+                                checked={formData.consent}
+                                onChange={(value) => handleChange('consent', value === 'true')}
+                                label="Я согласен(а) на обработку персональных данных"
+                                labelClassName="text-[15px] text-[#878797] pl-[6.52px]"
+                                checkboxIconSize="w-[18px]"
+                                className="relative"
+                            />
+                            {formError && !formData.consent && (
+                                <span className="pointer-events-none absolute left-1.5 top-0.5 size-[18px] rounded-[2px] border-[2px] border-[#BC8070]" />
+                            )}
+                        </div>
                         <p className="ml-[7px] flex w-[412px] flex-wrap justify-start text-[15px] font-medium leading-[100%] text-[#353652] ">
                             <p className="w-[234px]">Защита от спама reCAPTCHA</p>
                             <Link href="/" target="_blank" rel="noopener noreferrer" className="ml-[3px] underline ">
@@ -125,9 +125,9 @@ const ModalProfessionNotifyDesktop: React.FC<IModalProfessionNotifyContent> = ({
                         <Button
                             type="submit"
                             variant="default"
-                            disabled={formError === true}
+                            disabled={formError}
                             className={`h-[52.35px] w-[220px] rounded-full text-3xl font-semibold leading-[100%] ${
-                                formError === true
+                                formError
                                     ? 'bg-[#878797] disabled:opacity-100'
                                     : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'
                             }`}
