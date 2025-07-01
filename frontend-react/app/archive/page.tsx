@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import ProfilePageDesktop from '@/components/desktop/pageDesktop/ProfilePageDesktop/ProfilePageDesktop'
-import ProfilePageMobi from '@/components/mobi/pageMobi/ProfilePageMobi/ProfilePageMobi'
+import ArchivePageDesktop from '@/components/desktop/pageDesktop/ArchivePageDesktop/ArchivePageDesktop'
+import ArchivePageMobi from '@/components/mobi/pageMobi/ArchivePageMobi/ArchivePageMobi'
 
-export default function Profile() {
+export default function Archive() {
     const [isClient, setIsClient] = useState(false)
 
     useEffect(() => {
@@ -23,11 +23,11 @@ export default function Profile() {
         <div>
             {isDesktop ? (
                 <>
-                    <ProfilePageDesktop />
+                    <ArchivePageDesktop />
                 </>
             ) : (
                 <>
-                    <ProfilePageMobi />
+                    <ArchivePageMobi />
                 </>
             )}
         </div>
