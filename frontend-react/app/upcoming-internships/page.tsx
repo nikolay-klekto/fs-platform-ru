@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import ProfilePageDesktop from '@/components/desktop/pageDesktop/ProfilePageDesktop/ProfilePageDesktop'
-import ProfilePageMobi from '@/components/mobi/pageMobi/ProfilePageMobi/ProfilePageMobi'
+import UpcomingInternshipsPageDesktop from '@/components/desktop/pageDesktop/UpcomingInternshipsPageDesktop/UpcomingInternshipsPageDesktop'
+import UpcomingInternshipsPageMobi from '@/components/mobi/pageMobi/UpcomingInternshipsPageMobi/UpcomingInternshipsPageMobi'
 
-export default function Profile() {
+export default function UpcomingInternships() {
     const [isClient, setIsClient] = useState(false)
 
     useEffect(() => {
@@ -23,11 +23,11 @@ export default function Profile() {
         <div>
             {isDesktop ? (
                 <>
-                    <ProfilePageDesktop />
+                    <UpcomingInternshipsPageDesktop />
                 </>
             ) : (
                 <>
-                    <ProfilePageMobi />
+                    <UpcomingInternshipsPageMobi />
                 </>
             )}
         </div>
