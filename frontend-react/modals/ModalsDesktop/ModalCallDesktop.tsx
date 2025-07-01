@@ -282,9 +282,9 @@ const ModalCallDesktop = ({ onClose }: IModalContent) => {
                             <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="mx-auto flex max-w-md flex-col rounded-lg p-3">
-                            <h1 className="mb-6 mt-10 bg-gradient-desktop bg-clip-text text-center text-13xl font-medium leading-[44px] text-transparent">
+                            <p className="mb-6 mt-10 bg-gradient-desktop bg-clip-text text-center text-13xl font-medium leading-[44px] text-transparent">
                                 ЗАЯВКА ПРИНЯТА
-                            </h1>
+                            </p>
                             <p className="text-justify text-4xl font-medium leading-[22px] text-[#878797] shadow-md">
                                 Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими <br />
                                 <span className="block text-center">услугами на сайте</span>

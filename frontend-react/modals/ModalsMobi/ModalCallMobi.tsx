@@ -260,9 +260,9 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                             <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat px-3 pb-7 pt-10">
-                            <h1 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
+                            <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
                                 ЗАЯВКА ПРИНЯТА
-                            </h1>
+                            </p>
                             <p className="mb-1 px-3 pb-[18px] text-justify text-xl font-medium leading-[17px] text-[#878797] md:text-lg">
                                 Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
                                 сайте.
