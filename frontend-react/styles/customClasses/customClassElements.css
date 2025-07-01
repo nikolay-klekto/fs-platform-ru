@@ -9,16 +9,32 @@
         @apply bg-white shadow-md rounded-lg p-4;
     }
 
-    @-moz-document url-prefix() {
+ @-moz-document url-prefix() {
   .scrollbar_custom {
-    scrollbar-width:thin;
-    scrollbar-color: #898997 ;
-    background-color:rgba(255, 255, 255, 0.1) ;
-    min-height: 10px; 
-    border-radius: 4px;  }
-
+    scrollbar-width: thin;
+    scrollbar-color: #898997 rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
+    min-height: 10px;
+    border-radius: 4px;
+    overflow-x: scroll !important;
+    -moz-appearance: none !important;
+     scrollbar-arrow-color: transparent !important;
+  }
+  
+  .scrollbar_custom::-moz-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+  }
+  
+  .scrollbar_custom::-moz-scrollbar-thumb {
+    background-color: #898997 !important;
+    border-radius: 4px !important;
+  }
+  
+  .scrollbar_custom::-moz-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
 }
-
  .scrollbar_custom::-webkit-scrollbar {
         height: 4px;
     }
