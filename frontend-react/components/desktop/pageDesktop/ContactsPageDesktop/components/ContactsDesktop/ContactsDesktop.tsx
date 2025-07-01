@@ -349,7 +349,7 @@ const ContactsDesktop: React.FC = () => {
                                     updateFieldError('message', !validation.status)
                                     return validation
                                 }}
-                                wrapperClassName={'h-[272px]'}
+                                wrapperClassName={'mb-[13.88px]'}
                                 className={`focus:border-2`}
                             />
                             <div className="flex h-[130px] flex-col justify-between">
