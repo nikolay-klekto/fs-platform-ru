@@ -2,6 +2,8 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
+import { CheckedBoxFormMobi, UncheckedBoxFormMobi } from '@/components/assets/iconsMobi'
+import { useMediaQuery } from 'react-responsive'
 
 const inputVariants = cva(
     'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
@@ -98,6 +100,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
         },
         ref,
     ) => {
+        const isDesktop = useMediaQuery({
+            query: '(min-width: 1240px)',
+        })
         const [internalValue, setInternalValue] = React.useState(() => {
             if (typeof checked === 'boolean') {
                 return false
@@ -162,7 +167,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         className={cn(
                             'text15px_desktop font-medium text-[#878797]',
                             labelClassName,
-                            isCheckbox && 'flex items-center gap-4',
+                            isCheckbox && 'flex items-center gap-3',
                         )}
                     >
                         {isCheckbox && (
@@ -174,12 +179,26 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 )}
                                 onClick={handleCheckboxToggle}
                             >
-                                {internalValue ? (
-                                    <CheckedBoxFormDesktop className={checkboxIconSize} />
-                                ) : hasErrors ? (
-                                    <UncheckedBoxFormDesktop stroke="#E99B9B" className={checkboxIconSize} />
+                                {isDesktop ? (
+                                    <>
+                                        {internalValue ? (
+                                            <CheckedBoxFormDesktop className={checkboxIconSize} />
+                                        ) : hasErrors ? (
+                                            <UncheckedBoxFormDesktop stroke="#E99B9B" className={checkboxIconSize} />
+                                        ) : (
+                                            <UncheckedBoxFormDesktop className={checkboxIconSize} />
+                                        )}
+                                    </>
                                 ) : (
-                                    <UncheckedBoxFormDesktop className={checkboxIconSize} />
+                                    <>
+                                        {internalValue ? (
+                                            <CheckedBoxFormMobi className={checkboxIconSize} />
+                                        ) : hasErrors ? (
+                                            <UncheckedBoxFormMobi stroke="#E99B9B" className={checkboxIconSize} />
+                                        ) : (
+                                            <UncheckedBoxFormMobi className={checkboxIconSize} />
+                                        )}
+                                    </>
                                 )}
                             </button>
                         )}

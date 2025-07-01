@@ -67,6 +67,12 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         e.preventDefault()
         const isValid = validateForm()
         if (!isValid) return
+        const cleanedPhone = formData.phone.replace(/[^\d+]/g, '')
+        const dataToSend = {
+            ...formData,
+            phone: cleanedPhone,
+        }
+        console.log('отправляется на сервер: ', dataToSend)
         setStep('accepted')
     }
 
@@ -82,34 +88,10 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
             [name]: safeValue,
         }))
 
-        setErrors((prev) => {
-            const updatedErrors = { ...prev }
-
-            if (name === 'name') {
-                updatedErrors.name = !safeValue
-            }
-
-            if (name === 'phone') {
-                const isValid = validatePhoneMobi(value).status
-                updatedErrors.phone = !isValid
-
-                setErrorMessage((prev) => ({
-                    ...prev,
-                    phoneMessage: isValid ? '' : 'Номер телефона введён не полностью',
-                }))
-            }
-
-            if (name === 'consent') {
-                updatedErrors.consent = !checked
-            }
-
-            return updatedErrors
-        })
-
-        if (name === 'name' || name === 'consent') {
-            setErrorMessage((prev) => ({
+        if (name === 'consent') {
+            setErrors((prev) => ({
                 ...prev,
-                emptyFieldMessage: '',
+                consent: !checked,
             }))
         }
     }
