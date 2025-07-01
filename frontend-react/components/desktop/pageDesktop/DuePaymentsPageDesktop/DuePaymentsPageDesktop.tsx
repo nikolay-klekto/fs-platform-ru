@@ -1,11 +1,11 @@
 'use client'
 
-import React from 'react'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import { AccountNavigationDesktop } from '@/components/desktop/layout/AccountNavigationDesktop/AccountNavigationDesktop'
+import DuePaymentsDesktop from './components/DuePaymentsDesktop/DuePaymentsDesktop'
 
-const ProfilePageDesktop: React.FC = () => {
+const DuePaymentsPageDesktop: React.FC = () => {
     return (
         <>
             <HeaderDesktop />
@@ -20,6 +20,7 @@ const ProfilePageDesktop: React.FC = () => {
                             </h1>
                             <AccountNavigationDesktop />
                         </div>
+                        <DuePaymentsDesktop />
                     </div>
                 </div>
             </main>
@@ -28,4 +29,4 @@ const ProfilePageDesktop: React.FC = () => {
     )
 }
 
-export default ProfilePageDesktop
+export default DuePaymentsPageDesktop

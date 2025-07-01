@@ -141,7 +141,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         const result = await register(formData.email, cleanedPhone, formData.password)
         if (result.success) {
             onClose()
-            router.push('/personal-account')
+            router.push('/profile')
         } else {
             setInputInternalErrors((prevErrors) => ({
                 ...prevErrors,
