@@ -6,7 +6,7 @@ interface IPhoneInputMobi {
     onChange: (value: string) => void
     onError: (value: string) => void
     onBlur?: (value: string) => void
-    validationStatus: boolean
+    validationStatus?: boolean
     className?: string
     labelClassName?: string
     wrapperClassName?: string
@@ -128,6 +128,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 value={inputValue}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}
+                onChange={() => {}}
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={placeholder}
