@@ -54,13 +54,13 @@ const ProfessionsPageDesktop: React.FC = () => {
     return (
         <>
             <HeaderDesktop />
-            <div className="bg-[#101030] text-white">
-                <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
+            <main className="bg-[#101030] text-white">
+                <div className="3xl:p-[76px_130px_150px_130px] container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px]">
                     <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
                     <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
                     <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
                     <h1 className="title80px_desktop relative z-[1]">Профессии</h1>
-                    <div className="relative z-[1] flex items-center py-[80px] gap-[5%]">
+                    <div className="relative z-[1] flex items-center gap-[5%] py-[80px]">
                         <div className="relative w-full">
                             <EnhancedInput
                                 type="text"
@@ -78,14 +78,14 @@ const ProfessionsPageDesktop: React.FC = () => {
                                 <Search color="white" width={37.5} height={37.5} strokeWidth={1} />
                             </Button>
                         </div>
-                        <div className="flex items-center gap-[20px] ml-[5%]">
+                        <div className="ml-[5%] flex items-center gap-[20px]">
                             <SelectInternshipTypeDesktop onCategoryChange={handleIntenshipType} />
                             <ProfessionsSelectDesktop onCategoryChange={handleCategoryChange} />
                         </div>
                     </div>
 
                     {filteredContent.length > 0 ? (
-                        <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
+                        <div className="3xl:gap-[25px] 4xl:gap-[30px] grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px]">
                             {filteredContent
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (
@@ -105,7 +105,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                                 ))}
                         </div>
                     ) : (
-                        <p className="text-center text-white text-4xl mt-20 mb-20 min-h-[250px]">Ничего не найдено</p>
+                        <p className="my-20 min-h-[250px] text-center text-4xl text-white">Ничего не найдено</p>
                     )}
 
                     {totalPages <= 1 && <div className="h-[80px]"></div>}
@@ -120,7 +120,7 @@ const ProfessionsPageDesktop: React.FC = () => {
 
                     <ProfessionSearchDesktop />
                 </div>
-            </div>
+            </main>
             <FooterDesktop />
         </>
     )
