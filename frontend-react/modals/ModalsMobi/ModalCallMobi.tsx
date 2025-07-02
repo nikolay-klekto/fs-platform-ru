@@ -1,10 +1,11 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
-import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validateNameMobi'
+import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 interface IFormData {
     name: string
@@ -24,59 +25,103 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         time: '',
         consent: false,
     })
-    const [errors, setErrors] = useState<{ [key: string]: string }>({})
-    const [step, setStep] = useState<'form' | 'accepted' | null>('form')
-    const [inputTouched, setInputTouched] = useState({
+    const [errors, setErrors] = useState<{ name?: boolean; phone?: boolean; consent?: boolean }>({
         name: false,
         phone: false,
-        time: false,
+        consent: false,
     })
+    const [errorMessage, setErrorMessage] = useState<{ phoneMessage?: string; emptyFieldMessage?: string }>({
+        phoneMessage: '',
+        emptyFieldMessage: '',
+    })
+    const [step, setStep] = useState<'form' | 'accepted' | null>('form')
 
     const validateForm = () => {
-        const newErrors: { [key: string]: string } = {}
-        if (!formData.name.trim()) {
-            newErrors.name = 'Поле обязательно для заполнения'
+        const newErrors: { [key: string]: boolean } = {}
+
+        const newMessages = {
+            phoneMessage: '',
+            emptyFieldMessage: '',
         }
-        if (!formData.phone.trim()) {
-            newErrors.phone = 'Поле обязательно для заполнения'
+
+        if (!validatePhoneMobi(formData.phone).status) {
+            newErrors.phone = true
+            newMessages.phoneMessage = 'Номер телефона введён не полностью'
+        }
+        if (!formData.name) {
+            newErrors.name = true
+            newMessages.emptyFieldMessage = '*Заполните обязательные поля'
         }
         if (!formData.consent) {
-            newErrors.consent = 'Необходимо согласие'
+            newErrors.consent = true
+            newMessages.emptyFieldMessage = '*Заполните обязательные поля'
         }
-        setErrors(newErrors)
-        return Object.keys(newErrors).length === 0
-    }
 
-    const normalizePhone = (value: string) => {
-        return value.replace(/[^\d+]/g, '')
+        setErrors(newErrors)
+        setErrorMessage(newMessages)
+
+        return !Object.values(newErrors).some((error) => error === true)
     }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        if (!validateForm()) return
-
-        const cleanedPhone = normalizePhone(formData.phone)
+        const isValid = validateForm()
+        if (!isValid) return
+        const cleanedPhone = formData.phone.replace(/[^\d+]/g, '')
+        const dataToSend = {
+            ...formData,
+            phone: cleanedPhone,
+        }
+        console.log('отправляется на сервер: ', dataToSend)
         setStep('accepted')
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: type === 'checkbox' ? checked : value,
+
+        const updatedValue = type === 'checkbox' ? checked : value
+
+        const safeValue = name === 'name' ? value.replace(/[^a-zA-Zа-яА-ЯёЁ]/g, '') : updatedValue
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: safeValue,
         }))
-        setErrors((prevErrors) => ({
-            ...prevErrors,
-            [name]: '',
-        }))
+
+        if (name === 'consent') {
+            setErrors((prev) => ({
+                ...prev,
+                consent: !checked,
+            }))
+        }
     }
 
-    const handleInputBlur = (field: 'phone' | 'name' | 'time') => {
-        setInputTouched((prev) => ({
-            ...prev,
-            [field]: true,
-        }))
+    const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        const { name, value, checked } = e.target
+
+        setErrors((prev) => {
+            const updatedErrors = { ...prev }
+
+            if (name === 'phone') {
+                const result = validatePhoneMobi(value)
+                updatedErrors.phone = !result.status
+            }
+
+            if (name === 'name') {
+                updatedErrors.name = !value
+            }
+
+            if (name === 'consent') {
+                updatedErrors.consent = !checked
+            }
+
+            return updatedErrors
+        })
     }
+
+    const hasErrors = useMemo(() => {
+        return Object.values(errors).some(Boolean)
+    }, [errors])
 
     return (
         <>
@@ -85,44 +130,38 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                     <div className="relative mx-4 w-full max-w-md ">
                         <button
                             onClick={onClose}
-                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
+                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-1"
                         >
-                            <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
+                            <X size={30} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
-                        <div className=" rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 py-[40px]">
+                        <div className="rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 pt-10 pb-9">
                             <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </p>
-                            <p className="pb-4 pl-3 text-base font-medium text-[#878797] md:text-lg">
-                                Заполните поля – и мы с вами свяжемся
-                            </p>
-
                             <form className="flex flex-col items-start pl-2 pr-1" onSubmit={handleSubmit}>
-                                <div className="mb-3 flex w-full flex-col p-0.5">
+                                <div className="flex w-full flex-col p-0.5">
                                     <EnhancedInput
                                         type="text"
                                         name="name"
-                                        placeholder="Ваше имя"
+                                        placeholder="Ваше имя*"
                                         value={formData.name}
-                                        validate={(value) => validateNameMobi(value)}
-                                        onBlur={() => handleInputBlur('name')}
                                         onChange={(value: string) =>
                                             handleChange({
                                                 target: { name: 'name', value, type: 'text', checked: false },
                                             } as React.ChangeEvent<HTMLInputElement>)
                                         }
+                                        onBlur={handleInputBlur}
                                         className={`border-2 ${
-                                            inputTouched.name && validateNameMobi(formData.name).styleError
-                                                ? 'border-[#bc8070]'
-                                                : 'border-[#878797]'
-                                        } h-10 w-full rounded-[50px] bg-transparent p-4 text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] md:placeholder:text-2xl`}
-                                        label="Ваше имя"
+                                            errors.name
+                                                ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070] focus:bg-[#1f203f]'
+                                                : 'border-[#878797] bg-transparent focus:border-[#878797]'
+                                        } h-10 w-full rounded-[50px] p-4 text-xl font-medium text-white placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] focus:bg-[#1f203f] focus:ring-0 focus:ring-offset-0 md:placeholder:text-2xl`}
+                                        label="Ваше имя*"
                                         labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
                                     />
-                                    {errors.name && <p className="mt-1 text-sm text-[#bc8070]">{errors.name}</p>}
                                 </div>
-                                <div className="mb-3 flex w-full flex-col p-0.5">
+                                <div className="flex w-full flex-col p-0.5">
                                     <PhoneInputMobi
                                         value={formData.phone}
                                         onChange={(value: string) =>
@@ -130,74 +169,81 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                                 target: { name: 'phone', value, type: 'text', checked: false },
                                             } as React.ChangeEvent<HTMLInputElement>)
                                         }
-                                        onBlur={() => handleInputBlur('phone')}
-                                        onError={(error) =>
-                                            setErrors((prev) => ({
-                                                ...prev,
-                                                phone: error || '',
-                                            }))
-                                        }
-                                        showInternalError={true}
-                                        className={`border-2 focus:border-2`}
+                                        onBlur={handleInputBlur}
+                                        className={`mb-4 border-2 text-xl focus:border-2 focus:ring-0 focus:ring-offset-0 ${
+                                            errors.phone
+                                                ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]'
+                                                : 'border-[#878797] focus:border-[#878797]'
+                                        }`}
                                         labelClassName="text-2xl leading-[18px] font-medium text-white mb-0"
                                         wrapperClassName="w-full"
                                         required={true}
                                     />
-                                    {errors.phone && <p className="mt-1 text-sm text-[#bc8070]">{errors.phone}</p>}
                                 </div>
-                                <div className="mb-3 flex w-full flex-col p-0.5">
+                                <div className="flex w-full flex-col p-0.5">
+                                    <label>
+                                        <p className="mb-2 text-xl text-white font-medium">Удобное время для звонка</p>
+                                        <input
+                                            type="text"
+                                            id="time"
+                                            name="time"
+                                            placeholder="Удобное время для звонка"
+                                            value={formData.time}
+                                            onChange={(e) => {
+                                                const value = e.target.value.replace(/[^0-9: ]/g, '')
+                                                handleChange({
+                                                    target: {
+                                                        name: 'time',
+                                                        value: value,
+                                                        type: 'text',
+                                                        checked: false,
+                                                    },
+                                                } as React.ChangeEvent<HTMLInputElement>)
+                                            }}
+                                            className="mb-3 h-10 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-xl font-medium text-white placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] focus:border-[#878797] focus:outline-none focus:ring-0 focus:ring-offset-0"
+                                        />
+                                    </label>
+                                </div>
+                                <div className="flex items-center pt-1">
                                     <EnhancedInput
-                                        type="text"
-                                        id="time"
-                                        name="time"
-                                        placeholder="Удобное время для звонка"
-                                        value={formData.time}
-                                        onBlur={() => handleInputBlur('time')}
-                                        onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                        className="h-11 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-base font-medium text-[#878797] placeholder:text-sm placeholder:font-medium placeholder:text-[#353652]"
-                                        label="Удобное время для звонка"
-                                        labelClassName="text-white text-xl"
-                                        wrapperClassName="w-full"
-                                    />
-                                    <p className="mt-2 text-sm font-medium leading-[18px] text-[#353652] ">
-                                        *Обязательное поле для ввода
-                                    </p>
-                                    {Object.keys(errors).length > 0 && (
-                                        <p className="mb-3 mt-2 text-sm font-medium leading-[18px] text-[#bc8070]">
-                                            Заполните обязательные поля
-                                        </p>
-                                    )}
-                                </div>
-                                <div className="mb-2 flex items-center pt-4">
-                                    <input
                                         type="checkbox"
                                         id="consent"
                                         name="consent"
                                         checked={formData.consent}
-                                        onChange={(e) =>
-                                            setFormData((prev) => ({ ...prev, consent: e.target.checked }))
-                                        }
-                                        className="mr-2 inline-block size-4 appearance-none rounded-[2px] border-2 border-[#878797] checked:border-transparent checked:bg-[#878797]"
+                                        onBlur={handleInputBlur}
+                                        onChange={(value: string) => {
+                                            handleChange({
+                                                target: {
+                                                    name: 'consent',
+                                                    value,
+                                                    type: 'checkbox',
+                                                    checked: value === 'true',
+                                                },
+                                            } as React.ChangeEvent<HTMLInputElement>)
+                                        }}
+                                        label="Cогласен(а) на обработку персональных данных"
+                                        hasErrors={errors.consent}
+                                        wrapperClassName="flex gap-1"
+                                        checkboxIconSize="w-[20px]"
+                                        labelClassName={`${formData.consent ? 'text-white' : 'text-[#878797]'} text-xs`}
                                     />
-                                    <label
-                                        htmlFor="consent"
-                                        className="ml-1 cursor-pointer text-xs font-medium text-[#878797] md:text-sm"
-                                    >
-                                        Я согласен(а) на обработку персональных данных
-                                    </label>
-                                    {errors.consent && <p className="mt-1 text-sm text-[#bc8070]">{errors.consent}</p>}
                                 </div>
-                                <button
+                                <p className="error-form-desktop-custom mb-2 ml-9 text-xs">
+                                    {hasErrors && (errorMessage.phoneMessage || errorMessage.emptyFieldMessage)}
+                                </p>
+                                <Button
                                     type="submit"
-                                    disabled={Object.values(errors).some((err) => err?.trim())}
-                                    className={`bg-sub-title-gradient-mobi mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] text-3xl font-semibold text-white md:text-4xl  ${
-                                        Object.values(errors).some((err) => err?.trim())
-                                            ? 'bg-[#878797] disabled:opacity-100'
-                                            : 'bg-sub-title-gradient-mobi'
-                                    }`}
+                                    variant="default"
+                                    size="send_btn_desktop"
+                                    disabled={hasErrors}
+                                    className={`
+                                        w-72 mx-auto mt-1 h-12 rounded-[50px] 
+                                        text-3xl font-semibold text-white md:text-4xl disabled:opacity-100
+                                        ${hasErrors ? '!bg-[#878797]' : 'bg-gradient-mobi'}
+                                    `}
                                 >
                                     Отправить заявку
-                                </button>
+                                </Button>
                             </form>
                         </div>
                     </div>
@@ -209,14 +255,14 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                     <div className="relative mx-4 w-full max-w-md ">
                         <button
                             onClick={onClose}
-                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
+                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-1"
                         >
                             <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat px-3 pb-7 pt-10">
-                            <h1 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
+                            <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
                                 ЗАЯВКА ПРИНЯТА
-                            </h1>
+                            </p>
                             <p className="mb-1 px-3 pb-[18px] text-justify text-xl font-medium leading-[17px] text-[#878797] md:text-lg">
                                 Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
                                 сайте.

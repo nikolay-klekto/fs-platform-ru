@@ -208,7 +208,6 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         <PhoneInputDesktop
                             value={formData.phoneNumber}
                             onChange={(value) => setFormData((prev) => ({ ...prev, phoneNumber: value }))}
-                            onError={(error) => handleError('phone', error)}
                             wrapperClassName="w-full"
                             required={true}
                             className={`${

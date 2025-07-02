@@ -214,7 +214,6 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                             <PhoneInputMobi
                                 value={formData.phone}
                                 onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
-                                onError={(error) => handleError('phone', error)}
                                 wrapperClassName="w-full"
                                 required={true}
                                 showInternalError={true}

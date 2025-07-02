@@ -2,6 +2,8 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
+import { CheckedBoxFormMobi, UncheckedBoxFormMobi } from '@/components/assets/iconsMobi'
+import { useMediaQuery } from 'react-responsive'
 
 const inputVariants = cva(
     'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
@@ -59,7 +61,7 @@ export interface IEnhancedInput
     error?: string
     onChange?: (value: string) => void
     onFocus?: () => void
-    onBlur?: () => void
+    onBlur?: React.FocusEventHandler<HTMLInputElement>
     label?: string
     helperText?: string
     helperTextClassName?: string
@@ -68,6 +70,7 @@ export interface IEnhancedInput
     placeholder?: string
     name?: string
     checkboxIconSize?: string
+    hasErrors?: boolean
     checked?: boolean
 }
 
@@ -85,17 +88,21 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             onBlur,
             label,
             helperText,
-            helperTextClassName,
             name,
             wrapperClassName,
+            helperTextClassName,
             labelClassName,
             placeholder,
             checked,
             checkboxIconSize,
+            hasErrors,
             ...props
         },
         ref,
     ) => {
+        const isDesktop = useMediaQuery({
+            query: '(min-width: 1240px)',
+        })
         const [internalValue, setInternalValue] = React.useState(() => {
             if (typeof checked === 'boolean') {
                 return false
@@ -137,9 +144,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             onFocus?.()
         }
 
-        const handleBlur = () => {
+        const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
             setIsFocused(false)
-            onBlur?.()
+            onBlur?.(e)
 
             if (internalValue) {
                 validateComponent(internalValue)
@@ -153,14 +160,14 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
         }
 
         return (
-            <div className={cn('flex flex-col gap-1.5', wrapperClassName)}>
+            <div className={cn('flex flex-col gap-1', wrapperClassName)}>
                 {label && (
                     <label
                         htmlFor={name}
                         className={cn(
                             'text15px_desktop font-medium text-[#878797]',
                             labelClassName,
-                            isCheckbox && 'flex items-center gap-4',
+                            isCheckbox && 'flex items-center gap-3',
                         )}
                     >
                         {isCheckbox && (
@@ -172,10 +179,26 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 )}
                                 onClick={handleCheckboxToggle}
                             >
-                                {internalValue ? (
-                                    <CheckedBoxFormDesktop className={checkboxIconSize} />
+                                {isDesktop ? (
+                                    <>
+                                        {internalValue ? (
+                                            <CheckedBoxFormDesktop className={checkboxIconSize} />
+                                        ) : hasErrors ? (
+                                            <UncheckedBoxFormDesktop stroke="#E99B9B" className={checkboxIconSize} />
+                                        ) : (
+                                            <UncheckedBoxFormDesktop className={checkboxIconSize} />
+                                        )}
+                                    </>
                                 ) : (
-                                    <UncheckedBoxFormDesktop className={checkboxIconSize} />
+                                    <>
+                                        {internalValue ? (
+                                            <CheckedBoxFormMobi className={checkboxIconSize} />
+                                        ) : hasErrors ? (
+                                            <UncheckedBoxFormMobi stroke="#E99B9B" className={checkboxIconSize} />
+                                        ) : (
+                                            <UncheckedBoxFormMobi className={checkboxIconSize} />
+                                        )}
+                                    </>
                                 )}
                             </button>
                         )}
@@ -202,11 +225,18 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         {...props}
                     />
                 )}
-                {(helperText || internalError !== '') && (
-                    <p className={cn(helperTextClassName, internalError ? 'text-[#BC8070] ' : 'text-muted-foreground')}>
-                        {internalError || helperText}
-                    </p>
-                )}
+                <div className="flex h-4 text-[0.8125rem]">
+                    {(helperText || internalError) && (
+                        <p
+                            className={cn(
+                                helperTextClassName,
+                                internalError ? 'text-[#bc8070]' : 'text-muted-foreground',
+                            )}
+                        >
+                            {internalError || helperText}
+                        </p>
+                    )}
+                </div>
             </div>
         )
     },

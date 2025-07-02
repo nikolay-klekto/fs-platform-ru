@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 
 interface IPhoneInputMobi {
     value: string
     onChange: (value: string) => void
-    onError: (value: string) => void
-    onBlur?: (value: string) => void
+    onBlur?: React.FocusEventHandler<HTMLInputElement>
     className?: string
     labelClassName?: string
     wrapperClassName?: string
@@ -25,16 +23,13 @@ for (let i = 0; i < PHONE_MASK.length; i++) {
 const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     value,
     onChange,
-    onError,
     className,
+    onBlur,
     labelClassName,
     wrapperClassName,
-    required = false,
-    showInternalError,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
-    const [internalError, setInternalError] = useState<string | null>(null)
 
     const setCaretToPosition = (pos: number) => {
         if (inputRef.current) {
@@ -81,21 +76,15 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
             e.preventDefault()
         }
 
-        validateValue(newValue)
+        handleChange(newValue)
     }
 
-    const validateValue = (value: string) => {
-        const error =
-            required && (value === PHONE_MASK || !value)
-                ? 'Поле обязательно для заполнения'
-                : validatePhoneMobi(value).textError
-        setInternalError(error)
-        onError(error)
+    const handleChange = (value: string) => {
         onChange(value)
     }
 
-    const handleBlur = () => {
-        validateValue(inputValue)
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        onBlur?.(e)
     }
 
     const handleFocus = () => {
@@ -116,7 +105,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
 
     return (
         <div className={`flex w-full flex-col gap-1.5 ${wrapperClassName}`}>
-            <label htmlFor="phone" className={`mb-1 text-2xl font-medium text-white ${labelClassName}`}>
+            <label htmlFor="phone" className={`text-2xl font-medium text-white ${labelClassName}`}>
                 Номер телефона*
             </label>
             <input
@@ -131,11 +120,8 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={PHONE_MASK}
-                className={`input-form-mobi-custom w-full border-2 font-medium placeholder:text-[#353652] focus:border-2 ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                className={`input-form-mobi-custom w-full font-medium placeholder:text-[#353652] ${className}`}
             />
-            {showInternalError !== false && internalError && (
-                <p className={'error-form-mobi-custom'}>{internalError}</p>
-            )}
         </div>
     )
 }

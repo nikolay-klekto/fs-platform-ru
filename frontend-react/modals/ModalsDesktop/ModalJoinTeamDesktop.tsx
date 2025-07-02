@@ -174,7 +174,6 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         className={`mb-6 h-20 items-center pl-8 text-9xl placeholder:text-9xl ${errors.phoneNumber ? 'border-[#bc8070]' : 'border-[#878797]'}`}
                         onBlur={() => handleBlur('phoneNumber')}
                         onChange={handleChange('phoneNumber')}
-                        onError={() => {}}
                         labelClassName="font-semibold text-[20px] text-white mb-[10px] leading-[100%] tracking-normal"
                     />
                     <EnhancedInput

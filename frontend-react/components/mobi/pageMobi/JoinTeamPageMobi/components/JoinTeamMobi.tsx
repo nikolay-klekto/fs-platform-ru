@@ -170,7 +170,6 @@ const JoinTeamMobi: React.FC = () => {
                     className={`mb-[12px] mt-0 items-center border-2 pl-4 placeholder:text-2xl ${errors.phoneNumber ? 'border-[#bc8070]' : 'border-2 border-[#878797]'}`}
                     onBlur={() => handleBlur('phoneNumber')}
                     onChange={handleChange('phoneNumber')}
-                    onError={() => {}}
                     labelClassName="font-semibold text-[10px] text-white leading-[100%] tracking-normal mb-[0px]"
                     showInternalError={false}
                 />

@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 
 interface IPhoneInputDesktop {
     value: string
     onChange: (value: string) => void
-    onError: (value: string) => void
-    onBlur?: (value: string) => void
+    onBlur?: React.FocusEventHandler<HTMLInputElement>
     className?: string
     labelClassName?: string
     wrapperClassName?: string
@@ -24,16 +22,13 @@ for (let i = 0; i < PHONE_MASK.length; i++) {
 const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     value,
     onChange,
-    onError,
     onBlur,
     className,
     labelClassName,
     wrapperClassName,
-    required = false,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
-    const [error, setError] = useState<string | null>(null)
 
     const setCaretToPosition = (pos: number) => {
         if (inputRef.current) {
@@ -80,24 +75,15 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
             e.preventDefault()
         }
 
-        validateValue(newValue)
+        handleChange(newValue)
     }
 
-    const validateValue = (value: string) => {
-        const error =
-            required && (value === PHONE_MASK || !value)
-                ? 'Поле обязательно для заполнения'
-                : validatePhoneDesktop(value).textError
-        setError(error)
-        onError(error)
+    const handleChange = (value: string) => {
         onChange(value)
-
-        return error
     }
 
-    const handleBlur = () => {
-        validateValue(inputValue)
-        onBlur?.(inputValue)
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        onBlur?.(e)
     }
 
     const handleFocus = () => {
@@ -117,7 +103,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     }
 
     return (
-        <div className={`flex w-full flex-col gap-1.5 ${wrapperClassName}`}>
+        <div className={`flex w-full flex-col gap-1 ${wrapperClassName}`}>
             <label htmlFor="phone" className={`mb-1 text-2xl font-medium text-white ${labelClassName}`}>
                 Номер телефона*
             </label>
@@ -128,17 +114,13 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                 name="phone"
                 autoComplete="tel"
                 value={inputValue}
-                onChange={(e) => {
-                    const newValue = e.target.value
-                    setInputValue(newValue)
-                    validateValue(newValue)
-                }}
+                onChange={() => {}}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={PHONE_MASK}
-                className={`input-form-desktop-custom w-full font-medium placeholder:text-[#353652] ${error ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                className={`input-form-desktop-custom w-full font-medium placeholder:text-[#353652] ${className}`}
             />
         </div>
     )
