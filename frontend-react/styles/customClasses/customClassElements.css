@@ -166,11 +166,7 @@
     }
 
     .modal-position-cookie-mobi {
-        @apply fixed bottom-0 right-1/2 translate-x-1/2 z-50;
-    }
-
-    .modal-size-cookie-mobi {
-        @apply h-fit w-full max-w-[375px] rounded-[25px];
+        @apply fixed bottom-0 right-1/2 translate-x-1/2 z-50 md:translate-x-0 md:left-0 lg:translate-x-0 lg:left-0 xl:translate-x-0 xl:left-0;
     }
 
     .modal-padding-content-lg-dsk {
