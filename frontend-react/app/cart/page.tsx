@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive'
 import ShoppingCartPageDesktop from '@/components/desktop/pageDesktop/ShoppingCartPageDesktop/ShoppingCartPageDesktop'
 import ShoppingCartPageMobi from '@/components/mobi/pageMobi/ShoppingCartPageMobi/ShoppingCartPageMobi'
 
-export default function Companies() {
+export default function Cart() {
     const [isClient, setIsClient] = useState(false)
 
     useEffect(() => {
