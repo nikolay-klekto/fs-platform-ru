@@ -25,13 +25,14 @@ const renderCellContent = (text: string) => {
     return <p className="whitespace-pre-line">{text}</p>
 }
 export const PrivacyPolicyTableRowDesktop: React.FC<TableRowProps> = ({ row }) => {
+    const fields: (keyof typeof row)[] = ['goal', 'categories', 'data', 'basis', 'period']
     return (
         <tr className="align-top">
-            <td className={tdClass}>{renderCellContent(row.goal)}</td>
-            <td className={tdClass}>{renderCellContent(row.categories)}</td>
-            <td className={tdClass}>{renderCellContent(row.data)}</td>
-            <td className={tdClass}>{renderCellContent(row.basis)}</td>
-            <td className={tdClass}>{renderCellContent(row.period)}</td>
+            {fields.map((key) => (
+                <td key={key} className={tdClass}>
+                    {renderCellContent(row[key] as string)}
+                </td>
+            ))}
         </tr>
     )
 }
