@@ -6,6 +6,7 @@ interface IPhoneInputMobi {
     onChange: (value: string) => void
     onError: (value: string) => void
     onBlur?: (value: string) => void
+    validationStatus: boolean
     className?: string
     labelClassName?: string
     wrapperClassName?: string
@@ -26,6 +27,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     value,
     onChange,
     onError,
+    validationStatus,
     className,
     wrapperClassName,
     required = false,
@@ -49,6 +51,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         let newValue = inputValue || PHONE_MASK
+        validationStatus = false
 
         if (e.key === 'Backspace') {
             e.preventDefault()
@@ -59,6 +62,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                     if (newValue[i] !== '_') {
                         newValue = newValue.substring(0, i) + '_' + newValue.substring(i + 1)
                         setInputValue(newValue)
+                        onChange(newValue)
                         setTimeout(() => setCaretToPosition(i), 0)
                         break
                     }
@@ -74,14 +78,13 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
             if (nextPos === undefined) return
             newValue = newValue.substring(0, nextPos) + e.key + newValue.substring(nextPos + 1)
             setInputValue(newValue)
+            onChange(newValue)
             const following = digitPositions.find((p) => p > nextPos)
             const caretPos = following !== undefined ? following : nextPos + 1
             setTimeout(() => setCaretToPosition(caretPos), 0)
         } else {
             e.preventDefault()
         }
-
-        //validateValue(newValue)
     }
 
     const validateValue = (value: string) => {
@@ -123,13 +126,12 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 type="tel"
                 name="phone"
                 value={inputValue}
-                onChange={() => {}}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={placeholder}
-                className={`input-form-mobi-custom placeholder:text-muted-foreground md:placeholder:text-xs h-[29.5px] w-full border-[1.18px] font-medium placeholder:text-xs focus:border-2 md:h-[38px] ${internalError ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                className={`input-form-mobi-custom placeholder:text-muted-foreground focus:border-1.1 h-[29.5px] w-full border-[1.18px] font-medium focus:border-white focus:bg-[#1f203f] md:h-[38px] ${internalError || validationStatus ? 'border-[#bc8070] bg-[#1f203f] ' : 'border-[#878797]'} ${className}`}
             />
         </div>
     )

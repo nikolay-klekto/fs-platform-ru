@@ -90,6 +90,9 @@ const ContactsMobi: React.FC = () => {
         }
         setEmptyFields(newFieldErrors)
 
+        const nameValidation = validateNameMobi(formData.name)
+        updateFieldError('name', !nameValidation.status)
+
         setDisableSubmit(true)
 
         const hasEmptyField = Object.values(newFieldErrors).some((error) => error)
@@ -169,7 +172,7 @@ const ContactsMobi: React.FC = () => {
                     <div className="pt-[58px]">
                         <h2 className="text-9xl font-medium uppercase">Напишите нам</h2>
                         <form onSubmit={handleSubmit} noValidate>
-                            <div className="flex flex-col gap-5 pb-0.5 pt-5">
+                            <div className="mt-5 flex flex-col gap-5">
                                 <EnhancedInput
                                     type="text"
                                     id="name"
@@ -184,10 +187,10 @@ const ContactsMobi: React.FC = () => {
                                         updateFieldError('name', !validation.status)
                                         return validation
                                     }}
-                                    wrapperClassName={'h-[46px]'}
                                 />
                                 <PhoneInputMobi
                                     value={formData.tel}
+                                    validationStatus={emptyFields.tel}
                                     onChange={(value) => handleChange('tel', value)}
                                     onError={() => {
                                         throw new Error('Error with phone input occured')
@@ -207,7 +210,6 @@ const ContactsMobi: React.FC = () => {
                                         updateFieldError('email', !validation.status)
                                         return validation
                                     }}
-                                    wrapperClassName={'h-[46px]'}
                                 />
                                 <EnhancedInput
                                     type="text"
@@ -223,7 +225,6 @@ const ContactsMobi: React.FC = () => {
                                         updateFieldError('role', !validation.status)
                                         return validation
                                     }}
-                                    wrapperClassName={'h-[46px]'}
                                 />
 
                                 <EnhancedTextareaMobi
