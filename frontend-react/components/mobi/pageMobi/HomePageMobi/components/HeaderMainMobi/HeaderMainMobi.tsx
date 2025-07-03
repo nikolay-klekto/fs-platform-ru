@@ -21,8 +21,8 @@ const HeaderMainMobi: React.FC = () => {
                 >
                     <HeaderMobi disableBackground={true} />
                     <div className="md:px-[11px]">
-                        <div className="sm_xl:mt-[200px] sm_l:mt-[200px] min-w-[70%] max-w-[90%] md:w-full">
-                            <h1 className="sm_l:text-10xl sm_xl:text-11xl sm_xl:leading-10 sm_l:leading-10 sm_s:text-[1.875rem] mb:mb-20px w-full font-normal uppercase leading-[60px] text-white sm:text-[2rem] md:pb-[20px] md:text-[clamp(2rem,10vw,4rem)]">
+                        <div className="sm_xl:mt-[180px] sm_l:mt-[180px] min-w-[70%] max-w-[90%] md:w-full">
+                            <h1 className="sm_l:text-10xl sm_xl:text-11xl sm_leading-10 sm_s:text-[1.875rem] mb:mb-20px w-full font-normal uppercase text-white sm:text-[2rem] md:pb-[20px] md:text-[clamp(2rem,10vw,4rem)] md:leading-[60px]">
                                 Помогаем пройти стажировку
                             </h1>
                             <p className="sm_l:mb-8 w-4/5 text-[0.875rem] font-medium text-white md:text-[clamp(1rem,5vw,1.5rem)]">

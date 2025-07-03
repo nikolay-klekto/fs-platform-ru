@@ -12,9 +12,9 @@ const PromoMobi: React.FC = () => {
                 style={{
                     backgroundImage: 'url(/background/background-promo.webp)',
                 }}
-                className="mx-auto flex h-[496px] w-full flex-col justify-between rounded-[40px] bg-cover bg-center bg-no-repeat px-[15px] py-[50px] md:h-auto md:py-[clamp(50px,15vw,100px)]"
+                className="mx-auto flex h-[496px] w-full flex-col justify-between rounded-[40px] bg-cover bg-center bg-no-repeat sm_xl:pt-[80px] px-[15px] py-[50px] md:h-auto md:py-[clamp(50px,15vw,100px)]"
             >
-                <h3 className="sm_s:text-7xl m-0 mb-[30px] text-8xl font-medium leading-tight text-white sm:text-7xl md:text-[clamp(40px,8vw,54px)]">
+                <h3 className="sm_s:text-7xl m-0 mb-[30px] text-9xl font-medium leading-tight text-white sm:text-7xl md:text-[clamp(40px,8vw,54px)]">
                     РЕГИСТРИРУЙСЯ, ВЫБИРАЙ ПРОФЕССИЮ И&nbsp;КОМПАНИЮ, ПОЛУЧАЙ НОВЫЕ ЗНАНИЯ И ОПЫТ
                 </h3>
                 <p className="mb-10 text-[12px] leading-tight tracking-wide text-white md:mb-20 md:text-7xl">
