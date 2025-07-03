@@ -44,6 +44,16 @@ const InternshipProfessionsDesktop: React.FC = () => {
         }
     }, [])
 
+    useEffect(() => {
+        const scrollbar = scrollbarRef.current
+        if (!scrollbar) return
+        const timer = setInterval(() => {
+            scrollbar.scrollLeft += 1
+            scrollbar.scrollLeft -= 1
+        }, 1000)
+        return () => clearInterval(timer)
+    }, [])
+
     return (
         <>
             <div

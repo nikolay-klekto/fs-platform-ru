@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useRef, useState, useLayoutEffect } from 'react'
+import React, { useRef, useState, useLayoutEffect, useEffect } from 'react'
 import { content } from './contentCompanyAdvantageDesktop/content'
 import ItemCompanyAdvantageDesktop from './ItemCompanyAdvantageDesktop/ItemCompanyAdvantageDesktop'
 
-const ReviewsDesktop: React.FC = () => {
+const CompanyAdvantageDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [scrollbarWidth, setScrollbarWidth] = useState(0)
@@ -21,7 +21,7 @@ const ReviewsDesktop: React.FC = () => {
         }
     }
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const calculateScrollbarWidth = () => {
             if (!contentRef.current || !scrollbarRef.current) return 0
             const visibleContentWidth = contentRef.current.offsetWidth
@@ -30,10 +30,10 @@ const ReviewsDesktop: React.FC = () => {
         }
 
         const handleResize = () => {
-            if (contentRef.current && scrollbarRef.current) {
-                const calculatedScrollbarWidth = calculateScrollbarWidth()
-                setScrollbarWidth(calculatedScrollbarWidth)
-            }
+            requestAnimationFrame(() => {
+                const calculated = calculateScrollbarWidth()
+                setScrollbarWidth(calculated)
+            })
         }
 
         window.addEventListener('resize', handleResize)
@@ -43,6 +43,16 @@ const ReviewsDesktop: React.FC = () => {
         return () => {
             window.removeEventListener('resize', handleResize)
         }
+    }, [])
+
+    useEffect(() => {
+        const scrollbar = scrollbarRef.current
+        if (!scrollbar) return
+        const timer = setInterval(() => {
+            scrollbar.scrollLeft += 1
+            scrollbar.scrollLeft -= 1
+        }, 1000)
+        return () => clearInterval(timer)
     }, [])
 
     return (
@@ -66,10 +76,13 @@ const ReviewsDesktop: React.FC = () => {
                 onScroll={handleScrollbarScroll}
                 className="scrollbar_custom relative mx-auto mb-[132px] mt-[52px] w-[65%] cursor-pointer overflow-x-scroll"
             >
-                <div className="absolute h-2" style={{ width: `${scrollbarWidth || 1000}px` }}></div>
+                <div
+                    className="absolute h-2 min-w-[1000px] bg-transparent"
+                    style={{ width: `${scrollbarWidth}px` }}
+                ></div>
             </div>
         </>
     )
 }
 
-export default ReviewsDesktop
+export default CompanyAdvantageDesktop
