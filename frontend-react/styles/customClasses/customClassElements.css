@@ -75,7 +75,7 @@
     }
 
     .text46px_desktop {
-        @apply text-[46px] 4xl:text-18xl 3xl:text-9xl 2xl:text-8xl;
+        @apply text-[46px] 4xl:text-18xl 3xl:text-14xl 2xl:text-8xl;
     }
 
     .text36px_desktop {
@@ -113,9 +113,7 @@
     .text15px_desktop {
         @apply text-2xl 4xl:text-2xl 3xl:text-lg 2xl:text-base;
     }
-    .text46px_desktop {
-        @apply text-18xl 3xl:text-17xl 2xl:text-16xl;
-    }
+
     .text28px_modal_desktop {
         @apply font-medium text-white text-9xl 3xl:text-8xl 2xl:text-7xl;
     }
@@ -187,7 +185,7 @@
         @apply py-2 px-4 mt-1 text-white border-2 text18px_desktop border-[#878797] bg-[#101030] rounded-[50px] placeholder:text18px_desktop  placeholder:font-medium placeholder:text-[#353652] focus:border-[#878797] focus:outline-none
         focus:bg-[rgb(31,32,63)];
     }
-      .label-form-desktop-custom {
+    .label-form-desktop-custom {
         @apply text-white text15px_desktop font-semibold;
     }
     .error-form-desktop-custom {
