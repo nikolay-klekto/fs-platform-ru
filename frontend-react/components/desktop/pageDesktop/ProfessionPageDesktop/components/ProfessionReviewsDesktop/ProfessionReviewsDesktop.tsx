@@ -9,13 +9,6 @@ const ReviewsDesktop: React.FC = () => {
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [scrollbarWidth, setScrollbarWidth] = useState(0)
 
-    const calculateScrollbarWidth = () => {
-        if (!contentRef.current || !scrollbarRef.current) return 0
-        const visibleContentWidth = contentRef.current.offsetWidth
-        const visibleScrollBarWidth = scrollbarRef.current.offsetWidth
-        return contentRef.current.scrollWidth - (visibleContentWidth - visibleScrollBarWidth)
-    }
-
     const handleScroll = () => {
         if (contentRef.current && scrollbarRef.current) {
             scrollbarRef.current.scrollLeft = contentRef.current.scrollLeft
@@ -29,6 +22,13 @@ const ReviewsDesktop: React.FC = () => {
     }
 
     useEffect(() => {
+        const calculateScrollbarWidth = () => {
+            if (!contentRef.current || !scrollbarRef.current) return 0
+            const visibleContentWidth = contentRef.current.offsetWidth
+            const visibleScrollBarWidth = scrollbarRef.current.offsetWidth
+            return contentRef.current.scrollWidth - (visibleContentWidth - visibleScrollBarWidth)
+        }
+
         const handleResize = () => {
             if (contentRef.current && scrollbarRef.current) {
                 const calculatedScrollbarWidth = calculateScrollbarWidth()
@@ -43,6 +43,16 @@ const ReviewsDesktop: React.FC = () => {
         return () => {
             window.removeEventListener('resize', handleResize)
         }
+    }, [])
+
+    useEffect(() => {
+        const scrollbar = scrollbarRef.current
+        if (!scrollbar) return
+        const timer = setInterval(() => {
+            scrollbar.scrollLeft += 1
+            scrollbar.scrollLeft -= 1
+        }, 1000)
+        return () => clearInterval(timer)
     }, [])
 
     return (
@@ -64,9 +74,12 @@ const ReviewsDesktop: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="scrollbar_custom relative mx-auto mt-[58px] mb-[85px] h-[14px] w-[65%] cursor-pointer overflow-x-scroll"
+                className="scrollbar_custom relative mx-auto mb-[85px] mt-[58px] h-[14px] w-[65%] cursor-pointer overflow-x-scroll"
             >
-                <div className="absolute h-2" style={{ width: `${scrollbarWidth}px` }}></div>
+                <div
+                    className="absolute h-2 min-w-[1000px] bg-transparent"
+                    style={{ width: `${scrollbarWidth}px` }}
+                ></div>
             </div>
         </div>
     )

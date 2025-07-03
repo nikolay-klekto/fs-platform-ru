@@ -9,13 +9,6 @@ const InternshipCompaniesDesktop: React.FC = () => {
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [scrollbarWidth, setScrollbarWidth] = useState(0)
 
-    const calculateScrollbarWidth = () => {
-        if (!contentRef.current || !scrollbarRef.current) return 0
-        const visibleContentWidth = contentRef.current.offsetWidth
-        const visibleScrollBarWidth = scrollbarRef.current.offsetWidth
-        return contentRef.current.scrollWidth - (visibleContentWidth - visibleScrollBarWidth)
-    }
-
     const handleScroll = () => {
         if (contentRef.current && scrollbarRef.current) {
             scrollbarRef.current.scrollLeft = contentRef.current.scrollLeft
@@ -29,6 +22,13 @@ const InternshipCompaniesDesktop: React.FC = () => {
     }
 
     useEffect(() => {
+        const calculateScrollbarWidth = () => {
+            if (!contentRef.current || !scrollbarRef.current) return 0
+            const visibleContentWidth = contentRef.current.offsetWidth
+            const visibleScrollBarWidth = scrollbarRef.current.offsetWidth
+            return contentRef.current.scrollWidth - (visibleContentWidth - visibleScrollBarWidth)
+        }
+
         const handleResize = () => {
             if (contentRef.current && scrollbarRef.current) {
                 const calculatedScrollbarWidth = calculateScrollbarWidth()
@@ -43,6 +43,16 @@ const InternshipCompaniesDesktop: React.FC = () => {
         return () => {
             window.removeEventListener('resize', handleResize)
         }
+    }, [])
+
+    useEffect(() => {
+        const scrollbar = scrollbarRef.current
+        if (!scrollbar) return
+        const timer = setInterval(() => {
+            scrollbar.scrollLeft += 1
+            scrollbar.scrollLeft -= 1
+        }, 1000)
+        return () => clearInterval(timer)
     }, [])
 
     return (
