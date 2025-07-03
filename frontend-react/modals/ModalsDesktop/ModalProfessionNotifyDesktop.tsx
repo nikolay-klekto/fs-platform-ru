@@ -75,7 +75,7 @@ const ModalProfessionNotifyDesktop: React.FC<IModalProfessionNotifyContent> = ({
                         Когда профессия станет доступна, куда вам сообщить?
                     </h4>
                 </div>
-                <form onSubmit={handleSubmit} className="flex w-full flex-col px-20">
+                <form noValidate onSubmit={handleSubmit} className="flex w-full flex-col px-20">
                     <div className="mb-[26px]">
                         <EnhancedInput
                             type="email"
@@ -87,7 +87,7 @@ const ModalProfessionNotifyDesktop: React.FC<IModalProfessionNotifyContent> = ({
                             labelClassName="text-white text-2xl pl-[6.52px]"
                             variant="gradient_desktop"
                             className={`text18px_desktop h-[50px] w-full rounded-[50px] border-2 border-[#878797] bg-transparent pl-[18.65px] font-medium text-white placeholder:text-4xl focus:outline-none focus:ring-0 ${
-                                formError && !formData.email ? 'border-[#BC8070] ring-0' : ''
+                                formError && (!formData.email || !!inputErrors.email) ? 'border-[#BC8070] ring-0' : ''
                             }`}
                         />
                     </div>
@@ -100,7 +100,7 @@ const ModalProfessionNotifyDesktop: React.FC<IModalProfessionNotifyContent> = ({
                                 type="checkbox"
                                 name="consent"
                                 checked={formData.consent}
-                                onChange={(value) => handleChange('consent', value === 'true')}
+                                onChange={(value) => handleChange('consent', value)}
                                 label="Я согласен(а) на обработку персональных данных"
                                 labelClassName="text-[15px] text-[#878797] pl-[6.52px]"
                                 checkboxIconSize="w-[18px]"
@@ -111,11 +111,11 @@ const ModalProfessionNotifyDesktop: React.FC<IModalProfessionNotifyContent> = ({
                             )}
                         </div>
                         <p className="ml-[7px] flex w-[412px] flex-wrap justify-start text-[15px] font-medium leading-[100%] text-[#353652] ">
-                            <p className="w-[234px]">Защита от спама reCAPTCHA</p>
+                            <span className="w-[234px]">Защита от спама reCAPTCHA</span>
                             <Link href="/" target="_blank" rel="noopener noreferrer" className="ml-[3px] underline ">
                                 Конфиденциальность
                             </Link>
-                            <p>и</p>
+                            <span>и</span>
                             <Link href="/" target="_blank" rel="noopener noreferrer" className="ml-[11px] underline">
                                 Условия использования
                             </Link>
