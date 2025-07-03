@@ -61,7 +61,6 @@ const ProfessionsPageDesktop: React.FC = () => {
                     <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
                     <h1 className="title80px_desktop relative z-[1]">Профессии</h1>
                     <div className="relative z-[1] flex items-center gap-[5%] py-[80px]">
-                    <div className="relative z-[1] flex items-center gap-[5%] py-[80px]">
                         <div className="relative w-full">
                             <EnhancedInput
                                 type="text"
@@ -86,7 +85,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                     </div>
 
                     {filteredContent.length > 0 ? (
-                        <div className="3xl:gap-[25px] 4xl:gap-[30px] grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px]">
+                        <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
                             {filteredContent
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (
@@ -116,7 +115,6 @@ const ProfessionsPageDesktop: React.FC = () => {
 
                     <ProfessionSearchDesktop />
                 </div>
-            </main>
             </main>
             <FooterDesktop />
         </>
