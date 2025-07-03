@@ -22,9 +22,7 @@ const HeaderMainMobi: React.FC = () => {
                     <HeaderMobi disableBackground={true} />
                     <div className="md:px-[11px]">
                         <div className="sm_xl:mt-[180px] sm_l:mt-[180px] min-w-[70%] max-w-[90%] md:w-full">
-                            <h1 className="sm_l:text-10xl sm_xl:text-11xl sm_leading-10 sm_s:text-[1.875rem] mb:mb-20px w-full font-normal uppercase text-white sm:text-[2rem] md:pb-[20px] md:text-[clamp(2rem,10vw,4rem)] md:leading-[60px]">
-                                Помогаем пройти стажировку
-                            </h1>
+                            <h1 className="text32px_mobi">Помогаем пройти стажировку</h1>
                             <p className="sm_l:mb-8 w-4/5 text-[0.875rem] font-medium text-white md:text-[clamp(1rem,5vw,1.5rem)]">
                                 В интересующей профессии и компании, независимо от наличия опыта и навыков
                             </p>
