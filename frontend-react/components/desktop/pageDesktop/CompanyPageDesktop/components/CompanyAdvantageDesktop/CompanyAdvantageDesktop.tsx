@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useState, useLayoutEffect, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { content } from './contentCompanyAdvantageDesktop/content'
 import ItemCompanyAdvantageDesktop from './ItemCompanyAdvantageDesktop/ItemCompanyAdvantageDesktop'
 
