@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useMemo } from 'react'
 
 import { fakeEvents } from './contentEventsPageMobi/content'
-import { getAllActualEvents } from '../../../../lib/api/events'
+import { getAllActualEvents } from '../../../../lib/api/events/events'
 import EventsCardMobi from './components/EventsCardMobi'
 import EventsPaginationMobi from './components/EventsPaginationMobi'
 import EventsFilterModalMobi from '../../../../modals/ModalsMobi/ModalFilterEventsMobi/EventsFilterModalMobi'
@@ -156,7 +156,8 @@ const EventsPageMobi: React.FC = () => {
                                                 key={item.id}
                                                 title={item.name}
                                                 category={item.eventCategory.category}
-                                                image={'/images/events_1.png'} //http://45.135.234.61:8183/photos/events/
+                                                // image={'/images/events_1.png'} //http://45.135.234.61:8183/photos/events/
+                                                image={`/api/events/image?eventId=${item.id}`}
                                                 date={item.date}
                                                 time={item.time}
                                                 // week={}

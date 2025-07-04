@@ -49,8 +49,9 @@ const EventsCardMobi: React.FC<IEventsCard> = ({ title, category, image, date, c
                 <Image
                     src={image}
                     fill
+                    priority
                     alt={title}
-                    className="pointer-events-none z-0 select-none object-cover sm_xl:scale-[1.02]"
+                    className="pointer-events-none z-0 select-none object-cover object-[15%_35%] sm_xl:scale-[1.02]"
                 />
                 <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[rgba(12,12,12,0)] to-[#232341]"></div>
 
