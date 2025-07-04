@@ -9,7 +9,7 @@
         @apply bg-white shadow-md rounded-lg p-4;
     }
 
-   @-moz-document url-prefix() {
+ @-moz-document url-prefix() {
   .scrollbar_custom {
     scrollbar-width: thin ;
     scrollbar-color: #898997 rgba(255, 255, 255, 0.1);
@@ -36,8 +36,7 @@
     background-color: rgba(255, 255, 255, 0.1) ;
   }
 }
-
-.scrollbar_custom::-webkit-scrollbar {
+ .scrollbar_custom::-webkit-scrollbar {
         height: 4px;
     }
 
@@ -51,24 +50,24 @@
         border-radius: 4px;
     }
 
-     .scrollbar_custom::-webkit-scrollbar-corner {
+    .scrollbar_custom::-webkit-scrollbar-corner {
   background: transparent;
 }
 
     .no-scrollbar_custom::-webkit-scrollbar {
         display: none;
     }
+
     .no-scrollbar_custom {
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
 
-    .title160px_desktop {
+.title160px_desktop {
         @apply text-white text-[160px] 4xl:text-[150px] 3xl:text-[128px] 2xl:text-[115px] font-semibold uppercase;
     }
-    
-    .title80px_desktop {
-        @apply text-white text-35xl 4xl:text-27xl 3xl:text-25xl 2xl:text-21xl font-semibold uppercase;
+        .title80px_desktop {
+        @apply text-white text-35xl 4xl:text-35xl 3xl:text-27xl 2xl:text-25xl font-semibold uppercase;
     }
     .title28px_mobi_custom {
         @apply text-white text-9xl font-medium uppercase;
@@ -109,11 +108,23 @@
     .text18px_desktop {
         @apply text-[18px] 4xl:text-4xl 3xl:text-2xl 2xl:text-xl;
     }
-   
+
+    .text22px_desktop {
+        @apply text-6xl 4xl:text-6xl 3xl:text-3xl 2xl:text-2xl;
+    }
+
+    .text20px_desktop {
+        @apply text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg;
+    }
+
     .text15px_desktop {
         @apply text-2xl 4xl:text-2xl 3xl:text-lg 2xl:text-base;
     }
-
+    
+    .text46px_desktop {
+        @apply text-18xl 3xl:text-17xl 2xl:text-16xl;
+    }
+    
     .text28px_modal_desktop {
         @apply font-medium text-white text-9xl 3xl:text-8xl 2xl:text-7xl;
     }
@@ -193,8 +204,12 @@
     }
 
     .input-form-mobi-custom {
-        @apply py-2 px-4 mt-1 text-white border text14px_mobi border-[#878797] bg-[#101030] rounded-[50px] placeholder:text14px_mobi  placeholder:font-medium placeholder:text-[#353652] focus:border focus:border-[#878797] focus:outline-none
-        focus:bg-[#1f203f];
+        @apply py-2 px-4 text-white border text14px_mobi border-[#878797] bg-[#101030] rounded-[50px] placeholder:text14px_mobi placeholder:font-medium placeholder:text-[#353652] placeholder:transition-colors duration-300
+        focus:border focus:border-[#878797]
+        focus:outline-none focus:placeholder:text-white transition;
+    }
+    .input-form-mobi-custom::placeholder {
+        @apply text-[10px];
     }
     .label-form-mobi-custom {
         @apply text-white text14px_mobi font-medium;
