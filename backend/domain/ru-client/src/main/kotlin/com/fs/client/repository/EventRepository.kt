@@ -13,12 +13,19 @@ import com.fs.domain.jooq.tables.pojos.Event
 import com.fs.service.ru.EventModel
 import com.fs.service.ru.EventWithAddressModel
 import com.fs.service.ru.errors.ErrorModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.apache.logging.log4j.LogManager
+import org.jooq.Condition
 import org.jooq.DSLContext
+<<<<<<< HEAD
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+=======
+import org.jooq.impl.DSL
+import java.time.LocalDate
+>>>>>>> origin/main
 import java.time.LocalDateTime
-
 
 abstract class EventRepository(
     open val dsl: DSLContext,
@@ -28,12 +35,18 @@ abstract class EventRepository(
     open val googleCalendarService: GoogleCalendarEventService,
     open val dateTimeConverterService: DateTimeConverterService
 ) {
+<<<<<<< HEAD
     fun getEventById(id: Long): Mono<EventModel> {
         return Mono.fromSupplier {
             blockingEventRepository.getEventBlockingById(id)
+=======
+    suspend fun getEventById(id: Long): Event? =
+        withContext(Dispatchers.IO) {
+            blockingEventRepository.getEventById(id)
+>>>>>>> origin/main
         }
-    }
 
+<<<<<<< HEAD
     fun getAllEvents(): Flux<EventModel> {
         return Flux.from(
             dsl.select(EVENT.asterisk()).from(EVENT)
@@ -61,6 +74,43 @@ abstract class EventRepository(
 
     fun getAllActualEventsByCityId(cityId: Long): Flux<EventModel> {
         return Flux.from(
+=======
+    suspend fun getAllEvents(): List<Event> =
+        withContext(Dispatchers.IO) {
+            dsl.select(EVENT.asterisk()).from(EVENT)
+                .map { it.into(Event::class.java) }
+        }
+
+    suspend fun getAllActualEvents(): List<Event> =
+        withContext(Dispatchers.IO) {
+            dsl.select(EVENT.asterisk()).from(EVENT)
+                .where(EVENT.IS_EXPIRED.eq(ACTIVE_EXPIRED_STATUS))
+                .map { it.into(Event::class.java) }
+        }
+
+    suspend fun getAllAvailableCities(): List<CityModel> =
+        withContext(Dispatchers.IO) {
+            dsl.select(CITY.asterisk()).from(CITY)
+                .where(
+                    CITY.ID.`in`(
+                        dsl.selectDistinct(EVENT.CITY_ID).from(EVENT)
+                    )
+                )
+                .map { it.into(City::class.java) }
+                .map(cityConverter::toModel)
+        }
+
+    suspend fun getFirstNActualEvents(eventQuantity: Long): List<Event> =
+        withContext(Dispatchers.IO) {
+            dsl.select(EVENT.asterisk()).from(EVENT)
+                .where(EVENT.IS_EXPIRED.eq(ACTIVE_EXPIRED_STATUS))
+                .limit(eventQuantity)
+                .map { it.into(Event::class.java) }
+        }
+
+    suspend fun getAllActualEventsByCityId(cityId: Long): List<Event> =
+        withContext(Dispatchers.IO) {
+>>>>>>> origin/main
             dsl.select(EVENT.asterisk()).from(EVENT)
                 .where(
                     EVENT.IS_EXPIRED.eq(ACTIVE_EXPIRED_STATUS)
@@ -71,6 +121,7 @@ abstract class EventRepository(
                             )
                         )
                 )
+<<<<<<< HEAD
         )
             .map { it.into(Event::class.java) }
             .map(converter::toModel)
@@ -78,10 +129,36 @@ abstract class EventRepository(
 
     fun createGoogleCalendarEvent(clientEmail: String, event: EventModel): Mono<Boolean>{
         return Mono.fromSupplier {
+=======
+                .map { it.into(Event::class.java) }
+        }
+
+    suspend fun getEventsByTimeRange(from: LocalDate?, to: LocalDate?): List<Event> =
+        withContext(Dispatchers.IO) {
+            dsl.select(EVENT.asterisk())
+                .from(EVENT)
+                .where(
+                    listOfNotNull(
+                        from?.let { EVENT.DATE.ge(it) },
+                        to?.let { EVENT.DATE.le(it) }
+                    ).takeIf { it.isNotEmpty() }
+                        ?.reduce(Condition::and) // Объединяем условия с помощью and
+                        ?: DSL.trueCondition()   // Если список пуст, возвращаем trueCondition
+                )
+                .map { it.into(Event::class.java) }
+        }
+
+    suspend fun createGoogleCalendarEvent(clientEmail: String, eventId: Long): Boolean =
+        withContext(Dispatchers.IO) {
+            val event = blockingEventRepository.getEventById(eventId)
+            val eventStartDateTime = event?.date!!.atStartOfDay()
+            val eventEndDateTime = event.date!!.atStartOfDay().plusHours(1)
+>>>>>>> origin/main
             val googleEvent = com.google.api.services.calendar.model.Event()
                 .setSummary(event.name)
                 .setLocation(event.publicPlaceName)
                 .setDescription(event.description)
+<<<<<<< HEAD
                 .setStart(dateTimeConverterService.convertToEventDateTime(event.date!!))
                 .setEnd(dateTimeConverterService.convertToEventDateTime(event.date!!.plusDays(2)))
             googleCalendarService.addEventToCalendar(clientEmail,googleEvent)
@@ -137,6 +214,39 @@ abstract class EventRepository(
     fun updateAllEventsModelsInfo(events: List<EventWithAddressModel>): Mono<ErrorModel<Boolean>> {
         return Flux.fromIterable(events)
             .map { eventModel ->
+=======
+                .setStart(dateTimeConverterService.convertToEventDateTime(eventStartDateTime))
+                .setEnd(dateTimeConverterService.convertToEventDateTime(eventEndDateTime))
+            googleCalendarService.addEventToCalendar(clientEmail, googleEvent)
+            true
+        }
+
+    suspend fun insertEvent(event: EventModel): ErrorModel<Long> =
+        withContext(Dispatchers.IO) {
+            if (event.description == null || event.date == null || event.name == null
+                || event.cityName == null || event.category == null
+            ) {
+                log.error("Some fields are empty")
+                throw Exception("Пропущено заполнение обязательных полей!")
+            }
+            val newExpiredStatus: Boolean = if (event.date!!.isBefore(LocalDate.now())) {
+                DEFAULT_EXPIRED_STATUS
+            } else {
+                ACTIVE_EXPIRED_STATUS
+            }
+            println(newExpiredStatus)
+            val newEventModel = converter.fromModel(event)
+            newEventModel.isExpired = newExpiredStatus
+            val newEventRecord = dsl.newRecord(EVENT, newEventModel)
+            newEventRecord.apply { newEventRecord.reset(EVENT.ID) }
+            newEventRecord.store()
+            ErrorModel(newEventRecord.id, null)
+        }
+
+    suspend fun updateAllEventsModelsInfo(events: List<EventModel>): ErrorModel<Boolean> =
+        withContext(Dispatchers.IO) {
+            val list = events.map { eventModel ->
+>>>>>>> origin/main
                 if (eventModel.id == null) {
                     log.error("Field id in event update end-point is empty!")
                     throw Exception("Проблемы в frontend части! Обратитесь пожалуйста в тех поддержку.")
@@ -146,6 +256,7 @@ abstract class EventRepository(
                     log.error("Updatable event doesn't exist! Check event id")
                     throw Exception("Проблемы в frontend части! Обратитесь пожалуйста в тех поддержку.")
                 }
+<<<<<<< HEAD
 
                 val convertedAddressModel: AddressModel =
                     converter.fromEventAddressToAddressModel(eventModel, pastEventModel.addressId)
@@ -154,6 +265,8 @@ abstract class EventRepository(
                     blockingAddressRepository.update(convertedAddressModel)
                 }
 
+=======
+>>>>>>> origin/main
                 val newExpiredStatus: Boolean = if (eventModel.date != null) {
                     if (eventModel.date!!.isBefore(LocalDateTime.now())) {
                         DEFAULT_EXPIRED_STATUS
@@ -163,9 +276,12 @@ abstract class EventRepository(
                 } else {
                     pastEventModel.isExpired!!
                 }
+<<<<<<< HEAD
 
+=======
+                val newEventModel = converter.fromModel(eventModel)
+>>>>>>> origin/main
                 println(newExpiredStatus)
-
                 dsl.update(EVENT)
                     .set(EVENT.DATE, eventModel.date ?: pastEventModel.date)
                     .set(EVENT.DESCRIPTION, eventModel.description ?: pastEventModel.description)
@@ -177,25 +293,18 @@ abstract class EventRepository(
                     .set(EVENT.SITE, eventModel.site ?: pastEventModel.site)
                     .where(EVENT.ID.eq(eventModel.id))
                     .execute() == 1
-            }.collectList()
-            .flatMap { list ->
-                if (list.isEmpty()) {
-                    return@flatMap Mono.just(ErrorModel(false, null))
-                }
-                var result = true
-                list.forEach {
-                    if (it == false) {
-                        result = it
-                    }
-                }
-                return@flatMap Mono.just(ErrorModel(result, null))
-
             }
-    }
+            if (list.isEmpty()) {
+                ErrorModel(false, null)
+            } else {
+                val result = list.all { it }
+                ErrorModel(result, null)
+            }
+        }
 
-    fun updateExpiredEventsStatus(): Mono<Boolean> {
-        log.info("Scheduler is working. Date and time is: " + LocalDateTime.now())
-        return Mono.fromSupplier {
+    suspend fun updateExpiredEventsStatus(): Boolean =
+        withContext(Dispatchers.IO) {
+            log.info("Scheduler is working. Date and time is: " + LocalDateTime.now())
             dsl.update(EVENT)
                 .set(EVENT.IS_EXPIRED, DEFAULT_EXPIRED_STATUS)
                 .where(
@@ -204,35 +313,30 @@ abstract class EventRepository(
                     )
                 ).execute() > 0
         }
+
+suspend fun deleteEvent(eventId: Long): Boolean =
+    withContext(Dispatchers.IO) {
+        dsl.deleteFrom(EVENT)
+            .where(EVENT.ID.eq(eventId))
+            .execute() == 1
     }
 
-    fun deleteEvent(eventId: Long): Mono<Boolean> {
-        return Mono.fromSupplier {
-            dsl.deleteFrom(EVENT)
-                .where(EVENT.ID.eq(eventId))
-                .execute() == 1
-        }
+suspend fun deleteAllEvents(): Boolean =
+    withContext(Dispatchers.IO) {
+        dsl.deleteFrom(EVENT)
+            .execute() > 0
     }
 
-    fun deleteAllEvents(): Mono<Boolean> {
-        return Mono.fromSupplier {
-            dsl.deleteFrom(EVENT)
-                .execute() > 0
-        }
+suspend fun deleteAllExpiredEvents(): Boolean =
+    withContext(Dispatchers.IO) {
+        dsl.deleteFrom(EVENT)
+            .where(EVENT.IS_EXPIRED.eq(DEFAULT_EXPIRED_STATUS))
+            .execute() > 0
     }
 
-    fun deleteAllExpiredEvents(): Mono<Boolean> {
-        return Mono.fromSupplier {
-            dsl.deleteFrom(EVENT)
-                .where(EVENT.IS_EXPIRED.eq(DEFAULT_EXPIRED_STATUS))
-                .execute() > 0
-        }
-    }
-
-    companion object {
-        private val log = LogManager.getLogger(EventRepository::class.java)
-        private const val ACTIVE_EXPIRED_STATUS: Boolean = false
-        private const val DEFAULT_EXPIRED_STATUS: Boolean = true
-
-    }
+companion object {
+    private val log = LogManager.getLogger(EventRepository::class.java)
+    private const val ACTIVE_EXPIRED_STATUS: Boolean = false
+    private const val DEFAULT_EXPIRED_STATUS: Boolean = true
+}
 }

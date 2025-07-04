@@ -4,6 +4,7 @@ import com.fs.client.repository.OrderRepository
 import com.fs.client.repository.blocked.BasketBlockingRepository
 import com.fs.client.repository.blocked.OrderBlockingRepository
 import com.fs.client.converter.OrderModelConverter
+import com.fs.client.repository.OrdersDatesRepository
 import com.fs.client.repository.blocked.ProfessionBlockingRepository
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
@@ -15,6 +16,7 @@ open class DefaultOrderRepository(
     basketBlockingRepository: BasketBlockingRepository,
     orderBlockingRepository: OrderBlockingRepository,
     professionBlockingRepository: ProfessionBlockingRepository,
-    companyProfessionBlockingRepository: DefaultCompanyProfessionBlockingRepository
+    companyProfessionBlockingRepository: DefaultCompanyProfessionBlockingRepository,
+    orderDatesRepository: OrdersDatesRepository
 ) : OrderRepository(dsl, converter, basketBlockingRepository,
-    orderBlockingRepository, professionBlockingRepository, companyProfessionBlockingRepository)
+    orderBlockingRepository, professionBlockingRepository, companyProfessionBlockingRepository, orderDatesRepository)

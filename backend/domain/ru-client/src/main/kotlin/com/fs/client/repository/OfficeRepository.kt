@@ -1,19 +1,18 @@
 package com.fs.client.repository
 
+import com.fs.client.converter.OfficeModelConverter
 import com.fs.client.repository.blocked.AddressBlockingRepository
 import com.fs.client.repository.blocked.OfficeBlockingRepository
 import com.fs.client.ru.AddressModel
 import com.fs.client.ru.CompanyAddress
 import com.fs.client.ru.OfficeModel
-import com.fs.client.converter.OfficeModelConverter
 import com.fs.domain.jooq.tables.Address.Companion.ADDRESS
 import com.fs.domain.jooq.tables.Office.Companion.OFFICE
-import com.fs.domain.jooq.tables.pojos.CompanyProfession
 import com.fs.domain.jooq.tables.pojos.Office
 import com.fs.domain.jooq.tables.records.OfficeRecord
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.jooq.DSLContext
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 
 abstract class OfficeRepository(
     open val dsl: DSLContext,
@@ -21,55 +20,43 @@ abstract class OfficeRepository(
     open val blockingAddressRepository: AddressBlockingRepository,
     open val blockingOfficeRepository: OfficeBlockingRepository
 ) {
-    fun getOfficeById(id: Long): Mono<OfficeModel> {
-        return Mono.fromSupplier {
+    suspend fun getOfficeById(id: Long): OfficeModel? =
+        withContext(Dispatchers.IO) {
             blockingOfficeRepository.getById(id)
         }
-    }
 
-    fun getOfficeByAddressId(addressId: Long): Mono<OfficeModel> {
-        return Mono.fromSupplier {
-            dsl.selectFrom(OFFICE)
-                .where(OFFICE.ADDRESS_ID.eq(addressId))
-                .fetchOne()
-                ?.into(Office::class.java)
-                ?.let { converter.toModel(it) }
-        }
-    }
-
-    fun getAllByCompanyId(id: Long): Flux<OfficeModel> {
-        return Flux.from(
+    suspend fun getAllByCompanyId(id: Long): List<OfficeModel> =
+        withContext(Dispatchers.IO) {
             dsl.select(OFFICE.asterisk()).from(OFFICE)
                 .where(OFFICE.COMPANY_ID.eq(id))
-        )
-            .map { it.into(Office::class.java) }
-            .map(converter::toModel)
-    }
+                .map { it.into(Office::class.java) }
+                .map(converter::toModel)
+        }
 
-    fun updateCompanyAddress(companyAddress: CompanyAddress): Mono<Boolean> {
-        return Mono.fromSupplier {
+    suspend fun updateCompanyAddress(companyAddress: CompanyAddress): Boolean =
+        withContext(Dispatchers.IO) {
             var result = false
             if (companyAddress.addressId != null) {
                 val newAddressModel = converter.fromCompanyAddressToAddressModel(companyAddress)
                 val resultAddressUpdate = blockingAddressRepository.update(newAddressModel)
                 if (resultAddressUpdate) {
-                    result = resultAddressUpdate
+                    result = true
                 }
             }
             if (companyAddress.officeId != null) {
-                val resultPhoneUpdate =
-                    blockingOfficeRepository
-                        .updatePhoneNumberByOfficeId(companyAddress.officeId!!, companyAddress.phoneNumber)
+                val resultPhoneUpdate = blockingOfficeRepository.updatePhoneNumberByOfficeId(
+                    companyAddress.officeId!!,
+                    companyAddress.phoneNumber
+                )
                 if (resultPhoneUpdate) {
-                    result = resultPhoneUpdate
+                    result = true
                 }
             }
-            return@fromSupplier result
+            result
         }
-    }
 
-    fun insert(companyAddress: CompanyAddress): Mono<OfficeModel> =
-        Mono.fromSupplier {
+    suspend fun insert(companyAddress: CompanyAddress): OfficeModel =
+        withContext(Dispatchers.IO) {
             val officeModel: OfficeModel = converter.fromCompanyAddressToOfficeModel(companyAddress)
             val addressModel: AddressModel = converter.fromCompanyAddressToAddressModel(companyAddress)
             val newOfficeRecord: OfficeRecord = dsl.newRecord(OFFICE)
@@ -78,14 +65,11 @@ abstract class OfficeRepository(
             newOfficeRecord.from(officeModel)
             newOfficeRecord.reset(OFFICE.ID)
             newOfficeRecord.store()
-            return@fromSupplier newOfficeRecord.into(Office::class.java)
-        }
-            .map(converter::toModel)
+            newOfficeRecord.into(Office::class.java)
+        }.let(converter::toModel)
 
-
-    fun deleteAllByCompanyId(id: Long): Mono<Boolean> {
-        return Mono.fromSupplier {
-
+    suspend fun deleteAllByCompanyId(id: Long): Boolean =
+        withContext(Dispatchers.IO) {
             val allAddressIdByCompany: List<Long> = dsl.select(OFFICE.ADDRESS_ID)
                 .from(OFFICE)
                 .where(OFFICE.COMPANY_ID.eq(id))
@@ -100,20 +84,16 @@ abstract class OfficeRepository(
                     .where(ADDRESS.ID.eq(it))
                     .execute()
             }
-            return@fromSupplier result
-
+            result
         }
-    }
 
-    fun deleteByOfficeId(id: Long): Mono<Boolean> {
-        return Mono.fromSupplier {
-
-            val addressIdByOffice: Long? =
-                dsl.select(OFFICE.ADDRESS_ID)
-                    .from(OFFICE)
-                    .where(OFFICE.ID.eq(id))
-                    .map { it.into(Long::class.java) }
-                    .firstOrNull()
+    suspend fun deleteByOfficeId(id: Long): Boolean =
+        withContext(Dispatchers.IO) {
+            val addressIdByOffice: Long? = dsl.select(OFFICE.ADDRESS_ID)
+                .from(OFFICE)
+                .where(OFFICE.ID.eq(id))
+                .map { it.into(Long::class.java) }
+                .firstOrNull()
 
             var result = dsl.deleteFrom(OFFICE)
                 .where(OFFICE.ID.eq(id))
@@ -126,11 +106,6 @@ abstract class OfficeRepository(
             } else {
                 result = false
             }
-
-
-            return@fromSupplier result
-
+            result
         }
-    }
-
 }

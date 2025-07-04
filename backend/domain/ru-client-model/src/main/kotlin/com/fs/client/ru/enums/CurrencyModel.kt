@@ -4,7 +4,8 @@ enum class CurrencyModel(val value: String) {
     BYN("BYN"),
     EUR("EUR"),
     RUB("RUB"),
-    PLN("PLN");
+    PLN("PLN"),
+    UNKNOWN("UNKNOWN");
 
     companion object {
         private val map = CurrencyModel.values()

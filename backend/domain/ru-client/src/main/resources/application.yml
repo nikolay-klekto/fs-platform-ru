@@ -24,10 +24,9 @@ spring:
     driverClassName: org.postgresql.Driver
   graphql:
     enable: true
+    path: /graphql
     cors:
-      allowed-origins: true
-#    schema:
-#      locations: classpath:graphql/clientSchema.graphqls
+      allowed-origins: "*"
       printer:
         enabled: true
   application:
@@ -39,23 +38,43 @@ spring:
       discovery:
         register: false
   jooq:
-    url: jdbc:postresql://45.135.234.61:15432/fun_scrut
-    user: username
-    password: password
-#    url: jdbc:postgresql:FunScrut2
-#    user: postgres
-#    password: 191220#destin
-    schema: public
-    driver: org.postgresql.Driver
-  liquibase:
-    enabled: false
-    drop-first: false
-    change-log: classpath:db/changelog/db.changelog-master.xml
-    default-schema: public
+#    url: jdbc:postresql://45.135.234.61:15432/fun_scrut
+#    user: username
+#    password: password
+##    url: jdbc:postgresql:FunScrut2
+##    user: postgres
+##    password: 191220#destin
+#    schema: public
+#    driver: org.postgresql.Driver
+    sql-dialect: POSTGRES
+#  liquibase:
+#    enabled: false
+#    drop-first: false
+#    change-log: classpath:db/changelog/db.changelog-master.xml
+#    default-schema: public
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
   devtools:
     add-properties: false
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  web:
+    cors:
+      allowed-origins: "*"
+      allowed-methods: "*"
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: funscrut@gmail.com
+    password: srgdcgdfiqunzvvt
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 logging:
   level:
@@ -63,6 +82,7 @@ logging:
       jooq:
         tools:
           LoggerListener: debug
+      springframework.core.env: DEBUG
 
 jooq:
   url: jdbc:postgresql://45.135.234.61:15432/fun_scrut
@@ -75,6 +95,9 @@ jooq:
   driver: org.postgresql.Driver
 
 management:
+  graphql:
+    metrics:
+      enabled: false
   endpoints:
     web:
       exposure:
@@ -86,6 +109,9 @@ management:
     distribution:
       percentiles-histogram:
         "[http.server.requests]": true
+
+jwt:
+  secret: N]Aw&)Cya(JAg!o_JU^/+\:H5@4tTxQ@RQA,~yEjg9*y&Ra7yqA.IdmtV^oZ,=;L39235
 
 #management:
 #  endpoints:

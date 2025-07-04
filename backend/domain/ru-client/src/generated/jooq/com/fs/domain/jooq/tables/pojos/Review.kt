@@ -14,12 +14,11 @@ import java.time.LocalDateTime
 @Suppress("UNCHECKED_CAST")
 data class Review(
     var id: Long? = null,
-    var companyId: Long? = null,
-    var clientId: Long? = null,
+    var orderId: Long? = null,
+    var clientId: String? = null,
     var dateCreated: LocalDateTime? = null,
     var description: String? = null,
-    var rate: Long? = null,
-    var username: String? = null
+    var rate: Long? = null
 ): Serializable {
 
 
@@ -27,12 +26,11 @@ data class Review(
         val sb = StringBuilder("Review (")
 
         sb.append(id)
-        sb.append(", ").append(companyId)
+        sb.append(", ").append(orderId)
         sb.append(", ").append(clientId)
         sb.append(", ").append(dateCreated)
         sb.append(", ").append(description)
         sb.append(", ").append(rate)
-        sb.append(", ").append(username)
 
         sb.append(")")
         return sb.toString()

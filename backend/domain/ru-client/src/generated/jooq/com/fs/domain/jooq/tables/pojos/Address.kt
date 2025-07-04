@@ -14,10 +14,9 @@ import java.io.Serializable
 data class Address(
     var id: Long? = null,
     var cityId: Long? = null,
-    var apartment: Long? = null,
-    var building: Long? = null,
-    var house: Long? = null,
-    var street: String? = null
+    var street: String? = null,
+    var house: String? = null,
+    var officeNumber: String? = null
 ): Serializable {
 
 
@@ -26,10 +25,9 @@ data class Address(
 
         sb.append(id)
         sb.append(", ").append(cityId)
-        sb.append(", ").append(apartment)
-        sb.append(", ").append(building)
-        sb.append(", ").append(house)
         sb.append(", ").append(street)
+        sb.append(", ").append(house)
+        sb.append(", ").append(officeNumber)
 
         sb.append(")")
         return sb.toString()

@@ -3,22 +3,29 @@ package com.fs.client.converter
 import com.fs.client.ru.converter.ModelConverter
 import com.fs.domain.jooq.tables.pojos.Order
 import com.fs.service.ru.OrderModel
+import com.fs.service.ru.enums.OrderStatus
 import org.springframework.stereotype.Service
 
 @Service
 class OrderModelConverter : ModelConverter<Order, OrderModel> {
     override fun toModel(rawObject: Order): OrderModel {
+        var newOrderStatus: OrderStatus? = null
+        if(rawObject.orderStatus != null){
+            newOrderStatus = OrderStatus.valueOf(rawObject.orderStatus!!)
+        }
         return OrderModel(
             id = rawObject.id,
             basketId = rawObject.basketId,
             companyOfficeId = rawObject.companyOfficeId,
             dateCreated = rawObject.dateCreated,
-            orderStatus = rawObject.orderStatus,
+            orderStatus = newOrderStatus,
             startWorkDate = rawObject.startWorkDate,
             totalWorkDays = rawObject.totalWorkDays,
             price = rawObject.price,
             isExpired = rawObject.isExpired,
-            companyProfessionId = rawObject.companyProfessionId
+            companyProfessionId = rawObject.companyProfessionId,
+            contractNumber = rawObject.contractNumber,
+            orderDatesId = rawObject.orderDatesId
         )
     }
 
@@ -31,9 +38,11 @@ class OrderModelConverter : ModelConverter<Order, OrderModel> {
             modelObject.startWorkDate,
             modelObject.totalWorkDays,
             modelObject.price,
-            modelObject.orderStatus,
+            modelObject.orderStatus?.name,
             modelObject.dateCreated,
-            modelObject.companyProfessionId
+            modelObject.companyProfessionId,
+            modelObject.contractNumber,
+            modelObject.orderDatesId
         )
     }
 }

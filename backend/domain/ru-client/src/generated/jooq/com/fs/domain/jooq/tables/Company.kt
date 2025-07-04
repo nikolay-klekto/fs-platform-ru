@@ -7,21 +7,23 @@ package com.fs.domain.jooq.tables
 import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.COMPANY_PKEY
 import com.fs.domain.jooq.tables.records.CompanyRecord
-import com.fs.service.ru.enums.CompanyLegalCapacityStatus
+
+import java.util.function.Function
 
 import org.jooq.Field
 import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
-import org.jooq.Row6
+import org.jooq.Records
+import org.jooq.Row7
 import org.jooq.Schema
+import org.jooq.SelectField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
 import org.jooq.UniqueKey
 import org.jooq.impl.DSL
-import org.jooq.impl.EnumConverter
 import org.jooq.impl.Internal
 import org.jooq.impl.SQLDataType
 import org.jooq.impl.TableImpl
@@ -73,7 +75,7 @@ open class Company(
     /**
      * The column <code>public.company.legal_capacity_status</code>.
      */
-    val LEGAL_CAPACITY_STATUS: TableField<CompanyRecord, CompanyLegalCapacityStatus?> = createField(DSL.name("legal_capacity_status"), SQLDataType.VARCHAR, this, "", EnumConverter<String, CompanyLegalCapacityStatus>(String::class.java, CompanyLegalCapacityStatus::class.java))
+    val LEGAL_CAPACITY_STATUS: TableField<CompanyRecord, String?> = createField(DSL.name("legal_capacity_status"), SQLDataType.VARCHAR, this, "")
 
     /**
      * The column <code>public.company.name</code>.
@@ -89,6 +91,11 @@ open class Company(
      * The column <code>public.company.short_description</code>.
      */
     val SHORT_DESCRIPTION: TableField<CompanyRecord, String?> = createField(DSL.name("short_description"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.company.work_time</code>.
+     */
+    val WORK_TIME: TableField<CompanyRecord, String?> = createField(DSL.name("work_time"), SQLDataType.VARCHAR, this, "")
 
     private constructor(alias: Name, aliased: Table<CompanyRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<CompanyRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
@@ -114,6 +121,7 @@ open class Company(
     override fun getPrimaryKey(): UniqueKey<CompanyRecord> = COMPANY_PKEY
     override fun `as`(alias: String): Company = Company(DSL.name(alias), this)
     override fun `as`(alias: Name): Company = Company(alias, this)
+    override fun `as`(alias: Table<*>): Company = Company(alias.getQualifiedName(), this)
 
     /**
      * Rename this table
@@ -125,8 +133,24 @@ open class Company(
      */
     override fun rename(name: Name): Company = Company(name, null)
 
+    /**
+     * Rename this table
+     */
+    override fun rename(name: Table<*>): Company = Company(name.getQualifiedName(), null)
+
     // -------------------------------------------------------------------------
-    // Row6 type methods
+    // Row7 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row6<Long?, String?, CompanyLegalCapacityStatus?, String?, String?, String?> = super.fieldsRow() as Row6<Long?, String?, CompanyLegalCapacityStatus?, String?, String?, String?>
+    override fun fieldsRow(): Row7<Long?, String?, String?, String?, String?, String?, String?> = super.fieldsRow() as Row7<Long?, String?, String?, String?, String?, String?, String?>
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     */
+    fun <U> mapping(from: (Long?, String?, String?, String?, String?, String?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Class,
+     * Function)}.
+     */
+    fun <U> mapping(toType: Class<U>, from: (Long?, String?, String?, String?, String?, String?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

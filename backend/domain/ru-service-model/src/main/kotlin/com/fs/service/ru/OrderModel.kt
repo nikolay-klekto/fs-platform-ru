@@ -1,7 +1,6 @@
 package com.fs.service.ru
 
 import com.fs.service.ru.enums.OrderStatus
-import org.jetbrains.kotlin.com.google.common.primitives.Longs
 import java.time.LocalDateTime
 
 
@@ -15,5 +14,7 @@ data class OrderModel(
     val startWorkDate: LocalDateTime?,
     val totalWorkDays: Long?,
     val price: Double?,
-    val companyProfessionId: Long?
+    val companyProfessionId: Long?,
+    val contractNumber: String?,
+    val orderDatesId: Long?
 )

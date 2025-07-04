@@ -1,9 +1,5 @@
-scalar LocalDateTime
-scalar LocalDate
-
 type Query {
-    getClintById(id: ID!): Client
-    getAllClients: [Client]
+
 
     getInternshipTypeById(id: ID!): InternshipType
     getAllInternshipTypes: [InternshipType]
@@ -15,28 +11,40 @@ type Query {
     getCountryByCity(id: ID): Country
     getAllCities: [City]
 
+<<<<<<< HEAD:backend/domain/ru-client/src/main/resources/graphql/clientSchema.graphqls
     getOrderById(id: ID!): Order
     getOrdersByClientId(clientId: ID): [Order]
     getOrdersByBasketId(basketId: ID): [Order]
     getAllOrders: [Order]
 
+=======
+>>>>>>> origin/main:backend/domain/ru-client/src/main/resources/graphql/clientPublicSchema.graphqls
     getCompanyById(id: ID!): Company
     getAllCompanies: [Company]
+    getAllAvailableCompanies: [Company]
     getAllCompaniesIndustries: [String]
-    getAllCompaniesByPositionId(id: ID!): [Company]
+    getAllCompanyStatusesForTable: [String]
+    getAllCompaniesByProfessionId(id: ID!): [Company]
     getAllCompaniesByCountryCode(code: ID!): [Company]
     getAllCompaniesByCityId(id: ID!): [Company]
 
     getProfessionById(id: ID!): Profession
     getAllProfessionsByCompanyId(id: ID!): [Profession]
     getAllProfessions: [Profession]
+<<<<<<< HEAD:backend/domain/ru-client/src/main/resources/graphql/clientSchema.graphqls
+=======
+    getAllExistingProfessions:[Profession]
+    getAllProfessionsByInternshipType(internshipTypeId: ID!): [Profession]
+    getAllProfessionsCategories: [String]
+>>>>>>> origin/main:backend/domain/ru-client/src/main/resources/graphql/clientPublicSchema.graphqls
     getNMostPopularProfessions(quantity: ID!): [Profession]
+    getAllProfessionsCategoriesForTable: [String]
 
     getPartnerById(id: ID!): Partner
     getAllPartners: [Partner]
     getPartnersByCompanyId(id: ID!): [Partner]
 
-    getBasketById(id: ID!): Basket
+
 
     getCountry(code: ID!): Country
     getCountryByName(name: CountryNameEnum): Country
@@ -49,10 +57,35 @@ type Query {
     getAllEvents: [Event]
     getAllActualEvents: [Event]
     getAllActualEventsByCityId(cityId: ID!): [Event]
+<<<<<<< HEAD:backend/domain/ru-client/src/main/resources/graphql/clientSchema.graphqls
+=======
+    getEventsAvailableCities: [City]
+>>>>>>> origin/main:backend/domain/ru-client/src/main/resources/graphql/clientPublicSchema.graphqls
     getFirstNActualEvents(eventQuantity: ID!): [Event]
+    getEventsByTimeRange(from: String, to: String): [Event]
 
+<<<<<<< HEAD:backend/domain/ru-client/src/main/resources/graphql/clientSchema.graphqls
     getLowestPriceByInternshipTypeId(internshipTypeId: ID): ID
+=======
+    getAllEventCategoriesNames: [String]
+    getAllEventCategories: [EventCategory]
 
+    getLowestPricesByInternshipTypes: [InternshipPricesModel]
+>>>>>>> origin/main:backend/domain/ru-client/src/main/resources/graphql/clientPublicSchema.graphqls
+
+    getDaysForPayOrder: Int
+    getInfoForContactPage: ConstantsModel
+    getInfoForFooter: ConstantsModel
+
+    getFeedbackByCompanyId(companyId: ID!): [ProfessionsCompaniesFeedback]
+    getFeedbackByProfessionId(professionId: ID!): [ProfessionsCompaniesFeedback]
+
+    getOrderDatesByProfessionCompanyId(companyProfessionId: ID!): [OrderDates]
+
+    getInternshipTypesAndPricesByCompanyProfessionId(companyId: ID!, professionId: ID!): [InternshipPricesModel]
+
+    getEducationOptions:[ClientEducationModel]
+    getEmploymentOptions:[ClientEmploymentModel]
 }
 
 type Mutation {
@@ -60,17 +93,19 @@ type Mutation {
     updateInternshipTypeById(id: ID!, internshipType: InternshipTypeInput!): Boolean
     deleteInternshipTypeById(id: ID!): Boolean
 
-    addReview(review: ReviewInput!): ErrorReviewModel
-    updateReview(review: ReviewInput!): Boolean
-    deleteReviewById(id: ID!): Boolean
+
 
     addCity(city: CityInput!): City
     deleteCity(cityId: ID!): Boolean
 
+<<<<<<< HEAD:backend/domain/ru-client/src/main/resources/graphql/clientSchema.graphqls
     addOrder(order: OrderInput!): Order
     updateOrder(order: OrderInput!): Boolean
     deleteOrder(id: ID!): Boolean
     deleteAllOrdersByBasketId(basketId: ID!): Boolean
+=======
+    changePassword(clientId: String!, password: String!): Boolean
+>>>>>>> origin/main:backend/domain/ru-client/src/main/resources/graphql/clientPublicSchema.graphqls
 
     addCompany(company: CompanyInput!): Company
     addCompanyByPartner(partnerId: ID!, company: CompanyInput!): Company
@@ -78,8 +113,8 @@ type Mutation {
     deleteCompany(id: ID!): Boolean
 
     addProfession(profession: ProfessionInput!): Profession
-    addCompanyProfession(companyId: ID!, profession: ProfessionInput!): Profession
-    addExistingProfessionToCompany(companyId: ID!, positionId: ID!): Boolean
+    addCompanyProfession(companyProfession: CompanyProfessionInput!, profession: ProfessionInput!): Profession
+    addExistingProfessionToCompany(companyProfession: CompanyProfessionInput!): Boolean
     updateProfession(profession: ProfessionInput!): Boolean
     deleteProfession(id: ID!): Boolean
 
@@ -94,12 +129,6 @@ type Mutation {
     addBasket: Basket
     updateBasket(basket: BasketInput!): Boolean
 
-    updateClient(client: ClientUpdate!): Boolean
-    changePassword(clientId: ID!, password: String!): Boolean
-    #    changeRole(clientId: ID!, role: ClientRoleEnum): Boolean     //Should to think how to realize this function
-    addClient(client: ClientInsert): ErrorClientModel
-    deleteClient(id: ID!): Boolean
-    verifyClientPassword(client: ClientInsert!): ErrorLongModel
 
     addCountry(country: CountryInput): Country
     deleteCountry(countryCode: ID!): Boolean
@@ -115,7 +144,60 @@ type Mutation {
     deleteEvent(eventId: ID!): Boolean
     deleteAllEvents: Boolean
     deleteAllExpiredEvents: Boolean
+<<<<<<< HEAD:backend/domain/ru-client/src/main/resources/graphql/clientSchema.graphqls
     createGoogleCalendarEvent(clientEmail: String!, event: EventInput!): Boolean
+=======
+    createGoogleCalendarEvent(clientEmail: String!, eventId: ID!): Boolean
+
+    addEventCategory(eventCategory: EventCategoryInput!): EventCategory
+    updateEventCategory(eventCategory: EventCategoryInput!): Boolean
+
+    resetClientPassword(email: String!): ErrorBooleanModel
+    checkResetCode(clientPasswordModel: ClientsResetPasswords!): ErrorStringModel
+
+    addUnAuthorizeOrder(order: UnAuthorizeOrderModelInput!): Order
+
+    insertClientLetter(clientLetter: ClientsLettersInput!): ClientsLetters
+
+    insertJobRequest(jobRequests: JobRequestsInput!): JobRequests
+
+    insertProfessionsCompaniesFeedback(professionsCompaniesFeedback: ProfessionsCompaniesFeedbackInput!): ProfessionsCompaniesFeedback
+
+    insertOrderDate(orderDate: OrderDatesInput!): OrderDates
+}
+
+input ProfessionsCompaniesFeedbackInput{
+    id: ID
+    companyId: ID
+    professionId: ID
+    question: String
+    answer: String
+    dateCreated: String
+}
+
+input OrderDatesInput{
+    id: ID
+    companyProfessionId: ID
+    dates: String
+    freePlaces: Int
+}
+
+type OrderDates{
+    id: ID
+    companyProfessionId: ID
+    dates: String
+    freePlaces: Int
+    dateCreated: String
+}
+
+type ProfessionsCompaniesFeedback{
+    id: ID
+    companyId: ID
+    professionId: ID
+    question: String
+    answer: String
+    dateCreated: String
+>>>>>>> origin/main:backend/domain/ru-client/src/main/resources/graphql/clientPublicSchema.graphqls
 }
 
 input InternshipTypeInput {
@@ -124,13 +206,84 @@ input InternshipTypeInput {
     description: String
 }
 
+input ClientsLettersInput{
+    id: ID
+    username: String
+    phoneNumber: String
+    email: String
+    clientType: String
+    comment: String
+}
+
+type ClientsLetters{
+    id: ID
+    username: String
+    phoneNumber: String
+    email: String
+    clientType: String
+    comment: String
+    dateCreated: String
+}
+
+type ClientEducationModel{
+    educationForView: String
+    educationForQuery: String
+}
+
+type ClientEmploymentModel{
+    employmentForView: String
+    employmentForQuery: String
+}
+
+type ConstantsModel{
+     id: ID
+     phoneNumber: String
+     clientEmail: String
+     partnerEmail: String
+     candidateEmail: String
+     officeCity: String
+     officeAddress: String
+     instLink: String
+     tgLink: String
+     linkedinLink: String
+     footerOfficialInfo: String
+     footerAdditionalInfo: String
+}
+
+input JobRequestsInput{
+    id: ID
+    username: String
+    phoneNumber: String
+    profession: String
+}
+
+type JobRequests{
+    id: ID
+    username: String
+    phoneNumber: String
+    profession: String
+    dateCreated: String
+}
+
+input UnAuthorizeOrderModelInput{
+    id: ID
+    companyOfficeId: ID
+    dateCreated: String
+    orderStatus: OrderStatus
+    startWorkDate: String
+    totalWorkDays: Int
+    price: Float
+    companyProfessionId: Int
+    contractNumber: String
+    orderDatesId: ID
+}
+
 input ReviewInput {
     id: ID
-    companyId: ID!
-    clientId: ID!
-    description: String!,
-    rate: Int!
-    username: String!
+    orderId: ID
+    clientId: ID
+    description: String,
+    rate: Int
 }
 
 input CityInput {
@@ -149,22 +302,38 @@ input OrderInput {
     id: ID
     basketId: ID
     companyOfficeId: ID
-    dateCreated: LocalDateTime
-    positionId: ID
-    serviceId: ID
+    dateCreated: String
     orderStatus: OrderStatus
-    startWorkDate: LocalDateTime
+    startWorkDate: String
     totalWorkDays: Int
     price: Float
+    companyProfessionId: Int
+    contractNumber: String
+    orderDatesId: ID
+}
+
+input OrderInsertInput {
+    id: ID
+    basketId: ID
+    companyOfficeId: ID
+    dateCreated: String
+    orderStatus: OrderStatus
+    startWorkDate: String
+    totalWorkDays: Int
+    price: Float
+    companyProfessionId: ID
+    contractNumber: String
+    orderDatesId: ID
 }
 
 input CompanyInput {
     id: ID
     companyIndustry: String
-    legalCapacityStatus: LegalCapacityStatus
+    legalCapacityStatus: String
     name: String
     site: String
     shortDescription: String
+    workTime: String
 }
 
 input ProfessionInput {
@@ -172,6 +341,15 @@ input ProfessionInput {
     description: String,
     name: String,
     clientsNumber: Int
+    professionIndustry: String
+}
+
+input CompanyProfessionInput {
+    id: ID
+    companyId: Int,
+    internshipTypeId: Int,
+    pricePerDay: Float
+    professionId: Int
 }
 
 input PartnerInput {
@@ -183,9 +361,9 @@ input ClientInsert {
     cityId: ID,
     basketId: ID
     #    activateStatus: Boolean,
-    birthday: LocalDate,
+    birthday: String,
     #    birthday: String,
-    #    dateCreated: LocalDateTime,
+    #    dateCreated: String,
     #    dateCreated: String,
     educationStatus: EducationEnum,
     email: String,
@@ -196,27 +374,19 @@ input ClientInsert {
     phoneNumber: String,
     role: ClientRoleEnum,
     telegramUsername: String,
-    username: String
 }
 
 input ClientUpdate {
     id: ID!,
-    cityId: ID,
-    activateStatus: Boolean,
-    birthday: LocalDate,
-    #    birthday: String,
-    #   dateCreated: LocalDateTime,
-    #    dateCreated: String,
+    city: String,
+    birthday: String,
     educationStatus: EducationEnum,
     email: String,
     employment: EmploymentEnum,
     firstName: String,
     lastName: String,
-    #    password: String,
     phoneNumber: String,
-    role: ClientRoleEnum,
     telegramUsername: String,
-    username: String
 }
 
 input BasketInput {
@@ -227,10 +397,9 @@ input BasketInput {
 input AddressInput {
     id: ID
     cityId: ID
-    apartment: Int
-    building: Int
-    house: Int
     street: String
+    house: String
+    officeNumber: String
 }
 
 input OfficeInput {
@@ -245,19 +414,23 @@ input CompanyAddressInput {
     cityId: ID
     companyId: ID
     officeId: ID
-    apartment: Int
-    building: Int
-    house: Int
-    phoneNumber: String
     street: String
+    house: String
+    officeNumber: String
+    phoneNumber: String
+    workTime: String
 }
 
 input EventInput {
     id: ID
+<<<<<<< HEAD:backend/domain/ru-client/src/main/resources/graphql/clientSchema.graphqls
     cityId: ID
     apartment: ID
     building: ID
     date: LocalDateTime
+=======
+    date: String
+>>>>>>> origin/main:backend/domain/ru-client/src/main/resources/graphql/clientPublicSchema.graphqls
     description: String
     house: ID
     mainGoal: String
@@ -270,25 +443,31 @@ input EventInput {
 
 type Review {
     id: ID
-    companyId: ID
+    orderId: ID
     clientId: ID
-    dateCreated: LocalDateTime
-    #    dateCreated: String
+    dateCreated: String
     description: String
     rate: Int
-    username: String
 }
 
 type Order {
     id: ID
     basketId: ID
     office: Office
-    dateCreated: LocalDateTime
+    dateCreated: String
     companyProfession: CompanyProfession
     orderStatus: OrderStatus
-    startWorkDate: LocalDateTime
+    startWorkDate: String
     totalWorkDays: Int
     price: Float
+    contractNumber: String
+    orderDatesId: ID
+}
+
+input ClientsResetPasswords{
+    id: ID
+    clientEmail: String!
+    code: Int!
 }
 
 type Company {
@@ -298,6 +477,15 @@ type Company {
     name: String
     site: String
     shortDescription: String
+    workTime: String
+    pricePerWeek: ID
+}
+
+input AuthorizationClientModelInsert {
+    basketId: ID,
+    email: String,
+    password: String,
+    phoneNumber: String
 }
 
 type Profession {
@@ -305,6 +493,8 @@ type Profession {
     description: String
     name: String
     clientsNumber: Int
+    professionIndustry: String
+    pricePerWeek: ID
 }
 
 type InternshipType {
@@ -313,14 +503,20 @@ type InternshipType {
     description: String
 }
 
+type InternshipPricesModel {
+    internshipType: InternshipType
+    pricePerDay: ID
+    companyProfessionId: ID
+}
+
 type Client {
     id: ID,
     basketId: ID,
     city: City,
     activateStatus: Boolean,
-    #        birthday: LocalDate,
+    #        birthday: Date,
     birthday: String,
-    dateCreated: LocalDateTime,
+    dateCreated: String,
     #    dateCreated: String,
     educationStatus: EducationEnum,
     email: String,
@@ -331,7 +527,6 @@ type Client {
     phoneNumber: String,
     role: ClientRoleEnum,
     telegramUsername: String,
-    username: String
 }
 
 type Basket {
@@ -358,11 +553,10 @@ type Partner {
 
 type Address {
     id: ID
-    cityId: ID
-    apartment: Int
-    building: Int
-    house: Int
+    city: City
     street: String
+    house: String
+    officeNumber: String
 }
 
 type Office {
@@ -374,8 +568,12 @@ type Office {
 
 type Event {
     id: ID
+<<<<<<< HEAD:backend/domain/ru-client/src/main/resources/graphql/clientSchema.graphqls
     address: Address
     date: LocalDateTime
+=======
+    date: String
+>>>>>>> origin/main:backend/domain/ru-client/src/main/resources/graphql/clientPublicSchema.graphqls
     description: String
     isExpired: Boolean
     mainGoal: String
@@ -383,10 +581,34 @@ type Event {
     phoneNumber: String
     publicPlaceName: String
     site: String
+<<<<<<< HEAD:backend/domain/ru-client/src/main/resources/graphql/clientSchema.graphqls
+=======
+    city: City
+    time: String
+    organizer: String
+    eventCategory: EventCategory
+    price: Float
+}
+
+type EventCategory{
+    id: ID
+    category: String
+    description: String
+}
+
+input EventCategoryInput{
+    id: ID
+    category: String
+>>>>>>> origin/main:backend/domain/ru-client/src/main/resources/graphql/clientPublicSchema.graphqls
 }
 
 type ErrorBooleanModel {
     data: Boolean
+    errorMessage: String
+}
+
+type ErrorStringModel{
+    data: String
     errorMessage: String
 }
 
@@ -452,12 +674,14 @@ enum CurrencyEnum {
     EUR
     RUB
     PLN
+    UNKNOWN
 }
 
 enum CountryNameEnum {
     BELARUS
     RUSSIA
     POLAND
+    UNKNOWN
 }
 
 enum CompanyIndustryEnum {
@@ -489,4 +713,10 @@ enum OrderStatus {
     EXPIRED
     ACTUAL
     PRE_ORDERED
+    BASKET
+    TERMINATE_CONTRACT
+    DELETED_FROM_BASKET
+    ALARM_TERMINATE_CURRENT_ORDER
+    NEED_TO_APPROVE_FROM_BASKET
+    PRE_ORDERED_DECLINED
 }

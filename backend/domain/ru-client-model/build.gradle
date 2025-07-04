@@ -5,3 +5,4 @@ plugins {
 dependencies {
     implementation("org.jooq:jooq:3.17.7")
 }
+

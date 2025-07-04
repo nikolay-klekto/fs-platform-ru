@@ -4,25 +4,26 @@
 package com.fs.domain.jooq.tables
 
 
-import com.fs.client.ru.enums.CountryNameModel
-import com.fs.client.ru.enums.CurrencyModel
 import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.COUNTRY_PKEY
 import com.fs.domain.jooq.tables.records.CountryRecord
+
+import java.util.function.Function
 
 import org.jooq.Field
 import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
+import org.jooq.Records
 import org.jooq.Row3
 import org.jooq.Schema
+import org.jooq.SelectField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
 import org.jooq.UniqueKey
 import org.jooq.impl.DSL
-import org.jooq.impl.EnumConverter
 import org.jooq.impl.Internal
 import org.jooq.impl.SQLDataType
 import org.jooq.impl.TableImpl
@@ -69,12 +70,12 @@ open class Country(
     /**
      * The column <code>public.country.currency</code>.
      */
-    val CURRENCY: TableField<CountryRecord, CurrencyModel?> = createField(DSL.name("currency"), SQLDataType.VARCHAR, this, "", EnumConverter<String, CurrencyModel>(String::class.java, CurrencyModel::class.java))
+    val CURRENCY: TableField<CountryRecord, String?> = createField(DSL.name("currency"), SQLDataType.VARCHAR, this, "")
 
     /**
      * The column <code>public.country.name</code>.
      */
-    val NAME: TableField<CountryRecord, CountryNameModel?> = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "", EnumConverter<String, CountryNameModel>(String::class.java, CountryNameModel::class.java))
+    val NAME: TableField<CountryRecord, String?> = createField(DSL.name("name"), SQLDataType.VARCHAR, this, "")
 
     private constructor(alias: Name, aliased: Table<CountryRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<CountryRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
@@ -100,6 +101,7 @@ open class Country(
     override fun getPrimaryKey(): UniqueKey<CountryRecord> = COUNTRY_PKEY
     override fun `as`(alias: String): Country = Country(DSL.name(alias), this)
     override fun `as`(alias: Name): Country = Country(alias, this)
+    override fun `as`(alias: Table<*>): Country = Country(alias.getQualifiedName(), this)
 
     /**
      * Rename this table
@@ -111,8 +113,24 @@ open class Country(
      */
     override fun rename(name: Name): Country = Country(name, null)
 
+    /**
+     * Rename this table
+     */
+    override fun rename(name: Table<*>): Country = Country(name.getQualifiedName(), null)
+
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row3<Long?, CurrencyModel?, CountryNameModel?> = super.fieldsRow() as Row3<Long?, CurrencyModel?, CountryNameModel?>
+    override fun fieldsRow(): Row3<Long?, String?, String?> = super.fieldsRow() as Row3<Long?, String?, String?>
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     */
+    fun <U> mapping(from: (Long?, String?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Class,
+     * Function)}.
+     */
+    fun <U> mapping(toType: Class<U>, from: (Long?, String?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

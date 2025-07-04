@@ -15,16 +15,18 @@ import com.fs.domain.jooq.tables.records.ClientRecord
 
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.function.Function
 
 import kotlin.collections.List
 
 import org.jooq.Field
 import org.jooq.ForeignKey
-import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
+import org.jooq.Records
 import org.jooq.Row17
 import org.jooq.Schema
+import org.jooq.SelectField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
@@ -68,11 +70,6 @@ open class Client(
      * The class holding records for this type
      */
     override fun getRecordType(): Class<ClientRecord> = ClientRecord::class.java
-
-    /**
-     * The column <code>public.client.id</code>.
-     */
-    val ID: TableField<ClientRecord, Long?> = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "")
 
     /**
      * The column <code>public.client.basket_id</code>.
@@ -145,14 +142,19 @@ open class Client(
     val TELEGRAM_USERNAME: TableField<ClientRecord, String?> = createField(DSL.name("telegram_username"), SQLDataType.VARCHAR, this, "")
 
     /**
-     * The column <code>public.client.username</code>.
-     */
-    val USERNAME: TableField<ClientRecord, String?> = createField(DSL.name("username"), SQLDataType.VARCHAR, this, "")
-
-    /**
      * The column <code>public.client.salt</code>.
      */
     val SALT: TableField<ClientRecord, String?> = createField(DSL.name("salt"), SQLDataType.VARCHAR, this, "")
+
+    /**
+     * The column <code>public.client.id</code>.
+     */
+    val ID: TableField<ClientRecord, String?> = createField(DSL.name("id"), SQLDataType.VARCHAR.nullable(false), this, "")
+
+    /**
+     * The column <code>public.client.username</code>.
+     */
+    val USERNAME: TableField<ClientRecord, String?> = createField(DSL.name("username"), SQLDataType.VARCHAR, this, "")
 
     private constructor(alias: Name, aliased: Table<ClientRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<ClientRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
@@ -174,7 +176,6 @@ open class Client(
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, ClientRecord>): this(Internal.createPathAlias(child, key), child, key, CLIENT, null)
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
-    override fun getIdentity(): Identity<ClientRecord, Long?> = super.getIdentity() as Identity<ClientRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<ClientRecord> = CLIENT_PKEY
     override fun getReferences(): List<ForeignKey<ClientRecord, *>> = listOf(CLIENT__CLIENT_BASKET_ID_FKEY, CLIENT__CLIENT_CITY_ID_FKEY)
 
@@ -191,6 +192,9 @@ open class Client(
         return _basket;
     }
 
+    val basket: Basket
+        get(): Basket = basket()
+
     /**
      * Get the implicit join path to the <code>public.city</code> table.
      */
@@ -200,8 +204,12 @@ open class Client(
 
         return _city;
     }
+
+    val city: City
+        get(): City = city()
     override fun `as`(alias: String): Client = Client(DSL.name(alias), this)
     override fun `as`(alias: Name): Client = Client(alias, this)
+    override fun `as`(alias: Table<*>): Client = Client(alias.getQualifiedName(), this)
 
     /**
      * Rename this table
@@ -213,8 +221,24 @@ open class Client(
      */
     override fun rename(name: Name): Client = Client(name, null)
 
+    /**
+     * Rename this table
+     */
+    override fun rename(name: Table<*>): Client = Client(name.getQualifiedName(), null)
+
     // -------------------------------------------------------------------------
     // Row17 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?> = super.fieldsRow() as Row17<Long?, Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?>
+    override fun fieldsRow(): Row17<Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?, String?> = super.fieldsRow() as Row17<Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?, String?>
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     */
+    fun <U> mapping(from: (Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Class,
+     * Function)}.
+     */
+    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, Boolean?, LocalDate?, LocalDateTime?, EducationModel?, String?, EmploymentModel?, String?, String?, String?, String?, ClientRoleModel?, String?, String?, String?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

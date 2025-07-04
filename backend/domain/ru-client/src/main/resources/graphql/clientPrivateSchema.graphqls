@@ -1,0 +1,33 @@
+extend type Query {
+    getClintById(id: String!): Client 
+    getAllClients: [Client] 
+    getAllReviewByClientId(clientId: String!): [Review]
+    getAllOrders: [Order]
+    getOrderById(id: ID!): Order 
+    getOrdersByClientId(clientId: ID): [Order]
+    getOrdersByBasketId(basketId: ID): [Order]
+    getBasketById(id: ID!): Basket
+    getAllBaskets: [Basket]
+    
+}
+
+extend type Mutation{
+    addReview(review: ReviewInput!): ErrorReviewModel 
+    updateReview(review: ReviewInput!): Boolean 
+    deleteReviewById(id: ID!): Boolean 
+
+    addOrder(order: OrderInsertInput!): Order
+    updateOrder(order: OrderInput!): Boolean
+    updateOrderContractNumber(order: OrderInput!): Boolean
+    deleteOrderById(id: ID!, orderStatus: OrderStatus!): Boolean
+    deleteFinalOrderById(id: ID!): Boolean
+    deleteAllOrdersByBasketId(basketId: ID!, orderStatus: OrderStatus!): Boolean
+    deleteAllOrdersByClientId(clientId: String!, orderStatus: OrderStatus!): Boolean
+    placeOrder(orderId: ID!): ErrorBooleanModel
+    changeOrderStatusAfterPay(orderId: ID!, isPaySuccess: Boolean!): Boolean
+
+    updateClient(client: ClientUpdate!): Boolean 
+#    addClient(client: ClientInsert): ErrorClientModel
+    deleteClient(id: String!): Boolean
+#    verifyPassword(clientModel: AuthorizationClientModelInsert): ErrorBooleanModel
+}

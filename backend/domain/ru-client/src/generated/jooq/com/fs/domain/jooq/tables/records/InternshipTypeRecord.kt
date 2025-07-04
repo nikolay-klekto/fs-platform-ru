@@ -19,15 +19,15 @@ import org.jooq.impl.UpdatableRecordImpl
 @Suppress("UNCHECKED_CAST")
 open class InternshipTypeRecord() : UpdatableRecordImpl<InternshipTypeRecord>(InternshipType.INTERNSHIP_TYPE), Record3<Long?, String?, String?> {
 
-    var id: Long?
+    open var id: Long?
         set(value): Unit = set(0, value)
         get(): Long? = get(0) as Long?
 
-    var name: String?
+    open var name: String?
         set(value): Unit = set(1, value)
         get(): String? = get(1) as String?
 
-    var description: String?
+    open var description: String?
         set(value): Unit = set(2, value)
         get(): String? = get(2) as String?
 
