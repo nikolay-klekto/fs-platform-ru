@@ -95,9 +95,7 @@ const CompaniesPageDesktop: React.FC = () => {
                     ) : (
                         <p className="my-20 h-[150px] text-center text-4xl text-white">Ничего не найдено</p>
                     )}
-
                     {totalPages <= 1 && <div className="h-[80px]"></div>}
-
                     {totalPages > 1 && filteredContent.length > 0 && (
                         <CompaniesPaginationDesktop
                             totalPages={totalPages}
@@ -105,7 +103,6 @@ const CompaniesPageDesktop: React.FC = () => {
                             onPageChange={handlePageChange}
                         />
                     )}
-
                     <CompaniesSearchDesktop />
                 </div>
             </main>
