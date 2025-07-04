@@ -20,6 +20,8 @@ const buttonVariants = cva(
                     'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white',
                 send_btn_desktop:
                     'button-border-desktop border-2 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white  2xl:text-3xl',
+                send_btn_mobi:
+                    'button-border-mobi border-2 rounded-[50px] text-[15px] sm:text-[14px] font-medium text-white',
                 select_mobi:
                     'button-border-mobi rounded-[50px] text-base border-2 border-transparent bg-[#101030] text-white',
                 accent_desktop: 'flex items-center justify-center rounded-[50px] bg-white',
@@ -70,6 +72,7 @@ const buttonVariants = cva(
                 select_mobi_menu: 'h-[47px] w-full max-w-[195px] text-3xl',
                 send_btn_desktop: 'h-[64px] w-[272px] 2xl:w-[200px]',
                 cookie_btn_desktop: '3xl:w-[250px] h-[64px] w-[237px]',
+                cookie_btn_mobi: 'w-[188px] h-[40px] text-wrap',
                 circle_btn_gradient_desktop: 'right-0 top-1/2 size-[60px] -translate-y-1/2 rounded-full',
                 circle_btn_mobi: 'h-0 px-[11px] py-0',
                 gradient_btn_desktop: '3xl:w-[250px] h-[64px] w-[272px] 2xl:w-[250px]',
