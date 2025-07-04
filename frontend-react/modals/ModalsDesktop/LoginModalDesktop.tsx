@@ -162,7 +162,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     <div className="w-[95%]">
                         <p className="text15px_desktop mt-3 font-medium text-[#353652]">
                             Защита от спама reCAPTCHA{' '}
-                            <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
+                            <Link href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline">
                                 Конфиденциальность
                             </Link>{' '}
                             и{' '}
