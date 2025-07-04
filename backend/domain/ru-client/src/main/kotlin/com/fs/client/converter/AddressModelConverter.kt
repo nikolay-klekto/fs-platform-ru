@@ -11,10 +11,9 @@ class AddressModelConverter : ModelConverter<Address, AddressModel> {
         return AddressModel(
             id = rawObject.id!!,
             cityId = rawObject.cityId!!,
-            apartment = rawObject.apartment,
-            building = rawObject.building,
+            street = rawObject.street,
             house = rawObject.house,
-            street = rawObject.street
+            officeNumber = rawObject.officeNumber
         )
     }
 
@@ -22,10 +21,9 @@ class AddressModelConverter : ModelConverter<Address, AddressModel> {
         return Address(
             modelObject.id,
             modelObject.cityId,
-            modelObject.apartment,
-            modelObject.building,
+            modelObject.street,
             modelObject.house,
-            modelObject.street
+            modelObject.officeNumber
         )
     }
 }

@@ -41,16 +41,27 @@ jobs:
     #     curl -I http://localhost:8183/actuator/health || true
 
     - name: Upload JAR artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: my-app-jar
         path: backend/domain/ru-client/build/libs/ru-client-0.0.2-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
 
-    - name: Upload Docker Compose artifact
-      uses: actions/upload-artifact@v3
+    - name: Upload JAR auth artifact
+      uses: actions/upload-artifact@v4
       with:
+<<<<<<< HEAD
         name: docker-compose-file
         path: docker-compose.yml  # Путь к файлу Docker Compose      
+=======
+        name: my-app-jar-auth
+        path: backend/gateway/registration/authorization/build/libs/ru-auth-0.0.3-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+
+    - name: Upload JAR auth artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-app-jar-call-request
+        path: backend/call-requests-api/build/libs/ru-call-requests-0.0.3-SNAPSHOT.jar  # Путь к сгенерированному JAR файлу
+>>>>>>> origin/main
         
   deploy:
     runs-on: ubuntu-latest
@@ -58,17 +69,26 @@ jobs:
 
     steps:
     - name: Download JAR artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: my-app-jar
         path: ./artifact
 
-    - name: Download Docker Compose artifact
-      uses: actions/download-artifact@v3
+    - name: Download JAR registration artifact
+      uses: actions/download-artifact@v4
       with:
-        name: docker-compose-file
+        name: my-app-jar-auth
         path: ./artifact
 
+<<<<<<< HEAD
+=======
+    - name: Download JAR call request artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: my-app-jar-call-request
+        path: ./artifact
+
+>>>>>>> origin/main
     - name: Copy files via SCP
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -77,7 +97,12 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         scp -o StrictHostKeyChecking=no ./artifact/ru-client-0.0.2-SNAPSHOT.jar root@${{ secrets.IP_DOMAIN }}:${{ secrets.DESTINATION_BACKEND_JAR_FOLDER }}
+<<<<<<< HEAD
         scp -o StrictHostKeyChecking=no ./artifact/docker-compose.yml root@${{ secrets.IP_DOMAIN }}:${{ secrets.DESTINATION_BASE_FOLDER }}
+=======
+        scp -o StrictHostKeyChecking=no ./artifact/ru-auth-0.0.3-SNAPSHOT.jar root@${{ secrets.IP_DOMAIN }}:${{ secrets.DESTINATION_BACKEND_JAR_FOLDER }}
+        scp -o StrictHostKeyChecking=no ./artifact/ru-call-requests-0.0.3-SNAPSHOT.jar root@${{ secrets.IP_DOMAIN }}:${{ secrets.DESTINATION_BACKEND_JAR_FOLDER }}
+>>>>>>> origin/main
         
     - name: Restart Docker Compose
       env:

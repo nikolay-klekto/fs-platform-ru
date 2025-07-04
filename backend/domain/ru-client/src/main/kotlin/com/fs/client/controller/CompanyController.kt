@@ -3,8 +3,8 @@ package com.fs.client.controller
 import com.fs.client.repository.CompanyRepository
 import com.fs.client.ru.OfficeModel
 import com.fs.service.ru.CompanyModel
+import com.fs.service.ru.CompanyProfessionModel
 import com.fs.service.ru.OrderModel
-import com.fs.service.ru.enums.IndustryModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -12,76 +12,89 @@ import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 
 @Tag(name = "Company")
 @RestController
 @RequestMapping("/company", produces = ["application/json"])
-open class CompanyController(
-    open val companyRepository: CompanyRepository
+class CompanyController(
+    private val companyRepository: CompanyRepository
 ) {
 
     @QueryMapping
-    open fun getCompanyById(@Argument id: Long): Mono<CompanyModel> {
+    suspend fun getCompanyById(@Argument id: Long): CompanyModel? {
         return companyRepository.getCompanyById(id)
     }
 
     @QueryMapping
-    open fun getAllCompaniesIndustries(): Flux<String> {
+    suspend fun getAllCompaniesIndustries(): List<String> {
         return companyRepository.getAllCompaniesIndustries()
     }
 
     @QueryMapping
-    open fun getAllCompanies(): Flux<CompanyModel> {
+    suspend fun getAllCompanies(): List<CompanyModel> {
         return companyRepository.getAllCompanies()
     }
 
     @QueryMapping
-    open fun getAllCompaniesByPositionId(@Argument id: Long): Flux<CompanyModel> {
+    suspend fun getAllAvailableCompanies(): List<CompanyModel> {
+        return companyRepository.getAllAvailableCompanies()
+    }
+
+    @QueryMapping
+    suspend fun getAllCompaniesByProfessionId(@Argument id: Long): List<CompanyModel> {
         return companyRepository.getAllCompaniesByProfessionId(id)
     }
 
     @QueryMapping
-    open fun getAllCompaniesByCountryCode(@Argument code: Long): Flux<CompanyModel> {
+    suspend fun getAllCompaniesByCountryCode(@Argument code: Long): List<CompanyModel> {
         return companyRepository.getAllCompaniesByCountryCode(code)
     }
 
     @QueryMapping
-    open fun getAllCompaniesByCityId(@Argument id: Long): Flux<CompanyModel> {
+    suspend fun getAllCompaniesByCityId(@Argument id: Long): List<CompanyModel> {
         return companyRepository.getAllCompaniesByCityId(id)
     }
 
+    @QueryMapping
+    suspend fun getAllCompanyStatusesForTable(): List<String> {
+        return companyRepository.getAllCompanyStatusesForTable()
+    }
+
     @MutationMapping
-    open fun addCompany(@Argument company: CompanyModel): Mono<CompanyModel> {
+    suspend fun addCompany(@Argument company: CompanyModel): CompanyModel {
         return companyRepository.insertCompany(company)
     }
 
     @MutationMapping
-    open fun addCompanyByPartner(
+    suspend fun addCompanyByPartner(
         @Argument partnerId: Long,
         @Argument company: CompanyModel
-    ): Mono<CompanyModel> {
+    ): CompanyModel {
         return companyRepository.insertCompanyByPartnerId(partnerId, company)
     }
 
     @MutationMapping
-    open fun updateCompany(@Argument company: CompanyModel): Mono<Boolean> {
+    suspend fun updateCompany(@Argument company: CompanyModel): Boolean {
         return companyRepository.updateCompany(company)
     }
 
     @MutationMapping
-    open fun deleteCompany(@Argument id: Long): Mono<Boolean> {
+    suspend fun deleteCompany(@Argument id: Long): Boolean {
         return companyRepository.deleteCompany(id)
     }
 
     @SchemaMapping(typeName = "Order", field = "company")
-    fun getCompanyForOrder(order: OrderModel): Mono<CompanyModel> {
+    suspend fun getCompanyForOrder(order: OrderModel): CompanyModel? {
         return companyRepository.getCompanyById(order.companyOfficeId!!)
     }
 
     @SchemaMapping(typeName = "Office", field = "company")
-    fun getCompanyForOffice(office: OfficeModel): Mono<CompanyModel> {
+    suspend fun getCompanyForOffice(office: OfficeModel): CompanyModel? {
         return companyRepository.getCompanyById(office.companyId!!)
+    }
+
+    @SchemaMapping(typeName = "CompanyProfession", field = "company")
+    suspend fun getCompanyForCompanyProfession(companyProfession: CompanyProfessionModel): CompanyModel? {
+        return companyRepository.getCompanyById(companyProfession.companyId!!)
     }
 }

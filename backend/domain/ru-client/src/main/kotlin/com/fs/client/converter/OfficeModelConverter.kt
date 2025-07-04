@@ -31,10 +31,9 @@ class OfficeModelConverter : ModelConverter<Office, OfficeModel> {
         return AddressModel(
             companyAddress.addressId,
             companyAddress.cityId,
-            companyAddress.apartment,
-            companyAddress.building,
+            companyAddress.street,
             companyAddress.house,
-            companyAddress.street
+            companyAddress.officeNumber
         )
     }
 

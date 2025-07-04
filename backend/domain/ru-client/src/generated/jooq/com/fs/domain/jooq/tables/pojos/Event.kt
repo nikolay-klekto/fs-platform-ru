@@ -17,6 +17,7 @@ data class Event(
     var addressId: Long? = null,
     var date: LocalDateTime? = null,
     var description: String? = null,
+    @Suppress("INAPPLICABLE_JVM_NAME")
     @set:JvmName("setIsExpired")
     var isExpired: Boolean? = null,
     var mainGoal: String? = null,

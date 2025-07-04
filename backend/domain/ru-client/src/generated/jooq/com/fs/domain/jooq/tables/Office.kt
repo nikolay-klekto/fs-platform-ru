@@ -10,6 +10,8 @@ import com.fs.domain.jooq.keys.OFFICE__OFFICE_ADDRESS_ID_FKEY
 import com.fs.domain.jooq.keys.OFFICE__OFFICE_COMPANY_ID_FKEY
 import com.fs.domain.jooq.tables.records.OfficeRecord
 
+import java.util.function.Function
+
 import kotlin.collections.List
 
 import org.jooq.Field
@@ -17,8 +19,10 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
+import org.jooq.Records
 import org.jooq.Row4
 import org.jooq.Schema
+import org.jooq.SelectField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
@@ -119,6 +123,9 @@ open class Office(
         return _address;
     }
 
+    val address: Address
+        get(): Address = address()
+
     /**
      * Get the implicit join path to the <code>public.company</code> table.
      */
@@ -128,8 +135,12 @@ open class Office(
 
         return _company;
     }
+
+    val company: Company
+        get(): Company = company()
     override fun `as`(alias: String): Office = Office(DSL.name(alias), this)
     override fun `as`(alias: Name): Office = Office(alias, this)
+    override fun `as`(alias: Table<*>): Office = Office(alias.getQualifiedName(), this)
 
     /**
      * Rename this table
@@ -141,8 +152,24 @@ open class Office(
      */
     override fun rename(name: Name): Office = Office(name, null)
 
+    /**
+     * Rename this table
+     */
+    override fun rename(name: Table<*>): Office = Office(name.getQualifiedName(), null)
+
     // -------------------------------------------------------------------------
     // Row4 type methods
     // -------------------------------------------------------------------------
     override fun fieldsRow(): Row4<Long?, Long?, Long?, String?> = super.fieldsRow() as Row4<Long?, Long?, Long?, String?>
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     */
+    fun <U> mapping(from: (Long?, Long?, Long?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Class,
+     * Function)}.
+     */
+    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, Long?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

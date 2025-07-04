@@ -4,55 +4,66 @@ import com.fs.client.repository.CityRepository
 import com.fs.client.ru.AddressModel
 import com.fs.client.ru.CityModel
 import com.fs.client.ru.ClientModel
+<<<<<<< HEAD
+=======
+import com.fs.domain.jooq.tables.pojos.Event
+>>>>>>> origin/main
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.*
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 
 @Tag(name = "City")
 @RestController
 @RequestMapping("/city", produces = ["application/json"])
-open class CityController(open val cityRepository: CityRepository) {
-
-    @GetMapping("{id}")
-    fun getById(@PathVariable("id") cityId: Long) =
-        cityRepository.getCityById(cityId)
-
-    @PostMapping
-    fun createCity(@RequestBody cityModel: CityModel) =
-        cityRepository.insertCity(cityModel)
+class CityController(private val cityRepository: CityRepository) {
 
     @QueryMapping
-    fun getCity(@Argument id: Long): Mono<CityModel?> {
+    suspend fun getCity(@Argument id: Long): CityModel? {
         return cityRepository.getCityById(id)
     }
 
     @QueryMapping
-    fun getAllCities(): Flux<CityModel> {
+    suspend fun getAllCities(): List<CityModel> {
         return cityRepository.getAllCities()
     }
 
+<<<<<<< HEAD
+=======
+    @QueryMapping
+    suspend fun getCitiesEnumByCountryCode(@Argument code: Long): List<String> {
+        return cityRepository.getCitiesEnumByCountryCode(code)
+    }
+
+>>>>>>> origin/main
     @MutationMapping
-    fun addCity(@Argument city: CityModel): Mono<CityModel> {
+    suspend fun addCity(@Argument city: CityModel): CityModel {
         return cityRepository.insertCity(city)
     }
 
     @MutationMapping
-    fun deleteCity(@Argument cityId: Long): Mono<Boolean> {
+    suspend fun deleteCity(@Argument cityId: Long): Boolean {
         return cityRepository.deleteCity(cityId)
     }
 
     @SchemaMapping(typeName = "Client", field = "city")
-    fun getCityForClient(client: ClientModel): Mono<CityModel?> {
+    suspend fun getCityForClient(client: ClientModel): CityModel? {
         return cityRepository.getCityById(client.cityId)
     }
 
     @SchemaMapping(typeName = "Address", field = "city")
-    fun getCityForAddress(address: AddressModel): Mono<CityModel?> {
+    suspend fun getCityForAddress(address: AddressModel): CityModel? {
         return cityRepository.getCityById(address.cityId!!)
     }
+<<<<<<< HEAD
 }
+=======
+
+    @SchemaMapping(typeName = "Event", field = "city")
+    suspend fun getCityForEvent(event: Event): CityModel? {
+        return cityRepository.getCityById(event.cityId)
+    }
+}
+>>>>>>> origin/main

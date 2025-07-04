@@ -11,6 +11,8 @@ import com.fs.domain.jooq.keys.COMPANY_PROFESSION__COMPANY_PROFESSION_INTERNSHIP
 import com.fs.domain.jooq.keys.COMPANY_PROFESSION__COMPANY_PROFESSION_PROFESSION_ID_FKEY
 import com.fs.domain.jooq.tables.records.CompanyProfessionRecord
 
+import java.util.function.Function
+
 import kotlin.collections.List
 
 import org.jooq.Field
@@ -18,8 +20,10 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
+import org.jooq.Records
 import org.jooq.Row5
 import org.jooq.Schema
+import org.jooq.SelectField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
@@ -126,6 +130,9 @@ open class CompanyProfession(
         return _company;
     }
 
+    val company: Company
+        get(): Company = company()
+
     /**
      * Get the implicit join path to the <code>public.internship_type</code>
      * table.
@@ -137,6 +144,9 @@ open class CompanyProfession(
         return _internshipType;
     }
 
+    val internshipType: InternshipType
+        get(): InternshipType = internshipType()
+
     /**
      * Get the implicit join path to the <code>public.profession</code> table.
      */
@@ -146,8 +156,12 @@ open class CompanyProfession(
 
         return _profession;
     }
+
+    val profession: Profession
+        get(): Profession = profession()
     override fun `as`(alias: String): CompanyProfession = CompanyProfession(DSL.name(alias), this)
     override fun `as`(alias: Name): CompanyProfession = CompanyProfession(alias, this)
+    override fun `as`(alias: Table<*>): CompanyProfession = CompanyProfession(alias.getQualifiedName(), this)
 
     /**
      * Rename this table
@@ -159,8 +173,24 @@ open class CompanyProfession(
      */
     override fun rename(name: Name): CompanyProfession = CompanyProfession(name, null)
 
+    /**
+     * Rename this table
+     */
+    override fun rename(name: Table<*>): CompanyProfession = CompanyProfession(name.getQualifiedName(), null)
+
     // -------------------------------------------------------------------------
     // Row5 type methods
     // -------------------------------------------------------------------------
     override fun fieldsRow(): Row5<Long?, Long?, Long?, Double?, Long?> = super.fieldsRow() as Row5<Long?, Long?, Long?, Double?, Long?>
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     */
+    fun <U> mapping(from: (Long?, Long?, Long?, Double?, Long?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Class,
+     * Function)}.
+     */
+    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, Long?, Double?, Long?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

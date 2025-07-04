@@ -1,8 +1,8 @@
 package com.fs.client.repository
 
-import com.fs.client.repository.blocked.ClientBlockingRepository
-import com.fs.client.ru.ClientModel
 import com.fs.client.converter.ClientModelConverter
+import com.fs.client.repository.blocked.ClientBlockingRepository
+import com.fs.client.ru.*
 import com.fs.client.service.PasswordService
 import com.fs.domain.jooq.tables.Client.Companion.CLIENT
 import com.fs.domain.jooq.tables.Order.Companion.ORDER
@@ -10,10 +10,9 @@ import com.fs.domain.jooq.tables.pojos.Client
 import com.fs.domain.jooq.tables.records.ClientRecord
 import com.fs.domain.jooq.tables.references.BASKET
 import com.fs.service.ru.errors.ErrorModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.jooq.DSLContext
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
-
 
 abstract class ClientRepository(
     open val dsl: DSLContext,
@@ -22,37 +21,33 @@ abstract class ClientRepository(
     open val passwordService: PasswordService
 ) {
 
-    fun getClintById(id: Long?): Mono<ClientModel> {
-        return Mono.fromSupplier {
-            return@fromSupplier clientBlockingRepository.getById(id)
+    suspend fun getClintById(id: String?): ClientModel? =
+        withContext(Dispatchers.IO) {
+            clientBlockingRepository.getById(id)
         }
-    }
 
-    fun getAllClients(): Flux<ClientModel> {
-        return Flux.from(
+    suspend fun getAllClients(): List<ClientModel> =
+        withContext(Dispatchers.IO) {
             dsl.selectFrom(CLIENT)
-        )
-            .map { it.into(Client::class.java) }
-            .map(converter::toModel)
-    }
+                .map { it.into(Client::class.java) }
+                .map(converter::toModel)
+        }
 
-    fun updateClientInfo(newClientModel: ClientModel): Mono<Boolean> {
-        return Mono.fromSupplier {
+    suspend fun updateClientInfo(newClientModel: ClientInputModel): Boolean =
+        withContext(Dispatchers.IO) {
             clientBlockingRepository.update(newClientModel)
         }
-    }
 
-    fun changeActiveStatus(id: Long, activeStatus: Boolean): Mono<Boolean> {
-        return Mono.fromSupplier {
+    suspend fun changeActiveStatus(id: String, activeStatus: Boolean): Boolean =
+        withContext(Dispatchers.IO) {
             dsl.update(CLIENT)
                 .set(CLIENT.ACTIVATE_STATUS, activeStatus)
                 .where(CLIENT.ID.eq(id))
                 .execute() == 1
         }
-    }
 
-    fun changePassword(id: Long, password: String): Mono<Boolean> {
-        return Mono.fromSupplier {
+    suspend fun changePassword(id: String, password: String): Boolean =
+        withContext(Dispatchers.IO) {
             val passwordCredentials = passwordService.encodePassword(password)
             dsl.update(CLIENT)
                 .set(CLIENT.PASSWORD, passwordCredentials.first)
@@ -60,63 +55,49 @@ abstract class ClientRepository(
                 .where(CLIENT.ID.eq(id))
                 .execute() == 1
         }
-    }
 
-    //Should to think how to realize this function
-
-//    fun changeRole(id: Long, role: ClientRoleModel): Mono<Boolean> {
-//        return Mono.fromSupplier {
-//
-//            val updatableClientModel = dsl.update(CLIENT)
-//                .set(CLIENT.ROLE, role)
-//                .where(CLIENT.ID.eq(id))
-//                .returning()
-//                .map { it.into(Client::class.java) }
-//                .map(converter::toModel)
-//                .first()
-//
-//            val oldPartnerClientId = dsl.select(Partner.PARTNER.CLIENT_ID).from(Partner.PARTNER)
-//                .where(Partner.PARTNER.CLIENT_ID.eq(id))
-//                .map { it.into(Long::class.java) }
-//
-//            if(role == ClientRoleModel.PARTNER && oldPartnerClientId.isEmpty()){
-//
-//                partnerRepository.insert(updatableClientModel)
-//
-//            }
-//
-//            return@fromSupplier true
-//        }
-//    }
-
-    fun insertClient(clientModel: ClientModel): Mono<ErrorModel<ClientModel>> {
-        return Mono.fromSupplier {
-            ErrorModel(clientBlockingRepository.insert(clientModel), null)
-        }
-    }
-
-    fun verifyPassword(clientModel: ClientModel): Mono<ErrorModel<Long>>{
-        return Mono.fromSupplier {
-            if(clientModel.email == null || clientModel.password == null){
+    suspend fun verifyPassword(clientModel: AuthorizationClientModel): ErrorModel<Boolean> =
+        withContext(Dispatchers.IO) {
+            if (clientModel.email == null || clientModel.password == null) {
                 throw Exception("Введены не все поля!")
             }
 
             val possibleClient = clientBlockingRepository.getByEmail(clientModel.email!!)
                 ?: throw Exception("Данного пользователя не существует!")
 
-            if(passwordService.verifyPassword(clientModel.password!!,
-                Pair(possibleClient.password!!, possibleClient.salt!!))){
-                return@fromSupplier ErrorModel(possibleClient.id, null)
-            }else{
+            if (passwordService.verifyPassword(
+                    clientModel.password!!,
+                    Pair(possibleClient.password!!, possibleClient.salt!!)
+                )
+            ) {
+                ErrorModel(true, null)
+            } else {
                 throw Exception("Пароль неверный!")
             }
-
         }
-    }
 
+    suspend fun verifyPassword(clientModel: ClientModel): ErrorModel<String> =
+        withContext(Dispatchers.IO) {
+            if (clientModel.email == null || clientModel.password == null) {
+                throw Exception("Введены не все поля!")
+            }
 
-    fun deleteClientById(id: Long): Mono<Boolean> {
-        return Mono.fromSupplier {
+            val possibleClient = clientBlockingRepository.getByEmail(clientModel.email!!)
+                ?: throw Exception("Данного пользователя не существует!")
+
+            if (passwordService.verifyPassword(
+                    clientModel.password!!,
+                    Pair(possibleClient.password!!, possibleClient.salt!!)
+                )
+            ) {
+                ErrorModel(possibleClient.id, null)
+            } else {
+                throw Exception("Пароль неверный!")
+            }
+        }
+
+    suspend fun deleteClientById(id: String): Boolean =
+        withContext(Dispatchers.IO) {
             val clientRecord: ClientRecord? = dsl.fetchOne(CLIENT, CLIENT.ID.eq(id))
             if (clientRecord != null) {
                 val result = dsl.deleteFrom(CLIENT)
@@ -128,13 +109,75 @@ abstract class ClientRepository(
                 dsl.deleteFrom(ORDER)
                     .where(ORDER.BASKET_ID.eq(clientRecord.basketId))
                     .execute()
-                return@fromSupplier result
+                result
+            } else {
+                false
             }
-            false
         }
+
+    fun getEducationOptions(): List<ClientEducationModel> {
+        return listOf(
+            ClientEducationModel(
+                educationForView = "Неполное среднее образование",
+                educationForQuery = "LOWER_SECONDARY"
+            ),
+            ClientEducationModel(
+                educationForView = "Среднее образование",
+                educationForQuery = "SECONDARY"
+            ),
+            ClientEducationModel(
+                educationForView = "Неполное высшее образование",
+                educationForQuery = "INCOMPLETE_HIGHER"
+            ),
+            ClientEducationModel(
+                educationForView = "Высшее образование",
+                educationForQuery = "HIGHER"
+            ),
+            ClientEducationModel(
+                educationForView = "Магистратура",
+                educationForQuery = "MAGISTRACY"
+            ),
+            ClientEducationModel(
+                educationForView = "Другое",
+                educationForQuery = "OTHER"
+            )
+        )
     }
 
+    fun getEmploymentOptions(): List<ClientEmploymentModel> {
+        return listOf(
+            ClientEmploymentModel(
+                employmentForView = "Сотрудник / Работник",
+                employmentForQuery = "EMPLOYEE"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Школьник",
+                employmentForQuery = "SCHOOL_BOY"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Студент",
+                employmentForQuery = "STUDENT"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Безработный",
+                employmentForQuery = "UNEMPLOYED"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Работодатель",
+                employmentForQuery = "EMPLOYER"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Самозанятый",
+                employmentForQuery = "SELF_EMPLOYED"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Пенсионер",
+                employmentForQuery = "PENSIONER"
+            ),
+            ClientEmploymentModel(
+                employmentForView = "Другое",
+                employmentForQuery = "OTHER"
+            )
+        )
+    }
 }
-
-
-

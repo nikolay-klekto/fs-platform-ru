@@ -1,0 +1,6 @@
+FROM openjdk:17-oracle
+ARG JAR_FILE=jar/ru-call-requests-0.0.3-SNAPSHOT.jar
+WORKDIR /opt/app
+COPY ${JAR_FILE} appCallRequest.jar
+EXPOSE 8282
+ENTRYPOINT ["java","-jar","appCallRequest.jar"]

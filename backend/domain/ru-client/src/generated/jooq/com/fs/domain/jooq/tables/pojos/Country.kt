@@ -4,9 +4,6 @@
 package com.fs.domain.jooq.tables.pojos
 
 
-import com.fs.client.ru.enums.CountryNameModel
-import com.fs.client.ru.enums.CurrencyModel
-
 import java.io.Serializable
 
 
@@ -16,8 +13,8 @@ import java.io.Serializable
 @Suppress("UNCHECKED_CAST")
 data class Country(
     var code: Long? = null,
-    var currency: CurrencyModel? = null,
-    var name: CountryNameModel? = null
+    var currency: String? = null,
+    var name: String? = null
 ): Serializable {
 
 

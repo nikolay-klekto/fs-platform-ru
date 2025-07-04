@@ -10,5 +10,4 @@ import org.springframework.stereotype.Repository
 open class DefaultPartnerRepository(
     dsl: DSLContext,
     converter: PartnerModelConverter,
-    clientBlockingRepository: ClientBlockingRepository
-) : PartnerRepository(dsl, converter, clientBlockingRepository)
+) : PartnerRepository(dsl, converter)

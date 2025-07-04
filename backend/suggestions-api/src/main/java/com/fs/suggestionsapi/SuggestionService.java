@@ -25,7 +25,7 @@ public class SuggestionService {
                 .suggesterName(suggestionInput.suggesterName())
                 .companyName(suggestionInput.companyName())
                 .email(suggestionInput.email())
-                .isActive(suggestionInput.isActive())
+                .isActive(suggestionInput.isActive() != null? suggestionInput.isActive(): true)
                 .build();
         return suggestionRepository.save(suggestion);
     }
