@@ -100,7 +100,7 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                     <X size={41} color="white" className="w-full opacity-70 hover:opacity-100" />
                 </button>
                 <h2
-                    className="text28px_desktop text-gradient_desktop_custom mb-7 block w-[543px] whitespace-normal break-normal text-center font-medium uppercase leading-[1.22]"
+                    className="text28px_desktop text-gradient_desktop_custom block w-[543px] whitespace-normal break-normal text-center font-medium uppercase leading-[1.22]"
                     style={{ textWrap: 'balance' }}
                 >
                     Когда компания станет доступна, куда вам сообщить?
@@ -111,19 +111,19 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                             type="email"
                             name="email"
                             placeholder="Ваш e-mail"
+                            label="Почта"
                             value={formData.email}
                             validate={validateEmailDesktop}
                             onChange={(value) => handleChange('email', value)}
                             variant="gradient_desktop"
-                            className={`h-10 w-full rounded-[20px] border-2 border-[#878797] bg-transparent p-3 text-[18px] font-medium text-white focus:outline-none focus:ring-0"
-                            ${showEmailError ? 'border-[#BC8070]' : 'border-[#878797]'}
+                            labelClassName="text-white text-[15px] ml-[11.52px] mt-[14px] mb-[3px]"
+                            className={`h-[50px] w-full rounded-[50px] border-2 bg-transparent p-3 text-[18px] font-medium text-white focus:outline-none focus:ring-0"
+                            ${showEmailError ? 'border-[#E99B9B]' : 'border-[#878797]'}
                             `}
                         />
-                        {formError && (
-                            <p className="error-form-desktop-custom mt-[13.88px]">Заполните обязательные поля</p>
-                        )}
+                        {formError}
                     </div>
-                    <div className="relative flex h-[40px] items-center py-2">
+                    <div className="relative flex h-[40px] items-center">
                         <div className="relative">
                             <EnhancedInput
                                 type="checkbox"
@@ -131,21 +131,21 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                                 checked={formData.consent}
                                 onChange={(value) => handleChange('consent', value === 'true')}
                                 label="Я согласен(а) на обработку персональных данных"
-                                wrapperClassName="flex gap-2 pt-2"
-                                className="size-[20px] rounded-sm border-white"
+                                wrapperClassName="flex gap-2 pt-[6]"
+                                className="size-[16px] rounded-sm border-white"
                             />
                             {checkboxChecked && (
-                                <span className="pointer-events-none absolute left-0 top-2 size-[20px] rounded-sm border-[3px] border-[#BC8070]" />
+                                <span className="pointer-events-none absolute left-0 top-[0.99px] size-[16px] rounded-sm border-[3px] border-[#E99B9B]" />
                             )}
                         </div>
                     </div>
-                    <p className="text15px_desktop mt-3 font-medium text-[#353652]">
+                    <p className="text15px_desktop font-medium text-[#353652]">
                         Защита от спама reCAPTCHA{' '}
                         <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
                             Конфиденциальность
                         </Link>{' '}
                     </p>
-                    <p className="text15px_desktop mt-3 font-medium text-[#353652]">
+                    <p className="text15px_desktop font-medium text-[#353652]">
                         {' '}
                         и{' '}
                         <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
@@ -157,8 +157,8 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                         disabled={isButtonDisabled}
                         className={
                             isButtonDisabled
-                                ? 'mx-auto mt-6 h-[52.35px] w-[220px] rounded-[40.44px] font-semibold text-white pointer-events-none cursor-not-allowed bg-[#878797] text-base'
-                                : 'hover:bg-gradient-desktop-hover mx-auto mt-6 h-[52.35px] w-[220px] rounded-[40.44px] bg-gradient-to-r from-[#8333F3] via-[#5F4AF3] to-[#3B51A8] text-base font-semibold transition-all duration-300 hover:shadow-lg'
+                                ? 'mx-auto mt-6 h-[52.35px] w-[220px] rounded-[40.44px] font-semibold text-white pointer-events-none cursor-not-allowed bg-[#878797] text-[16px] !opacity-100'
+                                : 'hover:bg-gradient-desktop-hover mx-auto mt-6 h-[52.35px] w-[220px] rounded-[40.44px] bg-gradient-to-r from-[#8333F3] via-[#5F4AF3] to-[#3B51A8] text-[16px] font-semibold transition-all duration-300 hover:shadow-lg'
                         }
                     >
                         Отправить
