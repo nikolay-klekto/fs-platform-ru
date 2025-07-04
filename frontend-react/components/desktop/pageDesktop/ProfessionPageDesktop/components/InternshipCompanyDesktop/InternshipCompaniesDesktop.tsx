@@ -60,7 +60,7 @@ const InternshipCompaniesDesktop: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll"
+                className="no-scrollbar_custom flex w-full select-none gap-[clamp(25px,_2.6vw,_50px)] overflow-x-scroll"
             >
                 {content.map((item) => (
                     <ItemInternshipCompaniesDesktop
@@ -78,7 +78,10 @@ const InternshipCompaniesDesktop: React.FC = () => {
                 onScroll={handleScrollbarScroll}
                 className="scrollbar_custom relative mx-auto mb-[192px] mt-[77px] w-[65%] cursor-pointer overflow-x-scroll 2xl:mb-[120px] 3xl:mb-[160px]"
             >
-                <div className="absolute h-2" style={{ width: `${scrollbarWidth}px` }}></div>
+                <div
+                    className="absolute h-2 min-w-[1000px] bg-transparent"
+                    style={{ width: `${scrollbarWidth}px` }}
+                ></div>
             </div>
         </>
     )

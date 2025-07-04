@@ -23,7 +23,7 @@ interface BreadcrumbsProps {
     separator?: React.ReactNode
 }
 
-export default function Breadcrumbs({
+export default function BreadcrumbsDesktop({
     items,
     separator = <SlashIcon className="text20px_desktop" />,
 }: BreadcrumbsProps) {

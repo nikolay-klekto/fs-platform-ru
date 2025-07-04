@@ -8,6 +8,7 @@ import InternshipCompaniesDesktop from './components/InternshipCompanyDesktop/In
 import ProfessionReviewsDesktop from './components/ProfessionReviewsDesktop/ProfessionReviewsDesktop'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
+import BreadcrumbsDesktop from '../../layout/BreadcrumbsDesktop/BreadcrumbsDesktop'
 
 const ProfessionPageDesktop: React.FC = () => {
     return (
@@ -16,20 +17,16 @@ const ProfessionPageDesktop: React.FC = () => {
             <main className="bg-[#101030] text-white">
                 <div className="container relative overflow-hidden  ">
                     <div className="relative z-10 flex items-center space-x-1 pb-[29px] pl-[65px] pt-[60px] text-[20px] text-gray-500">
-                        <Link href="/" className="hover:underline">
-                            Главная
-                        </Link>
-                        <span>/</span>
-                        <Link href="/professions" className="hover:underline">
-                            Профессии
-                        </Link>
-                        <span>/</span>
-                        <Link href="/profession" className="text-white hover:underline">
-                            Программист
-                        </Link>
+                        <BreadcrumbsDesktop
+                            items={[
+                                { title: 'Главная', href: '/', className: 'hover:underline' },
+                                { title: 'Компании', href: '/companies', className: 'hover:underline' },
+                                { title: 'Компания EPAM', className: 'text-white hover:underline' }, // Последняя без ссылки
+                            ]}
+                        />
                     </div>
                     <div className="flex flex-col px-[58px]">
-                        <h1 className="mb-[45px] title80px_desktop font-medium uppercase text-white">Программист</h1>
+                        <h1 className="title80px_desktop mb-[45px] font-medium uppercase text-white">Программист</h1>
                         <p className="title160px_desktop absolute left-0 top-0 pl-[114px] pr-[146px] font-semibold uppercase opacity-[0.02] 2xl:mt-[25px] 3xl:mt-[18px] 4xl:mt-[8px]">
                             Программист
                         </p>
