@@ -98,7 +98,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
 
     const openRegistrationModal = () => {
         onClose()
-        openModal('registration_desktop', 'desktop')
+        openModal('registration_mobi', 'mobi')
     }
 
     const openForgotPassowrdModal = () => {

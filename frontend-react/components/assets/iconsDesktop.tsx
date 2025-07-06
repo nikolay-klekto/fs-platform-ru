@@ -655,3 +655,24 @@ export const AttachFileIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
         </svg>
     )
 }
+
+export const MapPinIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M18.5 35.4587C18.5 35.4587 32.375 26.2087 32.375 15.417C32.375 11.7371 30.9132 8.20795 28.3111 5.60589C25.709 3.00382 22.1799 1.54199 18.5 1.54199C14.8201 1.54199 11.291 3.00382 8.68889 5.60589C6.08683 8.20795 4.625 11.7371 4.625 15.417C4.625 26.2087 18.5 35.4587 18.5 35.4587Z"
+                stroke="#D1D1DD"
+                strokeWidth="3.08333"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M18.5 20.042C21.0543 20.042 23.125 17.9713 23.125 15.417C23.125 12.8627 21.0543 10.792 18.5 10.792C15.9457 10.792 13.875 12.8627 13.875 15.417C13.875 17.9713 15.9457 20.042 18.5 20.042Z"
+                stroke="#D1D1DD"
+                strokeWidth="3.08333"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}

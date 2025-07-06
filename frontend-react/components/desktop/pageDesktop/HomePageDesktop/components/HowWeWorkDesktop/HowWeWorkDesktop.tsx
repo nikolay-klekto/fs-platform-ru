@@ -13,7 +13,7 @@ const HowWeWorkDesktop: React.FC = () => {
                     {content.map((item) => (
                         <div
                             key={item.id}
-                            className="relative flex h-[264px] w-[418px] flex-col items-center rounded-[22px] bg-[#ffffff1a] px-[20px] pt-[80px] text-center 2xl:h-[250px] 2xl:pt-[60px]"
+                            className="4xl:h-[324px] 3xl:h-[294px] relative flex h-[334px] w-[418px] flex-col items-center rounded-[22px] bg-[#ffffff1a] px-[20px] pt-[80px] text-center 2xl:h-[250px] 2xl:pt-[60px] "
                         >
                             <div className="3xl:top-[-40px] absolute top-[-50px] rounded-full border-8 border-[#101030] 2xl:top-[-40px]">
                                 <div className="bg-gradient-desktop 3xl:size-[75px] flex size-[85px] items-center justify-center rounded-full bg-[#101030] 2xl:size-[70px]">
