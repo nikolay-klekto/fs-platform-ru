@@ -225,7 +225,7 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                             <div className="relative flex flex-col" ref={fromCalendarRef}>
                                 <p>От</p>
                                 <div
-                                    className="desktop 3xl:w-[120px] flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border border-[#878797] 2xl:w-[110px]"
+                                    className="desktop 3xl:w-[120px] flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border-2 border-[#878797] 2xl:w-[110px]"
                                     onClick={() => toggleCalendar('from')}
                                     onKeyDown={(e) => {
                                         if (e.key === 'Enter' || e.key === ' ') {
@@ -263,7 +263,7 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                             <div className="relative flex flex-col" ref={toCalendarRef}>
                                 <p>До</p>
                                 <div
-                                    className="desktop 3xl:w-[120px] flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border border-[#878797] 2xl:w-[110px]"
+                                    className="desktop 3xl:w-[120px] flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border-2 border-[#878797] 2xl:w-[110px]"
                                     onClick={() => toggleCalendar('to')}
                                     onKeyDown={(e) => {
                                         if (e.key === 'Enter' || e.key === ' ') {

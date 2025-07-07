@@ -68,7 +68,7 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
                         <Button
                             variant="circleDarkBlue"
                             size="circle_desktop"
-                            className="absolute -right-4 2xl:-bottom-[4.3rem] 2xl:-right-[1.2rem] -bottom-[4.1rem] 2xl:h-18 2xl:p-[16px]"
+                            className="absolute -right-4 2xl:-bottom-[4.3rem] 2xl:-right-[1.2rem] -bottom-[4.1rem] 2xl:h-18 3xl:h-[4rem] 2xl:p-[16px]"
                         >
                             <ForwardIconWhiteDesktop />
                         </Button>
