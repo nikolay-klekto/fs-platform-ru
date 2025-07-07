@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { contentProfessionAboutDesktop } from './contentProfessionPageDesktop/content'
 import InternshipCompaniesDesktop from './components/InternshipCompanyDesktop/InternshipCompaniesDesktop'
 import ProfessionReviewsDesktop from './components/ProfessionReviewsDesktop/ProfessionReviewsDesktop'
