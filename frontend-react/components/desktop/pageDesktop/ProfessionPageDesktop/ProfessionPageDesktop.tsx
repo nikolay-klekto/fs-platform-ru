@@ -20,8 +20,8 @@ const ProfessionPageDesktop: React.FC = () => {
                         <BreadcrumbsDesktop
                             items={[
                                 { title: 'Главная', href: '/', className: 'hover:underline' },
-                                { title: 'Компании', href: '/companies', className: 'hover:underline' },
-                                { title: 'Компания EPAM', className: 'text-white hover:underline' }, // Последняя без ссылки
+                                { title: 'Профессия', href: '/professions', className: 'hover:underline' },
+                                { title: 'Программист', className: 'text-white hover:underline' }, // Последняя без ссылки
                             ]}
                         />
                     </div>

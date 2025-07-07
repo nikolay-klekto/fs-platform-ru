@@ -74,7 +74,7 @@ const ReviewsDesktop: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="scrollbar_custom relative mx-auto mb-[85px] mt-[58px] h-[14px] w-[65%] cursor-pointer overflow-x-scroll"
+                className="scrollbar_custom relative mx-auto mb-[85px] mt-[58px] w-[65%] cursor-pointer overflow-x-scroll"
             >
                 <div
                     className="absolute h-2 min-w-[1000px] bg-transparent"

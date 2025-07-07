@@ -12,21 +12,19 @@ import {
     BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 
-type BreadcrumbEntry = {
-    title: string
-    href?: string
-    className?: string
-}
-
-interface BreadcrumbsProps {
-    items: BreadcrumbEntry[]
+interface IBreadcrumbsProps {
+    items: {
+        title: string
+        href?: string
+        className?: string
+    }[]
     separator?: React.ReactNode
 }
 
-export default function BreadcrumbsDesktop({
+const BreadcrumbsDesktop: React.FC<IBreadcrumbsProps> = ({
     items,
     separator = <SlashIcon className="text20px_desktop" />,
-}: BreadcrumbsProps) {
+}) => {
     return (
         <Breadcrumb className="custom-grey">
             <BreadcrumbList>
@@ -54,3 +52,5 @@ export default function BreadcrumbsDesktop({
         </Breadcrumb>
     )
 }
+
+export default BreadcrumbsDesktop
