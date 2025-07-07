@@ -60,7 +60,7 @@ const buttonVariants = cva(
                 icon: 'size-10',
                 wide_desktop: '3xl:h-14 h-[4.25rem] px-[30px] 2xl:h-12',
                 wide_mobi:
-                    'sm_s:h-[2.3rem] sm_l:h-[2.85rem] sm_xl:h-12 h-[3.125rem] md:h-[5rem] rounded-[38px] sm:h-[2.375rem]',
+                    'sm_s:h-[50px] sm_l:h-[2.85rem] sm_xl:h-12 h-[3.125rem] md:h-[5rem] rounded-[38px] sm:h-[50px]',
                 circle_desktop: '3xl:h-14 3xl:p-[14px] aspect-square h-[4.25rem] p-[16px] 2xl:h-12 2xl:p-[12px]',
                 circle_mobi:
                     'sm_s:h-[2.3rem] sm_s:p-[10px] sm_l:h-[2.85rem] md:h-[5rem] sm_xl:h-12 aspect-square h-[3.125rem] p-[12px] sm:h-[2.375rem] sm:p-[10px]',
