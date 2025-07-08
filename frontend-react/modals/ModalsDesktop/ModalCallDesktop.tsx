@@ -51,11 +51,11 @@ const ModalCallDesktop = ({ onClose }: IModalContent) => {
         }
         if (!formData.name) {
             newErrors.name = true
-            newMessages.emptyFieldMessage = 'Введите обязательные поля'
+            newMessages.emptyFieldMessage = '*Заполните обязательные поля'
         }
         if (!formData.consent) {
             newErrors.consent = true
-            newMessages.emptyFieldMessage = 'Введите обязательные поля'
+            newMessages.emptyFieldMessage = '*Заполните обязательные поля'
         }
 
         setErrors(newErrors)
@@ -208,7 +208,7 @@ const ModalCallDesktop = ({ onClose }: IModalContent) => {
 
                                 {hasErrors ? (
                                     <p className="error-form-desktop-custom mb-3  mt-2">
-                                        {errorMessage.phoneMessage || errorMessage.emptyFieldMessage}
+                                        {errorMessage.emptyFieldMessage || errorMessage.phoneMessage}
                                     </p>
                                 ) : (
                                     <p className="mb-3 mt-2 text-2xl font-medium leading-[18px] text-[#353652]">

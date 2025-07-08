@@ -228,8 +228,8 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         labelClassName={`${formData.consent ? 'text-white' : 'text-[#878797]'} text-xs`}
                                     />
                                 </div>
-                                <p className="error-form-desktop-custom mb-2 ml-9 text-xs">
-                                    {hasErrors && (errorMessage.phoneMessage || errorMessage.emptyFieldMessage)}
+                                <p className="error-form-desktop-custom mb-2 ml-8 text-xs">
+                                    {hasErrors && (errorMessage.emptyFieldMessage || errorMessage.phoneMessage)}
                                 </p>
                                 <Button
                                     type="submit"
