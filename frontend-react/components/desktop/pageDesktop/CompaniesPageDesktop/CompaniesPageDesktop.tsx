@@ -1,4 +1,6 @@
+'use client'
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import CompaniesSelectDesktop from './components/CompaniesSelectDesktop'
 import CompaniesCardPageDesktop from './components/CompaniesCardPageDesktop'
 import CompaniesPaginationDesktop from './components/CompaniesPaginationDesktop'
@@ -7,14 +9,11 @@ import CompaniesSearchDesktop from './components/CompaniesSendDesktop'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
-import { useModal } from '@/context/ContextModal'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import { useAvailableCompanies } from '@/hooks/useAvalibleCompanies'
 
 const CompaniesPageDesktop: React.FC = () => {
-    const { openModal } = useModal()
-    const { companies, loading, error } = useAvailableCompanies()
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
@@ -82,64 +81,28 @@ const CompaniesPageDesktop: React.FC = () => {
                             {filteredCompanies
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (
-                                    <CompaniesCardPageDesktop
-                                        key={item.id}
-                                        image={item.imagePath}
-                                        industry={item.companyIndustry}
-                                        price={item.pricePerWeek}
-                                        // сейчас оставлена ссылку на модалку профессии, далее здесь будет ссылка на карточку компании
-                                        onClick={() => {
-                                            openModal('profession_modal_desktop', 'desktop', {
-                                                profession: item.name,
-                                                professionId: item.id,
-                                            })
-                                        }}
-                                        companyName={item.name}
-                                    />
+                                    <Link href={`/company`} key={item.id}>
+                                        <CompaniesCardPageDesktop
+                                            key={item.id}
+                                            image={item.image}
+                                            industry={item.industry}
+                                            price={item.price.toString()}
+                                            companyName={item.companyName}
+                                        />
+                                    </Link>
                                 ))}
                         </div>
                     ) : (
                         <p className="my-20 h-[150px] text-center text-4xl text-white">Ничего не найдено</p>
                     )}
-
                     {totalPages <= 1 && <div className="h-[80px]"></div>}
-
-                    {loading ? (
-                        <p className="my-20 text-center text-xl text-gray-300">Загрузка...</p>
-                    ) : error ? (
-                        <p className="my-20 text-center text-xl text-red-500">Ошибка загрузки компаний</p>
-                    ) : filteredCompanies.length > 0 ? (
-                        <div className="max-w-[calc(4*340px+3*45px)]justify-items-center grid grid-cols-4 gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
-                            {filteredCompanies
-                                .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
-                                .map((item) => (
-                                    <CompaniesCardPageDesktop
-                                        key={item.id}
-                                        image={item.imagePath}
-                                        industry={item.companyIndustry}
-                                        price={'0'} // Если нужно, добавь поле или логику
-                                        onClick={() => {
-                                            openModal('profession_modal_desktop', 'desktop', {
-                                                profession: item.name,
-                                                professionId: item.id,
-                                            })
-                                        }}
-                                        companyName={item.name}
-                                    />
-                                ))}
-                        </div>
-                    ) : (
-                        <p className="my-20 h-[150px] text-center text-4xl text-white">Ничего не найдено</p>
-                    )}
-
-                    {totalPages > 1 && filteredCompanies.length > 0 && (
+                    {totalPages > 1 && filteredContent.length > 0 && (
                         <CompaniesPaginationDesktop
                             totalPages={totalPages}
                             currentPage={currentPage}
                             onPageChange={handlePageChange}
                         />
                     )}
-
                     <CompaniesSearchDesktop />
                 </div>
             </main>

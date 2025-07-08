@@ -163,11 +163,13 @@ _Примечание: в папке **ui** размещены общие пер
 
 ```
 /components
-/desktop
-/pageDesktop
-    /HeaderDesktop - HeaderDesktop.tsx
-    /ItemHeaderDesktop - HeaderNavigationDesktop.tsx
-        /data - content.tsx
+    /desktop
+        /pageDesktop
+            /HeaderDesktop - HeaderDesktop.tsx
+                /components
+                    /ItemCardHeaderDesktop - ItemCardHeaderDesktop.tsx
+                    /HeaderNavigationDesktop - HeaderNavigationDesktop.tsx
+                /contentHeaderDesktop - content.tsx
 
 ```
 
