@@ -86,7 +86,7 @@ const CompaniesPageDesktop: React.FC = () => {
                                         key={item.id}
                                         image={item.imagePath}
                                         industry={item.companyIndustry}
-                                        // price={item.price.toString()}
+                                        price={item.pricePerWeek}
                                         // сейчас оставлена ссылку на модалку профессии, далее здесь будет ссылка на карточку компании
                                         onClick={() => {
                                             openModal('profession_modal_desktop', 'desktop', {
