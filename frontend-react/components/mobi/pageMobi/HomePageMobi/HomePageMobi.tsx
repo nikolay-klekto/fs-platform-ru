@@ -19,7 +19,6 @@ const HomePageMobi: React.FC = () => {
                 <ProfessionsSectionMobi />
                 <PromoMobi />
                 <EventsSectionMobi />
-                <ModalCookieMobi />
             </div>
             <FooterMobi />
         </>
