@@ -20,12 +20,12 @@ const EventsPageDesktop: React.FC = () => {
         to: null,
     })
 
-    useEffect(() => {
-        const parseDate = (dateStr: string): Date => {
-            const [day, month, year] = dateStr.split('.').map(Number)
-            return new Date(year, month - 1, day)
-        }
+    const parseDate = (dateStr: string): Date => {
+        const [day, month, year] = dateStr.split('.').map(Number)
+        return new Date(year, month - 1, day)
+    }
 
+    useEffect(() => {
         const from = dates.from
         const to = dates.to
 
