@@ -6,6 +6,7 @@ import HowWeWorkMobi from './components/HowWeWorkMobi/HowWeWorkMobi'
 import PromoMobi from './components/PromoMobi/PromoMobi'
 import EventsSectionMobi from './components/EventsSectionMobi/EventsSectionMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
+import ModalCookieMobi from '../../../../modals/ModalsMobi/ModalCookieMobi'
 
 const HomePageMobi: React.FC = () => {
     return (
@@ -18,6 +19,7 @@ const HomePageMobi: React.FC = () => {
                 <ProfessionsSectionMobi />
                 <PromoMobi />
                 <EventsSectionMobi />
+                <ModalCookieMobi />
             </div>
             <FooterMobi />
         </>
