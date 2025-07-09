@@ -10,7 +10,7 @@ const HeaderMainMobi: React.FC = () => {
         <>
             <div className="p-[15px] md:p-0">
                 <div
-                    className="sm_l:justify-between sm_xl:h-[600px] mx-auto flex h-[540px] w-full flex-col justify-between rounded-b-[40px] p-2 pb-[40px] md:h-[688px] md:rounded-b-none md:p-[18px_9px_100px_9px]"
+                    className="sm_l:justify-between sm_xl:h-[600px] mx-auto flex h-[540px] w-full flex-col justify-between rounded-b-[40px] p-0.5 pb-[40px] md:h-[688px] md:rounded-b-none md:p-[18px_9px_100px_9px]"
                     style={{
                         backgroundImage:
                             "linear-gradient(180deg, #0e0e28 0%, #10102ef4 21%, #14143ab0 53%, #211f5e 100%), url('/background/bgMobi.jpg')",
