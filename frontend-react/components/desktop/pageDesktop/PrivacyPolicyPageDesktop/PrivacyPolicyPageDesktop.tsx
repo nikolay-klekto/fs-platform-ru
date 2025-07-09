@@ -13,7 +13,7 @@ const PrivasyPolisyPageDesktop: React.FC = () => {
             <HeaderDesktop />
             <div className="bg-[#101030] text-white">
                 <div className="container relative overflow-hidden p-[83px_68px_240px_60px]">
-                    <h2 className=" mb-[74px] text46px_desktop text-center font-medium  text-white ">
+                    <h2 className="title46px_desktop mb-[74px] text-center font-medium  text-white ">
                         ПОЛИТИКА ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ
                     </h2>
 
@@ -68,14 +68,14 @@ const PrivasyPolisyPageDesktop: React.FC = () => {
                         <p className="text24px_desktop 4xl:!text-[24px] text-[#B3B3BD]">
                             Обработка Ваших данных прекращается:
                         </p>
-                        <ul className="text24px_desktop 4xl:!text-[24px] text-[#B3B3BD] list-disc pl-[30px]">
+                        <ul className="text24px_desktop 4xl:!text-[24px] list-disc pl-[30px] text-[#B3B3BD]">
                             <li>Когда мы достигли целей, для которых обрабатывали Ваши персональные данные;</li>
                             <li>Когда срок обработки Ваших персональных данных истек;</li>
                             <li>Когда Вы сделали запрос на отзыв Вашего согласия на обработку персональных данных;</li>
                             <li>Когда обработка Ваших персональных данных являлась неправомерной.</li>
                         </ul>
                         <h3 className={h3StylesMb15}>5. НАША ПОЛИТИКА В ОТНОШЕНИИ ФАЙЛОВ COOKIE</h3>
-                        <p className="text24px_desktop 4xl:!text-[24px] text-[#B3B3BD] whitespace-pre-line">
+                        <p className="text24px_desktop 4xl:!text-[24px] whitespace-pre-line text-[#B3B3BD]">
                             {
                                 'Для того, чтобы улучшить работу Сайта и сделать более удобным для пользования Вами, Мы можем использовать файлы cookie. \nCookie – это небольшие текстовые файлы, сохраняемые на Сайте в Вашем браузере. Подробнее о том, что такое cookie и какими они бывают можно ознакомиться по ссылке:'
                             }{' '}
@@ -88,7 +88,7 @@ const PrivasyPolisyPageDesktop: React.FC = () => {
                                 https://cookieinformation.com/what-is-a-cookie/
                             </a>
                         </p>
-                        <p className="text24px_desktop 4xl:!text-[24px] text-[#B3B3BD] whitespace-pre-line">
+                        <p className="text24px_desktop 4xl:!text-[24px] whitespace-pre-line text-[#B3B3BD]">
                             {
                                 'Мы не передаем куки третьим лицам и не используем их для Вашей идентификации.\nНами используются следующие типы файлов cookie:'
                             }
@@ -116,7 +116,7 @@ const PrivasyPolisyPageDesktop: React.FC = () => {
                         <p className="text24px_desktop 4xl:!text-[24px] text-[#B3B3BD]">
                             В некоторых случаях Мы можем передавать Ваши персональные данные третьим лицам:
                         </p>
-                        <ol className="text24px_desktop 4xl:!text-[24px] text-[#B3B3BD] list-decimal list-inside">
+                        <ol className="text24px_desktop 4xl:!text-[24px] list-inside list-decimal text-[#B3B3BD]">
                             <li>
                                 Для реализации договорных обязательств, которые возникли вследствие заключенного
                                 договора с Вами.

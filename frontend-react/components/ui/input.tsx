@@ -19,9 +19,9 @@ const inputVariants = cva(
                 contacts_page_error_desktop:
                     'border-2 border-[#bc8070] bg-transparent text-5xl ring-offset-transparent placeholder:font-medium focus:border-[3px] focus:ring-transparent',
                 contacts_page_mobi:
-                    'border-[1.18px] border-[#878797] bg-transparent ring-offset-transparent placeholder:font-medium focus:border-[1.18px] focus:border-white focus:border-1.1 focus:bg-[#1f203f] focus:ring-transparent ',
+                    'focus:border-1.1 border-[1.18px] border-[#878797] bg-transparent ring-offset-transparent placeholder:font-medium focus:border-[1.18px] focus:border-white focus:bg-[#1f203f] focus:ring-transparent ',
                 contacts_page_error_mobi:
-                    'border-[1.18px] border-[#bc8070] bg-[#1f203f] ring-offset-transparent placeholder:font-medium focus:border-1.1 focus:border-white focus:ring-transparent',
+                    'focus:border-1.1 border-[1.18px] border-[#bc8070] bg-[#1f203f] ring-offset-transparent placeholder:font-medium focus:border-white focus:ring-transparent',
                 events_date_desktop: 'h-[22px] border-none bg-transparent placeholder-gray-500 outline-none',
             },
             size: {
