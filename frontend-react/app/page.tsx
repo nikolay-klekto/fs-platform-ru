@@ -8,20 +8,21 @@ import { useModal } from '@/context/ContextModal'
 export default function Home() {
     const [isClient, setIsClient] = useState(false)
     const { openModal } = useModal()
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1240px)',
+    })
 
     useEffect(() => {
         setIsClient(true)
 
         const hasSeenCookies = localStorage.getItem('hasSeenCookies')
         if (!hasSeenCookies) {
-            openModal('cookie_desktop', 'desktop')
+            const modalKey = isDesktop ? 'cookie_desktop' : 'cookie_mobi'
+            const modalType = isDesktop ? 'desktop' : 'mobi'
+            openModal(modalKey, modalType)
             localStorage.setItem('hasSeenCookies', 'true')
         }
-    }, [openModal])
-
-    const isDesktop = useMediaQuery({
-        query: '(min-width: 1240px)',
-    })
+    }, [openModal, isDesktop])
 
     if (!isClient) {
         return null
