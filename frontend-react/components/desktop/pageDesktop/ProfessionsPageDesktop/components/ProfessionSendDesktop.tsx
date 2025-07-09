@@ -1,12 +1,19 @@
+'use client'
+
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
+import { useModal } from '@/context/ContextModal'
 
 const ProfessionSendDesktop: React.FC = () => {
     const [isFocused, setIsFocused] = useState(false)
     const [useRequest, setUseRequest] = useState('')
+    const { openModal } = useModal()
 
     const handleSendRequest = () => {
+        if (useRequest !== '') {
+            openModal('profession_notify_desktop', 'desktop')
+        }
         setUseRequest('')
     }
     return (
