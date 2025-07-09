@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
-import { useAvailableCompanies } from '@/hooks/useAvalibleCompanies'
+import { useAvailableCompanies } from '@/hooks/useAvailibleCompanies'
 
 const CompaniesPageDesktop: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('')

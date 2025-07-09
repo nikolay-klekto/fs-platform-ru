@@ -3,12 +3,12 @@ import { useQuery, gql } from '@apollo/client'
 
 interface RawProfession {
   id: string
-		description: string
-		name: string
-		clientsNumber: string
-		professionIndustry: string
-		pricePerWeek: string
-}
+  description: string
+	name: string
+	clientsNumber: string
+	professionIndustry: string
+	pricePerWeek: string
+  }
 
 interface Profession extends RawProfession {
   imagePath: string
@@ -18,11 +18,11 @@ interface ProfessionsQueryResponse {
   getAllExistingProfessions: RawProfession[]
 }
 
-const GET_ALL_AVAILABLE_PROFESSIONS = gql`
-  query getAllExistingProfessions {
+const GET_ALL_EXISTING_PROFESSIONS= gql`
+  query getCardsAllExistingProfessions {
     getAllExistingProfessions {
-      id
-		description
+    id
+  	description
 		name
 		clientsNumber
 		professionIndustry
@@ -31,18 +31,18 @@ const GET_ALL_AVAILABLE_PROFESSIONS = gql`
   }
 `
 
-export function useAvailableProfessions() {
+export function useExistingProfessions() {
   const { data, loading, error, refetch } = useQuery<ProfessionsQueryResponse>(
-    GET_ALL_AVAILABLE_PROFESSIONS,
+    GET_ALL_EXISTING_PROFESSIONS,
     {
       fetchPolicy: 'cache-and-network',
     }
   )
 
   const professions: Profession[] =
-    data?.getAllExistingProfessions.map((profession) => ({
-      ...profession,
-      imagePath: `http://45.135.234.61:8183/professions/facade/${profession.id}.jpg`,
+     data?.getAllExistingProfessions.map((profession) => ({
+    ...profession,
+    imagePath: `/api/photo/professions/${profession.id}.webp`,
     })) ?? []
 
   return {

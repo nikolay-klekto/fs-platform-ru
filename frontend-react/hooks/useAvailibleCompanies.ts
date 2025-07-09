@@ -51,7 +51,7 @@ export function useAvailableCompanies() {
   const companies: Company[] =
     data?.getAllAvailableCompanies.map((company) => ({
       ...company,
-      imagePath: `/api/photo/companies/facade/${imageMap[company.name] }`, 
+      imagePath: `/api/photo/companies/facade/${imageMap[company.name] }`,    
     })) ?? []
 
   return {

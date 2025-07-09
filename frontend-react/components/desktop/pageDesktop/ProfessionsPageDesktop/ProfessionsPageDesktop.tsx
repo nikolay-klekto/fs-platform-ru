@@ -8,10 +8,10 @@ import ProfessionSearchDesktop from './components/ProfessionSendDesktop'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
-import { useModal } from '@/context/ContextModal'
+// import { useModal } from '@/context/ContextModal'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
-import { useAvailableProfessions } from '@/hooks/useAvailibleProfessions'
+import { useExistingProfessions } from '@/hooks/useExistingProfessions'
 
 const ProfessionsPageDesktop: React.FC = () => {
     // const { openModal } = useModal()
@@ -20,8 +20,7 @@ const ProfessionsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [selectedInternshipTypes, setselectedIntenshipTypes] = useState<string[]>([])
-    const { professions } = useAvailableProfessions()
-
+    const { professions } = useExistingProfessions()
     const cardsPerPage = 12
 
     const filteredContent = professions.filter((item) => {
@@ -94,15 +93,9 @@ const ProfessionsPageDesktop: React.FC = () => {
                                 .map((item) => (
                                     <ProfessionCardPageDesktop
                                         key={item.id}
-                                        // image={item.image}
+                                        image={item.imagePath}
                                         profession={item.name}
                                         price={item.pricePerWeek}
-                                        // onClick={() => {
-                                        //     openModal('profession_modal_desktop', 'desktop', {
-                                        //         profession: item.profession,
-                                        //         professionId: item.id,
-                                        //     })
-                                        // }}
                                         category={item.professionIndustry}
                                     />
                                 ))}
