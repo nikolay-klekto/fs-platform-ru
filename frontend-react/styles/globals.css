@@ -80,7 +80,8 @@
         background-origin: border-box;
         background-clip: padding-box, border-box;
     }
-    .button-border-desktop:hover {
+    .button-border-desktop:hover,
+    .button-border-desktop.is-open {
         background-image: linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8),
             linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
     }
@@ -91,6 +92,7 @@
         background-image: linear-gradient(#312563, #28295b), linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
         background-origin: border-box;
         background-clip: padding-box, border-box;
+        transition: all 0.3s ease;
     }
     .border-selected {
         position: relative;
