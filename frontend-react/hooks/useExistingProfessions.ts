@@ -1,7 +1,7 @@
 'use client'
 import { useQuery, gql } from '@apollo/client'
 
-interface RawProfession {
+interface IRawProfession {
   id: string
   description: string
 	name: string
@@ -10,12 +10,12 @@ interface RawProfession {
 	pricePerWeek: string
   }
 
-interface Profession extends RawProfession {
+interface IProfession extends IRawProfession {
   imagePath: string
 }
 
 interface ProfessionsQueryResponse {
-  getAllExistingProfessions: RawProfession[]
+  getAllExistingProfessions: IRawProfession[]
 }
 
 const GET_ALL_EXISTING_PROFESSIONS= gql`
@@ -39,7 +39,7 @@ export function useExistingProfessions() {
     }
   )
 
-  const professions: Profession[] =
+  const professions: IProfession[] =
      data?.getAllExistingProfessions.map((profession) => ({
     ...profession,
     imagePath: `/api/photo/professions/${profession.id}.webp`,

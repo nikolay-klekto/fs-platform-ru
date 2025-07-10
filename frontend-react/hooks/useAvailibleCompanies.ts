@@ -1,7 +1,7 @@
 'use client'
 import { useQuery, gql } from '@apollo/client'
 
-interface RawCompany {
+interface IRawCompany {
   id: string
   companyIndustry: string
   name: string
@@ -11,7 +11,7 @@ interface RawCompany {
   pricePerWeek:string
 }
 
-interface Company extends RawCompany {
+interface ICompany extends IRawCompany {
   imagePath: string
 }
 
@@ -23,7 +23,7 @@ const imageMap: Record<string, string> = {
 
 
 interface CompaniesQueryResponse {
-  getAllAvailableCompanies: RawCompany[]
+  getAllAvailableCompanies: IRawCompany[]
 }
 
 const GET_ALL_AVAILABLE_COMPANIES = gql`
@@ -48,7 +48,7 @@ export function useAvailableCompanies() {
     }
   )
 
-  const companies: Company[] =
+  const companies: ICompany[] =
     data?.getAllAvailableCompanies.map((company) => ({
       ...company,
       imagePath: `/api/photo/companies/facade/${imageMap[company.name] }`,    
