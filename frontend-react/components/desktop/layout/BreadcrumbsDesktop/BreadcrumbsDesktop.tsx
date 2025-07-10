@@ -12,36 +12,38 @@ import {
     BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 
-interface IBreadcrumbsProps {
+interface IBreadcrumbs {
     items: {
         title: string
         href?: string
         className?: string
+        isLink?: boolean // Опциональный флаг для ручного управления
     }[]
     separator?: React.ReactNode
 }
 
-const BreadcrumbsDesktop: React.FC<IBreadcrumbsProps> = ({
+const BreadcrumbsDesktop: React.FC<IBreadcrumbs> = ({
     items,
     separator = <SlashIcon className="text20px_desktop" />,
 }) => {
     return (
-        <Breadcrumb className="custom-grey">
+        <Breadcrumb aria-label="Breadcrumb" className="custom-grey">
             <BreadcrumbList>
                 {items.map((item, index) => {
                     const isLast = index === items.length - 1
+                    const isLink = item.isLink ?? !isLast
 
                     return (
-                        <React.Fragment key={index}>
+                        <React.Fragment key={item.title}>
                             <BreadcrumbItem>
-                                {isLast ? (
+                                {isLink && item.href ? (
+                                    <BreadcrumbLink asChild className={item.className}>
+                                        <Link href={item.href}>{item.title}</Link>
+                                    </BreadcrumbLink>
+                                ) : (
                                     <BreadcrumbPage className={cn('text-white', item.className)}>
                                         {item.title}
                                     </BreadcrumbPage>
-                                ) : (
-                                    <BreadcrumbLink asChild className={item.className}>
-                                        <Link href={item.href ?? '#'}>{item.title}</Link>
-                                    </BreadcrumbLink>
                                 )}
                             </BreadcrumbItem>
                             {!isLast && <BreadcrumbSeparator>{separator}</BreadcrumbSeparator>}

@@ -21,7 +21,7 @@ const CompanyPageDesktop: React.FC = () => {
                             items={[
                                 { title: 'Главная', href: '/', className: 'hover:underline' },
                                 { title: 'Компании', href: '/companies', className: 'hover:underline' },
-                                { title: 'Компания EPAM', className: 'text-white hover:underline' }, // Последняя без ссылки
+                                { title: 'Компания EPAM', className: 'text-white hover:no-underline' },
                             ]}
                         />
                     </div>
