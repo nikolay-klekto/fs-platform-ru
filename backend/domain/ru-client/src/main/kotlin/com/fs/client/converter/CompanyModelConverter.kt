@@ -14,7 +14,9 @@ class CompanyModelConverter : ModelConverter<Company, CompanyModel> {
             legalCapacityStatus = rawObject.legalCapacityStatus,
             name = rawObject.name,
             site = rawObject.site,
-            shortDescription = rawObject.shortDescription
+            shortDescription = rawObject.shortDescription,
+            workTime = rawObject.workTime,
+            pricePerWeek = null
         )
     }
 
@@ -25,7 +27,8 @@ class CompanyModelConverter : ModelConverter<Company, CompanyModel> {
             modelObject.legalCapacityStatus,
             modelObject.name,
             modelObject.site,
-            modelObject.shortDescription
+            modelObject.shortDescription,
+            modelObject.workTime
         )
     }
 }

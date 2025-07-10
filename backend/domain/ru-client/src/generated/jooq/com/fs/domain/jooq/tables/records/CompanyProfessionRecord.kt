@@ -19,23 +19,23 @@ import org.jooq.impl.UpdatableRecordImpl
 @Suppress("UNCHECKED_CAST")
 open class CompanyProfessionRecord() : UpdatableRecordImpl<CompanyProfessionRecord>(CompanyProfession.COMPANY_PROFESSION), Record5<Long?, Long?, Long?, Double?, Long?> {
 
-    var id: Long?
+    open var id: Long?
         set(value): Unit = set(0, value)
         get(): Long? = get(0) as Long?
 
-    var companyId: Long?
+    open var companyId: Long?
         set(value): Unit = set(1, value)
         get(): Long? = get(1) as Long?
 
-    var internshipTypeId: Long?
+    open var internshipTypeId: Long?
         set(value): Unit = set(2, value)
         get(): Long? = get(2) as Long?
 
-    var pricePerDay: Double?
+    open var pricePerDay: Double?
         set(value): Unit = set(3, value)
         get(): Double? = get(3) as Double?
 
-    var professionId: Long?
+    open var professionId: Long?
         set(value): Unit = set(4, value)
         get(): Long? = get(4) as Long?
 

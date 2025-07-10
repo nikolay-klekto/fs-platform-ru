@@ -9,13 +9,16 @@ import com.fs.domain.jooq.keys.DATABASECHANGELOGLOCK_PKEY
 import com.fs.domain.jooq.tables.records.DatabasechangeloglockRecord
 
 import java.time.LocalDateTime
+import java.util.function.Function
 
 import org.jooq.Field
 import org.jooq.ForeignKey
 import org.jooq.Name
 import org.jooq.Record
+import org.jooq.Records
 import org.jooq.Row4
 import org.jooq.Schema
+import org.jooq.SelectField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
@@ -104,6 +107,7 @@ open class Databasechangeloglock(
     override fun getPrimaryKey(): UniqueKey<DatabasechangeloglockRecord> = DATABASECHANGELOGLOCK_PKEY
     override fun `as`(alias: String): Databasechangeloglock = Databasechangeloglock(DSL.name(alias), this)
     override fun `as`(alias: Name): Databasechangeloglock = Databasechangeloglock(alias, this)
+    override fun `as`(alias: Table<*>): Databasechangeloglock = Databasechangeloglock(alias.getQualifiedName(), this)
 
     /**
      * Rename this table
@@ -115,8 +119,24 @@ open class Databasechangeloglock(
      */
     override fun rename(name: Name): Databasechangeloglock = Databasechangeloglock(name, null)
 
+    /**
+     * Rename this table
+     */
+    override fun rename(name: Table<*>): Databasechangeloglock = Databasechangeloglock(name.getQualifiedName(), null)
+
     // -------------------------------------------------------------------------
     // Row4 type methods
     // -------------------------------------------------------------------------
     override fun fieldsRow(): Row4<Int?, Boolean?, LocalDateTime?, String?> = super.fieldsRow() as Row4<Int?, Boolean?, LocalDateTime?, String?>
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     */
+    fun <U> mapping(from: (Int?, Boolean?, LocalDateTime?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Class,
+     * Function)}.
+     */
+    fun <U> mapping(toType: Class<U>, from: (Int?, Boolean?, LocalDateTime?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

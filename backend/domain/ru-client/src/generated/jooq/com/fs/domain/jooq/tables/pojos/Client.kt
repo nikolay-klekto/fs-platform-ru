@@ -18,7 +18,6 @@ import java.time.LocalDateTime
  */
 @Suppress("UNCHECKED_CAST")
 data class Client(
-    var id: Long? = null,
     var basketId: Long? = null,
     var cityId: Long? = null,
     var activateStatus: Boolean? = null,
@@ -33,16 +32,16 @@ data class Client(
     var phoneNumber: String? = null,
     var role: ClientRoleModel? = null,
     var telegramUsername: String? = null,
-    var username: String? = null,
-    var salt: String? = null
+    var salt: String? = null,
+    var id: String? = null,
+    var username: String? = null
 ): Serializable {
 
 
     override fun toString(): String {
         val sb = StringBuilder("Client (")
 
-        sb.append(id)
-        sb.append(", ").append(basketId)
+        sb.append(basketId)
         sb.append(", ").append(cityId)
         sb.append(", ").append(activateStatus)
         sb.append(", ").append(birthday)
@@ -56,8 +55,9 @@ data class Client(
         sb.append(", ").append(phoneNumber)
         sb.append(", ").append(role)
         sb.append(", ").append(telegramUsername)
-        sb.append(", ").append(username)
         sb.append(", ").append(salt)
+        sb.append(", ").append(id)
+        sb.append(", ").append(username)
 
         sb.append(")")
         return sb.toString()

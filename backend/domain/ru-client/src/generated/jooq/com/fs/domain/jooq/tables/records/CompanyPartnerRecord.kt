@@ -18,11 +18,11 @@ import org.jooq.impl.UpdatableRecordImpl
 @Suppress("UNCHECKED_CAST")
 open class CompanyPartnerRecord() : UpdatableRecordImpl<CompanyPartnerRecord>(CompanyPartner.COMPANY_PARTNER), Record2<Long?, Long?> {
 
-    var companyId: Long?
+    open var companyId: Long?
         set(value): Unit = set(0, value)
         get(): Long? = get(0) as Long?
 
-    var partnerId: Long?
+    open var partnerId: Long?
         set(value): Unit = set(1, value)
         get(): Long? = get(1) as Long?
 

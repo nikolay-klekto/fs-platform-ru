@@ -8,13 +8,17 @@ import com.fs.domain.jooq.Public
 import com.fs.domain.jooq.keys.INTERNSHIP_TYPE_PKEY
 import com.fs.domain.jooq.tables.records.InternshipTypeRecord
 
+import java.util.function.Function
+
 import org.jooq.Field
 import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
+import org.jooq.Records
 import org.jooq.Row3
 import org.jooq.Schema
+import org.jooq.SelectField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
@@ -97,6 +101,7 @@ open class InternshipType(
     override fun getPrimaryKey(): UniqueKey<InternshipTypeRecord> = INTERNSHIP_TYPE_PKEY
     override fun `as`(alias: String): InternshipType = InternshipType(DSL.name(alias), this)
     override fun `as`(alias: Name): InternshipType = InternshipType(alias, this)
+    override fun `as`(alias: Table<*>): InternshipType = InternshipType(alias.getQualifiedName(), this)
 
     /**
      * Rename this table
@@ -108,8 +113,24 @@ open class InternshipType(
      */
     override fun rename(name: Name): InternshipType = InternshipType(name, null)
 
+    /**
+     * Rename this table
+     */
+    override fun rename(name: Table<*>): InternshipType = InternshipType(name.getQualifiedName(), null)
+
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
     override fun fieldsRow(): Row3<Long?, String?, String?> = super.fieldsRow() as Row3<Long?, String?, String?>
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     */
+    fun <U> mapping(from: (Long?, String?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Class,
+     * Function)}.
+     */
+    fun <U> mapping(toType: Class<U>, from: (Long?, String?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

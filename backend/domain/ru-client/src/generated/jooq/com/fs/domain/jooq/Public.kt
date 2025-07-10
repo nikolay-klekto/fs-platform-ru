@@ -8,17 +8,24 @@ import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client
+import com.fs.domain.jooq.tables.ClientsLetters
+import com.fs.domain.jooq.tables.ClientsRefreshTokens
+import com.fs.domain.jooq.tables.ClientsResetPasswords
 import com.fs.domain.jooq.tables.Company
 import com.fs.domain.jooq.tables.CompanyPartner
 import com.fs.domain.jooq.tables.CompanyProfession
+import com.fs.domain.jooq.tables.Constants
 import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.Databasechangeloglock
 import com.fs.domain.jooq.tables.Event
 import com.fs.domain.jooq.tables.InternshipType
+import com.fs.domain.jooq.tables.JobRequests
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.Order
+import com.fs.domain.jooq.tables.OrderDates
 import com.fs.domain.jooq.tables.Partner
 import com.fs.domain.jooq.tables.Profession
+import com.fs.domain.jooq.tables.ProfessionsCompaniesFeedback
 import com.fs.domain.jooq.tables.Review
 
 import kotlin.collections.List
@@ -62,6 +69,21 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     val CLIENT: Client get() = Client.CLIENT
 
     /**
+     * The table <code>public.clients_letters</code>.
+     */
+    val CLIENTS_LETTERS: ClientsLetters get() = ClientsLetters.CLIENTS_LETTERS
+
+    /**
+     * The table <code>public.clients_refresh_tokens</code>.
+     */
+    val CLIENTS_REFRESH_TOKENS: ClientsRefreshTokens get() = ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS
+
+    /**
+     * The table <code>public.clients_reset_passwords</code>.
+     */
+    val CLIENTS_RESET_PASSWORDS: ClientsResetPasswords get() = ClientsResetPasswords.CLIENTS_RESET_PASSWORDS
+
+    /**
      * The table <code>public.company</code>.
      */
     val COMPANY: Company get() = Company.COMPANY
@@ -75,6 +97,11 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
      * The table <code>public.company_profession</code>.
      */
     val COMPANY_PROFESSION: CompanyProfession get() = CompanyProfession.COMPANY_PROFESSION
+
+    /**
+     * The table <code>public.constants</code>.
+     */
+    val CONSTANTS: Constants get() = Constants.CONSTANTS
 
     /**
      * The table <code>public.country</code>.
@@ -97,6 +124,11 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     val INTERNSHIP_TYPE: InternshipType get() = InternshipType.INTERNSHIP_TYPE
 
     /**
+     * The table <code>public.job_requests</code>.
+     */
+    val JOB_REQUESTS: JobRequests get() = JobRequests.JOB_REQUESTS
+
+    /**
      * The table <code>public.office</code>.
      */
     val OFFICE: Office get() = Office.OFFICE
@@ -107,6 +139,11 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     val ORDER: Order get() = Order.ORDER
 
     /**
+     * The table <code>public.order_dates</code>.
+     */
+    val ORDER_DATES: OrderDates get() = OrderDates.ORDER_DATES
+
+    /**
      * The table <code>public.partner</code>.
      */
     val PARTNER: Partner get() = Partner.PARTNER
@@ -115,6 +152,11 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
      * The table <code>public.profession</code>.
      */
     val PROFESSION: Profession get() = Profession.PROFESSION
+
+    /**
+     * The table <code>public.professions_companies_feedback</code>.
+     */
+    val PROFESSIONS_COMPANIES_FEEDBACK: ProfessionsCompaniesFeedback get() = ProfessionsCompaniesFeedback.PROFESSIONS_COMPANIES_FEEDBACK
 
     /**
      * The table <code>public.review</code>.
@@ -128,17 +170,24 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
         Basket.BASKET,
         City.CITY,
         Client.CLIENT,
+        ClientsLetters.CLIENTS_LETTERS,
+        ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS,
+        ClientsResetPasswords.CLIENTS_RESET_PASSWORDS,
         Company.COMPANY,
         CompanyPartner.COMPANY_PARTNER,
         CompanyProfession.COMPANY_PROFESSION,
+        Constants.CONSTANTS,
         Country.COUNTRY,
         Databasechangeloglock.DATABASECHANGELOGLOCK,
         Event.EVENT,
         InternshipType.INTERNSHIP_TYPE,
+        JobRequests.JOB_REQUESTS,
         Office.OFFICE,
         Order.ORDER,
+        OrderDates.ORDER_DATES,
         Partner.PARTNER,
         Profession.PROFESSION,
+        ProfessionsCompaniesFeedback.PROFESSIONS_COMPANIES_FEEDBACK,
         Review.REVIEW
     )
 }

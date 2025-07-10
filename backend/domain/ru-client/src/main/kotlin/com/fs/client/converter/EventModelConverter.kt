@@ -9,8 +9,16 @@ import org.springframework.stereotype.Service
 
 
 @Service
+<<<<<<< HEAD
 class EventModelConverter : ModelConverter<Event, EventModel> {
     override fun toModel(rawObject: Event): EventModel {
+=======
+class EventModelConverter(
+    open val cityBlockingRepository: CityBlockingRepository,
+    open val eventBlockingRepository: EventBlockingRepository
+) {
+    suspend fun toModel(rawObject: Event): EventModel {
+>>>>>>> origin/main
         return EventModel(
             id = rawObject.id,
             addressId = rawObject.addressId,
@@ -25,7 +33,7 @@ class EventModelConverter : ModelConverter<Event, EventModel> {
         )
     }
 
-    override fun fromModel(modelObject: EventModel): Event {
+    suspend fun fromModel(modelObject: EventModel): Event {
         return Event(
             modelObject.id,
             modelObject.addressId,
@@ -44,10 +52,9 @@ class EventModelConverter : ModelConverter<Event, EventModel> {
         return AddressModel(
             addressId ?: defaultAddressModel.id,
             eventWithAddress.cityId,
-            eventWithAddress.apartment,
-            eventWithAddress.building,
+            eventWithAddress.street,
             eventWithAddress.house,
-            eventWithAddress.street
+            eventWithAddress.officeNumber
         )
     }
 
@@ -75,7 +82,7 @@ class EventModelConverter : ModelConverter<Event, EventModel> {
         private const val DEFAULT_EXPIRED_STATUS: Boolean = true
 
         public val defaultAddressModel =
-            AddressModel(1, null, null, null, null, null)
+            AddressModel(1, null, null, null, null)
 
         private val defaultEventModel = EventModel(
             id = 1,

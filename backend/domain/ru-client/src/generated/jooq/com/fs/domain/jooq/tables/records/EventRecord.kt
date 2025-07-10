@@ -21,11 +21,15 @@ import org.jooq.impl.UpdatableRecordImpl
 @Suppress("UNCHECKED_CAST")
 open class EventRecord() : UpdatableRecordImpl<EventRecord>(Event.EVENT), Record10<Long?, Long?, LocalDateTime?, String?, Boolean?, String?, String?, String?, String?, String?> {
 
-    var id: Long?
+    open var id: Long?
         set(value): Unit = set(0, value)
         get(): Long? = get(0) as Long?
 
+<<<<<<< HEAD
     var addressId: Long?
+=======
+    open var date: LocalDate?
+>>>>>>> origin/main
         set(value): Unit = set(1, value)
         get(): Long? = get(1) as Long?
 
@@ -33,15 +37,31 @@ open class EventRecord() : UpdatableRecordImpl<EventRecord>(Event.EVENT), Record
         set(value): Unit = set(2, value)
         get(): LocalDateTime? = get(2) as LocalDateTime?
 
+<<<<<<< HEAD
     var description: String?
         set(value): Unit = set(3, value)
         get(): String? = get(3) as String?
+=======
+    open var description: String?
+        set(value): Unit = set(2, value)
+        get(): String? = get(2) as String?
+>>>>>>> origin/main
 
+    @Suppress("INAPPLICABLE_JVM_NAME")
     @set:JvmName("setIsExpired")
+<<<<<<< HEAD
     var isExpired: Boolean?
+=======
+    open var isExpired: Boolean?
+        set(value): Unit = set(3, value)
+        get(): Boolean? = get(3) as Boolean?
+
+    open var name: String?
+>>>>>>> origin/main
         set(value): Unit = set(4, value)
         get(): Boolean? = get(4) as Boolean?
 
+<<<<<<< HEAD
     var mainGoal: String?
         set(value): Unit = set(5, value)
         get(): String? = get(5) as String?
@@ -51,9 +71,21 @@ open class EventRecord() : UpdatableRecordImpl<EventRecord>(Event.EVENT), Record
         get(): String? = get(6) as String?
 
     var phoneNumber: String?
+=======
+    open var publicPlaceName: String?
+        set(value): Unit = set(5, value)
+        get(): String? = get(5) as String?
+
+    open var site: String?
+        set(value): Unit = set(6, value)
+        get(): String? = get(6) as String?
+
+    open var cityId: Long?
+>>>>>>> origin/main
         set(value): Unit = set(7, value)
         get(): String? = get(7) as String?
 
+<<<<<<< HEAD
     var publicPlaceName: String?
         set(value): Unit = set(8, value)
         get(): String? = get(8) as String?
@@ -62,6 +94,24 @@ open class EventRecord() : UpdatableRecordImpl<EventRecord>(Event.EVENT), Record
         set(value): Unit = set(9, value)
         get(): String? = get(9) as String?
 
+=======
+    open var time: String?
+        set(value): Unit = set(8, value)
+        get(): String? = get(8) as String?
+
+    open var organizer: String?
+        set(value): Unit = set(9, value)
+        get(): String? = get(9) as String?
+
+    open var eventCategoryId: Long?
+        set(value): Unit = set(10, value)
+        get(): Long? = get(10) as Long?
+
+    open var price: BigDecimal?
+        set(value): Unit = set(11, value)
+        get(): BigDecimal? = get(11) as BigDecimal?
+
+>>>>>>> origin/main
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------

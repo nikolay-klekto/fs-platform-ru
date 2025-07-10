@@ -15,7 +15,8 @@ data class Profession(
     var id: Long? = null,
     var name: String? = null,
     var description: String? = null,
-    var clientsNumber: Int? = null
+    var clientsNumber: Int? = null,
+    var professionIndustry: String? = null
 ): Serializable {
 
 
@@ -26,6 +27,7 @@ data class Profession(
         sb.append(", ").append(name)
         sb.append(", ").append(description)
         sb.append(", ").append(clientsNumber)
+        sb.append(", ").append(professionIndustry)
 
         sb.append(")")
         return sb.toString()

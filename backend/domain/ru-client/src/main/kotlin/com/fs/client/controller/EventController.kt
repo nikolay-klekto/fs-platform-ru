@@ -10,6 +10,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+<<<<<<< HEAD
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
@@ -20,25 +21,54 @@ open class EventController(open val eventRepository: EventRepository) {
 
     @QueryMapping
     open fun getEvent(@Argument eventId: Long): Mono<EventModel> {
+=======
+import java.time.LocalDate
+
+@Tag(name = "Event")
+@RestController
+@RequestMapping("/events")
+class EventController(private val eventRepository: EventRepository) {
+
+    @QueryMapping
+    suspend fun getEvent(@Argument eventId: Long): Event? {
+>>>>>>> origin/main
         return eventRepository.getEventById(eventId)
     }
 
     @QueryMapping
+<<<<<<< HEAD
     open fun getAllEvents(): Flux<EventModel> {
+=======
+    suspend fun getAllEvents(): List<Event> {
+>>>>>>> origin/main
         return eventRepository.getAllEvents()
     }
 
     @QueryMapping
+<<<<<<< HEAD
     open fun getAllActualEvents(): Flux<EventModel> {
+=======
+    suspend fun getAllActualEvents(): List<Event> {
+>>>>>>> origin/main
         return eventRepository.getAllActualEvents()
     }
 
     @QueryMapping
+<<<<<<< HEAD
     open fun getFirstNActualEvents(@Argument eventQuantity: Long): Flux<EventModel> {
+=======
+    suspend fun getEventsAvailableCities(): List<CityModel> {
+        return eventRepository.getAllAvailableCities()
+    }
+
+    @QueryMapping
+    suspend fun getFirstNActualEvents(@Argument eventQuantity: Long): List<Event> {
+>>>>>>> origin/main
         return eventRepository.getFirstNActualEvents(eventQuantity)
     }
 
     @QueryMapping
+<<<<<<< HEAD
     open fun getAllActualEventsByCityId(@Argument cityId: Long): Flux<EventModel> {
         return eventRepository.getAllActualEventsByCityId(cityId)
     }
@@ -57,32 +87,68 @@ open class EventController(open val eventRepository: EventRepository) {
             .onErrorResume {
                 return@onErrorResume Mono.just(ErrorModel(null, it.message))
             }
+=======
+    suspend fun getAllActualEventsByCityId(@Argument cityId: Long): List<Event> {
+        return eventRepository.getAllActualEventsByCityId(cityId)
+    }
+
+    @QueryMapping
+    suspend fun getEventsByTimeRange(
+        @Argument from: LocalDate?,
+        @Argument to: LocalDate?
+    ): List<Event> {
+        return eventRepository.getEventsByTimeRange(from, to)
     }
 
     @MutationMapping
-    open fun updateExpiredEventsStatus(): Mono<Boolean> {
+    suspend fun addEvent(@Argument event: EventModel): ErrorModel<Long> {
+        return try {
+            eventRepository.insertEvent(event)
+        } catch (e: Exception) {
+            ErrorModel(null, e.message)
+        }
+>>>>>>> origin/main
+    }
+
+    @MutationMapping
+    suspend fun updateAllEvents(@Argument events: List<EventModel>): ErrorModel<Boolean> {
+        return try {
+            eventRepository.updateAllEventsModelsInfo(events)
+        } catch (e: Exception) {
+            ErrorModel(null, e.message)
+        }
+    }
+
+    @MutationMapping
+    suspend fun updateExpiredEventsStatus(): Boolean {
         return eventRepository.updateExpiredEventsStatus()
     }
 
     @MutationMapping
-    open fun deleteEvent(@Argument eventId: Long): Mono<Boolean> {
+    suspend fun deleteEvent(@Argument eventId: Long): Boolean {
         return eventRepository.deleteEvent(eventId)
     }
 
     @MutationMapping
-    open fun deleteAllEvents(): Mono<Boolean> {
+    suspend fun deleteAllEvents(): Boolean {
         return eventRepository.deleteAllEvents()
     }
 
     @MutationMapping
-    open fun deleteAllExpiredEvents(): Mono<Boolean> {
+    suspend fun deleteAllExpiredEvents(): Boolean {
         return eventRepository.deleteAllExpiredEvents()
     }
 
     @MutationMapping
-    open fun createGoogleCalendarEvent(
+    suspend fun createGoogleCalendarEvent(
         @Argument clientEmail: String,
+<<<<<<< HEAD
         @Argument event: EventModel): Mono<Boolean>{
         return eventRepository.createGoogleCalendarEvent(clientEmail, event)
+=======
+        @Argument eventId: Long
+    ): Boolean {
+        return eventRepository.createGoogleCalendarEvent(clientEmail, eventId)
+>>>>>>> origin/main
     }
 }

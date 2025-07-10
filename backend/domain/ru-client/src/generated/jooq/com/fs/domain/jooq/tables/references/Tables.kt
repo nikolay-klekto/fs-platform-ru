@@ -8,17 +8,24 @@ import com.fs.domain.jooq.tables.Address
 import com.fs.domain.jooq.tables.Basket
 import com.fs.domain.jooq.tables.City
 import com.fs.domain.jooq.tables.Client
+import com.fs.domain.jooq.tables.ClientsLetters
+import com.fs.domain.jooq.tables.ClientsRefreshTokens
+import com.fs.domain.jooq.tables.ClientsResetPasswords
 import com.fs.domain.jooq.tables.Company
 import com.fs.domain.jooq.tables.CompanyPartner
 import com.fs.domain.jooq.tables.CompanyProfession
+import com.fs.domain.jooq.tables.Constants
 import com.fs.domain.jooq.tables.Country
 import com.fs.domain.jooq.tables.Databasechangeloglock
 import com.fs.domain.jooq.tables.Event
 import com.fs.domain.jooq.tables.InternshipType
+import com.fs.domain.jooq.tables.JobRequests
 import com.fs.domain.jooq.tables.Office
 import com.fs.domain.jooq.tables.Order
+import com.fs.domain.jooq.tables.OrderDates
 import com.fs.domain.jooq.tables.Partner
 import com.fs.domain.jooq.tables.Profession
+import com.fs.domain.jooq.tables.ProfessionsCompaniesFeedback
 import com.fs.domain.jooq.tables.Review
 
 
@@ -44,6 +51,21 @@ val CITY: City = City.CITY
 val CLIENT: Client = Client.CLIENT
 
 /**
+ * The table <code>public.clients_letters</code>.
+ */
+val CLIENTS_LETTERS: ClientsLetters = ClientsLetters.CLIENTS_LETTERS
+
+/**
+ * The table <code>public.clients_refresh_tokens</code>.
+ */
+val CLIENTS_REFRESH_TOKENS: ClientsRefreshTokens = ClientsRefreshTokens.CLIENTS_REFRESH_TOKENS
+
+/**
+ * The table <code>public.clients_reset_passwords</code>.
+ */
+val CLIENTS_RESET_PASSWORDS: ClientsResetPasswords = ClientsResetPasswords.CLIENTS_RESET_PASSWORDS
+
+/**
  * The table <code>public.company</code>.
  */
 val COMPANY: Company = Company.COMPANY
@@ -57,6 +79,11 @@ val COMPANY_PARTNER: CompanyPartner = CompanyPartner.COMPANY_PARTNER
  * The table <code>public.company_profession</code>.
  */
 val COMPANY_PROFESSION: CompanyProfession = CompanyProfession.COMPANY_PROFESSION
+
+/**
+ * The table <code>public.constants</code>.
+ */
+val CONSTANTS: Constants = Constants.CONSTANTS
 
 /**
  * The table <code>public.country</code>.
@@ -79,6 +106,11 @@ val EVENT: Event = Event.EVENT
 val INTERNSHIP_TYPE: InternshipType = InternshipType.INTERNSHIP_TYPE
 
 /**
+ * The table <code>public.job_requests</code>.
+ */
+val JOB_REQUESTS: JobRequests = JobRequests.JOB_REQUESTS
+
+/**
  * The table <code>public.office</code>.
  */
 val OFFICE: Office = Office.OFFICE
@@ -89,6 +121,11 @@ val OFFICE: Office = Office.OFFICE
 val ORDER: Order = Order.ORDER
 
 /**
+ * The table <code>public.order_dates</code>.
+ */
+val ORDER_DATES: OrderDates = OrderDates.ORDER_DATES
+
+/**
  * The table <code>public.partner</code>.
  */
 val PARTNER: Partner = Partner.PARTNER
@@ -97,6 +134,11 @@ val PARTNER: Partner = Partner.PARTNER
  * The table <code>public.profession</code>.
  */
 val PROFESSION: Profession = Profession.PROFESSION
+
+/**
+ * The table <code>public.professions_companies_feedback</code>.
+ */
+val PROFESSIONS_COMPANIES_FEEDBACK: ProfessionsCompaniesFeedback = ProfessionsCompaniesFeedback.PROFESSIONS_COMPANIES_FEEDBACK
 
 /**
  * The table <code>public.review</code>.

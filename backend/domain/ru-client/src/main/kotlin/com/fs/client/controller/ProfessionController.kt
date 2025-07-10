@@ -1,6 +1,7 @@
 package com.fs.client.controller
 
 import com.fs.client.repository.ProfessionRepository
+import com.fs.domain.jooq.tables.pojos.CompanyProfession
 import com.fs.service.ru.CompanyProfessionModel
 import com.fs.service.ru.ProfessionModel
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -10,69 +11,87 @@ import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 
-@Tag(name = "Position")
+@Tag(name = "Profession")
 @RestController
-@RequestMapping("/position", produces = ["application/json"])
-open class ProfessionController(
-    open val professionRepository: ProfessionRepository
+@RequestMapping("/profession", produces = ["application/json"])
+class ProfessionController(
+    private val professionRepository: ProfessionRepository
 ) {
 
     @QueryMapping
-    open fun getProfessionById(@Argument id: Long): Mono<ProfessionModel> {
+    suspend fun getProfessionById(@Argument id: Long): ProfessionModel? {
         return professionRepository.getProfessionById(id)
     }
 
     @QueryMapping
-    open fun getNMostPopularProfessions(@Argument quantity: Int): Flux<ProfessionModel> {
+    suspend fun getNMostPopularProfessions(@Argument quantity: Int): List<ProfessionModel> {
         return professionRepository.getNMostPopularProfessions(quantity)
     }
 
     @QueryMapping
-    open fun getAllProfessionsByCompanyId(@Argument id: Long): Flux<ProfessionModel> {
+    suspend fun getAllProfessionsByCompanyId(@Argument id: Long): List<ProfessionModel> {
         return professionRepository.getAllProfessionsByCompanyId(id)
     }
 
     @QueryMapping
-    open fun getAllProfessions(): Flux<ProfessionModel> {
+    suspend fun getAllProfessions(): List<ProfessionModel> {
         return professionRepository.getAllProfessions()
     }
 
+<<<<<<< HEAD
+=======
+    @QueryMapping
+    suspend fun getAllExistingProfessions(): List<ProfessionModel> {
+        return professionRepository.getAllExistingProfessions()
+    }
+
+    @QueryMapping
+    suspend fun getAllProfessionsByInternshipType(@Argument internshipTypeId: Long): List<ProfessionModel> {
+        return professionRepository.getAllProfessionsByInternshipType(internshipTypeId)
+    }
+
+    @QueryMapping
+    suspend fun getAllProfessionsCategories(): List<String> {
+        return professionRepository.getAllProfessionsCategories()
+    }
+
+    @QueryMapping
+    suspend fun getAllProfessionsCategoriesForTable(): List<String> {
+        return professionRepository.getAllProfessionsCategoriesForTable()
+    }
+
+>>>>>>> origin/main
     @MutationMapping
-    open fun addProfession(@Argument profession: ProfessionModel): Mono<ProfessionModel> {
+    suspend fun addProfession(@Argument profession: ProfessionModel): ProfessionModel {
         return professionRepository.insertProfession(profession)
     }
 
     @MutationMapping
-    open fun addCompanyProfession(
-        @Argument companyId: Long,
+    suspend fun addCompanyProfession(
+        @Argument companyProfession: CompanyProfession,
         @Argument profession: ProfessionModel
-    ): Mono<ProfessionModel> {
-        return professionRepository.initCompanyProfession(companyId, profession)
+    ): ProfessionModel {
+        return professionRepository.initCompanyProfession(companyProfession, profession)
     }
 
     @MutationMapping
-    open fun addExistingProfessionToCompany(
-        @Argument companyId: Long,
-        @Argument professionId: Long
-    ): Mono<Boolean> {
-        return professionRepository.initExistingProfessionToCompany(companyId, professionId)
+    suspend fun addExistingProfessionToCompany(@Argument companyProfession: CompanyProfession): Boolean {
+        return professionRepository.initExistingProfessionToCompany(companyProfession)
     }
 
     @MutationMapping
-    open fun updateProfession(@Argument profession: ProfessionModel): Mono<Boolean> {
+    suspend fun updateProfession(@Argument profession: ProfessionModel): Boolean {
         return professionRepository.updateProfession(profession)
     }
 
     @MutationMapping
-    open fun deleteProfession(@Argument id: Long): Mono<Boolean> {
+    suspend fun deleteProfession(@Argument id: Long): Boolean {
         return professionRepository.deleteProfession(id)
     }
 
     @SchemaMapping(typeName = "CompanyProfession", field = "profession")
-    fun getProfessionForOrder(companyProfession: CompanyProfessionModel): Mono<ProfessionModel> {
+    suspend fun getProfessionForOrder(companyProfession: CompanyProfessionModel): ProfessionModel? {
         return professionRepository.getProfessionById(companyProfession.professionId!!)
     }
 }

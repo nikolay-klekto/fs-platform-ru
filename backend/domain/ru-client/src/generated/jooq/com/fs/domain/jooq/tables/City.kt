@@ -9,6 +9,8 @@ import com.fs.domain.jooq.keys.CITY_PKEY
 import com.fs.domain.jooq.keys.CITY__CITY_COUNTRY_CODE_FKEY
 import com.fs.domain.jooq.tables.records.CityRecord
 
+import java.util.function.Function
+
 import kotlin.collections.List
 
 import org.jooq.Field
@@ -16,8 +18,10 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.Name
 import org.jooq.Record
+import org.jooq.Records
 import org.jooq.Row3
 import org.jooq.Schema
+import org.jooq.SelectField
 import org.jooq.Table
 import org.jooq.TableField
 import org.jooq.TableOptions
@@ -111,8 +115,12 @@ open class City(
 
         return _country;
     }
+
+    val country: Country
+        get(): Country = country()
     override fun `as`(alias: String): City = City(DSL.name(alias), this)
     override fun `as`(alias: Name): City = City(alias, this)
+    override fun `as`(alias: Table<*>): City = City(alias.getQualifiedName(), this)
 
     /**
      * Rename this table
@@ -124,8 +132,24 @@ open class City(
      */
     override fun rename(name: Name): City = City(name, null)
 
+    /**
+     * Rename this table
+     */
+    override fun rename(name: Table<*>): City = City(name.getQualifiedName(), null)
+
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
     override fun fieldsRow(): Row3<Long?, Long?, String?> = super.fieldsRow() as Row3<Long?, Long?, String?>
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
+     */
+    fun <U> mapping(from: (Long?, Long?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+
+    /**
+     * Convenience mapping calling {@link SelectField#convertFrom(Class,
+     * Function)}.
+     */
+    fun <U> mapping(toType: Class<U>, from: (Long?, Long?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

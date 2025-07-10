@@ -5,9 +5,9 @@ data class CompanyAddress(
     val cityId: Long?,
     val companyId: Long?,
     val officeId: Long?,
-    val apartment: Long?,
-    val building: Long?,
-    val house: Long?,
+    val street: String?,
+    val house: String?,
+    val officeNumber: String?,
     val phoneNumber: String?,
-    val street: String?
+    val workTime: String?
 )
