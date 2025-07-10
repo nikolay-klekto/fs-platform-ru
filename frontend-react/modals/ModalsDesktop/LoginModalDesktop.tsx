@@ -57,7 +57,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
         if (result.success) {
             onClose()
-            router.push('/personal-account')
+            router.push('/profile')
         } else {
             setFormError({
                 show: true,
@@ -93,6 +93,9 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             type="email"
                             name="email"
                             placeholder="Ваш e-mail"
+                            variant={'common_input_desktop'}
+                            size={'common_input_desktop'}
+                            rounded={'rounded_50'}
                             value={formData.email}
                             onChange={(value) => {
                                 setFormData((prev) => ({ ...prev, email: value }))
@@ -106,11 +109,11 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 }
                             }}
                             validate={validateEmailDesktop}
-                            className={`${
+                            className={` ${
                                 formError.show && (formData.email === '' || !validateEmailDesktop(formData.email))
-                                    ? 'border-[#bc8070] !bg-[#101030] focus:bg-[#1f203f]'
-                                    : 'input-form-desktop-custom border-[#878797] !bg-[#101030] focus:bg-[#101030]'
-                            } h-10 w-full rounded-[20px] border-2 p-3 text-xl font-medium text-white outline-none placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
+                                    ? 'border-[#bc8070] focus:border-[#bc8070]'
+                                    : 'border-[#878797] focus:border-[#878797]'
+                            } `}
                             label="Почта"
                             labelClassName="mb-1 text-2xl font-medium text-white"
                             wrapperClassName="w-full"
