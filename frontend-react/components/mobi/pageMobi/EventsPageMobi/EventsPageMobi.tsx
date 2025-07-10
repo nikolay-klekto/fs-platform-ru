@@ -56,7 +56,6 @@ const EventsPageMobi: React.FC = () => {
         [allEvents],
     )
     const cities = useMemo(() => (allEvents ? Array.from(new Set(allEvents.map((e) => e.city.name))) : []), [allEvents])
-    console.log('allEvents', allEvents)
 
     const sortedEvents = useMemo(() => {
         if (!allEvents) return []

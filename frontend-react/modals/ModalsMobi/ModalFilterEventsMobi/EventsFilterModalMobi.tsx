@@ -115,7 +115,6 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose, filters, onApply, cit
                                 cities: selectedCities,
                                 dateScope: scope || '',
                             })
-                            console.log(shortDates)
                             onClose()
                         }}
                     />

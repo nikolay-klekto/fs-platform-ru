@@ -1,4 +1,3 @@
-//ВСЕ функции, связанные с events
 const API_URL = 'http://45.135.234.61:8183/graphql'
 
 export async function getAllActualEvents() {

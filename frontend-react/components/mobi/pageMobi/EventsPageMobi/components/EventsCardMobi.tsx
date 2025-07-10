@@ -1,7 +1,5 @@
 'use client'
 
-// import { Button } from '@/components/ui/button'
-// import { MapMobi, CalendarIconsMobi, UserMobi, ForwardIconWhiteMobi } from '@/components/assets/iconsMobi'
 import Image from 'next/image'
 import React from 'react'
 
@@ -10,7 +8,6 @@ interface IEventsCard {
     category: string
     image: string
     date: string
-    // week: string
     time: string
     city: string
     place: string
@@ -18,7 +15,6 @@ interface IEventsCard {
 }
 
 const EventsCardMobi: React.FC<IEventsCard> = ({ title, category, image, date, city, place, company }) => {
-    // const [day, month] = date.split('-')
     const jsDate = new Date(date)
     const day = jsDate.getDate().toString().padStart(2, '0')
     const month = jsDate.getMonth()
@@ -36,7 +32,6 @@ const EventsCardMobi: React.FC<IEventsCard> = ({ title, category, image, date, c
         'Ноября',
         'Декабря',
     ]
-    // const displayMonth = monthNames[parseInt(month, 10) - 1]
     const displayMonth = monthNames[month]
 
     return (
