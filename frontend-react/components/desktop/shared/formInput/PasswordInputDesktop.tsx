@@ -17,7 +17,7 @@ interface IPasswordInput {
     inputNOERRAddStyle?: string
     showGenerateButton?: boolean
     required?: boolean
-    formError?: boolean // Добавляем пропс для ошибки формы
+    formError?: boolean
 }
 
 const PasswordInputDesktop: React.FC<IPasswordInput> = ({
@@ -33,8 +33,7 @@ const PasswordInputDesktop: React.FC<IPasswordInput> = ({
     inputERRAddStyle = '',
     inputNOERRAddStyle = '',
     showGenerateButton = false,
-    required = false,
-    formError = false, // Ошибка формы
+    formError = false,
 }) => {
     const [showPassword, setShowPassword] = useState(false)
     const [internalError, setInternalError] = useState<string | null>(null)
@@ -64,7 +63,6 @@ const PasswordInputDesktop: React.FC<IPasswordInput> = ({
         }
     }
 
-    // Определяем есть ли ошибка (включая ошибку формы)
     const hasError = Boolean(externalError || internalError || (formError && !value.trim()))
 
     return (

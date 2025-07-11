@@ -199,7 +199,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 value={formData.email}
                                 onBlur={() => handleInputBlur('email')}
                                 validate={(value) => validateEmailMobi(value)}
-                                onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
+                                onChange={(value) => setFormData((prev) => ({ ...prev, email: value.toLowerCase() }))}
                                 className={`${
                                     inputTouched.email && validateEmailMobi(formData.email).styleError
                                         ? 'border-[#bc8070] focus:border-[#bc8070] '

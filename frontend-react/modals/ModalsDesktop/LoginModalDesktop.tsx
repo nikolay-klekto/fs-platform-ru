@@ -98,8 +98,9 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             rounded={'rounded_50'}
                             value={formData.email}
                             onChange={(value) => {
-                                setFormData((prev) => ({ ...prev, email: value }))
-                                if (validateEmailDesktop(value)) {
+                                const lowerCaseValue = value.toLowerCase()
+                                setFormData((prev) => ({ ...prev, email: lowerCaseValue }))
+                                if (validateEmailDesktop(lowerCaseValue)) {
                                     setFormError((prev) => ({ ...prev, show: false }))
                                 }
                             }}

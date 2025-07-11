@@ -6,7 +6,7 @@ const EventsSectionMobi: React.FC = () => {
     return (
         <section className="mx-auto flex flex-col px-[14px] py-[60px] align-middle">
             <TitleMobi title={'МЕРОПРИЯТИЯ'} href="/events" />
-            <div className="scrollbar_custom flex max-w-full cursor-pointer gap-8 overflow-x-scroll pt-9">
+            <div className="scrollbar_custom flex max-w-full gap-8 overflow-x-scroll pt-9">
                 {content.map((item) => (
                     <ItemEventsMobi
                         image={item.image}

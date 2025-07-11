@@ -152,7 +152,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 value={formData.password}
                                 label="Пароль"
                                 placeholder="Пароль"
-                                onChange={(value) => handleChange('password', value)}
+                                onChange={(value) => handleChange('password', value.toLowerCase())}
                                 onError={(error) => handleError('password', error)}
                                 labelClassName="label-form-mobi-custom"
                                 inputClassName="input-form-mobi-custom"

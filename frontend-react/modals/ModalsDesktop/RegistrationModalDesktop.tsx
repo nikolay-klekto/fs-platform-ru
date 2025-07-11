@@ -193,7 +193,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             value={formData.email}
                             onBlur={() => handleInputBlur('email')}
                             validate={(value) => validateEmailDesktop(value)}
-                            onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, email: value.toLowerCase() }))}
                             className={`${
                                 inputTouched.email && validateEmailDesktop(formData.email).styleError
                                     ? 'border-[#bc8070] focus:border-[#bc8070] '
