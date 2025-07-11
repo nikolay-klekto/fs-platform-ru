@@ -20,11 +20,11 @@ export default function ModalCookieMobi({ onClose }: IModalCookieMobi) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogPortal>
-                <div className="fixed bottom-0 z-50 box-border flex h-[128px] w-full flex-col justify-between items-center overflow-hidden rounded-[25px] border border-transparent bg-[#101030E6] px-3 shadow-lg drop-shadow-2xl font-500">
+                <div className="fixed bottom-0 md:right-0 z-50 box-border flex h-[128px] w-max-[375px] flex-col justify-between items-center overflow-hidden rounded-[25px] border border-transparent bg-[#101030E6] px-3 shadow-lg drop-shadow-2xl font-medium">
                     <div className="break-words text-xs text-center leading-snug text-white pt-4 pb-1">
                         Разрешите нам использовать cookie-файлы, чтобы при вашем следующем визите не вводить пароль
                         повторно
-                        <Link href="#" className="ml-1 text-[#878797]">
+                        <Link href="#" className="ml-1 text-[#878797] underline">
                             Подробнее...
                         </Link>
                     </div>
