@@ -4,9 +4,9 @@ import { existsSync, readFileSync } from 'fs'
 
 export async function GET(
   request: NextRequest,
-  context: { params: { path: string[] } }
+  { params }: { params: { path: string[] } }
 ) {
-  const segments = context.params.path
+  const segments = params.path
   const fullPath = join(process.cwd(), 'uploads', ...segments)
  
   if (!existsSync(fullPath)) {
