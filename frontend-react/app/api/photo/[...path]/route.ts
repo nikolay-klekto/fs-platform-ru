@@ -2,15 +2,21 @@ import { NextRequest } from 'next/server'
 import { join } from 'path'
 import { existsSync, readFileSync } from 'fs'
 
+type RouteContext = {
+  params: {
+    path: string[]
+  }
+}
+
 export async function GET(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  context: RouteContext
 ) {
-  const segments = params.path
+  const segments = context.params.path
   const fullPath = join(process.cwd(), 'uploads', ...segments)
- 
+
   if (!existsSync(fullPath)) {
-     return new Response('Not found', { status: 404 })
+    return new Response('Not found', { status: 404 })
   }
 
   const fileBuffer = readFileSync(fullPath)
