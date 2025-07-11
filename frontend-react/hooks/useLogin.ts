@@ -28,19 +28,6 @@ const LOGIN_MUTATION = gql`
     }
 `
 
-// `
-// mutation Login($email: String!, $password: String!) {
-//     login(email: $email, password: $password) {
-//         data {
-//             accessToken
-//             refreshToken
-//             clientId
-//         }
-//         errorMessage
-//     }
-// }
-// `
-
 export const useLogin = () => {
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
