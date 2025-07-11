@@ -44,7 +44,6 @@ const EventsCardMobi: React.FC<IEventsCard> = ({ title, category, image, date, c
                 <Image
                     src={image}
                     fill
-                    priority
                     alt={title}
                     className="pointer-events-none z-0 select-none object-cover object-[15%_35%] sm_xl:scale-[1.02]"
                 />
