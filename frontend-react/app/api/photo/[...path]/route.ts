@@ -2,15 +2,16 @@ import { NextRequest } from 'next/server'
 import { join } from 'path'
 import { existsSync, readFileSync } from 'fs'
 
-type RouteContext = {
+type ContextWithParams = {
   params: {
     path: string[]
   }
+  [key: string]: unknown 
 }
 
 export async function GET(
-  request: NextRequest,
-  context: RouteContext
+  req: NextRequest,
+  context: ContextWithParams
 ) {
   const segments = context.params.path
   const fullPath = join(process.cwd(), 'uploads', ...segments)
