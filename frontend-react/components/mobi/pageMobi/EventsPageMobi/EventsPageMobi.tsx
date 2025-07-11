@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 
 import { fakeEvents } from './contentEventsPageMobi/content'
-import { getAllActualEvents } from '../../../../lib/api/events/events'
+import { useAllActualEvents } from '../../../../lib/api/events/events'
 import EventsCardMobi from './components/EventsCardMobi'
 import EventsPaginationMobi from './components/EventsPaginationMobi'
 import EventsFilterModalMobi from '../../../../modals/ModalsMobi/ModalFilterEventsMobi/EventsFilterModalMobi'
@@ -23,9 +23,9 @@ type EventType = (typeof fakeEvents)[number]
 const USE_FAKE_DATA = false
 
 const EventsPageMobi: React.FC = () => {
-    const [allEvents, setAllEvents] = useState<EventType[] | null>(null)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
+    const { events: allEvents, loading, error } = useAllActualEvents()
+    const allEventsData = USE_FAKE_DATA ? fakeEvents : allEvents
+
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
     const [showFilter, setShowFilter] = useState(false)
@@ -36,31 +36,20 @@ const EventsPageMobi: React.FC = () => {
         dateScope: '',
     })
 
-    useEffect(() => {
-        if (USE_FAKE_DATA) {
-            setAllEvents(fakeEvents)
-            setLoading(false)
-            return
-        }
-        getAllActualEvents()
-            .then((data) => setAllEvents(data && Array.isArray(data) ? data : fakeEvents))
-            .catch(() => {
-                setAllEvents(fakeEvents)
-                setError('Ошибка загрузки событий')
-            })
-            .finally(() => setLoading(false))
-    }, [])
-
-    const categories = useMemo(
-        () => (allEvents ? Array.from(new Set(allEvents.map((e) => e.eventCategory.category))) : []),
-        [allEvents],
+    const categories: string[] = useMemo(
+        () => (allEventsData ? Array.from(new Set(allEventsData.map((e: EventType) => e.eventCategory.category))) : []),
+        [allEventsData],
     )
-    const cities = useMemo(() => (allEvents ? Array.from(new Set(allEvents.map((e) => e.city.name))) : []), [allEvents])
+
+    const cities: string[] = useMemo(
+        () => (allEventsData ? Array.from(new Set(allEventsData.map((e: EventType) => e.city.name))) : []),
+        [allEventsData],
+    )
 
     const sortedEvents = useMemo(() => {
-        if (!allEvents) return []
-        return [...allEvents].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    }, [allEvents])
+        if (!allEventsData) return []
+        return [...allEventsData].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    }, [allEventsData])
 
     const filteredEvents = useMemo(() => {
         return sortedEvents.filter((event) => {
@@ -106,8 +95,8 @@ const EventsPageMobi: React.FC = () => {
         })
     }
 
-    if (loading || !allEvents) return <div className="p-8 text-center">Загрузка...</div>
-    if (error) return <div className="p-8 text-center text-red-400">{error}</div>
+    if (loading || !allEventsData) return <div className="p-8 text-center">Загрузка...</div>
+    if (error) return <div className="p-8 text-center text-red-400">{error.message || String(error)}</div>
 
     return (
         <>

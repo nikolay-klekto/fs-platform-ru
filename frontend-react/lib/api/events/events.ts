@@ -1,40 +1,58 @@
-const API_URL = 'http://45.135.234.61:8183/graphql'
+import { gql, useQuery } from '@apollo/client'
 
-export async function getAllActualEvents() {
-    const query = `
-    query {
-      getAllActualEvents {
-        id
-        date
-        description
-        name
-        publicPlaceName
-        site
-        price
-        city {
-          id
-          name
-        }
-        time
-        organizer
-        eventCategory {
-          id
-          category
-        }
-      }
+interface EventType {
+    id: string
+    date: string
+    description: string
+    name: string
+    publicPlaceName: string
+    site: string
+    price: string
+    city: {
+        id: string
+        name: string
     }
-  `
+    time: string
+    organizer: string
+    eventCategory: {
+        id: string
+        category: string
+    }
+}
 
-    const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query }),
-    })
+const GET_ALL_ACTUAL_EVENTS = gql`
+    query {
+        getAllActualEvents {
+            id
+            date
+            description
+            name
+            publicPlaceName
+            site
+            price
+            city {
+                id
+                name
+            }
+            time
+            organizer
+            eventCategory {
+                id
+                category
+            }
+        }
+    }
+`
 
-    if (!response.ok) throw new Error('Network error!')
+interface GetAllActualEventsResult {
+    getAllActualEvents: EventType[]
+}
 
-    const json = await response.json()
-    if (json.errors) throw new Error(json.errors[0].message)
-
-    return json.data.getAllActualEvents
+export function useAllActualEvents() {
+    const { data, error, loading } = useQuery<GetAllActualEventsResult>(GET_ALL_ACTUAL_EVENTS)
+    return {
+        events: data?.getAllActualEvents,
+        loading,
+        error,
+    }
 }
