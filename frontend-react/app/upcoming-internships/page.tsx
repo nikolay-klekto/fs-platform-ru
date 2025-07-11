@@ -2,25 +2,24 @@
 
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
+import { useIsAuth } from '@/hooks/useIsAuth'
 import UpcomingInternshipsPageDesktop from '@/components/desktop/pageDesktop/UpcomingInternshipsPageDesktop/UpcomingInternshipsPageDesktop'
 import UpcomingInternshipsPageMobi from '@/components/mobi/pageMobi/UpcomingInternshipsPageMobi/UpcomingInternshipsPageMobi'
-import Cookies from 'js-cookie'
 
 export default function UpcomingInternships() {
     const [isClient, setIsClient] = useState(false)
-    const [hasAccessToken, setHasAccessToken] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
+    const isAuth = useIsAuth()
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 1240px)',
     })
 
-    useEffect(() => {
-        setIsClient(true)
-        const token = Cookies.get('accessToken')
-        setHasAccessToken(!!token)
-    }, [])
-
-    if (!isClient || !hasAccessToken) {
+    if (!isClient || !isAuth) {
         return null
     }
 

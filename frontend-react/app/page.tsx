@@ -1,9 +1,9 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
+import { useModal } from '@/context/ContextModal'
 import HomePageDesktop from '@/components/desktop/pageDesktop/HomePageDesktop/HomePageDesktop'
 import HomePageMobi from '@/components/mobi/pageMobi/HomePageMobi/HomePageMobi'
-import { useModal } from '@/context/ContextModal'
 
 export default function Home() {
     const [isClient, setIsClient] = useState(false)

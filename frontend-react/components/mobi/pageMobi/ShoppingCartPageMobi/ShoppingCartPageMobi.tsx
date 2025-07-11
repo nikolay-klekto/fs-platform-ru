@@ -8,16 +8,10 @@ import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import { AccountNavigationMobi } from '@/components/mobi/layout/AccountNavigationMobi/AccountNavigationMobi'
 import ShoppingCartMobi from './components/ShoppingCartMobi/ShoppingCartMobi'
 import { content } from './contentShoppingCartPageMobi/content'
-import Cookies from 'js-cookie'
+import { useIsAuth } from '@/hooks/useIsAuth'
 
 const ShoppingCartPageMobi: React.FC = () => {
-    const [isAuth, setIsAuth] = useState(false)
-
-    useEffect(() => {
-        const token = Cookies.get('accessToken')
-        setIsAuth(!!token)
-    }, [])
-
+    const isAuth = useIsAuth()
     const hasOrders = content && content.length > 0
 
     return (

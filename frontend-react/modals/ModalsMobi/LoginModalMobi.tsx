@@ -131,7 +131,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 value={formData.email}
                                 onBlur={() => handleInputBlur('email')}
                                 validate={(value) => validateEmailMobi(value)}
-                                onChange={(value) => handleChange('email', value)}
+                                onChange={(value) => handleChange('email', value.toLowerCase())}
                                 className={`${
                                     (inputTouched.email && validateEmailMobi(formData.email).styleError) ||
                                     formError ||
@@ -152,7 +152,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 value={formData.password}
                                 label="Пароль"
                                 placeholder="Пароль"
-                                onChange={(value) => handleChange('password', value.toLowerCase())}
+                                onChange={(value) => handleChange('password', value)}
                                 onError={(error) => handleError('password', error)}
                                 labelClassName="label-form-mobi-custom"
                                 inputClassName="input-form-mobi-custom"

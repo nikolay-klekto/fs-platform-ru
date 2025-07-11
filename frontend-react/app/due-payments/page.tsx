@@ -2,25 +2,24 @@
 
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
+import { useIsAuth } from '@/hooks/useIsAuth'
 import DuePaymentsPageDesktop from '@/components/desktop/pageDesktop/DuePaymentsPageDesktop/DuePaymentsPageDesktop'
 import DuePaymentsPageMobi from '@/components/mobi/pageMobi/DuePaymentsPageMobi/DuePaymentsPageMobi'
-import Cookies from 'js-cookie'
 
 export default function DuePayments() {
     const [isClient, setIsClient] = useState(false)
-    const [hasAccessToken, setHasAccessToken] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
+    const isAuth = useIsAuth()
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 1240px)',
     })
 
-    useEffect(() => {
-        setIsClient(true)
-        const token = Cookies.get('accessToken')
-        setHasAccessToken(!!token)
-    }, [])
-
-    if (!isClient || !hasAccessToken) {
+    if (!isClient || !isAuth) {
         return null
     }
 

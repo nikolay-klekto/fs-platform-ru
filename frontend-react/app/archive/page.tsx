@@ -2,27 +2,27 @@
 
 import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
+import { useIsAuth } from '@/hooks/useIsAuth'
 import ArchivePageDesktop from '@/components/desktop/pageDesktop/ArchivePageDesktop/ArchivePageDesktop'
 import ArchivePageMobi from '@/components/mobi/pageMobi/ArchivePageMobi/ArchivePageMobi'
-import Cookies from 'js-cookie'
 
 export default function Archive() {
     const [isClient, setIsClient] = useState(false)
-    const [hasAccessToken, setHasAccessToken] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
+    const isAuth = useIsAuth()
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 1240px)',
     })
 
-    useEffect(() => {
-        setIsClient(true)
-        const token = Cookies.get('accessToken')
-        setHasAccessToken(!!token)
-    }, [])
-
-    if (!isClient || !hasAccessToken) {
+    if (!isClient || !isAuth) {
         return null
     }
+
     return (
         <div>
             {isDesktop ? (

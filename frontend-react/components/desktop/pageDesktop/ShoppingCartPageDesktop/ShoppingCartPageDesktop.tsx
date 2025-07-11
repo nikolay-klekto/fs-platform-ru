@@ -8,16 +8,10 @@ import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDeskt
 import { content } from './contentShoppingCartPageDesktop/content'
 import { AccountNavigationDesktop } from '../../layout/AccountNavigationDesktop/AccountNavigationDesktop'
 import ItemCardShoppingCartDesktop from './components/ItemCardShoppingCartDesktop/ItemCardShoppingCartDesktop'
-import Cookies from 'js-cookie'
+import { useIsAuth } from '@/hooks/useIsAuth'
 
 const ShoppingCartPageDesktop: React.FC = () => {
-    const [isAuth, setIsAuth] = useState(false)
-
-    useEffect(() => {
-        const token = Cookies.get('accessToken')
-        setIsAuth(!!token)
-    }, [])
-
+    const isAuth = useIsAuth()
     const hasOrders = content && content.length > 0
 
     return (

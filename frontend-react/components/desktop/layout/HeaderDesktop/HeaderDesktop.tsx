@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useModal } from '@/context/ContextModal'
 import { useIsAuth } from '@/hooks/useIsAuth'
 import HeaderNavigationDesktop from './ItemHeaderDesktop/HeaderNavigationDesktop'
@@ -12,15 +11,6 @@ import { Button } from '@/components/ui/button'
 const HeaderDesktop: React.FC = () => {
     const { openModal } = useModal()
     const isAuth = useIsAuth()
-    const router = useRouter()
-
-    const handleProfileClick = () => {
-        if (isAuth) {
-            router.push('/profile')
-        } else {
-            openModal('login_desktop', 'desktop')
-        }
-    }
 
     return (
         <>
@@ -52,7 +42,16 @@ const HeaderDesktop: React.FC = () => {
                         </Link>
                     </div>
                     <div className="3xl:max-w-[36px] max-w-[50px] 2xl:max-w-[36px]">
-                        <ProfileIconDesktop className="h-auto w-full cursor-pointer" onClick={handleProfileClick} />
+                        {isAuth ? (
+                            <Link href={'/profile'}>
+                                <ProfileIconDesktop className="h-auto w-full cursor-pointer" />
+                            </Link>
+                        ) : (
+                            <ProfileIconDesktop
+                                className="h-auto w-full cursor-pointer"
+                                onClick={() => openModal('login_desktop', 'desktop')}
+                            />
+                        )}
                     </div>
                 </div>
             </header>
