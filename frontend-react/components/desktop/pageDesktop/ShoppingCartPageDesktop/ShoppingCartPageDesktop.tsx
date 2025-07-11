@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
@@ -8,11 +8,18 @@ import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDeskt
 import { content } from './contentShoppingCartPageDesktop/content'
 import { AccountNavigationDesktop } from '../../layout/AccountNavigationDesktop/AccountNavigationDesktop'
 import ItemCardShoppingCartDesktop from './components/ItemCardShoppingCartDesktop/ItemCardShoppingCartDesktop'
-
-const isAuth = true
-const hasOrders = content && content.length > 0
+import Cookies from 'js-cookie'
 
 const ShoppingCartPageDesktop: React.FC = () => {
+    const [isAuth, setIsAuth] = useState(false)
+
+    useEffect(() => {
+        const token = Cookies.get('accessToken')
+        setIsAuth(!!token)
+    }, [])
+
+    const hasOrders = content && content.length > 0
+
     return (
         <>
             <HeaderDesktop />
@@ -21,7 +28,7 @@ const ShoppingCartPageDesktop: React.FC = () => {
                     <div className="radial-gradient_desktop left-[150px] top-[-330px]"></div>
 
                     {isAuth && (
-                        <div className="flex items-center justify-between py-20">
+                        <div className="flex items-center justify-between pt-20">
                             <h1 className="title46px_desktop whitespace-nowrap pr-16 font-medium uppercase leading-[70%] tracking-normal">
                                 Личный кабинет
                             </h1>
@@ -60,7 +67,7 @@ const ShoppingCartPageDesktop: React.FC = () => {
                     )}
 
                     {hasOrders && (
-                        <div className="grid pb-[49px]">
+                        <div className="grid pb-[50px] pt-20">
                             <div className="grid grid-cols-2 justify-between gap-[34px] self-end pb-[80px] 2xl:pb-[40px]">
                                 {content.map((item) => (
                                     <ItemCardShoppingCartDesktop

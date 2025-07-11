@@ -4,21 +4,26 @@ import { useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import ProfilePageDesktop from '@/components/desktop/pageDesktop/ProfilePageDesktop/ProfilePageDesktop'
 import ProfilePageMobi from '@/components/mobi/pageMobi/ProfilePageMobi/ProfilePageMobi'
+import Cookies from 'js-cookie'
 
 export default function Profile() {
     const [isClient, setIsClient] = useState(false)
-
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
+    const [hasAccessToken, setHasAccessToken] = useState(false)
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 1240px)',
     })
 
-    if (!isClient) {
+    useEffect(() => {
+        setIsClient(true)
+        const token = Cookies.get('accessToken')
+        setHasAccessToken(!!token)
+    }, [])
+
+    if (!isClient || !hasAccessToken) {
         return null
     }
+
     return (
         <div>
             {isDesktop ? (

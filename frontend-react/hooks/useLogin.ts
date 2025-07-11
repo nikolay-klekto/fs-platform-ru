@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { useMutation, gql } from '@apollo/client'
 import Cookies from 'js-cookie'
-import { useRouter } from 'next/navigation'
 
-interface LoginResponse {
+interface ILoginResponse {
     data?: {
         accessToken: string
         refreshToken: string
@@ -12,12 +11,12 @@ interface LoginResponse {
     errorMessage?: string
 }
 
-interface LoginMutationResponse {
-    login: LoginResponse
+interface ILoginMutationResponse {
+    login: ILoginResponse
 }
 
 const LOGIN_MUTATION = gql`
-   mutation Login($email: String!, $password: String!) {
+    mutation Login($email: String!, $password: String!) {
         login(client: { email: $email, password: $password }) {
             data {
                 accessToken
@@ -42,13 +41,11 @@ const LOGIN_MUTATION = gql`
 // }
 // `
 
-
 export const useLogin = () => {
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
-    const router = useRouter()
 
-    const [loginMutation] = useMutation<LoginMutationResponse>(LOGIN_MUTATION)
+    const [loginMutation] = useMutation<ILoginMutationResponse>(LOGIN_MUTATION)
 
     const login = async (email: string, password: string): Promise<{ success: boolean; errorMessage?: string }> => {
         setLoading(true)
@@ -85,7 +82,6 @@ export const useLogin = () => {
                 sameSite: 'strict',
             })
 
-            router.push('/personal-account')
             return { success: true }
         } catch (err) {
             const errorMessage = err instanceof Error ? err.message : 'Ошибка при входе'

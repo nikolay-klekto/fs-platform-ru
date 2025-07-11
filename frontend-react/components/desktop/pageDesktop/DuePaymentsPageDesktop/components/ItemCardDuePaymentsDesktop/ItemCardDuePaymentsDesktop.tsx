@@ -84,9 +84,9 @@ const ItemCardDuePaymentsDesktop: React.FC<IItemCardDuePayments> = ({
             <div className="flex items-center justify-between pt-[13px]">
                 <div className="text18px_desktop text-[#BC8070] "> Оплатить заказ до {daysForPayOrder}</div>
                 <div className="flex gap-[20px] self-end">
-                    <button>
+                    <div>
                         <TrashTooltipDesktop tooltipMessage="Расторгнуть договор" />
-                    </button>
+                    </div>
                     <Button variant={'send_btn_desktop'} size={'send_btn_desktop'} onClick={onClick}>
                         Оформить заказ
                     </Button>

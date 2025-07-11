@@ -23,13 +23,24 @@ export const useAuth = () => {
             if (registerData?.errorMessage) {
                 setCustomError(registerData.errorMessage)
                 console.error('Registration error:', registerData.errorMessage)
-                return { success: false, errorMessage: registerData.errorMessage }
             }
 
             if (registerData?.data) {
-                const { refreshToken } = registerData.data
-                Cookies.set('refreshToken', refreshToken, { secure: true, sameSite: 'strict' })
-                setCustomError(null)
+                const { accessToken, refreshToken, clientId } = registerData.data
+
+                Cookies.set('accessToken', accessToken, {
+                    secure: process.env.NODE_ENV === 'production',
+                    sameSite: 'strict',
+                })
+                Cookies.set('refreshToken', refreshToken, {
+                    secure: process.env.NODE_ENV === 'production',
+                    sameSite: 'strict',
+                })
+                Cookies.set('clientId', clientId, {
+                    secure: process.env.NODE_ENV === 'production',
+                    sameSite: 'strict',
+                })
+
                 return { success: true }
             }
         },
