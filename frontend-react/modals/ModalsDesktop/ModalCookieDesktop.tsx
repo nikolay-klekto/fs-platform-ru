@@ -6,15 +6,15 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
 interface IModalCookieDesktop {
-    onCloseAction: () => void
+    onClose: () => void
 }
 
-export default function ModalCookieDesktop({ onCloseAction }: IModalCookieDesktop) {
+export default function ModalCookieDesktop({ onClose }: IModalCookieDesktop) {
     const [open, setOpen] = useState(true)
 
     const handleClose = () => {
         setOpen(false)
-        onCloseAction()
+        onClose()
     }
 
     return (
