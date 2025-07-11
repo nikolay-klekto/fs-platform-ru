@@ -26,7 +26,7 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose, filters, onApply, cit
     const [selectedCities, setSelectedCities] = useState<string[]>(filters.cities)
 
     const [cityModalOpen, setCityModalOpen] = useState(false)
-    const [scope, setScope] = useState<string | null>(null)
+    const [scope, setScope] = useState<string | null>(filters.dateScope || null)
 
     useEffect(() => {
         document.body.classList.add('overflow-hidden')
@@ -39,6 +39,7 @@ const EventsFilterModalMobi: React.FC<Props> = ({ onClose, filters, onApply, cit
         setSelectedCategories(filters.categories)
         setShortDates(filters.dates)
         setSelectedCities(filters.cities)
+        setScope(filters.dateScope || null)
     }, [filters])
 
     const { modalRef, handleBackdropClick, handleBackdropKeyDown } = useBackdropClose(onClose)
