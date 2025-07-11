@@ -116,15 +116,18 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                     <X size={30} color="#878797" />
                 </button>
                 <div className="relative flex max-w-[500px] flex-col items-center rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat">
-                    <h1 className="text18px_mobi mx-auto mb-1 mt-6 inline bg-sub-title-gradient-mobi bg-clip-text font-semibold uppercase text-transparent">
+                    <h2 className="text18px_mobi bg-sub-title-gradient-mobi mx-auto mb-1 mt-6 inline bg-clip-text font-semibold uppercase text-transparent">
                         Вход
-                    </h1>
+                    </h2>
                     <form onSubmit={handleSubmit} className="flex w-4/5 flex-col align-middle">
                         <div className="mb-2">
                             <EnhancedInput
                                 type="email"
                                 name="email"
                                 placeholder="Ваш e-mail"
+                                variant={'common_input_mobi'}
+                                size={'common_input_mobi'}
+                                rounded={'rounded_50'}
                                 value={formData.email}
                                 onBlur={() => handleInputBlur('email')}
                                 validate={(value) => validateEmailMobi(value)}
@@ -135,7 +138,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     inputInternalErrors.email
                                         ? 'border-[#bc8070] focus:border-[#bc8070] '
                                         : 'border-[#878797] focus:border-[#878797]'
-                                } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white focus:ring-0 focus:ring-offset-0`}
+                                } `}
                                 label="Почта"
                                 labelClassName="mb-1 text14px_mobi font-medium text-white"
                                 wrapperClassName="w-full"
@@ -144,7 +147,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 <p className="error-form-mobi-custom">{inputInternalErrors.email}</p>
                             )}
                         </div>
-                        <div className="relative mb-2">
+                        <div className="relative">
                             <PasswordInputMobi
                                 value={formData.password}
                                 label="Пароль"
@@ -173,7 +176,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                             variant="default"
                             size="btn_modal_desktop"
                             disabled={formError || loading}
-                            className="mx-auto mt-6 w-4/5 rounded-[50px] bg-gradient-desktop text-4xl font-medium hover:bg-gradient-desktop-hover sm:text-xl md:text-4xl sm_s:text-xl sm_l:text-2xl sm_xl:text-3xl"
+                            className="bg-gradient-desktop hover:bg-gradient-desktop-hover sm_s:text-xl sm_l:text-2xl sm_xl:text-3xl mx-auto mt-6 w-4/5 rounded-[50px] text-4xl font-medium sm:text-xl md:text-4xl"
                         >
                             {loading ? 'Вход...' : 'Войти'}
                         </Button>

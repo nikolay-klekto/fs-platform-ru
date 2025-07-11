@@ -148,7 +148,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
             const result = await register(formData.email, cleanedPhone, formData.password)
             if (result.success) {
                 onClose()
-                router.push('/personal-account')
+                router.push('/profile')
             } else {
                 setInputInternalErrors((prevErrors) => ({
                     ...prevErrors,
@@ -192,7 +192,10 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                             <EnhancedInput
                                 type="email"
                                 name="email"
-                                placeholder="Почта"
+                                placeholder="Ваш e-mail"
+                                variant={'common_input_mobi'}
+                                size={'common_input_mobi'}
+                                rounded={'rounded_50'}
                                 value={formData.email}
                                 onBlur={() => handleInputBlur('email')}
                                 validate={(value) => validateEmailMobi(value)}
@@ -201,8 +204,8 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     inputTouched.email && validateEmailMobi(formData.email).styleError
                                         ? 'border-[#bc8070] focus:border-[#bc8070] '
                                         : 'border-[#878797] focus:border-[#878797]'
-                                } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
-                                label="Почта*"
+                                }`}
+                                label="Почта"
                                 labelClassName="mb-1 text-2xl font-medium text-white"
                                 wrapperClassName="w-full"
                             />
@@ -217,6 +220,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 onError={(error) => handleError('phone', error)}
                                 wrapperClassName="w-full"
                                 required={true}
+                                labelClassName="leading-[100%] tracking-normal"
                                 showInternalError={true}
                             />
                             {inputInternalErrors.phone && (

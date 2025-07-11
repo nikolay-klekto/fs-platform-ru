@@ -67,9 +67,11 @@ const PasswordInputMobi: React.FC<IPasswordInput> = ({
 
     return (
         <div className="w-full">
-            <label htmlFor={label} className={`${labelClassName}`}>
-                {label}
-            </label>
+            <div className="mb-[8px]">
+                <label htmlFor={label} className={`${labelClassName}`}>
+                    {label}
+                </label>
+            </div>
             <div className="relative flex w-full">
                 <input
                     id={label}
