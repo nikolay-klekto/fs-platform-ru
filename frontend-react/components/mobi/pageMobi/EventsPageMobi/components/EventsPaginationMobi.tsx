@@ -1,81 +1,77 @@
 'use client'
 
-import React from 'react'
 import { LessIconMobi, MoreIconMobi } from '@/components/assets/iconsMobi'
 
-interface IProfessionsPagination {
+interface IEventsPagination {
     totalPages: number
     currentPage: number
     onPageChange: (page: number) => void
 }
 
-const EventsPaginationMobi: React.FC<IProfessionsPagination> = ({ totalPages, currentPage, onPageChange }) => {
-    const siblingsCount = 2
+const VISIBLE_PAGES = 3
 
-    const getPageNumbers = () => {
-        const pages: number[] = []
-        const startPage = Math.max(2, currentPage - siblingsCount)
-        const endPage = Math.min(totalPages - 1, currentPage + siblingsCount)
+const ProfessionsPaginationMobi: React.FC<IEventsPagination> = ({ totalPages, currentPage, onPageChange }) => {
+    let visibleStart = currentPage - Math.floor(VISIBLE_PAGES / 2)
+    if (visibleStart < 1) visibleStart = 1
+    if (visibleStart > totalPages - VISIBLE_PAGES + 1) {
+        visibleStart = Math.max(1, totalPages - VISIBLE_PAGES + 1)
+    }
+    const visibleEnd = Math.min(visibleStart + VISIBLE_PAGES - 1, totalPages)
 
-        pages.push(1)
+    const arrowsDisabled = totalPages <= VISIBLE_PAGES
 
-        if (startPage > 2) {
-            pages.push(-1)
+    const lessDisabled = arrowsDisabled || currentPage === 1
+    const moreDisabled = arrowsDisabled || currentPage === totalPages
+
+    const handleLessClick = () => {
+        if (!lessDisabled) {
+            onPageChange(currentPage - 1)
+            window.scrollTo({ top: 0, behavior: 'smooth' })
         }
-
-        for (let i = startPage; i <= endPage; i++) {
-            pages.push(i)
-        }
-
-        if (endPage < totalPages - 1) {
-            pages.push(-1)
-        }
-
-        if (totalPages > 1) {
-            pages.push(totalPages)
-        }
-
-        return pages
     }
 
-    const pageNumbers = getPageNumbers()
+    const handleMoreClick = () => {
+        if (!moreDisabled) {
+            onPageChange(currentPage + 1)
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+    }
 
     return (
-        <div className="relative z-[2] mb-[88px] mt-[73px] flex items-center justify-center gap-5">
-            <button onClick={() => onPageChange(Math.max(1, currentPage - 1))} disabled={currentPage === 1}>
-                <LessIconMobi />
-            </button>
-
-            <div className="flex items-end justify-center gap-5">
-                {pageNumbers.map((page, index) =>
-                    page === -1 ? (
-                        <span key={`dots-${index}`} className="text-2xl font-medium text-gray-500">
-                            ...
-                        </span>
-                    ) : (
-                        <button
-                            key={`page-${page}`}
-                            className={`text-7xl font-medium ${
-                                currentPage === page
-                                    ? 'text-gradient_desktop_custom border-b-2 border-indigo-500 text-[32px]'
-                                    : 'text-[FFFFCC]'
-                            }`}
-                            onClick={() => onPageChange(page)}
-                        >
-                            {page}
-                        </button>
-                    ),
-                )}
-            </div>
-
-            <button
-                onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages}
-            >
-                <MoreIconMobi />
-            </button>
+        <div className="mx-auto mb-[30px] mt-[25px] flex w-[150px] items-center justify-between">
+            <LessIconMobi
+                width={'10'}
+                height={'19'}
+                className={lessDisabled ? 'pointer-events-none opacity-50' : ''}
+                onClick={lessDisabled ? undefined : handleLessClick}
+            />
+            {[...Array(visibleEnd - visibleStart + 1)].map((_, idx) => {
+                const pageNumber = visibleStart + idx
+                return (
+                    <button
+                        key={pageNumber}
+                        className={`text-5xl font-medium ${
+                            currentPage === pageNumber ? 'text-gradient_mobi_custom' : 'text-[#FFFFFFCC]'
+                        }`}
+                        onClick={() => {
+                            if (pageNumber !== currentPage) {
+                                onPageChange(pageNumber)
+                                window.scrollTo({ top: 0, behavior: 'smooth' })
+                            }
+                        }}
+                    >
+                        {pageNumber}
+                    </button>
+                )
+            })}
+            <MoreIconMobi
+                width={'10'}
+                height={'19'}
+                className={moreDisabled ? 'pointer-events-none opacity-50' : ''}
+                onClick={moreDisabled ? undefined : handleMoreClick}
+            />
         </div>
     )
 }
 
-export default EventsPaginationMobi
+export default ProfessionsPaginationMobi
