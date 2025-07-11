@@ -150,7 +150,12 @@
     .text12px_mobi {
         @apply text-base md:text-base sm_xl:text-sm sm_l:text-xs sm_s:text-xs sm:text-xs;
     }
-
+    .text12px_cookie_mobi {
+        @apply text-[12px] sm:text-[11px];
+    }
+    .text10px_cookie_mobi {
+        @apply text-[10px] sm:text-[9px];
+    }
     .text-gradient_desktop_custom {
         @apply bg-gradient-desktop bg-clip-text text-transparent;
     }
@@ -221,7 +226,6 @@
     .custom_error_style_input {
         @apply border-red-500;
     }
-
     .modal-padding-content-lg-dsk {
         padding-top: clamp(32px, 2.6vw, 50px);
         padding-bottom: clamp(33px, 2.6vw, 51px);
