@@ -184,9 +184,9 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                     <X size={44} color="#878797" />
                 </button>
                 <div className="relative flex max-w-[500px] flex-col items-center rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat">
-                    <h1 className="text18px_mobi bg-sub-title-gradient-mobi mx-auto mb-1 mt-6 inline bg-clip-text font-semibold uppercase text-transparent">
+                    <h2 className="text18px_mobi bg-sub-title-gradient-mobi mx-auto mb-1 mt-6 inline bg-clip-text font-semibold uppercase text-transparent">
                         Регистрация
-                    </h1>
+                    </h2>
                     <form onSubmit={handleSubmit} className="flex w-4/5 flex-col align-middle">
                         <div className="mb-3">
                             <EnhancedInput

@@ -29,7 +29,7 @@ export const AccountNavigationMobi: React.FC = () => {
     return (
         <div className="text-text22px_mobi relative  text-[#878797]">
             <button
-                className="bg-sub-title-gradient-mobi flex items-center bg-clip-text pb-[40px] text-4xl font-medium uppercase text-transparent underline decoration-[#6C41F3] decoration-1 underline-offset-4"
+                className="bg-sub-title-gradient-mobi flex items-center bg-clip-text pb-[10px] text-4xl font-medium uppercase text-transparent underline decoration-[#6C41F3] decoration-1 underline-offset-4"
                 onClick={() => setMenuOpen(true)}
             >
                 {selectedLabel}

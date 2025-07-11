@@ -74,7 +74,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
 
         if (result.success) {
             onClose()
-            router.push('/personal-account')
+            router.push('/profile')
         } else {
             setInputInternalErrors((prev) => ({
                 ...prev,
