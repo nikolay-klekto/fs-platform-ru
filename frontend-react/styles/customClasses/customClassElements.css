@@ -77,7 +77,7 @@
     }
 
     .text32px_mobi {
-        @apply sm_l:text-10xl sm_xl:text-11xl sm_l:leading-10 sm_s:text-10xl md:mb-[20px] w-full font-normal uppercase text-white sm:text-[2rem] md:pb-[20px] md:text-[clamp(2rem,10vw,4rem)] md:leading-[60px];
+        @apply sm_l:text-10xl sm_xl:text-11xl sm_l:leading-10 sm_s:text-10xl w-full font-normal uppercase text-white sm:text-[2rem] md:pb-[20px] md:text-[clamp(2rem,10vw,4rem)] md:leading-[60px];
     }
     .text28px_mobi {
         @apply text-9xl sm:text-7xl;

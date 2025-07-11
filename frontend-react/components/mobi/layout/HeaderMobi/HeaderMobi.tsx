@@ -51,7 +51,7 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
             >
                 <div className={`relative flex h-[56px] w-full items-center justify-between px-[15px]`}>
                     <PhoneIconMobi
-                        className="cursor-pointer"
+                        className="size-6 cursor-pointer md:size-[34px]"
                         onClick={(): void => openModal('modalcall_mobi', 'mobi')}
                     />
                     <div className="absolute left-1/2 top-7 -translate-x-1/2 -translate-y-1/2">
@@ -60,8 +60,11 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
                         </Link>
                     </div>
                     <div className="flex gap-[17px]">
-                        <ShoppingCartIconMobi className="shrink-0 cursor-pointer" />
-                        <BurgerMenuIconMobi className="shrink-0 cursor-pointer" onClick={toggleMenu} />
+                        <ShoppingCartIconMobi className="size-6 shrink-0 cursor-pointer md:size-[34px]" />
+                        <BurgerMenuIconMobi
+                            className="size-6 shrink-0 cursor-pointer md:size-[34px]"
+                            onClick={toggleMenu}
+                        />
                     </div>
                 </div>
             </header>

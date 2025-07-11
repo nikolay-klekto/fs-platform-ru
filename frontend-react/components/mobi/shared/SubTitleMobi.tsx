@@ -5,7 +5,7 @@ interface IPropsSubTitle {
 
 const SubTitleMobi: React.FC<IPropsSubTitle> = ({ title }) => {
     return (
-        <h3 className="sub-title-mobi mt-[10px] text-4xl font-semibold uppercase sm:text-3xl md:text-[clamp(2rem,10vw,3.75rem)]">
+        <h3 className="sub-title-mobi mt-[10px] text-4xl font-semibold uppercase sm:text-3xl md:text-[34px]">
             {title}
         </h3>
     )

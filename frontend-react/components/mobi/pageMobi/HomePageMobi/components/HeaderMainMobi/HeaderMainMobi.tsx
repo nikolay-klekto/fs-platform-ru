@@ -20,7 +20,7 @@ const HeaderMainMobi: React.FC = () => {
                     }}
                 >
                     <HeaderMobi disableBackground={true} />
-                    <div className="md:px-[11px]">
+                    <div className="md:px-[10px]">
                         <div className="sm_s:mt-[160px] mt-[180px] sm:mt-[140px] md:mt-0">
                             <h1 className="text32px_mobi min-w-[70%] max-w-[90%] md:max-w-full">
                                 Помогаем пройти стажировку
@@ -31,10 +31,10 @@ const HeaderMainMobi: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="sm_l:max-w-[310px] sm_xl:max-w-[310px] flex max-w-[260px] md:px-[11px] md:max-w-[540px]">
+                    <div className="sm_l:max-w-[310px] sm_xl:max-w-[310px] flex max-w-[260px] md:max-w-[540px] md:px-[11px]">
                         <Link href="/professions" className="w-full">
                             <Button variant="accent_mobi" size="wide_mobi">
-                                <span className="bg-gradient-desktop sm_s:p-[14px] bg-clip-text text-3xl sm_xl:text-4xl font-semibold text-transparent sm:px-[10px]  md:text-[clamp(0.7rem,5vw,30px)]">
+                                <span className="bg-gradient-desktop sm_s:p-[14px] sm_xl:text-4xl bg-clip-text text-3xl font-semibold text-transparent sm:px-[10px]  md:text-[clamp(0.7rem,5vw,30px)]">
                                     Выбрать профессию
                                 </span>
                             </Button>

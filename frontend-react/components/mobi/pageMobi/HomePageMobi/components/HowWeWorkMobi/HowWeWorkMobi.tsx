@@ -6,11 +6,11 @@ import { content } from './contentHowWeWorkMobi/content'
 const HowWeWorkMobi: React.FC = () => {
     const [showList, setShowList] = React.useState(true)
     return (
-        <div className="sm_xl:mt-auto sm_l:mt-auto sm_s:mt-auto mt-[58px] max-w-full px-[15px] py-[60px] sm:mt-auto md:mt-[117px] md:px-[26px]">
-            <h2 className="sm_xl:mb-[24px] sm_l:mb-[24px] sm_s:mb-[24px] sm_xl:text-10xl sm_l:text-9xl sm_s:text-8xl mb-[40px] text-[32px] font-medium uppercase text-white sm:mb-[24px] sm:text-8xl md:mb-[40px] md:text-[clamp(2rem,10vw,4rem)]">
+        <div className="sm_xl:mt-auto sm_l:mt-auto sm_s:mt-auto mt-[58px] max-w-full px-[15px] sm:mt-auto md:mt-[117px] md:px-[26px]">
+            <h2 className="sm_xl:mb-[24px] sm_l:mb-[24px] sm_s:mb-[24px] sm_xl:text-10xl sm_l:text-9xl sm_s:text-8xl mb-[40px] text-[32px] font-medium uppercase text-white sm:mb-[24px] sm:text-8xl md:mb-[15px] md:text-[clamp(32px,10vw,64px)]">
                 Как мы работаем
             </h2>
-            <div className="relative">
+            <div className="relative px-5">
                 {(showList ? content.slice(0, 2) : content).map((item) => (
                     <div key={item.id}>
                         <div className="text-9xl font-normal text-[#353652] md:text-[clamp(2rem,10vw,4rem)]">
@@ -43,7 +43,7 @@ const HowWeWorkMobi: React.FC = () => {
                             size="select_mobi"
                             className="text-[15px] font-medium"
                         >
-                            Развернуть
+                            <span className="text-[15px] md:text-8xl">Развернуть</span>
                         </Button>
                     </div>
                 )}
