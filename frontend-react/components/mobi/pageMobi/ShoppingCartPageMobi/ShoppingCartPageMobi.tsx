@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
