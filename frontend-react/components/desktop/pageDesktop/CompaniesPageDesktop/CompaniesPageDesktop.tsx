@@ -1,4 +1,6 @@
+'use client'
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import CompaniesSelectDesktop from './components/CompaniesSelectDesktop'
 import CompaniesCardPageDesktop from './components/CompaniesCardPageDesktop'
 import CompaniesPaginationDesktop from './components/CompaniesPaginationDesktop'
@@ -7,12 +9,10 @@ import { content } from './contentCompaniesPageDesktop/content'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
-import { useModal } from '@/context/ContextModal'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const CompaniesPageDesktop: React.FC = () => {
-    const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
@@ -81,28 +81,21 @@ const CompaniesPageDesktop: React.FC = () => {
                             {filteredContent
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (
-                                    <CompaniesCardPageDesktop
-                                        key={item.id}
-                                        image={item.image}
-                                        industry={item.industry}
-                                        price={item.price.toString()}
-                                        // сейчас оставлена ссылку на модалку профессии, далее здесь будет ссылка на карточку компании
-                                        onClick={() => {
-                                            openModal('profession_modal_desktop', 'desktop', {
-                                                profession: item.companyName,
-                                                professionId: item.id,
-                                            })
-                                        }}
-                                        companyName={item.companyName}
-                                    />
+                                    <Link href={`/company`} key={item.id}>
+                                        <CompaniesCardPageDesktop
+                                            key={item.id}
+                                            image={item.image}
+                                            industry={item.industry}
+                                            price={item.price.toString()}
+                                            companyName={item.companyName}
+                                        />
+                                    </Link>
                                 ))}
                         </div>
                     ) : (
                         <p className="my-20 h-[150px] text-center text-4xl text-white">Ничего не найдено</p>
                     )}
-
                     {totalPages <= 1 && <div className="h-[80px]"></div>}
-
                     {totalPages > 1 && filteredContent.length > 0 && (
                         <CompaniesPaginationDesktop
                             totalPages={totalPages}
@@ -110,7 +103,6 @@ const CompaniesPageDesktop: React.FC = () => {
                             onPageChange={handlePageChange}
                         />
                     )}
-
                     <CompaniesSearchDesktop />
                 </div>
             </main>

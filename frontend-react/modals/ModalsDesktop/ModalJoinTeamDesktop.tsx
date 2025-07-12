@@ -239,7 +239,7 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     )}
                     <p className="mb-[40px] text-[24px] font-medium leading-[100%] tracking-normal text-[#353652] ">
                         Защита от спама reCAPTCHA{' '}
-                        <a href="/example" className="leading-[100%] underline underline-offset-[5px]">
+                        <a href="/privacy-policy" className="leading-[100%] underline underline-offset-[5px]">
                             Конфиденциальность
                         </a>{' '}
                         и{' '}

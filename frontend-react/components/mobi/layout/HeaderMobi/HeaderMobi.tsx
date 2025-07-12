@@ -60,11 +60,10 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
                         </Link>
                     </div>
                     <div className="flex gap-[17px]">
-                        <ShoppingCartIconMobi className="size-6 shrink-0 cursor-pointer md:size-[34px]" />
-                        <BurgerMenuIconMobi
-                            className="size-6 shrink-0 cursor-pointer md:size-[34px]"
-                            onClick={toggleMenu}
-                        />
+                        <Link href="/cart">
+                            <ShoppingCartIconMobi className="size-6 shrink-0 cursor-pointer md:size-[34px]" />
+                        </Link>
+                        <BurgerMenuIconMobi className="size-6 shrink-0 cursor-pointer md:size-[34px]" onClick={toggleMenu} />
                     </div>
                 </div>
             </header>
