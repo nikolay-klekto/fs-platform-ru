@@ -6,7 +6,7 @@ import { content } from './contentHowWeWorkMobi/content'
 const HowWeWorkMobi: React.FC = () => {
     const [showList, setShowList] = React.useState(true)
     return (
-        <div className="sm_xl:mt-auto sm_l:mt-auto sm_s:mt-auto mt-[58px] max-w-full px-[15px] sm:mt-auto md:mt-[117px] md:px-[26px]">
+        <div className="mt-[62px] max-w-full px-[15px] md:mt-[117px] md:px-[26px]">
             <h2 className="sm_xl:mb-[24px] sm_l:mb-[24px] sm_s:mb-[24px] sm_xl:text-10xl sm_l:text-9xl sm_s:text-8xl mb-[40px] text-[32px] font-medium uppercase text-white sm:mb-[24px] sm:text-8xl md:mb-[15px] md:text-[clamp(32px,10vw,64px)]">
                 Как мы работаем
             </h2>

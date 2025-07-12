@@ -19,7 +19,7 @@ const FooterMobi: React.FC = () => {
                     backgroundSize: 'cover',
                 }}
             >
-                <div className="container flex flex-col items-center px-3 pb-12 pt-6">
+                <div className="container flex flex-col items-center px-[15px] pb-12 pt-6 md:px-[20px]">
                     <LogoIconMobi />
                     <div className="flex w-full justify-between pt-7">
                         {contentFooterMobi.map((section) => (
@@ -58,10 +58,21 @@ const FooterMobi: React.FC = () => {
                         </a>
                     </div>
                     <div className="bg-custom-grey h-[2px] w-full rounded-full"></div>
-                    <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-10">
+                    <div className="flex flex-wrap items-center gap-x-[49px] gap-y-4 pt-10 md:gap-x-[108px] md:gap-y-[60px]">
                         {contentFooterMobiImages.map((image) => (
                             <div key={image.id} className="size-fit">
-                                <Image src={image.src} alt={image.alt} width={image.width} height={image.height} />
+                                <div className="md:hidden">
+                                    <Image src={image.src} alt={image.alt} width={image.width} height={image.height} />
+                                </div>
+
+                                <div className="hidden md:block">
+                                    <Image
+                                        src={image.src}
+                                        alt={image.alt}
+                                        width={image.width * 2}
+                                        height={image.height * 2}
+                                    />
+                                </div>
                             </div>
                         ))}
                     </div>

@@ -51,8 +51,9 @@ const buttonVariants = cva(
                 arrow_registration_desktop: '3xl:size-[88px] size-[95px] rounded-full 2xl:size-[80px]',
                 registration_desktop:
                     '3xl:w-[376px] 3xl:h-[88px] h-[95px] w-[500px] rounded-[45px] 2xl:h-[80px] 2xl:w-[323px] ',
-                registration_mobi: 'h-[51px] rounded-full px-4 md:px-[40px] md:py-[28px] py-2 md:h-[103px]',
-                arrow_registration_mobi: 'size-[51px] rounded-full',
+                registration_mobi:
+                    'h-[51px] rounded-full flex justify-center max-w-[270px] w-full md:max-w-[545px] md:py-[28px] py-2 md:h-[103px]',
+                arrow_registration_mobi: 'size-[51px] md:size-[103px] rounded-full flex-shrink-0',
                 select_mobi: 'h-[40px] md:h-[70px] md:max-w-[332px] w-full max-w-[188px] ',
                 gradient_circle_mobi: 'aspect-square size-[44px] p-[10px]',
                 btn_modal_desktop: 'h-12 max-w-[272px] rounded-md',

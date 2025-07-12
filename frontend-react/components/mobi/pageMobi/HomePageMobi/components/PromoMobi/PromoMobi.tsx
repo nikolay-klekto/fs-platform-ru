@@ -17,12 +17,12 @@ const PromoMobi: React.FC = () => {
                 <h3 className="sm_s:text-7xl m-0 mb-[30px] text-9xl font-medium leading-tight text-white sm:text-7xl md:max-w-[624px] md:text-[clamp(40px,8vw,54px)]">
                     РЕГИСТРИРУЙСЯ, ВЫБИРАЙ ПРОФЕССИЮ И&nbsp;КОМПАНИЮ, ПОЛУЧАЙ НОВЫЕ ЗНАНИЯ И ОПЫТ
                 </h3>
-                <p className="mb-10 text-[12px] leading-tight tracking-wide text-white md:mb-20 md:max-w-[624px] md:text-7xl">
+                <p className="mb-10 text-[12px] font-medium leading-tight tracking-wide text-white md:mb-20 md:max-w-[624px] md:text-7xl">
                     Пройди стажировку в абсолютно разных компаниях на многообразнейших понравившихся профессиях
                 </p>
                 <div className="flex">
                     <Button variant="registration_mobi" size="registration_mobi">
-                        <span className="sm_s:text-3xl bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent md:text-[clamp(20px,7vw,38px)] sm:text-3xl">
+                        <span className="sm_s:text-3xl bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent sm:text-3xl md:text-[clamp(23px,5vw,38px)]">
                             Найти стажировку
                         </span>
                     </Button>
@@ -31,7 +31,7 @@ const PromoMobi: React.FC = () => {
                         size="arrow_registration_mobi"
                         onClick={() => openModal('registration_mobi', 'mobi')}
                     >
-                        <ArrowBtn width={30} height={30} />
+                        <ArrowBtn />
                     </Button>
                 </div>
             </div>
