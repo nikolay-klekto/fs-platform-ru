@@ -3,16 +3,23 @@
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useIsAuth } from '@/hooks/useIsAuth'
 import { content } from '@/components/mobi/layout/HeaderMobi/ItemHeaderMobi/contentHeaderNavigationMobi/content'
 
 const HeaderNavigationMobi: React.FC = () => {
     const pathname = usePathname()
+    const isAuth = useIsAuth()
     const isActive = (path: string) => pathname === path
+
+    const filteredContent = content.filter((item) => {
+        if (item.link === '/profile' && !isAuth) return false
+        return true
+    })
 
     return (
         <nav className="w-full">
             <ul className="flex w-full flex-col items-center justify-center">
-                {content.map((item) => (
+                {filteredContent.map((item) => (
                     <li
                         key={item.id}
                         className={

@@ -175,11 +175,11 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
             <div className="relative w-full max-w-md">
                 <button
                     onClick={onClose}
-                    className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80]"
+                    className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                 >
                     <X size={44} color="#878797" />
                 </button>
