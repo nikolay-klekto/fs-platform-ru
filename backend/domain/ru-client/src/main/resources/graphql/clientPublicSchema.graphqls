@@ -24,7 +24,7 @@ type Query {
     getProfessionById(id: ID!): Profession
     getAllProfessionsByCompanyId(id: ID!): [Profession]
     getAllProfessions: [Profession]
-    getAllExistingProfessions:[Profession]
+    getAllExistingProfessions:[ProfessionWithInternshipType]
     getAllProfessionsByInternshipType(internshipTypeId: ID!): [Profession]
     getAllProfessionsCategories: [String]
     getNMostPopularProfessions(quantity: ID!): [Profession]
@@ -447,12 +447,12 @@ type Company {
     pricePerWeek: ID
 }
 
-input AuthorizationClientModelInsert {
-    basketId: ID,
-    email: String,
-    password: String,
-    phoneNumber: String
-}
+#input AuthorizationClientModelInsert {
+#    basketId: ID,
+#    email: String,
+#    password: String,
+#    phoneNumber: String
+#}
 
 type Profession {
     id: ID
@@ -461,6 +461,16 @@ type Profession {
     clientsNumber: Int
     professionIndustry: String
     pricePerWeek: ID
+}
+
+type ProfessionWithInternshipType{
+    id: ID
+    description: String
+    name: String
+    clientsNumber: Int
+    professionIndustry: String
+    pricePerWeek: ID
+    internshipTypeId: String
 }
 
 type InternshipType {

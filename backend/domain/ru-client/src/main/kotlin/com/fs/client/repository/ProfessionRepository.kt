@@ -12,6 +12,7 @@ import com.fs.domain.jooq.tables.pojos.Profession
 import com.fs.domain.jooq.tables.records.CompanyProfessionRecord
 import com.fs.domain.jooq.tables.records.ProfessionRecord
 import com.fs.service.ru.ProfessionModel
+import com.fs.service.ru.ProfessionWithInternshipTypeModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jooq.DSLContext
@@ -67,7 +68,7 @@ abstract class ProfessionRepository(
             )
         }
 
-    suspend fun getAllExistingProfessions(): List<ProfessionModel> =
+    suspend fun getAllExistingProfessions(): List<ProfessionWithInternshipTypeModel> =
         withContext(Dispatchers.IO) {
             dsl.select()
                 .from(
@@ -77,7 +78,10 @@ abstract class ProfessionRepository(
                         PROFESSION.DESCRIPTION,
                         PROFESSION.CLIENTS_NUMBER,
                         PROFESSION.PROFESSION_INDUSTRY,
-                        (DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5)).`as`("price_per_week"),
+                        DSL.min(COMPANY_PROFESSION.PRICE_PER_DAY).mul(5).`as`("price_per_week"),
+                        DSL.groupConcatDistinct(COMPANY_PROFESSION.INTERNSHIP_TYPE_ID.cast(String::class.java))
+                            .separator(",")
+                            .`as`("internship_types"),
                         DSL.rowNumber()
                             .over(
                                 DSL.partitionBy(PROFESSION.NAME)
@@ -98,16 +102,18 @@ abstract class ProfessionRepository(
                 .where(DSL.field("row_number").eq(1))
                 .orderBy(DSL.field("clients_number").desc())
                 .map { record ->
-                    ProfessionModel(
+                    ProfessionWithInternshipTypeModel(
                         id = record.get(PROFESSION.ID),
                         name = record.get(PROFESSION.NAME),
                         description = record.get(PROFESSION.DESCRIPTION),
                         clientsNumber = record.get(PROFESSION.CLIENTS_NUMBER),
                         professionIndustry = record.get(PROFESSION.PROFESSION_INDUSTRY),
-                        pricePerWeek = record.get("price_per_week", Double::class.java)
+                        pricePerWeek = record.get("price_per_week", Double::class.java),
+                        internshipTypeId = record.get("internship_types", String::class.java)
                     )
                 }
         }
+
 
     suspend fun getAllProfessionsByInternshipType(internshipTypeId: Long): List<ProfessionModel> =
         withContext(Dispatchers.IO) {

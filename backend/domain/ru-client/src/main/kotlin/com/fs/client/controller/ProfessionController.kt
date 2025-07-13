@@ -4,6 +4,7 @@ import com.fs.client.repository.ProfessionRepository
 import com.fs.domain.jooq.tables.pojos.CompanyProfession
 import com.fs.service.ru.CompanyProfessionModel
 import com.fs.service.ru.ProfessionModel
+import com.fs.service.ru.ProfessionWithInternshipTypeModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -40,7 +41,7 @@ class ProfessionController(
     }
 
     @QueryMapping
-    suspend fun getAllExistingProfessions(): List<ProfessionModel> {
+    suspend fun getAllExistingProfessions(): List<ProfessionWithInternshipTypeModel> {
         return professionRepository.getAllExistingProfessions()
     }
 
