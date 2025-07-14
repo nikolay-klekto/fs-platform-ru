@@ -17,7 +17,7 @@ interface IBreadcrumbs {
         title: string
         href?: string
         className?: string
-        isLink?: boolean // Опциональный флаг для ручного управления
+        isLink?: boolean
     }[]
     separator?: React.ReactNode
 }

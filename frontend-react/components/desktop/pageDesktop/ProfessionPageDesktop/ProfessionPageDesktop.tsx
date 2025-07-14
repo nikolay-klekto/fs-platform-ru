@@ -14,13 +14,13 @@ const ProfessionPageDesktop: React.FC = () => {
         <>
             <HeaderDesktop />
             <main className="bg-[#101030] text-white">
-                <div className="container relative overflow-hidden  ">
+                <div className="relative overflow-hidden  ">
                     <div className="relative z-10 flex items-center space-x-1 pb-[29px] pl-[65px] pt-[60px] text-[20px] text-gray-500">
                         <BreadcrumbsDesktop
                             items={[
                                 { title: 'Главная', href: '/', className: 'hover:underline' },
                                 { title: 'Профессия', href: '/professions', className: 'hover:underline' },
-                                { title: 'Программист', className: 'text-white hover:underline' }, // Последняя без ссылки
+                                { title: 'Программист', className: 'text-white hover:underline' },
                             ]}
                         />
                     </div>
