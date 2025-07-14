@@ -22,7 +22,7 @@ const imageMap: Record<string, string> = {
 };
 
 
-interface CompaniesQueryResponse {
+interface ICompaniesQueryResponse {
   getAllAvailableCompanies: IRawCompany[]
 }
 
@@ -41,7 +41,7 @@ const GET_ALL_AVAILABLE_COMPANIES = gql`
 `
 
 export function useAvailableCompanies() {
-  const { data, loading, error, refetch } = useQuery<CompaniesQueryResponse>(
+  const { data, loading, error, refetch } = useQuery<ICompaniesQueryResponse>(
     GET_ALL_AVAILABLE_COMPANIES,
     {
       fetchPolicy: 'cache-and-network',

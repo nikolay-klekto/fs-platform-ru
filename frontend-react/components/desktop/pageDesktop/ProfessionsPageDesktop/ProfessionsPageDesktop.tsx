@@ -4,22 +4,19 @@ import ProfessionsSelectDesktop from './components/ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './components/ProfessionCardPageDesktop'
 import ProfessionsPaginationDesktop from './components/ProfessionsPaginationDesktop'
 import ProfessionSearchDesktop from './components/ProfessionSendDesktop'
-// import { content } from './contentProfessionsPageDesktop/content'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
-// import { useModal } from '@/context/ContextModal'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import { useExistingProfessions } from '@/hooks/useExistingProfessions'
 
 const ProfessionsPageDesktop: React.FC = () => {
-    // const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-    const [selectedInternshipTypes, setselectedIntenshipTypes] = useState<string[]>([])
+    const [selectedInternshipTypes, setselectedInternshipTypes] = useState<string[]>([])
     const { professions } = useExistingProfessions()
     const cardsPerPage = 12
 
@@ -29,11 +26,13 @@ const ProfessionsPageDesktop: React.FC = () => {
         const matchesCategory =
             selectedCategories.length === 0 ||
             selectedCategories.some((professionIndustry) => item.professionIndustry === professionIndustry)
-        const matchesIntenshipTypes =
-            selectedInternshipTypes.length === 0 ||
-            selectedInternshipTypes.some((internshipType) => item.internshipType === internshipType)
+        const internshipTypeIds = item.internshipTypeId ? item.internshipTypeId.split(',').map((id) => id.trim()) : []
 
-        return matchesSearch && matchesCategory && matchesIntenshipTypes
+        const matchesInternshipTypes =
+            selectedInternshipTypes.length === 0 ||
+            selectedInternshipTypes.some((selectedType) => internshipTypeIds.includes(selectedType))
+
+        return matchesSearch && matchesCategory && matchesInternshipTypes
     })
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
@@ -50,14 +49,14 @@ const ProfessionsPageDesktop: React.FC = () => {
         setSelectedCategories(categories)
     }
     const handleIntenshipType = (categories: string[]) => {
-        setselectedIntenshipTypes(categories)
+        setselectedInternshipTypes(categories)
     }
 
     return (
         <>
             <HeaderDesktop />
             <main className="bg-[#101030] text-white">
-                <div className="3xl:p-[76px_130px_150px_130px] container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px]">
+                <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
                     <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
                     <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
                     <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
@@ -87,7 +86,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                     </div>
 
                     {filteredContent.length > 0 ? (
-                        <div className="3xl:gap-[25px] 4xl:gap-[30px] grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px]">
+                        <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
                             {filteredContent
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (

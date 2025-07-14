@@ -8,13 +8,14 @@ interface IRawProfession {
 	clientsNumber: string
 	professionIndustry: string
 	pricePerWeek: string
+  internshipTypeId: string
   }
 
 interface IProfession extends IRawProfession {
   imagePath: string
 }
 
-interface ProfessionsQueryResponse {
+interface IProfessionsQueryResponse {
   getAllExistingProfessions: IRawProfession[]
 }
 
@@ -27,12 +28,13 @@ const GET_ALL_EXISTING_PROFESSIONS= gql`
 		clientsNumber
 		professionIndustry
 		pricePerWeek
+    internshipTypeId
     }
   }
 `
 
 export function useExistingProfessions() {
-  const { data, loading, error, refetch } = useQuery<ProfessionsQueryResponse>(
+  const { data, loading, error, refetch } = useQuery<IProfessionsQueryResponse>(
     GET_ALL_EXISTING_PROFESSIONS,
     {
       fetchPolicy: 'cache-and-network',
