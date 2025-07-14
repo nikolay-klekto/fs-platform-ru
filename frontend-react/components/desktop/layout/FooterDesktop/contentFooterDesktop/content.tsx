@@ -66,7 +66,7 @@ export const contentFooterDesktop: IFooterSection[] = [
         id: 4,
         title: 'Документы',
         links: [
-            { id: 14, name: 'Политика конфиденциальности', href: '#' },
+            { id: 14, name: 'Политика конфиденциальности', href: '/privacy-policy' },
             { id: 15, name: 'Условия оплаты', href: '#' },
         ],
     },
