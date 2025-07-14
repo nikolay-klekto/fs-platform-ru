@@ -5,7 +5,7 @@ import { content } from './contentEventsSectionMobi/content'
 const EventsSectionMobi: React.FC = () => {
     return (
         <div className="flex w-full flex-col px-[15px] pb-[60px] pt-[80px] md:px-[32px]">
-            <TitleMobi title={'МЕРОПРИЯТИЯ'} href="/events" />
+            <TitleMobi title={'Мероприятия'} href="/events" />
             <div className="scrollbar_custom flex max-w-full cursor-pointer gap-8 overflow-x-scroll pt-8">
                 {content.map((item) => (
                     <ItemEventsMobi

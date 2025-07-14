@@ -7,7 +7,7 @@ const HowWeWorkMobi: React.FC = () => {
     const [showList, setShowList] = React.useState(true)
     return (
         <div className="mt-[62px] max-w-full px-[15px] md:mt-[117px] md:px-[26px]">
-            <h2 className="sm_xl:mb-[24px] sm_l:mb-[24px] sm_s:mb-[24px] sm_xl:text-10xl sm_l:text-9xl sm_s:text-8xl mb-[40px] text-[32px] font-medium uppercase text-white sm:mb-[24px] sm:text-8xl md:mb-[15px] md:text-[clamp(32px,10vw,64px)]">
+            <h2 className="text32px_mobi sm_xl:mb-[24px] sm_l:mb-[24px] sm_s:mb-[24px] mb-[40px] font-medium uppercase text-white sm:mb-[24px] md:mb-[15px]">
                 Как мы работаем
             </h2>
             <div className="relative px-5">
@@ -40,7 +40,7 @@ const HowWeWorkMobi: React.FC = () => {
                         <Button
                             onClick={() => setShowList(false)}
                             variant="select_mobi"
-                            size="select_mobi"
+                            size="home_select_mobi"
                             className="text-[15px] font-medium"
                         >
                             <span className="text-[15px] md:text-8xl">Развернуть</span>

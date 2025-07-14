@@ -22,7 +22,7 @@ const HeaderMainMobi: React.FC = () => {
                     <HeaderMobi disableBackground={true} />
                     <div className="md:px-[10px]">
                         <div className="sm_s:mt-[160px] mt-[180px] sm:mt-[140px] md:mt-0">
-                            <h1 className="text32px_mobi min-w-[70%] max-w-[90%] md:max-w-full">
+                            <h1 className="text32px_mobi sm_l:leading-10 w-full min-w-[70%] max-w-[90%] font-normal uppercase text-white md:max-w-full md:pb-[20px] md:leading-[60px]">
                                 Помогаем пройти стажировку
                             </h1>
                             <p className="sm_l:max-w-[540px] sm_xl:max-w-[540px] sm_l:text-[0.875rem] sm_xl:text-[0.875rem] mb-8 max-w-[270px] text-base font-medium text-white md:mb-0 md:max-w-[540px] md:text-[clamp(0.875rem,4.05vw,1.5rem)]">
@@ -40,7 +40,11 @@ const HeaderMainMobi: React.FC = () => {
                             </Button>
                         </Link>
                         <Link href="/professions">
-                            <Button variant="accent_mobi" size="circle_mobi">
+                            <Button
+                                variant="accent_mobi"
+                                size="circle_mobi"
+                                className="sm_s:p-[10px] p-[14px] sm:p-[10px] md:p-[23px]"
+                            >
                                 <ForwardIconMobi
                                     fill={'url(#paint0_linear_847_15423)'}
                                     stroke={'url(#paint1_linear_847_15423)'}

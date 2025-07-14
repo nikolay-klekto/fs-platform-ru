@@ -56,7 +56,7 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
                     />
                     <div className="absolute left-1/2 top-7 -translate-x-1/2 -translate-y-1/2">
                         <Link href="/">
-                            <LogoIconMobi />
+                            <LogoIconMobi className="h-[48px] w-[58px] md:h-[68px] md:w-[92px]" />
                         </Link>
                     </div>
                     <div className="flex gap-[17px]">

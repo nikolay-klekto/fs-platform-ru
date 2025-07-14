@@ -21,7 +21,7 @@ const PromoMobi: React.FC = () => {
                     Пройди стажировку в абсолютно разных компаниях на многообразнейших понравившихся профессиях
                 </p>
                 <div className="flex">
-                    <Button variant="registration_mobi" size="registration_mobi">
+                    <Button variant="registration_mobi" size="home_registration_mobi">
                         <span className="sm_s:text-3xl bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent sm:text-3xl md:text-[clamp(23px,5vw,38px)]">
                             Найти стажировку
                         </span>
@@ -29,6 +29,7 @@ const PromoMobi: React.FC = () => {
                     <Button
                         variant="arrow_registration_mobi"
                         size="arrow_registration_mobi"
+                        className="p-[10px] md:p-[23px]"
                         onClick={() => openModal('registration_mobi', 'mobi')}
                     >
                         <ArrowBtn />
