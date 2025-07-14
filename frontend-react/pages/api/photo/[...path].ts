@@ -1,4 +1,3 @@
-// frontend-react/pages/api/photo/[...path].ts
 import fs from 'fs'
 import path from 'path'
 import { NextApiRequest, NextApiResponse } from 'next'
