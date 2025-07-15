@@ -40,14 +40,11 @@ const HeaderMainMobi: React.FC = () => {
                             </Button>
                         </Link>
                         <Link href="/professions">
-                            <Button
-                                variant="accent_mobi"
-                                size="circle_mobi"
-                                className="sm_s:p-[10px] p-[14px] sm:p-[10px] md:p-[23px]"
-                            >
+                            <Button variant="accent_mobi" size="circle_mobi">
                                 <ForwardIconMobi
                                     fill={'url(#paint0_linear_847_15423)'}
                                     stroke={'url(#paint1_linear_847_15423)'}
+                                    className="size-[22px] md:size-[37px]"
                                 />
                             </Button>
                         </Link>

@@ -53,9 +53,9 @@ const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
                     <Button
                         variant="circleBlue"
                         size="circleMobi"
-                        className="absolute bottom-0 right-0 p-[15px] md:size-[100px] md:p-[25px]"
+                        className="absolute bottom-0 right-0 md:size-[100px]"
                     >
-                        <ArrowWhiteMobi />
+                        <ArrowWhiteMobi className="size-[20px] md:size-[40px]" />
                     </Button>
                 </div>
             </div>

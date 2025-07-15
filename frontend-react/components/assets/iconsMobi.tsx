@@ -70,9 +70,9 @@ export const ArrowGradientMobi: React.FC = (props) => {
     )
 }
 
-export const ArrowWhiteMobi: React.FC = (props) => {
+export const ArrowWhiteMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
-        <svg width="100%" height="100%" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
                 d="M23.5 10.8438L13.1875 1V6.625C3.31856 6.625 1 13.7014 1 20.6875C3.84824 17.0406 6.36719 15.0625 13.1875 15.0625V20.6875L23.5 10.8438Z"
                 fill="white"
