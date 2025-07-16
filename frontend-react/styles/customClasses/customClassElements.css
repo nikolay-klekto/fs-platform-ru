@@ -124,6 +124,9 @@
         @apply font-medium text-4xl 3xl:text-3xl 2xl:text-2xl;
     }
 
+    .text32px_mobi {
+        @apply sm_s:text-8xl sm:text-8xl text-[32px] md:text-[clamp(32px,10vw,64px)];
+    }
     .text28px_mobi {
         @apply text-9xl sm:text-7xl;
     }
