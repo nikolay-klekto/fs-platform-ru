@@ -1,24 +1,27 @@
+'use client'
+
 import React, { useState, useEffect } from 'react'
+import { Search } from 'lucide-react'
+import { useModal } from '@/context/ContextModal'
+import { EnhancedInput } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import SelectInternshipTypeDesktop from './components/SelectInternshipTypeDesktop'
 import ProfessionsSelectDesktop from './components/ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './components/ProfessionCardPageDesktop'
 import ProfessionsPaginationDesktop from './components/ProfessionsPaginationDesktop'
 import ProfessionSearchDesktop from './components/ProfessionSendDesktop'
 import { content } from './contentProfessionsPageDesktop/content'
-import { EnhancedInput } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Search } from 'lucide-react'
-import { useModal } from '@/context/ContextModal'
-import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const ProfessionsPageDesktop: React.FC = () => {
-    const { openModal } = useModal()
+    const [isClient, setIsClient] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [selectedInternshipTypes, setselectedIntenshipTypes] = useState<string[]>([])
+    const { openModal } = useModal()
 
     const cardsPerPage = 12
 
@@ -39,6 +42,14 @@ const ProfessionsPageDesktop: React.FC = () => {
     useEffect(() => {
         setCurrentPage(1)
     }, [searchQuery, selectedCategories])
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
+    if (!isClient) {
+        return null
+    }
 
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)

@@ -1,5 +1,6 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+
+import React, { useState, useEffect } from 'react'
 import CompaniesCardPageMobi from './components/CompaniesCardPageMobi'
 import CompaniesPaginationMobi from './components/CompaniesPaginationMobi'
 import CompaniesSendMobi from './components/CompaniesSendMobi'
@@ -13,6 +14,7 @@ import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 
 const CompaniesPageMobi: React.FC = () => {
+    const [isClient, setIsClient] = useState(false)
     const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
@@ -26,6 +28,21 @@ const CompaniesPageMobi: React.FC = () => {
         return matchesSearch && matchesCategory
     })
 
+    useEffect(() => {
+        const newTotalPages = Math.ceil(filteredContent.length / cardsPerPage)
+        if (currentPage > newTotalPages) {
+            setCurrentPage(1)
+        }
+    }, [currentPage, filteredContent])
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
+    if (!isClient) {
+        return null
+    }
+
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
     const safeCurrentPage = Math.min(currentPage, totalPages || 1)
 
@@ -36,13 +53,6 @@ const CompaniesPageMobi: React.FC = () => {
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
-
-    useEffect(() => {
-        const newTotalPages = Math.ceil(filteredContent.length / cardsPerPage)
-        if (currentPage > newTotalPages) {
-            setCurrentPage(1)
-        }
-    }, [currentPage, filteredContent])
 
     return (
         <>
@@ -75,7 +85,7 @@ const CompaniesPageMobi: React.FC = () => {
                         </div>
                         {filteredContent.length > 0 ? (
                             <>
-                                <div className="flex flex-wrap justify-center gap-[20px] sm_xl:gap-[15px]">
+                                <div className="sm_xl:gap-[15px] flex flex-wrap justify-center gap-[20px]">
                                     {filteredContent
                                         .slice((safeCurrentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                         .map((item) => (

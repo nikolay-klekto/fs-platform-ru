@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useModal } from '@/context/ContextModal'
 import HeaderMainDesktop from './components/HeaderMainDesktop/HeaderMainDesktop'
 import HeaderCardsDesktop from './components/HeaderCardsDesktop/HeaderCardsDesktop'
 import ProfessionsSectionDesktop from './components/ProfessionSectionDesktop/ProfessionsSectionDesktop'
@@ -9,6 +10,18 @@ import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDeskt
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const HomePageDesktop: React.FC = () => {
+    const { openModal } = useModal()
+
+    useEffect(() => {
+        const hasSeenCookies = localStorage.getItem('hasSeenCookies')
+        if (!hasSeenCookies) {
+            const modalKey = 'cookie_desktop'
+            const modalType = 'desktop'
+            openModal(modalKey, modalType)
+            localStorage.setItem('hasSeenCookies', 'true')
+        }
+    }, [])
+
     return (
         <>
             <HeaderDesktop />

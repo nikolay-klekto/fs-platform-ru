@@ -1,11 +1,22 @@
-import React from 'react'
+'use client'
 
+import React, { useState, useEffect } from 'react'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import { AccountNavigationMobi } from '@/components/mobi/layout/AccountNavigationMobi/AccountNavigationMobi'
 import ShoppingCartMobi from './components/ShoppingCartMobi/ShoppingCartMobi'
 
 const ShoppingCartPageMobi: React.FC = () => {
+    const [isClient, setIsClient] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
+    if (!isClient) {
+        return null
+    }
+
     return (
         <>
             <HeaderMobi />

@@ -3,9 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import HeaderMobi from '../../layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '../../layout/FooterMobi/FooterMobi'
-import JoinTeamMobi from './components/JoinTeamMobi'
 
-const JoinTeamPageMobi: React.FC = () => {
+const CompanyPageMobi: React.FC = () => {
     const [isClient, setIsClient] = useState(false)
 
     useEffect(() => {
@@ -19,12 +18,10 @@ const JoinTeamPageMobi: React.FC = () => {
     return (
         <>
             <HeaderMobi />
-            <main className="flex flex-col bg-[#101030] text-white">
-                <JoinTeamMobi />
-            </main>
+            <main>Контент</main>
             <FooterMobi />
         </>
     )
 }
 
-export default JoinTeamPageMobi
+export default CompanyPageMobi

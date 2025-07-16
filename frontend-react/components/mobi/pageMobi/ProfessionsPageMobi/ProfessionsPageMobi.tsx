@@ -1,22 +1,25 @@
 'use client'
+
 import React, { useState, useEffect } from 'react'
+import { Search } from 'lucide-react'
+import { EnhancedInput } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { useModal } from '@/context/ContextModal'
+import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
+import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import ProfessionCardPageMobi from './components/ProfessionCardPageMobi'
 import ProfessionsPaginationMobi from './components/ProfessionsPaginationMobi'
 import ProfessionSendMobi from './components/ProfessionSendMobi'
-import { content } from './contentProfessionsPageMobi/content'
-import { EnhancedInput } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Search } from 'lucide-react'
-import { useModal } from '@/context/ContextModal'
 import ProfessionsSelectMobi from './components/ProfessionsSelectMobi'
-import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
-import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
+import { content } from './contentProfessionsPageMobi/content'
 
 const ProfessionsPageMobi: React.FC = () => {
+    const [isClient, setIsClient] = useState(false)
     const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [currentPage, setCurrentPage] = useState(1)
+
     const cardsPerPage = 6
     const minSearchLength = 3
 
@@ -44,6 +47,14 @@ const ProfessionsPageMobi: React.FC = () => {
     useEffect(() => {
         setCurrentPage(1)
     }, [searchQuery, selectedCategories])
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
+    if (!isClient) {
+        return null
+    }
 
     return (
         <>
