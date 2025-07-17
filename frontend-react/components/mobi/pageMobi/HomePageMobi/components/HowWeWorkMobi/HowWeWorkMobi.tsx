@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import SubTitleMobi from '@/components/mobi/shared/SubTitleMobi'
 import { Button } from '@/components/ui/button'

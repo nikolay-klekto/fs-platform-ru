@@ -1,16 +1,19 @@
 'use client'
+
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { Search } from 'lucide-react'
+import { EnhancedInput } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { useAvailableCompanies } from '@/hooks/useAvailibleCompanies'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import CompaniesSelectDesktop from './components/CompaniesSelectDesktop'
 import CompaniesCardPageDesktop from './components/CompaniesCardPageDesktop'
 import CompaniesPaginationDesktop from './components/CompaniesPaginationDesktop'
 import CompaniesSearchDesktop from './components/CompaniesSendDesktop'
-import { EnhancedInput } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Search } from 'lucide-react'
-import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
-import { useAvailableCompanies } from '@/hooks/useAvailibleCompanies'
+
+const cardsPerPage = 12
 
 const CompaniesPageDesktop: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('')
@@ -18,7 +21,6 @@ const CompaniesPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const { companies } = useAvailableCompanies()
-    const cardsPerPage = 12
 
     const filteredCompanies = companies.filter((item) => {
         const matchesSearch =
@@ -45,7 +47,7 @@ const CompaniesPageDesktop: React.FC = () => {
         <>
             <HeaderDesktop />
             <main className="bg-[#101030] text-white">
-                <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
+                <div className="3xl:p-[76px_130px_150px_130px] container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px]">
                     <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
                     <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
                     <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
@@ -75,7 +77,7 @@ const CompaniesPageDesktop: React.FC = () => {
                     {filteredCompanies.length > 0 ? (
                         <div
                             className="max-w-[calc(4*340px +  
-                            3*45px)]justify-items-center grid grid-cols-4 gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]"
+                        3*45px)]justify-items-center 3xl:gap-[25px] 4xl:gap-[30px] grid grid-cols-4 gap-[45px] 2xl:gap-[20px]"
                         >
                             {filteredCompanies
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)

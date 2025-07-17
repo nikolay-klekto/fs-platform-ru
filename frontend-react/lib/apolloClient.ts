@@ -1,17 +1,11 @@
-import { ApolloClient, from, HttpLink, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloLink, from, HttpLink, InMemoryCache } from '@apollo/client'
 import { createErrorLink, createAuthErrorLink } from './errorLink'
+import { getMainDefinition } from '@apollo/client/utilities'
 
 const AUTH_ENDPOINT = 'http://45.135.234.61:8282/graphql'
 const CARDS_ENDPOINT = 'http://45.135.234.61:8183/graphql'
 
 export function createApolloClient() {
-    const httpLink = new HttpLink({
-        uri: GRAPHQL_ENDPOINT,
-        credentials: 'same-origin',
-    })
-    const errorLink = createErrorLink()
-    const authErrorLink = createAuthErrorLink()
-    const link = from([authErrorLink, errorLink, httpLink])
     const authHttpLink = new HttpLink({
         uri: AUTH_ENDPOINT,
         credentials: 'same-origin',

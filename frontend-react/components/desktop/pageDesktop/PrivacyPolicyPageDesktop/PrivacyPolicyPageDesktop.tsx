@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import { PrivacyPolicyPageTableDesktop } from './components/PrivacyPolicyTableDesktop/PrivacyPolicyTableDesktop'
