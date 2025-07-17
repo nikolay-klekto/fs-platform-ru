@@ -47,8 +47,8 @@ const SelectInternshipTypeDesktop = ({ onCategoryChange }: { onCategoryChange: (
     }, [selectedOptions, onCategoryChange])
 
     const options: ISelectOption[] = [
-        { value: 'Наблюдатель', label: 'Наблюдатель' },
-        { value: 'Участник', label: 'Участник' },
+        { value: '1', label: 'Наблюдатель' },
+        { value: '2', label: 'Участник' },
     ]
 
     return (
@@ -66,7 +66,7 @@ const SelectInternshipTypeDesktop = ({ onCategoryChange }: { onCategoryChange: (
             </Button>
             {isOpen && (
                 <div
-                    className="3xl:w-[300px] absolute top-[80px] z-50 w-[281px] rounded-[42px] p-[2px] 2xl:w-[214px]"
+                    className="absolute top-[80px] z-50 w-[281px] rounded-[42px] p-[2px] 2xl:w-[214px] 3xl:w-[300px]"
                     style={{
                         background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
                     }}
