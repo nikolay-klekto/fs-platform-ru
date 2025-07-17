@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import ProfessionCardPageMobi from './components/ProfessionCardPageMobi'
-import ProfessionsPaginationMobi from './components/ProfessionsPaginationMobi'
+import PaginationMobi from '../../shared/PaginationMobi'
 import ProfessionSendMobi from './components/ProfessionSendMobi'
 import { content } from './contentProfessionsPageMobi/content'
 import { EnhancedInput } from '@/components/ui/input'
@@ -17,7 +17,6 @@ const ProfessionsPageMobi: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('')
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [currentPage, setCurrentPage] = useState(1)
-    const cardsPerPage = 6
     const minSearchLength = 3
 
     const filteredContent = (() => {
@@ -31,14 +30,13 @@ const ProfessionsPageMobi: React.FC = () => {
         })
     })()
 
+    const cardsPerPage = 6
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
+    const paginatedItems = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
 
     const handleSearch = () => {
         console.log('Поиск профессий:', searchQuery)
         setSearchQuery('')
-    }
-    const handlePageChange = (page: number): void => {
-        setCurrentPage(page)
     }
 
     useEffect(() => {
@@ -79,28 +77,26 @@ const ProfessionsPageMobi: React.FC = () => {
                         {filteredContent.length > 0 ? (
                             <>
                                 <div className="flex flex-wrap justify-center gap-4">
-                                    {filteredContent
-                                        .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
-                                        .map((item) => (
-                                            <ProfessionCardPageMobi
-                                                key={item.id}
-                                                image={item.image}
-                                                profession={item.profession}
-                                                price={item.price.toString()}
-                                                onClick={() => {
-                                                    openModal('profession_modal_mobi', 'mobi', {
-                                                        profession: item.profession,
-                                                        professionId: item.id,
-                                                    })
-                                                }}
-                                            />
-                                        ))}
+                                    {paginatedItems.map((item) => (
+                                        <ProfessionCardPageMobi
+                                            key={item.id}
+                                            image={item.image}
+                                            profession={item.profession}
+                                            price={item.price.toString()}
+                                            onClick={() => {
+                                                openModal('profession_modal_mobi', 'mobi', {
+                                                    profession: item.profession,
+                                                    professionId: item.id,
+                                                })
+                                            }}
+                                        />
+                                    ))}
                                 </div>
                                 {totalPages > 1 && (
-                                    <ProfessionsPaginationMobi
+                                    <PaginationMobi
                                         totalPages={totalPages}
                                         currentPage={currentPage}
-                                        onPageChange={handlePageChange}
+                                        onPageChange={setCurrentPage}
                                     />
                                 )}
                             </>
