@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
@@ -9,10 +8,10 @@ import { content } from './contentShoppingCartPageDesktop/content'
 import { AccountNavigationDesktop } from '../../layout/AccountNavigationDesktop/AccountNavigationDesktop'
 import ItemCardShoppingCartDesktop from './components/ItemCardShoppingCartDesktop/ItemCardShoppingCartDesktop'
 
-const isAuth = true
-const hasOrders = content && content.length > 0
-
 const ShoppingCartPageDesktop: React.FC = () => {
+    const isAuth = true
+    const hasOrders = content && content.length > 0
+
     return (
         <>
             <HeaderDesktop />

@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+
 import TitleMobi from '@/components/mobi/shared/TitleMobi'
 import ItemEventsMobi from '@/components/mobi/pageMobi/HomePageMobi/components/EventsSectionMobi/ItemEventsMobi/ItemEventsMobi'
 import { content } from './contentEventsSectionMobi/content'

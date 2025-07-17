@@ -1,7 +1,8 @@
-import React from 'react'
-import JoinTeamMobi from './components/JoinTeamMobi'
+'use client'
+
 import HeaderMobi from '../../layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '../../layout/FooterMobi/FooterMobi'
+import JoinTeamMobi from './components/JoinTeamMobi'
 
 const JoinTeamPageMobi: React.FC = () => {
     return (

@@ -1,4 +1,4 @@
-import React from 'react'
+'use client'
 
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
