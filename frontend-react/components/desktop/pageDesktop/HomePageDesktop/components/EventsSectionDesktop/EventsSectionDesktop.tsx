@@ -1,10 +1,13 @@
-import React, { useRef, useState } from 'react'
+'use client'
+import React, { useEffect, useRef, useState } from 'react'
 import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
 import ItemEventsDesktop from './ItemEventsDesktop/ItemEventsDesktop'
 import { contentEventsSection } from './contentEventsSectionDesktop/content'
+
 const EventsSectionDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
+    const [scrollbarWidth, setScrollbarWidth] = useState<string>('0')
     const [itemWidth, setItemWidth] = useState<number>(0)
 
     const handleScroll = () => {
@@ -19,7 +22,10 @@ const EventsSectionDesktop: React.FC = () => {
         }
     }
 
-    const scrollbarWidth = `${((contentEventsSection.length * itemWidth) / window.innerWidth) * 150}%`
+    useEffect(() => {
+        if (!scrollbarWidth)
+            setScrollbarWidth(`${((contentEventsSection.length * itemWidth) / window.innerWidth) * 150}%`)
+    }, [])
 
     return (
         <div className="py-[10vh]">
