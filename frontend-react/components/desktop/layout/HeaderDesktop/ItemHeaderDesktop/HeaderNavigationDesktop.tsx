@@ -7,8 +7,8 @@ import { content } from './contentHeaderNavigationDesktop/content'
 
 const HeaderNavigationDesktop: React.FC = () => {
     const pathname = usePathname()
-    const normalize = (path: string) => path.replace(/^\/(desktop)/, '').replace(/\/$/, '') || '/'
-    const normalizedPath = useMemo(() => normalize(pathname || ''), [pathname])
+    const normalize = (path: string) => path.replace(/^\/desktop/, '').replace(/\/$/, '') || '/'
+    const normalizedActivePath = useMemo(() => normalize(pathname || ''), [pathname])
 
     return (
         <nav className="inline-block max-h-[68px] min-h-[45%] w-[54vw] max-w-[1036px]">
@@ -17,7 +17,7 @@ const HeaderNavigationDesktop: React.FC = () => {
                     <li
                         key={item.id}
                         className={
-                            normalize(item.link) === normalizedPath
+                            normalize(item.link) === normalizedActivePath
                                 ? 'bg-gradient-desktop flex size-full items-center justify-center rounded-[3.125rem] text-center text-white transition-all duration-300 ease-in-out'
                                 : 'text-gradient_desktop_custom hover:bg-gradient-desktop-hover flex size-full items-center justify-center text-center transition-all duration-300 ease-in-out'
                         }
