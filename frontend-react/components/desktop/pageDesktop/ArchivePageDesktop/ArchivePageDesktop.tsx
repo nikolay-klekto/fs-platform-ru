@@ -1,21 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import { AccountNavigationDesktop } from '@/components/desktop/layout/AccountNavigationDesktop/AccountNavigationDesktop'
 
 const ArchivePageDesktop: React.FC = () => {
-    const [isClient, setIsClient] = useState(false)
-
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
-
-    if (!isClient) {
-        return null
-    }
-
     return (
         <>
             <HeaderDesktop />

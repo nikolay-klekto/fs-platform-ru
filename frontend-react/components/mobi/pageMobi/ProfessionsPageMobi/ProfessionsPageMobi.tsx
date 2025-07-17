@@ -13,15 +13,14 @@ import ProfessionSendMobi from './components/ProfessionSendMobi'
 import ProfessionsSelectMobi from './components/ProfessionsSelectMobi'
 import { content } from './contentProfessionsPageMobi/content'
 
+const cardsPerPage = 6
+const minSearchLength = 3
+
 const ProfessionsPageMobi: React.FC = () => {
-    const [isClient, setIsClient] = useState(false)
     const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [currentPage, setCurrentPage] = useState(1)
-
-    const cardsPerPage = 6
-    const minSearchLength = 3
 
     const filteredContent = (() => {
         const normalizedQuery = searchQuery.trim().toLowerCase()
@@ -48,19 +47,11 @@ const ProfessionsPageMobi: React.FC = () => {
         setCurrentPage(1)
     }, [searchQuery, selectedCategories])
 
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
-
-    if (!isClient) {
-        return null
-    }
-
     return (
         <>
             <div className="h-[20px] bg-[#101030]">
                 <HeaderMobi />
-                <div className="bg-[#101030] text-white">
+                <main className="bg-[#101030] text-white">
                     <div className="px-[15px] py-[40px]">
                         <h1 className="title28px_mobi_custom">Профессии</h1>
                         <div className="flex items-center gap-[20px] py-[30px] md:justify-center">
@@ -121,7 +112,7 @@ const ProfessionsPageMobi: React.FC = () => {
 
                         <ProfessionSendMobi />
                     </div>
-                </div>
+                </main>
                 <FooterMobi />
             </div>
         </>

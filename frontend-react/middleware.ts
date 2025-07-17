@@ -25,5 +25,5 @@ export function middleware(request: NextRequest) {
         url.pathname = `/desktop${pathname}`
     }
 
-    return NextResponse.redirect(url)
+    return NextResponse.rewrite(url)
 }

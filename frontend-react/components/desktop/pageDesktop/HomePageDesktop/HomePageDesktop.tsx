@@ -1,13 +1,15 @@
+'use client'
+
 import React, { useEffect } from 'react'
 import { useModal } from '@/context/ContextModal'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import HeaderMainDesktop from './components/HeaderMainDesktop/HeaderMainDesktop'
 import HeaderCardsDesktop from './components/HeaderCardsDesktop/HeaderCardsDesktop'
 import ProfessionsSectionDesktop from './components/ProfessionSectionDesktop/ProfessionsSectionDesktop'
 import HowWeWorkDesktop from './components/HowWeWorkDesktop/HowWeWorkDesktop'
 import PromoDesktop from './components/PromoDesktop/PromoDesktop'
 import EventsSectionDesktop from './components/EventsSectionDesktop/EventsSectionDesktop'
-import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const HomePageDesktop: React.FC = () => {
     const { openModal } = useModal()

@@ -1,6 +1,5 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
@@ -10,18 +9,8 @@ import { AccountNavigationDesktop } from '../../layout/AccountNavigationDesktop/
 import ItemCardShoppingCartDesktop from './components/ItemCardShoppingCartDesktop/ItemCardShoppingCartDesktop'
 
 const ShoppingCartPageDesktop: React.FC = () => {
-    const [isClient, setIsClient] = useState(false)
-
     const isAuth = true
     const hasOrders = content && content.length > 0
-
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
-
-    if (!isClient) {
-        return null
-    }
 
     return (
         <>

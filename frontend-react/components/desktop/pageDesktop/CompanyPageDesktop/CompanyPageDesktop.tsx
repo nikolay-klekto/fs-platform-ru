@@ -1,6 +1,5 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MapPinIconDesktop } from '@/components/assets/iconsDesktop'
@@ -11,16 +10,6 @@ import CompanyAdvantageDesktop from './components/CompanyAdvantageDesktop/Compan
 import { content } from './contentCompanyPageDesktop/content'
 
 const CompanyPageDesktop: React.FC = () => {
-    const [isClient, setIsClient] = useState(false)
-
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
-
-    if (!isClient) {
-        return null
-    }
-
     return (
         <>
             <HeaderDesktop />

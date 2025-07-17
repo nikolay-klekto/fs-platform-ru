@@ -14,16 +14,15 @@ import ProfessionsPaginationDesktop from './components/ProfessionsPaginationDesk
 import ProfessionSearchDesktop from './components/ProfessionSendDesktop'
 import { content } from './contentProfessionsPageDesktop/content'
 
+const cardsPerPage = 12
+
 const ProfessionsPageDesktop: React.FC = () => {
-    const [isClient, setIsClient] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [selectedInternshipTypes, setselectedIntenshipTypes] = useState<string[]>([])
     const { openModal } = useModal()
-
-    const cardsPerPage = 12
 
     const filteredContent = content.filter((item) => {
         const matchesSearch =
@@ -42,14 +41,6 @@ const ProfessionsPageDesktop: React.FC = () => {
     useEffect(() => {
         setCurrentPage(1)
     }, [searchQuery, selectedCategories])
-
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
-
-    if (!isClient) {
-        return null
-    }
 
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)

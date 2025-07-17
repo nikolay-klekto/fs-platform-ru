@@ -1,36 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import { useMediaQuery } from 'react-responsive'
+'use client'
+
+import React, { useEffect } from 'react'
 import { useModal } from '@/context/ContextModal'
 import HeaderMainMobi from './components/HeaderMainMobi/HeaderMainMobi'
+import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HeaderCardsMobi from './components/HeaderCardsMobi/HeaderCardsMobi'
 import ProfessionsSectionMobi from './components/ProfessionsSectionMobi/ProfessionsSectionMobi'
 import HowWeWorkMobi from './components/HowWeWorkMobi/HowWeWorkMobi'
 import PromoMobi from './components/PromoMobi/PromoMobi'
 import EventsSectionMobi from './components/EventsSectionMobi/EventsSectionMobi'
-import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 
 const HomePageMobi: React.FC = () => {
-    const [isClient, setIsClient] = useState(false)
     const { openModal } = useModal()
-    const isDesktop = useMediaQuery({
-        query: '(min-width: 1240px)',
-    })
 
     useEffect(() => {
-        setIsClient(true)
-
         const hasSeenCookies = localStorage.getItem('hasSeenCookies')
         if (!hasSeenCookies) {
-            const modalKey = isDesktop ? 'cookie_desktop' : 'cookie_mobi'
-            const modalType = isDesktop ? 'desktop' : 'mobi'
+            const modalKey = 'cookie_mobi'
+            const modalType = 'mobi'
             openModal(modalKey, modalType)
             localStorage.setItem('hasSeenCookies', 'true')
         }
-    }, [openModal, isDesktop])
-
-    if (!isClient) {
-        return null
-    }
+    }, [])
 
     return (
         <>

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import EventsCardMobi from './components/EventsCardMobi'
@@ -10,20 +10,11 @@ import EventsSelectSearchDateMobi from './components/EventsSelectSearchDateMobi'
 import EventsSelectSearchCityMobi from './components/EventsSelectSearchCityMobi'
 import { content } from './contentEventsPageMobi/content'
 
+const cardsPerPage = 6
+
 const EventsPageMobi: React.FC = () => {
-    const [isClient, setIsClient] = useState(false)
     //const [searchQuery, setSearchQuery] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
-
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
-
-    if (!isClient) {
-        return null
-    }
-
-    const cardsPerPage = 6
     const totalPages = Math.ceil(content.length / cardsPerPage)
 
     // const handleSearch = () => {

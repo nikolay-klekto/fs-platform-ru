@@ -13,26 +13,17 @@ import CompaniesPaginationDesktop from './components/CompaniesPaginationDesktop'
 import CompaniesSearchDesktop from './components/CompaniesSendDesktop'
 import { content } from './contentCompaniesPageDesktop/content'
 
+const cardsPerPage = 12
+
 const CompaniesPageDesktop: React.FC = () => {
-    const [isClient, setIsClient] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
 
     useEffect(() => {
-        setIsClient(true)
-    }, [])
-
-    useEffect(() => {
         setCurrentPage(1)
     }, [searchQuery, selectedCategories])
-
-    if (!isClient) {
-        return null
-    }
-
-    const cardsPerPage = 12
 
     const filteredContent = content.filter((item) => {
         const matchesSearch =

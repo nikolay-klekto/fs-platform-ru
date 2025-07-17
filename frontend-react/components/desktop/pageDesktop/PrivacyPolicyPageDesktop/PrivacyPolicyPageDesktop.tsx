@@ -1,21 +1,10 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import { PrivacyPolicyPageTableDesktop } from './components/PrivacyPolicyTableDesktop/PrivacyPolicyTableDesktop'
 
 const PrivasyPolisyPageDesktop: React.FC = () => {
-    const [isClient, setIsClient] = useState(false)
-
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
-
-    if (!isClient) {
-        return null
-    }
-
     const h3StylesMb50 = 'mb-[50px] text32px_desktop  montserrat.variable font-medium uppercase'
     const h3StylesMb15 = 'mb-[15px] text32px_desktop  montserrat.variable font-medium uppercase'
 

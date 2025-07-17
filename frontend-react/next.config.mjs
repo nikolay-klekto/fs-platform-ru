@@ -9,9 +9,9 @@ const nextConfig = {
     assetPrefix: '/',
     // Если нужно отключить строгий режим
     reactStrictMode: true,
-    experimental: {
-        serverActions: true, // если ты используешь
-    },
+    // experimental: {
+    //     serverActions: true, // если ты используешь
+    // },
 }
 
 export default nextConfig

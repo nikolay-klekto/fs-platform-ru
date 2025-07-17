@@ -1,25 +1,25 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { Search } from 'lucide-react'
+import { EnhancedInput } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { useModal } from '@/context/ContextModal'
+import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
+import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import CompaniesCardPageMobi from './components/CompaniesCardPageMobi'
 import CompaniesPaginationMobi from './components/CompaniesPaginationMobi'
 import CompaniesSendMobi from './components/CompaniesSendMobi'
-import { content } from './contentCompaniesPageMobi/content'
-import { EnhancedInput } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Search } from 'lucide-react'
-import { useModal } from '@/context/ContextModal'
 import CompaniesSelectMobi from './components/CompaniesSelectMobi'
-import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
-import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
+import { content } from './contentCompaniesPageMobi/content'
+
+const cardsPerPage = 6
 
 const CompaniesPageMobi: React.FC = () => {
-    const [isClient, setIsClient] = useState(false)
     const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-    const cardsPerPage = 6
 
     const filteredContent = content.filter((item) => {
         const matchesSearch =
@@ -34,14 +34,6 @@ const CompaniesPageMobi: React.FC = () => {
             setCurrentPage(1)
         }
     }, [currentPage, filteredContent])
-
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
-
-    if (!isClient) {
-        return null
-    }
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
     const safeCurrentPage = Math.min(currentPage, totalPages || 1)
