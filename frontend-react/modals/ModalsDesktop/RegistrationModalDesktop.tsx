@@ -141,7 +141,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         const result = await register(formData.email, cleanedPhone, formData.password)
         if (result.success) {
             onClose()
-            router.push('/personal-account')
+            router.push('/profile')
         } else {
             setInputInternalErrors((prevErrors) => ({
                 ...prevErrors,
@@ -293,7 +293,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     <div className="w-[95%]">
                         <p className="text15px_desktop font-medium text-[#353652]">
                             Защита от спама reCAPTCHA{' '}
-                            <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
+                            <Link href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline">
                                 Конфиденциальность
                             </Link>{' '}
                             и{' '}

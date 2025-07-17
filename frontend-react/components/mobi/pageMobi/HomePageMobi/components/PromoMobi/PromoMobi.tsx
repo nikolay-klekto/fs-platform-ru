@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { ArrowBtn } from '@/components/assets/iconsMobi'
@@ -21,7 +23,11 @@ const PromoMobi: React.FC = () => {
                     Пройди стажировку в абсолютно разных компаниях на многообразнейших понравившихся профессиях
                 </p>
                 <div className="flex justify-center">
-                    <Button variant="registration_mobi" size="registration_mobi" className="flex-1 md:w-[270px] md:flex-none">
+                    <Button
+                        variant="registration_mobi"
+                        size="registration_mobi"
+                        className="flex-1 md:w-[270px] md:flex-none"
+                    >
                         <span className="sm_s:text-3xl bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent sm:text-3xl">
                             Найти стажировку
                         </span>
