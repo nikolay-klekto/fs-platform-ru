@@ -152,7 +152,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
             } else {
                 setInputInternalErrors((prevErrors) => ({
                     ...prevErrors,
-                    email: result.errorMessage,
+                    email: result.errorMessage ?? null,
                 }))
             }
         }
