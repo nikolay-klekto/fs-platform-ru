@@ -1,4 +1,3 @@
-
 import { ApolloClient, ApolloLink, from, HttpLink, InMemoryCache } from '@apollo/client'
 import { createErrorLink, createAuthErrorLink } from './errorLink'
 import { getMainDefinition } from '@apollo/client/utilities'
@@ -20,7 +19,6 @@ export function createApolloClient() {
     const errorLink = createErrorLink()
     const authErrorLink = createAuthErrorLink()
 
-    
     function routeByOperationName(name: string) {
         switch (true) {
             case name.startsWith('getCards'):

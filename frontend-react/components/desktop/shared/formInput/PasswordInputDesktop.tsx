@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { EyeOffPasswordDesktop, EyeOnPasswordDesktop, PasswordGeneratorDesktop } from '@/components/assets/iconsDesktop'
 import { validatePassword } from '@/components/desktop/commonDesktop/validate/validatePasswordDesktop'
@@ -27,13 +29,13 @@ const PasswordInputDesktop: React.FC<IPasswordInput> = ({
     label,
     placeholder,
     externalError,
-    inputClassName,
-    labelClassName,
-    errorClassName,
-    inputERRAddStyle,
-    inputNOERRAddStyle,
+    inputClassName = '',
+    labelClassName = '',
+    errorClassName = '',
+    inputERRAddStyle = '',
+    inputNOERRAddStyle = '',
     showGenerateButton = false,
-    required = false,
+    formError = false,
 }) => {
     const [showPassword, setShowPassword] = useState(false)
     const [internalError, setInternalError] = useState<string | null>(null)
@@ -47,9 +49,9 @@ const PasswordInputDesktop: React.FC<IPasswordInput> = ({
 
     const handleBlur = () => {
         setTouched(true)
-        const error = required && !value.trim() ? 'Поле обязательно для заполнения' : validatePassword(value).textError
+        const error = validatePassword(value).textError
         setInternalError(error)
-        onError(error)
+        onError(error || '')
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,15 +61,15 @@ const PasswordInputDesktop: React.FC<IPasswordInput> = ({
         if (touched) {
             const { textError } = validatePassword(newValue)
             setInternalError(textError)
-            onError(textError)
+            onError(textError || '')
         }
     }
 
-    const hasError = Boolean(externalError || internalError)
+    const hasError = Boolean(externalError || internalError || (formError && !value.trim()))
 
     return (
         <div className="flex w-full flex-col gap-1.5">
-            <label htmlFor={label} className={`${labelClassName}`}>
+            <label htmlFor={label} className={labelClassName}>
                 {label}
             </label>
             <div className="relative flex w-full">
@@ -83,7 +85,7 @@ const PasswordInputDesktop: React.FC<IPasswordInput> = ({
                 <button
                     type="button"
                     onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute right-4 top-1/2 flex  -translate-y-1/2 items-center text-[#878797]"
+                    className="absolute right-4 top-1/2 flex -translate-y-1/2 items-center text-[#878797]"
                 >
                     {showPassword ? <EyeOnPasswordDesktop /> : <EyeOffPasswordDesktop />}
                 </button>
@@ -97,7 +99,7 @@ const PasswordInputDesktop: React.FC<IPasswordInput> = ({
                     </button>
                 )}
             </div>
-            {internalError && <p className={`${errorClassName}`}>{internalError}</p>}
+            {(internalError || externalError) && <p className={errorClassName}>{internalError || externalError}</p>}
         </div>
     )
 }

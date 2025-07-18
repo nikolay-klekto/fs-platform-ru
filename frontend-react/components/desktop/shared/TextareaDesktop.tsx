@@ -119,7 +119,7 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
                         textareaVariants({ variant, size, rounded }),
                         isFocused && 'ring-2 ring-ring ring-offset-2',
                         className,
-                        styleErrorClass && 'custom_error_style_input',
+                        styleErrorClass && 'border-[#BC8070]',
                     )}
                     ref={ref}
                     name={name}
