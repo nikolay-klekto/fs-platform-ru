@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowBtnDesktop } from '@/components/assets/iconsDesktop'

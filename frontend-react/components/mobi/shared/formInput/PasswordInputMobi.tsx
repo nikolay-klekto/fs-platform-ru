@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { EyeOffPasswordMobi, EyeOnPasswordMobi, PasswordGeneratorMobi } from '@/components/assets/iconsMobi'
 import { validatePasswordMobi } from '@/components/mobi/commonMobi/validate/validatePasswordMobi'

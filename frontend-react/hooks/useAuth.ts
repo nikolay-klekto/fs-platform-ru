@@ -1,47 +1,35 @@
 import { useState } from 'react'
-import { useMutation, gql } from '@apollo/client'
-import Cookies from 'js-cookie'
+import { useMutation } from '@apollo/client'
+import { REGISTER_MUTATION } from '@/lib/mutations/auth'
+import { saveAuthTokens } from '@/lib/saveAuthTokens'
 
-const REGISTER_MUTATION = gql`
-    mutation Register($email: String!, $phoneNumber: String!, $password: String!) {
-        register(client: { email: $email, phoneNumber: $phoneNumber, password: $password }) {
-            data {
-                accessToken
-                refreshToken
-                clientId
-            }
-            errorMessage
-        }
+interface IRegisterResponse {
+    data?: {
+        accessToken: string
+        refreshToken: string
+        clientId: string
     }
-`
+    errorMessage?: string
+}
+
+interface IRegisterMutationResponse {
+    register: IRegisterResponse
+}
 
 export const useAuth = () => {
     const [customError, setCustomError] = useState<string | null>(null)
-    const [registerMutation, { error, loading, client }] = useMutation(REGISTER_MUTATION, {
+
+    const [registerMutation, { error, loading, client }] = useMutation<IRegisterMutationResponse>(REGISTER_MUTATION, {
         onCompleted: (response) => {
             const registerData = response?.register
+
             if (registerData?.errorMessage) {
                 setCustomError(registerData.errorMessage)
                 console.error('Registration error:', registerData.errorMessage)
             }
 
             if (registerData?.data) {
-                const { accessToken, refreshToken, clientId } = registerData.data
-
-                Cookies.set('accessToken', accessToken, {
-                    secure: process.env.NODE_ENV === 'production',
-                    sameSite: 'strict',
-                })
-                Cookies.set('refreshToken', refreshToken, {
-                    secure: process.env.NODE_ENV === 'production',
-                    sameSite: 'strict',
-                })
-                Cookies.set('clientId', clientId, {
-                    secure: process.env.NODE_ENV === 'production',
-                    sameSite: 'strict',
-                })
-
-                return { success: true }
+                saveAuthTokens(registerData.data)
             }
         },
         onError: (err) => {
@@ -49,7 +37,11 @@ export const useAuth = () => {
         },
     })
 
-    const register = async (email: string, phoneNumber: string, password: string) => {
+    const register = async (
+        email: string,
+        phoneNumber: string,
+        password: string,
+    ): Promise<{ success: boolean; errorMessage?: string }> => {
         try {
             const response = await registerMutation({
                 variables: {

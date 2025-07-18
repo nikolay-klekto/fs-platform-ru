@@ -12,7 +12,7 @@ export const AccountNavigationDesktop: React.FC = () => {
 
     return (
         <>
-            <nav>
+            <nav className="relative z-10">
                 <ul className="flex gap-[clamp(30px,3vw,80px)]">
                     {content.map((item: IAccountNavigation) => (
                         <li key={item.href}>

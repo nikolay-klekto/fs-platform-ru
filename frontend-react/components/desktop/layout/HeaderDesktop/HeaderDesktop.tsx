@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import Link from 'next/link'
 import { useModal } from '@/context/ContextModal'
 import { useIsAuth } from '@/hooks/useIsAuth'

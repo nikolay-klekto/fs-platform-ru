@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { ChevronDownIconMobi, CheckedBoxIconMobi, QuestionMarkMobi } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'

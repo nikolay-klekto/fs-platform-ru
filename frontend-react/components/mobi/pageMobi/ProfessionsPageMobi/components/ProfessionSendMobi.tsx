@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { EnhancedInput } from '@/components/ui/input'
 import { SendIconMobi } from '@/components/assets/iconsMobi'

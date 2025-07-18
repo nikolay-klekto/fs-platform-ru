@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useRef, useEffect } from 'react'
 import { ChevronDownIconMobi, SearchIconMobi } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'

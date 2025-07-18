@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { useMutation, gql } from '@apollo/client'
-import Cookies from 'js-cookie'
+import { useMutation } from '@apollo/client'
+import { LOGIN_MUTATION } from '@/lib/mutations/auth'
+import { saveAuthTokens } from '@/lib/saveAuthTokens'
 
 interface ILoginResponse {
     data?: {
@@ -15,23 +16,9 @@ interface ILoginMutationResponse {
     login: ILoginResponse
 }
 
-const LOGIN_MUTATION = gql`
-    mutation Login($email: String!, $password: String!) {
-        login(client: { email: $email, password: $password }) {
-            data {
-                accessToken
-                refreshToken
-                clientId
-            }
-            errorMessage
-        }
-    }
-`
-
 export const useLogin = () => {
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
-
     const [loginMutation] = useMutation<ILoginMutationResponse>(LOGIN_MUTATION)
 
     const login = async (email: string, password: string): Promise<{ success: boolean; errorMessage?: string }> => {
@@ -56,19 +43,7 @@ export const useLogin = () => {
                 throw new Error('No authentication data received')
             }
 
-            Cookies.set('accessToken', data.login.data.accessToken, {
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'strict',
-            })
-            Cookies.set('refreshToken', data.login.data.refreshToken, {
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'strict',
-            })
-            Cookies.set('clientId', data.login.data.clientId, {
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'strict',
-            })
-
+            saveAuthTokens(data.login.data)
             return { success: true }
         } catch (err) {
             const errorMessage = err instanceof Error ? err.message : 'Ошибка при входе'

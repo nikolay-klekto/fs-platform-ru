@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { EyeOffPasswordDesktop, EyeOnPasswordDesktop, PasswordGeneratorDesktop } from '@/components/assets/iconsDesktop'
 import { validatePassword } from '@/components/desktop/commonDesktop/validate/validatePasswordDesktop'

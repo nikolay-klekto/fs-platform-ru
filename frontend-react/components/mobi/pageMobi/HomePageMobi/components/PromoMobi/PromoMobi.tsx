@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import { Button } from '@/components/ui/button'
 import { ArrowBtn } from '@/components/assets/iconsMobi'
 import Link from 'next/link'
