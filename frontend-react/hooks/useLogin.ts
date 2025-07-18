@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { LOGIN_MUTATION } from '@/lib/mutations/auth'
 import { saveAuthTokens } from '@/lib/saveAuthTokens'
+import Cookies from 'js-cookie'
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, CLIENT_ID_KEY } from '@/lib/constants/auth'
 
 interface ILoginResponse {
     data?: {
@@ -21,6 +23,12 @@ export const useLogin = () => {
     const [loading, setLoading] = useState(false)
     const [loginMutation] = useMutation<ILoginMutationResponse>(LOGIN_MUTATION)
 
+    const clearAuthCookies = () => {
+        Cookies.remove(ACCESS_TOKEN_KEY)
+        Cookies.remove(REFRESH_TOKEN_KEY)
+        Cookies.remove(CLIENT_ID_KEY)
+    }
+
     const login = async (email: string, password: string): Promise<{ success: boolean; errorMessage?: string }> => {
         setLoading(true)
         setError(null)
@@ -35,6 +43,7 @@ export const useLogin = () => {
             }
 
             if (data.login.errorMessage) {
+                clearAuthCookies()
                 setError(data.login.errorMessage)
                 return { success: false, errorMessage: data.login.errorMessage }
             }
@@ -47,6 +56,7 @@ export const useLogin = () => {
             return { success: true }
         } catch (err) {
             const errorMessage = err instanceof Error ? err.message : 'Ошибка при входе'
+            clearAuthCookies()
             setError(errorMessage)
             return { success: false, errorMessage }
         } finally {
