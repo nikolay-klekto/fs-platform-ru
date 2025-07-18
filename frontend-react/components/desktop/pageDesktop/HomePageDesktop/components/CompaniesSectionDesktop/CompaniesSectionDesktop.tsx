@@ -3,12 +3,13 @@
 import React, { useRef, useEffect, useState } from 'react'
 import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
 import Image from 'next/image'
-import { contentCompaniesDesktop } from './contentCompaniesSectionDesktop/content'
+import { useAvailableCompanies } from '@/hooks/useAvailibleCompanies'
 
 const CompaniesSectionDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [scrollbarWidth, setScrollbarWidth] = useState(0)
+    const { companies } = useAvailableCompanies()
 
     const calculateScrollbarWidth = () => {
         if (!contentRef.current || !scrollbarRef.current) return 0
@@ -53,21 +54,20 @@ const CompaniesSectionDesktop: React.FC = () => {
                 <div
                     ref={contentRef}
                     onScroll={handleScroll}
-                    className="no-scrollbar_custom container flex w-full select-none gap-[9vw] overflow-y-visible overflow-x-scroll px-12"
+                    className="no-scrollbar_custom container flex w-full justify-center select-none gap-[9vw] overflow-y-visible overflow-x-scroll px-12"
                 >
-                    {contentCompaniesDesktop.map((item) => (
+                    {companies.slice(0, 10).map((item) => (
                         <div
                             className="group relative my-16 flex min-w-[160px] justify-center overflow-visible p-6"
                             key={item.id}
                         >
                             <div className="absolute inset-0 rounded-full bg-[#9653f5] opacity-0 blur-2xl transition duration-300 ease-in-out group-hover:opacity-40"></div>
                             <Image
-                                src={item.image.src}
-                                alt={item.image.alt}
+                                src={item.logoPath}
+                                alt={item.name}
                                 width={104}
                                 height={40}
-                                style={{ width: '100%', height: 'auto' }}
-                                className="relative z-10"
+                                className="relative z-10 object-contain"
                             />
                         </div>
                     ))}
