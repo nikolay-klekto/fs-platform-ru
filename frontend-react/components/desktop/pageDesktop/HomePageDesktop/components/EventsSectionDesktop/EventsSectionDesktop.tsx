@@ -30,7 +30,7 @@ const EventsSectionDesktop: React.FC = () => {
     return (
         <div className="py-[10vh]">
             <div className="container">
-                <TitleDesktop title={'МЕРОПРИЯТИЯ'} href="/events" />
+                <TitleDesktop title={'Мероприятия'} href="/events" />
             </div>
             <div
                 ref={contentRef}

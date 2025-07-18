@@ -7,9 +7,10 @@ import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDeskt
 import { content } from './contentShoppingCartPageDesktop/content'
 import { AccountNavigationDesktop } from '../../layout/AccountNavigationDesktop/AccountNavigationDesktop'
 import ItemCardShoppingCartDesktop from './components/ItemCardShoppingCartDesktop/ItemCardShoppingCartDesktop'
+import { useIsAuth } from '@/hooks/useIsAuth'
 
 const ShoppingCartPageDesktop: React.FC = () => {
-    const isAuth = true
+    const isAuth = useIsAuth()
     const hasOrders = content && content.length > 0
 
     return (
@@ -20,8 +21,8 @@ const ShoppingCartPageDesktop: React.FC = () => {
                     <div className="radial-gradient_desktop left-[150px] top-[-330px]"></div>
 
                     {isAuth && (
-                        <div className="flex items-center justify-between py-20">
-                            <h1 className="text46px_desktop whitespace-nowrap pr-16 font-medium uppercase leading-[70%] tracking-normal">
+                        <div className="flex items-center justify-between pt-20">
+                            <h1 className="title46px_desktop whitespace-nowrap pr-16 font-medium uppercase leading-[70%] tracking-normal">
                                 Личный кабинет
                             </h1>
                             <AccountNavigationDesktop />
@@ -59,7 +60,7 @@ const ShoppingCartPageDesktop: React.FC = () => {
                     )}
 
                     {hasOrders && (
-                        <div className="grid pb-[49px]">
+                        <div className="grid pb-[50px] pt-20">
                             <div className="grid grid-cols-2 justify-between gap-[34px] self-end pb-[80px] 2xl:pb-[40px]">
                                 {content.map((item) => (
                                     <ItemCardShoppingCartDesktop

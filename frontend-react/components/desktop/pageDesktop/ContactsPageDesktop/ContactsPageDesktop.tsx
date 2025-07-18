@@ -9,9 +9,7 @@ const ContactsPageDesktop: React.FC = () => {
     return (
         <>
             <HeaderDesktop />
-            <main className="bg-[#101030] text-white">
-                <ContactsDesktop />
-            </main>
+            <ContactsDesktop />
             <FooterDesktop />
             <Toaster />
         </>

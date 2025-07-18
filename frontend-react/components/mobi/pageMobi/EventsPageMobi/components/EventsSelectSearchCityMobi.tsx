@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useRef, useEffect } from 'react'
 import { ChevronDownIconMobi, SearchIconMobi } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
@@ -107,7 +109,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
     ({ children, isChecked, onClick, ...props }, forwardedRef) => {
         return (
             <div
-                className={`hover:border-hover text-[18px]font-medium relative z-[3] flex cursor-pointer items-center justify-between p-[15px] text-white ${
+                className={`hover:border-hover text-[18px]font-medium relative z-[3] flex items-center justify-between p-[15px] text-white ${
                     isChecked ? 'border-selected border-y-2 bg-[#28295B]' : 'bg-transparent'
                 }`}
                 {...props}

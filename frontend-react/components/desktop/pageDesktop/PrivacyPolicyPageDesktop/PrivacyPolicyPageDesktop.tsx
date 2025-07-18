@@ -14,7 +14,7 @@ const PrivasyPolisyPageDesktop: React.FC = () => {
             <HeaderDesktop />
             <div className="bg-[#101030] text-white">
                 <div className="container relative overflow-hidden p-[83px_68px_240px_60px]">
-                    <h2 className=" text46px_desktop mb-[74px] text-center font-medium  text-white ">
+                    <h2 className="title46px_desktop mb-[74px] text-center font-medium  text-white ">
                         ПОЛИТИКА ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ
                     </h2>
 

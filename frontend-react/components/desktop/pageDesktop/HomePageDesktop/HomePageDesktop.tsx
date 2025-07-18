@@ -34,10 +34,12 @@ const HomePageDesktop: React.FC = () => {
                         <HeaderCardsDesktop />
                     </div>
                 </div>
-                <HowWeWorkDesktop />
-                <ProfessionsSectionDesktop />
-                <PromoDesktop />
-                <EventsSectionDesktop />
+                <main>
+                    <HowWeWorkDesktop />
+                    <ProfessionsSectionDesktop />
+                    <PromoDesktop />
+                    <EventsSectionDesktop />
+                </main>
             </div>
             <FooterDesktop />
         </>
