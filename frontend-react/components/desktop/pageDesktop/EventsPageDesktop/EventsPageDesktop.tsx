@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import EventsCardDesktop from './components/EventsCardDesktop'
-import EventsPaginationDesktop from './components/EventsPaginationDesktop'
+import PaginationDesktop from '../../shared/PaginationDesktop'
 import EventsSelectSearchDesktop from './components/EventsSelectSearchDesktop'
 import EventsSelectSearchDateDesktop from './components/EventsSelectSearchDateDesktop'
 import EventsSelectSearchCityDesktop from './components/EventsSelectSearchCityDesktop'
@@ -38,11 +38,7 @@ const EventsPageDesktop: React.FC = () => {
 
     const isEmpty = filteredContent.length === 0
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
-    const paginatedCards = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
-
-    const handlePageChange = (page: number): void => {
-        setCurrentPage(page)
-    }
+    const paginatedItems = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
 
     return (
         <>
@@ -57,7 +53,7 @@ const EventsPageDesktop: React.FC = () => {
                     </div>
                     <div className="3xl:gap-[25px] 4xl:gap-[30px] flex min-h-[40vh] flex-wrap justify-center gap-[36px] 2xl:gap-[20px]">
                         {!isEmpty ? (
-                            paginatedCards.map((item) => (
+                            paginatedItems.map((item) => (
                                 <EventsCardDesktop
                                     key={item.id}
                                     title={item.title}
@@ -78,10 +74,10 @@ const EventsPageDesktop: React.FC = () => {
                         )}
                     </div>
                     {totalPages > 1 && (
-                        <EventsPaginationDesktop
+                        <PaginationDesktop
                             totalPages={totalPages}
                             currentPage={currentPage}
-                            onPageChange={handlePageChange}
+                            onPageChange={setCurrentPage}
                         />
                     )}
                 </div>
