@@ -1,4 +1,4 @@
-name: Build and Deploy React App (Next.js SSR)
+name: Build and Deploy React App for Current Prod (Next.js SSR)
 
 on:
   push:
