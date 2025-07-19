@@ -1,0 +1,89 @@
+name: Build and Deploy React App (Next.js SSR)
+
+on:
+  push:
+    branches:
+      - test_back_img
+  pull_request:
+    branches:
+      - test_back_img
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: frontend-react
+
+      - name: Cache Next.js build cache
+        uses: actions/cache@v3
+        with:
+          path: frontend-react/.next/cache
+          key: nextjs-${{ runner.os }}-${{ hashFiles('frontend-react/package-lock.json') }}
+          restore-keys: |
+            nextjs-${{ runner.os }}-
+
+      - name: Build app
+        run: NEXT_DISABLE_ESLINT_PLUGIN=true npm run build
+        working-directory: frontend-react
+
+      - name: Prepare deployment folder
+        run: |
+          mkdir deploy
+          cp -r frontend-react/.next deploy/.next
+          cp -r frontend-react/public deploy/public
+          cp frontend-react/package*.json deploy/
+          cp frontend-react/next.config.mjs deploy/ || true
+
+      - name: Archive deployment folder
+        run: tar -czf react-app.tar.gz deploy
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-build-package
+          path: react-app.tar.gz
+
+  deploy:
+    if: github.ref == 'refs/heads/test_back_img' && needs.build.result == 'success'
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: react-build-package
+          path: .
+
+      - name: Copy to server and deploy
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          scp -o StrictHostKeyChecking=no react-app.tar.gz root@${{ secrets.IP_DOMAIN }}:/home/Nikolay/react-app.tar.gz
+          ssh -o StrictHostKeyChecking=no root@${{ secrets.IP_DOMAIN }} << 'EOF'
+          cd /home/Nikolay
+          rm -rf funScrut/frontend-react/.next
+          tar -xzf react-app.tar.gz
+          cp -r deploy/.next funScrut/frontend-react-prod/.next
+          cp -r deploy/public funScrut/frontend-react-prod/public
+          cp deploy/package*.json funScrut/frontend-react-prod/
+          cp deploy/next.config.mjs funScrut/frontend-react-prod/ || true
+          rm -rf deploy react-app.tar.gz
+          cd funScrut
+          docker compose up -d --build react-app-deploy
+          EOF
