@@ -7,7 +7,7 @@ import { EnhancedInput } from "@/components/ui/input";
 import { validateEmailMobi } from "@/components/mobi/commonMobi/validate/validateEmailMobi";
 import AvatarMobi from '@/components/mobi/shared/AvatarMobi/AvatarMobi';
 import { CalendarIconsMobi, ChevronDownIconMobi } from '@/components/assets/iconsMobi';
-import DatePickerCalendar from "@/components/mobi/shared/CalendarProfileMobi/CalendarProfileMobi";
+import DatePickerCalendarMobi from "@/components/mobi/shared/CalendarProfileMobi/CalendarProfileMobi";
 
 interface IFormData {
     name: string
@@ -16,7 +16,7 @@ interface IFormData {
     phone: string
     email: string
     education: string
-    occupation: string // добавляю поле занятости
+    occupation: string
     consent: boolean
     avatar?: string
 }
@@ -38,7 +38,6 @@ const occupationOption: ISelectOption[] = [
     { value: 'full', label: 'Полная' },
     { value: 'underemployment', label: 'Неполная' },
     { value: 'part-time', label: 'Частичная' },
-    { value: 'smth', label: 'Такая-то' },
 ]
 
 const MyProfileMobi: React.FC = () => {
@@ -49,7 +48,7 @@ const MyProfileMobi: React.FC = () => {
         phone: '',
         email: '',
         education: '',
-        occupation: '', // добавляю поле занятости
+        occupation: '',
         consent: false,
         avatar: '',
     });
@@ -64,10 +63,10 @@ const MyProfileMobi: React.FC = () => {
 
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const [isEducationOpen, setIsEducationOpen] = useState(false);
-    const [isEmailFocused, setIsEmailFocused] = useState(false);
     const [isEducationFocused, setIsEducationFocused] = useState(false);
-    const [isOccupationOpen, setIsOccupationOpen] = useState(false); // для занятости
-    const [isOccupationFocused, setIsOccupationFocused] = useState(false); // для занятости
+    const [isOccupationOpen, setIsOccupationOpen] = useState(false);
+    const [isOccupationFocused, setIsOccupationFocused] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target;
@@ -78,7 +77,6 @@ const MyProfileMobi: React.FC = () => {
         setErrors((prev) => ({ ...prev, [name]: '' }));
     };
 
-
     const handleConfirmDate = (newDate: string) => {
         setFormData((prev) => ({ ...prev, birthDate: newDate }));
         setIsCalendarOpen(false);
@@ -86,6 +84,10 @@ const MyProfileMobi: React.FC = () => {
 
     const handleCancelDate = () => {
         setIsCalendarOpen(false);
+    };
+
+    const handleError = (field: string, error: string | null) => {
+        setInputInternalErrors((prev) => ({ ...prev, [field]: error }));
     };
 
     const handleInputBlur = (field: keyof IFormData) => {
@@ -101,24 +103,31 @@ const MyProfileMobi: React.FC = () => {
         }
     };
 
-    const handleError = (field: string, error: string | null) => {
-        setInputInternalErrors((prev) => ({ ...prev, [field]: error }));
-    };
-
     const validateForm = useCallback((): boolean => {
-        const requiredFields: (keyof IFormData)[] = ['name', 'surname', 'birthDate', 'phone', 'email', 'education'];
+        const requiredFields: (keyof IFormData)[] = ['name', 'surname', 'phone', 'email', 'occupation'];
         const hasEmptyFields = requiredFields.some(field => !formData[field]);
         const hasErrors = Object.values(inputInternalErrors).some(error => error);
 
-        if (!formData.education) {
-            setErrors(prev => ({ ...prev, education: 'Обязательное поле' }));
-        }
+        requiredFields.forEach(field => {
+            if (!formData[field]) {
+                setErrors(prev => ({ ...prev, [field]: 'Обязательное поле' }));
+            }
+        });
 
         return !(hasEmptyFields || hasErrors);
     }, [formData, inputInternalErrors]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        const requiredFields: (keyof IFormData)[] = ['name', 'surname', 'phone', 'email'];
+        setInputTouched((prev) => {
+            const updated = { ...prev };
+            requiredFields.forEach(field => {
+                updated[field] = true;
+            });
+            return updated;
+        });
+        setIsSubmitted(true);
         if (!validateForm()) return;
     };
 
@@ -133,6 +142,9 @@ const MyProfileMobi: React.FC = () => {
         reader.readAsDataURL(file);
     };
 
+    const requiredFields: (keyof IFormData)[] = ['name', 'surname', 'phone', 'email'];
+    const hasEmptyRequired = requiredFields.some(field => !formData[field]);
+
     return (
         <div className="py-[20px] w-full flex justify-center">
             <form onSubmit={handleSubmit}
@@ -143,7 +155,7 @@ const MyProfileMobi: React.FC = () => {
                         onImageChange={handleAvatarChange}
                     />
                 </div>
-                <div className="flex flex-col justify-start gap-[25px]">
+                <div className="flex flex-col justify-start gap-[17px]">
                     <div className="flex flex-col">
                         <label htmlFor="surname"
                             className="text14px_mobi text-[#878797] mb-1 text-2xl bg-transparent font-medium">Имя*</label>
@@ -200,7 +212,7 @@ const MyProfileMobi: React.FC = () => {
                             />
                         </div>
                         {isCalendarOpen && (
-                            <DatePickerCalendar
+                            <DatePickerCalendarMobi
                                 value={formData.birthDate || `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`}
                                 onConfirm={handleConfirmDate}
                                 onCancel={handleCancelDate}
@@ -208,30 +220,30 @@ const MyProfileMobi: React.FC = () => {
                         )}
                     </div>
                     <PhoneInputMobi
-                        labelClassName='text-[#878797]'
+                        labelClassName="mb-1 text-2xl font-medium text-[#878797]"
                         value={formData.phone}
                         onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
                         onError={(error) => handleError('phone', error)}
+                        onBlur={() => handleInputBlur('phone')}
+                        className={`h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium text-white ${(inputInternalErrors.phone && (inputTouched.phone || isSubmitted)) ? 'border-[#BC8070]' : 'border-[#878797]'
+                            }`}
                         wrapperClassName="w-full"
                         required={true}
-                        className='h-[44px] border-2'
                     />
-                    <form noValidate className='flex w-full flex-col gap-1.5 w-full'>
+                    <form noValidate className='flex flex-col gap-1.5 w-full'>
                         <EnhancedInput
                             type="email"
                             name="email"
                             placeholder="Почта"
                             value={formData.email}
-                            onFocus={() => setIsEmailFocused(true)}
                             onBlur={() => {
-                                setIsEmailFocused(false);
                                 handleInputBlur('email');
                             }}
                             onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
-                            className={`${isEmailFocused ? '!bg-[#353652]' : ''} ${inputTouched.email && validateEmailMobi(formData.email).styleError
-                                ? 'border-[#878797]'
-                                : 'border-[#878797]'
-                                } h-[44px] border-2 w-full rounded-[20px] bg-transparent p-3 text-xl font-medium`}
+                            className={`${inputTouched.email && validateEmailMobi(formData.email).styleError
+                                ? 'border-[#bc8070] focus:border-[#bc8070] '
+                                : 'border-[#878797] focus:border-[#878797]'
+                                } h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium text-white`}
                             label="Почта*"
                             labelClassName="mb-1 text-2xl font-medium text-[#878797]"
                             wrapperClassName="w-full"
@@ -246,7 +258,7 @@ const MyProfileMobi: React.FC = () => {
                         <div className="relative">
                             <div
                                 className={`input-form-mobi-custom flex h-[44px] text-[14px] border-2 items-center justify-between cursor-pointer
-${isEducationOpen || isEducationFocused ? 'border-white' : errors.education ? 'border-[#bc8070]' : 'border-[#878797]'}`}
+${isEducationOpen || isEducationFocused ? 'border-white' : 'border-[#878797]'}`}
                                 style={isEducationOpen || isEducationFocused ? {
                                     backgroundColor: '#353652',
                                     borderColor: 'white'
@@ -269,6 +281,7 @@ ${isEducationOpen || isEducationFocused ? 'border-white' : errors.education ? 'b
                                 </span>
                                 <ChevronDownIconMobi
                                     className={`h-[15px] w-[27px] transition-transform duration-200 ${isEducationOpen ? 'rotate-180' : ''}`}
+                                    open={isEducationOpen}
                                 />
                             </div>
                             {isEducationOpen && (
@@ -334,6 +347,7 @@ ${isOccupationOpen || isOccupationFocused ? 'border-white' : 'border-[#878797]'}
                                 </span>
                                 <ChevronDownIconMobi
                                     className={`h-[15px] w-[27px] transition-transform duration-200 ${isOccupationOpen ? 'rotate-180' : ''}`}
+                                    open={isOccupationOpen}
                                 />
                             </div>
                             {isOccupationOpen && (
@@ -368,7 +382,10 @@ ${isOccupationOpen || isOccupationFocused ? 'border-white' : 'border-[#878797]'}
                                     </div>
                                 </div>
                             )}
-                            <p className={`mt-4 text-sm font-medium leading-[18px] text-[#878797]`}>
+                            <p
+                                className="mt-4 text-sm font-medium leading-[18px]"
+                                style={{ color: isSubmitted && hasEmptyRequired ? '#BC8070' : '#878797' }}
+                            >
                                 *Обязательное поле для ввода
                             </p>
                         </div>

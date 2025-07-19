@@ -582,12 +582,16 @@ export const MoreIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const ChevronDownIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export interface ChevronDownIconMobiProps extends SVGProps<SVGSVGElement> {
+    open?: boolean;
+}
+
+export const ChevronDownIconMobi: React.FC<ChevronDownIconMobiProps> = ({ open = false, ...props }) => {
     return (
         <svg viewBox="0 0 27 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
                 d="M13.4997 14.7145C13.3311 14.7165 13.1639 14.6833 13.0089 14.6168C12.8539 14.5504 12.7145 14.4523 12.5997 14.3288L1.02829 2.75733C0.514007 2.24304 0.514007 1.4459 1.02829 0.931613C1.54258 0.417327 2.33972 0.417327 2.85401 0.931613L13.5254 11.603L24.1711 0.957327C24.6854 0.443041 25.4826 0.443041 25.9969 0.957327C26.5111 1.47161 26.5111 2.26876 25.9969 2.78304L14.4254 14.3545C14.1683 14.6116 13.834 14.7402 13.5254 14.7402L13.4997 14.7145Z"
-                fill="white"
+                fill={open ? "#FFFFFF" : "#878797"}
             />
         </svg>
     )
@@ -705,8 +709,8 @@ export const EyeOnPasswordMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
 export const PasswordGeneratorMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-            <path d="M1 4V10H7" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M23 20V14H17" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M1 4V10H7" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M23 20V14H17" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             <path
                 d="M20.49 9.00008C19.9828 7.56686 19.1209 6.28548 17.9845 5.27549C16.8482 4.26551 15.4745 3.55984 13.9917 3.22433C12.5089 2.88883 10.9652 2.93442 9.50481 3.35685C8.04437 3.77928 6.71475 4.56479 5.64 5.64008L1 10.0001M23 14.0001L18.36 18.3601C17.2853 19.4354 15.9556 20.2209 14.4952 20.6433C13.0348 21.0657 11.4911 21.1113 10.0083 20.7758C8.52547 20.4403 7.1518 19.7346 6.01547 18.7247C4.87913 17.7147 4.01717 16.4333 3.51 15.0001"
                 stroke="#878797"
@@ -721,7 +725,7 @@ export const PasswordGeneratorMobi: React.FC<SVGProps<SVGSVGElement>> = (props) 
 export const AvatarUserMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="75" height="75" viewBox="0 0 75 75" fill="none" xmlns="http://www.w3.org/2000/svg"  {...props}>
-            <circle cx="37.5" cy="37.5" r="37.5" fill="#878797"/>
+            <circle cx="37.5" cy="37.5" r="37.5" fill="#878797" />
             <path
                 d="M37.4004 39.5528C42.1222 39.5528 46.4163 40.8636 49.5754 42.7088C51.1519 43.6343 52.4999 44.7203 53.4734 45.9007C54.4312 47.0641 55.1367 48.4542 55.1367 49.9406C55.1367 51.5365 54.3267 52.7944 53.1601 53.6915C52.0565 54.5414 50.6001 55.1043 49.0531 55.4971C45.9434 56.2847 41.7931 57.0906 37.4004 57.0906C33.0077 57.0906 28.8574 56.2866 25.7476 55.4971C24.2006 55.1043 22.7443 54.5414 21.6407 53.6915C20.472 52.7925 19.6641 51.5365 19.6641 49.9406C19.6641 48.4542 20.3696 47.0641 21.3273 45.9007C22.3009 44.7203 23.6468 43.6343 25.2254 42.7088C28.3844 40.8636 32.6805 39.5528 37.4004 39.5528ZM37.4004 18.7773C40.0137 18.7773 42.52 19.7723 44.3678 21.5433C46.2157 23.3142 47.2539 25.7162 47.2539 28.2208C47.2539 30.7253 46.2157 33.1273 44.3678 34.8983C42.52 36.6692 40.0137 37.6642 37.4004 37.6642C34.7871 37.6642 32.2808 36.6692 30.4329 34.8983C28.585 33.1273 27.5469 30.7253 27.5469 28.2208C27.5469 25.7162 28.585 23.3142 30.4329 21.5433C32.2808 19.7723 34.7871 18.7773 37.4004 18.7773Z"
                 fill="#353652"
@@ -730,7 +734,7 @@ export const AvatarUserMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const AvatarUserPlusMobi: React.FC<SVGProps<SVGSVGElement>> = (props) =>{
+export const AvatarUserPlusMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -740,8 +744,8 @@ export const AvatarUserPlusMobi: React.FC<SVGProps<SVGSVGElement>> = (props) =>{
                 stroke-linecap="round"
                 stroke-linejoin="round"
             />
-            <path d="M9.75 7V13.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M6.5 10.25H13" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9.75 7V13.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6.5 10.25H13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
     )
 }

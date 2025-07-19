@@ -1,12 +1,12 @@
 import React from 'react';
 import {AvatarUserMobi, AvatarUserPlusMobi} from "@/components/assets/iconsMobi";
 
-interface AvatarMobiProps {
+interface IAvatarMobiProps {
     imageUrl?: string;
     onImageChange?: (file: File) => void;
 }
 
-const AvatarMobi: React.FC<AvatarMobiProps> = ({ imageUrl, onImageChange }) => {
+const AvatarMobi: React.FC<IAvatarMobiProps> = ({ imageUrl, onImageChange }) => {
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file && onImageChange) {

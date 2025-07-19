@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 
 type DatePickerCalendarProps = {
@@ -7,11 +7,11 @@ type DatePickerCalendarProps = {
     onCancel: () => void;
 };
 
-const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
-                                                                   value,
-                                                                   onConfirm,
-                                                                   onCancel,
-                                                               }) => {
+const DatePickerCalendarMobi: React.FC<DatePickerCalendarProps> = ({
+    value,
+    onConfirm,
+    onCancel,
+}) => {
     const parseDate = (dateStr: string): Date => {
         const [dd, mm, yyyy] = dateStr.split('.');
         return new Date(+yyyy, +mm - 1, +dd);
@@ -25,14 +25,17 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
     };
 
     const [isOpen, setIsOpen] = useState(true);
-    const [selectedDate, setSelectedDate] = useState<Date>(parseDate(value));
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date(2004, 0, 1));
+
+    const modalRef = useRef<HTMLDivElement>(null);
 
     const days = Array.from({ length: 31 }, (_, i) => i + 1);
     const months = [
         'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
         'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь',
     ];
-    const years = Array.from({ length: 100 }, (_, i) => 1970 + i);
+    const currentYear = new Date().getFullYear();
+    const years = Array.from({ length: currentYear - 1899 }, (_, i) => 1900 + i);
 
     const [visibleDayIndex, setVisibleDayIndex] = useState(
         days.indexOf(selectedDate.getDate())
@@ -53,8 +56,41 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
                 new Date(years[visibleYearIndex], visibleMonthIndex + 1, 0).getDate()
             )
         );
-        setSelectedDate(newDate);
+
+        if (
+            selectedDate.getFullYear() !== newDate.getFullYear() ||
+            selectedDate.getMonth() !== newDate.getMonth() ||
+            selectedDate.getDate() !== newDate.getDate()
+        ) {
+            setSelectedDate(newDate);
+        }
     }, [visibleDayIndex, visibleMonthIndex, visibleYearIndex]);
+
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+                handleCancel();
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add('overflow-hidden');
+        } else {
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        return () => {
+            document.body.classList.remove('overflow-hidden');
+        };
+    }, [isOpen]);
 
     const handleSelect = (date: Date) => {
         onConfirm(formatDate(date));
@@ -84,7 +120,6 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
         );
     };
 
-
     const getVisibleItems = (items: (string | number)[], currentIndex: number): (string | number)[] => {
         const prevIndex = (currentIndex - 1 + items.length) % items.length;
         const nextIndex = (currentIndex + 1) % items.length;
@@ -98,76 +133,92 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
     return (
         <>
             {isOpen && (
-                <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="bg-[#101030] p-6 rounded-lg shadow-lg w-80 relative">
+                <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%] ">
+                    <div ref={modalRef} className="bg-[#101030] p-6 shadow-lg w-80 relative rounded-[16px]">
                         <div className="grid grid-cols-3 gap-4 text-center">
                             <div className="flex flex-col items-center">
-                                {visibleDays.map((day, index) => (
-                                    <div
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter' || e.key === ' ') {
-                                                e.preventDefault();
-                                                handleDayChange(index);
+                                {visibleDays.map((day, index) => {
+                                    const isActive = index === 1;
+                                    return (
+                                        <div
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter' || e.key === ' ') {
+                                                    e.preventDefault();
+                                                    handleDayChange(index);
+                                                }
+                                            }}
+                                            role="button"
+                                            tabIndex={0}
+                                            key={day}
+                                            className={`
+                py-2
+                cursor-pointer
+                relative
+                w-[60px]
+                text-center
+                whitespace-nowrap
+                ${isActive ? 'text16px_mobi' : 'text14px_mobi opacity-50'}
+                ${index < visibleDays.length - 1
+                                                    ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:opacity-70 after:bg-[#FFFFFF]'
+                                                    : ''}
+                ${index > 0
+                                                    ? 'before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] after:opacity-70 before:bg-[#FFFFFF]'
+                                                    : ''}
+              `}
+                                            onClick={() =>
+                                                setVisibleDayIndex(
+                                                    (visibleDayIndex + (index - 1) + days.length) % days.length
+                                                )
                                             }
-                                        }}
-                                        role="button"
-                                        tabIndex={0}
-                                        key={day}
-                                        className={`text16px_mobi py-2 cursor-pointer relative w-[60px] ${
-                                            index === 1 ? 'font-bold' : 'opacity-50'
-                                        } ${
-                                            index < visibleDays.length - 1
-                                                ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#FFFFFF]'
-                                                : ''
-                                        } ${
-                                            index > 0
-                                                ? 'before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] before:bg-[#FFFFFF]'
-                                                : ''
-                                        }`}
-                                        onClick={() =>
-                                            setVisibleDayIndex(
-                                                (visibleDayIndex + (index - 1) + days.length) % days.length
-                                            )
-                                        }
-                                    >
-                                        {day}
-                                    </div>
-                                ))}
+                                        >
+                                            {day}
+                                        </div>
+                                    );
+                                })}
                             </div>
 
-                            <div className="flex flex-col items-center">
-                                {visibleMonths.map((month, index) => (
-                                    <div
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter' || e.key === ' ') {
-                                                e.preventDefault();
-                                                handleMonthChange(index);
+                            <div className="flex items-center justify-center relative h-full">
+                                <div className="flex flex-col items-center justify-center">
+                                    {visibleMonths.map((month, index) => (
+                                        <div
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter' || e.key === ' ') {
+                                                    e.preventDefault();
+                                                    handleMonthChange(index);
+                                                }
+                                            }}
+                                            role="button"
+                                            tabIndex={0}
+                                            key={month}
+                                            className={`
+                    py-2
+                    text-center
+                    cursor-pointer
+                    relative
+                    w-[80px]
+                    whitespace-nowrap
+                    ${index === 1
+                                                    ? 'text16px_mobi text-white'
+                                                    : 'text14px_mobi opacity-50'}
+                    ${index < visibleMonths.length - 1
+                                                    ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:opacity-70 after:bg-[#FFFFFF]'
+                                                    : ''}
+                    ${index > 0
+                                                    ? 'before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] after:opacity-70 before:bg-[#FFFFFF]'
+                                                    : ''}
+                `}
+                                            onClick={() =>
+                                                setVisibleMonthIndex(
+                                                    (visibleMonthIndex + (index - 1) + months.length) % months.length
+                                                )
                                             }
-                                        }}
-                                        role="button"
-                                        tabIndex={0}
-                                        key={month}
-                                        className={`text16px_mobi py-2 cursor-pointer relative w-[60px] ${
-                                            index === 1 ? 'font-bold' : 'opacity-50'
-                                        } ${
-                                            index < visibleMonths.length - 1
-                                                ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#FFFFFF]'
-                                                : ''
-                                        } ${
-                                            index > 0
-                                                ? 'before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] before:bg-[#FFFFFF]'
-                                                : ''
-                                        }`}
-                                        onClick={() =>
-                                            setVisibleMonthIndex(
-                                                (visibleMonthIndex + (index - 1) + months.length) % months.length
-                                            )
-                                        }
-                                    >
-                                        {month}
-                                    </div>
-                                ))}
+                                        >
+                                            {month}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
+
 
                             <div className="flex flex-col items-center">
                                 {visibleYears.map((year, index) => (
@@ -181,17 +232,14 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
                                             }
                                         }}
                                         tabIndex={0}
-                                        className={`text16px_mobi py-2 cursor-pointer relative w-[60px] ${
-                                            index === 1 ? 'font-bold' : 'opacity-50'
-                                        } ${
-                                            index < visibleYears.length - 1
-                                                ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#FFFFFF]'
+                                        className={`py-2 cursor-pointer relative w-[60px] ${index === 1 ? 'text16px_mobi' : 'text14px_mobi opacity-50'
+                                            } ${index < visibleYears.length - 1
+                                                ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:opacity-70 after:bg-[#FFFFFF]'
                                                 : ''
-                                        } ${
-                                            index > 0
-                                                ? 'before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] before:bg-[#FFFFFF]'
+                                            } ${index > 0
+                                                ? 'before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] after:opacity-70 before:bg-[#FFFFFF]'
                                                 : ''
-                                        }`}
+                                            }`}
                                         onClick={() =>
                                             setVisibleYearIndex(
                                                 (visibleYearIndex + (index - 1) + years.length) % years.length
@@ -215,7 +263,7 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
                                 onClick={() => handleSelect(selectedDate)}
                                 type="submit"
                                 variant="select_mobi"
-                                className="m-w-[180px] w-[100%]"
+                                className="m-w-[180px] text-2xl w-[100%]"
                             >
                                 Сохранить
                             </Button>
@@ -227,4 +275,4 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
     );
 };
 
-export default DatePickerCalendar;
+export default DatePickerCalendarMobi;
