@@ -44,7 +44,6 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
         }
 
         if (field === 'consent') {
-            console.log('inside consent')
             setFormErrors((prev) => ({
                 ...prev,
                 consent: false,
@@ -65,6 +64,13 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                 ...prev,
                 email: emailValidation.textError,
             }))
+
+            if (formData.email === '') {
+                setFormErrors((prev) => ({
+                    ...prev,
+                    email: 'Это поле обязательно для заполнения',
+                }))
+            }
 
             hasErrors = true
         }
@@ -112,6 +118,7 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                             validate={validateEmailDesktop}
                             onChange={(value) => handleChange('email', value)}
                             variant="gradient_desktop"
+                            error={formErrors.email}
                             labelClassName="text-white text-[15px] font-medium ml-[6px] mt-[18px] "
                             className={`focus:ring-0" h-[50px] w-[518px] rounded-[50px] border-2 bg-transparent text-[18px] font-medium text-white focus:outline-none
                             ${formErrors.email !== '' ? 'border-[#E99B9B]' : 'border-[#878797]'}
@@ -127,7 +134,8 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                                 onChange={(value) => handleChange('consent', value === 'true')}
                                 label="Я согласен(а) на обработку персональных данных"
                                 wrapperClassName="flex gap-2"
-                                className={`${formErrors.consent ? 'border-[#E99B9B] ' : 'border-[#878797]'} ${formData.consent ? ' border-0' : ' border-2'} size-[18px] rounded-[2px]`}
+                                error={formErrors.consent ? 'Подтвердите согласие на обработку данных' : ''}
+                                className="size-[18px] rounded-[2px]"
                             />
                         </div>
                     </div>
