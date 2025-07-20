@@ -5,7 +5,7 @@ import { X } from 'lucide-react'
 interface IModal {
     children: ReactNode
     onClose: () => void
-    size?: 'small' | 'medium' | 'semilarge' | 'large' | 'large-l' | 'large-lg' | 'extra-medium'
+    size?: 'small' | 'medium' | 'semilarge' | 'semilarge-l' | 'large' | 'large-l' | 'large-lg' | 'extra-medium'
     showCloseButton?: boolean
     paddingClass?: string
     className?: string
@@ -34,6 +34,8 @@ const Modal: React.FC<IModal> = ({
                 return 'max-w-xl'
             case 'semilarge':
                 return 'max-w-2xl'
+            case 'semilarge-l':
+                return 'max-w-[701px]'
             case 'large':
                 return 'max-w-4xl'
             case 'large-l':

@@ -316,7 +316,7 @@ export const UncheckedBoxFormDesktop: React.FC<SVGProps<SVGSVGElement>> = (props
         <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
                 d="M19 17V3C19 1.89543 18.1046 1 17 1H3C2.46957 1 1.96086 1.21071 1.58579 1.58579C1.21071 1.96086 1 2.46957 1 3V17C1 17.5304 1.21071 18.0391 1.58579 18.4142C1.96086 18.7893 2.46957 19 3 19H17C17.5304 19 18.0391 18.7893 18.4142 18.4142C18.7893 18.0391 19 17.5304 19 17Z"
-                stroke="#878797"
+                stroke={props.stroke}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -658,6 +658,15 @@ export const AttachFileIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
                     <stop offset="1" stop-color="#3B51A8" />
                 </linearGradient>
             </defs>
+        </svg>
+    )
+}
+
+export const CrossIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="41" height="41" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path d="M18 6L6 18" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M6 6L18 18" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     )
 }

@@ -175,7 +175,10 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 {internalValue ? (
                                     <CheckedBoxFormDesktop className={checkboxIconSize} />
                                 ) : (
-                                    <UncheckedBoxFormDesktop className={checkboxIconSize} />
+                                    <UncheckedBoxFormDesktop
+                                        className={checkboxIconSize}
+                                        stroke={internalError ? 'red' : '#878797'}
+                                    />
                                 )}
                             </button>
                         )}
