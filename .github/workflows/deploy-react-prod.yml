@@ -85,5 +85,5 @@ jobs:
           cp deploy/next.config.mjs funScrut/frontend-react-prod/ || true
           rm -rf deploy react-app.tar.gz
           cd funScrut
-          docker compose up -d --build react-app-deploy
+          docker compose up -d --build react-app-prod
           EOF
