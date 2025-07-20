@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect, useRef } from 'react'
 import { ChevronDownIconDesktop, CheckedBoxIconDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'

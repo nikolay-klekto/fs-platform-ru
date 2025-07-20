@@ -594,33 +594,27 @@ export const SearchIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
 export const TrashIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" {...props}>
-            <path
-                d="M5 10H8.33333H35"
-                stroke="#878797"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
+            <path d="M5 10H8.33333H35" stroke="#878797" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
             <path
                 d="M13.334 9.99967V6.66634C13.334 5.78229 13.6852 4.93444 14.3103 4.30932C14.9354 3.6842 15.7833 3.33301 16.6673 3.33301H23.334C24.218 3.33301 25.0659 3.6842 25.691 4.30932C26.3161 4.93444 26.6673 5.78229 26.6673 6.66634V9.99967M31.6673 9.99967V33.333C31.6673 34.2171 31.3161 35.0649 30.691 35.69C30.0659 36.3152 29.218 36.6663 28.334 36.6663H11.6673C10.7833 36.6663 9.93542 36.3152 9.31029 35.69C8.68517 35.0649 8.33398 34.2171 8.33398 33.333V9.99967H31.6673Z"
                 stroke="#878797"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <path
                 d="M16.666 18.333V28.333"
                 stroke="#878797"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <path
                 d="M23.334 18.333V28.333"
                 stroke="#878797"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
         </svg>
     )
@@ -667,6 +661,27 @@ export const CrossIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
         <svg width="41" height="41" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M18 6L6 18" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M6 6L18 18" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    )
+}
+
+export const MapPinIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M18.5 35.4587C18.5 35.4587 32.375 26.2087 32.375 15.417C32.375 11.7371 30.9132 8.20795 28.3111 5.60589C25.709 3.00382 22.1799 1.54199 18.5 1.54199C14.8201 1.54199 11.291 3.00382 8.68889 5.60589C6.08683 8.20795 4.625 11.7371 4.625 15.417C4.625 26.2087 18.5 35.4587 18.5 35.4587Z"
+                stroke="#D1D1DD"
+                strokeWidth="3.08333"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M18.5 20.042C21.0543 20.042 23.125 17.9713 23.125 15.417C23.125 12.8627 21.0543 10.792 18.5 10.792C15.9457 10.792 13.875 12.8627 13.875 15.417C13.875 17.9713 15.9457 20.042 18.5 20.042Z"
+                stroke="#D1D1DD"
+                strokeWidth="3.08333"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
         </svg>
     )
 }

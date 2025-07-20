@@ -40,7 +40,7 @@ const ReviewsModalMobi: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="sm_s:mt-5 scrollbar_custom relative mx-auto mt-6 h-2 w-[97%] cursor-pointer overflow-x-scroll sm:mt-5"
+                className="sm_s:mt-5 scrollbar_custom relative mx-auto mt-6 h-2 w-[97%] overflow-x-scroll sm:mt-5"
             >
                 <div className="h-full" style={{ width: `${contentWidth}px` }}></div>
             </div>
