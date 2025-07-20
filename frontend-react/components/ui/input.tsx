@@ -5,7 +5,8 @@ import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/ass
 import { useEffect } from 'react'
 
 const inputVariants = cva(
-    'ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+    '',
+    //input-form-mobi-custom ring-offset-background placeholder:text-muted-foreground flex w-full rounded-md border text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50
     {
         variants: {
             variant: {
@@ -20,10 +21,14 @@ const inputVariants = cva(
                 contacts_page_error_desktop:
                     'border-2 border-[#bc8070] bg-transparent text-5xl ring-offset-transparent placeholder:font-medium focus:border-[3px] focus:ring-transparent',
                 contacts_page_mobi:
-                    'border-[1.18px] border-[#878797] bg-transparent text-xl ring-offset-transparent placeholder:text-xs placeholder:font-medium focus:border-2 focus:ring-transparent md:placeholder:text-base',
+                    'focus:border-1.1 border-[1.18px] border-[#878797] bg-transparent ring-offset-transparent placeholder:font-medium focus:border-[1.18px] focus:border-white focus:bg-[#1f203f] focus:ring-transparent ',
                 contacts_page_error_mobi:
-                    'border-[1.18px] border-[#bc8070] bg-transparent text-xl ring-offset-transparent placeholder:text-xs placeholder:font-medium focus:border-2 focus:ring-transparent md:placeholder:text-base',
+                    'focus:border-1.1 border-[1.18px] border-[#bc8070] bg-[#1f203f] ring-offset-transparent placeholder:font-medium focus:border-white focus:ring-transparent',
                 events_date_desktop: 'h-[22px] border-none bg-transparent placeholder-gray-500 outline-none',
+                common_input_desktop:
+                    'text18px_desktop placeholder:text18px_desktop border-2 border-[#878797] bg-[#101030] font-medium text-white outline-none placeholder:font-medium placeholder:text-[#353652] focus:border-[#878797] focus:bg-[#1f203f] focus:outline-none',
+                common_input_mobi:
+                    'text14px_mobi placeholder:text14px_mobi border-2 border-[#878797] bg-[#101030] text-white transition duration-300 placeholder:font-medium placeholder:text-[#353652] placeholder:transition-colors focus:border-[#878797] focus:outline-none',
             },
             size: {
                 default: 'h-10 px-3 py-2',
@@ -34,7 +39,9 @@ const inputVariants = cva(
                 send_mobi: 'size-full px-[10px]',
                 contacts_page_desktop: 'h-[53px] w-[453px] px-4 py-3.5 2xl:w-[520px]',
                 contacts_page_info_desktop: '3xl:w-[452px] h-[53px] w-[484px] px-4 py-3.5 2xl:w-[520px]',
-                contacts_page_mobi: 'h-[28.5px] max-w-[346px] px-4 py-2 md:h-[32px]',
+                contacts_page_mobi: 'h-[29.5px] md:h-[40px]',
+                common_input_desktop: 'mt-1 h-[50px] px-4 py-2',
+                common_input_mobi: 'h-11 px-4 py-2',
             },
             rounded: {
                 default: 'rounded-md',
@@ -86,8 +93,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             onFocus,
             onBlur,
             label,
-            helperText,
-            helperTextClassName,
             name,
             wrapperClassName,
             labelClassName,
@@ -104,7 +109,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             }
             return ''
         })
-        const [internalError, setInternalError] = React.useState<string>('')
         const [styleErrorClass, setStyleErrorClass] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
         const isCheckbox = type === 'checkbox'
@@ -112,17 +116,13 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             if (validate) {
                 const validationResult = validate(newValue.toString())
                 if (validationResult) {
-                    const { textError, status, styleError } = validationResult
+                    const { status, styleError } = validationResult
                     if (!status) {
-                        if (textError) {
-                            setInternalError(textError)
-                        }
                         if (!styleError) {
                             setStyleErrorClass(true)
                         }
                     } else {
                         setStyleErrorClass(false)
-                        setInternalError('')
                     }
                 }
             }
@@ -203,9 +203,9 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         type={type}
                         className={cn(
                             inputVariants({ variant, size, rounded }),
-                            isFocused && 'ring-2 ring-ring ring-offset-2',
+                            isFocused && 'focus:bg-[#1f203f] focus:outline-none',
                             className,
-                            styleErrorClass && 'custom_error_style_input',
+                            styleErrorClass && 'border-[#BC8070]',
                         )}
                         ref={ref}
                         name={name}
@@ -216,11 +216,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         onBlur={handleBlur}
                         {...props}
                     />
-                )}
-                {(helperText || internalError !== '') && (
-                    <p className={cn(helperTextClassName, internalError ? 'text-[#BC8070] ' : 'text-muted-foreground')}>
-                        {internalError || helperText}
-                    </p>
                 )}
             </div>
         )

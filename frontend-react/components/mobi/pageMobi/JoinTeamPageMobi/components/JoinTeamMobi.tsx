@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useRef } from 'react'
 import { ChevronLeftIconMobi, AttachFileIconMobi } from '@/components/assets/iconsMobi'
 import { EnhancedInput } from '@/components/ui/input'
