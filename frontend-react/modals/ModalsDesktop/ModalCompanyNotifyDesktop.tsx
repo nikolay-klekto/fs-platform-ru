@@ -139,7 +139,7 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                             />
                         </div>
                     </div>
-                    <div className="text15px_desktop mb-5 h-[36px] w-[433px] font-medium text-[#353652]">
+                    <div className="text15px_desktop mb-6 h-[36px] w-[433px] font-medium text-[#353652]">
                         <div className="flex">
                             <span>Защита от спама reCAPTCHA</span>
                             <Link href="/" target="_blank" rel="noopener noreferrer" className="ml-[5px] underline">

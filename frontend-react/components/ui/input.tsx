@@ -130,10 +130,8 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
 
         useEffect(() => {
             if (error !== '') {
-                setInternalError(error ?? '')
                 setStyleErrorClass(true)
             } else {
-                setInternalError('')
                 setStyleErrorClass(false)
             }
         }, [error])
@@ -189,7 +187,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 ) : (
                                     <UncheckedBoxFormDesktop
                                         className={checkboxIconSize}
-                                        stroke={internalError ? '#E99B9B' : '#878797'}
+                                        stroke={styleErrorClass ? '#E99B9B' : '#878797'}
                                     />
                                 )}
                             </button>
