@@ -47,6 +47,7 @@ const buttonVariants = cva(
                 hover_button_date:
                     'hover:button-border-desktop-date border-2 border-[#878797] bg-[#1f203f] rounded-[90px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg text-sm rounded-[90px] text-white',
                 cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
+                cookie_btn_mobi: 'button-border-mobi border-2 bg-inherit hover:bg-[#101030] rounded-[50px] text-white',
             },
             size: {
                 default: 'h-10 px-4 py-2',
