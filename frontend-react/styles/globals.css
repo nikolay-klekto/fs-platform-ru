@@ -66,6 +66,7 @@
     }
     .button-border-mobi {
         position: relative;
+        box-sizing: border-box;
         border: double 2px transparent;
         background-image: linear-gradient(#101030, #101030), linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
         background-origin: border-box;
@@ -79,6 +80,11 @@
         background-origin: border-box;
         background-clip: padding-box, border-box;
     }
+    .button-border-desktop:hover,
+    .button-border-desktop.is-open {
+        background-image: linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8),
+            linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
+    }
     .button-border-desktop-date {
         position: relative;
         box-sizing: border-box;
@@ -86,6 +92,7 @@
         background-image: linear-gradient(#312563, #28295b), linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
         background-origin: border-box;
         background-clip: padding-box, border-box;
+        transition: all 0.3s ease;
     }
     .border-selected {
         position: relative;
@@ -108,13 +115,18 @@
         background-origin: border-box;
         background-clip: padding-box, border-box;
     }
-    .button-border-mobi {
-        position: relative;
-        box-sizing: border-box;
-        border: 4px solid transparent;
-        background-image: linear-gradient(#101030, #101030), linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
-        background-origin: border-box;
-        background-clip: padding-box, border-box;
+
+    .button-border-mobi:hover {
+        background-image: linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8),
+            linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
+    }
+
+    ::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(135, 135, 151, 1);
     }
 }
 @layer base {
