@@ -33,7 +33,6 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     labelClassName,
     wrapperClassName,
     required = false,
-    onKeyDown,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -52,6 +51,12 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         let newValue = inputValue || PHONE_MASK
+
+        if (e.key === ' ' || e.key === 'Space' || e.key === 'Spacebar') {
+            e.preventDefault()
+            e.stopPropagation()
+            return
+        }
 
         if (e.key === 'Backspace') {
             e.preventDefault()
@@ -138,7 +143,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                     validateValue(newValue)
                 }}
                 onFocus={handleFocus}
-                onKeyDown={onKeyDown}
+                onKeyDown={handleKeyDown}
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={PHONE_MASK}

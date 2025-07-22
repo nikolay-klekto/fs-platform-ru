@@ -144,11 +144,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
             {step === 'form' && (
                 <Modal onClose={onClose} size="medium" showCloseButton={false}>
                     <div>
-                        <button
-                            onClick={onClose}
-                            className="absolute right-7 top-6"
-                            onKeyDown={(e) => e.key === ' ' && e.preventDefault()}
-                        >
+                        <button onClick={onClose} className="absolute right-7 top-6">
                             <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="mx-[75px] max-w-md flex-col rounded-lg text-center">
@@ -179,7 +175,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     label="Ваше имя*"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
-                                    onKeyDown={(e) => e.key === ' ' && e.stopPropagation()}
                                 />
                                 {errors.name && <p className="error-form-desktop-custom">{errors.name}</p>}
                             </div>
@@ -206,7 +201,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                             ? 'border-[#bc8070] focus:border-[#bc8070]'
                                             : 'border-[#878797] focus:border-[#878797]'
                                     }`}
-                                    onKeyDown={(e) => e.key === ' ' && e.stopPropagation()}
                                 />
                                 {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
                             </div>
@@ -223,7 +217,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     label="Удобное время для звонка"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
-                                    onKeyDown={(e) => e.key === ' ' && e.stopPropagation()}
                                 />
                                 <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
                                     *Обязательное поле для ввода
@@ -295,11 +288,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
             {step === 'accepted' && (
                 <Modal onClose={onClose} size="medium" showCloseButton={false}>
                     <div>
-                        <button
-                            onClick={onClose}
-                            className="absolute right-4 top-4"
-                            onKeyDown={(e) => e.key === ' ' && e.preventDefault()}
-                        >
+                        <button onClick={onClose} className="absolute right-4 top-4">
                             <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className="mx-auto flex max-w-md flex-col rounded-lg p-3">
