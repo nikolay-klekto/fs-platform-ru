@@ -8,7 +8,7 @@ import { useModal } from '@/context/ContextModal'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import CompaniesCardPageMobi from './components/CompaniesCardPageMobi'
-import CompaniesPaginationMobi from './components/CompaniesPaginationMobi'
+import PaginationMobi from '../../shared/PaginationMobi'
 import CompaniesSendMobi from './components/CompaniesSendMobi'
 import CompaniesSelectMobi from './components/CompaniesSelectMobi'
 import { content } from './contentCompaniesPageMobi/content'
@@ -36,15 +36,18 @@ const CompaniesPageMobi: React.FC = () => {
     }, [currentPage, filteredContent])
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
-    const safeCurrentPage = Math.min(currentPage, totalPages || 1)
+    const paginatedItems = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
 
     const handleCategoryChange = (categories: string[]) => {
         setSelectedCategories(categories)
     }
 
-    const handlePageChange = (page: number): void => {
-        setCurrentPage(page)
-    }
+    useEffect(() => {
+        const newTotalPages = Math.ceil(filteredContent.length / cardsPerPage)
+        if (currentPage > newTotalPages) {
+            setCurrentPage(1)
+        }
+    }, [currentPage, filteredContent])
 
     return (
         <>
@@ -77,31 +80,29 @@ const CompaniesPageMobi: React.FC = () => {
                         </div>
                         {filteredContent.length > 0 ? (
                             <>
-                                <div className="sm_xl:gap-[15px] flex flex-wrap justify-center gap-[20px]">
-                                    {filteredContent
-                                        .slice((safeCurrentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
-                                        .map((item) => (
-                                            <CompaniesCardPageMobi
-                                                key={item.id}
-                                                image={item.image}
-                                                industry={item.industry}
-                                                price={item.price.toString()}
-                                                // здесь будет открываться страница компании, пока оставлена ссылка на профессии
-                                                onClick={() => {
-                                                    openModal('profession_modal_mobi', 'mobi', {
-                                                        profession: item.companyName,
-                                                        professionId: item.id,
-                                                    })
-                                                }}
-                                                companyName={item.companyName}
-                                            />
-                                        ))}
+                                <div className="flex flex-wrap justify-center gap-[20px] sm_xl:gap-[15px]">
+                                    {paginatedItems.map((item) => (
+                                        <CompaniesCardPageMobi
+                                            key={item.id}
+                                            image={item.image}
+                                            industry={item.industry}
+                                            price={item.price.toString()}
+                                            // здесь будет открываться страница компании, пока оставлена ссылка на профессии
+                                            onClick={() => {
+                                                openModal('profession_modal_mobi', 'mobi', {
+                                                    profession: item.companyName,
+                                                    professionId: item.id,
+                                                })
+                                            }}
+                                            companyName={item.companyName}
+                                        />
+                                    ))}
                                 </div>
                                 {totalPages >= 1 && (
-                                    <CompaniesPaginationMobi
+                                    <PaginationMobi
                                         totalPages={totalPages}
-                                        currentPage={safeCurrentPage}
-                                        onPageChange={handlePageChange}
+                                        currentPage={currentPage}
+                                        onPageChange={setCurrentPage}
                                     />
                                 )}
                             </>
