@@ -3,11 +3,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { ChevronDownIconDesktop, SearchIconDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
-interface ISelectItem {
-    value: string
-    children: React.ReactNode
-    isChecked: boolean
-    onClick: () => void
+
+interface EventsSelectSearchCityDesktopProps {
+    selected: string[]
+    onChange: (newSelected: string[]) => void
 }
 
 interface ISelectOption {
@@ -15,17 +14,10 @@ interface ISelectOption {
     label: string
 }
 
-const EventsSelectSearchCityDesktop = () => {
+const EventsSelectSearchCityDesktop: React.FC<EventsSelectSearchCityDesktopProps> = ({ selected, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
-    const [selectedOptions, setSelectedOptions] = useState<string[]>([])
     const [searchTerm, setSearchTerm] = useState('')
     const dropdownRef = useRef<HTMLDivElement>(null)
-
-    const toggleOption = (value: string) => {
-        setSelectedOptions((prev) =>
-            prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value],
-        )
-    }
 
     const handleSelectToggle = () => {
         setIsOpen((prev) => !prev)
@@ -52,21 +44,29 @@ const EventsSelectSearchCityDesktop = () => {
         { value: 'minsk', label: 'Минск' },
     ]
 
-    const filteredOptions = options.filter((option) => option.label.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredOptions = options.filter((opt) => opt.label.toLowerCase().includes(searchTerm.toLowerCase()))
+
+    const toggleOption = (value: string) => {
+        const next = selected.includes(value) ? selected.filter((opt) => opt !== value) : [...selected, value]
+        onChange(next)
+    }
 
     return (
         <div className="relative z-[3]" ref={dropdownRef}>
             <Button
-                variant={'select_btn_desktop'}
-                size={'select_btn_desktop_date'}
+                variant="select_btn_desktop"
+                size="select_btn_desktop_date"
                 onClick={handleSelectToggle}
-                className={` ${isOpen ? ' bg-gradient-desktop' : 'bg-[#101030]'}`}
+                className={`${isOpen ? 'bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
                 Город
                 <ChevronDownIconDesktop
-                    className={`h-[15px] w-[27px] transition-transform  duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
+                    className={`h-[15px] w-[27px] transition-transform duration-200 2xl:w-[20px] ${
+                        isOpen ? 'rotate-180' : ''
+                    }`}
                 />
             </Button>
+
             {isOpen && (
                 <div
                     className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[400px] rounded-[42px] p-[2px] 2xl:w-[270px]"
@@ -88,11 +88,12 @@ const EventsSelectSearchCityDesktop = () => {
                                 onClick={() => console.log('Search icon clicked!')}
                             />
                         </div>
+
                         {filteredOptions.map((option) => (
                             <SelectItem
                                 key={option.value}
                                 value={option.value}
-                                isChecked={selectedOptions.includes(option.value)}
+                                isChecked={selected.includes(option.value)}
                                 onClick={() => toggleOption(option.value)}
                             >
                                 {option.label}
@@ -105,32 +106,32 @@ const EventsSelectSearchCityDesktop = () => {
     )
 }
 
-const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
-    ({ children, isChecked, onClick, ...props }, forwardedRef) => {
-        return (
-            <div
-                className={`hover:border-hover text-[18px]font-medium relative z-[3] flex cursor-pointer items-center justify-between p-[15px] text-white ${
-                    isChecked ? 'border-selected border-y-2 bg-[#28295B]' : 'bg-transparent'
-                }`}
-                {...props}
-                ref={forwardedRef}
-                onClick={onClick}
-                role="menuitem"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault()
-                        onClick()
-                    }
-                }}
-            >
-                <div className="flex ">
-                    <div className="pl-[14px]">{children}</div>
-                </div>
-            </div>
-        )
-    },
-)
+interface ISelectItemProps {
+    value: string
+    children: React.ReactNode
+    isChecked: boolean
+    onClick: () => void
+}
+
+const SelectItem = React.forwardRef<HTMLDivElement, ISelectItemProps>(({ children, isChecked, onClick }, ref) => (
+    <div
+        ref={ref}
+        onClick={onClick}
+        role="menuitem"
+        tabIndex={0}
+        onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                onClick()
+            }
+        }}
+        className={`hover:border-hover text-[18px] font-medium relative z-[3] flex cursor-pointer items-center justify-between p-[15px] text-white ${
+            isChecked ? 'border-selected border-y-2 bg-[#28295B]' : 'bg-transparent'
+        }`}
+    >
+        <div className="pl-[14px]">{children}</div>
+    </div>
+))
 
 SelectItem.displayName = 'SelectItem'
 

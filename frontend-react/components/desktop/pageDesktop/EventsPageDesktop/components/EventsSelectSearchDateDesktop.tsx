@@ -12,106 +12,80 @@ import {
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 
-interface ISelectItem {
-    value: string
-    children: React.ReactNode
-    isChecked: boolean
-    onClick: () => void
-}
-
-type CustomDatepickerProps = {
-    dates: { from: Date | null; to: Date | null }
+interface EventsSelectSearchDateDesktopProps {
+    dates: {
+        from: Date | null
+        to: Date | null
+    }
     setDates: React.Dispatch<React.SetStateAction<{ from: Date | null; to: Date | null }>>
 }
 
-const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
-    const { dates, setDates } = props
+type DateKey = 'from' | 'to'
+
+const EventsSelectSearchDateDesktop: React.FC<EventsSelectSearchDateDesktopProps> = ({ dates, setDates }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [openCalendars, setOpenCalendars] = useState<{ from: boolean; to: boolean }>({
         from: false,
         to: false,
     })
-
     const [inputValues, setInputValues] = useState<{ from: string; to: string }>({
         from: '',
         to: '',
     })
 
-    const autoFormatDate = (value: string): string => {
-        const numbersOnly = value.replace(/\D/g, '')
-
-        const day = numbersOnly.slice(0, 2)
-        const month = numbersOnly.slice(2, 4)
-        const year = numbersOnly.slice(4, 8)
-
-        let formattedDate = day
-        if (month) formattedDate += `.${month}`
-        if (year) formattedDate += `.${year}`
-
-        return formattedDate
-    }
-
-    type DateKey = 'from' | 'to'
-
-    const handleInputChange = (key: DateKey, value: string) => {
-        const formattedValue = autoFormatDate(value)
-
-        setInputValues((prev) => ({
-            ...prev,
-            [key]: formattedValue,
-        }))
-
-        if (!value) {
-            setDates((prev) => ({
-                ...prev,
-                [key]: null,
-            }))
-        }
-
-        if (isValidDate(formattedValue)) {
-            const parsedDate = parseDate(formattedValue)
-            setDates((prev) => ({
-                ...prev,
-                [key]: parsedDate,
-            }))
-        }
-    }
-
-    const isValidDate = (dateStr: string): boolean => {
-        const dateRegex = /^\d{2}.\d{2}.\d{4}$/
-        if (!dateRegex.test(dateStr)) return false
-
-        const [day, month, year] = dateStr.split('.').map(Number)
-        const parsedDate = new Date(year, month - 1, day)
-
-        return !isNaN(parsedDate.getTime())
-    }
-
-    const parseDate = (dateStr: string): Date => {
-        const [day, month, year] = dateStr.split('.').map(Number)
-        return new Date(year, month - 1, day)
-    }
+    const calendarRef = useRef<HTMLDivElement>(null)
+    const fromCalendarRef = useRef<HTMLDivElement>(null)
+    const toCalendarRef = useRef<HTMLDivElement>(null)
 
     const handleSelectToggle = () => {
         setIsOpen((prev) => !prev)
     }
 
-    const calendarRef = useRef<HTMLDivElement>(null)
-    const fromCalendarRef = useRef<HTMLDivElement>(null)
-    const toCalendarRef = useRef<HTMLDivElement>(null)
+    const autoFormatDate = (value: string): string => {
+        const numbersOnly = value.replace(/\D/g, '')
+        const day = numbersOnly.slice(0, 2)
+        const month = numbersOnly.slice(2, 4)
+        const year = numbersOnly.slice(4, 8)
+        let formatted = day
+        if (month) formatted += `.${month}`
+        if (year) formatted += `.${year}`
+        return formatted
+    }
+
+    const isValidDate = (dateStr: string): boolean => {
+        const dateRegex = /^\d{2}\.\d{2}\.\d{4}$/
+        if (!dateRegex.test(dateStr)) return false
+        const [d, m, y] = dateStr.split('.').map(Number)
+        const parsed = new Date(y, m - 1, d)
+        return !isNaN(parsed.getTime())
+    }
+
+    const parseDate = (dateStr: string): Date => {
+        const [d, m, y] = dateStr.split('.').map(Number)
+        return new Date(y, m - 1, d)
+    }
+
+    const handleInputChange = (key: DateKey, value: string) => {
+        const formatted = autoFormatDate(value)
+        setInputValues((prev) => ({ ...prev, [key]: formatted }))
+
+        if (!formatted) {
+            setDates((prev) => ({ ...prev, [key]: null }))
+        }
+
+        if (isValidDate(formatted)) {
+            const parsed = parseDate(formatted)
+            setDates((prev) => ({ ...prev, [key]: parsed }))
+        }
+    }
 
     const handleClickOutside = (event: MouseEvent) => {
-        const isOutsideCalendar = calendarRef.current && !calendarRef.current.contains(event.target as Node)
-        const isOutsideFromCalendar = fromCalendarRef.current && !fromCalendarRef.current.contains(event.target as Node)
-        const isOutsideToCalendar = toCalendarRef.current && !toCalendarRef.current.contains(event.target as Node)
+        const outsideWrapper = calendarRef.current && !calendarRef.current.contains(event.target as Node)
+        const outsideFrom = fromCalendarRef.current && !fromCalendarRef.current.contains(event.target as Node)
+        const outsideTo = toCalendarRef.current && !toCalendarRef.current.contains(event.target as Node)
 
-        if (isOutsideFromCalendar && isOutsideToCalendar) {
-            setOpenCalendars({ from: false, to: false })
-        }
-
-        if (isOutsideCalendar) {
-            setIsOpen(false)
-        }
+        if (outsideWrapper) setIsOpen(false)
+        if (outsideFrom && outsideTo) setOpenCalendars({ from: false, to: false })
     }
 
     useEffect(() => {
@@ -122,99 +96,79 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
     }, [])
 
     const toggleCalendar = (calendar: DateKey) => {
-        setOpenCalendars((prev) => {
-            const newState = { from: false, to: false }
-            newState[calendar] = !prev[calendar]
-            return newState
-        })
+        setOpenCalendars((prev) => ({
+            from: false,
+            to: false,
+            [calendar]: !prev[calendar],
+        }))
     }
 
-    const handleDateChange = (key: 'from' | 'to', newDate: Date | undefined) => {
-        setDates((prev) => ({
-            ...prev,
-            [key]: newDate ?? null,
-        }))
+    const handleDateChange = (key: DateKey, newDate?: Date) => {
+        setDates((prev) => ({ ...prev, [key]: newDate ?? null }))
         setInputValues((prev) => ({
             ...prev,
             [key]: newDate ? autoFormatDate(newDate.toLocaleDateString('ru-RU')) : '',
         }))
-        setOpenCalendars((prev) => ({
-            ...prev,
-            [key]: false,
-        }))
-        if (key === 'to') {
-            setIsOpen(false)
-        }
+        setOpenCalendars((prev) => ({ ...prev, [key]: false }))
+        if (key === 'to') setIsOpen(false)
     }
 
     const handleDatePreset = (type: string) => {
         const now = new Date()
-        let newFromDate: Date | undefined
-        let newToDate: Date | undefined
+        let fromDate: Date | undefined
+        let toDate: Date | undefined
 
         switch (type) {
             case 'today':
-                newFromDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-                newToDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 0, 23, 59, 59, 999)
+                fromDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+                toDate = new Date(fromDate.getTime() + 86399999) 
                 break
             case 'tomorrow':
-                newFromDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0)
-                newToDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 23, 59, 59, 999)
+                const t = now.getDate() + 1
+                fromDate = new Date(now.getFullYear(), now.getMonth(), t)
+                toDate = new Date(fromDate.getTime() + 86399999)
                 break
             case 'this-week':
-                const day = now.getDay() === 0 ? 7 : now.getDay()
-
-                const startOfWeek = new Date(now)
-                startOfWeek.setDate(now.getDate() - (day - 1))
-                startOfWeek.setHours(0, 0, 0, 0)
-
-                const endOfWeek = new Date(now)
-                endOfWeek.setDate(now.getDate() + (7 - day))
-                endOfWeek.setHours(23, 59, 59, 999)
-
-                newFromDate = startOfWeek
-                newToDate = endOfWeek
+                const day = now.getDay() || 7
+                const start = new Date(now)
+                start.setDate(now.getDate() - (day - 1))
+                start.setHours(0, 0, 0, 0)
+                const end = new Date(start)
+                end.setDate(start.getDate() + 6)
+                end.setHours(23, 59, 59, 999)
+                fromDate = start
+                toDate = end
                 break
             case 'this-month':
-                const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
-                const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0)
-
-                newFromDate = startOfMonth
-                newToDate = endOfMonth
-                break
-            default:
+                fromDate = new Date(now.getFullYear(), now.getMonth(), 1)
+                toDate = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999)
                 break
         }
 
-        setDates({
-            from: newFromDate ?? null,
-            to: newToDate ?? null,
-        })
-
+        setDates({ from: fromDate ?? null, to: toDate ?? null })
         setInputValues({
-            from: newFromDate ? autoFormatDate(newFromDate.toLocaleDateString('ru-RU')) : '',
-            to: newToDate ? autoFormatDate(newToDate.toLocaleDateString('ru-RU')) : '',
+            from: fromDate ? autoFormatDate(fromDate.toLocaleDateString('ru-RU')) : '',
+            to: toDate ? autoFormatDate(toDate.toLocaleDateString('ru-RU')) : '',
         })
-
-        setOpenCalendars({
-            from: false,
-            to: false,
-        })
+        setOpenCalendars({ from: false, to: false })
     }
 
     return (
         <div className="relative z-[3]" ref={calendarRef}>
             <Button
-                variant={'select_btn_desktop'}
-                size={'select_btn_desktop_date'}
+                variant="select_btn_desktop"
+                size="select_btn_desktop_date"
                 onClick={handleSelectToggle}
-                className={` ${isOpen ? 'is-open' : 'bg-[#101030]'}`}
+                className={`${isOpen ? 'is-open' : 'bg-[#101030]'}`}
             >
                 Дата
                 <ChevronDownIconDesktop
-                    className={`h-[15px] w-[27px] transition-transform  duration-200 2xl:w-[20px] ${isOpen ? 'rotate-180' : ''}`}
+                    className={`h-[15px] w-[27px] transition-transform duration-200 2xl:w-[20px] ${
+                        isOpen ? 'rotate-180' : ''
+                    }`}
                 />
             </Button>
+
             {isOpen && (
                 <div
                     className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[430px] rounded-[42px] p-[2px] 2xl:w-[270px]"
@@ -229,13 +183,11 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                                 <div
                                     className="desktop 3xl:w-[120px] flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border-2 border-[#878797] 2xl:w-[110px]"
                                     onClick={() => toggleCalendar('from')}
-                                    onKeyDown={(e) => {
-                                        if (e.key === 'Enter' || e.key === ' ') {
-                                            toggleCalendar('from')
-                                        }
-                                    }}
                                     role="button"
                                     tabIndex={0}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') toggleCalendar('from')
+                                    }}
                                 >
                                     <CalendarIconsDesktop />
                                     <IMaskInput
@@ -243,7 +195,7 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                                         lazy={false}
                                         placeholder="__.__.____"
                                         value={inputValues.from}
-                                        onAccept={(value) => handleInputChange('from', value)}
+                                        onAccept={(val) => handleInputChange('from', val)}
                                         onFocus={() => setOpenCalendars((prev) => ({ ...prev, from: true }))}
                                         className="4xl:text-2xl 3xl:text-xl w-[81px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:w-[75px] 2xl:text-lg"
                                     />
@@ -267,13 +219,11 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                                 <div
                                     className="desktop 3xl:w-[120px] flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border-2 border-[#878797] 2xl:w-[110px]"
                                     onClick={() => toggleCalendar('to')}
-                                    onKeyDown={(e) => {
-                                        if (e.key === 'Enter' || e.key === ' ') {
-                                            toggleCalendar('to')
-                                        }
-                                    }}
                                     role="button"
                                     tabIndex={0}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') toggleCalendar('to')
+                                    }}
                                 >
                                     <CalendarIconsDesktop />
                                     <IMaskInput
@@ -281,7 +231,7 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                                         lazy={false}
                                         placeholder="__.__.____"
                                         value={inputValues.to}
-                                        onAccept={(value) => handleInputChange('to', value)}
+                                        onAccept={(val) => handleInputChange('to', val)}
                                         onFocus={() => setOpenCalendars((prev) => ({ ...prev, to: true }))}
                                         className="4xl:text-2xl 3xl:text-xl w-[81px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:w-[75px] 2xl:text-lg"
                                     />
@@ -298,30 +248,31 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
                                 )}
                             </div>
                         </div>
+
                         <Button
-                            variant={'hover_button_date'}
-                            size={'hover_button_date_desktop'}
+                            variant="hover_button_date"
+                            size="hover_button_date_desktop"
                             onClick={() => handleDatePreset('today')}
                         >
                             Сегодня
                         </Button>
                         <Button
-                            variant={'hover_button_date'}
-                            size={'hover_button_date_desktop'}
+                            variant="hover_button_date"
+                            size="hover_button_date_desktop"
                             onClick={() => handleDatePreset('tomorrow')}
                         >
                             Завтра
                         </Button>
                         <Button
-                            variant={'hover_button_date'}
-                            size={'hover_button_date_desktop'}
+                            variant="hover_button_date"
+                            size="hover_button_date_desktop"
                             onClick={() => handleDatePreset('this-week')}
                         >
                             На этой неделе
                         </Button>
                         <Button
-                            variant={'hover_button_date'}
-                            size={'hover_button_date_desktop'}
+                            variant="hover_button_date"
+                            size="hover_button_date_desktop"
                             onClick={() => handleDatePreset('this-month')}
                         >
                             В этом месяце
@@ -332,65 +283,5 @@ const EventsSelectSearchDateDesktop = (props: CustomDatepickerProps) => {
         </div>
     )
 }
-
-const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
-    ({ children, isChecked, onClick, ...props }, forwardedRef) => {
-        return (
-            <div
-                className={`relative z-[3] flex cursor-pointer items-center justify-between rounded-[18px] p-[15px] text-[15px] font-medium ${
-                    isChecked ? 'bg-[#5F4AF30F] text-white' : 'bg-transparent text-[#878797]'
-                }`}
-                {...props}
-                ref={forwardedRef}
-                onClick={onClick}
-                role="menuitem"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault()
-                        onClick()
-                    }
-                }}
-            >
-                <div className="flex ">
-                    <div className="relative flex size-[20px] items-center justify-center">
-                        <input
-                            type="checkbox"
-                            checked={isChecked}
-                            onChange={(e) => {
-                                e.stopPropagation()
-                                onClick()
-                            }}
-                            className="absolute inset-0 size-full cursor-pointer opacity-0"
-                        />
-                        {isChecked ? (
-                            <CheckedBoxIconDesktop
-                                style={{
-                                    position: 'absolute',
-                                    width: '30px',
-                                    height: '25px',
-                                }}
-                            />
-                        ) : (
-                            <div
-                                className="absolute inset-0 z-[3] rounded-[3px]"
-                                style={{
-                                    border: '2px solid #878797',
-                                    background: 'transparent',
-                                }}
-                            ></div>
-                        )}
-                    </div>
-                    <div className="pl-[14px]">{children}</div>
-                </div>
-                <div className="justify-items-end">
-                    <QuestionMarkDesktop />
-                </div>
-            </div>
-        )
-    },
-)
-
-SelectItem.displayName = 'SelectItem'
 
 export default EventsSelectSearchDateDesktop

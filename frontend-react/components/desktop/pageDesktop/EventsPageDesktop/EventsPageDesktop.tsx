@@ -53,9 +53,9 @@ const EventsPageDesktop: React.FC = () => {
                 <div className="3xl:p-[76px_130px_150px_130px] container relative min-h-screen overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px]">
                     <h1 className="title80px_desktop relative z-[1]">Мероприятия</h1>
                     <div className="relative z-[1] flex items-center justify-end gap-[30px] pb-[30px] pt-[116px]">
-                        <EventsSelectSearchDesktop />
+                        <EventsSelectSearchDesktop selected={selectedCategories} onChange={setSelectedCategories} />
                         <EventsSelectSearchDateDesktop dates={dates} setDates={setDates} />
-                        <EventsSelectSearchCityDesktop />
+                        <EventsSelectSearchCityDesktop selected={selectedCities} onChange={setSelectedCities} />
                     </div>
                     <div className="3xl:gap-[25px] 4xl:gap-[30px] flex min-h-[40vh] flex-wrap justify-center gap-[36px] 2xl:gap-[20px]">
                         {!isEmpty ? (
