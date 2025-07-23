@@ -6,45 +6,51 @@ import { contentEventsSection } from './contentEventsSectionDesktop/content'
 const EventsSectionDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
-    const [contentWidth, setContentWidth] = useState<number>(0)
-    const [visibleWidth, setVisibleWidth] = useState<number>(0)
+    const [scrollbarWidth, setScrollbarWidth] = useState(0)
 
-    useEffect(() => {
-        const updateSizes = () => {
-            if (contentRef.current) {
-                setContentWidth(contentRef.current.scrollWidth)
-                setVisibleWidth(contentRef.current.clientWidth)
-            }
-        }
-
-        updateSizes()
-        window.addEventListener('resize', updateSizes)
-
-        return () => {
-            window.removeEventListener('resize', updateSizes)
-        }
-    }, [contentEventsSection])
+    const calculateScrollbarWidth = () => {
+        if (!contentRef.current || !scrollbarRef.current) return 0
+        return contentRef.current.scrollWidth - (contentRef.current.offsetWidth - scrollbarRef.current.offsetWidth)
+    }
 
     const handleScroll = () => {
         if (contentRef.current && scrollbarRef.current) {
-            const scrollRatio =
-                contentRef.current.scrollLeft / (contentRef.current.scrollWidth - contentRef.current.clientWidth)
-            const scrollbarScrollLeft =
-                scrollRatio * (scrollbarRef.current.scrollWidth - scrollbarRef.current.clientWidth)
-            scrollbarRef.current.scrollLeft = scrollbarScrollLeft
+            scrollbarRef.current.scrollLeft = contentRef.current.scrollLeft
         }
     }
 
-    const handleScrollbarScroll = () => {
+    const handleScrollbarScroll: () => void = () => {
         if (contentRef.current && scrollbarRef.current) {
-            const scrollRatio =
-                scrollbarRef.current.scrollLeft / (scrollbarRef.current.scrollWidth - scrollbarRef.current.clientWidth)
-            const contentScrollLeft = scrollRatio * (contentRef.current.scrollWidth - contentRef.current.clientWidth)
-            contentRef.current.scrollLeft = contentScrollLeft
+            contentRef.current.scrollLeft = scrollbarRef.current.scrollLeft
         }
     }
 
-    const scrollbarWidth = contentWidth > visibleWidth ? `${(contentWidth / visibleWidth) * 100}%` : '100%'
+    useEffect(() => {
+        const handleResize = () => {
+            if (contentRef.current && scrollbarRef.current) {
+                const calculatedScrollbarWidth = calculateScrollbarWidth()
+                setScrollbarWidth(calculatedScrollbarWidth)
+            }
+        }
+
+        window.addEventListener('resize', handleResize)
+
+        handleResize()
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
+
+    useEffect(() => {
+        const scrollbar = scrollbarRef.current
+        if (!scrollbar) return
+        const timer = setInterval(() => {
+            scrollbar.scrollLeft += 1
+            scrollbar.scrollLeft -= 1
+        }, 1000)
+        return () => clearInterval(timer)
+    }, [])
 
     return (
         <div className="py-[10vh]">
@@ -63,9 +69,9 @@ const EventsSectionDesktop: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="scrollbar_custom mx-auto mt-[8vh] h-2 w-3/5 cursor-pointer overflow-x-scroll"
+                className="scrollbar_custom mx-auto mt-[58px] w-[65%] cursor-pointer overflow-x-scroll"
             >
-                <div className="h-full" style={{ width: scrollbarWidth }}></div>
+                <div className="h-2 min-w-[1000px] bg-transparent" style={{ width: `${scrollbarWidth}px` }} />
             </div>
         </div>
     )
