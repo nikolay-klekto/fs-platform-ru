@@ -21,6 +21,8 @@ const EventsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [filteredContent, setFilteredContent] = useState(content)
     const [dates, setDates] = useState<{ from: Date | null; to: Date | null }>({ from: null, to: null })
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+    const [selectedCities, setSelectedCities] = useState<string[]>([])
 
     useEffect(() => {
         const { from, to } = dates
