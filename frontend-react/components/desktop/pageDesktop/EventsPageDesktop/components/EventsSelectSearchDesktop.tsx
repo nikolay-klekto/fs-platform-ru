@@ -36,12 +36,12 @@ const EventsSelectSearchDesktop: React.FC<EventsSelectSearchDesktopProps> = ({ s
     }, [])
 
     const options: ISelectOption[] = [
-        { value: 'fairs', label: 'Выставки/презентации' },
-        { value: 'open_days', label: 'Дни открытых дверей' },
-        { value: 'conferences', label: 'Конференции' },
-        { value: 'master_classes', label: 'Мастер-классы/семинары/тренинги' },
-        { value: 'internships', label: 'Стажировки' },
-        { value: 'job_fairs', label: 'Ярмарки вакансий' },
+        { value: 'Выставки/презентации', label: 'Выставки/презентации' },
+        { value: 'Дни открытых дверей', label: 'Дни открытых дверей' },
+        { value: 'Конференции', label: 'Конференции' },
+        { value: 'Мастер‑классы/семинары/тренинги', label: 'Мастер‑классы/семинары/тренинги' },
+        { value: 'Стажировки', label: 'Стажировки' },
+        { value: 'Ярмарки вакансий', label: 'Ярмарки вакансий' },
     ]
 
     const toggleOption = (value: string) => {

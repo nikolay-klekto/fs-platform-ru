@@ -36,12 +36,12 @@ const EventsSelectSearchCityDesktop: React.FC<EventsSelectSearchCityDesktopProps
     }, [])
 
     const options: ISelectOption[] = [
-        { value: 'brest', label: 'Брест' },
-        { value: 'vitebsk', label: 'Витебск' },
-        { value: 'gomel', label: 'Гомель' },
-        { value: 'grodno', label: 'Гродно' },
-        { value: 'mogilev', label: 'Могилев' },
-        { value: 'minsk', label: 'Минск' },
+        { value: 'Брест', label: 'Брест' },
+        { value: 'Витебск', label: 'Витебск' },
+        { value: 'Гомель', label: 'Гомель' },
+        { value: 'Гродно', label: 'Гродно' },
+        { value: 'Могилев', label: 'Могилев' },
+        { value: 'Минск', label: 'Минск' },
     ]
 
     const filteredOptions = options.filter((opt) => opt.label.toLowerCase().includes(searchTerm.toLowerCase()))
