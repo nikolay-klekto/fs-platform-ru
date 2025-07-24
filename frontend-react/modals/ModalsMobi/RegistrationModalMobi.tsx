@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
@@ -173,17 +173,27 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
         onClose()
         openModal('login_mobi', 'mobi')
     }
+    const handleOverlayClick = (e: React.MouseEvent) => {
+        if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+            onClose()
+        }
+    }
+    const modalRef = useRef<HTMLDivElement | null>(null)
+
+
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
-            <div className="relative w-full max-w-md">
+        <div className="fixed inset-0 z-50 flex p-4 items-center justify-center bg-black bg-opacity-[70%]"
+            onClick={handleOverlayClick}
+        >
+            <div ref={modalRef} className="relative w-full max-w-md">
                 <button
                     onClick={onClose}
-                    className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
+                    className="absolute right-0 top-0 z-20 p-1 flex items-center justify-center rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                 >
-                    <X size={44} color="#878797" />
+                    <X size={24} color="#878797" />
                 </button>
-                <div className="relative flex max-w-[500px] flex-col items-center rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat">
+                <div className="relative z-10 flex max-w-[500px] flex-col items-center rounded-[35px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat">
                     <h2 className="text18px_mobi bg-sub-title-gradient-mobi mx-auto mb-1 mt-6 inline bg-clip-text font-semibold uppercase text-transparent">
                         Регистрация
                     </h2>
@@ -200,11 +210,10 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 onBlur={() => handleInputBlur('email')}
                                 validate={(value) => validateEmailMobi(value)}
                                 onChange={(value) => setFormData((prev) => ({ ...prev, email: value.toLowerCase() }))}
-                                className={`${
-                                    inputTouched.email && validateEmailMobi(formData.email).styleError
-                                        ? 'border-[#bc8070] focus:border-[#bc8070] '
-                                        : 'border-[#878797] focus:border-[#878797]'
-                                }`}
+                                className={`${inputTouched.email && validateEmailMobi(formData.email).styleError
+                                    ? 'border-[#bc8070] focus:border-[#bc8070] '
+                                    : 'border-[#878797] focus:border-[#878797]'
+                                    }`}
                                 label="Почта"
                                 labelClassName="mb-1 text-2xl font-medium text-white"
                                 wrapperClassName="w-full"
