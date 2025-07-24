@@ -691,4 +691,3 @@ export const CloseIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
         </svg>
     )
 }
-
