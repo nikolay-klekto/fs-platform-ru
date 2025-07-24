@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { PrivacyPolicyTableRowDesktop, tdClass } from '../PrivacyPolicyTableRowDesktop/PrivacyPolisyTableRowDesktop'
+import { PrivacyPolicyTableRowDesktop, tdClass } from '../PrivacyPolicyTableRowDesktop/PrivacyPolicyTableRowDesktop'
 import { rows } from '../../contentPrivacyPolicyPageDesktop/content'
 
 export const PrivacyPolicyPageTableDesktop: React.FC = () => {

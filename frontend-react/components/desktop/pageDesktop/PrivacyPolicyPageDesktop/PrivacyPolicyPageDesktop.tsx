@@ -4,7 +4,7 @@ import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDeskt
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import { PrivacyPolicyPageTableDesktop } from './components/PrivacyPolicyTableDesktop/PrivacyPolicyTableDesktop'
 
-const PrivasyPolisyPageDesktop: React.FC = () => {
+const PrivasyPolicyPageDesktop: React.FC = () => {
     const h3StylesMb50 = 'mb-[50px] text32px_desktop  montserrat.variable font-medium uppercase'
     const h3StylesMb15 = 'mb-[15px] text32px_desktop  montserrat.variable font-medium uppercase'
 
@@ -218,4 +218,4 @@ const PrivasyPolisyPageDesktop: React.FC = () => {
     )
 }
 
-export default PrivasyPolisyPageDesktop
+export default PrivasyPolicyPageDesktop
