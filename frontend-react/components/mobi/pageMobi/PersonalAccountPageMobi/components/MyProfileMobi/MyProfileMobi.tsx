@@ -1,13 +1,14 @@
 'use client'
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
-import { EnhancedInput } from "@/components/ui/input";
-import { validateEmailMobi } from "@/components/mobi/commonMobi/validate/validateEmailMobi";
-import AvatarMobi from '@/components/mobi/shared/AvatarMobi/AvatarMobi';
-import { CalendarIconsMobi, ChevronDownIconMobi } from '@/components/assets/iconsMobi';
-import DatePickerCalendarMobi from "@/components/mobi/shared/CalendarProfileMobi/CalendarProfileMobi";
+import { EnhancedInput } from '@/components/ui/input'
+import { validateEmailMobi } from '@/components/mobi/commonMobi/validate/validateEmailMobi'
+import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
+import AvatarMobi from '@/components/mobi/shared/AvatarMobi/AvatarMobi'
+import { CalendarIconsMobi, ChevronDownIconMobi } from '@/components/assets/iconsMobi'
+import DatePickerCalendarMobi from '@/components/mobi/shared/CalendarProfileMobi/CalendarProfileMobi'
 
 interface IFormData {
     name: string
@@ -15,6 +16,7 @@ interface IFormData {
     birthDate: string
     phone: string
     email: string
+    city: string
     education: string
     occupation: string
     consent: boolean
@@ -32,7 +34,7 @@ const educationOptions: ISelectOption[] = [
     { value: 'general_secondary', label: 'Общее среднее' },
     { value: 'secondary_special', label: 'Среднее специальное' },
     { value: 'secondary_not-finished', label: 'Среднее незаконченное' },
-];
+]
 
 const occupationOption: ISelectOption[] = [
     { value: 'full', label: 'Полная' },
@@ -47,118 +49,122 @@ const MyProfileMobi: React.FC = () => {
         birthDate: '',
         phone: '',
         email: '',
+        city: '',
         education: '',
         occupation: '',
         consent: false,
         avatar: '',
-    });
+    })
 
-    const [errors, setErrors] = useState<{ [key: string]: string }>({});
-    const [inputTouched, setInputTouched] = useState<{ [key in keyof IFormData]?: boolean }>({});
+    const [errors, setErrors] = useState<{ [key: string]: string }>({})
+    const [inputTouched, setInputTouched] = useState<{ [key in keyof IFormData]?: boolean }>({})
     const [inputInternalErrors, setInputInternalErrors] = useState<{ [key: string]: string | null }>({
         email: '',
         phone: '',
         education: '',
-    });
-
-    const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-    const [isEducationOpen, setIsEducationOpen] = useState(false);
-    const [isEducationFocused, setIsEducationFocused] = useState(false);
-    const [isOccupationOpen, setIsOccupationOpen] = useState(false);
-    const [isOccupationFocused, setIsOccupationFocused] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
+        city: '',
+    })
+    const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+    const [isEducationOpen, setIsEducationOpen] = useState(false)
+    const [isEducationFocused, setIsEducationFocused] = useState(false)
+    const [isOccupationOpen, setIsOccupationOpen] = useState(false)
+    const [isOccupationFocused, setIsOccupationFocused] = useState(false)
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value, type, checked } = e.target;
+        const { name, value, type, checked } = e.target
         setFormData((prev) => ({
             ...prev,
             [name]: type === 'checkbox' ? checked : value,
-        }));
-        setErrors((prev) => ({ ...prev, [name]: '' }));
-    };
+        }))
+        setErrors((prev) => ({ ...prev, [name]: '' }))
+    }
 
     const handleConfirmDate = (newDate: string) => {
-        setFormData((prev) => ({ ...prev, birthDate: newDate }));
-        setIsCalendarOpen(false);
-    };
+        setFormData((prev) => ({ ...prev, birthDate: newDate }))
+        setIsCalendarOpen(false)
+    }
 
     const handleCancelDate = () => {
-        setIsCalendarOpen(false);
-    };
+        setIsCalendarOpen(false)
+    }
 
     const handleError = (field: string, error: string | null) => {
-        setInputInternalErrors((prev) => ({ ...prev, [field]: error }));
-    };
+        setInputInternalErrors((prev) => ({ ...prev, [field]: error }))
+    }
 
     const handleInputBlur = (field: keyof IFormData) => {
-        setInputTouched((prev) => ({ ...prev, [field]: true }));
+        setInputTouched((prev) => ({ ...prev, [field]: true }))
 
         if (field === 'email') {
-            const validation = validateEmailMobi(formData.email);
-            handleError('email', validation.textError);
+            const validation = validateEmailMobi(formData.email)
+            handleError('email', validation.textError)
         }
 
-        if ((field === 'name' || field === 'surname') && !formData[field]) {
-            setErrors((prev) => ({ ...prev, [field]: 'Обязательное поле' }));
+        if ((field === 'name' || field === 'surname' || field === 'phone') && !formData[field]) {
+            setErrors((prev) => ({ ...prev, [field]: 'Обязательное поле' }))
         }
-    };
+    }
 
     const validateForm = useCallback((): boolean => {
-        const requiredFields: (keyof IFormData)[] = ['name', 'surname', 'phone', 'email', 'occupation'];
-        const hasEmptyFields = requiredFields.some(field => !formData[field]);
-        const hasErrors = Object.values(inputInternalErrors).some(error => error);
+        const requiredFields: (keyof IFormData)[] = ['name', 'surname', 'phone', 'email', 'occupation']
+        const hasEmptyFields = requiredFields.some((field) => !formData[field])
+        const hasErrors = Object.values(inputInternalErrors).some((error) => error)
 
-        requiredFields.forEach(field => {
+        requiredFields.forEach((field) => {
             if (!formData[field]) {
-                setErrors(prev => ({ ...prev, [field]: 'Обязательное поле' }));
+                setErrors((prev) => ({ ...prev, [field]: 'Обязательное поле' }))
             }
-        });
+        })
 
-        return !(hasEmptyFields || hasErrors);
-    }, [formData, inputInternalErrors]);
+        return !(hasEmptyFields || hasErrors)
+    }, [formData, inputInternalErrors])
 
     const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        const requiredFields: (keyof IFormData)[] = ['name', 'surname', 'phone', 'email'];
+        e.preventDefault()
+        const requiredFields: (keyof IFormData)[] = ['name', 'surname', 'phone', 'email']
         setInputTouched((prev) => {
-            const updated = { ...prev };
-            requiredFields.forEach(field => {
-                updated[field] = true;
-            });
-            return updated;
-        });
-        setIsSubmitted(true);
-        if (!validateForm()) return;
-    };
+            const updated = { ...prev }
+            requiredFields.forEach((field) => {
+                updated[field] = true
+            })
+            return updated
+        })
+        setIsSubmitted(true)
+        if (!validateForm()) return
+    }
 
     const handleAvatarChange = (file: File) => {
-        const reader = new FileReader();
+        const reader = new FileReader()
         reader.onloadend = () => {
-            setFormData(prev => ({
+            setFormData((prev) => ({
                 ...prev,
-                avatar: reader.result as string
-            }));
-        };
-        reader.readAsDataURL(file);
-    };
+                avatar: reader.result as string,
+            }))
+        }
+        reader.readAsDataURL(file)
+    }
 
-    const requiredFields: (keyof IFormData)[] = ['name', 'surname', 'phone', 'email'];
-    const hasEmptyRequired = requiredFields.some(field => !formData[field]);
+    const requiredFields: (keyof IFormData)[] = ['name', 'surname', 'phone', 'email']
+    const hasEmptyRequired = requiredFields.some((field) => !formData[field])
 
     return (
         <div className="py-[20px] w-full flex justify-center">
-            <form onSubmit={handleSubmit}
-                className="flex flex-col justify-start bg-[#1F203F] rounded-[40px] px-[15px] gap-[30px] py-[35px] max-w-[400px] w-full">
+            <form
+                onSubmit={handleSubmit}
+                className="flex flex-col justify-start bg-[#1F203F] rounded-[40px] px-[15px] gap-[30px] py-[35px] max-w-[400px] w-full"
+            >
                 <div className="flex flex-col items-center gap-6">
-                    <AvatarMobi
-                        imageUrl={formData.avatar}
-                        onImageChange={handleAvatarChange}
-                    />
+                    <AvatarMobi imageUrl={formData.avatar} onImageChange={handleAvatarChange} />
                 </div>
                 <div className="flex flex-col justify-start gap-[17px]">
                     <div className="flex flex-col">
-                        <label htmlFor="surname"
-                            className="text14px_mobi text-[#878797] mb-1 text-2xl bg-transparent font-medium">Имя*</label>
+                        <label
+                            htmlFor="surname"
+                            className="text14px_mobi text-[#878797] mb-1 text-2xl bg-transparent font-medium"
+                        >
+                            Имя*
+                        </label>
                         <input
                             id="name"
                             name="name"
@@ -171,8 +177,9 @@ const MyProfileMobi: React.FC = () => {
                         />
                     </div>
                     <div className="flex flex-col">
-                        <label htmlFor="surname"
-                            className="text14px_mobi mb-1 text-2xl font-medium text-[#878797] ">Фамилия*</label>
+                        <label htmlFor="surname" className="text14px_mobi mb-1 text-2xl font-medium text-[#878797] ">
+                            Фамилия*
+                        </label>
                         <input
                             id="surname"
                             name="surname"
@@ -185,14 +192,15 @@ const MyProfileMobi: React.FC = () => {
                         />
                     </div>
                     <div className="flex flex-col">
-                        <label htmlFor="birthDate" className="mb-1 text-2xl font-medium text-[#878797]">Дата
-                            рождения</label>
+                        <label htmlFor="birthDate" className="mb-1 text-2xl font-medium text-[#878797]">
+                            Дата рождения
+                        </label>
                         <div
                             className="input-form-mobi-custom flex h-[44px] items-center gap-1 rounded-[42px] border-2 border-[#878797] px-3"
                             onClick={() => setIsCalendarOpen(true)}
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter' || e.key === ' ') {
-                                    setIsCalendarOpen(true);
+                                    setIsCalendarOpen(true)
                                 }
                             }}
                             role="button"
@@ -213,7 +221,10 @@ const MyProfileMobi: React.FC = () => {
                         </div>
                         {isCalendarOpen && (
                             <DatePickerCalendarMobi
-                                value={formData.birthDate || `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`}
+                                value={
+                                    formData.birthDate ||
+                                    `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`
+                                }
                                 onConfirm={handleConfirmDate}
                                 onCancel={handleCancelDate}
                             />
@@ -223,29 +234,56 @@ const MyProfileMobi: React.FC = () => {
                         labelClassName="mb-1 text-2xl font-medium text-[#878797]"
                         value={formData.phone}
                         onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
-                        onError={(error) => handleError('phone', error)}
                         onBlur={() => handleInputBlur('phone')}
-                        className={`h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium text-white ${(inputInternalErrors.phone && (inputTouched.phone || isSubmitted)) ? 'border-[#BC8070]' : 'border-[#878797]'
-                            }`}
+                        onError={(error) =>
+                            setErrors((prev) => ({
+                                ...prev,
+                                phone: error || '',
+                            }))
+                        }
+                        className={`${
+                            inputTouched.phone && validatePhoneMobi(formData.phone).styleError
+                                ? 'border-[#bc8070] focus:border-[#bc8070]'
+                                : 'border-[#878797] focus:border-[#878797]'
+                        } h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium text-white`}
                         wrapperClassName="w-full"
                         required={true}
                     />
-                    <form noValidate className='flex flex-col gap-1.5 w-full'>
+                    <div className="flex flex-col">
+                        <label
+                            htmlFor="city"
+                            className="text14px_mobi text-[#878797] mb-1 text-2xl bg-transparent font-medium"
+                        >
+                            Город
+                        </label>
+                        <input
+                            id="city"
+                            name="city"
+                            value={formData.city}
+                            onChange={handleChange}
+                            onBlur={() => handleInputBlur('city')}
+                            className={'input-form-mobi-custom border-2 h-[44px] text14px_mobi'}
+                            placeholder="Город"
+                            type="text"
+                        />
+                    </div>
+                    <form noValidate className="flex flex-col w-full">
                         <EnhancedInput
                             type="email"
                             name="email"
                             placeholder="Почта"
                             value={formData.email}
                             onBlur={() => {
-                                handleInputBlur('email');
+                                handleInputBlur('email')
                             }}
                             onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
-                            className={`${inputTouched.email && validateEmailMobi(formData.email).styleError
-                                ? 'border-[#bc8070] focus:border-[#bc8070] '
-                                : 'border-[#878797] focus:border-[#878797]'
-                                } h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium text-white`}
+                            className={`${
+                                inputTouched.email && validateEmailMobi(formData.email).styleError
+                                    ? 'border-[#bc8070] focus:border-[#bc8070] '
+                                    : 'border-[#878797] focus:border-[#878797]'
+                            } input-form-mobi-custom  h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium placeholder:text-[#353652] text-white gap-0`}
                             label="Почта*"
-                            labelClassName="mb-1 text-2xl font-medium text-[#878797]"
+                            labelClassName="mb-0 text-2xl font-medium text-[#878797]"
                             wrapperClassName="w-full"
                         />
                         {inputInternalErrors.email && (
@@ -253,30 +291,43 @@ const MyProfileMobi: React.FC = () => {
                         )}
                     </form>
                     <div className="flex flex-col">
-                        <label htmlFor="education"
-                            className="text14px_mobi mb-1 text-2xl font-medium text-[#878797]">Образование</label>
+                        <label htmlFor="education" className="text14px_mobi mb-1 text-2xl font-medium text-[#878797]">
+                            Образование
+                        </label>
                         <div className="relative">
                             <div
                                 className={`input-form-mobi-custom flex h-[44px] text-[14px] border-2 items-center justify-between cursor-pointer
-${isEducationOpen || isEducationFocused ? 'border-white' : 'border-[#878797]'}`}
-                                style={isEducationOpen || isEducationFocused ? {
-                                    backgroundColor: '#353652',
-                                    borderColor: 'white'
-                                } : {}}
+                               ${isEducationOpen || isEducationFocused ? 'border-white' : 'border-[#878797]'}`}
+                                style={
+                                    isEducationOpen || isEducationFocused
+                                        ? {
+                                              backgroundColor: '#353652',
+                                              borderColor: 'white',
+                                          }
+                                        : {}
+                                }
                                 onClick={() => setIsEducationOpen(!isEducationOpen)}
                                 onFocus={() => setIsEducationFocused(true)}
                                 onBlur={() => setIsEducationFocused(false)}
                                 tabIndex={0}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter' || e.key === ' ') {
-                                        setIsCalendarOpen(true);
+                                        setIsCalendarOpen(true)
                                     }
                                 }}
                                 role="button"
                             >
-                                <span className={formData.education ? 'text-[#878797]' : 'text-[#878797]'}>
+                                <span
+                                    className={
+                                        formData.education
+                                            ? 'text-[#878797]'
+                                            : !isEducationOpen
+                                              ? 'text-[#353652]'
+                                              : 'text-[#878797]'
+                                    }
+                                >
                                     {formData.education
-                                        ? educationOptions.find(opt => opt.value === formData.education)?.label
+                                        ? educationOptions.find((opt) => opt.value === formData.education)?.label
                                         : 'образование'}
                                 </span>
                                 <ChevronDownIconMobi
@@ -285,29 +336,31 @@ ${isEducationOpen || isEducationFocused ? 'border-white' : 'border-[#878797]'}`}
                                 />
                             </div>
                             {isEducationOpen && (
-                                <div className="absolute z-50 w-full mt-1 rounded-[20px] p-[2px]"
+                                <div
+                                    className="absolute z-50 w-full mt-1 rounded-[20px] p-[2px]"
                                     style={{
                                         background: 'linear-gradient(90deg, #1F203F)',
-                                    }}>
-                                    <div
-                                        className="flex flex-col gap-1 rounded-[20px] bg-[#1F203F] border p-3 border-[#878797]">
+                                    }}
+                                >
+                                    <div className="flex flex-col gap-1 rounded-[20px] bg-[#1F203F] border p-3 border-[#878797]">
                                         {educationOptions.map((option) => (
                                             <div
                                                 key={option.value}
                                                 onKeyDown={(e) => {
                                                     if (e.key === 'Enter' || e.key === ' ') {
-                                                        setIsCalendarOpen(true);
+                                                        setIsCalendarOpen(true)
                                                     }
                                                 }}
                                                 role="button"
                                                 tabIndex={0}
-                                                className={`cursor-pointer py-[10px] px-[7px] text-[14px] font-medium border-b border-[#878797] last:border-b-0 ${formData.education === option.value
-                                                    ? 'text-white'
-                                                    : 'bg-transparent text-[#878797]'
-                                                    }`}
+                                                className={`cursor-pointer py-[10px] px-[7px] text-[14px] font-medium border-b border-[#878797] last:border-b-0 ${
+                                                    formData.education === option.value
+                                                        ? 'text-white'
+                                                        : 'bg-transparent text-[#878797]'
+                                                }`}
                                                 onClick={() => {
-                                                    setFormData(prev => ({ ...prev, education: option.value }));
-                                                    setIsEducationOpen(false);
+                                                    setFormData((prev) => ({ ...prev, education: option.value }))
+                                                    setIsEducationOpen(false)
                                                 }}
                                             >
                                                 {option.label}
@@ -319,30 +372,42 @@ ${isEducationOpen || isEducationFocused ? 'border-white' : 'border-[#878797]'}`}
                         </div>
                     </div>
                     <div className="flex flex-col">
-                        <label htmlFor="occupation"
-                            className="text14px_mobi mb-1 text-2xl font-medium text-[#878797]">Занятость</label>
+                        <label
+                            htmlFor="occupation"
+                            className="text14px_mobi mb-1 text-2xl font-medium text-opacity text-[#878797]"
+                        >
+                            Занятость
+                        </label>
                         <div className="relative">
                             <div
-                                className={`input-form-mobi-custom flex h-[44px] text-[14px] border-2 items-center justify-between cursor-pointer
-${isOccupationOpen || isOccupationFocused ? 'border-white' : 'border-[#878797]'}`}
-                                style={isOccupationOpen || isOccupationFocused ? {
-                                    backgroundColor: '#353652',
-                                    borderColor: 'white'
-                                } : {}}
+                                className={`input-form-mobi-custom flex h-[44px] text-opacity text-[14px] border-2 items-center justify-between cursor-pointer
+                                ${isOccupationOpen || isOccupationFocused ? 'border-white' : 'border-[#878797]'}`}
+                                style={
+                                    isOccupationOpen || isOccupationFocused
+                                        ? {
+                                              backgroundColor: '#353652',
+                                              borderColor: 'white',
+                                          }
+                                        : {}
+                                }
                                 onClick={() => setIsOccupationOpen(!isOccupationOpen)}
                                 onFocus={() => setIsOccupationFocused(true)}
                                 onBlur={() => setIsOccupationFocused(false)}
                                 tabIndex={0}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter' || e.key === ' ') {
-                                        setIsOccupationOpen(true);
+                                        setIsOccupationOpen(true)
                                     }
                                 }}
                                 role="button"
                             >
-                                <span className={formData.occupation ? 'text-[#878797]' : 'text-[#878797]'}>
+                                <span
+                                    className={
+                                        formData.occupation || isOccupationOpen ? 'text-[#878797]' : 'text-[#353652]'
+                                    }
+                                >
                                     {formData.occupation
-                                        ? occupationOption.find(opt => opt.value === formData.occupation)?.label
+                                        ? occupationOption.find((opt) => opt.value === formData.occupation)?.label
                                         : 'занятость'}
                                 </span>
                                 <ChevronDownIconMobi
@@ -351,29 +416,31 @@ ${isOccupationOpen || isOccupationFocused ? 'border-white' : 'border-[#878797]'}
                                 />
                             </div>
                             {isOccupationOpen && (
-                                <div className="absolute z-50 w-full mt-1 rounded-[20px] p-[2px]"
+                                <div
+                                    className="absolute z-50 w-full mt-1 rounded-[20px] p-[2px]"
                                     style={{
                                         background: 'linear-gradient(90deg, #1F203F)',
-                                    }}>
-                                    <div
-                                        className="flex flex-col gap-1 rounded-[20px] bg-[#1F203F] border p-3 border-[#878797]">
+                                    }}
+                                >
+                                    <div className="flex flex-col gap-1 rounded-[20px] bg-[#1F203F] border p-3 border-[#878797]">
                                         {occupationOption.map((option) => (
                                             <div
                                                 key={option.value}
                                                 onKeyDown={(e) => {
                                                     if (e.key === 'Enter' || e.key === ' ') {
-                                                        setIsOccupationOpen(true);
+                                                        setIsOccupationOpen(true)
                                                     }
                                                 }}
                                                 role="button"
                                                 tabIndex={0}
-                                                className={`cursor-pointer py-[10px] px-[7px] text-[14px] font-medium border-b border-[#878797] last:border-b-0 ${formData.occupation === option.value
-                                                    ? 'text-white'
-                                                    : 'bg-transparent text-[#878797]'
-                                                    }`}
+                                                className={`cursor-pointer text14px_mobi text-[#878797] mb-1 text-2xl bg-transparent font-medium py-[10px] px-[7px] border-b border-[#878797] last:border-b-0 ${
+                                                    formData.occupation === option.value
+                                                        ? 'text-white'
+                                                        : 'bg-transparent text-[#878797]'
+                                                }`}
                                                 onClick={() => {
-                                                    setFormData(prev => ({ ...prev, occupation: option.value }));
-                                                    setIsOccupationOpen(false);
+                                                    setFormData((prev) => ({ ...prev, occupation: option.value }))
+                                                    setIsOccupationOpen(false)
                                                 }}
                                             >
                                                 {option.label}
@@ -391,10 +458,12 @@ ${isOccupationOpen || isOccupationFocused ? 'border-white' : 'border-[#878797]'}
                         </div>
                     </div>
                 </div>
-                <Button type="submit" variant="select_mobi" className="text-[17px] h-[56px]">Сохранить</Button>
+                <Button type="submit" variant="profile_desktop" className="!bg-[#1F203F] h-[56px]">
+                    Сохранить
+                </Button>
             </form>
         </div>
-    );
-};
+    )
+}
 
-export default MyProfileMobi;
+export default MyProfileMobi
