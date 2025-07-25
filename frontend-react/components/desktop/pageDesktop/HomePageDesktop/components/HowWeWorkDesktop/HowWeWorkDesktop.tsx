@@ -7,7 +7,7 @@ const HowWeWorkDesktop: React.FC = () => {
         <>
             <div className="container py-[100px]">
                 <div className="mb-[122px]">
-                    <TitleDesktop title="Как мы работаем" href="#" />
+                    <TitleDesktop title="Как мы работаем" />
                 </div>
                 <div className="flex items-center justify-between gap-[clamp(20px,_2vw,_40px)]">
                     {content.map((item) => (
