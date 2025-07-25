@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal'
 import { X } from 'lucide-react'
@@ -34,26 +34,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
         phone: false,
         time: false,
     })
-    const modalRef = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === ' ' && e.target instanceof HTMLInputElement) {
-                e.stopPropagation()
-            }
-        }
-
-        const modalElement = modalRef.current
-        if (modalElement) {
-            modalElement.addEventListener('keydown', handleKeyDown, { capture: true })
-        }
-
-        return () => {
-            if (modalElement) {
-                modalElement.removeEventListener('keydown', handleKeyDown, { capture: true })
-            }
-        }
-    }, [])
 
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
@@ -140,7 +120,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const hasErrors = Object.values(errors).some((err) => err?.trim())
 
     return (
-        <div ref={modalRef}>
+        <div>
             {step === 'form' && (
                 <Modal onClose={onClose} size="medium" showCloseButton={false}>
                     <div>

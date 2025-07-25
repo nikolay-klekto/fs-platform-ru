@@ -52,9 +52,8 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         let newValue = inputValue || PHONE_MASK
 
-        if (e.key === ' ' || e.key === 'Space' || e.key === 'Spacebar') {
+        if (e.key === ' ') {
             e.preventDefault()
-            e.stopPropagation()
             return
         }
 
