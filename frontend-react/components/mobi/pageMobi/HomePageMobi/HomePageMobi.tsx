@@ -31,6 +31,7 @@ const HomePageMobi: React.FC = () => {
                 <HeaderCardsMobi />
             </header>
             <main className="bg-[#101030]">
+
                 <HowWeWorkMobi />
                 <ProfessionsSectionMobi />
                 <CompaniesSectionMobi />
