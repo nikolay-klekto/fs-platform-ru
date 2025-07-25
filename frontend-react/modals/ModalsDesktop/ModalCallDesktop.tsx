@@ -120,7 +120,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const hasErrors = Object.values(errors).some((err) => err?.trim())
 
     return (
-        <div>
+        <>
             {step === 'form' && (
                 <Modal onClose={onClose} size="medium" showCloseButton={false}>
                     <div>
@@ -294,7 +294,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     </div>
                 </Modal>
             )}
-        </div>
+        </>
     )
 }
 
