@@ -1,5 +1,6 @@
+'use client'
+
 import React from 'react'
-import TitleMobi from '@/components/mobi/shared/TitleMobi'
 import SubTitleMobi from '@/components/mobi/shared/SubTitleMobi'
 import { Button } from '@/components/ui/button'
 import { content } from './contentHowWeWorkMobi/content'
@@ -7,10 +8,10 @@ import { content } from './contentHowWeWorkMobi/content'
 const HowWeWorkMobi: React.FC = () => {
     const [showList, setShowList] = React.useState(true)
     return (
-        <div className="max-w-full px-[15px] py-[60px] pt-[10px]">
-            <div className="sm_l:mb-[20px] sm_s:mb-[20px] mb-[30px] sm:mb-[15px]">
-                <TitleMobi title={'Как мы работаем'} href="#" />
-            </div>
+        <section className="sm_xl:mt-auto sm_l:mt-auto sm_s:mt-auto max-w-full px-[15px] py-[60px] sm:mt-auto">
+            <h2 className="sm_xl:mb-[24px] sm_l:mb-[24px] sm_s:mb-[24px] md:text-11xl sm_xl:text-10xl sm_l:text-9xl sm_s:text-8xl mb-[40px] text-[32px] font-medium uppercase text-white sm:mb-[24px] sm:text-8xl">
+                Как мы работаем
+            </h2>
             <div className="relative">
                 {(showList ? content.slice(0, 2) : content).map((item) => (
                     <div key={item.id}>
@@ -44,7 +45,7 @@ const HowWeWorkMobi: React.FC = () => {
                     </div>
                 )}
             </div>
-        </div>
+        </section>
     )
 }
 export default HowWeWorkMobi

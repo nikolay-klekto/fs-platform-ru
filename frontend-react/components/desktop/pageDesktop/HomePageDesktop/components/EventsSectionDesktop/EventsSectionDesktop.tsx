@@ -1,4 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react'
+'use client'
+
+import React, { useEffect, useRef, useState } from 'react'
 import TitleDesktop from '@/components/desktop/shared/TitleDesktop'
 import ItemEventsDesktop from './ItemEventsDesktop/ItemEventsDesktop'
 import { contentEventsSection } from './contentEventsSectionDesktop/content'
@@ -55,7 +57,7 @@ const EventsSectionDesktop: React.FC = () => {
     return (
         <div className="py-[10vh]">
             <div className="container">
-                <TitleDesktop title={'МЕРОПРИЯТИЯ'} href="/events" />
+                <TitleDesktop title={'Мероприятия'} href="/events" />
             </div>
             <div
                 ref={contentRef}
