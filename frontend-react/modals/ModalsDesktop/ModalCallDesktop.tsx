@@ -161,6 +161,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             <div className="mb-5 flex w-full flex-col px-[75px]">
                                 <PhoneInputDesktop
                                     value={formData.phone}
+                                    //onBlur={() => handleInputBlur('phone')}
                                     onError={(error) => {
                                         setErrors((prev) => ({
                                             ...prev,
