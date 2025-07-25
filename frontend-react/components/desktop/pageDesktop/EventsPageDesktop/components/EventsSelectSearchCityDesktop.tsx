@@ -43,7 +43,6 @@ const EventsSelectSearchCityDesktop: React.FC<Props> = ({ selected, onChange }) 
                 onClick={() => setIsOpen((v) => !v)}
                 className={isOpen ? 'bg-gradient-desktop' : 'bg-[#101030]'}
             >
-                {/* Всегда показываем заглушку «Город» */}
                 Город
                 <ChevronDownIconDesktop
                     className={`h-[15px] w-[27px] transition-transform duration-200 2xl:w-[20px] ${
