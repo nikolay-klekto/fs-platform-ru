@@ -6,8 +6,6 @@ import {
     ChevronDownIconDesktop,
     LineDateDesktop,
     CalendarIconsDesktop,
-    QuestionMarkDesktop,
-    CheckedBoxIconDesktop,
 } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
