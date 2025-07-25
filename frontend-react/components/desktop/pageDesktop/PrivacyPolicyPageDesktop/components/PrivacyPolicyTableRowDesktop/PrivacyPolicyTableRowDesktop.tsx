@@ -2,15 +2,17 @@
 
 import React from 'react'
 
-type TableRowProps = {
-    row: {
-        rowNumber: number
-        goal: string
-        categories: string
-        data: string
-        basis: string
-        period: string
-    }
+interface TableRow {
+    row: number
+    goal: string
+    categories: string
+    data: string
+    basis: string
+    period: string
+}
+
+interface TableRowProps {
+    row: TableRow
 }
 
 export const tdClass = 'border text20px_desktop py-[16px] px-[10px]'

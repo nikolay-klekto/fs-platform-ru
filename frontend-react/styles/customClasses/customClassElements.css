@@ -113,6 +113,14 @@
         @apply font-medium text-4xl 3xl:text-3xl 2xl:text-2xl;
     }
 
+    .text-policy-subheading_desktop {
+        @apply text32px_desktop font-medium uppercase;
+    }
+
+    .text-policy-paragraph_desktop {
+        @apply mb-[15px] text24px_desktop text-[#B3B3BD];
+    }
+
     .text28px_mobi {
         @apply text-9xl sm:text-7xl;
     }

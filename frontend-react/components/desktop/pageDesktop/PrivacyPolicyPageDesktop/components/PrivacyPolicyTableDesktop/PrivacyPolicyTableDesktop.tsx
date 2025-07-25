@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import { PrivacyPolicyTableRowDesktop, tdClass } from '../PrivacyPolicyTableRowDesktop/PrivacyPolisyTableRowDesktop'
-import { rows } from '../../contentPrivacyPolicyPageDesktop/content'
+import { PrivacyPolicyTableRowDesktop, tdClass } from '../PrivacyPolicyTableRowDesktop/PrivacyPolicyTableRowDesktop'
+import { content } from '../../contentPrivacyPolicyPageDesktop/content'
 
 export const PrivacyPolicyPageTableDesktop: React.FC = () => {
     return (
@@ -24,8 +24,8 @@ export const PrivacyPolicyPageTableDesktop: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {rows.map((row) => (
-                        <PrivacyPolicyTableRowDesktop key={row.rowNumber} row={row} />
+                    {content.map((row) => (
+                        <PrivacyPolicyTableRowDesktop key={row.row} row={row} />
                     ))}
                 </tbody>
             </table>
