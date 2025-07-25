@@ -171,10 +171,7 @@ const EventsSelectSearchDateDesktop: React.FC<EventsSelectSearchDateDesktopProps
 
             {isOpen && (
                 <div
-                    className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[430px] rounded-[42px] p-[2px] 2xl:w-[270px]"
-                    style={{
-                        background: 'linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8)',
-                    }}
+                    className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[430px] rounded-[42px] p-[2px] 2xl:w-[270px] bg-gradient-desktop"
                 >
                     <div className="relative flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
                         <div className="custom-grey flex items-center justify-between">

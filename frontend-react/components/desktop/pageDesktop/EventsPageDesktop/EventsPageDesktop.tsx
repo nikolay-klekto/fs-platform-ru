@@ -82,7 +82,7 @@ const EventsPageDesktop: React.FC = () => {
 
         setFilteredContent(result)
         setCurrentPage(1)
-    }, [dates, selectedCategories, selectedCity]) 
+    }, [dates, selectedCategories, selectedCity])
 
     const isEmpty = filteredContent.length === 0
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
@@ -130,7 +130,7 @@ const EventsPageDesktop: React.FC = () => {
                                         className="px-[30px]"
                                         onClick={() => {
                                             setSelectedCategories([])
-                                            setSelectedCity(null) 
+                                            setSelectedCity(null)
                                             setDates({ from: null, to: null })
                                         }}
                                     >
