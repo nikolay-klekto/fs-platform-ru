@@ -106,6 +106,10 @@
         @apply text-2xl 4xl:text-2xl 3xl:text-lg 2xl:text-base;
     }
 
+    .text46px_desktop {
+        @apply text-18xl 3xl:text-17xl 2xl:text-16xl;
+    }
+
     .text28px_modal_desktop {
         @apply font-medium text-white text-9xl 3xl:text-8xl 2xl:text-7xl;
     }
@@ -113,6 +117,9 @@
         @apply font-medium text-4xl 3xl:text-3xl 2xl:text-2xl;
     }
 
+    .text32px_mobi {
+        @apply sm_s:text-8xl sm:text-8xl text-[clamp(26px,8vw,32px)] md:text-[clamp(32px,8vw,64px)];
+    }
     .text28px_mobi {
         @apply text-9xl sm:text-7xl;
     }
