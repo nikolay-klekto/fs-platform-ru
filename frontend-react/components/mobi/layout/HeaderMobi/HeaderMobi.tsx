@@ -51,7 +51,7 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
             >
                 <div className={`relative flex h-[56px] w-full items-center justify-between px-[15px]`}>
                     <PhoneIconMobi
-                        className="size-6 cursor-pointer md:size-[34px]"
+                        className="size-6 md:size-[34px]"
                         onClick={(): void => openModal('modalcall_mobi', 'mobi')}
                     />
                     <div className="absolute left-1/2 top-7 -translate-x-1/2 -translate-y-1/2">
@@ -61,9 +61,9 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
                     </div>
                     <div className="flex gap-[17px]">
                         <Link href="/cart">
-                            <ShoppingCartIconMobi className="size-6 shrink-0 cursor-pointer md:size-[34px]" />
+                            <ShoppingCartIconMobi className="size-6 shrink-0 md:size-[34px]" />
                         </Link>
-                        <BurgerMenuIconMobi className="size-6 shrink-0 cursor-pointer md:size-[34px]" onClick={toggleMenu} />
+                        <BurgerMenuIconMobi className="size-6 shrink-0 md:size-[34px]" onClick={toggleMenu} />
                     </div>
                 </div>
             </header>
@@ -84,7 +84,7 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
                         {' '}
                     </div>
                     <div className="absolute right-0 top-0 z-50 flex w-full flex-col items-center bg-[#101030] px-3.5 pt-9 text-white">
-                        <div className="flex w-full cursor-pointer justify-end opacity-50 transition-opacity duration-300 hover:opacity-100">
+                        <div className="flex w-full justify-end opacity-50 transition-opacity duration-300 hover:opacity-100">
                             <CrossIconMobi onClick={toggleMenu} />
                         </div>
                         <div className="sm_s:pb-10 flex flex-col items-center gap-2.5 pb-12 pt-1 sm:pb-10">

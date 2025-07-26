@@ -41,7 +41,7 @@ const HowWeWorkMobi: React.FC = () => {
                             onClick={() => setShowList(false)}
                             variant="select_mobi"
                             size="home_select_mobi"
-                            className="text-[15px] font-medium"
+                            className="border-[3px] text-[15px] font-medium"
                         >
                             <span className="text-[15px] md:text-8xl">Развернуть</span>
                         </Button>
