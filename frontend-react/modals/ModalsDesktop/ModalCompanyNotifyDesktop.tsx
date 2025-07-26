@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { CrossIconDesktop } from '@/components/assets/iconsDesktop'
 import Modal from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
+import { useToast } from '@/hooks/use-toast'
 
 interface INotifyFormData {
     email: string
@@ -23,12 +24,14 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
         consent: false,
     })
 
-    const [formErrors, setFormErrors] = useState<{ email: string; consent: boolean }>({
-        email: '',
+    const [formErrors, setFormErrors] = useState<{ email: string | null; consent: boolean }>({
+        email: null,
         consent: false,
     })
 
     const [buttonDisabled, setButtonDisabled] = useState(false)
+
+    const { toast } = useToast()
 
     const handleChange = (field: keyof INotifyFormData, value: string | boolean) => {
         setFormData((prev) => ({
@@ -39,7 +42,7 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
         if (field === 'email') {
             setFormErrors((prev) => ({
                 ...prev,
-                email: '',
+                email: null,
             }))
         }
 
@@ -49,8 +52,6 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                 consent: false,
             }))
         }
-
-        setButtonDisabled(false)
     }
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -58,21 +59,24 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
 
         let hasErrors = false
 
-        const emailValidation = validateEmailDesktop(formData.email)
-        if (!emailValidation.status) {
+        if (!formData.email) {
             setFormErrors((prev) => ({
                 ...prev,
-                email: emailValidation.textError,
+                email: 'Заполните поля',
             }))
 
-            if (formData.email === '') {
+            hasErrors = true
+        } else {
+            const emailValidation = validateEmailDesktop(formData.email)
+            if (!emailValidation.status) {
+                console.log(emailValidation.textError)
                 setFormErrors((prev) => ({
                     ...prev,
-                    email: 'Это поле обязательно для заполнения',
+                    email: emailValidation.textError,
                 }))
-            }
 
-            hasErrors = true
+                hasErrors = true
+            }
         }
 
         if (!formData.consent) {
@@ -88,9 +92,16 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
             return
         }
 
-        console.log('Форма уведомления отправлена:', formData)
         onClose()
+
+        toast({
+            description: 'Спасибо! Ваша заявка была успешно отправлена',
+        })
     }
+
+    useEffect(() => {
+        if (!formErrors.email && !formErrors.consent) setButtonDisabled(false)
+    }, [formErrors.email, formErrors.consent])
 
     return (
         <Modal onClose={onClose} size="semilarge-l" showCloseButton={false}>
@@ -108,9 +119,9 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                     Когда компания станет доступна, куда вам сообщить?
                 </h2>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col px-[5px] align-middle">
-                    <div className="mb-[22px]">
+                    <div className={formErrors.email || formErrors.consent ? 'mb-2' : 'mb-5'}>
                         <EnhancedInput
-                            type="email"
+                            type="text"
                             name="email"
                             placeholder="Ваш e-mail"
                             label="Почта"
@@ -118,12 +129,16 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                             validate={validateEmailDesktop}
                             onChange={(value) => handleChange('email', value)}
                             variant="gradient_desktop"
-                            error={formErrors.email}
+                            error={formErrors.email ?? undefined}
                             labelClassName="text-white text-[15px] font-medium ml-[6px] mt-[18px] "
                             className={`focus:ring-0" h-[50px] w-[518px] rounded-[50px] border-2 bg-transparent text-[18px] font-medium text-white focus:outline-none
-                            ${formErrors.email !== '' ? 'border-[#E99B9B]' : 'border-[#878797]'}
+                            ${formErrors.email ? 'border-[#E99B9B]' : 'border-[#878797]'}
                             `}
                         />
+
+                        {(formErrors.email || formErrors.consent) && (
+                            <p className="mt-2 text-[15px] text-[#E99B9B]">{formErrors.email ?? 'Заполните поля'}</p>
+                        )}
                     </div>
                     <div className="relative mb-4 flex items-center">
                         <div className="relative">
@@ -154,11 +169,12 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
 
                     <Button
                         type="submit"
+                        variant={'company_mobi'}
                         disabled={buttonDisabled}
                         className={
                             buttonDisabled
-                                ? 'pointer-events-none mx-auto mb-5 h-[52.35px] w-[220px] cursor-not-allowed rounded-[40.44px] bg-[#878797] text-[16px] font-semibold text-white !opacity-100'
-                                : 'hover:bg-gradient-desktop-hover mx-auto mb-5 h-[52.35px] w-[220px] rounded-[40.44px] bg-gradient-to-r from-[#8333F3] via-[#5F4AF3] to-[#3B51A8] text-[16px] font-semibold transition-all duration-300 hover:shadow-lg'
+                                ? 'pointer-events-none mx-auto mb-8 h-[52.35px] w-[220px] rounded-[40.44px] bg-[#878797] text-[16px] font-semibold text-white !opacity-100'
+                                : 'hover:bg-gradient-desktop-hover mx-auto mb-8 h-[52.35px] w-[220px] rounded-[40.44px] bg-gradient-to-r from-[#8333F3] via-[#5F4AF3] to-[#3B51A8] text-[16px] font-semibold transition-all duration-300 hover:shadow-lg'
                         }
                     >
                         Отправить
