@@ -58,7 +58,7 @@ const buttonVariants = cva(
                     '3xl:w-[376px] 3xl:h-[88px] h-[95px] w-[500px] rounded-[45px] 2xl:h-[80px] 2xl:w-[323px] ',
                 registration_mobi: 'h-[51px] rounded-full px-4 py-2',
                 home_registration_mobi:
-                    'h-[51px] rounded-full flex justify-center max-w-[270px] w-full md:max-w-[545px] md:py-[28px] py-2 md:h-[clamp(51px,15vw,103px)]',
+                    'h-[51px] rounded-full flex justify-center w-full md:max-w-[545px] md:py-[28px] py-2 md:h-[clamp(51px,15vw,103px)]',
                 arrow_registration_mobi: 'size-[51px] md:size-[clamp(51px,15vw,103px)]',
                 select_mobi: 'h-[40px] w-full max-w-[188px]',
                 home_select_mobi: 'h-[40px] md:h-[70px] md:max-w-[332px] w-full max-w-[188px] ',
