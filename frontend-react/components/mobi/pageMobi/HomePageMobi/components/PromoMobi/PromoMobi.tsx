@@ -1,13 +1,17 @@
-import React from 'react'
+'use client'
+
 import { Button } from '@/components/ui/button'
 import { ArrowBtn } from '@/components/assets/iconsMobi'
+import Link from 'next/link'
 import { useModal } from '@/context/ContextModal'
 
 const PromoMobi: React.FC = () => {
     const { openModal } = useModal()
+    const isAuth = useIsAuth()
+    const isAuth = false
 
     return (
-        <div className="w-full px-[20px] md:pt-14">
+        <section className="w-full px-[20px] md:pt-14">
             <div
                 style={{
                     backgroundImage: 'url(/background/background-promo.webp)',
@@ -21,22 +25,53 @@ const PromoMobi: React.FC = () => {
                     Пройди стажировку в абсолютно разных компаниях на многообразнейших понравившихся профессиях
                 </p>
                 <div className="flex">
-                    <Button variant="registration_mobi" size="home_registration_mobi">
-                        <span className="sm_s:text-3xl bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent sm:text-3xl md:text-[clamp(23px,5vw,38px)]">
-                            Найти стажировку
-                        </span>
-                    </Button>
-                    <Button
-                        variant="arrow_registration_mobi"
-                        size="arrow_registration_mobi"
-                        className="p-[10px] md:p-[clamp(10px,4vw,23px)]"
-                        onClick={() => openModal('registration_mobi', 'mobi')}
-                    >
-                        <ArrowBtn />
-                    </Button>
+                    {isAuth ? (
+                        <>
+                            <Link href="/professions" className="flex w-full">
+                                <Button variant="registration_mobi" size="home_registration_mobi">
+                                    <span className="sm_s:text-3xl bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent sm:text-3xl md:text-[clamp(23px,5vw,38px)]">
+                                        Найти стажировку
+                                    </span>
+                                </Button>
+                            </Link>
+                            <Link href="/professions">
+                                <Button
+                                    variant="arrow_registration_mobi"
+                                    size="arrow_registration_mobi"
+                                    className="p-[10px] md:p-[clamp(10px,4vw,23px)]"
+                                >
+                                    <ArrowBtn />
+                                </Button>
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <Link href="/professions" className="flex w-full">
+                                <Button
+                                    variant="registration_mobi"
+                                    size="home_registration_mobi"
+                                    className="w-full"
+                                    onClick={() => openModal('registration_mobi', 'mobi')}
+                                >
+                                    <span className="sm_s:text-3xl bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent sm:text-3xl md:text-[clamp(23px,5vw,38px)]">
+                                        Зарегистрироваться
+                                    </span>
+                                </Button>
+                            </Link>
+                            <Link href="/professions">
+                                <Button
+                                    variant="arrow_registration_mobi"
+                                    size="arrow_registration_mobi"
+                                    className="p-[10px] md:p-[clamp(10px,4vw,23px)]"
+                                >
+                                    <ArrowBtn />
+                                </Button>
+                            </Link>
+                        </>
+                    )}
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

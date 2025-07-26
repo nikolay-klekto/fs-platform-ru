@@ -181,7 +181,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     />
                                     <label
                                         htmlFor="consent"
-                                        className="ml-1 cursor-pointer text-xs font-medium text-[#878797] md:text-sm"
+                                        className="ml-1 text-xs font-medium text-[#878797] md:text-sm"
                                     >
                                         Я согласен(а) на обработку персональных данных
                                     </label>

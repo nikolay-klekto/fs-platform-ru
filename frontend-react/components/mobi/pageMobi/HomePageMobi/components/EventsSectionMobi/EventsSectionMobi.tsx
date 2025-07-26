@@ -1,10 +1,11 @@
-import React from 'react'
+'use client'
+
 import TitleMobi from '@/components/mobi/shared/TitleMobi'
 import ItemEventsMobi from '@/components/mobi/pageMobi/HomePageMobi/components/EventsSectionMobi/ItemEventsMobi/ItemEventsMobi'
 import { content } from './contentEventsSectionMobi/content'
 const EventsSectionMobi: React.FC = () => {
     return (
-        <div className="flex w-full flex-col px-[15px] pb-[60px] pt-[80px] md:px-[32px]">
+        <section className="flex w-full flex-col px-[15px] pb-[60px] pt-[80px] md:px-[32px]">
             <TitleMobi title={'Мероприятия'} href="/events" />
             <div className="scrollbar_custom flex max-w-full gap-8 overflow-x-scroll pt-8">
                 {content.map((item) => (
@@ -17,7 +18,7 @@ const EventsSectionMobi: React.FC = () => {
                     />
                 ))}
             </div>
-        </div>
+        </section>
     )
 }
 export default EventsSectionMobi

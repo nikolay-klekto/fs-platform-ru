@@ -1,8 +1,9 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { useModal } from '@/context/ContextModal'
 import Link from 'next/link'
+import { useModal } from '@/context/ContextModal'
+import { useIsAuth } from '@/hooks/useIsAuth'
 import HeaderNavigationMobi from './ItemHeaderMobi/HeaderNavigationMobi'
 import {
     ShoppingCartIconMobi,
@@ -23,6 +24,7 @@ interface IHeader {
 
 const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const isAuth = useIsAuth()
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
     useEffect(() => {
         if (isMenuOpen) {
@@ -87,18 +89,20 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
                         <div className="flex w-full justify-end opacity-50 transition-opacity duration-300 hover:opacity-100">
                             <CrossIconMobi onClick={toggleMenu} />
                         </div>
-                        <div className="sm_s:pb-10 flex flex-col items-center gap-2.5 pb-12 pt-1 sm:pb-10">
-                            <button
-                                className="flex items-center gap-3.5"
-                                onClick={(): void => openModal('login_mobi', 'mobi')}
-                            >
-                                <ProfileIconBurgerMobi />
-                                <p className="custom-grey whitespace-nowrap text-4xl font-semibold uppercase ">
-                                    Войти в профиль
-                                </p>
-                            </button>
-                            <div className="bg-custom-grey h-px w-full rounded-full"></div>
-                        </div>
+                        {!isAuth && (
+                            <div className="sm_s:pb-10 flex flex-col items-center gap-2.5 pb-12 pt-1 sm:pb-10">
+                                <button
+                                    className="flex items-center gap-3.5"
+                                    onClick={(): void => openModal('login_mobi', 'mobi')}
+                                >
+                                    <ProfileIconBurgerMobi />
+                                    <p className="custom-grey whitespace-nowrap text-4xl font-semibold uppercase ">
+                                        Войти в профиль
+                                    </p>
+                                </button>
+                                <div className="bg-custom-grey h-px w-full rounded-full"></div>
+                            </div>
+                        )}
                         <HeaderNavigationMobi />
                         <Button
                             variant="select_mobi"

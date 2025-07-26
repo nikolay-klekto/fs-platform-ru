@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import SubTitleMobi from '@/components/mobi/shared/SubTitleMobi'
 import { Button } from '@/components/ui/button'
@@ -6,7 +8,7 @@ import { content } from './contentHowWeWorkMobi/content'
 const HowWeWorkMobi: React.FC = () => {
     const [showList, setShowList] = React.useState(true)
     return (
-        <div className="mt-[62px] max-w-full px-[15px] md:mt-[117px] md:px-[26px]">
+        <section className="mt-[62px] max-w-full px-[15px] md:mt-[117px] md:px-[26px]">
             <h2 className="text32px_mobi sm_xl:mb-[24px] sm_l:mb-[24px] sm_s:mb-[24px] mb-[40px] font-medium uppercase text-white sm:mb-[24px] md:mb-[15px]">
                 Как мы работаем
             </h2>
@@ -48,7 +50,7 @@ const HowWeWorkMobi: React.FC = () => {
                     </div>
                 )}
             </div>
-        </div>
+        </section>
     )
 }
 export default HowWeWorkMobi

@@ -10,7 +10,7 @@ const ProfessionsSectionMobi: React.FC = () => {
     const { openModal } = useModal()
 
     return (
-        <div className="mt-[42px] flex max-w-full flex-col gap-[20px] px-[15px] pb-[60px] pt-[20px] sm:gap-[15px] sm:pt-[15px]">
+        <section className="mt-[42px] flex max-w-full flex-col gap-[20px] px-[15px] pb-[60px] pt-[20px] sm:gap-[15px] sm:pt-[15px]">
             <TitleMobi title={'Профессии'} href={'/professions'} />
             <div className="flex items-center justify-between">
                 <p className="sm_xl:text-4xl sm_l:text-3xl sm_s:text-3xl md:text-12xl text-[20px] font-semibold text-[#878797] sm:text-3xl">
@@ -33,7 +33,7 @@ const ProfessionsSectionMobi: React.FC = () => {
                     />
                 ))}
             </div>
-        </div>
+        </section>
     )
 }
 
