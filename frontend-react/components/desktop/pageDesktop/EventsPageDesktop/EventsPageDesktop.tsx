@@ -106,11 +106,11 @@ const EventsPageDesktop: React.FC = () => {
 
                     <EventsSelectedFiltersDesktop
                         selectedCategories={selectedCategories}
-                        setSelectedCategories={setSelectedCategories}
+                        onChangeSelectedCategories={setSelectedCategories}
                         dates={dates}
-                        setDates={setDates}
+                        onChangeSelectedDates={setDates}
                         selectedCity={selectedCity}
-                        setSelectedCity={setSelectedCity}
+                        onChangeSelectedCity={setSelectedCity}
                         categoryLabelBySlug={categoryLabelBySlug}
                         cityLabelBySlug={cityLabelBySlug}
                     />
