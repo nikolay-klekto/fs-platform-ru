@@ -65,7 +65,7 @@ const EventsPageDesktop: React.FC = () => {
                     <h1 className="title80px_desktop relative z-[1]">Мероприятия</h1>
 
                     <div className="relative z-[1] flex items-center justify-end gap-[30px] pt-[116px]">
-                        <EventsSelectSearchDesktop selected={selectedCategories} onChange={setSelectedCategories} />
+                        <EventsSelectSearchDesktop selectedOptions={selectedCategories} onChange={setSelectedCategories} />
                         <EventsSelectSearchDateDesktop dates={dates} onChange={onChange} />
                         <EventsSelectSearchCityDesktop selectedCity={selectedCity} onChangeCity={setSelectedCity} />
                     </div>
