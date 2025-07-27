@@ -113,18 +113,19 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
 
     const handleDatePreset = (type: string) => {
         const now = new Date()
+        const ONE_DAY_MS = 86_399_999
         let fromDate: Date | undefined
         let toDate: Date | undefined
 
         switch (type) {
             case 'today':
                 fromDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-                toDate = new Date(fromDate.getTime() + 86399999) 
+                toDate = new Date(fromDate.getTime() + ONE_DAY_MS) 
                 break
             case 'tomorrow':
                 const t = now.getDate() + 1
                 fromDate = new Date(now.getFullYear(), now.getMonth(), t)
-                toDate = new Date(fromDate.getTime() + 86399999)
+                toDate = new Date(fromDate.getTime() + ONE_DAY_MS)
                 break
             case 'this-week':
                 const day = now.getDay() || 7
