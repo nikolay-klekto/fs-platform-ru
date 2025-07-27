@@ -28,7 +28,7 @@ const EventsPageDesktop: React.FC = () => {
     const [selectedCity, setSelectedCity] = useState<string | null>(null)
 
     useEffect(() => {
-        const result = content
+        const filteredEvents = content
             .filter((item) =>
                 selectedCategories.length === 0
                     ? true
@@ -46,7 +46,7 @@ const EventsPageDesktop: React.FC = () => {
                 !selectedCity ? true : cityLabelBySlug[selectedCity].toLowerCase() === item.city.toLowerCase(),
             )
 
-        setFilteredContent(result)
+        setFilteredContent(filteredEvents)
         setCurrentPage(1)
     }, [dates, selectedCategories, selectedCity])
 
