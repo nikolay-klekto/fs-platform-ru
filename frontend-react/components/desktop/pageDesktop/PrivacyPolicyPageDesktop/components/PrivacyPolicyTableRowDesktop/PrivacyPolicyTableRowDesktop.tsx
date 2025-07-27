@@ -15,8 +15,6 @@ interface ITableRowProps {
     row: ITableRow
 }
 
-export const tdClass = 'border text20px_desktop py-[16px] px-[10px]'
-
 const renderCellContent = (text: string) => {
     if (text.includes('\n\n')) {
         return text.split('\n\n').map((paragraph, idx) => (
@@ -33,7 +31,7 @@ export const PrivacyPolicyTableRowDesktop: React.FC<ITableRowProps> = ({ row }) 
     return (
         <tr className="align-top">
             {fields.map((key) => (
-                <td key={key} className={tdClass}>
+                <td key={key} className="text-policy-table_desktop">
                     {renderCellContent(row[key] as string)}
                 </td>
             ))}

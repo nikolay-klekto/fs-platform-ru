@@ -121,6 +121,10 @@
         @apply mb-[15px] text24px_desktop text-[#B3B3BD] 2xl:mb-[7px] 3xl:mb-[7px];
     }
 
+    .text-policy-table_desktop {
+        @apply border text20px_desktop py-[16px] px-[10px] 2xl:py-[10px];
+    }
+
     .text28px_mobi {
         @apply text-9xl sm:text-7xl;
     }
