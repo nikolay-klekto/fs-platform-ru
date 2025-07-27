@@ -39,7 +39,7 @@ const EventsSelectSearchDesktop: React.FC<IEventsSelectSearchDesktopProps> = ({ 
         { value: 'fairs', label: 'Выставки/презентации' },
         { value: 'open_days', label: 'Дни открытых дверей' },
         { value: 'conferences', label: 'Конференции' },
-        { value: 'master_classes', label: 'Мастер‑классы/семинары/тренинги' },
+        { value: 'master_classes', label: 'Мастер-классы/семинары/тренинги' },
         { value: 'internships', label: 'Стажировки' },
         { value: 'job_fairs', label: 'Ярмарки вакансий' },
     ]
