@@ -4,6 +4,13 @@ import React, { useEffect, useRef, useState } from 'react'
 import { ChevronDownIconDesktop, CheckedBoxIconDesktop, QuestionMarkDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 
+interface SelectItemProps {
+    value: string
+    children: React.ReactNode
+    isChecked: boolean
+    onClick: () => void
+}
+
 interface IEventsSelectSearchDesktopProps {
     selectedOptions: string[]
     onChange: (newSelected: string[]) => void
@@ -89,14 +96,7 @@ const EventsSelectSearchDesktop: React.FC<IEventsSelectSearchDesktopProps> = ({ 
     )
 }
 
-interface ISelectItemProps {
-    value: string
-    children: React.ReactNode
-    isChecked: boolean
-    onClick: () => void
-}
-
-const SelectItem = React.forwardRef<HTMLDivElement, ISelectItemProps>(
+const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
     ({ children, isChecked, onClick }, forwardedRef) => (
         <div
             ref={forwardedRef}
