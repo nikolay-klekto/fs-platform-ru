@@ -15,12 +15,12 @@ interface IEventsSelectSearchDate {
         from: Date | null
         to: Date | null
     }
-    setDates: React.Dispatch<React.SetStateAction<{ from: Date | null; to: Date | null }>>
+    onChange: React.Dispatch<React.SetStateAction<{ from: Date | null; to: Date | null }>>
 }
 
 type DateKey = 'from' | 'to'
 
-const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ dates, setDates }) => {
+const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ dates, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [openCalendars, setOpenCalendars] = useState<{ from: boolean; to: boolean }>({
         from: false,
@@ -68,12 +68,12 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
         setInputValues((prev) => ({ ...prev, [key]: formatted }))
 
         if (!formatted) {
-            setDates((prev) => ({ ...prev, [key]: null }))
+            onChange((prev) => ({ ...prev, [key]: null }))
         }
 
         if (isValidDate(formatted)) {
             const parsed = parseDate(formatted)
-            setDates((prev) => ({ ...prev, [key]: parsed }))
+            onChange((prev) => ({ ...prev, [key]: parsed }))
         }
     }
 
@@ -102,7 +102,7 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
     }
 
     const handleDateChange = (key: DateKey, newDate?: Date) => {
-        setDates((prev) => ({ ...prev, [key]: newDate ?? null }))
+        onChange((prev) => ({ ...prev, [key]: newDate ?? null }))
         setInputValues((prev) => ({
             ...prev,
             [key]: newDate ? autoFormatDate(newDate.toLocaleDateString('ru-RU')) : '',
@@ -143,7 +143,7 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
                 break
         }
 
-        setDates({ from: fromDate ?? null, to: toDate ?? null })
+        onChange({ from: fromDate ?? null, to: toDate ?? null })
         setInputValues({
             from: fromDate ? autoFormatDate(fromDate.toLocaleDateString('ru-RU')) : '',
             to: toDate ? autoFormatDate(toDate.toLocaleDateString('ru-RU')) : '',
