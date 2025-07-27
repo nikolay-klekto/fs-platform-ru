@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { CloseIconDesktop } from '@/components/assets/iconsDesktop'
+import EventsFilterChipDesktop from './EventsFilterChipDesktop'
 
 interface IEventsSelectedFilters {
     selectedCategories: string[]
@@ -31,41 +31,24 @@ const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
     return (
         <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mt-[39px] mb-[30px]">
             {selectedCategories.map((slug) => (
-                <div
+                <EventsFilterChipDesktop
                     key={slug}
-                    className="flex items-center rounded-[50px] bg-[#ffffff1a] py-4 pl-[45px] pr-[45px] text-white"
-                >
-                    <span className="font-semibold text-5xl">{categoryLabelBySlug[slug]}</span>
-                    <button
-                        onClick={() => onChangeSelectedCategories(selectedCategories.filter((categorySlug) => categorySlug !== slug))}
-                        className="ml-10 flex items-center justify-center"
-                    >
-                        <CloseIconDesktop className="h-3 w-3" />
-                    </button>
-                </div>
+                    label={categoryLabelBySlug[slug]}
+                    onRemove={() =>
+                        onChangeSelectedCategories(selectedCategories.filter((categorySlug) => categorySlug !== slug))
+                    }
+                />
             ))}
 
             {dates.from && dates.to && (
-                <div className="flex items-center rounded-[50px] bg-[#ffffff1a] py-4 pl-[45px] pr-[45px] text-white">
-                    <span className="font-semibold text-5xl">
-                        {`${dates.from.toLocaleDateString('ru-RU')} — ${dates.to.toLocaleDateString('ru-RU')}`}
-                    </span>
-                    <button
-                        onClick={() => onChangeSelectedDates({ from: null, to: null })}
-                        className="ml-10 flex items-center justify-center"
-                    >
-                        <CloseIconDesktop className="h-3 w-3" />
-                    </button>
-                </div>
+                <EventsFilterChipDesktop
+                    label={`${dates.from.toLocaleDateString('ru-RU')} — ${dates.to.toLocaleDateString('ru-RU')}`}
+                    onRemove={() => onChangeSelectedDates({ from: null, to: null })}
+                />
             )}
 
             {selectedCity && (
-                <div className="flex items-center rounded-[50px] bg-[#ffffff1a] py-4 pl-[45px] pr-[45px] text-white">
-                    <span className="font-semibold text-5xl">{cityLabelBySlug[selectedCity]}</span>
-                    <button onClick={() => onChangeSelectedCity(null)} className="ml-10 flex items-center justify-center">
-                        <CloseIconDesktop className="h-3 w-3" />
-                    </button>
-                </div>
+                <EventsFilterChipDesktop label={cityLabelBySlug[selectedCity]} onRemove={() => onChangeSelectedCity(null)} />
             )}
         </div>
     )
