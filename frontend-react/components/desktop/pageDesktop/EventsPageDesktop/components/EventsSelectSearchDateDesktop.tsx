@@ -53,14 +53,14 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
     const isValidDate = (dateStr: string): boolean => {
         const dateRegex = /^\d{2}\.\d{2}\.\d{4}$/
         if (!dateRegex.test(dateStr)) return false
-        const [d, m, y] = dateStr.split('.').map(Number)
-        const parsed = new Date(y, m - 1, d)
-        return !isNaN(parsed.getTime())
+        const [day, month, year] = dateStr.split('.').map(Number)
+        const parsedDate = new Date(year, month - 1, day)
+        return !isNaN(parsedDate.getTime())
     }
 
     const parseDate = (dateStr: string): Date => {
-        const [d, m, y] = dateStr.split('.').map(Number)
-        return new Date(y, m - 1, d)
+        const [day, month, year] = dateStr.split('.').map(Number)
+        return new Date(year, month - 1, day)
     }
 
     const handleInputChange = (key: DateKey, value: string) => {
@@ -72,8 +72,8 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
         }
 
         if (isValidDate(formatted)) {
-            const parsed = parseDate(formatted)
-            onChange((prev) => ({ ...prev, [key]: parsed }))
+            const parsedDate = parseDate(formatted)
+            onChange((prev) => ({ ...prev, [key]: parsedDate }))
         }
     }
 
