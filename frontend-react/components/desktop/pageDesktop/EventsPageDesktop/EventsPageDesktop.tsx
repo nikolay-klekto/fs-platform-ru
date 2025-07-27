@@ -23,7 +23,7 @@ const EventsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [filteredContent, setFilteredContent] = useState(content)
 
-    const [dates, setDates] = useState<{ from: Date | null; to: Date | null }>({ from: null, to: null })
+    const [dates, onChange] = useState<{ from: Date | null; to: Date | null }>({ from: null, to: null })
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [selectedCity, setSelectedCity] = useState<string | null>(null)
 
@@ -66,15 +66,15 @@ const EventsPageDesktop: React.FC = () => {
 
                     <div className="relative z-[1] flex items-center justify-end gap-[30px] pt-[116px]">
                         <EventsSelectSearchDesktop selected={selectedCategories} onChange={setSelectedCategories} />
-                        <EventsSelectSearchDateDesktop dates={dates} setDates={setDates} />
-                        <EventsSelectSearchCityDesktop selected={selectedCity} onChange={setSelectedCity} />
+                        <EventsSelectSearchDateDesktop dates={dates} onChange={onChange} />
+                        <EventsSelectSearchCityDesktop selectedCity={selectedCity} onChangeCity={setSelectedCity} />
                     </div>
 
                     <EventsSelectedFiltersDesktop
                         selectedCategories={selectedCategories}
                         onChangeSelectedCategories={setSelectedCategories}
                         dates={dates}
-                        onChangeSelectedDates={setDates}
+                        onChangeSelectedDates={onChange}
                         selectedCity={selectedCity}
                         onChangeSelectedCity={setSelectedCity}
                         categoryLabelBySlug={categoryLabelBySlug}
@@ -97,7 +97,7 @@ const EventsPageDesktop: React.FC = () => {
                                         onClick={() => {
                                             setSelectedCategories([])
                                             setSelectedCity(null)
-                                            setDates({ from: null, to: null })
+                                            onChange({ from: null, to: null })
                                         }}
                                     >
                                         Сбросить фильтры
