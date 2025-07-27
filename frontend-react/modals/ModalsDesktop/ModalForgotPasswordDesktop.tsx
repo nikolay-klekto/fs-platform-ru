@@ -21,9 +21,9 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
         email: '',
     })
 
-    const [inputInternalErrors] = useState<{ [key: string]: string | null }>({
-        email: '',
-    })
+    // const [inputInternalErrors] = useState<{ [key: string]: string | null }>({
+    //     email: '',
+    // })
 
     const [inputTouched, setInputTouched] = useState({
         email: false,
@@ -36,11 +36,15 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
         }))
     }
 
+    const isEmailValid = !Boolean(validateEmailDesktop(passwordData.email).styleError)
+    const isFormValid = isEmailValid && passwordData.email.trim() !== ''
+    const [isSubmitted, setIsSubmitted] = useState(false)
+
     return (
         <Modal onClose={onClose} size="medium" showCloseButton={false}>
             <div>
                 <button onClick={onClose} className="absolute right-7 top-6">
-                    <X size={41} color="white" className="opacity-50 hover:opacity-100" />
+                    <X size={41} color="white" className="opacity-80 hover:opacity-100" />
                 </button>
             </div>
             <div className=" flex max-w-[578px] flex-col">
@@ -62,20 +66,19 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         className={`${
                             inputTouched.email && validateEmailDesktop(passwordData.email).styleError
                                 ? 'border-[#bc8070] focus:border-[#bc8070] '
-                                : 'border-[#878797] focus:border-[#878797]'
-                        }  h-13 palceholder:pl-[20px] w-full max-w-[426px] rounded-[50px] border-2 bg-transparent pl-[20px]  text18px_desktop font-medium opacity-80 placeholder:text-[#353652]/40 focus:ring-0 focus:ring-offset-0`}
+                                : 'border-[#878797] focus:border-[rgb(135,135,151)]'
+                        }  h-[50px] w-full max-w-[426px] rounded-[50px] border-2 bg-transparent 
+ mb-[2px] pl-[20px] text-[18px] 4xl:text-4xl 3xl:text-2xl 2xl:text-xl font-medium opacity-80   placeholder:text-[#353652]/40 focus:ring-0 focus:ring-offset-0  `}
                         label="Почта"
                         labelClassName="mb-1 text15px_desktop font-medium text-white"
                         wrapperClassName="w-full max-w-[426px]"
+                        helperTextClassName="error-form-desktop-custom mt-[12px]"
                     />
-                    {inputInternalErrors.email && (
-                        <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
-                    )}
                 </div>
-                <div className="mt-2 px-[76px]">
+                <div className="mt-[14px] px-[76px] ">
                     <p className="text15px_desktop font-medium text-[#353652]">
                         Защита от спама reCAPTCHA{' '}
-                        <a href="href" className="hover:cursor text15px_desktop font-medium  text-[#353652] underline">
+                        <a href="/privacy-policy" className="hover:cursor text15px_desktop font-medium  text-[#353652] underline">
                             Конфиденциальность
                         </a>{' '}
                         и{' '}
@@ -84,12 +87,20 @@ const ModalForgotPasswordDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         </a>
                     </p>
                 </div>
-                <div className="mb-6 mt-5 flex justify-center">
+                <div className="mb-10 mt-7 flex justify-center">
                     <Button
                         type="submit"
                         variant="default"
                         size="btn_modal_desktop"
-                        className="mx-auto flex h-16 w-[70%] items-center justify-center rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:bg-[#878797]"
+                        onClick={() => {
+                            setIsSubmitted(true)
+                            setInputTouched((prev) => ({ ...prev, email: true }))
+                        }}
+                        className={`mx-auto flex h-16 w-[70%] items-center justify-center rounded-[50px] text-5xl font-semibold ${
+                            !isSubmitted || isFormValid
+                                ? 'bg-gradient-desktop hover:bg-gradient-desktop-hover'
+                                : 'bg-[#878797] text-[#CBD6EF] hover:bg-[#878797]'
+                        }`}
                     >
                         Далее
                     </Button>

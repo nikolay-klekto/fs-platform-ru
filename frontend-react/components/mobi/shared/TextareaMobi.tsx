@@ -12,13 +12,13 @@ const textareaVariants = cva(
                 contacts_page:
                     'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent focus:border-[3px] focus:ring-transparent',
                 contacts_page_error_mobi:
-                    'border-[1.18px] border-[#bc8070] bg-transparent text-xs ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent',
+                    'focus:border-1.1 border-[1.18px] border-[#bc8070] bg-[#1f203f] ring-offset-transparent placeholder:font-medium focus:border-white focus:ring-transparent md:text-xl md:placeholder:text-xs',
                 contacts_page_mobi:
-                    'border-[1.18px] border-[#878797] bg-transparent text-xs ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent',
+                    'border-[1.18px] border-[#878797] bg-transparent ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent md:text-xl md:placeholder:text-xs',
             },
             size: {
                 default: 'h-10 px-3 py-2',
-                contacts_page_mobi: 'h-[82px] max-w-[446px] px-4 py-2 md:h-[86px]',
+                contacts_page_mobi: 'h-[82px] px-4 py-2 md:h-[86px]',
             },
             rounded: {
                 default: 'rounded-md',
@@ -60,7 +60,6 @@ const EnhancedTextareaMobi = React.forwardRef<HTMLTextAreaElement, EnhancedTexta
             onFocus,
             onBlur,
             label,
-            helperText,
             name,
             wrapperClassName,
             placeholder,
@@ -69,7 +68,6 @@ const EnhancedTextareaMobi = React.forwardRef<HTMLTextAreaElement, EnhancedTexta
         ref,
     ) => {
         const [internalValue, setInternalValue] = React.useState<string>('')
-        const [internalError, setInternalError] = React.useState('')
         const [styleErrorClass, setStyleErrorClass] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
 
@@ -77,17 +75,13 @@ const EnhancedTextareaMobi = React.forwardRef<HTMLTextAreaElement, EnhancedTexta
             if (validate) {
                 const validationResult = validate(newValue)
                 if (validationResult) {
-                    const { textError, status, styleError } = validationResult
+                    const { status, styleError } = validationResult
                     if (!status) {
-                        if (textError) {
-                            setInternalError(textError)
-                        }
                         if (!styleError) {
                             setStyleErrorClass(true)
                         }
                     } else {
                         setStyleErrorClass(false)
-                        setInternalError('')
                     }
                 }
             }
@@ -121,7 +115,7 @@ const EnhancedTextareaMobi = React.forwardRef<HTMLTextAreaElement, EnhancedTexta
                         textareaVariants({ variant, size, rounded }),
                         isFocused && 'ring-2 ring-ring ring-offset-2',
                         className,
-                        styleErrorClass && 'custom_error_style_input',
+                        styleErrorClass && 'border-[#BC8070]',
                     )}
                     ref={ref}
                     name={name}
@@ -132,11 +126,6 @@ const EnhancedTextareaMobi = React.forwardRef<HTMLTextAreaElement, EnhancedTexta
                     onBlur={handleBlur}
                     {...props}
                 />
-                {(helperText || internalError !== '') && (
-                    <span className={cn('text-xs', internalError ? 'text-destructive' : 'text-muted-foreground')}>
-                        {internalError || helperText}
-                    </span>
-                )}
             </div>
         )
     },

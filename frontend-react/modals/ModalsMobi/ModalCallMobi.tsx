@@ -137,6 +137,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                                 phone: error || '',
                                             }))
                                         }
+                                        showInternalError={true}
                                         className={`border-2 focus:border-2`}
                                         labelClassName="text-2xl leading-[18px] font-medium text-white mb-0"
                                         wrapperClassName="w-full"
@@ -162,7 +163,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         *Обязательное поле для ввода
                                     </p>
                                     {Object.keys(errors).length > 0 && (
-                                        <p className="mb-3 mt-2 text-sm font-medium text-[#bc8070] leading-[18px]">
+                                        <p className="mb-3 mt-2 text-sm font-medium leading-[18px] text-[#bc8070]">
                                             Заполните обязательные поля
                                         </p>
                                     )}
@@ -180,7 +181,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     />
                                     <label
                                         htmlFor="consent"
-                                        className="ml-1 cursor-pointer text-xs font-medium text-[#878797] md:text-sm"
+                                        className="ml-1 text-xs font-medium text-[#878797] md:text-sm"
                                     >
                                         Я согласен(а) на обработку персональных данных
                                     </label>

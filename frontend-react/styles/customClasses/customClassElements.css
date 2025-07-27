@@ -9,6 +9,32 @@
         @apply bg-white shadow-md rounded-lg p-4;
     }
 
+    @-moz-document url-prefix() {
+        .scrollbar_custom {
+            scrollbar-width: thin;
+            scrollbar-color: #898997 rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.1);
+            will-change: scroll-position;
+            min-height: 8px;
+            border-radius: 4px;
+            overflow-x: scroll;
+            scrollbar-arrow-color: transparent;
+        }
+
+        .scrollbar_custom::-moz-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+
+        .scrollbar_custom::-moz-scrollbar-thumb {
+            background-color: #898997;
+            border-radius: 4px;
+        }
+
+        .scrollbar_custom::-moz-scrollbar-track {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    }
     .scrollbar_custom::-webkit-scrollbar {
         height: 4px;
     }
@@ -23,23 +49,30 @@
         border-radius: 4px;
     }
 
+    .scrollbar_custom::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
     .no-scrollbar_custom::-webkit-scrollbar {
         display: none;
     }
+
     .no-scrollbar_custom {
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
 
+    .title160px_desktop {
+        @apply text-white text-[160px] 4xl:text-[150px] 3xl:text-[128px] 2xl:text-[115px] font-semibold uppercase;
+    }
     .title80px_desktop {
-        @apply text-white text-35xl 4xl:text-27xl 3xl:text-25xl 2xl:text-21xl font-semibold uppercase;
+        @apply text-white text-35xl 4xl:text-35xl 3xl:text-27xl 2xl:text-25xl font-semibold uppercase;
     }
     .title28px_mobi_custom {
         @apply text-white text-9xl font-medium uppercase;
     }
-
-    .text46px_desktop {
-        @apply text-[46px] 4xl:text-18xl 3xl:text-9xl 2xl:text-8xl;
+    .title46px_desktop {
+        @apply text-[46px] 4xl:text-18xl 3xl:text-14xl 2xl:text-8xl;
     }
 
     .text36px_desktop {
@@ -52,23 +85,27 @@
         @apply text-[30px] 4xl:text-9xl 3xl:text-8xl 2xl:text-6xl !important;
     }
     .text28px_desktop {
-        @apply text-[28px] 4xl:text-7xl 3xl:text-6xl 2xl:text-5xl;
+        @apply text-[28px] 4xl:text-9xl 3xl:text-7xl 2xl:text-5xl;
+    }
+    .text26px_desktop {
+        @apply text-8xl 4xl:text-8xl 3xl:text-6xl 2xl:text-4xl;
     }
     .text24px_desktop {
         @apply text-[24px] 4xl:text-6xl 3xl:text-5xl 2xl:text-4xl;
     }
-    .text18px_desktop {
-        @apply text-[18px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg;
+    .text22px_desktop {
+        @apply text-6xl 4xl:text-6xl 3xl:text-3xl 2xl:text-2xl;
     }
     .text20px_desktop {
         @apply text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg;
     }
+    .text18px_desktop {
+        @apply text-[18px] 4xl:text-4xl 3xl:text-2xl 2xl:text-xl;
+    }
     .text15px_desktop {
-        @apply text-2xl 4xl:text-lg 3xl:text-base 2xl:text-base;
+        @apply text-2xl 4xl:text-2xl 3xl:text-lg 2xl:text-base;
     }
-    .text46px_desktop {
-        @apply text-18xl 3xl:text-17xl 2xl:text-16xl;
-    }
+
     .text28px_modal_desktop {
         @apply font-medium text-white text-9xl 3xl:text-8xl 2xl:text-7xl;
     }
@@ -86,15 +123,20 @@
         @apply text-4xl md:text-4xl sm_xl:text-4xl sm_l:text-3xl sm_s:text-2xl sm:text-2xl;
     }
     .text16px_mobi {
-        @apply text-[16px] md:text-[16px] sm_xl:text-[16px] sm_l:text-base sm_s:text-base sm:text-base;
+        @apply text-[16px] sm_l:text-base sm_s:text-base sm:text-base;
     }
     .text14px_mobi {
-        @apply text-[14px] md:text-[14px] sm_xl:text-[14px] sm_l:text-xs sm_s:text-xs sm:text-xs;
+        @apply text-[14px] sm_l:text-xs sm_s:text-xs sm:text-xs;
     }
     .text12px_mobi {
         @apply text-base md:text-base sm_xl:text-sm sm_l:text-xs sm_s:text-xs sm:text-xs;
     }
-
+    .text12px_cookie_mobi {
+        @apply text-[12px] sm:text-[11px];
+    }
+    .text10px_cookie_mobi {
+        @apply text-[10px] sm:text-[9px];
+    }
     .text-gradient_desktop_custom {
         @apply bg-gradient-desktop bg-clip-text text-transparent;
     }
@@ -137,29 +179,26 @@
     }
 
     .input-form-desktop-custom {
-        @apply py-2 px-4 mt-1 text-white border-2 text18px_desktop border-[#878797] bg-[#101030] rounded-[50px] placeholder:text18px_desktop  placeholder:font-medium placeholder:text-[#353652] focus:border-[#878797] focus:outline-none
+        @apply py-2 px-4 mt-1 text-white border-2 text18px_desktop h-[50px] border-[#878797] bg-[#101030] rounded-[50px] placeholder:text18px_desktop text18px_desktop placeholder:font-medium placeholder:text-[#353652] focus:border-[#878797] focus:outline-none
         focus:bg-[#1f203f];
     }
     .label-form-desktop-custom {
         @apply text-white text15px_desktop font-semibold;
     }
     .error-form-desktop-custom {
-        @apply mt-1 text-[#bc8070] text15px_desktop font-medium;
+        @apply text15px_desktop font-medium text-[#BC8070];
     }
 
     .input-form-mobi-custom {
         @apply py-2 px-4 mt-1 text-white border text14px_mobi border-[#878797] bg-[#1F203F] rounded-[50px] placeholder:text14px_mobi  placeholder:font-medium placeholder:text-[#353652] focus:border focus:border-[#878797] focus:outline-none
         focus:bg-[#1f203f];
     }
+
     .label-form-mobi-custom {
         @apply text-white text14px_mobi font-medium;
     }
     .error-form-mobi-custom {
-        @apply mt-1 text-[#bc8070] text12px_mobi font-medium;
-    }
-
-    .custom_error_style_input {
-        @apply border-red-500;
+        @apply text-[#bc8070] text12px_mobi font-medium;
     }
 
     .modal-padding-content-lg-dsk {
@@ -204,5 +243,41 @@
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
+    }
+
+    .mobi-scroll::-webkit-scrollbar {
+        display: block;
+        width: 2px;
+        height: 8px;
+        padding: 1em;
+        margin: 1em auto;
+        /* outline: 2px dashed cornflowerblue; */
+        overflow-y: overlay;
+    }
+
+    .mobi-scroll::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 100vw;
+        margin-block: 0.5em;
+    }
+
+    .mobi-scroll::-webkit-scrollbar-thumb {
+        background-color: #878797;
+        border-radius: 100vw;
+        height: 57px;
+        box-shadow: 4px 0px 0px 4px #00000040 inset;
+    }
+
+    .mobi-scroll::-webkit-scrollbar-thumb:hover {
+        background-color: transparent;
+        border: 0px solid transparent;
+    }
+
+    .mobi-scroll::-webkit-scrollbar-track-piece:start {
+        background: transparent;
+    }
+
+    .mobi-scroll::-webkit-scrollbar-track-piece:end {
+        background: transparent;
     }
 }

@@ -224,6 +224,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     }
                                     label="Я согласен(а) на обработку персональных данных"
                                     wrapperClassName="flex gap-2 pb-2"
+                                    checkboxIconSize="w-[18px]"
                                     labelClassName={`${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                                 />
                             </div>
@@ -232,7 +233,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 <p className="px-[75px] text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
                                     <a
-                                        href="href"
+                                        href="/privacy-policy"
                                         className="hover:cursor ml-1 text-2xl font-medium leading-[18px] text-[#353652] underline"
                                     >
                                         Конфиденциальность
