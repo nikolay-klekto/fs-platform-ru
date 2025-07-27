@@ -2,11 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import { IMaskInput } from 'react-imask'
-import {
-    ChevronDownIconDesktop,
-    LineDateDesktop,
-    CalendarIconsDesktop,
-} from '@/components/assets/iconsDesktop'
+import { ChevronDownIconDesktop, LineDateDesktop, CalendarIconsDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 
@@ -120,7 +116,7 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
         switch (type) {
             case 'today':
                 fromDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-                toDate = new Date(fromDate.getTime() + ONE_DAY_MS) 
+                toDate = new Date(fromDate.getTime() + ONE_DAY_MS)
                 break
             case 'tomorrow':
                 const t = now.getDate() + 1
@@ -155,8 +151,8 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
     return (
         <div className="relative z-[3]" ref={calendarRef}>
             <Button
-                variant="select_btn_desktop"
-                size="select_btn_desktop_date"
+                variant={'select_btn_desktop'}
+                size={'select_btn_desktop_date'}
                 onClick={handleSelectToggle}
                 className={`${isOpen ? 'is-open' : 'bg-[#101030]'}`}
             >
@@ -169,9 +165,7 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
             </Button>
 
             {isOpen && (
-                <div
-                    className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[430px] rounded-[42px] p-[2px] 2xl:w-[270px] bg-gradient-desktop"
-                >
+                <div className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[430px] rounded-[42px] p-[2px] 2xl:w-[270px] bg-gradient-desktop">
                     <div className="relative flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
                         <div className="custom-grey flex items-center justify-between">
                             <div className="relative flex flex-col" ref={fromCalendarRef}>
@@ -191,7 +185,7 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
                                         lazy={false}
                                         placeholder="__.__.____"
                                         value={inputValues.from}
-                                        onAccept={(val) => handleInputChange('from', val)}
+                                        onAccept={(value) => handleInputChange('from', value)}
                                         onFocus={() => setOpenCalendars((prev) => ({ ...prev, from: true }))}
                                         className="4xl:text-2xl 3xl:text-xl w-[81px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:w-[75px] 2xl:text-lg"
                                     />
@@ -227,7 +221,7 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
                                         lazy={false}
                                         placeholder="__.__.____"
                                         value={inputValues.to}
-                                        onAccept={(val) => handleInputChange('to', val)}
+                                        onAccept={(value) => handleInputChange('to', value)}
                                         onFocus={() => setOpenCalendars((prev) => ({ ...prev, to: true }))}
                                         className="4xl:text-2xl 3xl:text-xl w-[81px] border-none bg-transparent text-[18px] outline-none placeholder:text-gray-500 2xl:w-[75px] 2xl:text-lg"
                                     />
@@ -246,29 +240,29 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
                         </div>
 
                         <Button
-                            variant="hover_button_date"
-                            size="hover_button_date_desktop"
+                            variant={'hover_button_date'}
+                            size={'hover_button_date_desktop'}
                             onClick={() => handleDatePreset('today')}
                         >
                             Сегодня
                         </Button>
                         <Button
-                            variant="hover_button_date"
-                            size="hover_button_date_desktop"
+                            variant={'hover_button_date'}
+                            size={'hover_button_date_desktop'}
                             onClick={() => handleDatePreset('tomorrow')}
                         >
                             Завтра
                         </Button>
                         <Button
-                            variant="hover_button_date"
-                            size="hover_button_date_desktop"
+                            variant={'hover_button_date'}
+                            size={'hover_button_date_desktop'}
                             onClick={() => handleDatePreset('this-week')}
                         >
                             На этой неделе
                         </Button>
                         <Button
-                            variant="hover_button_date"
-                            size="hover_button_date_desktop"
+                            variant={'hover_button_date'}
+                            size={'hover_button_date_desktop'}
                             onClick={() => handleDatePreset('this-month')}
                         >
                             В этом месяце
