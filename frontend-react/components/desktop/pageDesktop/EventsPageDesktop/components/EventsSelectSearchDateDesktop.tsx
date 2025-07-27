@@ -27,6 +27,13 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDateProps> = ({
         to: '',
     })
 
+    useEffect(() => {
+        setInputValues({
+            from: dates.from ? autoFormatDate(dates.from.toLocaleDateString('ru-RU')) : '',
+            to: dates.to ? autoFormatDate(dates.to.toLocaleDateString('ru-RU')) : '',
+        })
+    }, [dates])
+
     const calendarRef = useRef<HTMLDivElement>(null)
     const fromCalendarRef = useRef<HTMLDivElement>(null)
     const toCalendarRef = useRef<HTMLDivElement>(null)

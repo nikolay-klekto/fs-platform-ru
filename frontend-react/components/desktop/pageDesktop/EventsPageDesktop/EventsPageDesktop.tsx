@@ -27,6 +27,12 @@ const EventsPageDesktop: React.FC = () => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [selectedCity, setSelectedCity] = useState<string | null>(null)
 
+    const resetFilters = () => {
+        setSelectedCategories([])
+        setSelectedCity(null)
+        onChange({ from: null, to: null })
+    }
+
     useEffect(() => {
         const filteredEvents = content
             .filter((item) =>
@@ -61,7 +67,7 @@ const EventsPageDesktop: React.FC = () => {
             <HeaderDesktop />
 
             <main className="bg-[#101030] text-white">
-                <div className="container relative min-h-screen overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
+            <div className="container relative min-h-screen overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
                     <h1 className="title80px_desktop relative z-[1]">Мероприятия</h1>
 
                     <div className="relative z-[1] flex items-center justify-end gap-[30px] pt-[116px]">
@@ -81,29 +87,27 @@ const EventsPageDesktop: React.FC = () => {
                         cityLabelBySlug={cityLabelBySlug}
                     />
 
-                    <div className="flex min-h-[40vh] flex-wrap justify-center gap-9 2xl:gap-5 3xl:gap-[25px] 4xl:gap-[30px]">
-                        {!isEmpty ? (
-                            pagedEvents.map((item) => <EventsCardDesktop key={item.id} {...item} />)
-                        ) : (
-                            <div className="flex flex-col items-center justify-center pt-[113px] text-center">
-                                <p className="text-7xl font-medium leading-10 text-[#353652] mb-6 text-center">
-                                    Нет мероприятий по данным фильтрам
-                                </p>
-                                {(selectedCategories.length > 0 || selectedCity || dates.from || dates.to) && (
-                                    <Button
-                                        variant="select_btn_desktop"
-                                        size="select_btn_desktop_events"
-                                        className="px-[30px]"
-                                        onClick={() => {
-                                            setSelectedCategories([])
-                                            setSelectedCity(null)
-                                            onChange({ from: null, to: null })
-                                        }}
-                                    >
-                                        Сбросить фильтры
-                                    </Button>
-                                )}
-                            </div>
+                    <div className={`flex flex-col items-center ${isEmpty ? 'gap-[17px]' : 'gap-[73px]'}`}>
+                        <div className="flex flex-wrap justify-center gap-9 2xl:gap-5 3xl:gap-[25px] 4xl:gap-[30px]">
+                            {!isEmpty ? (
+                                pagedEvents.map((item) => <EventsCardDesktop key={item.id} {...item} />)
+                            ) : (
+                                <div className="flex flex-col items-center justify-center pt-[113px] text-center">
+                                    <p className="text-7xl font-medium leading-10 text-[#353652] text-center">
+                                        Нет мероприятий по данным категориям
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+
+                        {(selectedCategories.length > 0 || selectedCity || dates.from || dates.to) && (
+                            <Button
+                                variant="select_btn_desktop"
+                                size="select_btn_desktop_events"
+                                onClick={resetFilters}
+                            >
+                                Сбросить фильтры
+                            </Button>
                         )}
                     </div>
 

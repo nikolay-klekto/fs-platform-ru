@@ -14,7 +14,7 @@ interface IContent {
 export const content: IContent[] = [
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
         date: '02.06.2025',
         time: '23:59',
@@ -26,7 +26,7 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
         date: '03.06.2025',
         time: '11:00',
@@ -38,7 +38,7 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
         date: '01.07.2025',
         time: '11:00',
@@ -50,7 +50,7 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
         date: '30.07.2025',
         time: '11:00',
@@ -62,7 +62,7 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
         date: '28.08.2025',
         time: '11:00',
@@ -74,7 +74,7 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
         date: '11.08.2025',
         time: '11:00',
@@ -86,7 +86,7 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
         date: '09.09.2025',
         time: '11:00',
@@ -98,7 +98,7 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
         date: '17.09.2025',
         time: '11:00',
