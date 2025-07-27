@@ -2,17 +2,11 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 
 type DatePickerCalendarProps = {
-    value: string
     onConfirm: (newDate: string) => void
     onCancel: () => void
 }
 
-const DatePickerCalendarMobi: React.FC<DatePickerCalendarProps> = ({ value, onConfirm, onCancel }) => {
-    const parseDate = (dateStr: string): Date => {
-        const [dd, mm, yyyy] = dateStr.split('.')
-        return new Date(+yyyy, +mm - 1, +dd)
-    }
-
+const DatePickerCalendarMobi: React.FC<DatePickerCalendarProps> = ({ onConfirm, onCancel }) => {
     const formatDate = (date: Date): string => {
         const dd = String(date.getDate()).padStart(2, '0')
         const mm = String(date.getMonth() + 1).padStart(2, '0')

@@ -220,18 +220,11 @@ const MyProfileMobi: React.FC = () => {
                             />
                         </div>
                         {isCalendarOpen && (
-                            <DatePickerCalendarMobi
-                                value={
-                                    formData.birthDate ||
-                                    `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`
-                                }
-                                onConfirm={handleConfirmDate}
-                                onCancel={handleCancelDate}
-                            />
+                            <DatePickerCalendarMobi onConfirm={handleConfirmDate} onCancel={handleCancelDate} />
                         )}
                     </div>
                     <PhoneInputMobi
-                        labelClassName="text-2xl font-medium text-[#878797]"
+                        labelClassName="text-2xl font-medium !text-[#878797]"
                         value={formData.phone}
                         onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
                         onBlur={() => handleInputBlur('phone')}
@@ -250,7 +243,6 @@ const MyProfileMobi: React.FC = () => {
                         required={true}
                     />
                     <div className="flex flex-col">
-                        =
                         <label
                             htmlFor="city"
                             className="text14px_mobi text-[#878797] mb-1 text-2xl bg-transparent font-medium"
