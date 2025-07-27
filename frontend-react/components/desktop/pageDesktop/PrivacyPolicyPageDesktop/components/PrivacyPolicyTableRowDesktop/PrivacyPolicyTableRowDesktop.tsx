@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-interface TableRow {
+interface ITableRow {
     row: number
     goal: string
     categories: string
@@ -11,24 +11,24 @@ interface TableRow {
     period: string
 }
 
-interface TableRowProps {
-    row: TableRow
+interface ITableRowProps {
+    row: ITableRow
 }
 
 export const tdClass = 'border text20px_desktop py-[16px] px-[10px]'
 
 const renderCellContent = (text: string) => {
     if (text.includes('\n\n')) {
-        return text.split('\n\n').map((para, idx) => (
+        return text.split('\n\n').map((paragraph, idx) => (
             <p key={idx} className="mb-[10px] whitespace-pre-line">
-                {para}
+                {paragraph}
             </p>
         ))
     }
 
     return <p className="whitespace-pre-line">{text}</p>
 }
-export const PrivacyPolicyTableRowDesktop: React.FC<TableRowProps> = ({ row }) => {
+export const PrivacyPolicyTableRowDesktop: React.FC<ITableRowProps> = ({ row }) => {
     const fields: (keyof typeof row)[] = ['goal', 'categories', 'data', 'basis', 'period']
     return (
         <tr className="align-top">

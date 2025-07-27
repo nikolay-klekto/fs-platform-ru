@@ -17,7 +17,7 @@ const PrivacyPolicyPageDesktop: React.FC = () => {
                     <section>
                         <h2 className="text-policy-subheading_desktop mb-[50px]">Наши контакты:</h2>
                         <h2 className="text-policy-subheading_desktop mb-[50px]">Адрес местонахождения компании:</h2>
-                        <h2 className="text-policy-subheading_desktop mb-[15px]">1. Общие положения</h2>
+                        <h2 className="text-policy-subheading_desktop">1. Общие положения</h2>
                         <p className="text-policy-paragraph_desktop 4xl:!text-[24px]">
                             Политика разработана в соответствии с требованиями законодательства Республики Беларусь и
                             применяется к отношениям, связанным с обработкой персональных данных ООО “Фанскрут” (далее –
@@ -28,7 +28,7 @@ const PrivacyPolicyPageDesktop: React.FC = () => {
                             Политика не применяется к обработке персональных данных в процессе трудовой деятельности и
                             при осуществлении административных процедур в отношении работников и бывших работников,
                         </p>
-                        <h2 className="text-policy-subheading_desktop mb-[15px]">2. Условные обозначения</h2>
+                        <h2 className="text-policy-subheading_desktop">2. Условные обозначения</h2>
                         <p className="text-policy-paragraph_desktop whitespace-pre-line 4xl:!text-[24px]">
                             {
                                 'Закон – Закон от 07.05.2021 № 99-З «О защите персональных данных»;\nГК – Гражданский Кодекс Республики Беларусь от 07.12.1998 г. №218-З.'
@@ -37,7 +37,7 @@ const PrivacyPolicyPageDesktop: React.FC = () => {
                     </section>
 
                     <section>
-                        <h2 className="text-policy-subheading_desktop mb-[15px]">
+                        <h2 className="text-policy-subheading_desktop">
                             3. Какие персональные данные, для каких целей, в течение какого срока и на каком основании
                             мы обрабатываем?
                         </h2>
@@ -61,7 +61,7 @@ const PrivacyPolicyPageDesktop: React.FC = () => {
                     </section>
 
                     <section>
-                        <h2 className="text-policy-subheading_desktop mb-[15px]">
+                        <h2 className="text-policy-subheading_desktop">
                             4. Прекращение обработки ваших персональных данных
                         </h2>
                         <p className="text-policy-paragraph_desktop 4xl:!text-[24px]">
@@ -73,9 +73,7 @@ const PrivacyPolicyPageDesktop: React.FC = () => {
                             <li>Когда Вы сделали запрос на отзыв Вашего согласия на обработку персональных данных;</li>
                             <li>Когда обработка Ваших персональных данных являлась неправомерной.</li>
                         </ul>
-                        <h2 className="text-policy-subheading_desktop mb-[15px]">
-                            5. Наша политика в отношении файлов cookie
-                        </h2>
+                        <h2 className="text-policy-subheading_desktop">5. Наша политика в отношении файлов cookie</h2>
                         <p className="text-policy-paragraph_desktop whitespace-pre-line 4xl:!text-[24px]">
                             {
                                 'Для того, чтобы улучшить работу Сайта и сделать более удобным для пользования Вами, Мы можем использовать файлы cookie. \nCookie – это небольшие текстовые файлы, сохраняемые на Сайте в Вашем браузере. Подробнее о том, что такое cookie и какими они бывают можно ознакомиться по ссылке:'
@@ -113,7 +111,7 @@ const PrivacyPolicyPageDesktop: React.FC = () => {
                             </li>
                         </ol>
 
-                        <h2 className="text-policy-subheading_desktop mb-[15px]">
+                        <h2 className="text-policy-subheading_desktop">
                             6. Передача третьим лицам ваших персональных данных
                         </h2>
                         <p className="text-policy-paragraph_desktop 4xl:!text-[24px]">
@@ -151,7 +149,7 @@ const PrivacyPolicyPageDesktop: React.FC = () => {
                             </a>
                         </p>
 
-                        <h2 className="text-policy-subheading_desktop mb-[15px]">
+                        <h2 className="text-policy-subheading_desktop">
                             7. Трансграничная передача ваших личных данных
                         </h2>
                         <p className="text-policy-paragraph_desktop whitespace-pre-line">
@@ -159,7 +157,7 @@ const PrivacyPolicyPageDesktop: React.FC = () => {
                                 'Мы не осуществляем трансграничную передачу Ваших персональных данных.\nПри необходимости обработки персональных данных вне территории Республики Беларусь Мы руководствуемся требованиями законодательства Республики Беларусь к трансграничной передаче и обработке персональных данных.'
                             }
                         </p>
-                        <h2 className="text-policy-subheading_desktop mb-[15px]">
+                        <h2 className="text-policy-subheading_desktop">
                             8. Ваши права, которые мы обязаны реализовать в случае обработки ваших персональных данных
                         </h2>
                         <ol className="text-policy-paragraph_desktop list-inside list-decimal 4xl:!text-[24px]">
@@ -210,7 +208,7 @@ const PrivacyPolicyPageDesktop: React.FC = () => {
                             обработкой персональных данных, осуществляется порядке, установленном законодательством
                             Республики Беларусь об обращениях граждан и юридических лиц.
                         </p>
-                        <h2 className="text-policy-subheading_desktop mb-[15px]">9. Обновление настоящей политики</h2>
+                        <h2 className="text-policy-subheading_desktop">9. Обновление настоящей политики</h2>
                         <p className="text-policy-paragraph_desktop whitespace-pre-line 4xl:!text-[24px]">
                             {
                                 'Мы оставляем за собой право вносить изменения в настоящую Политику.\nЕсли изменения будут существенными, мы направим вам дополнительное уведомление на указанный вами адрес электронной почты.\nНовая редакция Политики вступает в силу с момента ее размещения на Сайте.'
