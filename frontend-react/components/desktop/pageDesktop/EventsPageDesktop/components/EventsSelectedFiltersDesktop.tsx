@@ -5,22 +5,22 @@ import { CloseIconDesktop } from '@/components/assets/iconsDesktop'
 
 interface IEventsSelectedFilters {
     selectedCategories: string[]
-    setSelectedCategories: (categories: string[]) => void
+    onChangeSelectedCategories: (categories: string[]) => void
     dates: { from: Date | null; to: Date | null }
-    setDates: (dates: { from: Date | null; to: Date | null }) => void
+    onChangeSelectedDates: (dates: { from: Date | null; to: Date | null }) => void
     selectedCity: string | null
-    setSelectedCity: (city: string | null) => void
+    onChangeSelectedCity: (city: string | null) => void
     categoryLabelBySlug: Record<string, string>
     cityLabelBySlug: Record<string, string>
 }
 
 const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
     selectedCategories,
-    setSelectedCategories,
+    onChangeSelectedCategories,
     dates,
-    setDates,
+    onChangeSelectedDates,
     selectedCity,
-    setSelectedCity,
+    onChangeSelectedCity,
     categoryLabelBySlug,
     cityLabelBySlug,
 }) => {
@@ -37,7 +37,7 @@ const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
                 >
                     <span className="font-semibold text-5xl">{categoryLabelBySlug[slug]}</span>
                     <button
-                        onClick={() => setSelectedCategories(selectedCategories.filter((categorySlug) => categorySlug !== slug))}
+                        onClick={() => onChangeSelectedCategories(selectedCategories.filter((categorySlug) => categorySlug !== slug))}
                         className="ml-10 flex items-center justify-center"
                     >
                         <CloseIconDesktop className="h-3 w-3" />
@@ -51,7 +51,7 @@ const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
                         {`${dates.from.toLocaleDateString('ru-RU')} — ${dates.to.toLocaleDateString('ru-RU')}`}
                     </span>
                     <button
-                        onClick={() => setDates({ from: null, to: null })}
+                        onClick={() => onChangeSelectedDates({ from: null, to: null })}
                         className="ml-10 flex items-center justify-center"
                     >
                         <CloseIconDesktop className="h-3 w-3" />
@@ -62,7 +62,7 @@ const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
             {selectedCity && (
                 <div className="flex items-center rounded-[50px] bg-[#ffffff1a] py-4 pl-[45px] pr-[45px] text-white">
                     <span className="font-semibold text-5xl">{cityLabelBySlug[selectedCity]}</span>
-                    <button onClick={() => setSelectedCity(null)} className="ml-10 flex items-center justify-center">
+                    <button onClick={() => onChangeSelectedCity(null)} className="ml-10 flex items-center justify-center">
                         <CloseIconDesktop className="h-3 w-3" />
                     </button>
                 </div>
