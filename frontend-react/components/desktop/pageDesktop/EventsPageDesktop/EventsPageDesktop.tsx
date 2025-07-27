@@ -52,7 +52,7 @@ const EventsPageDesktop: React.FC = () => {
 
     const isEmpty = filteredContent.length === 0
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
-    const paginated = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
+    const pagedEvents = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
 
     const handlePageChange = (page: number) => setCurrentPage(page)
 
@@ -83,7 +83,7 @@ const EventsPageDesktop: React.FC = () => {
 
                     <div className="flex min-h-[40vh] flex-wrap justify-center gap-9 2xl:gap-5 3xl:gap-[25px] 4xl:gap-[30px]">
                         {!isEmpty ? (
-                            paginated.map((item) => <EventsCardDesktop key={item.id} {...item} />)
+                            pagedEvents.map((item) => <EventsCardDesktop key={item.id} {...item} />)
                         ) : (
                             <div className="flex flex-col items-center justify-center pt-[113px] text-center">
                                 <p className="text-7xl font-medium leading-10 text-[#353652] mb-6 text-center">
