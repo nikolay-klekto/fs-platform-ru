@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { ChevronDownIconDesktop, CheckedBoxIconDesktop, QuestionMarkDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 
-interface SelectItemProps {
+interface ISelectItemProps {
     value: string
     children: React.ReactNode
     isChecked: boolean
@@ -96,7 +96,7 @@ const EventsSelectSearchDesktop: React.FC<IEventsSelectSearchDesktopProps> = ({ 
     )
 }
 
-const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
+const SelectItem = React.forwardRef<HTMLDivElement, ISelectItemProps>(
     ({ children, isChecked, onClick }, forwardedRef) => (
         <div
             ref={forwardedRef}
