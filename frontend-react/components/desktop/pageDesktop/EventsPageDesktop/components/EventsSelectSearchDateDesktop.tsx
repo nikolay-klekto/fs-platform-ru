@@ -10,7 +10,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 
-interface EventsSelectSearchDateDesktopProps {
+interface IEventsSelectSearchDate {
     dates: {
         from: Date | null
         to: Date | null
@@ -20,7 +20,7 @@ interface EventsSelectSearchDateDesktopProps {
 
 type DateKey = 'from' | 'to'
 
-const EventsSelectSearchDateDesktop: React.FC<EventsSelectSearchDateDesktopProps> = ({ dates, setDates }) => {
+const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ dates, setDates }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [openCalendars, setOpenCalendars] = useState<{ from: boolean; to: boolean }>({
         from: false,
