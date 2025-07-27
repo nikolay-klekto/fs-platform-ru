@@ -3,18 +3,18 @@
 import React from 'react'
 import { CloseIconDesktop } from '@/components/assets/iconsDesktop'
 
-interface Props {
+interface IEventsSelectedFilters {
     selectedCategories: string[]
-    setSelectedCategories: (cats: string[]) => void
+    setSelectedCategories: (categories: string[]) => void
     dates: { from: Date | null; to: Date | null }
-    setDates: (d: { from: Date | null; to: Date | null }) => void
+    setDates: (dates: { from: Date | null; to: Date | null }) => void
     selectedCity: string | null
     setSelectedCity: (city: string | null) => void
     categoryLabelBySlug: Record<string, string>
     cityLabelBySlug: Record<string, string>
 }
 
-const EventsSelectedFiltersDesktop: React.FC<Props> = ({
+const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
     selectedCategories,
     setSelectedCategories,
     dates,
@@ -37,7 +37,7 @@ const EventsSelectedFiltersDesktop: React.FC<Props> = ({
                 >
                     <span className="font-semibold text-5xl">{categoryLabelBySlug[slug]}</span>
                     <button
-                        onClick={() => setSelectedCategories(selectedCategories.filter((s) => s !== slug))}
+                        onClick={() => setSelectedCategories(selectedCategories.filter((categorySlug) => categorySlug !== slug))}
                         className="ml-10 flex items-center justify-center"
                     >
                         <CloseIconDesktop className="h-3 w-3" />
