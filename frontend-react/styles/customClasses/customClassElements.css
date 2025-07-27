@@ -114,11 +114,11 @@
     }
 
     .text-policy-subheading_desktop {
-        @apply mb-[15px] text32px_desktop font-medium uppercase 2xl:mb-[5px] 3xl:mb-[5px];
+        @apply mb-[15px] text32px_desktop font-medium uppercase;
     }
 
     .text-policy-paragraph_desktop {
-        @apply mb-[15px] text24px_desktop text-[#B3B3BD] 2xl:mb-[7px] 3xl:mb-[7px];
+        @apply mb-[15px] text24px_desktop text-[#B3B3BD];
     }
 
     .text-policy-table_desktop {

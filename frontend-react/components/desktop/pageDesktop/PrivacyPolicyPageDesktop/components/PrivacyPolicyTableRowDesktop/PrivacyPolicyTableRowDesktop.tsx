@@ -11,10 +11,6 @@ interface ITableRow {
     period: string
 }
 
-interface ITableRowProps {
-    row: ITableRow
-}
-
 const renderCellContent = (text: string) => {
     if (text.includes('\n\n')) {
         return text.split('\n\n').map((paragraph, idx) => (
@@ -26,7 +22,7 @@ const renderCellContent = (text: string) => {
 
     return <p className="whitespace-pre-line">{text}</p>
 }
-export const PrivacyPolicyTableRowDesktop: React.FC<ITableRowProps> = ({ row }) => {
+export const PrivacyPolicyTableRowDesktop: React.FC<{ row: ITableRow }> = ({ row }) => {
     const fields: (keyof typeof row)[] = ['goal', 'categories', 'data', 'basis', 'period']
     return (
         <tr className="align-top">

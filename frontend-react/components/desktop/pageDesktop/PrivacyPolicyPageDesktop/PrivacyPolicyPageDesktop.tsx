@@ -9,7 +9,7 @@ const PrivacyPolicyPageDesktop: React.FC = () => {
         <>
             <HeaderDesktop />
             <main className="bg-[#101030] text-white">
-                <div className="container relative overflow-hidden p-[83px_68px_240px_60px]">
+                <div className="container relative overflow-hidden p-[83px_68px_240px_60px] 2xl:pb-[120px] 3xl:pb-[120px]">
                     <h1 className="title46px_desktop mb-[74px] text-center font-medium uppercase text-white ">
                         Политика обработки персональных данных
                     </h1>
