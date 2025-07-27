@@ -128,15 +128,15 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
                 toDate = new Date(fromDate.getTime() + ONE_DAY_MS)
                 break
             case 'this-week':
-                const day = now.getDay() || 7
-                const start = new Date(now)
-                start.setDate(now.getDate() - (day - 1))
-                start.setHours(0, 0, 0, 0)
-                const end = new Date(start)
-                end.setDate(start.getDate() + 6)
-                end.setHours(23, 59, 59, 999)
-                fromDate = start
-                toDate = end
+                const dayOfWeek = now.getDay() || 7
+                const startOfWeek = new Date(now)
+                startOfWeek.setDate(now.getDate() - (dayOfWeek - 1))
+                startOfWeek.setHours(0, 0, 0, 0)
+                const endOfWeek = new Date(startOfWeek)
+                endOfWeek.setDate(startOfWeek.getDate() + 6)
+                endOfWeek.setHours(23, 59, 59, 999)
+                fromDate = startOfWeek
+                toDate = endOfWeek
                 break
             case 'this-month':
                 fromDate = new Date(now.getFullYear(), now.getMonth(), 1)
