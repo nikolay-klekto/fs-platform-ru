@@ -3,20 +3,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { ChevronDownIconDesktop, SearchIconDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
+import { cityOptions } from '../contentEventsPageDesktop/content'
 
 interface Props {
     selected: string | null
     onChange: (city: string | null) => void
 }
-
-const options = [
-    { value: 'brest', label: 'Брест' },
-    { value: 'vitebsk', label: 'Витебск' },
-    { value: 'gomel', label: 'Гомель' },
-    { value: 'grodno', label: 'Гродно' },
-    { value: 'mogilev', label: 'Могилев' },
-    { value: 'minsk', label: 'Минск' },
-]
 
 const EventsSelectSearchCityDesktop: React.FC<Props> = ({ selected, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -33,7 +25,7 @@ const EventsSelectSearchCityDesktop: React.FC<Props> = ({ selected, onChange }) 
         return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [])
 
-    const filtered = options.filter((o) => o.label.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filtered = cityOptions.filter((o) => o.label.toLowerCase().includes(searchTerm.toLowerCase()))
 
     return (
         <div className="relative z-[3]" ref={ref}>

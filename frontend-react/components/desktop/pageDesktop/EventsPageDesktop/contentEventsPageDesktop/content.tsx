@@ -127,3 +127,8 @@ export const cityLabelBySlug: Record<string, string> = {
     grodno: 'Гродно',
     mogilev: 'Могилев',
 }
+
+export const cityOptions = Object.entries(cityLabelBySlug).map(([value, label]) => ({
+    value,
+    label,
+}))
