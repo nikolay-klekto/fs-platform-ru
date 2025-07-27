@@ -109,3 +109,21 @@ export const content: IContent[] = [
         id: 8,
     },
 ]
+
+export const categoryLabelBySlug: Record<string, string> = {
+    fairs: 'Выставки/презентации',
+    open_days: 'Дни открытых дверей',
+    conferences: 'Конференции',
+    master_classes: 'Мастер‑классы/семинары/тренинги',
+    internships: 'Стажировки',
+    job_fairs: 'Ярмарки вакансий',
+}
+
+export const cityLabelBySlug: Record<string, string> = {
+    minsk: 'Минск',
+    brest: 'Брест',
+    vitebsk: 'Витебск',
+    gomel: 'Гомель',
+    grodno: 'Гродно',
+    mogilev: 'Могилев',
+}

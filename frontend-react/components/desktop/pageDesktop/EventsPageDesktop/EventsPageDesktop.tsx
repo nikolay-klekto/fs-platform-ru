@@ -10,7 +10,7 @@ import EventsSelectSearchDateDesktop from './components/EventsSelectSearchDateDe
 import EventsSelectSearchCityDesktop from './components/EventsSelectSearchCityDesktop'
 import EventsSelectedFiltersDesktop from './components/EventsSelectedFiltersDesktop'
 import { Button } from '@/components/ui/button'
-import { content } from './contentEventsPageDesktop/content'
+import { content, categoryLabelBySlug, cityLabelBySlug } from './contentEventsPageDesktop/content'
 
 const parseDate = (dateStr: string): Date => {
     const [day, month, year] = dateStr.split('.').map(Number)
@@ -18,42 +18,6 @@ const parseDate = (dateStr: string): Date => {
 }
 
 const cardsPerPage = 6
-
-const categoryValueBySlug: Record<string, string> = {
-    fairs: 'выставка',
-    open_days: 'дни открытых дверей',
-    conferences: 'конференции',
-    master_classes: 'мастер‑классы/семинары/тренинги',
-    internships: 'стажировки',
-    job_fairs: 'ярмарки вакансий',
-}
-
-const categoryLabelBySlug: Record<string, string> = {
-    fairs: 'Выставки/презентации',
-    open_days: 'Дни открытых дверей',
-    conferences: 'Конференции',
-    master_classes: 'Мастер‑классы/семинары/тренинги',
-    internships: 'Стажировки',
-    job_fairs: 'Ярмарки вакансий',
-}
-
-const cityValueBySlug: Record<string, string> = {
-    minsk: 'Минск',
-    brest: 'Брест',
-    vitebsk: 'Витебск',
-    gomel: 'Гомель',
-    grodno: 'Гродно',
-    mogilev: 'Могилев',
-}
-
-const cityLabelBySlug: Record<string, string> = {
-    minsk: 'Минск',
-    brest: 'Брест',
-    vitebsk: 'Витебск',
-    gomel: 'Гомель',
-    grodno: 'Гродно',
-    mogilev: 'Могилев',
-}
 
 const EventsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
@@ -64,21 +28,23 @@ const EventsPageDesktop: React.FC = () => {
     const [selectedCity, setSelectedCity] = useState<string | null>(null)
 
     useEffect(() => {
-        const { from, to } = dates
-
         const result = content
-            .filter((item) => {
-                const d = parseDate(item.date)
-                if (from && d < from) return false
-                if (to && d > to) return false
-                return true
-            })
             .filter((item) =>
                 selectedCategories.length === 0
                     ? true
-                    : selectedCategories.some((slug) => categoryValueBySlug[slug] === item.category),
+                    : selectedCategories.some(
+                        (slug) => categoryLabelBySlug[slug].toLowerCase() === item.category.toLowerCase(),
+                    ),
             )
-            .filter((item) => (!selectedCity ? true : cityValueBySlug[selectedCity] === item.city))
+            .filter((item) => {
+                const date = parseDate(item.date)
+                if (dates.from && date < dates.from) return false
+                if (dates.to && date > dates.to) return false
+                return true
+            })
+            .filter((item) =>
+                !selectedCity ? true : cityLabelBySlug[selectedCity].toLowerCase() === item.city.toLowerCase(),
+            )
 
         setFilteredContent(result)
         setCurrentPage(1)
