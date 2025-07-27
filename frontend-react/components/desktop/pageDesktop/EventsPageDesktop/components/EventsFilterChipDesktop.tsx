@@ -1,12 +1,12 @@
 import React from 'react'
 import { CloseIconDesktop } from '@/components/assets/iconsDesktop'
 
-interface EventsFilterChipDesktop {
+interface EventsFilterChipDesktopProps{
     label: string
     onRemove: () => void
 }
 
-const EventsFilterChipDesktop: React.FC<EventsFilterChipDesktop> = ({ label, onRemove }) => {
+const EventsFilterChipDesktop: React.FC<EventsFilterChipDesktopProps> = ({ label, onRemove }) => {
     return (
         <div className="flex items-center rounded-[50px] bg-[#ffffff1a] py-4 pl-[45px] pr-[45px] text-white">
             <span className="font-semibold text-5xl">{label}</span>

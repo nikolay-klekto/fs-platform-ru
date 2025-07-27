@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { ChevronDownIconDesktop, CheckedBoxIconDesktop, QuestionMarkDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 
-interface EventsSelectSearchDesktopProps {
+interface IEventsSelectSearchDesktopProps {
     selected: string[]
     onChange: (newSelected: string[]) => void
 }
@@ -14,7 +14,7 @@ interface ISelectOption {
     label: string
 }
 
-const EventsSelectSearchDesktop: React.FC<EventsSelectSearchDesktopProps> = ({ selected, onChange }) => {
+const EventsSelectSearchDesktop: React.FC<IEventsSelectSearchDesktopProps> = ({ selected, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
 

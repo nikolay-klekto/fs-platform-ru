@@ -5,12 +5,12 @@ import { ChevronDownIconDesktop, SearchIconDesktop } from '@/components/assets/i
 import { Button } from '@/components/ui/button'
 import { cityOptions } from '../contentEventsPageDesktop/content'
 
-interface IEventsSelectSearchCity {
+interface IEventsSelectSearchCityProps {
     selectedCity: string | null
     onChangeCity: (city: string | null) => void
 }
 
-const EventsSelectSearchCityDesktop: React.FC<IEventsSelectSearchCity> = ({ selectedCity, onChangeCity }) => {
+const EventsSelectSearchCityDesktop: React.FC<IEventsSelectSearchCityProps> = ({ selectedCity, onChangeCity }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
     const ref = useRef<HTMLDivElement>(null)

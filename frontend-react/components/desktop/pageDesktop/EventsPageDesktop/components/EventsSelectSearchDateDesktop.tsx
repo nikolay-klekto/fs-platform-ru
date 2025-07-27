@@ -6,7 +6,7 @@ import { ChevronDownIconDesktop, LineDateDesktop, CalendarIconsDesktop } from '@
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 
-interface IEventsSelectSearchDate {
+interface IEventsSelectSearchDateProps {
     dates: {
         from: Date | null
         to: Date | null
@@ -16,7 +16,7 @@ interface IEventsSelectSearchDate {
 
 type DateKey = 'from' | 'to'
 
-const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ dates, onChange }) => {
+const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDateProps> = ({ dates, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [openCalendars, setOpenCalendars] = useState<{ from: boolean; to: boolean }>({
         from: false,
