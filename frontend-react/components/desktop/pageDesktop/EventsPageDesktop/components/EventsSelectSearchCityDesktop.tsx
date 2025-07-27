@@ -5,12 +5,12 @@ import { ChevronDownIconDesktop, SearchIconDesktop } from '@/components/assets/i
 import { Button } from '@/components/ui/button'
 import { cityOptions } from '../contentEventsPageDesktop/content'
 
-interface Props {
-    selected: string | null
-    onChange: (city: string | null) => void
+interface IEventsSelectSearchCity {
+    selectedCity: string | null
+    onChangeCity: (city: string | null) => void
 }
 
-const EventsSelectSearchCityDesktop: React.FC<Props> = ({ selected, onChange }) => {
+const EventsSelectSearchCityDesktop: React.FC<IEventsSelectSearchCity> = ({ selectedCity, onChangeCity }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
     const ref = useRef<HTMLDivElement>(null)
@@ -62,7 +62,7 @@ const EventsSelectSearchCityDesktop: React.FC<Props> = ({ selected, onChange }) 
                             <div
                                 key={opt.value}
                                 onClick={() => {
-                                    onChange(opt.value)
+                                    onChangeCity(opt.value)
                                     setIsOpen(false)
                                 }}
                                 role="menuitem"
@@ -70,12 +70,12 @@ const EventsSelectSearchCityDesktop: React.FC<Props> = ({ selected, onChange }) 
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter' || e.key === ' ') {
                                         e.preventDefault()
-                                        onChange(opt.value)
+                                        onChangeCity(opt.value)
                                         setIsOpen(false)
                                     }
                                 }}
                                 className={`hover:border-hover text-[18px] font-medium relative z-[3] flex cursor-pointer items-center justify-between p-[15px] text-white ${
-                                    selected === opt.value
+                                    selectedCity === opt.value
                                         ? 'border-selected border-y-2 bg-[#28295B]'
                                         : 'bg-transparent'
                                 }`}
