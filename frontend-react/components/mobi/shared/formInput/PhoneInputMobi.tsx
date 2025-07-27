@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect, useRef } from 'react'
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 
@@ -6,10 +8,13 @@ interface IPhoneInputMobi {
     onChange: (value: string) => void
     onError: (value: string) => void
     onBlur?: (value: string) => void
+    validationStatus?: boolean
     className?: string
-    labelClassName?: string
     wrapperClassName?: string
+    showInternalError?: boolean
     required?: boolean
+    labelClassName?: string
+    placeholder?: string
 }
 
 const PHONE_MASK = '+375 (__) ___-__-__'
@@ -26,8 +31,9 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     onChange,
     onError,
     className,
-    labelClassName,
     wrapperClassName,
+    labelClassName,
+    placeholder,
     required = false,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
@@ -57,6 +63,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                     if (newValue[i] !== '_') {
                         newValue = newValue.substring(0, i) + '_' + newValue.substring(i + 1)
                         setInputValue(newValue)
+                        onChange(newValue)
                         setTimeout(() => setCaretToPosition(i), 0)
                         break
                     }
@@ -72,13 +79,13 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
             if (nextPos === undefined) return
             newValue = newValue.substring(0, nextPos) + e.key + newValue.substring(nextPos + 1)
             setInputValue(newValue)
+            onChange(newValue)
             const following = digitPositions.find((p) => p > nextPos)
             const caretPos = following !== undefined ? following : nextPos + 1
             setTimeout(() => setCaretToPosition(caretPos), 0)
         } else {
             e.preventDefault()
         }
-
         validateValue(newValue)
     }
 
@@ -114,8 +121,8 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
 
     return (
         <div className={`flex w-full flex-col gap-1.5 ${wrapperClassName}`}>
-            <label htmlFor="phone" className={`mb-1 text-2xl font-medium ${labelClassName}`}>
-                Номер телефона*
+            <label htmlFor="phone" className={`mb-1 text-2xl font-medium text-white ${labelClassName}`}>
+                Номер телефона
             </label>
             <input
                 ref={inputRef}
@@ -123,15 +130,14 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 type="tel"
                 name="phone"
                 value={inputValue}
-                onChange={() => {}}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}
+                onChange={() => {}}
                 onClick={handleClick}
                 onBlur={handleBlur}
-                placeholder={PHONE_MASK}
-                className={`input-form-mobi-custom w-full font-medium placeholder:text-[#353652] ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                placeholder={PHONE_MASK || placeholder}
+                className={`input-form-mobi-custom w-full border-2 font-medium placeholder:text-[#353652] focus:border-2 ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
-            {internalError && <p className={'error-form-mobi-custom'}>{internalError}</p>}
         </div>
     )
 }

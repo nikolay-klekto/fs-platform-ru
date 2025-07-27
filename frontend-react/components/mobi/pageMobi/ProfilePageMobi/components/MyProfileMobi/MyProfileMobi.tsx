@@ -9,8 +9,6 @@ import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validat
 import AvatarMobi from '@/components/mobi/shared/AvatarMobi/AvatarMobi'
 import { CalendarIconsMobi, ChevronDownIconMobi } from '@/components/assets/iconsMobi'
 import DatePickerCalendarMobi from '@/components/mobi/shared/CalendarProfileMobi/CalendarProfileMobi'
-import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
-import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 
 interface IFormData {
     name: string
