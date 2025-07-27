@@ -5,7 +5,7 @@ import { ChevronDownIconDesktop, CheckedBoxIconDesktop, QuestionMarkDesktop } fr
 import { Button } from '@/components/ui/button'
 
 interface IEventsSelectSearchDesktopProps {
-    selected: string[]
+    selectedOptions: string[]
     onChange: (newSelected: string[]) => void
 }
 
@@ -14,7 +14,7 @@ interface ISelectOption {
     label: string
 }
 
-const EventsSelectSearchDesktop: React.FC<IEventsSelectSearchDesktopProps> = ({ selected, onChange }) => {
+const EventsSelectSearchDesktop: React.FC<IEventsSelectSearchDesktopProps> = ({ selectedOptions, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -45,15 +45,17 @@ const EventsSelectSearchDesktop: React.FC<IEventsSelectSearchDesktopProps> = ({ 
     ]
 
     const toggleOption = (value: string) => {
-        const next = selected.includes(value) ? selected.filter((opt) => opt !== value) : [...selected, value]
+        const next = selectedOptions.includes(value) 
+        ? selectedOptions.filter((opt) => opt !== value) 
+        : [...selectedOptions, value]
         onChange(next)
     }
 
     return (
         <div className="relative z-[3]" ref={dropdownRef}>
             <Button
-                variant="select_btn_desktop"
-                size="select_btn_desktop_events"
+                variant={'select_btn_desktop'}
+                size={'select_btn_desktop_events'}
                 onClick={handleSelectToggle}
                 className={`${isOpen ? 'bg-gradient-desktop' : 'bg-[#101030]'}`}
             >
@@ -74,7 +76,7 @@ const EventsSelectSearchDesktop: React.FC<IEventsSelectSearchDesktopProps> = ({ 
                             <SelectItem
                                 key={option.value}
                                 value={option.value}
-                                isChecked={selected.includes(option.value)}
+                                isChecked={selectedOptions.includes(option.value)}
                                 onClick={() => toggleOption(option.value)}
                             >
                                 {option.label}
