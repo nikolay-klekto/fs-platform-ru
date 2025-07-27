@@ -3,7 +3,7 @@
 import React from 'react'
 import EventsFilterChipDesktop from './EventsFilterChipDesktop'
 
-interface IEventsSelectedFiltersProps {
+interface IEventsSelectedFilters {
     selectedCategories: string[]
     onChangeSelectedCategories: (categories: string[]) => void
     dates: { from: Date | null; to: Date | null }
@@ -14,7 +14,7 @@ interface IEventsSelectedFiltersProps {
     cityLabelBySlug: Record<string, string>
 }
 
-const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFiltersProps> = ({
+const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
     selectedCategories,
     onChangeSelectedCategories,
     dates,

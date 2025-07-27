@@ -67,7 +67,7 @@ const EventsPageDesktop: React.FC = () => {
             <HeaderDesktop />
 
             <main className="bg-[#101030] text-white">
-            <div className="container relative min-h-screen overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
+            <div className="container relative min-h-screen overflow-hidden p-[76px_212px_88px_212px] 2xl:p-[60px_100px_88px_100px] 3xl:p-[76px_130px_88px_130px]">
                     <h1 className="title80px_desktop relative z-[1]">Мероприятия</h1>
 
                     <div className="relative z-[1] flex items-center justify-end gap-[30px] pt-[116px]">
