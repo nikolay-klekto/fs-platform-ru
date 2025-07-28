@@ -168,9 +168,6 @@ const ContactsDesktop: React.FC = () => {
         console.log('Форма отправлена:', formData)
     }
 
-    const basicStyles =
-        'w-[484px] 2xl:w-[520px] 3xl:w-[452px] h-[53px] px-4 py-3.5 border-2 rounded-[53px] bg-transparent text-5xl placeholder:font-medium ring-offset-transparent focus:ring-transparent focus:border-2 focus:border-[#878797]'
-
     return (
         <main className="bg-[#101030] text-white">
             <div className="container relative flex justify-between overflow-hidden pb-[297px] pt-52 2xl:mx-auto 2xl:max-w-[1190px] 2xl:flex-col 2xl:items-center 2xl:pb-36 2xl:pt-28">
@@ -250,12 +247,6 @@ const ContactsDesktop: React.FC = () => {
                                             return validation
                                         }}
                                         wrapperClassName={'h-[76px]'}
-                                        className={`${
-                                            (isSubmitted || touchedFields.name) &&
-                                            (formData.name.trim() === '' || fieldErrors.name)
-                                                ? 'border-[#bc8070] focus:border-[#FFFFFF] focus:border-2'
-                                                : 'border-[#878797] focus:border-[#FFFFFF] focus:border-2'
-                                        }`}
                                     />
                                     <EnhancedInput
                                         type="email"
@@ -284,12 +275,6 @@ const ContactsDesktop: React.FC = () => {
                                             return validation
                                         }}
                                         wrapperClassName={'h-[76px]'}
-                                        className={`${
-                                            (isSubmitted || touchedFields.email) &&
-                                            (formData.email.trim() === '' || fieldErrors.email)
-                                                ? 'border-[#bc8070] focus:border-[#FFFFFF] focus:border-2'
-                                                : 'border-[#878797] focus:border-[#FFFFFF] focus:border-2'
-                                        }`}
                                     />
                                 </div>
                                 <div className="flex flex-col gap-[23px] pl-3">
@@ -306,14 +291,8 @@ const ContactsDesktop: React.FC = () => {
                                                 updateFieldError('tel', false)
                                             }
                                         }}
-                                        className={`${basicStyles} ${
-                                            (isSubmitted || touchedFields.tel) &&
-                                            (formData.tel.trim() === '' ||
-                                                formData.tel === phoneMask ||
-                                                fieldErrors.tel)
-                                                ? 'border-[#bc8070] focus:border-[#FFFFFF]'
-                                                : 'border-[#878797] focus:border-[#FFFFFF]'
-                                        }`}
+                                        className={`
+                                        3xl:w-[452px] h-[53px] w-[484px] rounded-[53px] border-2 bg-transparent px-4 py-3.5 text-5xl ring-offset-transparent placeholder:font-medium focus:border-2 focus:border-[#878797] focus:ring-transparent 2xl:w-[520px]`}
                                         wrapperClassName={'h-[76px]'}
                                         labelClassName="hidden"
                                     />
@@ -336,7 +315,7 @@ const ContactsDesktop: React.FC = () => {
                                             return validation
                                         }}
                                         wrapperClassName={'h-[76px]'}
-                                        className={'focus:border-[#FFFFFF] focus:border-2'}
+                                        className={'focus:border-2 focus:border-[#FFFFFF]'}
                                     />
                                 </div>
                             </div>
@@ -360,12 +339,6 @@ const ContactsDesktop: React.FC = () => {
                                     return validation
                                 }}
                                 wrapperClassName={'mb-[13.88px]'}
-                                className={`${
-                                    (isSubmitted || touchedFields.message) &&
-                                    (formData.message.trim() === '' || fieldErrors.message)
-                                        ? 'border-[#bc8070] focus:border-[#FFFFFF] focus:border-2'
-                                        : 'border-[#878797] focus:border-[#FFFFFF] focus:border-2'
-                                }`}
                             />
                             <div className="flex h-[130px] flex-col justify-between">
                                 {(formError || hasTouchedEmptyOrErrorField) && (

@@ -115,7 +115,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
         return (
             <div className="pt-[2px]">
                 <div
-                    className={`text-15px text-medium relative z-[3] flex cursor-pointer items-center px-[16px] py-[14px] ${
+                    className={`text-15px text-medium relative z-[3] flex items-center px-[16px] py-[14px] ${
                         isChecked
                             ? 'h-[51px] rounded-[18px] bg-[#5F4AF30F] py-[14px] text-white'
                             : 'bg-transparent text-[#878797]'
@@ -140,7 +140,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                                 e.stopPropagation()
                                 onClick()
                             }}
-                            className="absolute inset-0 size-full cursor-pointer opacity-0"
+                            className="absolute inset-0 size-full opacity-0"
                         />
                         {isChecked ? (
                             <CheckedBoxIconMobi

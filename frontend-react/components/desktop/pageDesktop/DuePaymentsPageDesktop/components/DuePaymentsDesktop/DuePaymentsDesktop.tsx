@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { content } from '@/components/desktop/pageDesktop/DuePaymentsPageDesktop/contentDuePaymentsPageDesktop/content'
 import { Button } from '@/components/ui/button'

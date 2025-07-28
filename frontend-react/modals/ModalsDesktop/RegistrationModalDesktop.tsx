@@ -145,7 +145,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         } else {
             setInputInternalErrors((prevErrors) => ({
                 ...prevErrors,
-                email: result.errorMessage,
+                email: result.errorMessage ?? null,
             }))
         }
     }
@@ -186,16 +186,19 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         <EnhancedInput
                             type="email"
                             name="email"
-                            placeholder="Почта"
+                            placeholder="Ваш e-mail"
+                            variant={'common_input_desktop'}
+                            size={'common_input_desktop'}
+                            rounded={'rounded_50'}
                             value={formData.email}
                             onBlur={() => handleInputBlur('email')}
                             validate={(value) => validateEmailDesktop(value)}
-                            onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, email: value.toLowerCase() }))}
                             className={`${
                                 inputTouched.email && validateEmailDesktop(formData.email).styleError
                                     ? 'border-[#bc8070] focus:border-[#bc8070] '
-                                    : 'input-form-desktop-custom border-[#878797]'
-                            } h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-5xl font-medium text-white focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
+                                    : 'border-[#878797] focus:border-[#878797]'
+                            } `}
                             label="Почта"
                             labelClassName="mb-1 text-2xl font-medium text-white"
                             wrapperClassName="w-full"
@@ -293,7 +296,12 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     <div className="w-[95%]">
                         <p className="text15px_desktop font-medium text-[#353652]">
                             Защита от спама reCAPTCHA{' '}
-                            <Link href="/" target="_blank" rel="noopener noreferrer" className="underline">
+                            <Link
+                                href="/privacy-policy"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline"
+                            >
                                 Конфиденциальность
                             </Link>{' '}
                             и{' '}
