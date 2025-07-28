@@ -17,11 +17,6 @@ interface IEventsSelectSearchDesktop {
     onChange: (newSelected: string[]) => void
 }
 
-interface ISelectOption {
-    value: string
-    label: string
-}
-
 const EventsSelectSearchDesktop: React.FC<IEventsSelectSearchDesktop> = ({ selectedOptions, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
