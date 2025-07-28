@@ -10,7 +10,7 @@ import EventsSelectSearchDateDesktop from './components/EventsSelectSearchDateDe
 import EventsSelectSearchCityDesktop from './components/EventsSelectSearchCityDesktop'
 import EventsSelectedFiltersDesktop from './components/EventsSelectedFiltersDesktop'
 import { Button } from '@/components/ui/button'
-import { content, categoryLabelBySlug, cityLabelBySlug } from './contentEventsPageDesktop/content'
+import { content, IContent, categoryLabelBySlug, cityLabelBySlug } from './contentEventsPageDesktop/content'
 
 const parseDate = (dateStr: string): Date => {
     const [day, month, year] = dateStr.split('.').map(Number)
@@ -21,7 +21,7 @@ const cardsPerPage = 6
 
 const EventsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
-    const [filteredContent, setFilteredContent] = useState(content)
+    const [filteredContent, setFilteredContent] = useState<IContent[]>(content)
 
     const [dates, onChange] = useState<{ from: Date | null; to: Date | null }>({ from: null, to: null })
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
@@ -67,11 +67,14 @@ const EventsPageDesktop: React.FC = () => {
             <HeaderDesktop />
 
             <main className="bg-[#101030] text-white">
-            <div className="container relative min-h-screen overflow-hidden p-[76px_212px_88px_212px] 2xl:p-[60px_100px_88px_100px] 3xl:p-[76px_130px_88px_130px]">
+                <div className="container mx-auto relative min-h-screen overflow-hidden p-[76px_213px_88px_213px]">
                     <h1 className="title80px_desktop relative z-[1]">Мероприятия</h1>
 
                     <div className="relative z-[1] flex items-center justify-end gap-[30px] pt-[116px]">
-                        <EventsSelectSearchDesktop selectedOptions={selectedCategories} onChange={setSelectedCategories} />
+                        <EventsSelectSearchDesktop
+                            selectedOptions={selectedCategories}
+                            onChange={setSelectedCategories}
+                        />
                         <EventsSelectSearchDateDesktop dates={dates} onChange={onChange} />
                         <EventsSelectSearchCityDesktop selectedCity={selectedCity} onChangeCity={setSelectedCity} />
                     </div>
@@ -87,27 +90,38 @@ const EventsPageDesktop: React.FC = () => {
                         cityLabelBySlug={cityLabelBySlug}
                     />
 
-                    <div className={`flex flex-col items-center ${isEmpty ? 'gap-[17px]' : 'gap-[73px]'}`}>
-                        <div className="flex flex-wrap justify-center gap-9 2xl:gap-5 3xl:gap-[25px] 4xl:gap-[30px]">
-                            {!isEmpty ? (
-                                pagedEvents.map((item) => <EventsCardDesktop key={item.id} {...item} />)
-                            ) : (
-                                <div className="flex flex-col items-center justify-center pt-[113px] text-center">
-                                    <p className="text-7xl font-medium leading-10 text-[#353652] text-center">
-                                        Нет мероприятий по данным категориям
-                                    </p>
-                                </div>
-                            )}
-                        </div>
+                    <div className={`flex flex-col items-stretch w-full ${isEmpty ? 'gap-[17px]' : 'gap-[73px]'}`}>
+                        {isEmpty ? (
+                            <div className="flex flex-col items-center justify-items-center justify-center pt-[113px] text-center">
+                                <p className="text-7xl font-medium leading-10 text-[#353652]">
+                                    Нет мероприятий по данным категориям
+                                </p>
+                            </div>
+                        ) : (
+                            <div
+                                className="w-full grid justify-center justify-items-center gap-x-[36px] gap-y-[40px]"
+                                style={{
+                                    gridTemplateColumns: 'repeat(auto-fit, minmax(474px, 474px))',
+                                }}
+                            >
+                                {pagedEvents.map((item) => (
+                                    <div key={item.id}>
+                                        <EventsCardDesktop {...item} />
+                                    </div>
+                                ))}
+                            </div>
+                        )}
 
                         {(selectedCategories.length > 0 || selectedCity || dates.from || dates.to) && (
-                            <Button
-                                variant="select_btn_desktop"
-                                size="select_btn_desktop_events"
-                                onClick={resetFilters}
-                            >
-                                Сбросить фильтры
-                            </Button>
+                            <div className="flex justify-center w-full mt-4">
+                                <Button
+                                    variant="select_btn_desktop"
+                                    size="select_btn_desktop_events"
+                                    onClick={resetFilters}
+                                >
+                                    Сбросить фильтры
+                                </Button>
+                            </div>
                         )}
                     </div>
 

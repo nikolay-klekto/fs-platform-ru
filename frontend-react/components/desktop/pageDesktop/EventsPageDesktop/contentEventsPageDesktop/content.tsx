@@ -1,4 +1,4 @@
-interface IContent {
+export interface IContent {
     title: string
     category: string
     image: string
