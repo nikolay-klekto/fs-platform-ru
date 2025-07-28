@@ -27,7 +27,7 @@ const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
     return (
         <>
             <div
-                className="sm_s:min-h-[192px] sm_xl:h-[226px] sm_xl:w-fit relative m-auto flex min-h-[212px] w-[346px] flex-col items-center justify-center rounded-[41px] drop-shadow-[0_3.26px_3.26px_rgba(0,0,0,0.25)] sm:min-h-[176px] md:w-full md:px-[clamp(12px,6vw,45px)] md:py-[clamp(22px,8vw,55px)]"
+                className="sm_s:min-h-[192px] sm_xl:h-[226px] sm_xl:w-fit relative m-auto flex min-h-[212px] w-[346px] flex-col items-center justify-center rounded-[40px] drop-shadow-[0_3.26px_3.26px_rgba(0,0,0,0.25)] sm:min-h-[176px] md:w-full md:rounded-[68px] md:px-[clamp(12px,7vw,45px)] md:py-[clamp(22px,9vw,58px)]"
                 style={{
                     backgroundImage: "url('/background/subtract_mobi.webp')",
                     backgroundSize: 'cover',

@@ -11,7 +11,7 @@ const HeaderMainMobi: React.FC = () => {
         <>
             <div className="p-[15px] md:p-0">
                 <div
-                    className="sm_l:justify-between sm_xl:h-[600px] mx-auto flex h-[540px] w-full flex-col justify-between rounded-b-[40px] p-0.5 pb-[40px] md:h-[688px] md:rounded-b-none md:p-[18px_9px_100px_9px]"
+                    className="sm_l:justify-between sm_xl:h-[600px] mx-auto flex h-[540px] w-full flex-col justify-between rounded-b-[40px] p-0.5 pb-[40px] md:h-[707px] md:rounded-b-none md:p-[18px_9px_113px_9px]"
                     style={{
                         backgroundImage:
                             "linear-gradient(180deg, #0e0e28 0%, #10102ef4 21%, #14143ab0 53%, #211f5e 100%), url('/background/bgMobi.jpg')",
@@ -23,7 +23,7 @@ const HeaderMainMobi: React.FC = () => {
                     <HeaderMobi disableBackground={true} />
                     <div className="md:px-[10px]">
                         <div className="sm_s:mt-[160px] mt-[180px] sm:mt-[140px] md:mt-0">
-                            <h1 className="text32px_mobi sm_l:leading-10 w-full min-w-[70%] max-w-[90%] font-normal uppercase text-white md:max-w-full md:pb-[20px] md:leading-[60px]">
+                            <h1 className="text32px_mobi sm_l:leading-10 w-full min-w-[70%] max-w-[90%] font-normal uppercase text-white md:mb-[20px] md:mt-[43px] md:max-w-full md:leading-[60px]">
                                 Помогаем пройти стажировку
                             </h1>
                             <p className="sm_l:max-w-[540px] sm_xl:max-w-[540px] sm_l:text-[0.875rem] sm_xl:text-[0.875rem] mb-8 max-w-[270px] text-base font-medium text-white md:mb-0 md:max-w-[540px] md:text-[clamp(0.875rem,4.05vw,1.5rem)]">
