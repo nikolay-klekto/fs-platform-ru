@@ -5,14 +5,13 @@ import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-// import { useAvailableCompanies } from '@/hooks/useAvailibleCompanies'
+import { useAvailableCompanies } from '@/hooks/useAvailibleCompanies'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import CompaniesSelectDesktop from './components/CompaniesSelectDesktop'
 import CompaniesCardPageDesktop from './components/CompaniesCardPageDesktop'
 import CompaniesPaginationDesktop from './components/CompaniesPaginationDesktop'
 import CompaniesSearchDesktop from './components/CompaniesSendDesktop'
-import { content } from './contentCompaniesPageDesktop/content'
 
 const cardsPerPage = 12
 
@@ -21,13 +20,12 @@ const CompaniesPageDesktop: React.FC = () => {
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-    // const { companies } = useAvailableCompanies()
+    const { companies } = useAvailableCompanies()
 
-    const filteredCompanies = content.filter((item) => {
+    const filteredCompanies = companies.filter((item) => {
         const matchesSearch =
-            searchQuery.length < 3 || item.companyName.toLowerCase().includes(searchQuery.toLowerCase().trim())
-        const matchesCategory =
-            selectedCategories.length === 0 || selectedCategories.some((category) => item.industry === category)
+            searchQuery.length < 3 || item.name.toLowerCase().includes(searchQuery.toLowerCase().trim())
+        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(item.companyIndustry)
         return matchesSearch && matchesCategory
     })
 
@@ -86,11 +84,10 @@ const CompaniesPageDesktop: React.FC = () => {
                                 .map((item) => (
                                     <Link href={`/company`} key={item.id}>
                                         <CompaniesCardPageDesktop
-                                            key={item.id}
-                                            image={item.image}
-                                            industry={item.industry}
-                                            price={item.price.toString()}
-                                            companyName={item.companyName}
+                                            image={item.imagePath}
+                                            industry={item.companyIndustry}
+                                            price={item.pricePerWeek}
+                                            companyName={item.name}
                                         />
                                     </Link>
                                 ))}
