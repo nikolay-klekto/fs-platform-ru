@@ -119,6 +119,8 @@ export const categoryLabelBySlug: Record<string, string> = {
     job_fairs: 'Ярмарки вакансий',
 }
 
+export const categoryOptions = Object.entries(categoryLabelBySlug).map(([value, label]) => ({ value, label }))
+
 export const cityLabelBySlug: Record<string, string> = {
     minsk: 'Минск',
     brest: 'Брест',

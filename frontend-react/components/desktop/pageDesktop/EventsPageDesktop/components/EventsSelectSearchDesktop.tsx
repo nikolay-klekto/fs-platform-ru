@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import { ChevronDownIconDesktop, CheckedBoxIconDesktop, QuestionMarkDesktop } from '@/components/assets/iconsDesktop'
+import { categoryOptions } from '../contentEventsPageDesktop/content';
 import { Button } from '@/components/ui/button'
 
 interface ISelectItem {
@@ -42,15 +43,6 @@ const EventsSelectSearchDesktop: React.FC<IEventsSelectSearchDesktop> = ({ selec
         }
     }, [])
 
-    const options: ISelectOption[] = [
-        { value: 'fairs', label: 'Выставки/презентации' },
-        { value: 'open_days', label: 'Дни открытых дверей' },
-        { value: 'conferences', label: 'Конференции' },
-        { value: 'master_classes', label: 'Мастер-классы/семинары/тренинги' },
-        { value: 'internships', label: 'Стажировки' },
-        { value: 'job_fairs', label: 'Ярмарки вакансий' },
-    ]
-
     const toggleOption = (value: string) => {
         const next = selectedOptions.includes(value) 
         ? selectedOptions.filter((opt) => opt !== value) 
@@ -79,7 +71,7 @@ const EventsSelectSearchDesktop: React.FC<IEventsSelectSearchDesktop> = ({ selec
                     className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[400px] rounded-[42px] p-[2px] 2xl:w-[270px] bg-gradient-desktop"
                 >
                     <div className="flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
-                        {options.map((option) => (
+                        {categoryOptions.map((option) => (
                             <SelectItem
                                 key={option.value}
                                 value={option.value}
