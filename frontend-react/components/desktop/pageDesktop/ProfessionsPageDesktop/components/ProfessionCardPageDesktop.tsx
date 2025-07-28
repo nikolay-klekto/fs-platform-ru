@@ -8,15 +8,17 @@ interface IProfessionCard {
     image: string
     price: string
     category?: string
+    onClick: () => void
 }
 
-const ProfessionCardPageDesktop: React.FC<IProfessionCard> = ({ image, profession, price }) => {
+const ProfessionCardPageDesktop: React.FC<IProfessionCard> = ({ image, profession, price, onClick }) => {
     return (
         <>
             <Card
                 variant={'profession_page_desktop'}
                 size={'profession_page_desktop'}
                 style={{ backgroundImage: `url(${image})` }}
+                onClick={onClick}
             >
                 <CardTitle variant={'profession_page_desktop'} size={'profession_page_desktop'} rounded={'rounded_25'}>
                     {profession}
