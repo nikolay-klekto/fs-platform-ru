@@ -79,7 +79,7 @@ const EventsPageDesktop: React.FC = () => {
                     <EventsSelectedFiltersDesktop
                         selectedCategories={selectedCategories}
                         onChangeSelectedCategories={setSelectedCategories}
-                        dates={dates}
+                        selectedDates={dates}
                         onChangeSelectedDates={onChange}
                         selectedCity={selectedCity}
                         onChangeSelectedCity={setSelectedCity}

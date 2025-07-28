@@ -6,7 +6,7 @@ import EventsFilterChipDesktop from './EventsFilterChipDesktop'
 interface IEventsSelectedFilters {
     selectedCategories: string[]
     onChangeSelectedCategories: (categories: string[]) => void
-    dates: { from: Date | null; to: Date | null }
+    selectedDates: { from: Date | null; to: Date | null }
     onChangeSelectedDates: (dates: { from: Date | null; to: Date | null }) => void
     selectedCity: string | null
     onChangeSelectedCity: (city: string | null) => void
@@ -17,16 +17,16 @@ interface IEventsSelectedFilters {
 const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
     selectedCategories,
     onChangeSelectedCategories,
-    dates,
+    selectedDates,
     onChangeSelectedDates,
     selectedCity,
     onChangeSelectedCity,
     categoryLabelBySlug,
     cityLabelBySlug,
 }) => {
-    const hasAny = selectedCategories.length > 0 || (dates.from !== null && dates.to !== null) || selectedCity !== null
+    const hasAny = selectedCategories.length > 0 || (selectedDates.from !== null && selectedDates.to !== null) || selectedCity !== null
 
-    if (!hasAny) return <div className="mt-[30px]" />
+    if (!hasAny) return <div className="mt-[39px]" />
 
     return (
         <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mt-[39px] mb-[30px]">
@@ -40,9 +40,9 @@ const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
                 />
             ))}
 
-            {dates.from && dates.to && (
+            {selectedDates.from && selectedDates.to && (
                 <EventsFilterChipDesktop
-                    label={`${dates.from.toLocaleDateString('ru-RU')} — ${dates.to.toLocaleDateString('ru-RU')}`}
+                    label={`${selectedDates.from.toLocaleDateString('ru-RU')} — ${selectedDates.to.toLocaleDateString('ru-RU')}`}
                     onRemove={() => onChangeSelectedDates({ from: null, to: null })}
                 />
             )}

@@ -3,13 +3,13 @@
 import React from 'react'
 import { LessIconDesktop, MoreIconDesktop } from '@/components/assets/iconsDesktop'
 
-interface IProfessionsPagination {
+interface IEventsPagination {
     totalPages: number
     currentPage: number
     onPageChange: (page: number) => void
 }
 
-const EventsPaginationDesktop: React.FC<IProfessionsPagination> = ({ totalPages, currentPage, onPageChange }) => {
+const EventsPaginationDesktop: React.FC<IEventsPagination> = ({ totalPages, currentPage, onPageChange }) => {
     const siblingsCount = 2
 
     const getPageNumbers = () => {
