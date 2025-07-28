@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { Search } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useExistingProfessions } from '@/hooks/useExistingProfessions'
+// import { useExistingProfessions } from '@/hooks/useExistingProfessions'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import SelectInternshipTypeDesktop from './components/SelectInternshipTypeDesktop'
@@ -12,6 +12,8 @@ import ProfessionsSelectDesktop from './components/ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './components/ProfessionCardPageDesktop'
 import ProfessionsPaginationDesktop from './components/ProfessionsPaginationDesktop'
 import ProfessionSearchDesktop from './components/ProfessionSendDesktop'
+import { content } from './contentProfessionsPageDesktop/content'
+import { useModal } from '@/context/ContextModal'
 
 const ProfessionsPageDesktop: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('')
@@ -19,22 +21,21 @@ const ProfessionsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [selectedInternshipTypes, setselectedInternshipTypes] = useState<string[]>([])
-    const { professions } = useExistingProfessions()
+    // const { professions } = useExistingProfessions()
+    const { openModal } = useModal()
+
     const cardsPerPage = 12
 
-    const filteredContent = professions.filter((item) => {
+    const filteredContent = content.filter((item) => {
         const matchesSearch =
-            searchQuery.length < 3 || item.name.toLowerCase().includes(searchQuery.toLowerCase().trim())
+            searchQuery.length < 3 || item.profession.toLowerCase().includes(searchQuery.toLowerCase().trim())
         const matchesCategory =
-            selectedCategories.length === 0 ||
-            selectedCategories.some((professionIndustry) => item.professionIndustry === professionIndustry)
-        const internshipTypeIds = item.internshipTypeId ? item.internshipTypeId.split(',').map((id) => id.trim()) : []
-
-        const matchesInternshipTypes =
+            selectedCategories.length === 0 || selectedCategories.some((category) => item.category === category)
+        const matchesIntenshipTypes =
             selectedInternshipTypes.length === 0 ||
-            selectedInternshipTypes.some((selectedType) => internshipTypeIds.includes(selectedType))
+            selectedInternshipTypes.some((internshipType) => item.internshipType === internshipType)
 
-        return matchesSearch && matchesCategory && matchesInternshipTypes
+        return matchesSearch && matchesCategory && matchesIntenshipTypes
     })
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
@@ -94,10 +95,16 @@ const ProfessionsPageDesktop: React.FC = () => {
                                 .map((item) => (
                                     <ProfessionCardPageDesktop
                                         key={item.id}
-                                        image={item.imagePath}
-                                        profession={item.name}
-                                        price={item.pricePerWeek}
-                                        category={item.professionIndustry}
+                                        image={item.image}
+                                        profession={item.profession}
+                                        price={item.price.toString()}
+                                        onClick={() => {
+                                            openModal('profession_modal_desktop', 'desktop', {
+                                                profession: item.profession,
+                                                professionId: item.id,
+                                            })
+                                        }}
+                                        category={item.category}
                                     />
                                 ))}
                         </div>
