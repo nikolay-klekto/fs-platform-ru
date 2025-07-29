@@ -122,6 +122,18 @@
         @apply font-medium text-4xl 3xl:text-3xl 2xl:text-2xl;
     }
 
+    .text-policy-subheading_desktop {
+        @apply mb-[15px] text32px_desktop font-medium uppercase;
+    }
+
+    .text-policy-paragraph_desktop {
+        @apply mb-[15px] text24px_desktop text-[#B3B3BD];
+    }
+
+    .text-policy-table_desktop {
+        @apply border text20px_desktop py-[16px] px-[10px] 2xl:py-[10px];
+    }
+  
     .text32px_mobi {
         @apply sm_s:text-8xl sm:text-8xl text-[clamp(26px,8vw,32px)] md:text-[clamp(32px,8vw,64px)];
     }
