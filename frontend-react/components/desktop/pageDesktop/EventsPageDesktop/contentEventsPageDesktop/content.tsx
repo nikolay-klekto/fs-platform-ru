@@ -111,10 +111,10 @@ export const content: IContent[] = [
 ]
 
 export const categoryLabelBySlug: Record<string, string> = {
-    fairs: 'Выставки/презентации',
-    open_days: 'Дни открытых дверей',
+    presentations: 'Выставки/презентации',
+    open_doors: 'Дни открытых дверей',
     conferences: 'Конференции',
-    master_classes: 'Мастер‑классы/семинары/тренинги',
+    workshops: 'Мастер‑классы/семинары/тренинги',
     internships: 'Стажировки',
     job_fairs: 'Ярмарки вакансий',
 }
