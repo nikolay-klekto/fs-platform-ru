@@ -47,10 +47,10 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
         const day = numbersOnly.slice(0, 2)
         const month = numbersOnly.slice(2, 4)
         const year = numbersOnly.slice(4, 8)
-        let formatted = day
-        if (month) formatted += `.${month}`
-        if (year) formatted += `.${year}`
-        return formatted
+        let formattedDate = day
+        if (month) formattedDate += `.${month}`
+        if (year) formattedDate += `.${year}`
+        return formattedDate
     }
 
     const isValidDate = (dateStr: string): boolean => {
@@ -67,15 +67,15 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
     }
 
     const handleInputChange = (key: DateKey, value: string) => {
-        const formatted = autoFormatDate(value)
-        setInputValues((prev) => ({ ...prev, [key]: formatted }))
+        const formattedDate = autoFormatDate(value)
+        setInputValues((prev) => ({ ...prev, [key]: formattedDate }))
 
-        if (!formatted) {
+        if (!formattedDate) {
             onChange((prev) => ({ ...prev, [key]: null }))
         }
 
-        if (isValidDate(formatted)) {
-            const parsedDate = parseDate(formatted)
+        if (isValidDate(formattedDate)) {
+            const parsedDate = parseDate(formattedDate)
             onChange((prev) => ({ ...prev, [key]: parsedDate }))
         }
     }
