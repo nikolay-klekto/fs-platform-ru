@@ -12,12 +12,12 @@ interface ISelectItem {
     onClick: () => void
 }
 
-interface IEventsSelectSearchDesktop {
+interface IEventsSelectSearch {
     selectedOptions: string[]
     onChange: (newSelected: string[]) => void
 }
 
-const EventsSelectSearchDesktop: React.FC<IEventsSelectSearchDesktop> = ({ selectedOptions, onChange }) => {
+const EventsSelectSearchDesktop: React.FC<IEventsSelectSearch> = ({ selectedOptions, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
 
