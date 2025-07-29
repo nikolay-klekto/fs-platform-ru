@@ -37,6 +37,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
     const [error, setError] = useState<string | null>(null)
+    const [isFocused, setIsFocused] = useState<boolean>(false)
 
     const setCaretToPosition = (pos: number) => {
         if (inputRef.current) {
@@ -106,9 +107,11 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     const handleBlur = () => {
         validateValue(inputValue)
         onBlur?.(inputValue)
+        setIsFocused(false)
     }
 
     const handleFocus = () => {
+        setIsFocused(true)
         if (inputValue === PHONE_MASK) {
             setCaretToPosition(digitPositions[0])
         } else {
@@ -145,8 +148,8 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                 onKeyDown={handleKeyDown}
                 onClick={handleClick}
                 onBlur={handleBlur}
-                placeholder={PHONE_MASK}
-                className={`input-form-desktop-custom w-full font-medium placeholder:text-[#353652] ${error ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                placeholder={isFocused ? PHONE_MASK : 'Номер телефона*'}
+                className={`input-form-desktop-custom placeholder:text-muted-foreground w-full font-medium ${isFocused && 'placeholder:text-[#FFFFFF]'} ${error ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
         </div>
     )
