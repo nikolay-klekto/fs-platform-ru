@@ -23,6 +23,8 @@ interface IFormData {
     message: string
 }
 
+type FieldName = 'name' | 'email' | 'tel' | 'message'
+
 const ContactsDesktop: React.FC = () => {
     const { openModal } = useModal()
 
@@ -50,6 +52,9 @@ const ContactsDesktop: React.FC = () => {
     })
 
     const [formError, setFormError] = React.useState('')
+
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(false)
+
     const { toast } = useToast()
 
     const [touchedFields, setTouchedFields] = useState({
@@ -93,28 +98,36 @@ const ContactsDesktop: React.FC = () => {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     useEffect(() => {
-        const hasEmptyOrErrorField =
-            ((isSubmitted || touchedFields.name) && (formData.name.trim() === '' || fieldErrors.name)) ||
-            ((isSubmitted || touchedFields.email) && (formData.email.trim() === '' || fieldErrors.email)) ||
-            ((isSubmitted || touchedFields.tel) &&
-                (formData.tel.trim() === '' || formData.tel === phoneMask || fieldErrors.tel)) ||
-            ((isSubmitted || touchedFields.message) && (formData.message.trim() === '' || fieldErrors.message))
+        const showError = (field: FieldName) => (isSubmitted || touchedFields[field]) && fieldErrors[field]
 
-        if (hasEmptyOrErrorField) {
+        const isEmpty = (field: FieldName, value: string) =>
+            (isSubmitted || touchedFields[field]) && value.trim() === ''
+
+        const telEmpty =
+            (isSubmitted || touchedFields.tel) && (formData.tel.trim() === '' || formData.tel === phoneMask)
+
+        if (showError('name')) {
+            setFormError('Введите корректное имя')
+        } else if (showError('email')) {
+            setFormError('Введите корректный адрес электронной почты')
+        } else if (showError('tel')) {
+            setFormError('Введите корректный номер телефона')
+        } else if (showError('message')) {
+            setFormError('Введите текст, содержащий буквы')
+        } else if (
+            isEmpty('name', formData.name) ||
+            isEmpty('email', formData.email) ||
+            telEmpty ||
+            isEmpty('message', formData.message)
+        ) {
             setFormError('*Заполните обязательные поля')
         } else {
             setFormError('')
+            setIsSubmitDisabled(false)
+            return
         }
-    }, [formData, fieldErrors, touchedFields, isSubmitted])
-
-    const hasTouchedEmptyOrErrorField =
-        ((isSubmitted || touchedFields.name) && (formData.name.trim() === '' || fieldErrors.name)) ||
-        ((isSubmitted || touchedFields.email) && (formData.email.trim() === '' || fieldErrors.email)) ||
-        ((isSubmitted || touchedFields.tel) &&
-            (formData.tel.trim() === '' || formData.tel === phoneMask || fieldErrors.tel)) ||
-        ((isSubmitted || touchedFields.message) && (formData.message.trim() === '' || fieldErrors.message))
-
-    const isSubmitDisabled = hasTouchedEmptyOrErrorField
+        setIsSubmitDisabled(true)
+    }, [formData, fieldErrors, touchedFields, isSubmitted, phoneMask])
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -341,7 +354,7 @@ const ContactsDesktop: React.FC = () => {
                                 wrapperClassName={'mb-[13.88px]'}
                             />
                             <div className="flex h-[130px] flex-col justify-between">
-                                {(formError || hasTouchedEmptyOrErrorField) && (
+                                {formError && (
                                     <p className={cn('text-5xl', 'error-form-desktop-custom')}>{formError}</p>
                                 )}
                                 <div className="mt-auto flex items-center justify-between 2xl:justify-start 2xl:gap-10">
