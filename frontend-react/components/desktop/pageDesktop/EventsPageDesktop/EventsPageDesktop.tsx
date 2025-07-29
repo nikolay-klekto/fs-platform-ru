@@ -39,8 +39,8 @@ const EventsPageDesktop: React.FC = () => {
                 selectedCategories.length === 0
                     ? true
                     : selectedCategories.some(
-                        (slug) => categoryLabelBySlug[slug].toLowerCase() === item.category.toLowerCase(),
-                    ),
+                          (slug) => categoryLabelBySlug[slug].toLowerCase() === item.category.toLowerCase(),
+                      ),
             )
             .filter((item) => {
                 const date = parseDate(item.date)
@@ -62,15 +62,17 @@ const EventsPageDesktop: React.FC = () => {
 
     const handlePageChange = (page: number) => setCurrentPage(page)
 
+    const isShortRow = pagedEvents.length < 3
+
     return (
         <>
             <HeaderDesktop />
 
             <main className="bg-[#101030] text-white">
-                <div className="container mx-auto relative min-h-screen overflow-hidden p-[76px_213px_88px_213px]">
-                    <h1 className="title80px_desktop relative z-[1]">Мероприятия</h1>
+                <div className="container mx-auto max-w-[1920px] relative min-h-screen overflow-hidden p-[76px_213px_88px_213px]">
+                    <h1 className="title80px_desktop z-[1]">Мероприятия</h1>
 
-                    <div className="relative z-[1] flex items-center justify-end gap-[30px] pt-[116px]">
+                    <div className="z-[1] flex items-center justify-end gap-[30px] pt-[116px]">
                         <EventsSelectSearchDesktop
                             selectedOptions={selectedCategories}
                             onChange={setSelectedCategories}
@@ -90,7 +92,7 @@ const EventsPageDesktop: React.FC = () => {
                         cityLabelBySlug={cityLabelBySlug}
                     />
 
-                    <div className={`flex flex-col items-stretch w-full ${isEmpty ? 'gap-[17px]' : 'gap-[73px]'}`}>
+                    <div className={`flex flex-col w-full ${isEmpty ? 'gap-[17px]' : 'gap-[73px]'}`}>
                         {isEmpty ? (
                             <div className="flex flex-col items-center justify-items-center justify-center pt-[113px] text-center">
                                 <p className="text-7xl font-medium leading-10 text-[#353652]">
@@ -99,13 +101,13 @@ const EventsPageDesktop: React.FC = () => {
                             </div>
                         ) : (
                             <div
-                                className="w-full grid justify-center justify-items-center gap-x-[36px] gap-y-[40px]"
-                                style={{
-                                    gridTemplateColumns: 'repeat(auto-fit, minmax(474px, 474px))',
-                                }}
+                                className={`grid gap-y-[40px] gap-x-[36px] w-full
+                            ${isShortRow ? 'justify-center grid-cols-[auto_auto]' : 'justify-between grid-cols-3'}
+                            2xl:grid-cols-[auto_auto] 2xl:justify-center 
+                            3xl:grid-cols-[auto_auto] 3xl:justify-center`}
                             >
                                 {pagedEvents.map((item) => (
-                                    <div key={item.id}>
+                                    <div key={item.id} className="max-w-[474px] w-full">
                                         <EventsCardDesktop {...item} />
                                     </div>
                                 ))}
