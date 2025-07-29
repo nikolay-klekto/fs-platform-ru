@@ -10,7 +10,7 @@ export const contentProfessionAboutDesktop: IProfessionAbout[] = [
     },
 ]
 
-interface IInternshipCompanies {
+interface ICompanies {
     id: number
     image: {
         src: string
@@ -21,7 +21,7 @@ interface IInternshipCompanies {
     price: number
 }
 
-export const contentInternshipCompaniesDesktop: IInternshipCompanies[] = [
+export const contentInternshipCompaniesDesktop: ICompanies[] = [
     {
         id: 1,
         image: {
