@@ -23,14 +23,14 @@ const EventsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [filteredContent, setFilteredContent] = useState<IContent[]>(content)
 
-    const [dates, onChange] = useState<{ from: Date | null; to: Date | null }>({ from: null, to: null })
+    const [selectedDates, setSelectedDates] = useState<{ from: Date | null; to: Date | null }>({ from: null, to: null })
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [selectedCity, setSelectedCity] = useState<string | null>(null)
 
     const resetFilters = () => {
         setSelectedCategories([])
         setSelectedCity(null)
-        onChange({ from: null, to: null })
+        setSelectedDates({ from: null, to: null })
     }
 
     useEffect(() => {
@@ -44,8 +44,8 @@ const EventsPageDesktop: React.FC = () => {
             )
             .filter((item) => {
                 const date = parseDate(item.date)
-                if (dates.from && date < dates.from) return false
-                if (dates.to && date > dates.to) return false
+                if (selectedDates.from && date < selectedDates.from) return false
+                if (selectedDates.to && date > selectedDates.to) return false
                 return true
             })
             .filter((item) =>
@@ -54,7 +54,7 @@ const EventsPageDesktop: React.FC = () => {
 
         setFilteredContent(filteredEvents)
         setCurrentPage(1)
-    }, [dates, selectedCategories, selectedCity])
+    }, [selectedDates, selectedCategories, selectedCity])
 
     const isEmpty = filteredContent.length === 0
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
@@ -75,15 +75,15 @@ const EventsPageDesktop: React.FC = () => {
                             selectedOptions={selectedCategories}
                             onChange={setSelectedCategories}
                         />
-                        <EventsSelectSearchDateDesktop dates={dates} onChange={onChange} />
+                        <EventsSelectSearchDateDesktop dates={selectedDates} onChange={setSelectedDates} />
                         <EventsSelectSearchCityDesktop selectedCity={selectedCity} onChangeCity={setSelectedCity} />
                     </div>
 
                     <EventsSelectedFiltersDesktop
                         selectedCategories={selectedCategories}
                         onChangeSelectedCategories={setSelectedCategories}
-                        selectedDates={dates}
-                        onChangeSelectedDates={onChange}
+                        selectedDates={selectedDates}
+                        onChangeSelectedDates={setSelectedDates}
                         selectedCity={selectedCity}
                         onChangeSelectedCity={setSelectedCity}
                         categoryLabelBySlug={categoryLabelBySlug}
@@ -112,7 +112,7 @@ const EventsPageDesktop: React.FC = () => {
                             </div>
                         )}
 
-                        {(selectedCategories.length > 0 || selectedCity || dates.from || dates.to) && (
+                        {(selectedCategories.length > 0 || selectedCity || selectedDates.from || selectedDates.to) && (
                             <div className="flex justify-center w-full mt-4">
                                 <Button
                                     variant="select_btn_desktop"
