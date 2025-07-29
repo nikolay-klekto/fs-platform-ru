@@ -24,9 +24,9 @@ const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
     categoryLabelBySlug,
     cityLabelBySlug,
 }) => {
-    const hasAny = selectedCategories.length > 0 || (selectedDates.from !== null && selectedDates.to !== null) || selectedCity !== null
+    const hasActiveFilters = selectedCategories.length > 0 || (selectedDates.from !== null && selectedDates.to !== null) || selectedCity !== null
 
-    if (!hasAny) return <div className="mt-[39px]" />
+    if (!hasActiveFilters) return <div className="mt-[39px]" />
 
     return (
         <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mt-[39px] mb-[30px]">
