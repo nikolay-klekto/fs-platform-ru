@@ -16,6 +16,8 @@ interface IEventsSelectSearchDate {
 
 type DateKey = 'from' | 'to'
 
+const ONE_DAY_MS = 86_399_999
+
 const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ dates, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [openCalendars, setOpenCalendars] = useState<{ from: boolean; to: boolean }>({
@@ -116,7 +118,6 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
 
     const handleDatePreset = (type: string) => {
         const now = new Date()
-        const ONE_DAY_MS = 86_399_999
         let fromDate: Date | undefined
         let toDate: Date | undefined
 
