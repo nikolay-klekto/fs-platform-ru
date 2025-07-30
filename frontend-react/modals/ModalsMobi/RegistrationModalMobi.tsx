@@ -184,14 +184,14 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
             size="medium"
             showCloseButton={false}
             isMobile={isMobile}
-        // className={"bg-[url('/background/Subtract_modalCall_Register2.png')] bg-[center] bg-no-repeat"}
+            className={"bg-[url('/background/Subtract_modalCall_Register2.png')] bg-[center] bg-no-repeat"}
         >
-            <div className="relative flex max-w-[500px] flex-col items-center bg-[url('/background/Subtract_modalCall_Register2.png')] bg-[center] bg-no-repeat">
+            <div className="relative flex w-[360px] h-[640px] flex-col items-center">
                 <button
                     onClick={onClose}
                     className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                 >
-                    <X size={44} color="#878797" />
+                    <X size={34} color="#878797" />
                 </button>
                 {/* <div className="relative flex max-w-[500px] flex-col items-center rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat"> */}
                 <h2 className="text18px_mobi bg-sub-title-gradient-mobi mx-auto mb-1 mt-6 inline bg-clip-text font-semibold uppercase text-transparent">

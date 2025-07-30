@@ -117,7 +117,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
             isMobile={isMobile}
             className={"bg-[url('/background/Subtract_modalCall_Login.png')] bg-[center] bg-no-repeat"}
         >
-            <div className="relative flex w-[360px] h-[410px] flex-col items-center ">
+            <div className="relative flex w-[350px] h-[410px] flex-col items-center ">
                 <button
                     onClick={onClose}
                     className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
