@@ -1,6 +1,7 @@
 import { ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { X } from 'lucide-react'
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface IModal {
     children: ReactNode
@@ -9,6 +10,7 @@ interface IModal {
     showCloseButton?: boolean
     paddingClass?: string
     className?: string
+    isMobile?: boolean
 }
 const Modal: React.FC<IModal> = ({
     children,
@@ -18,6 +20,7 @@ const Modal: React.FC<IModal> = ({
     paddingClass = '',
     className,
 }) => {
+    const isMobile = useIsMobile();
     useEffect(() => {
         const originalOverflow = document.body.style.overflow
         document.body.style.overflow = 'hidden'
@@ -60,13 +63,13 @@ const Modal: React.FC<IModal> = ({
             }}
         >
             <div
-                className={`relative w-full rounded-[50px] bg-[#101030] ${getSizeClass()} modal-scrollable text-white`}
+                className={`${isMobile ? '' : `relative w-full rounded-[50px] bg-[#101030]`} ${getSizeClass()} modal-scrollable text-white`}
                 role="none"
                 onClick={(e) => e.stopPropagation()}
             >
                 {showCloseButton && (
-                    <button className="absolute right-[-53px] top-0" onClick={onClose}>
-                        <X size={53} color="#878797" />
+                    <button className="`absolute ${isMobile ? '' : 'right-[-53px] top-0'} ${closeButtonClassName}`" onClick={onClose}>
+                        <X size={isMobile ? 24 : 53} color="#878797" />
                     </button>
                 )}
                 {children}
