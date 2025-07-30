@@ -69,10 +69,10 @@ const EventsPageDesktop: React.FC = () => {
             <HeaderDesktop />
 
             <main className="bg-[#101030] text-white">
-                <div className="container mx-auto max-w-[1920px] relative min-h-screen overflow-hidden p-[76px_213px_88px_213px]">
-                    <h1 className="title80px_desktop z-[1]">Мероприятия</h1>
+                <div className="3xl:p-[76px_130px_150px_130px] container relative min-h-screen overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px]">
+                    <h1 className="title80px_desktop relative z-[1]">Мероприятия</h1>
 
-                    <div className="z-[1] flex items-center justify-end gap-[30px] pt-[116px]">
+                    <div className="relative z-[1] flex items-center justify-end gap-[30px] pb-[30px] pt-[116px]">
                         <EventsSelectSearchDesktop
                             selectedOptions={selectedCategories}
                             onChange={setSelectedCategories}
@@ -100,16 +100,9 @@ const EventsPageDesktop: React.FC = () => {
                                 </p>
                             </div>
                         ) : (
-                            <div
-                                className={`grid gap-y-[40px] gap-x-[36px] w-full
-                            ${isShortRow ? 'justify-center grid-cols-[auto_auto]' : 'justify-between grid-cols-3'}
-                            2xl:grid-cols-[auto_auto] 2xl:justify-center 
-                            3xl:grid-cols-[auto_auto] 3xl:justify-center`}
-                            >
+                            <div className="3xl:gap-[25px] 4xl:gap-[30px] flex min-h-[40vh] flex-wrap justify-center gap-[36px] 2xl:gap-[20px]">
                                 {pagedEvents.map((item) => (
-                                    <div key={item.id} className="max-w-[474px] w-full">
-                                        <EventsCardDesktop {...item} />
-                                    </div>
+                                    <EventsCardDesktop key={item.id} {...item} />
                                 ))}
                             </div>
                         )}
