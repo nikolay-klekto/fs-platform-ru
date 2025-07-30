@@ -67,7 +67,6 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
                 >
                     <X size={30} color="#878797" className="opacity-50 hover:opacity-100" />
                 </button>
-                {/* <div className="  rounded-[35px] bg-[url('/background/Subtract_modalCaForgotPass_png.png')] bg-cover bg-[right_top] bg-no-repeat "> */}
                 <p className="mb-5 bg-sub-title-gradient-mobi bg-clip-text text-center text-4xl font-semibold text-transparent md:text-4xl">
                     ЗАБЫЛИ ПАРОЛЬ?
                 </p>
@@ -108,7 +107,6 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
                     Далее
                 </button>
             </div>
-            {/* </div> */}
         </Modal>
     )
 }
