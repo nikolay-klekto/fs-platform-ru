@@ -54,6 +54,35 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
         }
     }
 
+    const handleEmailBlur = (): void => {
+        let hasErrors = false
+
+        if (!formData.email) {
+            setFormErrors((prev) => ({
+                ...prev,
+                email: 'Заполните поля',
+            }))
+
+            hasErrors = true
+        } else {
+            const emailValidation = validateEmailDesktop(formData.email)
+            if (!emailValidation.status) {
+                console.log(emailValidation.textError)
+                setFormErrors((prev) => ({
+                    ...prev,
+                    email: emailValidation.textError,
+                }))
+
+                hasErrors = true
+            }
+        }
+
+        if (hasErrors) {
+            setButtonDisabled(true)
+            return
+        }
+    }
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
@@ -96,6 +125,7 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
 
         toast({
             description: 'Спасибо! Ваша заявка была успешно отправлена',
+            duration: 4000,
         })
     }
 
@@ -128,6 +158,7 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                             value={formData.email}
                             validate={validateEmailDesktop}
                             onChange={(value) => handleChange('email', value)}
+                            onBlur={handleEmailBlur}
                             variant="gradient_desktop"
                             error={formErrors.email ?? undefined}
                             labelClassName="text-white text-[15px] font-medium ml-[6px] mt-[18px] "

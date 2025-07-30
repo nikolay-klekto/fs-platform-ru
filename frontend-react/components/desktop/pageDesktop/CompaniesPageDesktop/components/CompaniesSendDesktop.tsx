@@ -45,7 +45,7 @@ const CompaniesSendDesktop: React.FC = () => {
                 <Button
                     variant={'send_btn_desktop'}
                     size={'send_btn_desktop'}
-                    className="3xl:text-4xl 2xl:text-3xl"
+                    className="3xl:text-4xl border-4 2xl:text-3xl"
                     onClick={handleClick}
                 >
                     Отправить

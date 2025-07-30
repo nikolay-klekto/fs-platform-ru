@@ -118,7 +118,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                 if (validationResult) {
                     const { status, styleError } = validationResult
                     if (!status) {
-                        if (!styleError) {
+                        if (styleError) {
                             setStyleErrorClass(true)
                         }
                     } else {
