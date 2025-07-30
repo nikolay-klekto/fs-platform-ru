@@ -62,8 +62,6 @@ const EventsPageDesktop: React.FC = () => {
 
     const handlePageChange = (page: number) => setCurrentPage(page)
 
-    const isShortRow = pagedEvents.length < 3
-
     return (
         <>
             <HeaderDesktop />
