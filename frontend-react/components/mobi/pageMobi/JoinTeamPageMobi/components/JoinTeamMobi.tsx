@@ -226,6 +226,7 @@ const JoinTeamMobi: React.FC = () => {
                         label="Я согласен(а) на обработку персональных данных"
                         labelClassName={`text-[11px] font-medium ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                         checkboxIconSize="w-[14px]"
+                        hasError={errors.consent}
                     />
                 </div>
                 {errors.consent ? (
