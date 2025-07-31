@@ -106,7 +106,7 @@ const EventsPageDesktop: React.FC = () => {
                         )}
 
                         {(selectedCategories.length > 0 || selectedCity || selectedDates.from || selectedDates.to) && (
-                            <div className="flex justify-center w-full mt-4">
+                            <div className="flex justify-center w-full">
                                 <Button
                                     variant="select_btn_desktop"
                                     size="select_btn_desktop_events"
