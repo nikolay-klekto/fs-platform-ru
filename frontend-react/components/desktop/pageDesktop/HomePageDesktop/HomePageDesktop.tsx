@@ -10,7 +10,6 @@ import ProfessionsSectionDesktop from './components/ProfessionSectionDesktop/Pro
 import HowWeWorkDesktop from './components/HowWeWorkDesktop/HowWeWorkDesktop'
 import PromoDesktop from './components/PromoDesktop/PromoDesktop'
 import EventsSectionDesktop from './components/EventsSectionDesktop/EventsSectionDesktop'
-import ModalCookieDesktop from '@/modals/ModalsDesktop/ModalCookieDesktop'
 
 const HomePageDesktop: React.FC = () => {
     const { openModal } = useModal()
@@ -42,7 +41,6 @@ const HomePageDesktop: React.FC = () => {
                     <EventsSectionDesktop />
                 </main>
             </div>
-            <ModalCookieDesktop />
             <FooterDesktop />
         </>
     )

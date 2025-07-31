@@ -9,22 +9,12 @@ interface IModalCookieDesktop {
     onClose: () => void
 }
 
-type CookieConsent = 'accepted' | 'rejected' | 'postponed' | null
-
 export default function ModalCookieDesktop({ onClose }: IModalCookieDesktop) {
     const [open, setOpen] = useState(true)
-    const [cookieConsent, setCookieConsent] = useState<CookieConsent>(null)
 
     const handleClose = () => {
         setOpen(false)
         onClose()
-    }
-
-    const handleAccept = () => {
-        setCookieConsent('accepted')
-    }
-    const handleReject = () => {
-        setCookieConsent('rejected')
     }
 
     return (
@@ -42,7 +32,7 @@ export default function ModalCookieDesktop({ onClose }: IModalCookieDesktop) {
                     <div className="mr-4 flex items-center justify-end gap-[50px] space-x-4">
                         <button
                             className="text-[17px] font-medium text-[#878797] underline hover:text-[#FFFFFF]"
-                            onClick={handleReject}
+                            onClick={handleClose}
                         >
                             Отклонить
                         </button>
@@ -51,7 +41,7 @@ export default function ModalCookieDesktop({ onClose }: IModalCookieDesktop) {
                             variant={'send_btn_desktop'}
                             size={'cookie_btn_desktop'}
                             className="text-[17px]"
-                            onClick={handleAccept}
+                            onClick={handleClose}
                         >
                             Облегчить мне задачу
                         </Button>
