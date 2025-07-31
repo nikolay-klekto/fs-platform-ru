@@ -105,17 +105,20 @@ const EventsPageDesktop: React.FC = () => {
                             </div>
                         )}
 
-                        {(selectedCategories.length > 0 || selectedCities.length > 0 || selectedDates.length > 0) && (
-                            <div className="flex justify-center w-full">
-                                <Button
-                                    variant="select_btn_desktop"
-                                    size="select_btn_desktop_events"
-                                    onClick={resetFilters}
-                                >
-                                    Сбросить фильтры
-                                </Button>
-                            </div>
-                        )}
+                        {isEmpty &&
+                            (selectedCategories.length > 0 ||
+                                selectedCities.length > 0 ||
+                                selectedDates.length > 0) && (
+                                <div className="flex justify-center w-full">
+                                    <Button
+                                        variant="select_btn_desktop"
+                                        size="select_btn_desktop_events"
+                                        onClick={resetFilters}
+                                    >
+                                        Сбросить фильтры
+                                    </Button>
+                                </div>
+                            )}
                     </div>
 
                     {totalPages > 1 && (
