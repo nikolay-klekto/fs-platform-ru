@@ -6,19 +6,21 @@ import { ChevronDownIconDesktop, LineDateDesktop, CalendarIconsDesktop } from '@
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 
+interface IDateRange {
+    from: Date
+    to: Date
+}
+
 interface IEventsSelectSearchDate {
-    dates: {
-        from: Date | null
-        to: Date | null
-    }
-    onChange: React.Dispatch<React.SetStateAction<{ from: Date | null; to: Date | null }>>
+    selectedDates: IDateRange[]
+    onChange: (tempDateRange: IDateRange[]) => void
 }
 
 type DateKey = 'from' | 'to'
 
 const ONE_DAY_MS = 86_399_999
 
-const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ dates, onChange }) => {
+const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ selectedDates, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [openCalendars, setOpenCalendars] = useState<{ from: boolean; to: boolean }>({
         from: false,
@@ -29,20 +31,19 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
         to: '',
     })
 
-    useEffect(() => {
-        setInputValues({
-            from: dates.from ? autoFormatDate(dates.from.toLocaleDateString('ru-RU')) : '',
-            to: dates.to ? autoFormatDate(dates.to.toLocaleDateString('ru-RU')) : '',
-        })
-    }, [dates])
+    const [tempDateRange, setTempDateRange] = useState<{ from: Date | null; to: Date | null }>({
+        from: null,
+        to: null,
+    })
+
+    const resetTempDateRange = () => {
+        setTempDateRange({ from: null, to: null })
+        setInputValues({ from: '', to: '' })
+    }
 
     const calendarRef = useRef<HTMLDivElement>(null)
     const fromCalendarRef = useRef<HTMLDivElement>(null)
     const toCalendarRef = useRef<HTMLDivElement>(null)
-
-    const handleSelectToggle = () => {
-        setIsOpen((prev) => !prev)
-    }
 
     const autoFormatDate = (value: string): string => {
         const numbersOnly = value.replace(/\D/g, '')
@@ -68,46 +69,44 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
         return new Date(year, month - 1, day)
     }
 
+    useEffect(() => {
+        setInputValues({
+            from: tempDateRange.from ? autoFormatDate(tempDateRange.from.toLocaleDateString('ru-RU')) : '',
+            to: tempDateRange.to ? autoFormatDate(tempDateRange.to.toLocaleDateString('ru-RU')) : '',
+        })
+    }, [tempDateRange])
+
     const handleInputChange = (key: DateKey, value: string) => {
         const formattedDate = autoFormatDate(value)
         setInputValues((prev) => ({ ...prev, [key]: formattedDate }))
 
         if (!formattedDate) {
-            onChange((prev) => ({ ...prev, [key]: null }))
+            setTempDateRange((prev) => ({ ...prev, [key]: null }))
+            return
         }
 
         if (isValidDate(formattedDate)) {
             const parsedDate = parseDate(formattedDate)
-            onChange((prev) => ({ ...prev, [key]: parsedDate }))
+            setTempDateRange((prev) => {
+                const updated = { ...prev, [key]: parsedDate }
+                if (key === 'to' && updated.from && updated.to) {
+                    onChange([...selectedDates, { from: updated.from, to: updated.to }])
+                    setTimeout(resetTempDateRange, 0)
+                }
+                return updated
+            })
         }
-    }
-
-    const handleClickOutside = (event: MouseEvent) => {
-        const outsideWrapper = calendarRef.current && !calendarRef.current.contains(event.target as Node)
-        const outsideFrom = fromCalendarRef.current && !fromCalendarRef.current.contains(event.target as Node)
-        const outsideTo = toCalendarRef.current && !toCalendarRef.current.contains(event.target as Node)
-
-        if (outsideWrapper) setIsOpen(false)
-        if (outsideFrom && outsideTo) setOpenCalendars({ from: false, to: false })
-    }
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [])
-
-    const toggleCalendar = (calendar: DateKey) => {
-        setOpenCalendars((prev) => ({
-            from: false,
-            to: false,
-            [calendar]: !prev[calendar],
-        }))
     }
 
     const handleDateChange = (key: DateKey, newDate?: Date) => {
-        onChange((prev) => ({ ...prev, [key]: newDate ?? null }))
+        setTempDateRange((prev) => {
+            const updated = { ...prev, [key]: newDate ?? null }
+            if (key === 'to' && updated.from && updated.to) {
+                onChange([...selectedDates, { from: updated.from, to: updated.to }])
+                setTimeout(resetTempDateRange, 0)
+            }
+            return updated
+        })
         setInputValues((prev) => ({
             ...prev,
             [key]: newDate ? autoFormatDate(newDate.toLocaleDateString('ru-RU')) : '',
@@ -148,12 +147,35 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
                 break
         }
 
-        onChange({ from: fromDate ?? null, to: toDate ?? null })
-        setInputValues({
-            from: fromDate ? autoFormatDate(fromDate.toLocaleDateString('ru-RU')) : '',
-            to: toDate ? autoFormatDate(toDate.toLocaleDateString('ru-RU')) : '',
-        })
+        if (fromDate && toDate) {
+            onChange([...selectedDates, { from: fromDate, to: toDate }])
+        }
+        resetTempDateRange()
         setOpenCalendars({ from: false, to: false })
+    }
+
+    const handleClickOutside = (event: MouseEvent) => {
+        const outsideWrapper = calendarRef.current && !calendarRef.current.contains(event.target as Node)
+        const outsideFrom = fromCalendarRef.current && !fromCalendarRef.current.contains(event.target as Node)
+        const outsideTo = toCalendarRef.current && !toCalendarRef.current.contains(event.target as Node)
+
+        if (outsideWrapper) setIsOpen(false)
+        if (outsideFrom && outsideTo) setOpenCalendars({ from: false, to: false })
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
+
+    const toggleCalendar = (calendar: DateKey) => {
+        setOpenCalendars((prev) => ({
+            from: false,
+            to: false,
+            [calendar]: !prev[calendar],
+        }))
     }
 
     return (
@@ -161,7 +183,7 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
             <Button
                 variant={'select_btn_desktop'}
                 size={'select_btn_desktop_date'}
-                onClick={handleSelectToggle}
+                onClick={() => setIsOpen((opened) => !opened)}
                 className={`${isOpen ? 'is-open' : 'bg-[#101030]'}`}
             >
                 Дата
@@ -180,7 +202,7 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
                                 <p>От</p>
                                 <div
                                     className="desktop 3xl:w-[120px] flex h-[50px] w-[178px] items-center justify-center gap-1 rounded-[42px] border-2 border-[#878797] 2xl:w-[110px]"
-                                    onClick={() => toggleCalendar('from')}
+                                    onClick={() => setOpenCalendars({ from: !openCalendars.from, to: false })}
                                     role="button"
                                     tabIndex={0}
                                     onKeyDown={(e) => {
@@ -202,7 +224,7 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
                                     <div className="absolute left-0 top-full z-20 mt-2">
                                         <Calendar
                                             mode="single"
-                                            selected={dates.from || undefined}
+                                            selected={tempDateRange.from || undefined}
                                             onSelect={(date) => handleDateChange('from', date)}
                                             className="size-full rounded-[50px] border-[#878797] bg-[#353652] shadow-lg"
                                         />
@@ -238,7 +260,7 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ date
                                     <div className="absolute right-0 top-full z-20 mt-2">
                                         <Calendar
                                             mode="single"
-                                            selected={dates.to ?? undefined}
+                                            selected={tempDateRange.to ?? undefined}
                                             onSelect={(date) => handleDateChange('to', date)}
                                             className="size-full rounded-[50px] border-[#878797] bg-[#353652] shadow-lg"
                                         />

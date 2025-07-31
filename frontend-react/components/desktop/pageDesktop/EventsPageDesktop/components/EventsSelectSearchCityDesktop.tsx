@@ -6,11 +6,11 @@ import { Button } from '@/components/ui/button'
 import { cityOptions } from '../contentEventsPageDesktop/content'
 
 interface IEventsSelectSearchCity {
-    selectedCity: string | null
-    onChangeCity: (city: string | null) => void
+    selectedCities: string[]
+    onChange: (city: string[]) => void
 }
 
-const EventsSelectSearchCityDesktop: React.FC<IEventsSelectSearchCity> = ({ selectedCity, onChangeCity }) => {
+const EventsSelectSearchCityDesktop: React.FC<IEventsSelectSearchCity> = ({ selectedCities, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
     const ref = useRef<HTMLDivElement>(null)
@@ -25,7 +25,18 @@ const EventsSelectSearchCityDesktop: React.FC<IEventsSelectSearchCity> = ({ sele
         return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [])
 
-    const filtered = cityOptions.filter((o) => o.label.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredCities = cityOptions.filter((cityOption) =>
+        cityOption.label.toLowerCase().includes(searchTerm.toLowerCase()),
+    )
+
+    const handleCitySelect = (cityValue: string) => {
+        const isAlreadySelected = selectedCities.includes(cityValue)
+        const nextSelected = isAlreadySelected
+            ? selectedCities.filter((selectedCity) => selectedCity !== cityValue)
+            : [...selectedCities, cityValue]
+        onChange(nextSelected)
+        setIsOpen(false)
+    }
 
     return (
         <div className="relative z-[3]" ref={ref}>
@@ -44,9 +55,7 @@ const EventsSelectSearchCityDesktop: React.FC<IEventsSelectSearchCity> = ({ sele
             </Button>
 
             {isOpen && (
-                <div
-                    className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[400px] rounded-[42px] p-[2px] 2xl:w-[270px] bg-gradient-desktop"
-                >
+                <div className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[400px] rounded-[42px] p-[2px] 2xl:w-[270px] bg-gradient-desktop">
                     <div className="flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
                         <div className="border-white-300 flex items-center rounded-[50px] border px-3">
                             <input
@@ -58,29 +67,25 @@ const EventsSelectSearchCityDesktop: React.FC<IEventsSelectSearchCity> = ({ sele
                             />
                             <SearchIconDesktop className="mr-2 size-4 shrink-0 opacity-50" />
                         </div>
-                        {filtered.map((opt) => (
+                        {filteredCities.map((cityOption) => (
                             <div
-                                key={opt.value}
-                                onClick={() => {
-                                    onChangeCity(opt.value)
-                                    setIsOpen(false)
-                                }}
+                                key={cityOption.value}
+                                onClick={() => handleCitySelect(cityOption.value)}
                                 role="menuitem"
                                 tabIndex={0}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter' || e.key === ' ') {
                                         e.preventDefault()
-                                        onChangeCity(opt.value)
-                                        setIsOpen(false)
+                                        handleCitySelect(cityOption.value)
                                     }
                                 }}
                                 className={`hover:border-hover text-[18px] font-medium relative z-[3] flex cursor-pointer items-center justify-between p-[15px] text-white ${
-                                    selectedCity === opt.value
+                                    selectedCities.includes(cityOption.value)
                                         ? 'border-selected border-y-2 bg-[#28295B]'
                                         : 'bg-transparent'
                                 }`}
                             >
-                                <div className="pl-[14px]">{opt.label}</div>
+                                <div className="pl-[14px]">{cityOption.label}</div>
                             </div>
                         ))}
                     </div>

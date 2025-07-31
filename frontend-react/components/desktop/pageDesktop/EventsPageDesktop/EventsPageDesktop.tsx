@@ -23,14 +23,14 @@ const EventsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [filteredContent, setFilteredContent] = useState<IContent[]>(content)
 
-    const [selectedDates, setSelectedDates] = useState<{ from: Date | null; to: Date | null }>({ from: null, to: null })
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-    const [selectedCity, setSelectedCity] = useState<string | null>(null)
+    const [selectedDates, setSelectedDates] = useState<Array<{ from: Date; to: Date }>>([])
+    const [selectedCities, setSelectedCities] = useState<string[]>([])
 
     const resetFilters = () => {
         setSelectedCategories([])
-        setSelectedCity(null)
-        setSelectedDates({ from: null, to: null })
+        setSelectedCities([])
+        setSelectedDates([])
     }
 
     useEffect(() => {
@@ -39,22 +39,24 @@ const EventsPageDesktop: React.FC = () => {
                 selectedCategories.length === 0
                     ? true
                     : selectedCategories.some(
-                          (slug) => categoryLabelBySlug[slug].toLowerCase() === item.category.toLowerCase(),
-                      ),
+                        (slug) => categoryLabelBySlug[slug].toLowerCase() === item.category.toLowerCase(),
+                    ),
             )
             .filter((item) => {
                 const date = parseDate(item.date)
-                if (selectedDates.from && date < selectedDates.from) return false
-                if (selectedDates.to && date > selectedDates.to) return false
-                return true
+                return selectedDates.length === 0 || selectedDates.some(({ from, to }) => date >= from && date <= to)
             })
             .filter((item) =>
-                !selectedCity ? true : cityLabelBySlug[selectedCity].toLowerCase() === item.city.toLowerCase(),
+                selectedCities.length === 0
+                    ? true
+                    : selectedCities
+                        .map((slug) => cityLabelBySlug[slug].toLowerCase())
+                        .includes(item.city.toLowerCase()),
             )
 
         setFilteredContent(filteredEvents)
         setCurrentPage(1)
-    }, [selectedDates, selectedCategories, selectedCity])
+    }, [selectedDates, selectedCategories, selectedCities])
 
     const isEmpty = filteredContent.length === 0
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
@@ -71,12 +73,9 @@ const EventsPageDesktop: React.FC = () => {
                     <h1 className="title80px_desktop relative z-[1]">Мероприятия</h1>
 
                     <div className="relative z-[1] flex items-center justify-end gap-[30px] pb-[30px] pt-[116px]">
-                        <EventsSelectSearchDesktop
-                            selectedOptions={selectedCategories}
-                            onChange={setSelectedCategories}
-                        />
-                        <EventsSelectSearchDateDesktop dates={selectedDates} onChange={setSelectedDates} />
-                        <EventsSelectSearchCityDesktop selectedCity={selectedCity} onChangeCity={setSelectedCity} />
+                        <EventsSelectSearchDesktop selectedOptions={selectedCategories} onChange={setSelectedCategories} />
+                        <EventsSelectSearchDateDesktop selectedDates={selectedDates} onChange={setSelectedDates} />
+                        <EventsSelectSearchCityDesktop selectedCities={selectedCities} onChange={setSelectedCities} />
                     </div>
 
                     <EventsSelectedFiltersDesktop
@@ -84,15 +83,15 @@ const EventsPageDesktop: React.FC = () => {
                         onChangeSelectedCategories={setSelectedCategories}
                         selectedDates={selectedDates}
                         onChangeSelectedDates={setSelectedDates}
-                        selectedCity={selectedCity}
-                        onChangeSelectedCity={setSelectedCity}
+                        selectedCities={selectedCities}
+                        onChangeSelectedCities={setSelectedCities}
                         categoryLabelBySlug={categoryLabelBySlug}
                         cityLabelBySlug={cityLabelBySlug}
                     />
 
                     <div className={`flex flex-col w-full ${isEmpty ? 'gap-[17px]' : 'gap-[73px]'}`}>
                         {isEmpty ? (
-                            <div className="flex flex-col items-center justify-items-center justify-center pt-[113px] text-center">
+                            <div className="flex flex-col items-center justify-center pt-[113px] text-center">
                                 <p className="text-7xl font-medium leading-10 text-[#353652]">
                                     Нет мероприятий по данным категориям
                                 </p>
@@ -105,7 +104,7 @@ const EventsPageDesktop: React.FC = () => {
                             </div>
                         )}
 
-                        {(selectedCategories.length > 0 || selectedCity || selectedDates.from || selectedDates.to) && (
+                        {(selectedCategories.length > 0 || selectedCities.length > 0 || selectedDates.length > 0) && (
                             <div className="flex justify-center w-full">
                                 <Button
                                     variant="select_btn_desktop"

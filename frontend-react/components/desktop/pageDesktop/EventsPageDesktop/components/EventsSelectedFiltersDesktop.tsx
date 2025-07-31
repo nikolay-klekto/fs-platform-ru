@@ -6,10 +6,10 @@ import EventsFilterChipDesktop from './EventsFilterChipDesktop'
 interface IEventsSelectedFilters {
     selectedCategories: string[]
     onChangeSelectedCategories: (categories: string[]) => void
-    selectedDates: { from: Date | null; to: Date | null }
-    onChangeSelectedDates: (dates: { from: Date | null; to: Date | null }) => void
-    selectedCity: string | null
-    onChangeSelectedCity: (city: string | null) => void
+    selectedDates: Array<{ from: Date; to: Date }>
+    onChangeSelectedDates: (dates: Array<{ from: Date; to: Date }>) => void
+    selectedCities: string[]
+    onChangeSelectedCities: (city: string[]) => void
     categoryLabelBySlug: Record<string, string>
     cityLabelBySlug: Record<string, string>
 }
@@ -19,12 +19,12 @@ const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
     onChangeSelectedCategories,
     selectedDates,
     onChangeSelectedDates,
-    selectedCity,
-    onChangeSelectedCity,
+    selectedCities,
+    onChangeSelectedCities,
     categoryLabelBySlug,
     cityLabelBySlug,
 }) => {
-    const hasActiveFilters = selectedCategories.length > 0 || (selectedDates.from !== null && selectedDates.to !== null) || selectedCity !== null
+    const hasActiveFilters = selectedCategories.length > 0 || selectedDates.length > 0 || selectedCities.length > 0
 
     if (!hasActiveFilters) return <div className="mt-[39px]" />
 
@@ -40,16 +40,21 @@ const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
                 />
             ))}
 
-            {selectedDates.from && selectedDates.to && (
+            {selectedDates.map((range) => (
                 <EventsFilterChipDesktop
-                    label={`${selectedDates.from.toLocaleDateString('ru-RU')} — ${selectedDates.to.toLocaleDateString('ru-RU')}`}
-                    onRemove={() => onChangeSelectedDates({ from: null, to: null })}
+                    key={`${range.from.toISOString()}-${range.to.toISOString()}`}
+                    label={`${range.from.toLocaleDateString('ru-RU')} — ${range.to.toLocaleDateString('ru-RU')}`}
+                    onRemove={() => onChangeSelectedDates(selectedDates.filter((selectedRange) => selectedRange !== range))}
                 />
-            )}
+            ))}
 
-            {selectedCity && (
-                <EventsFilterChipDesktop label={cityLabelBySlug[selectedCity]} onRemove={() => onChangeSelectedCity(null)} />
-            )}
+            {selectedCities.map((citySlug) => (
+                <EventsFilterChipDesktop
+                    key={citySlug}
+                    label={cityLabelBySlug[citySlug]}
+                    onRemove={() => onChangeSelectedCities(selectedCities.filter((slug) => slug !== citySlug))}
+                />
+            ))}
         </div>
     )
 }
