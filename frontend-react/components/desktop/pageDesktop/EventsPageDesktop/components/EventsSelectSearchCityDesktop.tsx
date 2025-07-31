@@ -18,7 +18,6 @@ const EventsSelectSearchCityDesktop: React.FC<IEventsSelectSearchCity> = ({ sele
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
             if (ref.current && !ref.current.contains(e.target as Node)) {
-                setIsOpen(false)
             }
         }
         document.addEventListener('mousedown', handleClickOutside)
