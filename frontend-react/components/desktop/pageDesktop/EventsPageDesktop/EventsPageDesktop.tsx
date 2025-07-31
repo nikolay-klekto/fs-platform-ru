@@ -35,21 +35,21 @@ const EventsPageDesktop: React.FC = () => {
 
     useEffect(() => {
         const filteredEvents = content.filter((item) => {
-            const isCategoryMatched =
+            const isCategoryMatch =
                 selectedCategories.length === 0 ||
                 selectedCategories.some(
                     (slug) => categoryLabelBySlug[slug].toLowerCase() === item.category.toLowerCase(),
                 )
 
             const date = parseDate(item.date)
-            const isDateInRange =
+            const isDateMatch =
                 selectedDates.length === 0 || selectedDates.some(({ from, to }) => date >= from && date <= to)
 
-            const isCityMatched =
+            const isCityMatch =
                 selectedCities.length === 0 ||
                 selectedCities.map((slug) => cityLabelBySlug[slug].toLowerCase()).includes(item.city.toLowerCase())
 
-            return isCategoryMatched && isDateInRange && isCityMatched
+            return isCategoryMatch && isDateMatch && isCityMatch
         })
 
         setFilteredContent(filteredEvents)
