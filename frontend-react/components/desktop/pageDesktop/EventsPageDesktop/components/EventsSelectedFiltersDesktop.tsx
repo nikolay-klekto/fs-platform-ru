@@ -26,7 +26,7 @@ const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
 }) => {
     const hasActiveFilters = selectedCategories.length > 0 || selectedDates.length > 0 || selectedCities.length > 0
 
-    if (!hasActiveFilters) return <div className="mt-[39px]" />
+    if (!hasActiveFilters) return <div className="mt-[30px]" />
 
     return (
         <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mt-[39px] mb-[30px]">
@@ -44,7 +44,9 @@ const EventsSelectedFiltersDesktop: React.FC<IEventsSelectedFilters> = ({
                 <EventsFilterChipDesktop
                     key={`${range.from.toISOString()}-${range.to.toISOString()}`}
                     label={`${range.from.toLocaleDateString('ru-RU')} — ${range.to.toLocaleDateString('ru-RU')}`}
-                    onRemove={() => onChangeSelectedDates(selectedDates.filter((selectedRange) => selectedRange !== range))}
+                    onRemove={() =>
+                        onChangeSelectedDates(selectedDates.filter((selectedRange) => selectedRange !== range))
+                    }
                 />
             ))}
 
