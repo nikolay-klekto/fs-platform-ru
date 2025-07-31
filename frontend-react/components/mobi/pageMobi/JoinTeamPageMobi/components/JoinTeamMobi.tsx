@@ -229,13 +229,6 @@ const JoinTeamMobi: React.FC = () => {
                         hasError={errors.consent}
                     />
                 </div>
-                {errors.consent ? (
-                    <p className="mb-3 text-base font-medium leading-[100%] tracking-normal text-[#bc8070]">
-                        Подтвердите согласие на обработку данных
-                    </p>
-                ) : (
-                    ''
-                )}
                 <p className="mb-7 text-base font-medium leading-[100%] tracking-normal text-[#353652]">
                     Защита от спама reCAPTCHA{' '}
                     <a href="/example" className="leading-[100%] underline underline-offset-2">
