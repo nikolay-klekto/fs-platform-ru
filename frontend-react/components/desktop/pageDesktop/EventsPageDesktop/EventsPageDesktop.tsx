@@ -34,25 +34,23 @@ const EventsPageDesktop: React.FC = () => {
     }
 
     useEffect(() => {
-        const filteredEvents = content
-            .filter((item) =>
-                selectedCategories.length === 0
-                    ? true
-                    : selectedCategories.some(
-                        (slug) => categoryLabelBySlug[slug].toLowerCase() === item.category.toLowerCase(),
-                    ),
-            )
-            .filter((item) => {
-                const date = parseDate(item.date)
-                return selectedDates.length === 0 || selectedDates.some(({ from, to }) => date >= from && date <= to)
-            })
-            .filter((item) =>
-                selectedCities.length === 0
-                    ? true
-                    : selectedCities
-                        .map((slug) => cityLabelBySlug[slug].toLowerCase())
-                        .includes(item.city.toLowerCase()),
-            )
+        const filteredEvents = content.filter((item) => {
+            const isCategoryMatched =
+                selectedCategories.length === 0 ||
+                selectedCategories.some(
+                    (slug) => categoryLabelBySlug[slug].toLowerCase() === item.category.toLowerCase(),
+                )
+
+            const date = parseDate(item.date)
+            const isDateInRange =
+                selectedDates.length === 0 || selectedDates.some(({ from, to }) => date >= from && date <= to)
+
+            const isCityMatched =
+                selectedCities.length === 0 ||
+                selectedCities.map((slug) => cityLabelBySlug[slug].toLowerCase()).includes(item.city.toLowerCase())
+
+            return isCategoryMatched && isDateInRange && isCityMatched
+        })
 
         setFilteredContent(filteredEvents)
         setCurrentPage(1)
@@ -73,7 +71,10 @@ const EventsPageDesktop: React.FC = () => {
                     <h1 className="title80px_desktop relative z-[1]">Мероприятия</h1>
 
                     <div className="relative z-[1] flex items-center justify-end gap-[30px] pb-[30px] pt-[116px]">
-                        <EventsSelectSearchDesktop selectedOptions={selectedCategories} onChange={setSelectedCategories} />
+                        <EventsSelectSearchDesktop
+                            selectedOptions={selectedCategories}
+                            onChange={setSelectedCategories}
+                        />
                         <EventsSelectSearchDateDesktop selectedDates={selectedDates} onChange={setSelectedDates} />
                         <EventsSelectSearchCityDesktop selectedCities={selectedCities} onChange={setSelectedCities} />
                     </div>
