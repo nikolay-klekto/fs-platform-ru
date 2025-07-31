@@ -16,9 +16,25 @@ interface IEventsSelectSearchDate {
     onChange: (tempDateRange: IDateRange[]) => void
 }
 
+const ONE_DAY_MS = 86_399_999
+
 type DateKey = 'from' | 'to'
 
-const ONE_DAY_MS = 86_399_999
+function isSameDay(date1: Date, date2: Date) {
+    return (
+        date1.getDate() === date2.getDate() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getFullYear() === date2.getFullYear()
+    )
+}
+
+function isRangeDuplicate(arr: IDateRange[], from: Date, to: Date) {
+    return arr.some(
+        (range) =>
+            isSameDay(range.from, from) &&
+            isSameDay(range.to, to)
+    )
+}
 
 const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ selectedDates, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -36,14 +52,30 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ sele
         to: null,
     })
 
-    const resetTempDateRange = () => {
-        setTempDateRange({ from: null, to: null })
-        setInputValues({ from: '', to: '' })
-    }
-
     const calendarRef = useRef<HTMLDivElement>(null)
     const fromCalendarRef = useRef<HTMLDivElement>(null)
     const toCalendarRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        setInputValues({
+            from: tempDateRange.from ? autoFormatDate(tempDateRange.from.toLocaleDateString('ru-RU')) : '',
+            to: tempDateRange.to ? autoFormatDate(tempDateRange.to.toLocaleDateString('ru-RU')) : '',
+        })
+    }, [tempDateRange])
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (tempDateRange.from && tempDateRange.to) {
+            addRangeIfNotDuplicate(tempDateRange.from, tempDateRange.to)
+            setTimeout(resetTempDateRange, 0)
+        }
+    }, [tempDateRange.from, tempDateRange.to])
 
     const autoFormatDate = (value: string): string => {
         const numbersOnly = value.replace(/\D/g, '')
@@ -69,12 +101,16 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ sele
         return new Date(year, month - 1, day)
     }
 
-    useEffect(() => {
-        setInputValues({
-            from: tempDateRange.from ? autoFormatDate(tempDateRange.from.toLocaleDateString('ru-RU')) : '',
-            to: tempDateRange.to ? autoFormatDate(tempDateRange.to.toLocaleDateString('ru-RU')) : '',
-        })
-    }, [tempDateRange])
+    const addRangeIfNotDuplicate = (from: Date, to: Date) => {
+        if (!isRangeDuplicate(selectedDates, from, to)) {
+            onChange([...selectedDates, { from, to }])
+        }
+    }
+
+    const resetTempDateRange = () => {
+        setTempDateRange({ from: null, to: null })
+        setInputValues({ from: '', to: '' })
+    }
 
     const handleInputChange = (key: DateKey, value: string) => {
         const formattedDate = autoFormatDate(value)
@@ -87,26 +123,15 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ sele
 
         if (isValidDate(formattedDate)) {
             const parsedDate = parseDate(formattedDate)
-            setTempDateRange((prev) => {
-                const updated = { ...prev, [key]: parsedDate }
-                if (key === 'to' && updated.from && updated.to) {
-                    onChange([...selectedDates, { from: updated.from, to: updated.to }])
-                    setTimeout(resetTempDateRange, 0)
-                }
-                return updated
-            })
+            setTempDateRange((prev) => ({ ...prev, [key]: parsedDate }))
         }
     }
 
     const handleDateChange = (key: DateKey, newDate?: Date) => {
-        setTempDateRange((prev) => {
-            const updated = { ...prev, [key]: newDate ?? null }
-            if (key === 'to' && updated.from && updated.to) {
-                onChange([...selectedDates, { from: updated.from, to: updated.to }])
-                setTimeout(resetTempDateRange, 0)
-            }
-            return updated
-        })
+        setTempDateRange((prev) => ({
+            ...prev,
+            [key]: newDate ?? null,
+        }))
         setInputValues((prev) => ({
             ...prev,
             [key]: newDate ? autoFormatDate(newDate.toLocaleDateString('ru-RU')) : '',
@@ -148,7 +173,7 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ sele
         }
 
         if (fromDate && toDate) {
-            onChange([...selectedDates, { from: fromDate, to: toDate }])
+            addRangeIfNotDuplicate(fromDate, toDate)
         }
         resetTempDateRange()
         setOpenCalendars({ from: false, to: false })
@@ -162,13 +187,6 @@ const EventsSelectSearchDateDesktop: React.FC<IEventsSelectSearchDate> = ({ sele
         if (outsideWrapper) setIsOpen(false)
         if (outsideFrom && outsideTo) setOpenCalendars({ from: false, to: false })
     }
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [])
 
     const toggleCalendar = (calendar: DateKey) => {
         setOpenCalendars((prev) => ({
