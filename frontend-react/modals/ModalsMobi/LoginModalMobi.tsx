@@ -116,7 +116,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                     <X size={30} color="#878797" />
                 </button>
                 <div className="relative flex max-w-[500px] flex-col items-center rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat">
-                    <h2 className="text18px_mobi bg-sub-title-gradient-mobi mx-auto mb-1 mt-6 inline bg-clip-text font-semibold uppercase text-transparent">
+                    <h2 className="text18px_mobi mx-auto mb-1 mt-6 inline bg-sub-title-gradient-mobi bg-clip-text font-semibold uppercase text-transparent">
                         Вход
                     </h2>
                     <form onSubmit={handleSubmit} className="flex w-4/5 flex-col align-middle">
@@ -176,7 +176,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                             variant="default"
                             size="btn_modal_desktop"
                             disabled={formError || loading}
-                            className="bg-gradient-desktop hover:bg-gradient-desktop-hover sm_s:text-xl sm_l:text-2xl sm_xl:text-3xl mx-auto mt-6 w-4/5 rounded-[50px] text-4xl font-medium sm:text-xl md:text-4xl"
+                            className="mx-auto mt-6 w-4/5 rounded-[50px] bg-gradient-desktop text-4xl font-medium hover:bg-gradient-desktop-hover sm:text-xl md:text-4xl sm_s:text-xl sm_l:text-2xl sm_xl:text-3xl"
                         >
                             {loading ? 'Вход...' : 'Войти'}
                         </Button>
