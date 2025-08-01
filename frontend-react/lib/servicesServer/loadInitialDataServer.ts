@@ -1,4 +1,4 @@
-import { IDataLoader } from 'types/services/types'
+import { IDataLoader } from '@/types/services/types'
 
 export type LoaderMap<L extends readonly IDataLoader[]> = {
     [P in L[number] as P['key']]: Awaited<ReturnType<P['loader']>> | []
