@@ -4,7 +4,7 @@ import * as React from 'react'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 import { cn } from '@/lib/utils'
-import { HelpIconDesktop, TrashIconDesktop } from '@/components/assets/iconsDesktop'
+import { HelpIconDesktop, TrashIconDesktop, QuestionMarkDesktop } from '@/components/assets/iconsDesktop'
 import { HelpIconMobi } from '@/components/assets/iconsMobi'
 
 interface IHelpTooltip {
@@ -170,6 +170,35 @@ export const TrashTooltipDesktop: React.FC<IHelpTooltip> = ({ tooltipMessage }) 
                 arrowPadding={0}
                 avoidCollisions={false}
                 collisionPadding={{ top: 10, left: 20 }}
+            >
+                <div className="4xl:p-1.5 3xl:p-1.5 3xl:pt-1 p-2 2xl:p-1.5 2xl:pt-1">
+                    <p className="3xl:text-[12px] 3xl:font-light text-mauve12 align-baseline text-[15px] font-medium leading-[19px] text-white 2xl:text-[12px] 2xl:font-light">
+                        {tooltipMessage}
+                    </p>
+                </div>
+                <TooltipArrow className="transform: translateY(-1px) h-2 fill-[#353652cc]" />
+            </TooltipContent>
+        </Tooltip>
+    </TooltipProvider>
+)
+
+export const HelpEventsTooltipDesktop: React.FC<IHelpTooltip> = ({ tooltipMessage }) => (
+    <TooltipProvider delayDuration={200}>
+        <Tooltip>
+            <TooltipTrigger asChild>
+                <button className="flex self-end justify-self-end 3xl:ml-2">
+                    <QuestionMarkDesktop />
+                </button>
+            </TooltipTrigger>
+            <TooltipContent
+                className="3xl:max-w-[310px] m-0 h-full max-h-screen w-[385px] rounded-[25px] border-none bg-[#353652cc] shadow-none 2xl:max-w-[278px]"
+                sideOffset={3}
+                side="bottom"
+                align="start"
+                alignOffset={-20}
+                arrowPadding={0}
+                avoidCollisions={false}
+                collisionPadding={{ top: 20, left: 20 }}
             >
                 <div className="4xl:p-1.5 3xl:p-1.5 3xl:pt-1 p-2 2xl:p-1.5 2xl:pt-1">
                     <p className="3xl:text-[12px] 3xl:font-light text-mauve12 align-baseline text-[15px] font-medium leading-[19px] text-white 2xl:text-[12px] 2xl:font-light">

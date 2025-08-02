@@ -1,8 +1,9 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { ChevronDownIconDesktop, CheckedBoxIconDesktop, QuestionMarkDesktop } from '@/components/assets/iconsDesktop'
+import { ChevronDownIconDesktop, CheckedBoxIconDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
+import { HelpEventsTooltipDesktop } from '@/components/ui/tooltip'
 
 interface ISelectItem {
     value: string
@@ -14,6 +15,7 @@ interface ISelectItem {
 interface ISelectOption {
     value: string
     label: string
+    tooltipText: string
 }
 
 const EventsSelectSearchDesktop = () => {
@@ -45,12 +47,42 @@ const EventsSelectSearchDesktop = () => {
     }, [])
 
     const options: ISelectOption[] = [
-        { value: 'fairs', label: 'Выставки/презентации' },
-        { value: 'open_days', label: 'Дни открытых дверей' },
-        { value: 'conferences', label: 'Конференции' },
-        { value: 'master_classes', label: 'Мастер-классы/семинары/тренинги' },
-        { value: 'internships', label: 'Стажировки' },
-        { value: 'job_fairs', label: 'Ярмарки вакансий' },
+        {
+            value: 'fairs',
+            label: 'Выставки/презентации',
+            tooltipText:
+                'Мероприятия, где компании представляют свои продукты, услуги или достижения. Полезно для знакомства с компаниями и их деятельностью.',
+        },
+        {
+            value: 'open_days',
+            label: 'Дни открытых дверей',
+            tooltipText:
+                'Мероприятия, где компании представляют свои продукты, услуги или достижения. Полезно для знакомства с компаниями и их деятельностью.',
+        },
+        {
+            value: 'conferences',
+            label: 'Конференции',
+            tooltipText:
+                'Мероприятия, где компании представляют свои продукты, услуги или достижения. Полезно для знакомства с компаниями и их деятельностью.',
+        },
+        {
+            value: 'master_classes',
+            label: 'Мастер-классы/семинары/тренинги',
+            tooltipText:
+                'Мероприятия, где компании представляют свои продукты, услуги или достижения. Полезно для знакомства с компаниями и их деятельностью.',
+        },
+        {
+            value: 'internships',
+            label: 'Стажировки',
+            tooltipText:
+                'Мероприятия, где компании представляют свои продукты, услуги или достижения. Полезно для знакомства с компаниями и их деятельностью.',
+        },
+        {
+            value: 'job_fairs',
+            label: 'Ярмарки вакансий',
+            tooltipText:
+                'Мероприятия, где компании представляют свои продукты, услуги или достижения. Полезно для знакомства с компаниями и их деятельностью.',
+        },
     ]
 
     return (
@@ -80,6 +112,7 @@ const EventsSelectSearchDesktop = () => {
                                 value={option.value}
                                 isChecked={selectedOptions.includes(option.value)}
                                 onClick={() => toggleOption(option.value)}
+                                tooltipText={option.tooltipText}
                             >
                                 {option.label}
                             </SelectItem>
@@ -91,8 +124,8 @@ const EventsSelectSearchDesktop = () => {
     )
 }
 
-const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
-    ({ children, isChecked, onClick, ...props }, forwardedRef) => {
+const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem & { tooltipText: string }>(
+    ({ children, isChecked, onClick, tooltipText, ...props }, forwardedRef) => {
         return (
             <div
                 className={`relative z-[3] flex cursor-pointer items-center justify-between rounded-[18px] p-[15px] text-[15px] font-medium ${
@@ -141,8 +174,8 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                     </div>
                     <div className="pl-[14px]">{children}</div>
                 </div>
-                <div className="justify-items-end">
-                    <QuestionMarkDesktop />
+                <div className="justify-items-center">
+                    <HelpEventsTooltipDesktop tooltipMessage={tooltipText} />
                 </div>
             </div>
         )
