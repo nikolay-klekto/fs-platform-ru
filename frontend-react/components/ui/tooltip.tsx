@@ -191,7 +191,7 @@ export const HelpEventsTooltipDesktop: React.FC<IHelpTooltip> = ({ tooltipMessag
                 </button>
             </TooltipTrigger>
             <TooltipContent
-                className="3xl:max-w-[310px] m-0 h-full max-h-screen w-[385px] rounded-[25px] border-none bg-[#353652cc] shadow-none 2xl:max-w-[278px]"
+                className="z-[9999] 3xl:max-w-[310px] m-0 h-full max-h-screen w-[385px] rounded-[25px] border-none bg-[#353652cc] shadow-none 2xl:max-w-[278px]"
                 sideOffset={3}
                 side="bottom"
                 align="start"

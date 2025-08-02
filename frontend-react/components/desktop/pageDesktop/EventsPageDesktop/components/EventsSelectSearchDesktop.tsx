@@ -128,7 +128,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem & { tooltipText:
     ({ children, isChecked, onClick, tooltipText, ...props }, forwardedRef) => {
         return (
             <div
-                className={`relative z-[3] flex cursor-pointer items-center justify-between rounded-[18px] p-[15px] text-[15px] font-medium ${
+                className={`relative flex cursor-pointer items-center justify-between rounded-[18px] p-[15px] text-[15px] font-medium ${
                     isChecked ? 'bg-[#5F4AF30F] text-white' : 'bg-transparent text-[#878797]'
                 }`}
                 {...props}
