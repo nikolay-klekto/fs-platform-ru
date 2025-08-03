@@ -1,4 +1,4 @@
-export interface IArchiveCard {
+export interface IContent {
   id: number
   companyName: string
   profession: string
@@ -7,14 +7,14 @@ export interface IArchiveCard {
   rating: number
 }
 
-export const content: IArchiveCard[] = [
+export const content: IContent[] = [
   {
       id: 1,
       companyName: 'EPAM',
       profession: 'Программист',
       dates: '25.10.2023 – 18.10.2023, Стажировка наблюдателя',
       image: '/images/archive_1.jpg',
-      rating: 4,
+      rating: 0,
   },
   {
       id: 2,
