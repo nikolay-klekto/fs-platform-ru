@@ -1,30 +1,67 @@
 'use client'
 
-import React from 'react'
-import { Card } from '@/components/ui/card'
+import React, { useState, useReducer, useCallback } from 'react'
 import Image from 'next/image'
+import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { StarIconDesktop } from '@/components/assets/iconsDesktop'
+import StarRatingDesktop from './StarRatingDesktop'
 
-interface IItemCardArchiveDesktop {
+interface IItemCardArchive {
+    id: number
     image: string
     companyName: string
     profession: string
     dates: string
     rating: number
+    onRatingChange: (rating: number) => void
 }
 
-const ItemCardArchiveDesktop: React.FC<IItemCardArchiveDesktop> = ({
+type Stage = 'initial' | 'setRating' | 'saved'
+type Action = { type: 'SET_RATING' } | { type: 'SAVE' }
+
+function stageReducer(state: Stage, action: Action): Stage {
+    switch (action.type) {
+        case 'SET_RATING':
+            return 'setRating'
+        case 'SAVE':
+            return 'saved'
+        default:
+            return state
+    }
+}
+
+const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
     image,
     companyName,
     profession,
     dates,
-    rating,
+    rating: initialRating,
+    onRatingChange,
 }) => {
+    const [rating, setRating] = useState(initialRating)
+    const [stage, dispatch] = useReducer(stageReducer, 'initial')
+
+    const handleSetRating = useCallback((newRating: number) => {
+        setRating(newRating)
+        dispatch({ type: 'SET_RATING' })
+    }, [])
+
+    const handleButtonClick = useCallback(() => {
+        if (stage === 'setRating') {
+            onRatingChange(rating)
+            dispatch({ type: 'SAVE' })
+        }
+    }, [stage, rating, onRatingChange])
+
+    const buttonText = {
+        initial: 'Отправить отзыв',
+        setRating: 'Сохранить оценку',
+        saved: 'Написать отзыв',
+    }[stage] as string
+
     return (
-        <Card className="w-full flex flex-col items-center bg-gradient-to-b from-[#28295A] to-[#191945] rounded-[32px] px-6 pt-6 pb-8 shadow-lg min-h-[500px]">
-            {/* Фотография */}
-            <div className="w-full aspect-[367/360] rounded-[24px] overflow-hidden mb-6 max-w-[367px]">
+        <Card className="w-full flex flex-col items-center bg-white/10 backdrop-blur-[5px] rounded-[50px] px-6 pt-6 pb-8 min-h-[500px]">
+            <div className="w-full aspect-[367/360] rounded-[50px] overflow-hidden mb-6 max-w-[367px]">
                 <Image
                     src={image}
                     alt={companyName}
@@ -34,23 +71,30 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchiveDesktop> = ({
                     priority
                 />
             </div>
-            {/* Название компании */}
-            <div className="text-[36px] font-medium mb-[10px] uppercase tracking-wider text-center bg-gradient-desktop bg-clip-text text-transparent">
+
+            <div className="text-[36px] 2xl:text-[32px] 3xl:text-[28px] font-medium mb-[10px] uppercase tracking-wider text-center bg-gradient-desktop bg-clip-text text-transparent">
                 {companyName}
             </div>
-            {/* Профессия */}
-            <div className="text-[24px] font-medium mb-[10px] text-white text-center">{profession}</div>
-            {/* Даты */}
-            <div className="text-[15px] font-medium text-[#C7C7E1] text-center mb-[30px]">{dates}</div>
-            {/* Рейтинг (звезды) */}
-            <div className="flex items-center justify-center gap-[5px] mb-[20px]">
-                {Array.from({ length: 5 }).map((_, i) => (
-                    <StarIconDesktop key={i} filled={i < rating} />
-                ))}
+
+            <div className="text-[24px] 2xl:text-[20px] 3xl:text-[18px] font-medium mb-[10px] text-white text-center">
+                {profession}
             </div>
-            {/* Кнопка */}
-            <Button variant={'send_btn_desktop'} size={'send_btn_desktop'} className="py-5 px-[45px]">
-                Отправить отзыв
+
+            <div className="text-[15px] 2xl:text-[14px] 3xl:text-[13px] font-medium text-[#C7C7E1] text-center mb-[30px]">
+                {dates}
+            </div>
+
+            <div className="mb-[20px]">
+                <StarRatingDesktop rating={rating} onRate={handleSetRating} />
+            </div>
+
+            <Button
+                variant="send_btn_desktop"
+                size="send_btn_desktop"
+                className="py-5 px-[45px]"
+                onClick={handleButtonClick}
+            >
+                {buttonText}
             </Button>
         </Card>
     )
