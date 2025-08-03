@@ -14,6 +14,7 @@ const ProfessionsSectionMobi: React.FC = () => {
             <TitleMobi title={'Профессии'} href={'/professions'} />
             <div className="flex items-center justify-between">
                 <p className="sm_xl:text-4xl sm_l:text-3xl sm_s:text-3xl text-[20px] font-semibold text-[#878797] sm:text-3xl md:text-[clamp(20px,5vw,34px)]">
+
                     Наиболее популярные на нашем сервисе
                 </p>
             </div>

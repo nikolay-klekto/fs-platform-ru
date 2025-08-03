@@ -30,6 +30,7 @@ const PromoMobi: React.FC = () => {
                             <Link href="/professions" className="flex w-full">
                                 <Button variant="registration_mobi" size="home_registration_mobi">
                                     <span className="sm_s:text-3xl bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent sm:text-3xl md:text-[clamp(23px,5vw,38px)]">
+
                                         Найти стажировку
                                     </span>
                                 </Button>
@@ -54,6 +55,7 @@ const PromoMobi: React.FC = () => {
                                     onClick={() => openModal('registration_mobi', 'mobi')}
                                 >
                                     <span className="sm_s:text-3xl bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent sm:text-3xl md:text-[clamp(23px,5vw,38px)]">
+
                                         Зарегистрироваться
                                     </span>
                                 </Button>
