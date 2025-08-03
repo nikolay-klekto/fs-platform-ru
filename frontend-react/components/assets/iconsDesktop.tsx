@@ -152,12 +152,7 @@ export const LogoIconDesktop: React.FC<ISvgIcon> = (props) => {
     )
 }
 
-interface IForwardIconDesktop extends React.SVGProps<SVGSVGElement> {
-    fill?: string
-    stroke?: string
-}
-
-export const ForwardIconDesktop: React.FC<IForwardIconDesktop> = ({
+export const ForwardIconDesktop: React.FC<ISvgIcon> = ({
     fill = 'currentColor',
     stroke = 'currentColor',
     ...props
