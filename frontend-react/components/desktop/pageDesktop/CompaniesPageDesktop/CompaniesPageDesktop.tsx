@@ -1,12 +1,13 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { useDataContext } from '@/context/DataContext'
 import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+//import { useAvailableCompanies } from '@/hooks/useAvailibleCompanies'
 import { Toaster } from '@/components/ui/toaster'
-import { useAvailableCompanies } from '@/hooks/useAvailibleCompanies'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import CompaniesSelectDesktop from './components/CompaniesSelectDesktop'
@@ -21,7 +22,11 @@ const CompaniesPageDesktop: React.FC = () => {
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-    const { companies } = useAvailableCompanies()
+    const { companies } = useDataContext()
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [searchQuery, selectedCategories])
+    if (!companies) return null
 
     const filteredCompanies = companies.filter((item) => {
         const matchesSearch =
@@ -29,12 +34,7 @@ const CompaniesPageDesktop: React.FC = () => {
         const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(item.companyIndustry)
         return matchesSearch && matchesCategory
     })
-
     const totalPages = Math.ceil(filteredCompanies.length / cardsPerPage)
-
-    useEffect(() => {
-        setCurrentPage(1)
-    }, [searchQuery, selectedCategories])
 
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)

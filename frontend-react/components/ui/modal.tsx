@@ -56,7 +56,7 @@ const Modal: React.FC<IModal> = ({
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
+                if (e.key === 'Enter') {
                     onClose()
                 }
             }}
