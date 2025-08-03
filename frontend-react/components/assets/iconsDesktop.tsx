@@ -677,13 +677,12 @@ export const MapPinIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-interface StarIconDesktopProps extends React.SVGProps<SVGSVGElement> {
+interface IStarIconDesktop extends React.SVGProps<SVGSVGElement> {
     filled?: boolean
     size?: number | string
-    color?: string
 }
 
-export const StarIconDesktop: React.FC<StarIconDesktopProps> = ({
+export const StarIconDesktop: React.FC<IStarIconDesktop> = ({
     filled = false,
     size = 24,
     color = 'white',
@@ -699,7 +698,7 @@ export const StarIconDesktop: React.FC<StarIconDesktopProps> = ({
     >
         <path
             d="M11.9991 2L15.1031 8.728L22.4611 9.601L17.0211 14.631L18.4651 21.899L11.9991 18.28L5.53311 21.9L6.97711 14.632L1.53711 9.6L8.89611 8.727L11.9991 2Z"
-            stroke={color}
+            stroke="white"
             strokeWidth={1.5}
             strokeLinejoin="round"
         />
