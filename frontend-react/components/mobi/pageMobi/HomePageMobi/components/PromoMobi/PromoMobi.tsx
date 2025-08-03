@@ -18,7 +18,7 @@ const PromoMobi: React.FC = () => {
                 }}
                 className="mx-auto flex h-[496px] w-full flex-col justify-between rounded-[40px] bg-cover bg-center bg-no-repeat px-[15px] pb-[15px] pt-[85px]"
             >
-                <h3 className="sm_s:text-7xl m-0 mb-[30px] text-8xl font-medium uppercase leading-tight text-white sm:text-7xl">
+                <h3 className="m-0 mb-[30px] text-8xl font-medium uppercase leading-tight text-white sm:text-7xl sm_s:text-7xl">
                     Регистрируйся, выбирай профессию и&nbsp;компанию, получай новые знания и опыт
                 </h3>
                 <p className="text-[12px] leading-tight tracking-wide text-white md:text-xl">
@@ -29,7 +29,7 @@ const PromoMobi: React.FC = () => {
                         <>
                             <Link href="/professions" className="flex-1 md:w-[270px] md:flex-none">
                                 <Button variant="registration_mobi" size="registration_mobi" className="w-full">
-                                    <span className="sm_s:text-3xl bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent sm:text-3xl">
+                                    <span className="bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent sm:text-3xl sm_s:text-3xl">
                                         Найти стажировку
                                     </span>
                                 </Button>
@@ -49,7 +49,7 @@ const PromoMobi: React.FC = () => {
                                     className="w-full"
                                     onClick={() => openModal('registration_mobi', 'mobi')}
                                 >
-                                    <span className="sm_s:text-3xl bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent sm:text-3xl">
+                                    <span className="bg-gradient-to-r from-[#8333F3] to-[#3B51A8] bg-clip-text text-4xl text-transparent sm:text-3xl sm_s:text-3xl">
                                         Зарегистрироваться
                                     </span>
                                 </Button>
