@@ -7,18 +7,18 @@ import Modal from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
-import { useToast } from '@/hooks/use-toast'
+import { useToast } from '@/hooks/useToast'
 
 interface INotifyFormData {
     email: string
     consent: boolean
 }
 
-interface INotifyModal {
+interface IModalContent {
     onClose: () => void
 }
 
-const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
+const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const [formData, setFormData] = useState<INotifyFormData>({
         email: '',
         consent: false,
@@ -54,7 +54,7 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
         }
     }
 
-    const handleEmailBlur = (): void => {
+    const validateForm = (fullValidation: boolean): boolean | undefined => {
         let hasErrors = false
 
         if (!formData.email) {
@@ -77,56 +77,39 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
             }
         }
 
+        if (fullValidation) {
+            if (!formData.consent) {
+                setFormErrors((prev) => ({
+                    ...prev,
+                    consent: true,
+                }))
+                hasErrors = true
+            }
+        }
+
         if (hasErrors) {
             setButtonDisabled(true)
-            return
+            return hasErrors
         }
+    }
+
+    const handleEmailBlur = (): void => {
+        validateForm(false)
     }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
-        let hasErrors = false
+        const hasErrors = validateForm(true)
 
-        if (!formData.email) {
-            setFormErrors((prev) => ({
-                ...prev,
-                email: 'Заполните поля',
-            }))
+        if (!hasErrors) {
+            onClose()
 
-            hasErrors = true
-        } else {
-            const emailValidation = validateEmailDesktop(formData.email)
-            if (!emailValidation.status) {
-                console.log(emailValidation.textError)
-                setFormErrors((prev) => ({
-                    ...prev,
-                    email: emailValidation.textError,
-                }))
-
-                hasErrors = true
-            }
+            toast({
+                description: 'Спасибо! Ваша заявка была успешно отправлена',
+                duration: 4000,
+            })
         }
-
-        if (!formData.consent) {
-            setFormErrors((prev) => ({
-                ...prev,
-                consent: true,
-            }))
-            hasErrors = true
-        }
-
-        if (hasErrors) {
-            setButtonDisabled(true)
-            return
-        }
-
-        onClose()
-
-        toast({
-            description: 'Спасибо! Ваша заявка была успешно отправлена',
-            duration: 4000,
-        })
     }
 
     useEffect(() => {
@@ -148,10 +131,10 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                 >
                     Когда компания станет доступна, куда вам сообщить?
                 </h2>
-                <form onSubmit={handleSubmit} className="flex w-full flex-col px-[5px] align-middle">
+                <form onSubmit={handleSubmit} className="flex w-full flex-col px-[5px] align-middle" noValidate>
                     <div className={formErrors.email || formErrors.consent ? 'mb-2' : 'mb-5'}>
                         <EnhancedInput
-                            type="text"
+                            type="email"
                             name="email"
                             placeholder="Ваш e-mail"
                             label="Почта"
@@ -177,7 +160,7 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
                                 type="checkbox"
                                 name="consent"
                                 checked={formData.consent}
-                                onChange={(value) => handleChange('consent', value === 'true')}
+                                onChange={(value) => handleChange('consent', Boolean(value))}
                                 label="Я согласен(а) на обработку персональных данных"
                                 wrapperClassName="flex gap-2"
                                 error={formErrors.consent ? 'Подтвердите согласие на обработку данных' : ''}
@@ -200,7 +183,7 @@ const ModalCompanyNotifyDesktop: React.FC<INotifyModal> = ({ onClose }) => {
 
                     <Button
                         type="submit"
-                        variant={'company_mobi'}
+                        variant="companies_mobi"
                         disabled={buttonDisabled}
                         className={
                             buttonDisabled

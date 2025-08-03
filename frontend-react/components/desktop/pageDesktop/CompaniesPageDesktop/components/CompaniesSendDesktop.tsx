@@ -7,12 +7,12 @@ import { useModal } from '@/context/ContextModal'
 
 const CompaniesSendDesktop: React.FC = () => {
     const [isFocused, setIsFocused] = useState(false)
-    const [useRequest, setUseRequest] = useState('')
+    const [requestText, setRequestText] = useState('')
     const { openModal } = useModal()
     const [emptyInputError, setEmptyInputError] = useState(false)
 
-    const handleClick = (): void => {
-        if (useRequest.trim() !== '') {
+    const handleSubmitClick = (): void => {
+        if (requestText.trim() !== '') {
             openModal('modal_company_notify_desktop', 'desktop')
         } else {
             setEmptyInputError(true)
@@ -20,7 +20,7 @@ const CompaniesSendDesktop: React.FC = () => {
     }
 
     const handleChange = (value: string): void => {
-        setUseRequest(value)
+        setRequestText(value)
         setEmptyInputError(false)
     }
 
@@ -32,7 +32,7 @@ const CompaniesSendDesktop: React.FC = () => {
             <div className="justify-bitween mx-auto flex items-center gap-[45px]">
                 <EnhancedInput
                     type="text"
-                    value={useRequest}
+                    value={requestText}
                     onChange={handleChange}
                     variant={'gradient_desktop'}
                     size={'gradient_desktop'}
@@ -46,7 +46,7 @@ const CompaniesSendDesktop: React.FC = () => {
                     variant={'send_btn_desktop'}
                     size={'send_btn_desktop'}
                     className="3xl:text-4xl border-4 2xl:text-3xl"
-                    onClick={handleClick}
+                    onClick={handleSubmitClick}
                 >
                     Отправить
                 </Button>
