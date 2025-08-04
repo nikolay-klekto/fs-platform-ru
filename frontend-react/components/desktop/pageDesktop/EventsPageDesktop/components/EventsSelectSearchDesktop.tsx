@@ -15,7 +15,7 @@ interface ISelectItem {
 interface ISelectOption {
     value: string
     label: string
-    tooltipText: string
+    tooltipMessage: string
 }
 
 const EventsSelectSearchDesktop = () => {
@@ -50,37 +50,37 @@ const EventsSelectSearchDesktop = () => {
         {
             value: 'fairs',
             label: 'Выставки/презентации',
-            tooltipText:
+            tooltipMessage:
                 'Мероприятия, где компании представляют свои продукты, услуги или достижения. Полезно для знакомства с компаниями и их деятельностью.',
         },
         {
             value: 'open_days',
             label: 'Дни открытых дверей',
-            tooltipText:
+            tooltipMessage:
                 'Мероприятия, где компании представляют свои продукты, услуги или достижения. Полезно для знакомства с компаниями и их деятельностью.',
         },
         {
             value: 'conferences',
             label: 'Конференции',
-            tooltipText:
+            tooltipMessage:
                 'Мероприятия, где компании представляют свои продукты, услуги или достижения. Полезно для знакомства с компаниями и их деятельностью.',
         },
         {
             value: 'master_classes',
             label: 'Мастер-классы/семинары/тренинги',
-            tooltipText:
+            tooltipMessage:
                 'Мероприятия, где компании представляют свои продукты, услуги или достижения. Полезно для знакомства с компаниями и их деятельностью.',
         },
         {
             value: 'internships',
             label: 'Стажировки',
-            tooltipText:
+            tooltipMessage:
                 'Мероприятия, где компании представляют свои продукты, услуги или достижения. Полезно для знакомства с компаниями и их деятельностью.',
         },
         {
             value: 'job_fairs',
             label: 'Ярмарки вакансий',
-            tooltipText:
+            tooltipMessage:
                 'Мероприятия, где компании представляют свои продукты, услуги или достижения. Полезно для знакомства с компаниями и их деятельностью.',
         },
     ]
@@ -112,7 +112,7 @@ const EventsSelectSearchDesktop = () => {
                                 value={option.value}
                                 isChecked={selectedOptions.includes(option.value)}
                                 onClick={() => toggleOption(option.value)}
-                                tooltipText={option.tooltipText}
+                                tooltipMessage={option.tooltipMessage}
                             >
                                 {option.label}
                             </SelectItem>
@@ -124,8 +124,8 @@ const EventsSelectSearchDesktop = () => {
     )
 }
 
-const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem & { tooltipText: string }>(
-    ({ children, isChecked, onClick, tooltipText, ...props }, forwardedRef) => {
+const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem & { tooltipMessage: string }>(
+    ({ children, isChecked, onClick, tooltipMessage, ...props }, forwardedRef) => {
         return (
             <div
                 className={`relative flex cursor-pointer items-center justify-between rounded-[18px] p-[15px] text-[15px] font-medium ${
@@ -175,7 +175,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem & { tooltipText:
                     <div className="pl-[14px]">{children}</div>
                 </div>
                 <div className="justify-items-center">
-                    <HelpEventsTooltipDesktop tooltipMessage={tooltipText} />
+                    <HelpEventsTooltipDesktop tooltipMessage={tooltipMessage} />
                 </div>
             </div>
         )
