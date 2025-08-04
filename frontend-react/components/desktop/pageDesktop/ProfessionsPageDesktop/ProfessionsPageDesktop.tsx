@@ -45,10 +45,6 @@ const ProfessionsPageDesktop: React.FC = () => {
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
     //const paginatedItems = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
 
-    // useEffect(() => {
-    //     setCurrentPage(1)
-    // }, [searchQuery, selectedCategories])
-
     const handleCategoryChange = (categories: string[]) => {
         setSelectedCategories(categories)
     }
