@@ -4,6 +4,7 @@ import React, { useState, useReducer, useCallback } from 'react'
 import Image from 'next/image'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import StarRatingDesktop from './StarRatingDesktop'
 
 interface IItemCardArchive {
@@ -72,9 +73,18 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
                 />
             </div>
 
-            <div className="text-[36px] 2xl:text-[32px] 3xl:text-[28px] font-medium mb-[10px] uppercase tracking-wider text-center bg-gradient-desktop bg-clip-text text-transparent">
+            <Link
+                href="#"
+                className="
+        text-[36px] 2xl:text-[32px] 3xl:text-[28px]
+        font-medium mb-[10px] uppercase tracking-wider text-center
+        bg-gradient-desktop bg-clip-text text-transparent
+        hover:bg-none hover:text-white
+        transition-colors duration-100
+        cursor-pointer"
+            >
                 {companyName}
-            </div>
+            </Link>
 
             <div className="text-[24px] 2xl:text-[20px] 3xl:text-[18px] font-medium mb-[10px] text-white text-center">
                 {profession}
