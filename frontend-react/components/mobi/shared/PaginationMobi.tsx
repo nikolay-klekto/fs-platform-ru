@@ -42,7 +42,9 @@ const PaginationMobi: React.FC<PaginationMobiProps> = ({ totalPages, currentPage
                         onClick={() => {
                             if (pageNumber !== currentPage) {
                                 onPageChange(pageNumber)
-                                window.scrollTo({ top: 0, behavior: 'smooth' })
+                                requestAnimationFrame(() => {
+                                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                                })
                             }
                         }}
                     >

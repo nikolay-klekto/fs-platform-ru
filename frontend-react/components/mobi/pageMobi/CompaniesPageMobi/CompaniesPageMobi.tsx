@@ -29,11 +29,8 @@ const CompaniesPageMobi: React.FC = () => {
     })
 
     useEffect(() => {
-        const newTotalPages = Math.ceil(filteredContent.length / cardsPerPage)
-        if (currentPage > newTotalPages) {
-            setCurrentPage(1)
-        }
-    }, [currentPage, filteredContent])
+        setCurrentPage(1)
+    }, [searchQuery, selectedCategories])
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
     const paginatedItems = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
@@ -41,13 +38,6 @@ const CompaniesPageMobi: React.FC = () => {
     const handleCategoryChange = (categories: string[]) => {
         setSelectedCategories(categories)
     }
-
-    useEffect(() => {
-        const newTotalPages = Math.ceil(filteredContent.length / cardsPerPage)
-        if (currentPage > newTotalPages) {
-            setCurrentPage(1)
-        }
-    }, [currentPage, filteredContent])
 
     return (
         <>

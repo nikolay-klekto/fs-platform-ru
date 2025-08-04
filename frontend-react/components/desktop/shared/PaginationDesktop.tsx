@@ -67,7 +67,9 @@ const PaginationDesktop: React.FC<PaginationDesktopProps> = ({
                         ? undefined
                         : () => {
                               onPageChange(currentPage + 1)
-                              window.scrollTo({ top: 0, behavior: 'smooth' })
+                              requestAnimationFrame(() => {
+                                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                              })
                           }
                 }
                 disabled={moreDisabled}
