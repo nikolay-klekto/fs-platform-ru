@@ -21,7 +21,7 @@ const StarRatingDesktop: React.FC<IStarRating> = ({ rating, onRate }) => {
     return (
         <div className="flex gap-[5px]">
             {Array.from({ length: 5 }).map((_, idx) => {
-                const fill = hovered !== null ? idx < hovered : idx < rating
+                const shouldFill = hovered !== null ? idx < hovered : idx < rating
                 const starNumber = idx + 1
                 return (
                     <button
@@ -33,7 +33,7 @@ const StarRatingDesktop: React.FC<IStarRating> = ({ rating, onRate }) => {
                         onClick={() => handleClick(idx + 1)}
                         aria-label={`Поставить ${idx + 1} звёзд`}
                     >
-                        <StarIconDesktop filled={fill} />
+                        <StarIconDesktop filled={shouldFill} />
                     </button>
                 )
             })}
