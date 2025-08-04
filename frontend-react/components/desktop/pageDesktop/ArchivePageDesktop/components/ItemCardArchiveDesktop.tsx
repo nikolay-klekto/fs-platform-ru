@@ -80,7 +80,7 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
                 {profession}
             </div>
 
-            <div className="text-[15px] 2xl:text-[14px] 3xl:text-[13px] font-medium text-[#C7C7E1] text-center mb-[30px]">
+            <div className="text-[15px] 2xl:text-[14px] 3xl:text-[13px] font-medium text-[#878797] text-center mb-[30px]">
                 {dates}
             </div>
 
@@ -91,10 +91,11 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
             <Button
                 variant="send_btn_desktop"
                 size="send_btn_desktop"
-                className="py-5 px-[45px]"
+                className="relative overflow-hidden border-4"
                 onClick={handleButtonClick}
             >
-                {buttonText}
+                <span className="absolute inset-0 bg-white/10" aria-hidden />
+                <span className="relative">{buttonText}</span>
             </Button>
         </Card>
     )
