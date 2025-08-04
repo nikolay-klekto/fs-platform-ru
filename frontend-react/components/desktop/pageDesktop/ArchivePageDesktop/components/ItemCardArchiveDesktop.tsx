@@ -47,10 +47,10 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
     }, [])
 
     const handleButtonClick = useCallback(() => {
-        if (stage === 'setRating' && rating !== initialRating) {
+        if (stage === 'setRating' && rating > 0 && rating !== initialRating) {
             onRatingChange(rating)
+            dispatch({ type: 'SAVE' })
         }
-        dispatch({ type: 'SAVE' })
     }, [stage, rating, onRatingChange, initialRating])
 
     const buttonText = {
