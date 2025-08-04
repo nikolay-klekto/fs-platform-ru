@@ -49,12 +49,13 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
         if (field === 'consent') {
             setFormErrors((prev) => ({
                 ...prev,
-                consent: false,
+                consent: !value,
             }))
+            setButtonDisabled(!(value as boolean))
         }
     }
 
-    const validateForm = (fullValidation: boolean): boolean | undefined => {
+    const validateForm = (): boolean | undefined => {
         let hasErrors = false
 
         if (!formData.email) {
@@ -67,7 +68,6 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
         } else {
             const emailValidation = validateEmailDesktop(formData.email)
             if (!emailValidation.status) {
-                console.log(emailValidation.textError)
                 setFormErrors((prev) => ({
                     ...prev,
                     email: emailValidation.textError,
@@ -77,14 +77,12 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
             }
         }
 
-        if (fullValidation) {
-            if (!formData.consent) {
-                setFormErrors((prev) => ({
-                    ...prev,
-                    consent: true,
-                }))
-                hasErrors = true
-            }
+        if (!formData.consent) {
+            setFormErrors((prev) => ({
+                ...prev,
+                consent: true,
+            }))
+            hasErrors = true
         }
 
         if (hasErrors) {
@@ -94,13 +92,13 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
     }
 
     const handleEmailBlur = (): void => {
-        validateForm(false)
+        validateForm()
     }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
-        const hasErrors = validateForm(true)
+        const hasErrors = validateForm()
 
         if (!hasErrors) {
             onClose()
@@ -160,7 +158,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 type="checkbox"
                                 name="consent"
                                 checked={formData.consent}
-                                onChange={(value) => handleChange('consent', Boolean(value))}
+                                onChange={(value) => handleChange('consent', value === 'true')}
                                 label="Я согласен(а) на обработку персональных данных"
                                 wrapperClassName="flex gap-2"
                                 error={formErrors.consent ? 'Подтвердите согласие на обработку данных' : ''}
