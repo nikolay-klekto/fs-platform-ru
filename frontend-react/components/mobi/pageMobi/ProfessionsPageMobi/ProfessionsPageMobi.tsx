@@ -62,9 +62,7 @@ const ProfessionsPageMobi: React.FC = () => {
                                     variant={'search_mobi'}
                                     size={'search_mobi'}
                                     rounded={'full'}
-                                    wrapperClassName={
-                                        'relative h-[48px] border-[2px] border-[#878797] bg-transparent flex-1 justify-between flex rounded-[50px] px-[10px]'
-                                    }
+                                    wrapperClassName={`relative h-[48px] border-[2px] border-[#878797] bg-transparent flex-1 justify-between flex rounded-[50px] px-[10px]}`}
                                     placeholder="Поиск"
                                 />
                                 <Button variant="circle_btn_mobi" size="circle_btn_mobi" onClick={handleSearch}>
