@@ -23,8 +23,6 @@ interface IFormData {
     message: string
 }
 
-type FieldName = 'name' | 'email' | 'tel' | 'message'
-
 const ContactsDesktop: React.FC = () => {
     const { openModal } = useModal()
 
@@ -36,14 +34,16 @@ const ContactsDesktop: React.FC = () => {
         message: '',
     })
 
-    const [fieldErrors, setFieldErrors] = useState({
+    const initialFieldState = {
         name: false,
         email: false,
         tel: false,
         role: false,
         message: false,
-    })
+    }
 
+    const [fieldErrors, setFieldErrors] = useState({ ...initialFieldState })
+    const [touchedFields, setTouchedFields] = useState({ ...initialFieldState })
     const [emptyFields, setEmptyFields] = useState({
         name: false,
         email: false,
@@ -56,13 +56,6 @@ const ContactsDesktop: React.FC = () => {
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(false)
 
     const { toast } = useToast()
-
-    const [touchedFields, setTouchedFields] = useState({
-        name: false,
-        email: false,
-        tel: false,
-        message: false,
-    })
 
     const phoneMask = '+375 (__) ___-__-__'
 
@@ -97,54 +90,86 @@ const ContactsDesktop: React.FC = () => {
 
     const [isSubmitted, setIsSubmitted] = useState(false)
 
-    useEffect(() => {
-        const showError = (field: FieldName) => (isSubmitted || touchedFields[field]) && fieldErrors[field]
-
-        const isEmpty = (field: FieldName, value: string) =>
-            (isSubmitted || touchedFields[field]) && value.trim() === ''
-
-        const telEmpty =
-            (isSubmitted || touchedFields.tel) && (formData.tel.trim() === '' || formData.tel === phoneMask)
-
-        if (showError('name')) {
-            setFormError('Введите корректное имя')
-        } else if (showError('email')) {
-            setFormError('Введите корректный адрес электронной почты')
-        } else if (showError('tel')) {
-            setFormError('Введите корректный номер телефона')
-        } else if (showError('message')) {
-            setFormError('Введите текст, содержащий буквы')
-        } else if (
-            isEmpty('name', formData.name) ||
-            isEmpty('email', formData.email) ||
-            telEmpty ||
-            isEmpty('message', formData.message)
-        ) {
-            setFormError('*Заполните обязательные поля')
-        } else {
-            setFormError('')
-            setIsSubmitDisabled(false)
-            return
+    const validateForm = (data: IFormData) => {
+        const newErrors = {
+            name: data.name.trim() === '' || !validateNameDesktop(data.name).status,
+            email: data.email.trim() === '' || !validateEmailDesktop(data.email).status,
+            tel: data.tel.trim() === '' || data.tel === phoneMask || fieldErrors.tel,
+            role: data.role?.trim() ? !validateRoleDesktop(data.role).status : false,
+            message: data.message.trim() === '' || !validateTextareaDesktop(data.message).status,
         }
-        setIsSubmitDisabled(true)
-    }, [formData, fieldErrors, touchedFields, isSubmitted, phoneMask])
+
+        const emptyErrors = {
+            name: data.name.trim() === '',
+            email: data.email.trim() === '',
+            tel: data.tel.trim() === '' || data.tel === phoneMask,
+            message: data.message.trim() === '',
+        }
+
+        return { newErrors, emptyErrors }
+    }
+
+    const getFirstFormError = (): string => {
+        if (fieldErrors.name && (touchedFields.name || isSubmitted)) return 'Введите корректное имя'
+        if (fieldErrors.email && (touchedFields.email || isSubmitted))
+            return 'Введите корректный адрес электронной почты'
+        if (fieldErrors.tel && (touchedFields.tel || isSubmitted)) return 'Введите корректный номер телефона'
+        if (fieldErrors.role && (touchedFields.role || isSubmitted)) return 'Варианты ввода: клиент/партнер/соискатель'
+        if (fieldErrors.message && (touchedFields.message || isSubmitted)) return 'Введите текст, содержащий буквы'
+
+        if (
+            (formData.name.trim() === '' && (touchedFields.name || isSubmitted)) ||
+            (formData.email.trim() === '' && (touchedFields.email || isSubmitted)) ||
+            ((formData.tel.trim() === '' || formData.tel === phoneMask) && (touchedFields.tel || isSubmitted)) ||
+            (formData.message.trim() === '' && (touchedFields.message || isSubmitted))
+        ) {
+            return '*Заполните обязательные поля'
+        }
+
+        return ''
+    }
+
+    useEffect(() => {
+        const error = getFirstFormError()
+        setFormError(error)
+        setIsSubmitDisabled(Boolean(error))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formData, fieldErrors, touchedFields, isSubmitted])
+
+    const resetForm = () => {
+        setFormData({
+            name: '',
+            email: '',
+            tel: '',
+            role: '',
+            message: '',
+        })
+        setFieldErrors({ ...initialFieldState })
+        setTouchedFields({ ...initialFieldState })
+        setEmptyFields({
+            name: false,
+            email: false,
+            tel: false,
+            message: false,
+        })
+        setFormError('')
+        setIsSubmitted(false)
+    }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         setFormError('')
         setIsSubmitted(true)
 
-        const newFieldErrors = {
-            name: formData.name.trim() === '',
-            email: formData.email.trim() === '',
-            tel: formData.tel.trim() === '' || formData.tel === phoneMask || fieldErrors.tel,
-            message: formData.message.trim() === '',
-        }
-        setEmptyFields(newFieldErrors)
+        const { newErrors, emptyErrors } = validateForm(formData)
 
-        const hasEmptyField = Object.values(newFieldErrors).some((error) => error)
-        const hasErrors = Object.values(fieldErrors).some((error) => error)
-        if (hasEmptyField || hasErrors) {
+        setFieldErrors(newErrors)
+        setEmptyFields(emptyErrors)
+
+        const hasErrors = Object.values(newErrors).some(Boolean)
+        const hasEmpty = Object.values(emptyErrors).some(Boolean)
+
+        if (hasErrors || hasEmpty) {
             setFormError('*Заполните обязательные поля')
             return
         }
@@ -153,31 +178,7 @@ const ContactsDesktop: React.FC = () => {
             description: 'Спасибо! Ваша заявка была успешно отправлена',
         })
 
-        setFormData({
-            name: '',
-            email: '',
-            tel: '',
-            role: '',
-            message: '',
-        })
-
-        setFieldErrors({
-            name: false,
-            email: false,
-            tel: false,
-            role: false,
-            message: false,
-        })
-
-        setEmptyFields({
-            name: false,
-            email: false,
-            tel: false,
-            message: false,
-        })
-
-        setFormError('')
-        setIsSubmitted(false)
+        resetForm()
         console.log('Форма отправлена:', formData)
     }
 
@@ -305,7 +306,7 @@ const ContactsDesktop: React.FC = () => {
                                             }
                                         }}
                                         className={`
-                                        3xl:w-[452px] h-[53px] w-[484px] rounded-[53px] border-2 bg-transparent px-4 py-3.5 text-5xl ring-offset-transparent placeholder:font-medium focus:border-2 focus:border-[#878797] focus:ring-transparent 2xl:w-[520px]`}
+                                        3xl:w-[452px] ocus:ring-transparent h-[53px] w-[484px] rounded-[53px] border-2 px-4 py-3.5 text-5xl ring-offset-transparent placeholder:font-medium focus:border-2 2xl:w-[520px] ${emptyFields.tel || (touchedFields.tel && (formData.tel.trim() === '' || fieldErrors.tel)) ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] bg-transparent focus:border-[#878797]'}`}
                                         wrapperClassName={'h-[76px]'}
                                         labelClassName="hidden"
                                     />
