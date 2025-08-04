@@ -149,7 +149,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={isFocused ? PHONE_MASK : 'Номер телефона*'}
-                className={`input-form-desktop-custom placeholder:text-muted-foreground w-full font-medium ${isFocused && 'placeholder:text-[#FFFFFF]'} ${error ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                className={`input-form-desktop-custom placeholder:text-muted-foreground w-full font-medium ${isFocused && 'focus:border-2 focus:border-[#FFFFFF] focus:ring-transparent focus:placeholder:text-[#FFFFFF]'} ${error ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
         </div>
     )

@@ -133,7 +133,6 @@ const ContactsDesktop: React.FC = () => {
         const error = getFirstFormError()
         setFormError(error)
         setIsSubmitDisabled(Boolean(error))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formData, fieldErrors, touchedFields, isSubmitted])
 
     const resetForm = () => {
