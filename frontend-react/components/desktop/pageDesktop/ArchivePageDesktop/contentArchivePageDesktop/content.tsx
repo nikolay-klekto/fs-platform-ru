@@ -13,7 +13,7 @@ export const content: IContent[] = [
       companyName: 'EPAM',
       profession: 'Программист',
       dates: '25.10.2023 – 18.10.2023, Стажировка наблюдателя',
-      image: '/images/archive_1.jpg',
+      image: '/images/archive_1.webp',
       rating: 0,
   },
   {
@@ -21,7 +21,7 @@ export const content: IContent[] = [
       companyName: 'EPAM',
       profession: 'Программист',
       dates: '25.10.2023 – 18.10.2023, Стажировка наблюдателя',
-      image: '/images/archive_2.jpg',
+      image: '/images/archive_2.webp',
       rating: 0,
   },
   {
@@ -29,7 +29,7 @@ export const content: IContent[] = [
       companyName: 'EPAM',
       profession: 'Программист',
       dates: '25.10.2023 – 18.10.2023, Стажировка наблюдателя',
-      image: '/images/archive_3.jpg',
+      image: '/images/archive_3.webp',
       rating: 0,
   },
   {
@@ -37,7 +37,7 @@ export const content: IContent[] = [
       companyName: 'EPAM',
       profession: 'Программист',
       dates: '25.10.2023 – 18.10.2023, Стажировка наблюдателя',
-      image: '/images/archive_4.jpg',
+      image: '/images/archive_4.webp',
       rating: 0,
   },
 ]

@@ -64,7 +64,7 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
             <div className="w-full aspect-[367/360] rounded-[50px] overflow-hidden mb-6 max-w-[367px]">
                 <Image
                     src={image}
-                    alt={companyName}
+                    alt={`Изображение компании ${companyName}`}
                     width={367}
                     height={360}
                     className="object-cover w-full h-full"
