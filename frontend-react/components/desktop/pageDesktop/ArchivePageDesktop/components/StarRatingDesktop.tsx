@@ -6,6 +6,8 @@ export interface IStarRating {
     onRate?: (newRating: number) => void
 }
 
+const TOTAL_STARS = 5
+
 const StarRatingDesktop: React.FC<IStarRating> = ({ rating = 0, onRate }) => {
     const [hovered, setHovered] = useState<number | null>(null)
 
@@ -20,7 +22,7 @@ const StarRatingDesktop: React.FC<IStarRating> = ({ rating = 0, onRate }) => {
 
     return (
         <div className="flex gap-[5px]">
-            {Array.from({ length: 5 }).map((_, idx) => {
+            {Array.from({ length: TOTAL_STARS }).map((_, idx) => {
                 const shouldFill = hovered !== null ? idx < hovered : idx < rating
                 const starNumber = idx + 1
                 return (
@@ -28,10 +30,10 @@ const StarRatingDesktop: React.FC<IStarRating> = ({ rating = 0, onRate }) => {
                         key={starNumber}
                         type="button"
                         className="focus:outline-none cursor-pointer"
-                        onMouseEnter={() => handleMouseEnter(idx + 1)}
+                        onMouseEnter={() => handleMouseEnter(starNumber)}
                         onMouseLeave={handleMouseLeave}
-                        onClick={() => handleClick(idx + 1)}
-                        aria-label={`Поставить ${idx + 1} звёзд`}
+                        onClick={() => handleClick(starNumber)}
+                        aria-label={`Поставить ${starNumber} звёзд`}
                     >
                         <StarIconDesktop filled={shouldFill} />
                     </button>
