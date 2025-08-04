@@ -81,6 +81,7 @@ const CompaniesPageMobi: React.FC = () => {
                         {filteredContent.length > 0 ? (
                             <>
                                 <div className="flex flex-wrap justify-center gap-[20px] sm_xl:gap-[15px]">
+<<<<<<< HEAD
                                     {paginatedItems.map((item) => (
                                         <CompaniesCardPageMobi
                                             key={item.id}
@@ -97,6 +98,26 @@ const CompaniesPageMobi: React.FC = () => {
                                             companyName={item.companyName}
                                         />
                                     ))}
+=======
+                                    {filteredContent
+                                        .slice((safeCurrentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
+                                        .map((item) => (
+                                            <CompaniesCardPageMobi
+                                                key={item.id}
+                                                image={item.image}
+                                                industry={item.industry}
+                                                price={item.price.toString()}
+                                                // здесь будет открываться страница компании, пока оставлена ссылка на профессии
+                                                onClick={() => {
+                                                    openModal('profession_modal_mobi', 'mobi', {
+                                                        profession: item.companyName,
+                                                        professionId: item.id,
+                                                    })
+                                                }}
+                                                companyName={item.companyName}
+                                            />
+                                        ))}
+>>>>>>> origin/dev-front-react
                                 </div>
                                 {totalPages >= 1 && (
                                     <PaginationMobi

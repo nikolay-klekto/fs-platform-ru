@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { ChevronDownIconMobi, CheckedBoxIconMobi, QuestionMarkMobi } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
@@ -79,7 +81,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
     ({ children, isChecked, onClick, ...props }, forwardedRef) => {
         return (
             <div
-                className={`relative z-[3] flex cursor-pointer items-center justify-between rounded-[18px] p-[15px] text-[15px] font-medium ${
+                className={`relative z-[3] flex items-center justify-between rounded-[18px] p-[15px] text-[15px] font-medium ${
                     isChecked ? 'bg-[#5F4AF30F] text-white' : 'bg-transparent text-[#878797]'
                 }`}
                 {...props}
@@ -103,7 +105,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                                 e.stopPropagation()
                                 onClick()
                             }}
-                            className="absolute inset-0 size-full cursor-pointer opacity-0"
+                            className="absolute inset-0 size-full opacity-0"
                         />
                         {isChecked ? (
                             <CheckedBoxIconMobi

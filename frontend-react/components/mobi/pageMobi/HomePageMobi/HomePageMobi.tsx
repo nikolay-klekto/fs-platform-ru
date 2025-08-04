@@ -25,14 +25,17 @@ const HomePageMobi: React.FC = () => {
 
     return (
         <>
-            <div className="bg-[#101030]">
+            <header className="bg-[#101030]">
                 <HeaderMainMobi />
                 <HeaderCardsMobi />
+            </header>
+            <main className="bg-[#101030]">
+
                 <HowWeWorkMobi />
                 <ProfessionsSectionMobi />
                 <PromoMobi />
                 <EventsSectionMobi />
-            </div>
+            </main>
             <FooterMobi />
         </>
     )

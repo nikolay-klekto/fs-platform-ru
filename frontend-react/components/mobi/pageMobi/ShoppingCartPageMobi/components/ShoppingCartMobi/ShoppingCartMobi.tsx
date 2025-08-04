@@ -1,26 +1,13 @@
 'use client'
 
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import ItemCardShoppingCartMobi from '@/components/mobi/pageMobi/ShoppingCartPageMobi/components/ItemCardShoppingCartMobi/ItemCardShoppingCartMobi'
 import { content } from '@/components/mobi/pageMobi/ShoppingCartPageMobi/contentShoppingCartPageMobi/content'
 
 const ShoppingCartMobi: React.FC = () => {
-    if (!content) {
-        return (
-            <div className="flex flex-col items-center  pt-[77px]">
-                <p className="mb-4 text-[#353652] hover:underline">Ваша корзина пуста</p>
-                <Link href={'/professions'}>
-                    <Button variant={'select_mobi'} size={'registration_mobi'} className="w-[294px] text-[17px]">
-                        Выбрать стажировку
-                    </Button>
-                </Link>
-            </div>
-        )
-    }
     return (
         <>
-            <div className="text-center">
+            <div className="pt-10 text-center">
                 <div className="flex flex-wrap justify-center gap-[34px] self-end pb-[50px] 2xl:pt-[75px]">
                     {content.map((item) => (
                         <ItemCardShoppingCartMobi

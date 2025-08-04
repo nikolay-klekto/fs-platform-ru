@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
@@ -9,6 +9,8 @@ import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
 import PasswordInputDesktop from '@/components/desktop/shared/formInput/PasswordInputDesktop'
 import { useModal } from '@/context/ContextModal'
+import { useLogin } from '@/hooks/useLogin'
+import { useRouter } from 'next/navigation'
 
 interface ILoginFormData {
     email: string
@@ -25,63 +27,43 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         password: '',
     })
     const { openModal } = useModal()
-    const [inputInternalErrors, setInputInternalErrors] = useState<{ [key: string]: string | null }>({
-        email: '',
-        password: '',
+    const [formError, setFormError] = useState({
+        show: false,
+        message: '',
     })
-
-    const [formError, setFormError] = useState(false)
-
-    const handleError = (field: string, error: string | null) => {
-        setInputInternalErrors((prevErrors) => ({
-            ...prevErrors,
-            [field]: error,
-        }))
-    }
+    const { login, error: apiError, loading } = useLogin()
+    const router = useRouter()
 
     const validateForm = useCallback((): boolean => {
-        const hasEmptyFields = formData.email === '' || formData.password === ''
+        const emailEmpty = formData.email.trim() === ''
+        const passwordEmpty = formData.password.trim() === ''
 
-        const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
+        if (emailEmpty || passwordEmpty) {
+            setFormError({
+                show: true,
+                message: 'Введите e-mail и пароль',
+            })
+            return true
+        }
+        return false
+    }, [formData.email, formData.password])
 
-        return hasEmptyFields || hasInternalErrors
-    }, [formData.email, formData.password, inputInternalErrors])
-
-    const handleChange = (field: keyof ILoginFormData, value: string | boolean) => {
-        setFormData((prev) => ({
-            ...prev,
-            [field]: value,
-        }))
-    }
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        if (validateForm()) {
-            setFormError(true)
-            console.log('Ошибка: Заполните все поля корректно или исправьте ошибки')
-        } else {
-            setFormError(false)
-            console.log('Форма входа отправлена:', formData)
+
+        if (validateForm()) return
+
+        const result = await login(formData.email, formData.password)
+
+        if (result.success) {
             onClose()
+            router.push('/profile')
+        } else {
+            setFormError({
+                show: true,
+                message: 'Аккаунт не найден, проверьте вводимые данные',
+            })
         }
-    }
-
-    useEffect(() => {
-        if (!validateForm()) {
-            setFormError(false)
-        }
-    }, [formData, inputInternalErrors, validateForm])
-
-    const [inputTouched, setInputTouched] = useState({
-        email: false,
-        phone: false,
-    })
-
-    const handleInputBlur = (field: 'phone' | 'email') => {
-        setInputTouched((prev) => ({
-            ...prev,
-            [field]: true,
-        }))
     }
 
     const openRegistrationModal = () => {
@@ -100,57 +82,72 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 <button onClick={onClose} className="absolute right-[5%] top-[5%] w-[7%]">
                     <X size={41} color="#878797" className="w-full opacity-50 hover:opacity-100" />
                 </button>
-                <h2 className="text36px_desktop text-gradient_desktop_custom mb-7 inline font-medium uppercase 2xl:mb-4 3xl:mb-5 4xl:mb-6">
+
+                <h2 className="text36px_desktop text-gradient_desktop_custom mb-7 inline font-medium uppercase">
                     Вход
                 </h2>
+
                 <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle">
                     <div className="mb-5">
                         <EnhancedInput
                             type="email"
                             name="email"
-                            placeholder="Почта"
+                            placeholder="Ваш e-mail"
+                            variant={'common_input_desktop'}
+                            size={'common_input_desktop'}
+                            rounded={'rounded_50'}
                             value={formData.email}
-                            onBlur={() => handleInputBlur('email')}
-                            validate={(value) => validateEmailDesktop(value)}
                             onChange={(value) => {
-                                setFormData((prev) => ({ ...prev, email: value }))
-                                setFormError(!validateForm)
+                                const lowerCaseValue = value.toLowerCase()
+                                setFormData((prev) => ({ ...prev, email: lowerCaseValue }))
+                                if (validateEmailDesktop(lowerCaseValue)) {
+                                    setFormError((prev) => ({ ...prev, show: false }))
+                                }
                             }}
-                            className={`${
-                                (inputTouched.email && validateEmailDesktop(formData.email).styleError) || formError
-                                    ? 'border-[#bc8070] focus:bg-[#1f203f]'
-                                    : 'input-form-desktop-custom border-[#878797]'
-                            } h-10 w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium text-white outline-none placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0`}
+                            onBlur={() => {
+                                if (formData.email === '') {
+                                    setFormError((prev) => ({ ...prev, show: true }))
+                                }
+                            }}
+                            validate={validateEmailDesktop}
+                            className={` ${
+                                formError.show && (formData.email === '' || !validateEmailDesktop(formData.email))
+                                    ? 'border-[#bc8070] focus:border-[#bc8070]'
+                                    : 'border-[#878797] focus:border-[#878797]'
+                            } `}
                             label="Почта"
                             labelClassName="mb-1 text-2xl font-medium text-white"
                             wrapperClassName="w-full"
                         />
-                        {inputInternalErrors.email && (
-                            <p className="error-form-desktop-custom">{inputInternalErrors.email}</p>
-                        )}
                     </div>
+
                     <div className="relative mb-5">
                         <PasswordInputDesktop
                             value={formData.password}
+                            onChange={(value) => {
+                                setFormData((prev) => ({ ...prev, password: value }))
+                                setFormError((prev) => ({ ...prev, show: false }))
+                            }}
+                            onError={() => {}}
                             label="Пароль"
                             placeholder="Пароль"
-                            onChange={(value) => {
-                                handleChange('password', value)
-                                setFormError(!validateForm)
-                            }}
-                            onError={(error) => handleError('password', error)}
                             labelClassName="label-form-desktop-custom text-2xl mb-1"
                             inputClassName="input-form-desktop-custom"
-                            errorClassName="error-form-desktop-custom"
+                            errorClassName="hidden"
                             inputERRAddStyle="border-[#bc8070] focus:border-[#bc8070]"
                             inputNOERRAddStyle="border-[#878797] focus:border-[#878797]"
-                            formError={formError}
-                            showGenerateButton={true}
                             required={true}
+                            formError={formError.show && formData.password === ''}
                         />
                     </div>
-                    <div className={`flex w-full ${formError ? 'justify-between' : 'justify-end'}`}>
-                        {formError && <p className="error-form-desktop-custom">Введите e-mail и пароль</p>}
+
+                    <div className={`flex w-full ${formError.show || apiError ? 'justify-between' : 'justify-end'}`}>
+                        {formError.show && !apiError && (
+                            <p className="error-form-desktop-custom">{formError.message}</p>
+                        )}
+                        {apiError && (
+                            <p className="error-form-desktop-custom">Аккаунт не найден, проверьте вводимые данные</p>
+                        )}
                         <button
                             type="button"
                             className="text15px_desktop bg-transparent font-semibold text-[#878797]"
@@ -159,10 +156,16 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             Забыли пароль?
                         </button>
                     </div>
+
                     <div className="w-[95%]">
                         <p className="text15px_desktop mt-3 font-medium text-[#353652]">
                             Защита от спама reCAPTCHA{' '}
-                            <Link href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline">
+                            <Link
+                                href="/privacy-policy"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline"
+                            >
                                 Конфиденциальность
                             </Link>{' '}
                             и{' '}
@@ -171,16 +174,18 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             </Link>
                         </p>
                     </div>
+
                     <Button
                         type="submit"
                         variant="default"
                         size="btn_modal_desktop"
-                        disabled={formError}
+                        disabled={loading || (formError.show && !apiError)}
                         className="mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
                     >
-                        Войти
+                        {loading ? 'Вход...' : 'Войти'}
                     </Button>
                 </form>
+
                 <div className="text15px_desktop mt-5 flex justify-center">
                     <p className="mr-2 font-medium text-[#878797]">Нет аккаунта?</p>
                     <button

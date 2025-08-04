@@ -62,7 +62,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
             formData.phone === '' ||
             formData.password === '' ||
             formData.confirmPassword === '' ||
-            formData.agree !== true
+            !formData.agree === true
 
         const hasErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
         const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
@@ -148,11 +148,11 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
             const result = await register(formData.email, cleanedPhone, formData.password)
             if (result.success) {
                 onClose()
-                router.push('/personal-account')
+                router.push('/profile')
             } else {
                 setInputInternalErrors((prevErrors) => ({
                     ...prevErrors,
-                    email: result.errorMessage,
+                    email: result.errorMessage ?? null,
                 }))
             }
         }
@@ -175,34 +175,37 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]">
             <div className="relative w-full max-w-md">
                 <button
                     onClick={onClose}
-                    className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80]"
+                    className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
                 >
                     <X size={44} color="#878797" />
                 </button>
                 <div className="relative flex max-w-[500px] flex-col items-center rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat">
-                    <h1 className="text18px_mobi bg-sub-title-gradient-mobi mx-auto mb-1 mt-6 inline bg-clip-text font-semibold uppercase text-transparent">
+                    <h2 className="text18px_mobi mx-auto mb-1 mt-6 inline bg-sub-title-gradient-mobi bg-clip-text font-semibold uppercase text-transparent">
                         Регистрация
-                    </h1>
+                    </h2>
                     <form onSubmit={handleSubmit} className="flex w-4/5 flex-col align-middle">
                         <div className="mb-3">
                             <EnhancedInput
                                 type="email"
                                 name="email"
-                                placeholder="Почта"
+                                placeholder="Ваш e-mail"
+                                variant={'common_input_mobi'}
+                                size={'common_input_mobi'}
+                                rounded={'rounded_50'}
                                 value={formData.email}
                                 onBlur={() => handleInputBlur('email')}
                                 validate={(value) => validateEmailMobi(value)}
-                                onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
+                                onChange={(value) => setFormData((prev) => ({ ...prev, email: value.toLowerCase() }))}
                                 className={`${
                                     inputTouched.email && validateEmailMobi(formData.email).styleError
                                         ? 'border-[#bc8070] focus:border-[#bc8070] '
                                         : 'border-[#878797] focus:border-[#878797]'
-                                } h-10 w-full rounded-[20px] border bg-transparent p-3 text-xl font-medium text-white`}
-                                label="Почта*"
+                                }`}
+                                label="Почта"
                                 labelClassName="mb-1 text-2xl font-medium text-white"
                                 wrapperClassName="w-full"
                             />
@@ -217,6 +220,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 onError={(error) => handleError('phone', error)}
                                 wrapperClassName="w-full"
                                 required={true}
+                                labelClassName="leading-[100%] tracking-normal"
                                 showInternalError={true}
                             />
                             {inputInternalErrors.phone && (
@@ -296,7 +300,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                             variant="default"
                             size="btn_modal_desktop"
                             disabled={formError}
-                            className="bg-gradient-desktop hover:bg-gradient-desktop-hover sm_s:w-4/5 sm_s:text-xl sm_l:w-4/5 sm_l:text-2xl sm_xl:text-3xl mx-auto mt-6 w-[70%] rounded-[50px] text-4xl font-medium sm:w-4/5 sm:text-xl md:text-4xl"
+                            className="mx-auto mt-6 w-[70%] rounded-[50px] bg-gradient-desktop text-4xl font-medium hover:bg-gradient-desktop-hover sm:w-4/5 sm:text-xl md:text-4xl sm_s:w-4/5 sm_s:text-xl sm_l:w-4/5 sm_l:text-2xl sm_xl:text-3xl"
                         >
                             {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                         </Button>
