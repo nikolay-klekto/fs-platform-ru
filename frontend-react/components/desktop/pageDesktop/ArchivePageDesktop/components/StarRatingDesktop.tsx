@@ -2,11 +2,11 @@ import React, { useState, useCallback } from 'react'
 import { StarIconDesktop } from '@/components/assets/iconsDesktop'
 
 export interface IStarRating {
-    rating: number
+    rating?: number
     onRate?: (newRating: number) => void
 }
 
-const StarRatingDesktop: React.FC<IStarRating> = ({ rating, onRate }) => {
+const StarRatingDesktop: React.FC<IStarRating> = ({ rating = 0, onRate }) => {
     const [hovered, setHovered] = useState<number | null>(null)
 
     const handleMouseEnter = useCallback((i: number) => setHovered(i), [])

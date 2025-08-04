@@ -22,7 +22,7 @@ export const content: IContent[] = [
       profession: 'Программист',
       dates: '25.10.2023 – 18.10.2023, Стажировка наблюдателя',
       image: '/images/archive_2.jpg',
-      rating: 4,
+      rating: 0,
   },
   {
       id: 3,
@@ -30,7 +30,7 @@ export const content: IContent[] = [
       profession: 'Программист',
       dates: '25.10.2023 – 18.10.2023, Стажировка наблюдателя',
       image: '/images/archive_3.jpg',
-      rating: 4,
+      rating: 0,
   },
   {
       id: 4,
@@ -38,6 +38,6 @@ export const content: IContent[] = [
       profession: 'Программист',
       dates: '25.10.2023 – 18.10.2023, Стажировка наблюдателя',
       image: '/images/archive_4.jpg',
-      rating: 4,
+      rating: 0,
   },
 ]
