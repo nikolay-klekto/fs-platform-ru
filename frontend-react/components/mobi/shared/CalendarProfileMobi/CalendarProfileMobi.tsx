@@ -118,7 +118,7 @@ const DatePickerCalendarMobi: React.FC<DatePickerCalendarProps> = ({ onConfirm, 
         <>
             {isOpen && (
                 <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%] ">
-                    <div ref={modalRef} className="bg-[#101030] p-6 shadow-lg w-80 relative rounded-[16px]">
+                    <div ref={modalRef} className="bg-[#101030] p-8 shadow-lg w-80 relative rounded-[25px]">
                         <div className="grid grid-cols-3 gap-4 text-center">
                             <div className="flex flex-col items-center">
                                 {visibleDays.map((day, index) => {
@@ -135,14 +135,15 @@ const DatePickerCalendarMobi: React.FC<DatePickerCalendarProps> = ({ onConfirm, 
                                             tabIndex={0}
                                             key={day}
                                             className={`
-                py-2
+                py-[13px]
                 cursor-pointer
                 relative
                 w-[60px]
                 text-center
                 whitespace-nowrap
                 text-white
-                ${isActive ? 'text16px_mobi' : 'text14px_mobi opacity-50'}
+                font-medium
+                ${isActive ? 'text-[16px] font-semibold' : 'text14px_mobi opacity-50'}
                 ${
                     index < visibleDays.length - 1
                         ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:opacity-70 after:bg-[#FFFFFF]'
@@ -168,46 +169,50 @@ const DatePickerCalendarMobi: React.FC<DatePickerCalendarProps> = ({ onConfirm, 
 
                             <div className="flex items-center justify-center relative h-full">
                                 <div className="flex flex-col items-center justify-center">
-                                    {visibleMonths.map((month, index) => (
-                                        <div
-                                            onKeyDown={(e) => {
-                                                if (e.key === 'Enter' || e.key === ' ') {
-                                                    e.preventDefault()
-                                                    handleMonthChange(index)
-                                                }
-                                            }}
-                                            role="button"
-                                            tabIndex={0}
-                                            key={month}
-                                            className={`
-                    py-2
+                                    {visibleMonths.map((month, index) => {
+                                        const isActive = index === 1
+                                        return (
+                                            <div
+                                                onKeyDown={(e) => {
+                                                    if (e.key === 'Enter' || e.key === ' ') {
+                                                        e.preventDefault()
+                                                        handleMonthChange(index)
+                                                    }
+                                                }}
+                                                role="button"
+                                                tabIndex={0}
+                                                key={month}
+                                                className={`
+                        py-[13px]
                     text-center
                     cursor-pointer
                     relative
                     w-[80px]
-                    whitespace-nowrap
                     text-white
-                    ${index === 1 ? 'text16px_mobi text-white' : 'text14px_mobi opacity-50'}
-                    ${
-                        index < visibleMonths.length - 1
-                            ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:opacity-70 after:bg-[#FFFFFF]'
-                            : ''
-                    }
-                    ${
-                        index > 0
-                            ? 'before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] after:opacity-70 before:bg-[#FFFFFF]'
-                            : ''
-                    }
+                    font-medium
+                    ${isActive ? 'text-[16px] font-semibold' : 'text14px_mobi opacity-50'}
+                   ${
+                       index < visibleMonths.length - 1
+                           ? 'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[60px] after:h-[1px] after:opacity-70 after:bg-[#FFFFFF]'
+                           : ''
+                   }
+                   ${
+                       index > 0
+                           ? 'before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:w-[60px] before:h-[1px] before:opacity-70 before:bg-[#FFFFFF]'
+                           : ''
+                   }
                 `}
-                                            onClick={() =>
-                                                setVisibleMonthIndex(
-                                                    (visibleMonthIndex + (index - 1) + months.length) % months.length,
-                                                )
-                                            }
-                                        >
-                                            {month}
-                                        </div>
-                                    ))}
+                                                onClick={() =>
+                                                    setVisibleMonthIndex(
+                                                        (visibleMonthIndex + (index - 1) + months.length) %
+                                                            months.length,
+                                                    )
+                                                }
+                                            >
+                                                {month}
+                                            </div>
+                                        )
+                                    })}
                                 </div>
                             </div>
 
@@ -223,8 +228,8 @@ const DatePickerCalendarMobi: React.FC<DatePickerCalendarProps> = ({ onConfirm, 
                                             }
                                         }}
                                         tabIndex={0}
-                                        className={`py-2 cursor-pointer relative w-[60px] text-white ${
-                                            index === 1 ? 'text16px_mobi' : 'text14px_mobi opacity-50'
+                                        className={`py-[13px] cursor-pointer relative w-[60px] text-white font-medium ${
+                                            index === 1 ? 'text16px_mobi font-semibold' : 'text14px_mobi opacity-50'
                                         } ${
                                             index < visibleYears.length - 1
                                                 ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:opacity-70 after:bg-[#FFFFFF]'
@@ -245,11 +250,10 @@ const DatePickerCalendarMobi: React.FC<DatePickerCalendarProps> = ({ onConfirm, 
                                 ))}
                             </div>
                         </div>
-
-                        <div className="mt-6 flex justify-between">
+                        <div className="mt-5 flex justify-between gap-2.5">
                             <button
                                 onClick={handleCancel}
-                                className="text-[#878797] text12px_mobi mx-4 my-2 font-semibold transition-colors border-b border-[#878797]"
+                                className="inline-block leading-none text-[#878797] text12px_mobi mx-4 my-2 font-semibold transition-colors border-b border-[#878797]"
                             >
                                 Отмена
                             </button>
@@ -257,7 +261,7 @@ const DatePickerCalendarMobi: React.FC<DatePickerCalendarProps> = ({ onConfirm, 
                                 onClick={() => handleSelect(selectedDate)}
                                 type="submit"
                                 variant="select_mobi"
-                                className="m-w-[180px] text-2xl w-[100%]"
+                                className="m-w-[180px] text-2xl mr-[-16px] w-[calc(100%+16px)]"
                             >
                                 Сохранить
                             </Button>
