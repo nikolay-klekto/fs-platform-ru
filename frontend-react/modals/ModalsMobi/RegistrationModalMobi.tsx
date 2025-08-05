@@ -62,7 +62,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
             formData.phone === '' ||
             formData.password === '' ||
             formData.confirmPassword === '' ||
-            formData.agree !== true
+            !formData.agree === true
 
         const hasErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
         const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
@@ -184,7 +184,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                     <X size={44} color="#878797" />
                 </button>
                 <div className="relative flex max-w-[500px] flex-col items-center rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat">
-                    <h2 className="text18px_mobi bg-sub-title-gradient-mobi mx-auto mb-1 mt-6 inline bg-clip-text font-semibold uppercase text-transparent">
+                    <h2 className="text18px_mobi mx-auto mb-1 mt-6 inline bg-sub-title-gradient-mobi bg-clip-text font-semibold uppercase text-transparent">
                         Регистрация
                     </h2>
                     <form onSubmit={handleSubmit} className="flex w-4/5 flex-col align-middle">
@@ -300,7 +300,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
                             variant="default"
                             size="btn_modal_desktop"
                             disabled={formError}
-                            className="bg-gradient-desktop hover:bg-gradient-desktop-hover sm_s:w-4/5 sm_s:text-xl sm_l:w-4/5 sm_l:text-2xl sm_xl:text-3xl mx-auto mt-6 w-[70%] rounded-[50px] text-4xl font-medium sm:w-4/5 sm:text-xl md:text-4xl"
+                            className="mx-auto mt-6 w-[70%] rounded-[50px] bg-gradient-desktop text-4xl font-medium hover:bg-gradient-desktop-hover sm:w-4/5 sm:text-xl md:text-4xl sm_s:w-4/5 sm_s:text-xl sm_l:w-4/5 sm_l:text-2xl sm_xl:text-3xl"
                         >
                             {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                         </Button>

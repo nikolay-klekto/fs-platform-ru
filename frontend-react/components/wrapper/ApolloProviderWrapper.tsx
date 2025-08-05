@@ -2,13 +2,13 @@
 
 import React, { ReactNode, useMemo } from 'react'
 import { ApolloProvider } from '@apollo/client'
-import { createApolloClient } from '@/lib/apolloClient'
+import { createApolloServerClient } from '@/lib/apollo/apolloClient'
 
 interface IApolloProviderWrapper {
     children: ReactNode
 }
 
 export default function ApolloProviderWrapper({ children }: IApolloProviderWrapper): JSX.Element {
-    const client = useMemo(() => createApolloClient(), [])
+    const client = useMemo(() => createApolloServerClient(), [])
     return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
