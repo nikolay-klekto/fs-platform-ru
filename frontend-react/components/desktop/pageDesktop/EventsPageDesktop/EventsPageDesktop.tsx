@@ -36,7 +36,6 @@ const EventsPageDesktop: React.FC = () => {
         setCurrentPage(1)
     }, [dates])
 
-    const isEmpty = filteredContent.length === 0
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
     const paginatedItems = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
 
@@ -44,15 +43,15 @@ const EventsPageDesktop: React.FC = () => {
         <>
             <HeaderDesktop />
             <main className="bg-[#101030] text-white">
-                <div className="3xl:p-[76px_130px_150px_130px] container relative min-h-screen overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px]">
+                <div className="container relative min-h-screen overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
                     <h1 className="title80px_desktop relative z-[1]">Мероприятия</h1>
                     <div className="relative z-[1] flex items-center justify-end gap-[30px] pb-[30px] pt-[116px]">
                         <EventsSelectSearchDesktop />
                         <EventsSelectSearchDateDesktop dates={dates} setDates={setDates} />
                         <EventsSelectSearchCityDesktop />
                     </div>
-                    <div className="3xl:gap-[25px] 4xl:gap-[30px] flex min-h-[40vh] flex-wrap justify-center gap-[36px] 2xl:gap-[20px]">
-                        {!isEmpty ? (
+                    <div className="flex min-h-[40vh] flex-wrap justify-center gap-[36px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
+                        {filteredContent.length > 0 ? (
                             paginatedItems.map((item) => (
                                 <EventsCardDesktop
                                     key={item.id}
@@ -73,7 +72,7 @@ const EventsPageDesktop: React.FC = () => {
                             </div>
                         )}
                     </div>
-                    {totalPages > 1 && (
+                    {totalPages > 1 && filteredContent.length > 0 && (
                         <PaginationDesktop
                             totalPages={totalPages}
                             currentPage={currentPage}
