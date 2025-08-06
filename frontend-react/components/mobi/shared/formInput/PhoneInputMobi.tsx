@@ -35,10 +35,10 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     labelClassName,
     placeholder,
     required = false,
+    onBlur,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
-    const [internalError, setInternalError] = useState<string | null>(null)
 
     const setCaretToPosition = (pos: number) => {
         if (inputRef.current) {
@@ -86,21 +86,19 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
         } else {
             e.preventDefault()
         }
-        validateValue(newValue)
-    }
-
-    const validateValue = (value: string) => {
-        const error =
-            required && (value === PHONE_MASK || !value)
-                ? 'Поле обязательно для заполнения'
-                : validatePhoneMobi(value).textError
-        setInternalError(error)
-        onError(error)
-        onChange(value)
     }
 
     const handleBlur = () => {
-        validateValue(inputValue)
+        const error =
+            required && (inputValue === PHONE_MASK || !inputValue)
+                ? 'Поле обязательно для заполнения'
+                : validatePhoneMobi(inputValue).textError
+
+        onError(error || '')
+
+        if (onBlur) {
+            onBlur(inputValue)
+        }
     }
 
     const handleFocus = () => {
@@ -122,7 +120,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     return (
         <div className={`flex w-full flex-col gap-1.5 ${wrapperClassName}`}>
             <label htmlFor="phone" className={`mb-1 text-2xl font-medium text-white ${labelClassName}`}>
-                Номер телефона
+                Номер телефона{required ? '*' : ''}
             </label>
             <input
                 ref={inputRef}
@@ -136,7 +134,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 onClick={handleClick}
                 onBlur={handleBlur}
                 placeholder={PHONE_MASK || placeholder}
-                className={`input-form-mobi-custom w-full border-2 font-medium placeholder:text-[#353652] focus:border-2 ${internalError ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                className={`input-form-mobi-custom w-full border-2 font-medium placeholder:text-[#353652] focus:border-2 ${className}`}
             />
         </div>
     )

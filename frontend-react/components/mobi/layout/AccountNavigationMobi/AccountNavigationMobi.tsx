@@ -35,7 +35,7 @@ export const AccountNavigationMobi: React.FC = () => {
                 onClick={() => setMenuOpen(true)}
             >
                 {selectedLabel}
-                <div className="-rotate-90">
+                <div className="mt-[5px] -rotate-90">
                     <ChevronLeft size={30} color="#8333F3" />
                 </div>
             </button>

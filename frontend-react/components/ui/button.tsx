@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/classnames-order */
 import * as React from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
@@ -47,6 +46,8 @@ const buttonVariants = cva(
                 hover_button_date:
                     'hover:button-border-desktop-date border-2 border-[#878797] bg-[#1f203f] rounded-[90px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg text-sm rounded-[90px] text-white',
                 cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
+                profile_desktop:
+                    'button-border-mobi inline-flex items-center justify-center font-medium profile_gradient_mobi rounded-[50px] border-2 border-transparent text-white px-4 py-2 text-[17px] h-[56px] hover:bg-[#1F203F]',
                 cookie_btn_mobi: 'button-border-mobi border-2 bg-inherit hover:bg-[#101030] rounded-[50px] text-white',
             },
             size: {
