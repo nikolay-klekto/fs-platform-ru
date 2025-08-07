@@ -6,6 +6,7 @@ import { Search } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useAvailableCompanies } from '@/hooks/useAvailibleCompanies'
+import useDebounce from '@/hooks/useDebounce'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import CompaniesSelectDesktop from './components/CompaniesSelectDesktop'
@@ -17,6 +18,7 @@ const cardsPerPage = 12
 
 const CompaniesPageDesktop: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('')
+    const debouncedSearchQuery = useDebounce(searchQuery)
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
@@ -24,7 +26,7 @@ const CompaniesPageDesktop: React.FC = () => {
 
     const filteredCompanies = companies.filter((item) => {
         const matchesSearch =
-            searchQuery.length < 3 || item.name.toLowerCase().includes(searchQuery.toLowerCase().trim())
+            (debouncedSearchQuery ?? '').length < 3 || item.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase().trim())
         const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(item.companyIndustry)
         return matchesSearch && matchesCategory
     })
@@ -33,7 +35,7 @@ const CompaniesPageDesktop: React.FC = () => {
 
     useEffect(() => {
         setCurrentPage(1)
-    }, [searchQuery, selectedCategories])
+    }, [debouncedSearchQuery, selectedCategories])
 
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
