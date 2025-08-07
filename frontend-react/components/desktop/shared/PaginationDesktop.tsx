@@ -10,6 +10,12 @@ interface PaginationDesktopProps {
     visibleCount?: number
 }
 
+function scrollToTop() {
+    requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    })
+}
+
 const PaginationDesktop: React.FC<PaginationDesktopProps> = ({
     totalPages,
     currentPage,
@@ -30,7 +36,7 @@ const PaginationDesktop: React.FC<PaginationDesktopProps> = ({
                         ? undefined
                         : () => {
                               onPageChange(currentPage - 1)
-                              window.scrollTo({ top: 0, behavior: 'smooth' })
+                              scrollToTop()
                           }
                 }
                 disabled={lessDisabled}
@@ -52,7 +58,7 @@ const PaginationDesktop: React.FC<PaginationDesktopProps> = ({
                         onClick={() => {
                             if (pageNumber !== currentPage) {
                                 onPageChange(pageNumber)
-                                window.scrollTo({ top: 0, behavior: 'smooth' })
+                                scrollToTop()
                             }
                         }}
                     >
@@ -67,9 +73,7 @@ const PaginationDesktop: React.FC<PaginationDesktopProps> = ({
                         ? undefined
                         : () => {
                               onPageChange(currentPage + 1)
-                              requestAnimationFrame(() => {
-                                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                              })
+                              scrollToTop()
                           }
                 }
                 disabled={moreDisabled}

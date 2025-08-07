@@ -9,6 +9,12 @@ interface PaginationMobiProps {
     visibleCount?: number
 }
 
+function scrollToTop() {
+    requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    })
+}
+
 const PaginationMobi: React.FC<PaginationMobiProps> = ({ totalPages, currentPage, onPageChange, visibleCount = 3 }) => {
     const { visibleStart, visibleEnd, lessDisabled, moreDisabled } = usePagination({
         totalPages,
@@ -27,7 +33,7 @@ const PaginationMobi: React.FC<PaginationMobiProps> = ({ totalPages, currentPage
                         ? undefined
                         : () => {
                               onPageChange(currentPage - 1)
-                              window.scrollTo({ top: 0, behavior: 'smooth' })
+                              scrollToTop()
                           }
                 }
             />
@@ -42,9 +48,7 @@ const PaginationMobi: React.FC<PaginationMobiProps> = ({ totalPages, currentPage
                         onClick={() => {
                             if (pageNumber !== currentPage) {
                                 onPageChange(pageNumber)
-                                requestAnimationFrame(() => {
-                                    window.scrollTo({ top: 0, behavior: 'smooth' })
-                                })
+                                scrollToTop()
                             }
                         }}
                     >
@@ -61,7 +65,7 @@ const PaginationMobi: React.FC<PaginationMobiProps> = ({ totalPages, currentPage
                         ? undefined
                         : () => {
                               onPageChange(currentPage + 1)
-                              window.scrollTo({ top: 0, behavior: 'smooth' })
+                              scrollToTop()
                           }
                 }
             />
