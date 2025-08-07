@@ -70,10 +70,12 @@ const ContactsDesktop: React.FC = () => {
             [field]: false,
         }))
 
-        setFieldErrors((prev) => ({
-            ...prev,
-            [field]: false,
-        }))
+        if (field !== 'tel') {
+            setFieldErrors((prev) => ({
+                ...prev,
+                [field]: false,
+            }))
+        }
 
         setTouchedFields((prev) => ({
             ...prev,
@@ -110,6 +112,7 @@ const ContactsDesktop: React.FC = () => {
     }
 
     const getFirstFormError = (): string => {
+        console.log(fieldErrors)
         if (fieldErrors.name && (touchedFields.name || isSubmitted)) return 'Введите корректное имя'
         if (fieldErrors.email && (touchedFields.email || isSubmitted))
             return 'Введите корректный адрес электронной почты'
@@ -295,14 +298,10 @@ const ContactsDesktop: React.FC = () => {
                                         value={formData.tel}
                                         onChange={(value: string) => {
                                             handleChange('tel', value)
-                                            if (!isSubmitted) updateFieldError('tel', false)
+                                            //if (!isSubmitted) updateFieldError('tel', false)
                                         }}
                                         onError={(error: string) => {
-                                            if (isSubmitted) {
-                                                updateFieldError('tel', !!error)
-                                            } else {
-                                                updateFieldError('tel', false)
-                                            }
+                                            updateFieldError('tel', !!error)
                                         }}
                                         className={`
                                         3xl:w-[452px] ocus:ring-transparent h-[53px] w-[484px] rounded-[53px] border-2 px-4 py-3.5 text-5xl ring-offset-transparent placeholder:font-medium focus:border-2 2xl:w-[520px] ${emptyFields.tel || (touchedFields.tel && (formData.tel.trim() === '' || fieldErrors.tel)) ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] bg-transparent focus:border-[#878797]'}`}
