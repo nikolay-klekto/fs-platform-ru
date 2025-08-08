@@ -5,6 +5,8 @@ import { Search } from 'lucide-react'
 import { useDataContext } from '@/context/DataContext'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useExistingProfessions } from '@/hooks/useExistingProfessions'
+import useDebounce from '@/hooks/useDebounce'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import SelectInternshipTypeDesktop from './components/SelectInternshipTypeDesktop'
@@ -15,6 +17,7 @@ import ProfessionSearchDesktop from './components/ProfessionSendDesktop'
 
 const ProfessionsPageDesktop: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('')
+    const debouncedSearchQuery = useDebounce(searchQuery)
     const [isFocused, setIsFocused] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
@@ -29,7 +32,8 @@ const ProfessionsPageDesktop: React.FC = () => {
     const cardsPerPage = 12
     const filteredContent = professions.filter((item) => {
         const matchesSearch =
-            searchQuery.length < 3 || item.name.toLowerCase().includes(searchQuery.toLowerCase().trim())
+            (debouncedSearchQuery ?? '').length < 3 ||
+            item.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase().trim())
         const matchesCategory =
             selectedCategories.length === 0 ||
             selectedCategories.some((professionIndustry) => item.professionIndustry === professionIndustry)
@@ -43,6 +47,10 @@ const ProfessionsPageDesktop: React.FC = () => {
     })
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
+
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [debouncedSearchQuery, selectedCategories])
 
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)

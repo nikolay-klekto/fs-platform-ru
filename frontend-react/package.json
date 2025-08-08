@@ -35,7 +35,8 @@
         "react-input-mask": "^2.0.4",
         "react-responsive": "^10.0.0",
         "tailwind-merge": "^2.5.4",
-        "tailwindcss-animate": "^1.0.7"
+        "tailwindcss-animate": "^1.0.7",
+        "use-debounce": "^10.0.5"
     },
     "devDependencies": {
         "@types/js-cookie": "^3.0.6",
