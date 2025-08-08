@@ -1,8 +1,7 @@
-import * as React from 'react'
+import React, { useEffect } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
-import { useEffect } from 'react'
 
 const inputVariants = cva(
     '',

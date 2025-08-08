@@ -29,6 +29,8 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
         consent: false,
     })
 
+    const [checkboxTouched, setCheckboxTouched] = useState(false)
+
     const [buttonDisabled, setButtonDisabled] = useState(false)
 
     const { toast } = useToast()
@@ -47,6 +49,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
         }
 
         if (field === 'consent') {
+            setCheckboxTouched(true)
             setFormErrors((prev) => ({
                 ...prev,
                 consent: !value,
@@ -55,7 +58,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
         }
     }
 
-    const validateForm = (): boolean | undefined => {
+    const validateForm = (checkboxTouched: boolean): boolean | undefined => {
         let hasErrors = false
 
         if (!formData.email) {
@@ -77,7 +80,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
             }
         }
 
-        if (!formData.consent) {
+        if (!formData.consent && checkboxTouched) {
             setFormErrors((prev) => ({
                 ...prev,
                 consent: true,
@@ -92,13 +95,14 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
     }
 
     const handleEmailBlur = (): void => {
-        validateForm()
+        validateForm(checkboxTouched)
     }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
+        setCheckboxTouched(true)
 
-        const hasErrors = validateForm()
+        const hasErrors = validateForm(true)
 
         if (!hasErrors) {
             onClose()
