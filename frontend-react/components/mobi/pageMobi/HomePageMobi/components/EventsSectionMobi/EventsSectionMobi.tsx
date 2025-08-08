@@ -5,16 +5,16 @@ import ItemEventsMobi from '@/components/mobi/pageMobi/HomePageMobi/components/E
 import { content } from './contentEventsSectionMobi/content'
 const EventsSectionMobi: React.FC = () => {
     return (
-        <section className="mx-auto flex flex-col px-[14px] py-[60px] align-middle">
-            <TitleMobi title={'МЕРОПРИЯТИЯ'} href="/events" />
-            <div className="scrollbar_custom flex max-w-full gap-8 overflow-x-scroll pt-9">
+        <section className="flex w-full flex-col px-[15px] py-[60px] md:px-[32px]">
+            <TitleMobi title={'Мероприятия'} href="/events" />
+            <div className="scrollbar_custom flex max-w-full gap-8 overflow-x-scroll pt-8">
                 {content.map((item) => (
                     <ItemEventsMobi
                         image={item.image}
                         title={item.title}
                         date={item.date}
                         key={item.id}
-                        adress={item.adress}
+                        address={item.address}
                     />
                 ))}
             </div>
