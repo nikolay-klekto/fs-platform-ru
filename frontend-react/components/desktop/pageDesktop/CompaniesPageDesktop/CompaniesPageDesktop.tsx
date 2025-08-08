@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useAvailableCompanies } from '@/hooks/useAvailibleCompanies'
+import { useAvailableCompanies } from '@/hooks/useAvailableCompanies'
 import useDebounce from '@/hooks/useDebounce'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
@@ -26,7 +26,8 @@ const CompaniesPageDesktop: React.FC = () => {
 
     const filteredCompanies = companies.filter((item) => {
         const matchesSearch =
-            (debouncedSearchQuery ?? '').length < 3 || item.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase().trim())
+            (debouncedSearchQuery ?? '').length < 3 ||
+            item.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase().trim())
         const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(item.companyIndustry)
         return matchesSearch && matchesCategory
     })
