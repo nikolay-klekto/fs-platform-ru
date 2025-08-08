@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
-import { useToast } from '@/hooks/use-toast'
+import { useToast } from '@/hooks/useToast'
 import { useModal } from '@/context/ContextModal'
 
 import { Button } from '@/components/ui/button'
