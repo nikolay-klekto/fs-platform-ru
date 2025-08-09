@@ -8,10 +8,18 @@ import ItemCardArchiveDesktop from '@/components/desktop/pageDesktop/ArchivePage
 import { content } from '@/components/desktop/pageDesktop/ArchivePageDesktop/contentArchivePageDesktop/content'
 
 const ArchivePageDesktop: React.FC = () => {
-    const [cards, setCards] = useState(content)
+    const [ratings, setRatings] = useState<Record<number, number>>(() =>
+        content.reduce(
+            (acc, card) => {
+                acc[card.id] = card.rating
+                return acc
+            },
+            {} as Record<number, number>,
+        ),
+    )
 
     const handleRatingChange = useCallback((id: number, newRating: number) => {
-        setCards((prev) => prev.map((card) => (card.id === id ? { ...card, rating: newRating } : card)))
+        setRatings((prev) => ({ ...prev, [id]: newRating }))
     }, [])
 
     return (
@@ -29,10 +37,11 @@ const ArchivePageDesktop: React.FC = () => {
                             <AccountNavigationDesktop />
                         </div>
                         <div className="grid gap-8 grid-cols-4">
-                            {cards.map((card) => (
+                            {content.map((card) => (
                                 <ItemCardArchiveDesktop
                                     key={card.id}
                                     {...card}
+                                    rating={ratings[card.id] ?? card.rating}
                                     onRatingChange={(newRating) => handleRatingChange(card.id, newRating)}
                                 />
                             ))}
