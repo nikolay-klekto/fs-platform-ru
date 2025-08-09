@@ -25,7 +25,7 @@ const ArchivePageDesktop: React.FC = () => {
     return (
         <>
             <HeaderDesktop />
-            <main className="min-h-screen flex flex-col bg-[#101030] text-white">
+            <main className="min-h-screen bg-[#101030] text-white">
                 <div className="container relative overflow-hidden p-[76px_60px_88px_60px]">
                     <div className="radial-gradient_desktop left-[150px] top-[-330px]"></div>
                     <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
