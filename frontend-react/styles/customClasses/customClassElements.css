@@ -190,9 +190,9 @@
     }
 
     .radial-gradient_desktop {
-        @apply size-[852px] opacity-30 rounded-full absolute z-[0];
+        @apply size-[852px] opacity-50 rounded-full absolute z-[0];
         background: radial-gradient(circle, #8917a5 0%, #30217b 100%);
-        filter: blur(100px);
+        filter: blur(500px);
     }
 
     .input-form-desktop-custom {
