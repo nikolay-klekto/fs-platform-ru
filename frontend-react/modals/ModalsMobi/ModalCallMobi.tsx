@@ -1,5 +1,6 @@
 'use client'
-import React, { useState } from 'react'
+import * as React from 'react'
+import { useState } from 'react'
 import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validateNameMobi'
