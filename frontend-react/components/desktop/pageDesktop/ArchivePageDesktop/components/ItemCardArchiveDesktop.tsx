@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useReducer, useCallback } from 'react'
+import React, { useState, useReducer, useCallback, useEffect } from 'react'
 import Image from 'next/image'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -36,23 +36,27 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
     companyName,
     profession,
     dates,
-    rating: initialRating,
+    rating,
     onRatingChange,
 }) => {
-    const [rating, setRating] = useState(initialRating)
+    const [draftRating, setDraftRating] = useState<number>(rating)
     const [stage, dispatch] = useReducer(stageReducer, 'initial')
 
+    useEffect(() => {
+        setDraftRating(rating)
+    }, [rating])
+
     const handleSetRating = useCallback((newRating: number) => {
-        setRating(newRating)
+        setDraftRating(newRating)
         dispatch({ type: 'SET_RATING' })
     }, [])
 
     const handleButtonClick = useCallback(() => {
-        if (stage === 'setRating' && rating > 0 && rating !== initialRating) {
-            onRatingChange(rating)
+        if (stage === 'setRating' && draftRating > 0 && draftRating !== rating) {
+            onRatingChange(draftRating)
             dispatch({ type: 'SAVE' })
         }
-    }, [stage, rating, onRatingChange, initialRating])
+    }, [stage, draftRating, onRatingChange, rating])
 
     const buttonText = {
         initial: 'Отправить отзыв',
@@ -95,7 +99,7 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
             </div>
 
             <div className="mb-[20px]">
-                <StarRatingDesktop rating={rating} onRate={handleSetRating} />
+                <StarRatingDesktop rating={draftRating} onRate={handleSetRating} />
             </div>
 
             <Button
