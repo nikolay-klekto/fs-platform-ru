@@ -73,7 +73,6 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
                     width={367}
                     height={360}
                     className="object-cover w-full h-full"
-                    priority
                 />
             </div>
 
