@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useReducer, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import Image from 'next/image'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -17,20 +17,6 @@ interface IItemCardArchive {
     onRatingChange: (rating: number) => void
 }
 
-type Stage = 'initial' | 'setRating' | 'saved'
-type Action = { type: 'SET_RATING' } | { type: 'SAVE' }
-
-function stageReducer(state: Stage, action: Action): Stage {
-    switch (action.type) {
-        case 'SET_RATING':
-            return 'setRating'
-        case 'SAVE':
-            return 'saved'
-        default:
-            return state
-    }
-}
-
 const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
     image,
     companyName,
@@ -40,7 +26,6 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
     onRatingChange,
 }) => {
     const [draftRating, setDraftRating] = useState<number>(rating)
-    const [stage, dispatch] = useReducer(stageReducer, 'initial')
 
     useEffect(() => {
         setDraftRating(rating)
@@ -48,21 +33,21 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
 
     const handleSetRating = useCallback((newRating: number) => {
         setDraftRating(newRating)
-        dispatch({ type: 'SET_RATING' })
     }, [])
 
-    const handleButtonClick = useCallback(() => {
-        if (stage === 'setRating' && draftRating > 0 && draftRating !== rating) {
-            onRatingChange(draftRating)
-            dispatch({ type: 'SAVE' })
-        }
-    }, [stage, draftRating, onRatingChange, rating])
+    const hasUnsavedRating = draftRating > 0 && draftRating !== rating
+    const isDisabled = hasUnsavedRating ? false : rating === 0
+    const buttonText = hasUnsavedRating 
+    ? 'Сохранить оценку' 
+    : rating > 0 ? 'Написать отзыв' : 'Отправить отзыв'
 
-    const buttonText = {
-        initial: 'Отправить отзыв',
-        setRating: 'Сохранить оценку',
-        saved: 'Написать отзыв',
-    }[stage] as string
+    const handleButtonClick = useCallback(() => {
+        if (hasUnsavedRating) {
+            onRatingChange(draftRating)
+        } else {
+            console.log('open review UI')
+        }
+    }, [hasUnsavedRating, draftRating, onRatingChange])
 
     return (
         <Card className="w-full flex flex-col items-center bg-white/10 backdrop-blur-[5px] rounded-[50px] px-6 pt-6 pb-8 min-h-[500px]">
@@ -106,6 +91,7 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
                 size="send_btn_desktop"
                 className="relative overflow-hidden border-4"
                 onClick={handleButtonClick}
+                disabled={isDisabled}
             >
                 <span className="absolute inset-0 bg-white/10" aria-hidden />
                 <span className="relative">{buttonText}</span>
