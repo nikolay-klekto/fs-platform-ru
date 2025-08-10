@@ -54,7 +54,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 ...prev,
                 consent: !value,
             }))
-            setButtonDisabled(!(value as boolean))
+            //setButtonDisabled(!(value as boolean))
         }
     }
 
@@ -145,7 +145,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             onChange={(value) => handleChange('email', value)}
                             onBlur={handleEmailBlur}
                             variant="gradient_desktop"
-                            error={formErrors.email ?? undefined}
+                            error={!!formErrors.email}
                             labelClassName="text-white text-[15px] font-medium ml-[6px] mt-[18px] "
                             className={`focus:ring-0" h-[50px] w-[518px] rounded-[50px] border-2 bg-transparent text-[18px] font-medium text-white focus:outline-none
                             ${formErrors.email ? 'border-[#E99B9B]' : 'border-[#878797]'}
@@ -165,7 +165,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 onChange={(value) => handleChange('consent', value === 'true')}
                                 label="Я согласен(а) на обработку персональных данных"
                                 wrapperClassName="flex gap-2"
-                                error={formErrors.consent ? 'Подтвердите согласие на обработку данных' : ''}
+                                error={formErrors.consent}
                                 className="size-[18px] rounded-[2px]"
                             />
                         </div>

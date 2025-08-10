@@ -63,7 +63,7 @@ export interface IEnhancedInput
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'>,
         VariantProps<typeof inputVariants> {
     validate?: (value: string) => { textError: string; status: boolean | null; styleError: boolean } | undefined
-    error?: string
+    error?: boolean
     onChange?: (value: string) => void
     onFocus?: () => void
     onBlur?: () => void
@@ -129,6 +129,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
 
         useEffect(() => {
             if (error) {
+                console.log('error:', error)
                 setStyleErrorClass(true)
             } else {
                 setStyleErrorClass(false)
