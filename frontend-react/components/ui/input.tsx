@@ -16,9 +16,9 @@ const inputVariants = cva(
                 search_mobi:
                     'flex border-0 bg-transparent text-xl text-[#878797] outline-none placeholder:text-[14px] placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
                 contacts_page_desktop:
-                    'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent placeholder:text-[19px] placeholder:text-muted-foreground placeholder:font-medium focus:placeholder:text-[#FFFFFF] focus:border-2 focus:border-[#FFFFFF] focus:ring-transparent',
+                    'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent placeholder:text-[19px] placeholder:text-[#353652] placeholder:font-medium focus:placeholder:text-[#FFFFFF] focus:border-[#FFFFFF]',
                 contacts_page_error_desktop:
-                    'border-2 border-[#bc8070] bg-[#1F2040] text-5xl ring-offset-transparent placeholder:font-medium focus:border-[3px] focus:ring-transparent',
+                    'border-2 border-[#bc8070] bg-[#1F2040] text-5xl ring-offset-transparent placeholder:font-medium placeholder:text-[#353652] focus:bg-transparent',
                 contacts_page_mobi:
                     'focus:border-1.1 border-[1.18px] border-[#878797] bg-transparent ring-offset-transparent placeholder:font-medium focus:border-[1.18px] focus:border-white focus:bg-[#1f203f] focus:ring-transparent ',
                 contacts_page_error_mobi:
@@ -36,7 +36,7 @@ const inputVariants = cva(
                 search_mobi: 'size-full py-[16px] pl-[10px] pr-[20px]',
                 search_companies_mobi: 'size-full py-[15px]  pl-[20px]',
                 send_mobi: 'size-full px-[10px]',
-                contacts_page_desktop: 'h-[53px] w-[453px] px-4 py-3.5 2xl:w-[520px]',
+                contacts_page_desktop: 'h-[53px] w-full px-4',
                 contacts_page_info_desktop: '3xl:w-[452px] h-[53px] w-[484px] px-4 py-3.5 2xl:w-[520px]',
                 contacts_page_mobi: 'h-[29.5px] md:h-[40px]',
                 common_input_desktop: 'mt-1 h-[50px] px-4 py-2',

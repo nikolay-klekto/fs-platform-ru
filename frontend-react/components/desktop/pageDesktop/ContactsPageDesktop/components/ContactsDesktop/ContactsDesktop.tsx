@@ -8,7 +8,6 @@ import { useModal } from '@/context/ContextModal'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
 import { EnhancedTextareaDesktop } from '@/components/desktop/shared/TextareaDesktop'
-import { validateNameDesktop } from '@/components/desktop/commonDesktop/validate/validateNameDesktop'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
 import { validateRoleDesktop } from '@/components/desktop/commonDesktop/validate/validateRoleDesktop'
 import { validateTextareaDesktop } from '@/components/desktop/commonDesktop/validate/validateTextareaDesktop'
@@ -42,7 +41,12 @@ const ContactsDesktop: React.FC = () => {
         message: false,
     }
 
-    const [fieldErrors, setFieldErrors] = useState({ ...initialFieldState })
+    const [fieldErrors, setFieldErrors] = useState({
+        email: false,
+        tel: false,
+        role: false,
+        message: false,
+    })
     const [touchedFields, setTouchedFields] = useState({ ...initialFieldState })
     const [emptyFields, setEmptyFields] = useState({
         name: false,
@@ -94,7 +98,6 @@ const ContactsDesktop: React.FC = () => {
 
     const validateForm = (data: IFormData) => {
         const newErrors = {
-            name: data.name.trim() === '' || !validateNameDesktop(data.name).status,
             email: data.email.trim() === '' || !validateEmailDesktop(data.email).status,
             tel: data.tel.trim() === '' || data.tel === phoneMask || fieldErrors.tel,
             role: data.role?.trim() ? !validateRoleDesktop(data.role).status : false,
@@ -112,8 +115,6 @@ const ContactsDesktop: React.FC = () => {
     }
 
     const getFirstFormError = (): string => {
-        console.log(fieldErrors)
-        if (fieldErrors.name && (touchedFields.name || isSubmitted)) return 'Введите корректное имя'
         if (fieldErrors.email && (touchedFields.email || isSubmitted))
             return 'Введите корректный адрес электронной почты'
         if (fieldErrors.tel && (touchedFields.tel || isSubmitted)) return 'Введите корректный номер телефона'
@@ -241,95 +242,81 @@ const ContactsDesktop: React.FC = () => {
                     <div>
                         <h2 className="text-20xl font-semibold uppercase">Напишите нам</h2>
                         <form onSubmit={handleSubmit} noValidate autoComplete="off">
-                            <div className="flex justify-between pb-12 pt-14">
-                                <div className="flex flex-col gap-[23px]">
-                                    <EnhancedInput
-                                        type="text"
-                                        id="name"
-                                        placeholder="Ваше имя*"
-                                        variant={
-                                            emptyFields.name ||
-                                            (touchedFields.name && (formData.name.trim() === '' || fieldErrors.name))
-                                                ? 'contacts_page_error_desktop'
-                                                : 'contacts_page_desktop'
-                                        }
-                                        size="contacts_page_desktop"
-                                        rounded="rounded_53"
-                                        value={formData.name}
-                                        onChange={(value) => handleChange('name', value)}
-                                        validate={(value) => {
-                                            const validation = validateNameDesktop(value)
-                                            updateFieldError('name', !validation.status)
-                                            return validation
-                                        }}
-                                        wrapperClassName={'h-[76px]'}
-                                    />
-                                    <EnhancedInput
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        placeholder="Ваш e-mail*"
-                                        autoComplete="email"
-                                        variant={
-                                            emptyFields.email ||
-                                            (touchedFields.email && (formData.email.trim() === '' || fieldErrors.email))
-                                                ? 'contacts_page_error_desktop'
-                                                : 'contacts_page_desktop'
-                                        }
-                                        size="contacts_page_desktop"
-                                        rounded="rounded_53"
-                                        value={formData.email}
-                                        onChange={(value) => handleChange('email', value)}
-                                        onBlur={() => {
-                                            const value = formData.email
-                                            const validation = validateEmailDesktop(value)
-                                            updateFieldError('email', !validation.status)
-                                        }}
-                                        validate={(value) => {
-                                            const validation = validateEmailDesktop(value)
-                                            updateFieldError('email', !validation.status)
-                                            return validation
-                                        }}
-                                        wrapperClassName={'h-[76px]'}
-                                    />
-                                </div>
-                                <div className="flex flex-col gap-[23px] pl-3">
-                                    <PhoneInputDesktop
-                                        value={formData.tel}
-                                        onChange={(value: string) => {
-                                            handleChange('tel', value)
-                                            //if (!isSubmitted) updateFieldError('tel', false)
-                                        }}
-                                        onError={(error: string) => {
-                                            updateFieldError('tel', !!error)
-                                        }}
-                                        className={`
-                                        3xl:w-[452px] ocus:ring-transparent h-[53px] w-[484px] rounded-[53px] border-2 px-4 py-3.5 text-5xl ring-offset-transparent placeholder:font-medium focus:border-2 2xl:w-[520px] ${emptyFields.tel || (touchedFields.tel && (formData.tel.trim() === '' || fieldErrors.tel)) ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] bg-transparent focus:border-[#878797]'}`}
-                                        wrapperClassName={'h-[76px]'}
-                                        labelClassName="hidden"
-                                    />
-                                    <EnhancedInput
-                                        type="text"
-                                        id="role"
-                                        placeholder="Клиент/партнер/соискатель"
-                                        variant={
-                                            formData.role?.trim() !== '' && fieldErrors.role
-                                                ? 'contacts_page_error_desktop'
-                                                : 'contacts_page_desktop'
-                                        }
-                                        size="contacts_page_info_desktop"
-                                        rounded="rounded_53"
-                                        value={formData.role}
-                                        onChange={(value) => handleChange('role', value)}
-                                        validate={(value) => {
-                                            const validation = validateRoleDesktop(value)
-                                            updateFieldError('role', !validation.status)
-                                            return validation
-                                        }}
-                                        wrapperClassName={'h-[76px]'}
-                                        className={'focus:border-2 focus:border-[#FFFFFF]'}
-                                    />
-                                </div>
+                            <div className="mb-[47px] mt-14 grid grid-cols-2 grid-rows-2 gap-x-[77px] gap-y-8">
+                                <EnhancedInput
+                                    type="text"
+                                    id="name"
+                                    placeholder="Ваше имя*"
+                                    variant={
+                                        emptyFields.name || (touchedFields.name && formData.name.trim() === '')
+                                            ? 'contacts_page_error_desktop'
+                                            : 'contacts_page_desktop'
+                                    }
+                                    size="contacts_page_desktop"
+                                    rounded="rounded_53"
+                                    value={formData.name}
+                                    onChange={(value) => handleChange('name', value)}
+                                />
+                                <EnhancedInput
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="Ваш e-mail*"
+                                    autoComplete="email"
+                                    variant={
+                                        emptyFields.email ||
+                                        (touchedFields.email && (formData.email.trim() === '' || fieldErrors.email))
+                                            ? 'contacts_page_error_desktop'
+                                            : 'contacts_page_desktop'
+                                    }
+                                    size="contacts_page_desktop"
+                                    rounded="rounded_53"
+                                    value={formData.email}
+                                    onChange={(value) => handleChange('email', value)}
+                                    onBlur={() => {
+                                        const value = formData.email
+                                        const validation = validateEmailDesktop(value)
+                                        updateFieldError('email', !validation.status)
+                                    }}
+                                    validate={(value) => {
+                                        const validation = validateEmailDesktop(value)
+                                        updateFieldError('email', !validation.status)
+                                        return validation
+                                    }}
+                                />
+                                <PhoneInputDesktop
+                                    value={formData.tel}
+                                    onChange={(value: string) => {
+                                        handleChange('tel', value)
+                                        //if (!isSubmitted) updateFieldError('tel', false)
+                                    }}
+                                    onError={(error: string) => {
+                                        updateFieldError('tel', !!error)
+                                    }}
+                                    className={`
+                                        3xl:w-[452px] ocus:ring-transparent h-[53px] rounded-[53px] border-2 px-4 py-3.5 text-5xl ring-offset-transparent placeholder:font-medium focus:border-2 2xl:w-[520px] ${emptyFields.tel || (touchedFields.tel && (formData.tel.trim() === '' || fieldErrors.tel)) ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] bg-transparent focus:border-[#878797]'}`}
+                                    labelClassName="hidden"
+                                />
+                                <EnhancedInput
+                                    type="text"
+                                    id="role"
+                                    placeholder="Клиент/партнер/соискатель"
+                                    variant={
+                                        formData.role?.trim() !== '' && fieldErrors.role
+                                            ? 'contacts_page_error_desktop'
+                                            : 'contacts_page_desktop'
+                                    }
+                                    size="contacts_page_desktop"
+                                    rounded="rounded_53"
+                                    value={formData.role}
+                                    onChange={(value) => handleChange('role', value)}
+                                    validate={(value) => {
+                                        const validation = validateRoleDesktop(value)
+                                        updateFieldError('role', !validation.status)
+                                        return validation
+                                    }}
+                                    className={'focus:border-2 focus:border-[#FFFFFF]'}
+                                />
                             </div>
                             <EnhancedTextareaDesktop
                                 name="message"
@@ -350,13 +337,12 @@ const ContactsDesktop: React.FC = () => {
                                     updateFieldError('message', !validation.status)
                                     return validation
                                 }}
-                                wrapperClassName={'mb-[13.88px]'}
                             />
-                            <div className="flex h-[130px] flex-col justify-between">
+                            <div className="mt-4 flex flex-col justify-between">
                                 {formError && (
                                     <p className={cn('text-5xl', 'error-form-desktop-custom')}>{formError}</p>
                                 )}
-                                <div className="mt-auto flex items-center justify-between 2xl:justify-start 2xl:gap-10">
+                                <div className="mt-7 flex items-center justify-between 2xl:justify-start 2xl:gap-10">
                                     <Button
                                         variant="send_btn_desktop"
                                         size="contacts_btn_send_desktop"
