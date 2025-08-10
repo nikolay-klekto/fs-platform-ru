@@ -14,18 +14,44 @@ export const AccountNavigationDesktop: React.FC = () => {
         <>
             <nav className="relative z-10">
                 <ul className="flex gap-[clamp(30px,3vw,80px)]">
-                    {content.map((item: IAccountNavigation) => (
-                        <li key={item.href}>
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                prefetch={true}
-                                className={`4xl:text-2xl 3xl:text-xl flex cursor-pointer items-center text-center text-4xl font-bold uppercase leading-[170%] tracking-normal decoration-4 underline-offset-4 transition-all duration-300 ease-in-out 2xl:text-lg ${normalize(item.href) === normalizedActivePath ? 'bg-gradient-desktop bg-clip-text text-transparent underline decoration-[#6C41F3]' : 'hover:bg-gradient-desktop text-[#878797] hover:bg-clip-text hover:text-[#3B51A8] hover:underline'}`}
-                            >
-                                {item.label}
-                            </Link>
-                        </li>
-                    ))}
+                    {content.map((item: IAccountNavigation) => {
+                        const isActive = normalize(item.href) === normalizedActivePath
+                        return (
+                            <li key={item.href} className="group relative">
+                                <Link
+                                    href={item.href}
+                                    aria-current={isActive ? 'page' : undefined}
+                                    className={[
+                                        'relative inline-block pb-[9px]',
+                                        'uppercase font-bold text-4xl 4xl:text-2xl 3xl:text-xl 2xl:text-lg',
+                                        'bg-gradient-desktop bg-clip-text',
+                                        'transition-colors duration-300 ease-in-out',
+                                    ].join(' ')}
+                                >
+                                    <span
+                                        className={
+                                            isActive
+                                                ? 'text-transparent'
+                                                : 'text-[#878797] group-hover:text-transparent'
+                                        }
+                                    >
+                                        {item.label}
+                                    </span>
+
+                                    <span
+                                        aria-hidden
+                                        className={[
+                                            'pointer-events-none',
+                                            'absolute left-0 right-0 bottom-0 h-[4px]',
+                                            'bg-gradient-desktop',
+                                            'opacity-0 transition-opacity duration-300',
+                                            isActive ? 'opacity-100' : 'group-hover:opacity-100',
+                                        ].join(' ')}
+                                    />
+                                </Link>
+                            </li>
+                        )
+                    })}
                 </ul>
             </nav>
         </>
