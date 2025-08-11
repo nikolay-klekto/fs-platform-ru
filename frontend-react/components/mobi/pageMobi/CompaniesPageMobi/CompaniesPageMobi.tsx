@@ -77,7 +77,7 @@ const CompaniesPageMobi: React.FC = () => {
                         </div>
                         {filteredContent.length > 0 ? (
                             <>
-                                <div className="sm_xl:gap-[15px] flex flex-wrap justify-center gap-[20px]">
+                                <div className="flex flex-wrap justify-center gap-[20px] sm_xl:gap-[15px]">
                                     {filteredContent
                                         .slice((safeCurrentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                         .map((item) => (
