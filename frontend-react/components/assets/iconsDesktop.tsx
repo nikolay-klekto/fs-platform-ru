@@ -316,7 +316,7 @@ export const UncheckedBoxFormDesktop: React.FC<SVGProps<SVGSVGElement>> = (props
         <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
                 d="M19 17V3C19 1.89543 18.1046 1 17 1H3C2.46957 1 1.96086 1.21071 1.58579 1.58579C1.21071 1.96086 1 2.46957 1 3V17C1 17.5304 1.21071 18.0391 1.58579 18.4142C1.96086 18.7893 2.46957 19 3 19H17C17.5304 19 18.0391 18.7893 18.4142 18.4142C18.7893 18.0391 19 17.5304 19 17Z"
-                stroke="#878797"
+                stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -670,6 +670,21 @@ export const MapPinIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
                 d="M18.5 20.042C21.0543 20.042 23.125 17.9713 23.125 15.417C23.125 12.8627 21.0543 10.792 18.5 10.792C15.9457 10.792 13.875 12.8627 13.875 15.417C13.875 17.9713 15.9457 20.042 18.5 20.042Z"
                 stroke="#D1D1DD"
                 strokeWidth="3.08333"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}
+
+export const CloseIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M1 1L11 11M11 1L1 11"
+                stroke="white"
+                strokeOpacity="0.5"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
