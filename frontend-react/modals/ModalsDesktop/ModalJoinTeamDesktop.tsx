@@ -228,15 +228,9 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             labelClassName={`text-[23px] 2xl:text-[21px] ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                             checkboxIconSize="w-[28px]"
                             wrapperClassName="gap-4"
+                            hasError={errors.consent}
                         />
                     </div>
-                    {errors.consent ? (
-                        <p className="mb-[31px] text-4xl font-medium leading-[100%] tracking-normal text-[#bc8070]">
-                            Подтвердите согласие на обработку данных
-                        </p>
-                    ) : (
-                        ''
-                    )}
                     <p className="mb-[40px] text-[24px] font-medium leading-[100%] tracking-normal text-[#353652] ">
                         Защита от спама reCAPTCHA{' '}
                         <a href="/privacy-policy" className="leading-[100%] underline underline-offset-[5px]">
