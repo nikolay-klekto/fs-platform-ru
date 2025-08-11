@@ -128,6 +128,14 @@
     ::-webkit-scrollbar-thumb {
         background-color: rgba(135, 135, 151, 1);
     }
+    .profile_gradient_mobi{
+        @apply relative box-border border-[4px] border-transparent rounded-[50px] text-white text-[17px] h-[56px] px-4 py-2;
+        background-image:
+                linear-gradient(#1F203F, #1F203F),
+                linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+    }
 }
 @layer base {
     * {
