@@ -8,19 +8,19 @@ import ItemCardArchiveDesktop from '@/components/desktop/pageDesktop/ArchivePage
 import { content } from '@/components/desktop/pageDesktop/ArchivePageDesktop/contentArchivePageDesktop/content'
 
 const getInitialRatings = () => {
-    const ratingsMap: Record<number, number> = {};
+    const ratingsMap: Record<number, number> = {}
     content.forEach((card) => {
-        ratingsMap[card.id] = card.rating;
-    });
-    return ratingsMap;
-};
+        ratingsMap[card.id] = card.rating
+    })
+    return ratingsMap
+}
 
 const ArchivePageDesktop: React.FC = () => {
-    const [ratings, setRatings] = useState<Record<number, number>>(getInitialRatings);
+    const [ratings, setRatings] = useState<Record<number, number>>(getInitialRatings)
 
     const handleRatingChange = useCallback((id: number, newRating: number) => {
-        setRatings((prev) => ({ ...prev, [id]: newRating }));
-    }, []);
+        setRatings((prev) => ({ ...prev, [id]: newRating }))
+    }, [])
 
     return (
         <>
