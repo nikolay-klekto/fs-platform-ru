@@ -21,12 +21,10 @@ export const AccountNavigationDesktop: React.FC = () => {
                                 <Link
                                     href={item.href}
                                     aria-current={isActive ? 'page' : undefined}
-                                    className={[
-                                        'relative inline-block pb-[9px]',
-                                        'uppercase font-bold text-4xl 4xl:text-2xl 3xl:text-xl 2xl:text-lg',
-                                        'bg-gradient-desktop bg-clip-text',
-                                        'transition-colors duration-300 ease-in-out',
-                                    ].join(' ')}
+                                    className="relative inline-block pb-[9px] 
+                                        uppercase font-bold text-4xl 4xl:text-2xl 3xl:text-xl 2xl:text-lg 
+                                        bg-gradient-desktop bg-clip-text 
+                                        transition-colors duration-300 ease-in-out"
                                 >
                                     <span
                                         className={
@@ -40,13 +38,11 @@ export const AccountNavigationDesktop: React.FC = () => {
 
                                     <span
                                         aria-hidden
-                                        className={[
-                                            'pointer-events-none',
-                                            'absolute left-0 right-0 bottom-0 h-[4px]',
-                                            'bg-gradient-desktop',
-                                            'opacity-0 transition-opacity duration-300',
-                                            isActive ? 'opacity-100' : 'group-hover:opacity-100',
-                                        ].join(' ')}
+                                        className={`pointer-events-none 
+                                            absolute left-0 right-0 bottom-0 h-[4px]
+                                            bg-gradient-desktop 
+                                            opacity-0 transition-opacity duration-300
+                                            ${isActive ? 'opacity-100' : 'group-hover:opacity-100'}`}
                                     />
                                 </Link>
                             </li>
