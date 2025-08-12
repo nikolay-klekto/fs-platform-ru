@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useCallback } from 'react'
 import { StarIconDesktop } from '@/components/assets/iconsDesktop'
 
@@ -11,7 +13,7 @@ const TOTAL_STARS = 5
 const StarRatingDesktop: React.FC<IStarRating> = ({ rating = 0, onRate }) => {
     const [hovered, setHovered] = useState<number | null>(null)
 
-    const handleMouseEnter = useCallback((i: number) => setHovered(i), [])
+    const handleMouseEnter = useCallback((starIndex: number) => setHovered(starIndex), [])
     const handleMouseLeave = useCallback(() => setHovered(null), [])
     const handleClick = useCallback(
         (star: number) => {
@@ -22,9 +24,9 @@ const StarRatingDesktop: React.FC<IStarRating> = ({ rating = 0, onRate }) => {
 
     return (
         <div className="flex gap-[5px]" onMouseLeave={handleMouseLeave}>
-            {Array.from({ length: TOTAL_STARS }).map((_, idx) => {
-                const shouldFill = hovered !== null ? idx < hovered : idx < rating
-                const starNumber = idx + 1
+            {Array.from({ length: TOTAL_STARS }).map((_, index) => {
+                const shouldFill = hovered !== null ? index < hovered : index < rating
+                const starNumber = index + 1
                 return (
                     <button
                         key={starNumber}
