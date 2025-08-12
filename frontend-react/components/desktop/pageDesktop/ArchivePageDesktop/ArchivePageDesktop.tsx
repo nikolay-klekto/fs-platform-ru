@@ -27,16 +27,8 @@ const ArchivePageDesktop: React.FC = () => {
             <HeaderDesktop />
             <main className="bg-[#101030] text-white">
                 <div className="container relative overflow-hidden px-[60px] py-[80px]">
-                    <div
-                        className="radial-gradient_desktop absolute pointer-events-none
-                                left-0 top-0 -translate-x-1/2 -translate-y-1/2"
-                        aria-hidden
-                    />
-                    <div
-                        className="radial-gradient_desktop absolute pointer-events-none 
-                                right-0 bottom-0 translate-x-1/2 translate-y-1/2"
-                        aria-hidden
-                    />
+                    <div className="radial-gradient_desktop left-[150px] top-[-330px]" aria-hidden />
+                    <div className="radial-gradient_desktop right-[150px] top-[933px]" aria-hidden />
 
                     <div className="relative">
                         <div className="flex items-center justify-between pb-20">
