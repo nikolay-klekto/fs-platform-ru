@@ -26,11 +26,11 @@ const ArchivePageDesktop: React.FC = () => {
         <>
             <HeaderDesktop />
             <main className="bg-[#101030] text-white">
-                <div className="container relative overflow-hidden px-[60px] py-[80px]">
-                    <div className="radial-gradient_desktop left-[150px] top-[-330px]" aria-hidden />
-                    <div className="radial-gradient_desktop right-[150px] top-[933px]" aria-hidden />
+                <div className="container relative overflow-hidden">
+                    <div className="radial-gradient_desktop left-[150px] top-[-330px]"></div>
+                    <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
 
-                    <div className="relative">
+                    <div className="relative px-[60px] py-[80px]">
                         <div className="flex items-center justify-between pb-20">
                             <h1 className="title46px_desktop whitespace-nowrap pr-16 font-medium uppercase leading-[70%] tracking-normal">
                                 Личный кабинет
