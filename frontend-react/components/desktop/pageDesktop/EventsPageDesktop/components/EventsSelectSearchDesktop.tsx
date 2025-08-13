@@ -1,8 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { ChevronDownIconDesktop, CheckedBoxIconDesktop, QuestionMarkDesktop } from '@/components/assets/iconsDesktop'
-import { categoryOptions } from '../contentEventsPageDesktop/content';
+import { CheckedBoxIconDesktop, ChevronDownIconDesktop, QuestionMarkDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 import { HelpEventsTooltipDesktop } from '@/components/ui/tooltip'
 
@@ -13,20 +12,19 @@ interface ISelectItem {
     onClick: () => void
 }
 
-
 interface ISelectOption {
     value: string
     label: string
     tooltipMessage: string
-
+}
 interface IEventsSelectSearch {
     selectedOptions: string[]
     onChange: (newSelected: string[]) => void
-
 }
 
-const EventsSelectSearchDesktop: React.FC<IEventsSelectSearch> = ({ selectedOptions, onChange }) => {
+const EventsSelectSearchDesktop: React.FC<IEventsSelectSearch> = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [selectedOptions, setSelectedOptions] = useState<string[]>([])
     const dropdownRef = useRef<HTMLDivElement>(null)
 
     const handleSelectToggle = () => {
@@ -85,13 +83,10 @@ const EventsSelectSearchDesktop: React.FC<IEventsSelectSearch> = ({ selectedOpti
         },
     ]
     const toggleOption = (value: string) => {
-        const next = selectedOptions.includes(value) 
-        ? selectedOptions.filter((opt) => opt !== value) 
-        : [...selectedOptions, value]
-        onChange(next)
+        setSelectedOptions((prev) =>
+            prev.includes(value) ? prev.filter((option) => option !== value) : [...prev, value],
+        )
     }
-
-
     return (
         <div className="relative z-[3]" ref={dropdownRef}>
             <Button
@@ -109,11 +104,9 @@ const EventsSelectSearchDesktop: React.FC<IEventsSelectSearch> = ({ selectedOpti
             </Button>
 
             {isOpen && (
-                <div
-                    className="3xl:w-[300px] absolute right-0 top-[80px] z-50 w-[400px] rounded-[42px] p-[2px] 2xl:w-[270px] bg-gradient-desktop"
-                >
+                <div className="absolute right-0 top-[80px] z-50 w-[400px] rounded-[42px] bg-gradient-desktop p-[2px] 2xl:w-[270px] 3xl:w-[300px]">
                     <div className="flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
-                        {categoryOptions.map((option) => (
+                        {options.map((option) => (
                             <SelectItem
                                 key={option.value}
                                 value={option.value}
@@ -130,7 +123,6 @@ const EventsSelectSearchDesktop: React.FC<IEventsSelectSearch> = ({ selectedOpti
         </div>
     )
 }
-
 
 const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem & { tooltipMessage: string }>(
     ({ children, isChecked, onClick, tooltipMessage, ...props }, forwardedRef) => {
@@ -151,7 +143,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem & { tooltipMessa
                     }
                 }}
             >
-                <div className="flex ">
+                <div className="flex items-center">
                     <div className="relative flex size-[20px] items-center justify-center">
                         <input
                             type="checkbox"
@@ -177,20 +169,19 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem & { tooltipMessa
                                     border: '2px solid #878797',
                                     background: 'transparent',
                                 }}
-                            ></div>
+                            />
                         )}
                     </div>
                     <div className="pl-[14px]">{children}</div>
                 </div>
-                <div className="justify-items-center">
-                    <HelpEventsTooltipDesktop tooltipMessage={tooltipMessage} />
 
+                <div className="flex items-center">
+                    <HelpEventsTooltipDesktop tooltipMessage={tooltipMessage} />
+                    <QuestionMarkDesktop />
                 </div>
-                <div className="pl-[14px]">{children}</div>
             </div>
-            <QuestionMarkDesktop />
-        </div>
-    ),
+        )
+    },
 )
 
 SelectItem.displayName = 'SelectItem'
