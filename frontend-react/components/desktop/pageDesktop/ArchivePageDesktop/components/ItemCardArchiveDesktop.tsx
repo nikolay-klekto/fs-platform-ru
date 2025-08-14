@@ -45,7 +45,6 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
         if (hasUnsavedRating) {
             onRatingChange(draftRating)
         } else {
-            console.log('open review UI')
         }
     }, [hasUnsavedRating, draftRating, onRatingChange])
 
