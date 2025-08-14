@@ -1,9 +1,10 @@
 'use client'
 
-import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { MapPinIconDesktop } from '@/components/assets/iconsDesktop'
-import { content } from './contentCompanyPageDesktop/content'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import InternshipProfessionsDesktop from './components/ProfessionsInCompanyDeskto/ProfessionsInCompanyDesktop'
 import CompanyAdvantageDesktop from './components/CompanyAdvantageDesktop/CompanyAdvantageDesktop'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
@@ -50,7 +51,7 @@ const CompanyPageDesktop: React.FC = () => {
                                         <div className="text32px_desktop flex items-start font-medium text-[#878797]">
                                             <span>Адрес офиса:</span>
                                             <div className="ml-[10px] ">
-                                                <p className="text32px_desktop  font-semibold text-white 2xl:mb-[20px] 3xl:mb-[20px] ">
+                                                <p className="text32px_desktop  3xl:mb-[20px] font-semibold text-white 2xl:mb-[20px] ">
                                                     {item.adress1}
                                                 </p>
                                                 <p className="text32px_desktop   font-semibold text-white">
