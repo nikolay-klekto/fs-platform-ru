@@ -72,6 +72,7 @@ const InternshipCompaniesDesktop: React.FC = () => {
                         onWidthChange={() => {}}
                     />
                 ))}
+                <div className="w-[58px] shrink-0"> </div>
             </div>
             <div
                 ref={scrollbarRef}

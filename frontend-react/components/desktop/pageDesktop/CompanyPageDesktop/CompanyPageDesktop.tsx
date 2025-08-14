@@ -1,15 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { MapPinIconDesktop } from '@/components/assets/iconsDesktop'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import InternshipProfessionsDesktop from './components/ProfessionsInCompanyDeskto/ProfessionsInCompanyDesktop'
 import CompanyAdvantageDesktop from './components/CompanyAdvantageDesktop/CompanyAdvantageDesktop'
-import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import BreadcrumbsDesktop from '../../layout/BreadcrumbsDesktop/BreadcrumbsDesktop'
+import { content } from './contentCompanyPageDesktop/content'
 
 const CompanyPageDesktop: React.FC = () => {
     return (
@@ -17,16 +15,15 @@ const CompanyPageDesktop: React.FC = () => {
             <HeaderDesktop />
             <main className="bg-[#101030] text-white ">
                 <div className="container relative overflow-hidden  ">
-                    <div className="relative z-20 flex items-center space-x-1 pb-[29px] pl-[65px] pt-[60px] text-[20px] text-gray-500 ">
-                        <BreadcrumbsDesktop
-                            items={[
-                                { title: 'Главная', href: '/', className: 'hover:underline' },
-                                { title: 'Компании', href: '/companies', className: 'hover:underline' },
-                                { title: 'Компания EPAM', className: 'text-white hover:no-underline' },
-                            ]}
-                        />
-                    </div>
-                    <div className="flex flex-col px-[26px]">
+                    <div className="relative z-20 flex items-center space-x-1 pb-[29px] pt-[60px] text-[20px] text-gray-500 "></div>
+                    <BreadcrumbsDesktop
+                        items={[
+                            { title: 'Главная', href: '/', className: 'hover:underline' },
+                            { title: 'Компании', href: '/companies', className: 'hover:underline' },
+                            { title: 'Epam', className: 'text-white hover:underline' },
+                        ]}
+                    />
+                    <div className="flex flex-col px-[58px]">
                         <h1 className="mb-15 title80px_desktop relative z-10 font-medium uppercase"> Компания Epam</h1>
                         <p className="title160px_desktop absolute left-0 top-0 mt-[18px] pl-[85px] font-semibold uppercase opacity-[0.02] ">
                             Компания Epam
@@ -97,19 +94,14 @@ const CompanyPageDesktop: React.FC = () => {
                                 </div>
                             </div>
                         ))}
-
-                        <h2 className="mb-[63px] mt-[118px] text-[48px] font-medium uppercase ">
-                            Профессии в компании
-                        </h2>
-                        <InternshipProfessionsDesktop />
-                        {/* <h2 className="mb-[81px] mt-[120px] text-[48px] font-medium uppercase 2xl:mt-[80px] 3xl:mt-[100px]">
-                            Преимущества компании
-                        </h2>
-                        <CompanyAdvantageDesktop /> */}
                     </div>
                 </div>
-                <div className="container relative mt-[120px] max-w-[1920px] overflow-hidden pl-[58px] 2xl:mt-[50px] 3xl:mt-[80px] 4xl:w-full 4xl:max-w-none 4xl:pl-[58px] 4xl:pr-0">
-                    <h2 className=" text-[48px] font-medium uppercase ">Преимущества компании</h2>
+                <div className="container relative max-w-[1920px] overflow-hidden pl-[58px] 4xl:w-full 4xl:max-w-none 4xl:pl-[58px] 4xl:pr-0">
+                    <h2 className="mb-[63px] mt-[118px] text-[48px] font-medium uppercase"> Профессии в компании</h2>
+                    <InternshipProfessionsDesktop />
+                    <h2 className="3xl:mt-[100px] mb-[81px] mt-[120px] text-[48px] font-medium uppercase 2xl:mt-[80px] ">
+                        Преимущества компании
+                    </h2>
                     <CompanyAdvantageDesktop />
                 </div>
             </main>

@@ -1,17 +1,18 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { Search } from 'lucide-react'
+import { useDataContext } from '@/context/DataContext'
+import { EnhancedInput } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
+import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import SelectInternshipTypeDesktop from './components/SelectInternshipTypeDesktop'
 import ProfessionsSelectDesktop from './components/ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './components/ProfessionCardPageDesktop'
 import ProfessionsPaginationDesktop from './components/ProfessionsPaginationDesktop'
 import ProfessionSearchDesktop from './components/ProfessionSendDesktop'
-import { content } from './contentProfessionsPageDesktop/content'
-import { EnhancedInput } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Search } from 'lucide-react'
-import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
-import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 
 const ProfessionsPageDesktop: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('')
@@ -60,7 +61,6 @@ const ProfessionsPageDesktop: React.FC = () => {
             <HeaderDesktop />
             <main className="bg-[#101030] text-white">
                 <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
-                <div className="container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px] 3xl:p-[76px_130px_150px_130px]">
                     <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
                     <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
                     <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
@@ -91,16 +91,15 @@ const ProfessionsPageDesktop: React.FC = () => {
 
                     {filteredContent.length > 0 ? (
                         <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
-                        <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
                             {filteredContent
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (
-                                    <Link href={`/profession`} key={item.id} className="w-[340px] max-w-full">
+                                    <Link href={`/profession`} key={item.id}>
                                         <ProfessionCardPageDesktop
-                                            key={item.id}
-                                            image={item.image}
-                                            profession={item.profession}
-                                            price={item.price.toString()}
+                                            image={item.imagePath}
+                                            profession={item.name}
+                                            price={item.pricePerWeek}
+                                            category={item.professionIndustry}
                                         />
                                     </Link>
                                 ))}

@@ -15,7 +15,7 @@ const ProfessionPageDesktop: React.FC = () => {
             <HeaderDesktop />
             <main className="bg-[#101030] text-white">
                 <div className="container relative overflow-hidden  ">
-                    <div className="relative z-10 flex items-center space-x-1 pb-[29px] pl-[65px] pt-[60px] text-[20px] text-gray-500">
+                    <div className="relative z-10 flex items-center space-x-1 pb-[29px] pl-[35px] pt-[60px] text-[20px] text-gray-500">
                         <BreadcrumbsDesktop
                             items={[
                                 { title: 'Главная', href: '/', className: 'hover:underline' },
@@ -45,13 +45,11 @@ const ProfessionPageDesktop: React.FC = () => {
                                 </p>
                             </div>
                         ))}
-                        <h2 className="mb-[63px] mt-[96px] text-[48px] font-medium uppercase">
-                            Компании для стажировки
-                        </h2>
-                        <InternshipCompaniesDesktop />
                     </div>
                 </div>
                 <div className="container relative max-w-[1920px] overflow-hidden pl-[58px] 4xl:w-full 4xl:max-w-none 4xl:pl-[58px] 4xl:pr-0">
+                    <h2 className="mb-[63px] mt-[96px] text-[48px] font-medium uppercase">Компании для стажировки</h2>
+                    <InternshipCompaniesDesktop />
                     <h2 className="mb-[81px] text-[48px] font-medium uppercase ">Отзывы о профессии</h2>
                     <ProfessionReviewsDesktop />
                 </div>
