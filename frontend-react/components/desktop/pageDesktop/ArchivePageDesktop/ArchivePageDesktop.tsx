@@ -30,7 +30,7 @@ const ArchivePageDesktop: React.FC = () => {
                     <div className="radial-gradient_desktop left-[150px] top-[-330px]"></div>
                     <div className="radial-gradient_desktop right-[150px] top-[933px]"></div>
 
-                    <div className="relative px-[60px] py-[80px]">
+                    <div className="relative py-[80px]">
                         <div className="flex items-center justify-between pb-20">
                             <h1 className="title46px_desktop whitespace-nowrap pr-16 font-medium uppercase leading-[70%] tracking-normal">
                                 Личный кабинет
