@@ -3,7 +3,7 @@
 import { usePagination } from '@/hooks/usePagination'
 import { LessIconDesktop, MoreIconDesktop } from '@/components/assets/iconsDesktop'
 
-interface PaginationDesktopProps {
+interface IPaginationDesktopProps {
     totalPages: number
     currentPage: number
     onPageChange: (page: number) => void
@@ -16,7 +16,7 @@ function scrollToTop() {
     })
 }
 
-const PaginationDesktop: React.FC<PaginationDesktopProps> = ({
+const PaginationDesktop: React.FC<IPaginationDesktopProps> = ({
     totalPages,
     currentPage,
     onPageChange,

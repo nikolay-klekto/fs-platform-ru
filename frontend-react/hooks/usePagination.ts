@@ -1,12 +1,12 @@
 import { useMemo } from 'react'
 
-interface UsePaginationProps {
+interface IUsePaginationProps {
     totalPages: number
     currentPage: number
     visibleCount: number
 }
 
-export function usePagination({ totalPages, currentPage, visibleCount }: UsePaginationProps) {
+export function usePagination({ totalPages, currentPage, visibleCount }: IUsePaginationProps) {
     return useMemo(() => {
         let visibleStart = currentPage - Math.floor(visibleCount / 2)
         if (visibleStart < 1) visibleStart = 1

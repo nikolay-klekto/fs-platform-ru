@@ -2,7 +2,7 @@
 import { usePagination } from '@/hooks/usePagination'
 import { LessIconMobi, MoreIconMobi } from '@/components/assets/iconsMobi'
 
-interface PaginationMobiProps {
+interface IPaginationMobiProps {
     totalPages: number
     currentPage: number
     onPageChange: (page: number) => void
@@ -15,7 +15,12 @@ function scrollToTop() {
     })
 }
 
-const PaginationMobi: React.FC<PaginationMobiProps> = ({ totalPages, currentPage, onPageChange, visibleCount = 3 }) => {
+const PaginationMobi: React.FC<IPaginationMobiProps> = ({
+    totalPages,
+    currentPage,
+    onPageChange,
+    visibleCount = 3,
+}) => {
     const { visibleStart, visibleEnd, lessDisabled, moreDisabled } = usePagination({
         totalPages,
         currentPage,
