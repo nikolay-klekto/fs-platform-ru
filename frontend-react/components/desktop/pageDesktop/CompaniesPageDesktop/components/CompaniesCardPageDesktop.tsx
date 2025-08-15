@@ -22,7 +22,7 @@ const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName,
                     variant={'companies_page_desktop'}
                     size={'companies_page_desktop'}
                     rounded="rounded_20"
-                    className="z-5 relative"
+                    className="z-5 relative shadow-none"
                 >
                     <CardTitle variant={'companies_page_desktop'} size={'companies_page_desktop'}>
                         {industry}
@@ -50,3 +50,7 @@ const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName,
 }
 
 export default CompaniesCardPageDesktop
+
+
+
+
