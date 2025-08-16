@@ -1,7 +1,7 @@
 interface IContent {
     profession: string
     image: string
-    price: number
+    price: number | null
     id: number
 }
 
@@ -9,37 +9,37 @@ export const content: IContent[] = [
     {
         profession: 'Программист',
         image: '/images/profession_1.jpg',
-        price: 30,
+        price: null,
         id: 1,
     },
     {
         profession: 'Программист',
         image: '/images/profession_2.jpg',
-        price: 40,
+        price: null,
         id: 2,
     },
     {
         profession: 'Программист',
         image: '/images/profession_3.jpg',
-        price: 50,
+        price: null,
         id: 3,
     },
     {
         profession: 'Программист',
         image: '/images/profession_4.jpg',
-        price: 60,
+        price: null,
         id: 4,
     },
     {
         profession: 'Программист',
         image: '/images/profession_2.jpg',
-        price: 35,
+        price: null,
         id: 5,
     },
     {
         profession: 'Программист',
         image: '/images/profession_3.jpg',
-        price: 45,
+        price: null,
         id: 6,
     },
 ]
