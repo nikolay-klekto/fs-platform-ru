@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { CrossIconDesktop } from '@/components/assets/iconsDesktop'
+import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
@@ -124,7 +124,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     onClick={onClose}
                     className="absolute right-5 top-4 transition-opacity duration-300 hover:opacity-100"
                 >
-                    <CrossIconDesktop className="opacity-70 hover:opacity-100" />
+                    <X className="size-10 opacity-70 hover:opacity-100" />
                 </button>
                 <h2
                     className="text-gradient_desktop_custom block w-[543px] whitespace-normal break-normal text-center text-[28px] font-medium uppercase leading-[1.22]"
