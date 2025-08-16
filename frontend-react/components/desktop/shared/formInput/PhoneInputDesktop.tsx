@@ -89,23 +89,23 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
             e.preventDefault()
         }
 
-        validateValue(newValue)
+        onChange(newValue)
+        //validateValue(newValue)
     }
 
-    const validateValue = (value: string) => {
-        const error =
-            required && (value === PHONE_MASK || !value)
-                ? 'Поле обязательно для заполнения'
-                : validatePhoneDesktop(value).textError
-        setError(error)
-        onError(error)
-        onChange(value)
+    // const validateValue = (value: string) => {
+    //     const error =
+    //         required && (value === PHONE_MASK || !value)
+    //             ? 'Поле обязательно для заполнения'
+    //             : validatePhoneDesktop(value).textError
+    //     setError(error)
+    //     onError(error)
+    //     onChange(value)
 
-        return error
-    }
+    //     return error
+    // }
 
     const handleBlur = () => {
-        validateValue(inputValue)
         onBlur?.(inputValue)
         setIsFocused(false)
     }
@@ -142,7 +142,6 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                 onChange={(e) => {
                     const newValue = e.target.value
                     setInputValue(newValue)
-                    validateValue(newValue)
                 }}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}

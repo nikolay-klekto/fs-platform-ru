@@ -58,7 +58,6 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
             onFocus,
             onBlur,
             label,
-            helperText,
             name,
             wrapperClassName,
             placeholder,
@@ -67,7 +66,6 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
         ref,
     ) => {
         const [internalValue, setInternalValue] = React.useState<string>('')
-        const [internalError, setInternalError] = React.useState('')
         const [styleErrorClass, setStyleErrorClass] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
 
@@ -75,17 +73,13 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
             if (validate) {
                 const validationResult = validate(newValue)
                 if (validationResult) {
-                    const { textError, status, styleError } = validationResult
+                    const { status, styleError } = validationResult
                     if (!status) {
-                        if (textError) {
-                            setInternalError(textError)
-                        }
                         if (!styleError) {
                             setStyleErrorClass(true)
                         }
                     } else {
                         setStyleErrorClass(false)
-                        setInternalError('')
                     }
                 }
             }
@@ -130,11 +124,6 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
                     onBlur={handleBlur}
                     {...props}
                 />
-                {(helperText || internalError !== '') && (
-                    <span className={cn('text-xs', internalError ? 'text-destructive' : 'text-muted-foreground')}>
-                        {internalError || helperText}
-                    </span>
-                )}
             </div>
         )
     },

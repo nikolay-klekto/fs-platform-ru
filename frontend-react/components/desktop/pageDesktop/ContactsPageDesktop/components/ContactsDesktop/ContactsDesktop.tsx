@@ -1,6 +1,6 @@
 'use client'
-import * as React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useToast } from '@/hooks/use-toast'
 import { useModal } from '@/context/ContextModal'
@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
 import { EnhancedTextareaDesktop } from '@/components/desktop/shared/TextareaDesktop'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
+import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 import { validateRoleDesktop } from '@/components/desktop/commonDesktop/validate/validateRoleDesktop'
 import { validateTextareaDesktop } from '@/components/desktop/commonDesktop/validate/validateTextareaDesktop'
 import { contentContactsDesktop, contentSocialContactsDesktop } from './contentContactsDesktop/content'
@@ -33,29 +34,17 @@ const ContactsDesktop: React.FC = () => {
         message: '',
     })
 
-    const initialFieldState = {
-        name: false,
-        email: false,
-        tel: false,
-        role: false,
-        message: false,
-    }
-
     const [fieldErrors, setFieldErrors] = useState({
-        email: false,
-        tel: false,
-        role: false,
-        message: false,
-    })
-    const [touchedFields, setTouchedFields] = useState({ ...initialFieldState })
-    const [emptyFields, setEmptyFields] = useState({
         name: false,
         email: false,
         tel: false,
+        role: false,
         message: false,
     })
 
     const [formError, setFormError] = React.useState('')
+
+    const [isSubmit, setIsSubmit] = useState(false)
 
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(false)
 
@@ -64,26 +53,15 @@ const ContactsDesktop: React.FC = () => {
     const phoneMask = '+375 (__) ___-__-__'
 
     const handleChange = (field: keyof IFormData, value: string) => {
+        console.log('val', value)
         setFormData((prev) => ({
             ...prev,
             [field]: value,
         }))
 
-        setEmptyFields((prev) => ({
+        setFieldErrors((prev) => ({
             ...prev,
             [field]: false,
-        }))
-
-        if (field !== 'tel') {
-            setFieldErrors((prev) => ({
-                ...prev,
-                [field]: false,
-            }))
-        }
-
-        setTouchedFields((prev) => ({
-            ...prev,
-            [field]: true,
         }))
     }
 
@@ -94,50 +72,47 @@ const ContactsDesktop: React.FC = () => {
         }))
     }
 
-    const [isSubmitted, setIsSubmitted] = useState(false)
-
-    const validateForm = (data: IFormData) => {
-        const newErrors = {
-            email: data.email.trim() === '' || !validateEmailDesktop(data.email).status,
-            tel: data.tel.trim() === '' || data.tel === phoneMask || fieldErrors.tel,
-            role: data.role?.trim() ? !validateRoleDesktop(data.role).status : false,
-            message: data.message.trim() === '' || !validateTextareaDesktop(data.message).status,
+    const getFormError = (): string => {
+        const errors = {
+            name: formData.name.trim() === '',
+            email: !validateEmailDesktop(formData.email).status || formData.email.trim() === '',
+            tel:
+                (!validatePhoneDesktop(formData.tel).status &&
+                    (formData.tel.trim() !== '' || formData.tel !== phoneMask)) ||
+                formData.tel.trim() === '' ||
+                formData.tel === phoneMask,
+            role: !validateRoleDesktop(formData.role!).status && formData.role?.trim() !== '',
+            message: !validateTextareaDesktop(formData.message).status || formData.message.trim() === '',
         }
 
-        const emptyErrors = {
-            name: data.name.trim() === '',
-            email: data.email.trim() === '',
-            tel: data.tel.trim() === '' || data.tel === phoneMask,
-            message: data.message.trim() === '',
-        }
+        console.log('All errors', errors)
 
-        return { newErrors, emptyErrors }
-    }
-
-    const getFirstFormError = (): string => {
-        if (fieldErrors.email && (touchedFields.email || isSubmitted))
-            return 'Введите корректный адрес электронной почты'
-        if (fieldErrors.tel && (touchedFields.tel || isSubmitted)) return 'Введите корректный номер телефона'
-        if (fieldErrors.role && (touchedFields.role || isSubmitted)) return 'Варианты ввода: клиент/партнер/соискатель'
-        if (fieldErrors.message && (touchedFields.message || isSubmitted)) return 'Введите текст, содержащий буквы'
-
+        setFieldErrors(errors)
         if (
-            (formData.name.trim() === '' && (touchedFields.name || isSubmitted)) ||
-            (formData.email.trim() === '' && (touchedFields.email || isSubmitted)) ||
-            ((formData.tel.trim() === '' || formData.tel === phoneMask) && (touchedFields.tel || isSubmitted)) ||
-            (formData.message.trim() === '' && (touchedFields.message || isSubmitted))
+            formData.name.trim() === '' ||
+            formData.email.trim() === '' ||
+            formData.tel.trim() === '' ||
+            formData.tel === phoneMask ||
+            formData.message.trim() === ''
         ) {
             return '*Заполните обязательные поля'
         }
+
+        if (errors.email) return 'Неверный формат почты'
+        if (errors.tel) return 'Номер телефона введен неверно'
+        if (errors.role) return 'Варианты ввода: клиент/партнер/соискатель'
+        if (errors.message) return 'Введите текст, содержащий буквы'
 
         return ''
     }
 
     useEffect(() => {
-        const error = getFirstFormError()
-        setFormError(error)
-        setIsSubmitDisabled(Boolean(error))
-    }, [formData, fieldErrors, touchedFields, isSubmitted])
+        if (isSubmit) {
+            const error = getFormError()
+            setFormError(error)
+            setIsSubmitDisabled(Boolean(error))
+        }
+    }, [formData, isSubmit])
 
     const resetForm = () => {
         setFormData({
@@ -147,42 +122,36 @@ const ContactsDesktop: React.FC = () => {
             role: '',
             message: '',
         })
-        setFieldErrors({ ...initialFieldState })
-        setTouchedFields({ ...initialFieldState })
-        setEmptyFields({
+        setIsSubmit(false)
+        setFieldErrors({
             name: false,
             email: false,
             tel: false,
+            role: false,
             message: false,
         })
         setFormError('')
-        setIsSubmitted(false)
     }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
+        setIsSubmit(true)
         setFormError('')
-        setIsSubmitted(true)
 
-        const { newErrors, emptyErrors } = validateForm(formData)
+        const error = getFormError()
+        console.log(error)
 
-        setFieldErrors(newErrors)
-        setEmptyFields(emptyErrors)
+        if (error !== '') {
+            setFormError(error)
+            setIsSubmitDisabled(true)
+        } else {
+            toast({
+                description: 'Спасибо! Ваша заявка была успешно отправлена',
+            })
 
-        const hasErrors = Object.values(newErrors).some(Boolean)
-        const hasEmpty = Object.values(emptyErrors).some(Boolean)
-
-        if (hasErrors || hasEmpty) {
-            setFormError('*Заполните обязательные поля')
-            return
+            resetForm()
+            console.log('Форма отправлена:', formData)
         }
-
-        toast({
-            description: 'Спасибо! Ваша заявка была успешно отправлена',
-        })
-
-        resetForm()
-        console.log('Форма отправлена:', formData)
     }
 
     return (
@@ -247,11 +216,7 @@ const ContactsDesktop: React.FC = () => {
                                     type="text"
                                     id="name"
                                     placeholder="Ваше имя*"
-                                    variant={
-                                        emptyFields.name || (touchedFields.name && formData.name.trim() === '')
-                                            ? 'contacts_page_error_desktop'
-                                            : 'contacts_page_desktop'
-                                    }
+                                    variant={fieldErrors.name ? 'contacts_page_error_desktop' : 'contacts_page_desktop'}
                                     size="contacts_page_desktop"
                                     rounded="rounded_53"
                                     value={formData.name}
@@ -264,20 +229,12 @@ const ContactsDesktop: React.FC = () => {
                                     placeholder="Ваш e-mail*"
                                     autoComplete="email"
                                     variant={
-                                        emptyFields.email ||
-                                        (touchedFields.email && (formData.email.trim() === '' || fieldErrors.email))
-                                            ? 'contacts_page_error_desktop'
-                                            : 'contacts_page_desktop'
+                                        fieldErrors.email ? 'contacts_page_error_desktop' : 'contacts_page_desktop'
                                     }
                                     size="contacts_page_desktop"
                                     rounded="rounded_53"
                                     value={formData.email}
                                     onChange={(value) => handleChange('email', value)}
-                                    onBlur={() => {
-                                        const value = formData.email
-                                        const validation = validateEmailDesktop(value)
-                                        updateFieldError('email', !validation.status)
-                                    }}
                                     validate={(value) => {
                                         const validation = validateEmailDesktop(value)
                                         updateFieldError('email', !validation.status)
@@ -288,13 +245,12 @@ const ContactsDesktop: React.FC = () => {
                                     value={formData.tel}
                                     onChange={(value: string) => {
                                         handleChange('tel', value)
-                                        //if (!isSubmitted) updateFieldError('tel', false)
                                     }}
                                     onError={(error: string) => {
                                         updateFieldError('tel', !!error)
                                     }}
                                     className={`
-                                        3xl:w-[452px] ocus:ring-transparent h-[53px] rounded-[53px] border-2 px-4 py-3.5 text-5xl ring-offset-transparent placeholder:font-medium focus:border-2 2xl:w-[520px] ${emptyFields.tel || (touchedFields.tel && (formData.tel.trim() === '' || fieldErrors.tel)) ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] bg-transparent focus:border-[#878797]'}`}
+                                        h-[53px] rounded-[53px] border-2 px-4 py-3.5 text-5xl ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent ${fieldErrors.tel ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] bg-transparent focus:border-[#878797]'}`}
                                     labelClassName="hidden"
                                 />
                                 <EnhancedInput
@@ -322,12 +278,7 @@ const ContactsDesktop: React.FC = () => {
                                 name="message"
                                 id="message"
                                 placeholder="Опишите свой вопрос*"
-                                variant={
-                                    emptyFields.message ||
-                                    (touchedFields.message && (formData.message.trim() === '' || fieldErrors.message))
-                                        ? 'contacts_page_error_desktop'
-                                        : 'contacts_page_desktop'
-                                }
+                                variant={fieldErrors.message ? 'contacts_page_error_desktop' : 'contacts_page_desktop'}
                                 size="contacts_page_desktop"
                                 rounded="rounded_33"
                                 value={formData.message}
@@ -342,7 +293,7 @@ const ContactsDesktop: React.FC = () => {
                                 {formError && (
                                     <p className={cn('text-5xl', 'error-form-desktop-custom')}>{formError}</p>
                                 )}
-                                <div className="mt-7 flex items-center justify-between 2xl:justify-start 2xl:gap-10">
+                                <div className="mt-5 flex items-center justify-between 2xl:justify-start 2xl:gap-10">
                                     <Button
                                         variant="send_btn_desktop"
                                         size="contacts_btn_send_desktop"

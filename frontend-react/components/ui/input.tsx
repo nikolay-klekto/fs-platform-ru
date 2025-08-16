@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
@@ -16,7 +16,7 @@ const inputVariants = cva(
                 search_mobi:
                     'flex border-0 bg-transparent text-xl text-[#878797] outline-none placeholder:text-[14px] placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
                 contacts_page_desktop:
-                    'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent placeholder:text-[19px] placeholder:text-[#353652] placeholder:font-medium focus:placeholder:text-[#FFFFFF] focus:border-[#FFFFFF]',
+                    'border-2 border-[#878797] bg-transparent focus:!bg-transparent text-5xl ring-offset-transparent placeholder:text-[19px] placeholder:text-[#353652] placeholder:font-medium focus:placeholder:text-[#FFFFFF] focus:border-[#FFFFFF]',
                 contacts_page_error_desktop:
                     'border-2 border-[#bc8070] bg-[#1F2040] text-5xl ring-offset-transparent placeholder:font-medium placeholder:text-[#353652] focus:bg-transparent',
                 contacts_page_mobi:
@@ -67,6 +67,7 @@ export interface IEnhancedInput
     onChange?: (value: string) => void
     onFocus?: () => void
     onBlur?: () => void
+    onSubmit?: () => void
     label?: string
     helperText?: string
     helperTextClassName?: string
@@ -111,6 +112,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
         const [isFocused, setIsFocused] = React.useState(false)
         const isCheckbox = type === 'checkbox'
         function validateComponent(newValue: string | boolean) {
+            console.log('submit')
             if (validate) {
                 const validationResult = validate(newValue.toString())
                 if (validationResult) {
@@ -140,10 +142,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-
-            if (internalValue) {
-                validateComponent(internalValue)
-            }
         }
 
         const handleCheckboxToggle = () => {
