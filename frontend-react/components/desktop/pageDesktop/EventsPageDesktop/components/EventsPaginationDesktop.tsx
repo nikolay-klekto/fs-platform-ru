@@ -3,13 +3,13 @@
 import React from 'react'
 import { LessIconDesktop, MoreIconDesktop } from '@/components/assets/iconsDesktop'
 
-interface IProfessionsPagination {
+interface IEventsPagination {
     totalPages: number
     currentPage: number
     onPageChange: (page: number) => void
 }
 
-const EventsPaginationDesktop: React.FC<IProfessionsPagination> = ({ totalPages, currentPage, onPageChange }) => {
+const EventsPaginationDesktop: React.FC<IEventsPagination> = ({ totalPages, currentPage, onPageChange }) => {
     const siblingsCount = 2
 
     const getPageNumbers = () => {
@@ -41,7 +41,7 @@ const EventsPaginationDesktop: React.FC<IProfessionsPagination> = ({ totalPages,
     const pageNumbers = getPageNumbers()
 
     return (
-        <div className="relative z-[2] mb-[88px] mt-[73px] flex items-center justify-center gap-5">
+        <div className="relative z-[2] mt-[73px] flex items-center justify-center gap-5">
             <button
                 onClick={() => onPageChange(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}

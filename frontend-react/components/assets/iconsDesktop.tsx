@@ -1,13 +1,18 @@
 import React, { SVGProps } from 'react'
 
-interface IArrowBtnDesktop {
+interface ISvgIcon extends SVGProps<SVGSVGElement> {
     width?: number | string
     height?: number | string
+    fill?: string
+    stroke?: string
+    viewBox?: string
+    className?: string
+    size?: number | string
 }
 
-export const ArrowBtnDesktop: React.FC<IArrowBtnDesktop> = ({ width = '100%', height = '100%' }) => {
+export const ArrowBtnDesktop: React.FC<ISvgIcon> = ({ width = 56, height = 56, ...rest }) => {
     return (
-        <svg width={width} height={height} viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width={width} height={height} viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" {...rest}>
             <path
                 d="M48.2331 27.8018L29.5038 9.92383V20.1398C11.58 20.1398 7.36914 32.9918 7.36914 45.6798C12.5421 39.0564 17.1169 35.4638 29.5038 35.4638V45.6798L48.2331 27.8018Z"
                 fill="url(#paint0_linear_782_18439)"
@@ -30,7 +35,7 @@ export const ArrowBtnDesktop: React.FC<IArrowBtnDesktop> = ({ width = '100%', he
     )
 }
 
-export const ArrowGradientDesktop: React.FC = (props) => {
+export const ArrowGradientDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="29.25" height="25.59" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -70,7 +75,7 @@ export const ArrowGradientDesktop: React.FC = (props) => {
     )
 }
 
-export const ProfileIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const ProfileIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -98,7 +103,7 @@ export const ProfileIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => 
     )
 }
 
-export const ShoppingCartIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const ShoppingCartIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -126,7 +131,7 @@ export const ShoppingCartIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props
     )
 }
 
-export const LogoIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LogoIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="100" height="83" viewBox="0 0 100 83" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -141,12 +146,7 @@ export const LogoIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-interface IForwardIconDesktop extends React.SVGProps<SVGSVGElement> {
-    fill?: string
-    stroke?: string
-}
-
-export const ForwardIconDesktop: React.FC<IForwardIconDesktop> = ({
+export const ForwardIconDesktop: React.FC<ISvgIcon> = ({
     fill = 'currentColor',
     stroke = 'currentColor',
     ...props
@@ -196,7 +196,7 @@ export const ForwardIconDesktop: React.FC<IForwardIconDesktop> = ({
     )
 }
 
-export const TelegramIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const TelegramIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -207,7 +207,7 @@ export const TelegramIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) =>
     )
 }
 
-export const InstagramIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const InstagramIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -218,7 +218,7 @@ export const InstagramIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) =
     )
 }
 
-export const VkIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const VkIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -231,7 +231,7 @@ export const VkIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const LessIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LessIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -242,7 +242,7 @@ export const LessIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const MoreIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const MoreIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -253,7 +253,7 @@ export const MoreIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const EyeOffPasswordDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const EyeOffPasswordDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <g clipPath="url(#clip0_908_1788)">
@@ -275,7 +275,7 @@ export const EyeOffPasswordDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
     )
 }
 
-export const EyeOnPasswordDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const EyeOnPasswordDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -296,7 +296,7 @@ export const EyeOnPasswordDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) =
     )
 }
 
-export const CheckedBoxFormDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const CheckedBoxFormDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M9 11L12 14L22 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -311,7 +311,7 @@ export const CheckedBoxFormDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
     )
 }
 
-export const UncheckedBoxFormDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const UncheckedBoxFormDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -325,7 +325,7 @@ export const UncheckedBoxFormDesktop: React.FC<SVGProps<SVGSVGElement>> = (props
     )
 }
 
-export const PasswordGeneratorDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const PasswordGeneratorDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M1 4V10H7" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -341,7 +341,7 @@ export const PasswordGeneratorDesktop: React.FC<SVGProps<SVGSVGElement>> = (prop
     )
 }
 
-export const LinkedInIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LinkedInIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <g clipPath="url(#clip0_285_19389)">
@@ -359,7 +359,7 @@ export const LinkedInIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) =>
     )
 }
 
-export const PhoneIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const PhoneIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -370,7 +370,7 @@ export const PhoneIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const AvatarIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const AvatarIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="60" height="61" viewBox="0 0 60 61" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <rect width="60" height="61" rx="30" fill="#878797" />
@@ -411,7 +411,7 @@ export const AvatarIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const MapDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const MapDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -432,7 +432,7 @@ export const MapDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const UserDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const UserDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -453,7 +453,7 @@ export const UserDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const CalendarIconsDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const CalendarIconsDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -470,7 +470,7 @@ export const CalendarIconsDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) =
     )
 }
 
-export const ForwardIconWhiteDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const ForwardIconWhiteDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="33" height="29" viewBox="0 0 33 29" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -483,7 +483,7 @@ export const ForwardIconWhiteDesktop: React.FC<SVGProps<SVGSVGElement>> = (props
     )
 }
 
-export const HelpIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const HelpIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -495,7 +495,7 @@ export const HelpIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const ChevronDownIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const ChevronDownIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg viewBox="0 0 27 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -505,7 +505,7 @@ export const ChevronDownIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props)
         </svg>
     )
 }
-export const CheckedBoxIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const CheckedBoxIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -552,7 +552,7 @@ export const CheckedBoxIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
     )
 }
 
-export const QuestionMarkDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const QuestionMarkDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -563,7 +563,7 @@ export const QuestionMarkDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) =>
     )
 }
 
-export const LineDateDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LineDateDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="22" height="2" viewBox="0 0 18 2" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M1 1H21" stroke="#878797" strokeWidth="2" strokeLinecap="round" />
@@ -571,7 +571,7 @@ export const LineDateDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const SearchIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const SearchIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -591,7 +591,7 @@ export const SearchIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
         </svg>
     )
 }
-export const TrashIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const TrashIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" {...props}>
             <path d="M5 10H8.33333H35" stroke="#878797" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
@@ -620,7 +620,7 @@ export const TrashIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const AttachFileIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const AttachFileIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg
             className="circle_btn_gradient_desktop"
@@ -656,16 +656,7 @@ export const AttachFileIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) 
     )
 }
 
-export const CrossIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
-    return (
-        <svg width="41" height="41" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-            <path d="M18 6L6 18" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M6 6L18 18" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-    )
-}
-
-export const MapPinIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const MapPinIconDesktop: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -679,6 +670,32 @@ export const MapPinIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
                 d="M18.5 20.042C21.0543 20.042 23.125 17.9713 23.125 15.417C23.125 12.8627 21.0543 10.792 18.5 10.792C15.9457 10.792 13.875 12.8627 13.875 15.417C13.875 17.9713 15.9457 20.042 18.5 20.042Z"
                 stroke="#D1D1DD"
                 strokeWidth="3.08333"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}
+
+export const StarIconDesktop: React.FC<ISvgIcon> = ({ fill = 'none', size = 24, ...props }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path
+            d="M11.9991 2L15.1031 8.728L22.4611 9.601L17.0211 14.631L18.4651 21.899L11.9991 18.28L5.53311 21.9L6.97711 14.632L1.53711 9.6L8.89611 8.727L11.9991 2Z"
+            stroke="white"
+            strokeWidth={1.5}
+            strokeLinejoin="round"
+        />
+    </svg>
+)
+
+export const CloseIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+    return (
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M1 1L11 11M11 1L1 11"
+                stroke="white"
+                strokeOpacity="0.5"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />

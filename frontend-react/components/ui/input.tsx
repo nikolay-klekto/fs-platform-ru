@@ -77,6 +77,7 @@ export interface IEnhancedInput
     name?: string
     checkboxIconSize?: string
     checked?: boolean
+    hasError?: boolean
 }
 
 const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
@@ -99,6 +100,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             placeholder,
             checked,
             checkboxIconSize,
+            hasError,
             ...props
         },
         ref,
@@ -180,6 +182,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 className={cn(
                                     'cursor-pointer flex items-center justify-center rounded transition-all',
                                     className,
+                                    hasError,
                                 )}
                                 onClick={handleCheckboxToggle}
                             >
