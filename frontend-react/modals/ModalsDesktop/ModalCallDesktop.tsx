@@ -185,7 +185,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 />
                                 {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
                             </div>
-                            <div className="flex w-full flex-col px-[75px]">
+                            <div className="mb-6 flex w-full flex-col px-[75px]">
                                 <EnhancedInput
                                     type="text"
                                     id="time"
@@ -206,7 +206,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     <p className="error-form-desktop-custom mb-3">Заполните обязательные поля</p>
                                 )}
                             </div>
-                            <div className="mb-3 px-[75px]">
+                            <div className="px-[75px]">
                                 <EnhancedInput
                                     type="checkbox"
                                     id="consent"
@@ -229,7 +229,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 />
                             </div>
                             {errors.consent && <p className="error-form-desktop-custom px-[75px]">{errors.consent}</p>}
-                            <div className="mx-auto mt-5">
+                            <div className="mx-auto">
                                 <p className="px-[75px] text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
                                     <a

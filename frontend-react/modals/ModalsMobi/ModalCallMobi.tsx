@@ -146,7 +146,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     />
                                     {errors.phone && <p className="mt-1 text-sm text-[#bc8070]">{errors.phone}</p>}
                                 </div>
-                                <div className="mb-3 flex w-full flex-col p-0.5">
+                                <div className="mb-2 flex w-full flex-col p-0.5">
                                     <EnhancedInput
                                         type="text"
                                         id="time"
@@ -169,23 +169,19 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         </p>
                                     )}
                                 </div>
-                                <div className="mb-2 flex items-center pt-4">
-                                    <input
+                                <div className="mb-2 flex items-center">
+                                    <EnhancedInput
                                         type="checkbox"
-                                        id="consent"
                                         name="consent"
                                         checked={formData.consent}
-                                        onChange={(e) =>
-                                            setFormData((prev) => ({ ...prev, consent: e.target.checked }))
+                                        onChange={(value) =>
+                                            setFormData((prev) => ({ ...prev, consent: value === 'true' }))
                                         }
-                                        className="mr-2 inline-block size-4 appearance-none rounded-[2px] border-2 border-[#878797] checked:border-transparent checked:bg-[#878797]"
+                                        label="Я согласен(а) на обработку персональных данных"
+                                        wrapperClassName="flex items-center"
+                                        labelClassName="ml-1 text-xs font-medium md:text-sm"
+                                        checkboxIconSize="size-4"
                                     />
-                                    <label
-                                        htmlFor="consent"
-                                        className="ml-1 text-xs font-medium text-[#878797] md:text-sm"
-                                    >
-                                        Я согласен(а) на обработку персональных данных
-                                    </label>
                                     {errors.consent && <p className="mt-1 text-sm text-[#bc8070]">{errors.consent}</p>}
                                 </div>
                                 <button
