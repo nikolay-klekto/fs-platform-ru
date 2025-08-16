@@ -54,7 +54,6 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 ...prev,
                 consent: !value,
             }))
-            //setButtonDisabled(!(value as boolean))
         }
     }
 
@@ -128,7 +127,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     <CrossIconDesktop className="opacity-70 hover:opacity-100" />
                 </button>
                 <h2
-                    className="text28px_desktop text-gradient_desktop_custom block w-[543px] whitespace-normal break-normal text-center font-medium uppercase leading-[1.22]"
+                    className="text-gradient_desktop_custom block w-[543px] whitespace-normal break-normal text-center text-[28px] font-medium uppercase leading-[1.22]"
                     style={{ textWrap: 'balance' }}
                 >
                     Когда компания станет доступна, куда вам сообщить?
@@ -164,13 +163,14 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 checked={formData.consent}
                                 onChange={(value) => handleChange('consent', value === 'true')}
                                 label="Я согласен(а) на обработку персональных данных"
+                                labelClassName="text-[15px]"
                                 wrapperClassName="flex gap-2"
                                 error={formErrors.consent}
                                 className="size-[18px] rounded-[2px]"
                             />
                         </div>
                     </div>
-                    <div className="text15px_desktop mb-6 h-[36px] w-[433px] font-medium text-[#353652]">
+                    <div className="mb-6 h-[36px] w-[433px] text-[15px] font-medium text-[#353652]">
                         <div className="flex">
                             <span>Защита от спама reCAPTCHA</span>
                             <Link href="/" target="_blank" rel="noopener noreferrer" className="ml-[5px] underline">
