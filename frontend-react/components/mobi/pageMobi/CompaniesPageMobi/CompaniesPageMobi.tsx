@@ -54,7 +54,7 @@ const CompaniesPageMobi: React.FC = () => {
                     <div className="px-[15px] py-[40px]">
                         <h1 className="title28px_mobi_custom">Компании</h1>
                         <div className="flex items-center gap-[21px] py-[30px]">
-                            <div className="relative w-full max-w-[282px]">
+                            <div className="relative w-full max-w-[282px] bg-transparent">
                                 <div className="relative rounded-[50px] bg-transparent p-[2.5px] transition">
                                     <EnhancedInput
                                         type="text"
