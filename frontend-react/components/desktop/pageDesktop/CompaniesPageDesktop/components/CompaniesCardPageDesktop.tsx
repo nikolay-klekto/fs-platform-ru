@@ -9,7 +9,6 @@ interface ICompanieCard {
     price: string
     industry?: string
 }
-
 const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName, price, industry }) => {
     return (
         <Card
@@ -26,11 +25,9 @@ const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName,
             <CardTitle variant={'companies_page_desktop'} size={'companies_page_desktop'}>
                 {industry}
             </CardTitle>
-
             <CardContent className="flex grow items-end p-0 px-[10px] text-10xl font-semibold text-white 2xl:text-6xl 3xl:text-7xl 4xl:text-8xl">
                 {companyName}
             </CardContent>
-
             <CardFooter
                 variant={'profession_page_desktop'}
                 size={'companies_page_desktop'}
