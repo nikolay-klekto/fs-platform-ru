@@ -1,4 +1,5 @@
 'use client'
+//этот код не нужен перенести в ShoppingCartPageMobi.tsx
 
 import { Button } from '@/components/ui/button'
 import ItemCardShoppingCartMobi from '@/components/mobi/pageMobi/ShoppingCartPageMobi/components/ItemCardShoppingCartMobi/ItemCardShoppingCartMobi'
