@@ -1,6 +1,6 @@
 'use client'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { X } from 'lucide-react'
+import Modal from '@/components/ui/modal'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailMobi } from '@/components/mobi/commonMobi/validate/validateEmailMobi'
 
@@ -50,59 +50,53 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
     }, [handleOutsideClick])
 
     return (
-        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
-            <div className="relative w-full max-w-[346px] sm:mx-2 sm_s:mx-3 " ref={modalRef}>
-                <button
-                    onClick={onClose}
-                    className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
-                >
-                    <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
-                </button>
-                <div className="  rounded-[35px] bg-[url('/background/Subtract_modalCaForgotPass_png.png')] bg-cover bg-[right_top] bg-no-repeat py-[40px]">
-                    <p className="mb-5 bg-sub-title-gradient-mobi bg-clip-text text-center text-4xl font-semibold text-transparent md:text-4xl">
-                        ЗАБЫЛИ ПАРОЛЬ?
-                    </p>
-                    <div className="flex w-full flex-col pl-[13px] pr-[12px]">
-                        <EnhancedInput
-                            type="email"
-                            name="email"
-                            placeholder="Ваш e-mail"
-                            value={passwordData.email}
-                            onBlur={() => handleInputBlur('email')}
-                            validate={(value) => validateEmailMobi(value)}
-                            onChange={(value) => setPasswordData((prev) => ({ ...prev, email: value }))}
-                            className={`${
-                                inputTouched.email && validateEmailMobi(passwordData.email).styleError
-                                    ? 'border-[#bc8070] focus:border-[#bc8070] '
-                                    : 'border-[#878797] focus:border-[#878797]'
-                            } placeholder:text14px_mobi h-11 w-full rounded-[50px] border-2 bg-transparent pl-[20px] text-white placeholder:text-[#353652]/50 focus:ring-0 focus:ring-offset-0`}
-                            label="Почта"
-                            labelClassName="text14px_mobi font-medium text-white"
-                            wrapperClassName="w-full"
-                            helperTextClassName="error-form-mobi-custom mt-[10px]"
-                        />
-                    </div>
-                    <p className="custom-grey text12px_mobi pr-[12px]font-medium mt-[10px] py-[2px] pl-[13px] ">
-                        Введите e-mail, указанный при регистрации
-                    </p>
-                    <button
-                        type="submit"
-                        onClick={() => {
-                            setIsSubmitted(true)
-                            setInputTouched((prev) => ({ ...prev, email: true }))
-                        }}
-                        className={`mx-auto mb-2 mt-7 flex h-12 w-[85%] items-center justify-center rounded-[50px]  text-3xl font-semibold 
+        <Modal
+            variant="mobile"
+            onClose={onClose}
+            className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]"
+        >
+            <p className="mb-6 bg-sub-title-gradient-mobi bg-clip-text text-center text-4xl font-semibold text-transparent md:text-4xl">
+                ЗАБЫЛИ ПАРОЛЬ?
+            </p>
+            <div className="flex w-full flex-col pl-[13px] pr-[12px]">
+                <EnhancedInput
+                    type="email"
+                    name="email"
+                    placeholder="Ваш e-mail"
+                    value={passwordData.email}
+                    onBlur={() => handleInputBlur('email')}
+                    validate={(value) => validateEmailMobi(value)}
+                    onChange={(value) => setPasswordData((prev) => ({ ...prev, email: value }))}
+                    className={`${
+                        inputTouched.email && validateEmailMobi(passwordData.email).styleError
+                            ? 'border-[#bc8070] focus:border-[#bc8070] '
+                            : 'border-[#878797] focus:border-[#878797]'
+                    } placeholder:text14px_mobi h-11 w-full rounded-[50px] border-2 bg-transparent pl-[20px] text-white placeholder:text-[#353652]/50 focus:ring-0 focus:ring-offset-0`}
+                    label="Почта"
+                    labelClassName="text14px_mobi font-medium text-white"
+                    wrapperClassName="w-full"
+                    helperTextClassName="error-form-mobi-custom mt-[10px]"
+                />
+            </div>
+            <p className="custom-grey text12px_mobi pr-[12px]font-medium mt-[10px] py-[2px] pl-[13px] ">
+                Введите e-mail, указанный при регистрации
+            </p>
+            <button
+                type="submit"
+                onClick={() => {
+                    setIsSubmitted(true)
+                    setInputTouched((prev) => ({ ...prev, email: true }))
+                }}
+                className={`mx-auto mb-2 mt-7 flex h-12 w-[85%] items-center justify-center rounded-[50px]  text-3xl font-semibold 
                         md:text-4xl ${
                             !isSubmitted || isFormValid
                                 ? 'bg-sub-title-gradient-mobi  text-white  hover:bg-gradient-desktop-hover'
                                 : 'bg-[#878797] text-[#CBD6EF] hover:bg-[#878797]'
                         }`}
-                    >
-                        Далее
-                    </button>
-                </div>
-            </div>
-        </div>
+            >
+                Далее
+            </button>
+        </Modal>
     )
 }
 

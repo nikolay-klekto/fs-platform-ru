@@ -1,7 +1,6 @@
 'use client'
 import * as React from 'react'
 import { useState } from 'react'
-import { X } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import Modal from '@/components/ui/modal'
 import { validateNameMobi } from '@/components/mobi/commonMobi/validate/validateNameMobi'
@@ -17,7 +16,6 @@ interface IFormData {
 
 interface IModalContent {
     onClose: () => void
-    variant?: 'desktop' | 'mobile'
 }
 
 const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
@@ -197,34 +195,27 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
             )}
 
             {step === 'accepted' && (
-                <div className=" fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]">
-                    <div className="relative mx-4 w-full max-w-md ">
-                        <button
+                <Modal
+                    variant="mobile"
+                    onClose={onClose}
+                    className=" fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]"
+                >
+                    <h1 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
+                        ЗАЯВКА ПРИНЯТА
+                    </h1>
+                    <p className="mb-1 px-3 pb-[18px] text-justify text-xl font-medium leading-[17px] text-[#878797] md:text-lg">
+                        Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на сайте.
+                    </p>
+                    <div className="bg-sub-title-gradient-mobi mx-auto my-2 flex w-[180px] items-center justify-center rounded-[50px] p-[3px]">
+                        <Link
+                            href="/professions"
                             onClick={onClose}
-                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%]"
+                            className="flex h-10 w-full items-center justify-center rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"
                         >
-                            <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
-                        </button>
-                        <div className="rounded-[50px] bg-[url('/background/Subtract_modallCallAccept.png')] bg-cover bg-[right_top] bg-no-repeat px-3 pb-7 pt-10">
-                            <h1 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
-                                ЗАЯВКА ПРИНЯТА
-                            </h1>
-                            <p className="mb-1 px-3 pb-[18px] text-justify text-xl font-medium leading-[17px] text-[#878797] md:text-lg">
-                                Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на
-                                сайте.
-                            </p>
-                            <div className="bg-sub-title-gradient-mobi mx-auto my-2 flex w-[180px] items-center justify-center rounded-[50px] p-[3px]">
-                                <Link
-                                    href="/professions"
-                                    onClick={onClose}
-                                    className="flex h-10 w-full items-center justify-center rounded-[50px] bg-[#101030] text-3xl font-semibold text-white"
-                                >
-                                    Смотреть
-                                </Link>
-                            </div>
-                        </div>
+                            Смотреть
+                        </Link>
                     </div>
-                </div>
+                </Modal>
             )}
         </>
     )
