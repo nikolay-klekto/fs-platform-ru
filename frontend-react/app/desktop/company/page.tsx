@@ -1,5 +1,5 @@
-import CompaniesPageDesktop from '@/components/desktop/pageDesktop/CompaniesPageDesktop/CompaniesPageDesktop'
+import CompanyPageDesktop from '@/components/desktop/pageDesktop/CompanyPageDesktop/CompanyPageDesktop'
 
 export default async function Companies() {
-    return <CompaniesPageDesktop />
+    return <CompanyPageDesktop />
 }
