@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
 import { content } from './ItemProfessionsInCompanyDesktop/contentProfessionsDesktop/content'
 import ItemProfessionsInCompanyDesktop from './ItemProfessionsInCompanyDesktop/ItemProfessionsInCompanyDesktop'
 
@@ -63,14 +62,12 @@ const InternshipProfessionsDesktop: React.FC = () => {
                 className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll"
             >
                 {content.map((item) => (
-                    <Link href={`/profession-in-company`} key={item.id}>
-                        <ItemProfessionsInCompanyDesktop
-                            key={item.id}
-                            image={item.image}
-                            name={item.name}
-                            onWidthChange={() => {}}
-                        />
-                    </Link>
+                    <ItemProfessionsInCompanyDesktop
+                        key={item.id}
+                        image={item.image}
+                        name={item.name}
+                        onWidthChange={() => {}}
+                    />
                 ))}
             </div>
             <div
