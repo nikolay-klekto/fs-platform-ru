@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 
 interface IPhoneInputDesktop {
     value: string
     onChange: (value: string) => void
     onError: (value: string) => void
     onBlur?: (value: string) => void
+    error?: boolean
     className?: string
     labelClassName?: string
     wrapperClassName?: string
@@ -27,16 +27,14 @@ for (let i = 0; i < PHONE_MASK.length; i++) {
 const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     value,
     onChange,
-    onError,
     onBlur,
+    error,
     className,
     labelClassName,
     wrapperClassName,
-    required = false,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
-    const [error, setError] = useState<string | null>(null)
     const [isFocused, setIsFocused] = useState<boolean>(false)
 
     const setCaretToPosition = (pos: number) => {
@@ -90,20 +88,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
         }
 
         onChange(newValue)
-        //validateValue(newValue)
     }
-
-    // const validateValue = (value: string) => {
-    //     const error =
-    //         required && (value === PHONE_MASK || !value)
-    //             ? 'Поле обязательно для заполнения'
-    //             : validatePhoneDesktop(value).textError
-    //     setError(error)
-    //     onError(error)
-    //     onChange(value)
-
-    //     return error
-    // }
 
     const handleBlur = () => {
         onBlur?.(inputValue)

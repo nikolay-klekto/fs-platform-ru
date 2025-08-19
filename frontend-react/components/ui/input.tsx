@@ -87,7 +87,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             variant,
             size,
             rounded,
-            validate,
             onChange,
             onFocus,
             onBlur,
@@ -108,25 +107,8 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             }
             return ''
         })
-        const [styleErrorClass, setStyleErrorClass] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
         const isCheckbox = type === 'checkbox'
-        function validateComponent(newValue: string | boolean) {
-            console.log('submit')
-            if (validate) {
-                const validationResult = validate(newValue.toString())
-                if (validationResult) {
-                    const { status, styleError } = validationResult
-                    if (!status) {
-                        if (!styleError) {
-                            setStyleErrorClass(true)
-                        }
-                    } else {
-                        setStyleErrorClass(false)
-                    }
-                }
-            }
-        }
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const newValue = isCheckbox ? e.target.checked : e.target.value
@@ -188,7 +170,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                             inputVariants({ variant, size, rounded }),
                             isFocused && 'focus:bg-[#1f203f] focus:outline-none',
                             className,
-                            styleErrorClass && 'border-[#BC8070]',
                         )}
                         ref={ref}
                         name={name}
