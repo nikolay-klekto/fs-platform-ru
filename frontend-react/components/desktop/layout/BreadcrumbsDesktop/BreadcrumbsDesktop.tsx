@@ -24,7 +24,7 @@ interface IBreadcrumbs {
 
 const BreadcrumbsDesktop: React.FC<IBreadcrumbs> = ({
     items,
-    separator = <SlashIcon className="text20px_desktop" />,
+    separator = <span className="rotate-[15deg] text20px_desktop leading-none">/</span>,
 }) => {
     return (
         <Breadcrumb aria-label="Breadcrumb" className="custom-grey">

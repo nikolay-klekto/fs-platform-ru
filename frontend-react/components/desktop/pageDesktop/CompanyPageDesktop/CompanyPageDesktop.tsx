@@ -14,16 +14,21 @@ const CompanyPageDesktop: React.FC = () => {
         <>
             <HeaderDesktop />
             <main className="bg-[#101030] text-white ">
-                <div className="container relative overflow-hidden  ">
-                    <div className="relative z-20 flex items-center space-x-1 pb-[29px] pt-[60px] text-[20px] text-gray-500 "></div>
-                    <BreadcrumbsDesktop
-                        items={[
-                            { title: 'Главная', href: '/', className: 'hover:underline' },
-                            { title: 'Компании', href: '/companies', className: 'hover:underline' },
-                            { title: 'Epam', className: 'text-white hover:underline' },
-                        ]}
-                    />
-                    <div className="flex flex-col px-[58px]">
+                <div className="container relative overflow-hidden">
+                    <div className="relative z-20 flex items-center space-x-1 pb-[29px] pl-[26px] pt-[60px] text-[20px] text-gray-500 ">
+                        <BreadcrumbsDesktop
+                            items={[
+                                { title: 'Главная', href: '/', className: 'text20px_desktop  hover:underline' },
+                                {
+                                    title: 'Компании',
+                                    href: '/companies',
+                                    className: 'text20px_desktop hover:underline',
+                                },
+                                { title: 'Компания Epam', className: 'text20px_desktop text-white hover:underline' },
+                            ]}
+                        />
+                    </div>
+                    <div className="flex flex-col px-[26px]">
                         <h1 className="mb-15 title80px_desktop relative z-10 font-medium uppercase"> Компания Epam</h1>
                         <p className="title160px_desktop absolute left-0 top-0 mt-[18px] pl-[85px] font-semibold uppercase opacity-[0.02] ">
                             Компания Epam
@@ -48,7 +53,7 @@ const CompanyPageDesktop: React.FC = () => {
                                         <div className="text32px_desktop flex items-start font-medium text-[#878797]">
                                             <span>Адрес офиса:</span>
                                             <div className="ml-[10px] ">
-                                                <p className="text32px_desktop  3xl:mb-[20px] font-semibold text-white 2xl:mb-[20px] ">
+                                                <p className="text32px_desktop  font-semibold text-white 2xl:mb-[20px] 3xl:mb-[20px] ">
                                                     {item.adress1}
                                                 </p>
                                                 <p className="text32px_desktop   font-semibold text-white">
@@ -96,10 +101,13 @@ const CompanyPageDesktop: React.FC = () => {
                         ))}
                     </div>
                 </div>
-                <div className="container relative max-w-[1920px] overflow-hidden pl-[58px] 4xl:w-full 4xl:max-w-none 4xl:pl-[58px] 4xl:pr-0">
-                    <h2 className="mb-[63px] mt-[118px] text-[48px] font-medium uppercase"> Профессии в компании</h2>
+                <div className="overflow-hidden pl-[58px] pr-0">
+                    <h2 className="container mb-[63px] mt-[118px] pl-0 text-[48px] font-medium uppercase">
+                        {' '}
+                        Профессии в компании
+                    </h2>
                     <InternshipProfessionsDesktop />
-                    <h2 className="3xl:mt-[100px] mb-[81px] mt-[120px] text-[48px] font-medium uppercase 2xl:mt-[80px] ">
+                    <h2 className="container mb-[81px] mt-[120px] pl-0 text-[48px] font-medium uppercase 2xl:mt-[80px] 3xl:mt-[100px] ">
                         Преимущества компании
                     </h2>
                     <CompanyAdvantageDesktop />

@@ -6,15 +6,12 @@ import ProfessionCardDesktop from './ItemsProfessionSection/ProfessionCardDeskto
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { content } from './contentProfessionsSectionDesktop/content'
-import { useModal } from '@/context/ContextModal'
 
 interface IProfessionsSection {
     cardsToShow?: number
 }
 
 const ProfessionsSectionDesktop: React.FC<IProfessionsSection> = ({ cardsToShow = 4 }) => {
-    const { openModal } = useModal()
-
     return (
         <div className="container flex flex-col gap-[80px] py-[100px]">
             <div className="mb-35xl">
@@ -30,18 +27,14 @@ const ProfessionsSectionDesktop: React.FC<IProfessionsSection> = ({ cardsToShow 
             </div>
             <div className="w-fill grid grid-cols-4 gap-[clamp(28px,_5vw,_35px)]">
                 {content.slice(0, cardsToShow).map((item) => (
-                    <ProfessionCardDesktop
-                        key={item.id}
-                        image={item.image}
-                        profession={item.profession}
-                        price={item.price.toString()}
-                        onClick={() => {
-                            openModal('profession_modal_desktop', 'desktop', {
-                                profession: item.profession,
-                                professionId: item.id,
-                            })
-                        }}
-                    />
+                    <Link href={`/profession`} key={item.id}>
+                        <ProfessionCardDesktop
+                            key={item.id}
+                            image={item.image}
+                            profession={item.profession}
+                            price={item.price.toString()}
+                        />
+                    </Link>
                 ))}
             </div>
         </div>

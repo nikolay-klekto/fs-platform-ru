@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { content } from './ItemProfessionsInCompanyDesktop/contentProfessionsDesktop/content'
 import ItemProfessionsInCompanyDesktop from './ItemProfessionsInCompanyDesktop/ItemProfessionsInCompanyDesktop'
 
@@ -59,17 +60,18 @@ const InternshipProfessionsDesktop: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,2.03vw,39px)] overflow-x-scroll"
+                className="no-scrollbar_custom container flex select-none gap-[clamp(16px,2.03vw,39px)] overflow-x-scroll pl-0"
             >
                 {content.map((item) => (
-                    <ItemProfessionsInCompanyDesktop
-                        key={item.id}
-                        image={item.image}
-                        name={item.name}
-                        onWidthChange={() => {}}
-                    />
+                    <Link href={`/profession`} key={item.id}>
+                        <ItemProfessionsInCompanyDesktop
+                            key={item.id}
+                            image={item.image}
+                            name={item.name}
+                            onWidthChange={() => {}}
+                        />
+                    </Link>
                 ))}
-                <div className="w-[58px] shrink-0"> </div>
             </div>
             <div
                 ref={scrollbarRef}
@@ -77,7 +79,7 @@ const InternshipProfessionsDesktop: React.FC = () => {
                 className="scrollbar_custom relative mx-auto mb-[192px] mt-[77px] w-[65%] cursor-pointer overflow-x-scroll 2xl:mb-[120px] 3xl:mb-[160px]"
             >
                 <div
-                    className="absolute h-1 min-w-[1000px] bg-transparent"
+                    className="absolute h-2 min-w-[1000px] bg-transparent"
                     style={{ width: `${scrollbarWidth}px` }}
                 ></div>
             </div>

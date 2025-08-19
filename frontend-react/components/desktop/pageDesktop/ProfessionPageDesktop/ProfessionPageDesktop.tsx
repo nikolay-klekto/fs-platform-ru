@@ -14,17 +14,21 @@ const ProfessionPageDesktop: React.FC = () => {
         <>
             <HeaderDesktop />
             <main className="bg-[#101030] text-white">
-                <div className="container relative overflow-hidden  ">
-                    <div className="relative z-10 flex items-center space-x-1 pb-[29px] pl-[35px] pt-[60px] text-[20px] text-gray-500">
+                <div className="container relative overflow-hidden px-0  ">
+                    <div className="relative z-10 flex items-center space-x-1 pb-[29px] pl-[58px] pt-[60px] text-[20px] text-gray-500">
                         <BreadcrumbsDesktop
                             items={[
-                                { title: 'Главная', href: '/', className: 'hover:underline' },
-                                { title: 'Профессия', href: '/professions', className: 'hover:underline' },
-                                { title: 'Программист', className: 'text-white hover:underline' },
+                                { title: 'Главная', href: '/', className: 'text20px_desktop hover:underline' },
+                                {
+                                    title: 'Профессия',
+                                    href: '/professions',
+                                    className: 'text20px_desktop hover:underline',
+                                },
+                                { title: 'Программист', className: 'text20px_desktop text-white hover:underline' },
                             ]}
                         />
                     </div>
-                    <div className="flex flex-col px-[26px]">
+                    <div className="flex flex-col px-[58px]">
                         <h1 className="title80px_desktop mb-[45px] font-medium uppercase text-white">Программист</h1>
                         <p className="title160px_desktop absolute left-0 top-0 pl-[114px] pr-[146px] font-semibold uppercase opacity-[0.02] 2xl:mt-[25px] 3xl:mt-[18px] 4xl:mt-[8px]">
                             Программист
@@ -47,10 +51,12 @@ const ProfessionPageDesktop: React.FC = () => {
                         ))}
                     </div>
                 </div>
-                <div className="container relative max-w-[1920px] overflow-hidden pl-[58px] 4xl:w-full 4xl:max-w-none 4xl:pl-[58px] 4xl:pr-0">
-                    <h2 className="mb-[63px] mt-[96px] text-[48px] font-medium uppercase">Компании для стажировки</h2>
+                <div className="overflow-hidden pl-[58px] pr-0">
+                    <h2 className="container mb-[63px]  mt-[96px] pl-0 text-[48px] font-medium uppercase">
+                        Компании для стажировки
+                    </h2>
                     <InternshipCompaniesDesktop />
-                    <h2 className="mb-[81px] text-[48px] font-medium uppercase ">Отзывы о профессии</h2>
+                    <h2 className="container mb-[81px]  pl-0 text-[48px] font-medium uppercase ">Отзывы о профессии</h2>
                     <ProfessionReviewsDesktop />
                 </div>
             </main>

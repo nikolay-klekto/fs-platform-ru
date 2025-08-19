@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useRef, useEffect, useState } from 'react'
+import Link from 'next/link'
 import { content } from './contentInternshipCompanyDesktop/content'
 import ItemInternshipCompaniesDesktop from './ItemInternshipCompaniesDesktop/ItemCompaniesDesktop'
 
@@ -60,19 +61,20 @@ const InternshipCompaniesDesktop: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(25px,_2.6vw,_50px)] overflow-x-scroll"
+                className="no-scrollbar_custom container flex select-none gap-9 overflow-x-scroll pl-0"
             >
                 {content.map((item) => (
-                    <ItemInternshipCompaniesDesktop
-                        key={item.id}
-                        image={item.image}
-                        name={item.name}
-                        price={item.price}
-                        industry={item.industry}
-                        onWidthChange={() => {}}
-                    />
+                    <Link href={`/company`} key={item.id}>
+                        <ItemInternshipCompaniesDesktop
+                            key={item.id}
+                            image={item.image}
+                            name={item.name}
+                            price={item.price}
+                            industry={item.industry}
+                            onWidthChange={() => {}}
+                        />
+                    </Link>
                 ))}
-                <div className="w-[58px] shrink-0"> </div>
             </div>
             <div
                 ref={scrollbarRef}

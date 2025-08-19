@@ -60,7 +60,7 @@ const ReviewsDesktop: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll "
+                className="no-scrollbar_custom  container flex select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll pl-0 "
             >
                 {content.map((item) => (
                     <ItemProfessionReviewsDesktop
@@ -70,7 +70,6 @@ const ReviewsDesktop: React.FC = () => {
                         onWidthChange={() => {}}
                     />
                 ))}
-                <div className="w-[58px] shrink-0"> </div>
             </div>
             <div
                 ref={scrollbarRef}
