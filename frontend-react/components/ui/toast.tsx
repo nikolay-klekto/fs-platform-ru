@@ -16,7 +16,7 @@ const ToastViewport = React.forwardRef<
     <ToastPrimitives.Viewport
         ref={ref}
         className={cn(
-            'fixed right-0 z-[100] flex w-auto',
+            'fixed right-0 z-[400] flex w-auto',
             'top-[70px]',
             'max-h-[calc(100vh-150px-20px)]',
             'max-md:top-[100px]',
@@ -43,6 +43,7 @@ const toastVariants = cva(
                 sm_xl:max-w-[360px]
                 sm_l:max-w-[315px]
                 sm_s:max-w-[320px]
+                4xl:w-[900px]
                 w-[800px]
                 sm:max-w-[240px]
                 md:max-w-[420px]
@@ -115,7 +116,7 @@ const ToastDescription = React.forwardRef<
     <ToastPrimitives.Description
         ref={ref}
         className={cn(
-            'text-9xl opacity-90',
+            'text-10xl opacity-90',
             '3xl:text-9xl',
             '2xl:text-6xl',
             'xl:text-4xl',
