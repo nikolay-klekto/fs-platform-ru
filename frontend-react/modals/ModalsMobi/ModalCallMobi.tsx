@@ -146,7 +146,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     />
                                     {errors.phone && <p className="mt-1 text-sm text-[#bc8070]">{errors.phone}</p>}
                                 </div>
-                                <div className="mb-2 flex w-full flex-col p-0.5">
+                                <div className="mb-3 flex w-full flex-col p-0.5">
                                     <EnhancedInput
                                         type="text"
                                         id="time"
@@ -161,7 +161,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         wrapperClassName="w-full"
                                     />
                                     <p className="mt-2 text-sm font-medium leading-[18px] text-[#353652] ">
-                                        *Обязательное поле для ввода
+                                        {/* *Обязательное поле для ввода */}
                                     </p>
                                     {Object.keys(errors).length > 0 && (
                                         <p className="mb-3 mt-2 text-sm font-medium leading-[18px] text-[#bc8070]">
