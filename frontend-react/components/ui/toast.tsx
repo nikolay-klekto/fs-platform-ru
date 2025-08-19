@@ -43,13 +43,13 @@ const toastVariants = cva(
                 sm_xl:max-w-[360px]
                 sm_l:max-w-[315px]
                 sm_s:max-w-[320px]
-                4xl:w-[900px]
-                w-[800px]
+                w-[900px]
                 sm:max-w-[240px]
                 md:max-w-[420px]
                 lg:w-[500px]
                 xl:w-[600px]
                 2xl:w-[650px]
+                3xl:w-[800px]
               `,
             },
         },
