@@ -259,7 +259,7 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         onClick={handleSubmit}
                         variant={'header_desktop_btn_gradient'}
                         size={'join_team_btn_desktop'}
-                        disabled={false}
+                        disabled={Object.values(errors).some(Boolean)}
                         className=
                         {`*:treacking-0 text-11xl mx-auto block font-semibold leading-[100%] 
                             ${Object.values(errors).some(Boolean) ? 'bg-[#878797] disabled:opacity-100' 
