@@ -3,13 +3,13 @@
 import React, { useRef, useEffect } from 'react'
 import { AvatarIconDesktop } from '@/components/assets/iconsDesktop'
 
-interface IItemReviewsDesktop {
+interface IItemProfessionReviewsDesktop {
     question: string
     answer: string
     onWidthChange: (width: number) => void
 }
 
-const ItemReviewsDesktop: React.FC<IItemReviewsDesktop> = ({ question, answer, onWidthChange }) => {
+const ItemProfessionReviewsDesktop: React.FC<IItemProfessionReviewsDesktop> = ({ question, answer, onWidthChange }) => {
     const itemRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -28,18 +28,16 @@ const ItemReviewsDesktop: React.FC<IItemReviewsDesktop> = ({ question, answer, o
     }, [])
 
     return (
-        <div ref={itemRef} className="flex shrink-0">
-            <div className="3xl:max-w-[50px] mr-[9px] max-w-[60px] 2xl:max-w-[50px]">
-                <AvatarIconDesktop className="h-auto w-full" />
-            </div>
-            <div className="w-[clamp(251px,_20vw,_389px)]">
+        <div ref={itemRef} className="flex shrink-0 items-start gap-4">
+            <AvatarIconDesktop width={88} height={88} className="shrink-0" />
+            <div className="w-[clamp(350px,_40vw,_565px)]">
                 <div className="rounded-[25px] border-2 border-[#878797] p-[clamp(9px,_0.7vw,_15px)]">
-                    <p className="text18px_modal_desktop mb-[clamp(6px,_0.5vw,_10px)] text-white">{question}</p>
-                    <p className="text15px_desktop text-[#878797]">{answer}</p>
+                    <p className="text26px_desktop mb-[clamp(6px,_0.5vw,_10px)] text-white">{question}</p>
+                    <p className="text22px_desktop text-[#878797]">{answer}</p>
                 </div>
             </div>
         </div>
     )
 }
 
-export default ItemReviewsDesktop
+export default ItemProfessionReviewsDesktop

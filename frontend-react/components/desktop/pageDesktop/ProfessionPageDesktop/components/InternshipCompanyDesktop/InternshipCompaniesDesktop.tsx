@@ -1,10 +1,11 @@
 'use client'
 
-import React, { useRef, useState, useEffect } from 'react'
-import { content } from './contentCompanyAdvantageDesktop/content'
-import ItemCompanyAdvantageDesktop from './ItemCompanyAdvantageDesktop/ItemCompanyAdvantageDesktop'
+import React, { useRef, useEffect, useState } from 'react'
+import Link from 'next/link'
+import { content } from './contentInternshipCompanyDesktop/content'
+import ItemInternshipCompaniesDesktop from './ItemInternshipCompaniesDesktop/ItemCompaniesDesktop'
 
-const CompanyAdvantageDesktop: React.FC = () => {
+const InternshipCompaniesDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [scrollbarWidth, setScrollbarWidth] = useState(0)
@@ -30,10 +31,10 @@ const CompanyAdvantageDesktop: React.FC = () => {
         }
 
         const handleResize = () => {
-            requestAnimationFrame(() => {
-                const calculated = calculateScrollbarWidth()
-                setScrollbarWidth(calculated)
-            })
+            if (contentRef.current && scrollbarRef.current) {
+                const calculatedScrollbarWidth = calculateScrollbarWidth()
+                setScrollbarWidth(calculatedScrollbarWidth)
+            }
         }
 
         window.addEventListener('resize', handleResize)
@@ -60,21 +61,25 @@ const CompanyAdvantageDesktop: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom container flex select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll pl-0 pr-[60px]"
+                className="no-scrollbar_custom container flex select-none gap-9 overflow-x-scroll pl-0 pr-[60px]"
             >
                 {content.map((item) => (
-                    <ItemCompanyAdvantageDesktop
-                        key={item.id}
-                        question={item.question}
-                        answer={item.answer}
-                        onWidthChange={() => {}}
-                    />
+                    <Link href={`/company`} key={item.id}>
+                        <ItemInternshipCompaniesDesktop
+                            key={item.id}
+                            image={item.image}
+                            name={item.name}
+                            price={item.price}
+                            industry={item.industry}
+                            onWidthChange={() => {}}
+                        />
+                    </Link>
                 ))}
             </div>
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="scrollbar_custom relative mx-auto mb-[132px] mt-[52px] w-[65%] cursor-pointer overflow-x-scroll"
+                className="scrollbar_custom relative mx-auto mb-[192px] mt-[77px] w-[65%] cursor-pointer overflow-x-scroll 2xl:mb-[120px] 3xl:mb-[160px]"
             >
                 <div
                     className="absolute h-2 min-w-[1000px] bg-transparent"
@@ -85,4 +90,4 @@ const CompanyAdvantageDesktop: React.FC = () => {
     )
 }
 
-export default CompanyAdvantageDesktop
+export default InternshipCompaniesDesktop
