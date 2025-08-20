@@ -40,7 +40,6 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
         fileError: null,
     })
 
-
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
@@ -88,7 +87,6 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
     return !Object.values(newErrors).some(Boolean)
     }
 
-
     const handleBlur = (field: keyof IFormData) => {
         setErrors((prevErrors) => ({
             ...prevErrors,
@@ -117,11 +115,10 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
         const cleanedPhone = normalizePhone(formData.phoneNumber);
         
-
         await new Promise((resolve) => setTimeout(resolve, 1000));
         
         toast({
-            title: <span className="text-10xl font-bold">Спасибо!</span>,
+            title: 'Спасибо!',
             description: 'Ваша заявка была успешно отправлена',
         });
     }
@@ -261,9 +258,7 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         size={'join_team_btn_desktop'}
                         disabled={Object.values(errors).some(Boolean)}
                         className=
-                        {`*:treacking-0 text-11xl mx-auto block font-semibold leading-[100%] 
-                            ${Object.values(errors).some(Boolean) ? 'bg-[#878797] disabled:opacity-100' 
-                                : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'}`}
+                        {`*:treacking-0 text-11xl mx-auto block font-semibold leading-[100%] ${Object.values(errors).some(Boolean) ? 'bg-[#878797] disabled:opacity-100' : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'}`}
                     >
                         Оставить заявку
                     </Button>
