@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import { modalContentMobi } from './content'
 
