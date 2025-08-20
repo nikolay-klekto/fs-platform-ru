@@ -78,14 +78,14 @@ const Modal: React.FC<IModal> = ({
                 </div>
             ) : (
                 <div
-                    className={`relative mx-4 w-full max-w-md ${getSizeClass()} modal-scrollable text-white`}
+                    className={`relative mx-4 w-full max-w-[346px] ${getSizeClass()} modal-scrollable text-white`}
                     role="none"
                     onClick={(e) => e.stopPropagation()}
                 >
                     {showCloseButton && (
                         <button
                             onClick={onClose}
-                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-2"
+                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[3px]"
                         >
                             <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
@@ -103,3 +103,5 @@ const Modal: React.FC<IModal> = ({
 }
 
 export default Modal
+
+//max-w-md
