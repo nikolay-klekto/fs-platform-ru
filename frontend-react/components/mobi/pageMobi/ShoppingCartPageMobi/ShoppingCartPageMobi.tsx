@@ -22,14 +22,14 @@ const ShoppingCartPageMobi: React.FC = () => {
                 {/* авторизованный */}
                 {isAuth && (
                     <div className="flex flex-col items-center justify-center bg-[#101030] pt-[40px]">
-                        <h1 className="title28px_mobi_custom mt-[40px] mb-[20px] uppercase">Личный кабинет</h1>
+                        <h1 className="title28px_mobi_custom mb-[20px] uppercase">Личный кабинет</h1>
                         <AccountNavigationMobi />
                     </div>
                 )}
                 {/* неавторизованный корзина пустая */}
                 {!isAuth && !hasOrders && (
                     <div className="flex flex-col items-center pt-[160px] pb-[370px]">
-                        <div className="text-3xl text-semibold leading-[162%] text-center px-[15px] mb-[40px] text-[#353652]">
+                        <div className="text-3xl text-semibold leading-[162%] text-center px-[15px] mb-[47px] text-[#353652]">
                             <p> Ваша корзина пуста</p>
                             <p>
                                 Загляните на главную чтобы выбрать понравившуюся стажировку, либо войдите в Ваш аккаунт
@@ -79,7 +79,6 @@ const ShoppingCartPageMobi: React.FC = () => {
                     </div>
                 )}
             </main>
-            <FooterMobi />
         </>
     )
 }
