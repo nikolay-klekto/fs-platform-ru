@@ -5,6 +5,7 @@ import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import PhoneInputDesktop from '@/components/desktop/shared/formInput/PhoneInputDesktop'
 import { AttachFileIconDesktop } from '@/components/assets/iconsDesktop'
+import { toast } from '@/hooks/use-toast';
 
 interface IFormData {
     name: string
@@ -38,6 +39,7 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
         consent: false,
         fileError: null,
     })
+
 
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -74,17 +76,18 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const validateForm = () => {
         const newErrors = {
-            name: !formData.name.trim(),
-            phoneNumber: !formData.phoneNumber.trim(),
-            profession: !formData.profession.trim(),
-            consent: !formData.consent,
-            fileError: null,
-        }
-
-        setErrors(newErrors)
-
-        return !Object.values(newErrors).some(Boolean)
+        name: !formData.name.trim(),
+        phoneNumber: !formData.phoneNumber.trim(),
+        profession: !formData.profession.trim(),
+        consent: !formData.consent,
+        fileError: null, 
     }
+
+    setErrors(newErrors)
+
+    return !Object.values(newErrors).some(Boolean)
+    }
+
 
     const handleBlur = (field: keyof IFormData) => {
         setErrors((prevErrors) => ({
@@ -105,12 +108,22 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
         }))
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        const isValid = validateForm()
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const isValid = validateForm();
+        
         if (!isValid) return
 
-        const cleanedPhone = normalizePhone(formData.phoneNumber)
+        const cleanedPhone = normalizePhone(formData.phoneNumber);
+        
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        
+        toast({
+            title: <span className="text-10xl font-bold">Спасибо!</span>,
+            description: 'Ваша заявка была успешно отправлена',
+        });
     }
 
     const normalizePhone = (value: string) => {
@@ -246,8 +259,11 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         onClick={handleSubmit}
                         variant={'header_desktop_btn_gradient'}
                         size={'join_team_btn_desktop'}
-                        disabled={Object.values(errors).some(Boolean)}
-                        className={`*:treacking-0 text-11xl mx-auto block font-semibold leading-[100%] ${Object.values(errors).some(Boolean) ? 'bg-[#878797] disabled:opacity-100' : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'}`}
+                        disabled={false}
+                        className=
+                        {`*:treacking-0 text-11xl mx-auto block font-semibold leading-[100%] 
+                            ${Object.values(errors).some(Boolean) ? 'bg-[#878797] disabled:opacity-100' 
+                                : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'}`}
                     >
                         Оставить заявку
                     </Button>
