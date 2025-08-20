@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import { SlashIcon } from 'lucide-react'
 
 import {
     Breadcrumb,
@@ -24,7 +23,7 @@ interface IBreadcrumbs {
 
 const BreadcrumbsDesktop: React.FC<IBreadcrumbs> = ({
     items,
-    separator = <span className="rotate-[15deg] text20px_desktop leading-none">/</span>,
+    separator = <span className="text20px_desktop rotate-[15deg] leading-none">/</span>,
 }) => {
     return (
         <Breadcrumb aria-label="Breadcrumb" className="custom-grey">
