@@ -160,9 +160,6 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         labelClassName="text-white text-xl"
                                         wrapperClassName="w-full"
                                     />
-                                    <p className="mt-2 text-sm font-medium leading-[18px] text-[#353652] ">
-                                        {/* *Обязательное поле для ввода */}
-                                    </p>
                                     {Object.keys(errors).length > 0 && (
                                         <p className="mb-3 mt-2 text-sm font-medium leading-[18px] text-[#bc8070]">
                                             Заполните обязательные поля

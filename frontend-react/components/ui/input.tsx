@@ -162,8 +162,8 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         className={cn(
                             'text15px_desktop font-medium',
                             labelClassName,
-                            isCheckbox && 'flex items-center gap-4',
-                            isCheckbox && (internalValue ? 'text-white' : 'text-[#878797]'),
+                            isCheckbox &&
+                                cn('flex items-center gap-4', internalValue ? 'text-white' : 'text-[#878797]'),
                         )}
                     >
                         {isCheckbox && (
@@ -189,6 +189,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                         {label}
                     </label>
                 )}
+
                 {!isCheckbox && (
                     <input
                         id={name}
