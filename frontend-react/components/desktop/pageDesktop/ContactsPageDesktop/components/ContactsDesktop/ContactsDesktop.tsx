@@ -160,7 +160,7 @@ const ContactsDesktop: React.FC = () => {
                 <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
                 <div className="radial-gradient_desktop right-[150px] top-[653px]"></div>
                 <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
-                <div className="3xl:mr-20 relative z-[1] mr-32 flex max-w-[541px] flex-col gap-7 2xl:mb-28 2xl:mr-0 2xl:max-w-none 2xl:self-start">
+                <div className="3xl:mr-20 relative z-[1] flex max-w-[541px] flex-col gap-7 2xl:mb-28 2xl:mr-0 2xl:max-w-none 2xl:self-start">
                     <h1 className="text-26xl 3xl:text-23xl font-semibold uppercase">Свяжитесь с нами</h1>
                     <Button
                         variant="send_btn_desktop"
