@@ -1,73 +1,70 @@
-import { MutableRefObject, useState, useRef, useMemo, useEffect } from "react";
-
-export default function useScrollbarSync(
-    contentRef: MutableRefObject<HTMLDivElement | null>,
-    scrollbarRef: MutableRefObject<HTMLDivElement | null>
+import { useState, useRef, useCallback, useEffect } from "react";
+export type RefReadable<T extends Element> = { current: T | null }
+export default function useScrollbarSync<
+    TContent extends HTMLElement = HTMLDivElement,
+    TTrack extends HTMLElement = HTMLDivElement
+>(
+    contentRef: RefReadable<TContent>,
+    scrollbarRef: RefReadable<TTrack>
 ) {
     const [scrollContentWidth, setScrollContentWidth] = useState<number>(0);
     const activeSourceRef = useRef<null | 'content' | 'scrollbar'>(null);
     const sizesRef = useRef({ contentScrollWidth: 0, contentClientWidth: 0, trackClientWidth: 0 });
-    const recalculate = useMemo(() => {
-        return () => {
-            const content = contentRef.current;
-            const track = scrollbarRef.current;
-            if (!content || !track) return;
+    const recalculate = useCallback(() => {
+        const content = contentRef.current;
+        const track = scrollbarRef.current;
+        if (!content || !track) return;
 
-            const contentScrollWidth = content.scrollWidth;
-            const contentClientWidth = content.clientWidth;
-            const trackClientWidth = track.clientWidth;
+        const contentScrollWidth = content.scrollWidth;
+        const contentClientWidth = content.clientWidth;
+        const trackClientWidth = track.clientWidth;
 
-            const prev = sizesRef.current;
-            if (
-                prev.contentScrollWidth === contentScrollWidth &&
-                prev.contentClientWidth === contentClientWidth &&
-                prev.trackClientWidth === trackClientWidth
-            ) {
-                return;
+        const prev = sizesRef.current;
+        if (
+            prev.contentScrollWidth === contentScrollWidth &&
+            prev.contentClientWidth === contentClientWidth &&
+            prev.trackClientWidth === trackClientWidth
+        ) {
+            return;
+        }
+
+        sizesRef.current = { contentScrollWidth, contentClientWidth, trackClientWidth };
+
+        const projected = contentScrollWidth - (contentClientWidth - trackClientWidth);
+        const nextWidth = Math.max(0, Math.round(projected));
+        setScrollContentWidth((prevWidth) => (prevWidth === nextWidth ? prevWidth : nextWidth));
+    }, [contentRef, scrollbarRef]);
+    const onContentScroll = useCallback(() => {
+        const content = contentRef.current;
+        const scrollbar = scrollbarRef.current;
+        if (!content || !scrollbar) return;
+
+        if (activeSourceRef.current === "scrollbar") return;
+
+        activeSourceRef.current = "content";
+        scrollbar.scrollLeft = content.scrollLeft;
+
+        requestAnimationFrame(() => {
+            if (activeSourceRef.current === "content") {
+                activeSourceRef.current = null;
             }
-
-            sizesRef.current = { contentScrollWidth, contentClientWidth, trackClientWidth };
-
-            const projected = contentScrollWidth - (contentClientWidth - trackClientWidth);
-            const nextWidth = Math.max(0, Math.round(projected));
-            setScrollContentWidth((prevWidth) => (prevWidth === nextWidth ? prevWidth : nextWidth));
-        };
+        });
     }, [contentRef, scrollbarRef]);
-    const onContentScroll = useMemo(() => {
-        return () => {
-            const content = contentRef.current;
-            const scrollbar = scrollbarRef.current;
-            if (!content || !scrollbar) return;
+    const onScrollbarScroll = useCallback(() => {
+        const content = contentRef.current;
+        const scrollbar = scrollbarRef.current;
+        if (!content || !scrollbar) return;
 
-            if (activeSourceRef.current === "scrollbar") return;
+        if (activeSourceRef.current === "content") return;
 
-            activeSourceRef.current = "content";
-            scrollbar.scrollLeft = content.scrollLeft;
+        activeSourceRef.current = "scrollbar";
+        content.scrollLeft = scrollbar.scrollLeft;
 
-            requestAnimationFrame(() => {
-                if (activeSourceRef.current === "content") {
-                    activeSourceRef.current = null;
-                }
-            });
-        };
-    }, [contentRef, scrollbarRef]);
-    const onScrollbarScroll = useMemo(() => {
-        return () => {
-            const content = contentRef.current;
-            const scrollbar = scrollbarRef.current;
-            if (!content || !scrollbar) return;
-
-            if (activeSourceRef.current === "content") return;
-
-            activeSourceRef.current = "scrollbar";
-            content.scrollLeft = scrollbar.scrollLeft;
-
-            requestAnimationFrame(() => {
-                if (activeSourceRef.current === "scrollbar") {
-                    activeSourceRef.current = null;
-                }
-            });
-        };
+        requestAnimationFrame(() => {
+            if (activeSourceRef.current === "scrollbar") {
+                activeSourceRef.current = null;
+            }
+        });
     }, [contentRef, scrollbarRef]);
 
     useEffect(() => {
@@ -76,11 +73,8 @@ export default function useScrollbarSync(
         if (!content || !scrollbar) return;
         recalculate();
 
-        const contentScrollHandler = () => onContentScroll();
-        const scrollbarScrollHandler = () => onScrollbarScroll();
-
-        content.addEventListener("scroll", contentScrollHandler, { passive: true });
-        scrollbar.addEventListener("scroll", scrollbarScrollHandler, { passive: true });
+        content.addEventListener('scroll', onContentScroll, { passive: true })
+        scrollbar.addEventListener('scroll', onScrollbarScroll, { passive: true })
 
         let roContent: ResizeObserver | null = null;
         let roScrollbar: ResizeObserver | null = null;
@@ -92,19 +86,18 @@ export default function useScrollbarSync(
             roContent.observe(content);
             roScrollbar.observe(scrollbar);
         } else {
-            const onWinResize = () => recalculate();
-            window.addEventListener("resize", onWinResize);
-            window.addEventListener("orientationchange", onWinResize);
+            window.addEventListener("resize", recalculate);
+            window.addEventListener("orientationchange", recalculate);
 
             cleanupWin = () => {
-                window.removeEventListener("resize", onWinResize);
-                window.removeEventListener("orientationchange", onWinResize);
+                window.removeEventListener("resize", recalculate);
+                window.removeEventListener("orientationchange", recalculate);
             };
         }
 
         return () => {
-            content.removeEventListener("scroll", contentScrollHandler);
-            scrollbar.removeEventListener("scroll", scrollbarScrollHandler);
+            content.removeEventListener("scroll", onContentScroll);
+            scrollbar.removeEventListener("scroll", onScrollbarScroll);
             roContent?.disconnect();
             roScrollbar?.disconnect();
             cleanupWin?.();
