@@ -5,7 +5,6 @@ import { Search } from 'lucide-react'
 import { useDataContext } from '@/context/DataContext'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useExistingProfessions } from '@/hooks/useExistingProfessions'
 import useDebounce from '@/hooks/useDebounce'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
@@ -23,9 +22,10 @@ const ProfessionsPageDesktop: React.FC = () => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [selectedInternshipTypes, setselectedInternshipTypes] = useState<string[]>([])
     const { professions } = useDataContext()
+
     useEffect(() => {
         setCurrentPage(1)
-    }, [searchQuery, selectedCategories])
+    }, [debouncedSearchQuery, selectedCategories])
 
     if (!professions) return null
 
@@ -47,10 +47,6 @@ const ProfessionsPageDesktop: React.FC = () => {
     })
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
-
-    useEffect(() => {
-        setCurrentPage(1)
-    }, [debouncedSearchQuery, selectedCategories])
 
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
