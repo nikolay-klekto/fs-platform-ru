@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useAvailableCompanies } from '@/hooks/useAvailableCompanies'
 import useDebounce from '@/hooks/useDebounce'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
@@ -24,9 +23,11 @@ const CompaniesPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const { companies } = useDataContext()
+    
     useEffect(() => {
         setCurrentPage(1)
-    }, [searchQuery, selectedCategories])
+    }, [debouncedSearchQuery, selectedCategories])
+
     if (!companies) return null
 
     const filteredCompanies = companies.filter((item) => {
@@ -37,10 +38,6 @@ const CompaniesPageDesktop: React.FC = () => {
         return matchesSearch && matchesCategory
     })
     const totalPages = Math.ceil(filteredCompanies.length / cardsPerPage)
-
-    useEffect(() => {
-        setCurrentPage(1)
-    }, [debouncedSearchQuery, selectedCategories])
 
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
