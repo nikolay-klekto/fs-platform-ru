@@ -75,12 +75,12 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const validateForm = () => {
         const newErrors = {
-        name: !formData.name.trim(),
-        phoneNumber: !formData.phoneNumber.trim(),
-        profession: !formData.profession.trim(),
-        consent: !formData.consent,
-        fileError: null, 
-    }
+            name: !formData.name.trim(),
+            phoneNumber: !formData.phoneNumber.trim(),
+            profession: !formData.profession.trim(),
+            consent: !formData.consent,
+            fileError: null,
+        }
 
     setErrors(newErrors)
 
@@ -107,20 +107,20 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        const isValid = validateForm();
+        e.preventDefault()
+        const isValid = validateForm()
         
         if (!isValid) return
 
-        const cleanedPhone = normalizePhone(formData.phoneNumber);
-        
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        
+        const cleanedPhone = normalizePhone(formData.phoneNumber)
+                
         toast({
-            title: 'Спасибо!',
-            description: 'Ваша заявка была успешно отправлена',
-        });
+            description: (
+                <div className="pl-4">
+                    Спасибо! Ваша заявка была успешно отправлена
+                </div>
+            ),
+        })
     }
 
     const normalizePhone = (value: string) => {
