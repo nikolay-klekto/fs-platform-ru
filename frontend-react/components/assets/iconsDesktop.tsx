@@ -702,3 +702,31 @@ export const CloseIconDesktop: React.FC<SVGProps<SVGSVGElement>> = (props) => {
         </svg>
     )
 }
+
+export const AddDesktop: React.FC<ISvgIcon> = (props) => {
+    return (
+        <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                d="M20.3692 36.2375C29.4529 36.2375 36.8166 28.8738 36.8166 19.7901C36.8166 10.7065 29.4529 3.34277 20.3692 3.34277C11.2856 3.34277 3.92188 10.7065 3.92188 19.7901C3.92188 28.8738 11.2856 36.2375 20.3692 36.2375Z"
+                stroke="#878797"
+                strokeWidth="3.15789"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M20.3672 13.2119V26.3698"
+                stroke="#878797"
+                strokeWidth="3.15789"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M13.7891 19.79H26.947"
+                stroke="#878797"
+                strokeWidth="3.15789"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}

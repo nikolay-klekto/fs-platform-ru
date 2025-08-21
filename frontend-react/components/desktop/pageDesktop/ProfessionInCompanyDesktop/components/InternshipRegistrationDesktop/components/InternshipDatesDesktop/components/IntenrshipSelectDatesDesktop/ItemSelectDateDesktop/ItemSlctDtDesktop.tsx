@@ -5,7 +5,7 @@ import { IMaskInput } from 'react-imask'
 import { Calendar } from '@/components/ui/calendar'
 import { CalendarIconsDesktop } from '@/components/assets/iconsDesktop'
 
-const InternshipRegistrationSelectDateDesktop: React.FC = () => {
+const InternshipSelectDateDesktop: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedDate, setSelectedDate] = useState<Date | null>(null)
     const [inputValue, setInputValue] = useState('')
@@ -66,20 +66,16 @@ const InternshipRegistrationSelectDateDesktop: React.FC = () => {
         <div className="relative" ref={calendarRef}>
             {/* Контейнер с бордером */}
             <div
-                className="flex items-center justify-between px-4"
+                className="flex items-center justify-between px-[38px]"
                 style={{
                     width: 333,
                     height: 77,
-                    border: '3.71px solid #878787',
+                    border: '3.71px solid #878797',
                     borderRadius: '92px',
                 }}
             >
-                <button
-                    className="cursor-pointer flex items-center justify-center"
-                    // style={{ width: 46, height: 46 }}
-                    onClick={() => setIsOpen(!isOpen)}
-                >
-                    <CalendarIconsDesktop />
+                <button className="cursor-pointer flex items-center justify-center" onClick={() => setIsOpen(!isOpen)}>
+                    <CalendarIconsDesktop className="h-[46px] w-[46px]" />
                 </button>
                 <IMaskInput
                     mask="00.00.0000"
@@ -87,7 +83,7 @@ const InternshipRegistrationSelectDateDesktop: React.FC = () => {
                     placeholder="__.__.____"
                     value={inputValue}
                     onAccept={handleInputChange}
-                    className="bg-transparent text-white outline-none text-[33px] font-medium w-[200px] text-right"
+                    className="font-medium-500 w-[181px] bg-transparent text-center text-[33px] text-white"
                 />
             </div>
             {isOpen && (
@@ -104,4 +100,4 @@ const InternshipRegistrationSelectDateDesktop: React.FC = () => {
     )
 }
 
-export default InternshipRegistrationSelectDateDesktop
+export default InternshipSelectDateDesktop

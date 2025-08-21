@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useState } from 'react'
-import InternshipRegistrationSelecttypeDesktop from './components/InternshipRegistrationSelectTypeDesktop'
-import EventsSelectSearchDateDesktop from './components/InternshipRegistrationSelectDateDesktop'
-import InternshipTypeSelectAddressDesktop from './components/InternshipTypeSelectAddressDesktop'
+import InternshipRegistrationSelecttypeDesktop from './components/SelectTypeDesktop/SelectTypeDesktop'
+import InternshipSelectAllDatesDesktop from './components/InternshipDatesDesktop/SelectAllDatesDesktop'
+import InternshipSelectAddressDesktop from './components/SelectAddressDesktop/SelectAddressDesktop'
 import { Button } from '@/components/ui/button'
 
 const InternshipRegistrationDesktop: React.FC = () => {
@@ -46,25 +46,17 @@ const InternshipRegistrationDesktop: React.FC = () => {
                     <InternshipRegistrationSelecttypeDesktop onTypeChange={handleTypeChange} />
                 </div>
             </div>
-            {/* Даты стажировки */}
             <div className="flex-start my-[36px] flex border-b border-white/20 pb-2">
                 <span className="text28px_desktop font-medium-500 text-[#878797]">Даты стажировки</span>
-                <div className="pl-[200px]">
-                    {' '}
-                    <EventsSelectSearchDateDesktop
-                        selectedDates={{ startDate: null, endDate: null }}
-                        onChange={(range) => {
-                            console.log('Выбранные даты:', range)
-                        }}
-                    />
-                </div>
+                <InternshipSelectAllDatesDesktop />
             </div>
+
             {/* Адрес стажировки */}
             <div className="flex-start my-[36px] flex border-b border-white pb-2">
                 <span className="text28px_desktop font-medium-500 text-[#878797]">Адрес стажировки</span>
                 <div className="pl-[200px]">
                     {' '}
-                    <InternshipTypeSelectAddressDesktop onAddressChange={handleAddressChange} />
+                    <InternshipSelectAddressDesktop onAddressChange={handleAddressChange} />
                 </div>
             </div>
 

@@ -1,9 +1,9 @@
 'use client'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
-import InternshipProfessionsDesktop from './components/ProfessionsInCompanyDeskto/ProfessionsInCompanyDesktop'
+import InternshipProfessionsDesktop from './components/ProfessionsInCompanyDesktop/ProfessionsInCompanyDesktop'
 import InternshipRegistrationDesktop from './components/InternshipRegistrationDesktop/InternshipRegistrationDesktop'
 import CompanyInfoDesktop from './components/CompanyInfoDesktop/CompanyInfoDesktop'
-import InternshipProcessDesktop from './components/InternshipProcessDesktop/components/InternshipProcessDesktop/InternshipProcessDesktop'
+import InternshipProcessDesktop from './components/InternshipProcessDesktop/InternshipProcessDesktop'
 
 const CompanyPageDesktop: React.FC = () => {
     return (

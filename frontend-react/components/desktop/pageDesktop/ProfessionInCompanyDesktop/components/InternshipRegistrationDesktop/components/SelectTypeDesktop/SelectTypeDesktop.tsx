@@ -9,7 +9,7 @@ interface ISelectOption {
     label: string
 }
 
-const InternshipTypeSelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (types: string[]) => void }) => {
+const InternshipSelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (types: string[]) => void }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState<string | null>(null)
     const selectRef = useRef<HTMLDivElement>(null)
@@ -43,7 +43,7 @@ const InternshipTypeSelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (type
     ]
 
     return (
-        <div className="relative z-[50]" ref={selectRef}>
+        <div className="relative" ref={selectRef}>
             {/* Селектор */}
             <Button
                 variant={'select_internship_btn_desktop'}
@@ -97,4 +97,4 @@ const InternshipTypeSelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (type
     )
 }
 
-export default InternshipTypeSelectTypeDesktop
+export default InternshipSelectTypeDesktop

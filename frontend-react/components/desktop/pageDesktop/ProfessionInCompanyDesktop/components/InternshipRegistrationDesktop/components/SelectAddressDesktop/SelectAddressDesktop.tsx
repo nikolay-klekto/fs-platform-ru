@@ -47,7 +47,7 @@ const InternshipTypeSelectAddressDesktop = ({
     ]
 
     return (
-        <div className="relative z-[50]" ref={selectRef}>
+        <div className="relative z-[1]" ref={selectRef}>
             {/* Селектор */}
             <Button
                 variant={'select_internship_btn_desktop'}
