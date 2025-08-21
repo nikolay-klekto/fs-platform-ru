@@ -109,6 +109,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
     return (
         <Modal
             variant="mobile"
+            size="mobile-346"
             onClose={onClose}
             className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]"
             bgClass="flex flex-col items-center"

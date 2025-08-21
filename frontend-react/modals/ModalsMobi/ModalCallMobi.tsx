@@ -84,6 +84,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
             {step === 'form' && (
                 <Modal
                     variant="mobile"
+                    size="mobile-346"
                     onClose={onClose}
                     className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]"
                 >
@@ -197,7 +198,9 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
             {step === 'accepted' && (
                 <Modal
                     variant="mobile"
+                    size="mobile-346"
                     onClose={onClose}
+                    bgClass="bg-auto"
                     className=" fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]"
                 >
                     <h1 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">

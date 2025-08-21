@@ -175,7 +175,7 @@ const RegistrationModalMobi: React.FC<IModalContent> = ({ onClose }) => {
     }
 
     return (
-        <Modal variant="mobile" onClose={onClose} bgClass="flex flex-col items-center">
+        <Modal variant="mobile" size="mobile-346" onClose={onClose} bgClass="flex flex-col items-center bg-cover">
             <h2 className="text18px_mobi mx-auto mb-4 inline bg-sub-title-gradient-mobi bg-clip-text font-semibold uppercase text-transparent">
                 Регистрация
             </h2>

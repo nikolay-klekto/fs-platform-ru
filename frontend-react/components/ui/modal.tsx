@@ -5,7 +5,7 @@ import { X } from 'lucide-react'
 interface IModal {
     children: ReactNode
     onClose: () => void
-    size?: 'small' | 'medium' | 'semilarge' | 'large' | 'large-l' | 'large-lg' | 'extra-medium'
+    size?: 'small' | 'medium' | 'semilarge' | 'large' | 'large-l' | 'large-lg' | 'extra-medium' | 'mobile-346'
     showCloseButton?: boolean
     paddingClass?: string
     className?: string
@@ -46,10 +46,49 @@ const Modal: React.FC<IModal> = ({
                 return '2xl:w-[830px] max-w-[882px]'
             case 'extra-medium':
                 return 'max-w-lg'
+            case 'mobile-346':
+                return 'max-w-[346px]'
             default:
                 return 'max-w-lg'
         }
     }
+
+    const isMobile = variant === 'mobile'
+
+    const modalContent = isMobile ? (
+        <div
+            className={`relative mx-4 w-full ${getSizeClass()} modal-scrollable text-white`}
+            role="none"
+            onClick={(e) => e.stopPropagation()}
+        >
+            {showCloseButton && (
+                <button
+                    onClick={onClose}
+                    className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[3px]"
+                >
+                    <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
+                </button>
+            )}
+            <div
+                className={`rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-[right_top] bg-no-repeat px-3 py-[40px] text-white ${bgClass || 'bg-cover'}`}
+            >
+                {children}
+            </div>
+        </div>
+    ) : (
+        <div
+            className={`relative w-full rounded-[50px] bg-[#101030] ${getSizeClass()} modal-scrollable text-white`}
+            role="none"
+            onClick={(e) => e.stopPropagation()}
+        >
+            {showCloseButton && (
+                <button className="absolute right-[-53px] top-0" onClick={onClose}>
+                    <X size={53} color="#878797" />
+                </button>
+            )}
+            {children}
+        </div>
+    )
 
     return ReactDOM.createPortal(
         <div
@@ -63,45 +102,10 @@ const Modal: React.FC<IModal> = ({
                 }
             }}
         >
-            {variant === 'desktop' ? (
-                <div
-                    className={`relative w-full rounded-[50px] bg-[#101030] ${getSizeClass()} modal-scrollable text-white`}
-                    role="none"
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    {showCloseButton && (
-                        <button className="absolute right-[-53px] top-0" onClick={onClose}>
-                            <X size={53} color="#878797" />
-                        </button>
-                    )}
-                    {children}
-                </div>
-            ) : (
-                <div
-                    className={`relative mx-4 w-full max-w-[346px] ${getSizeClass()} modal-scrollable text-white`}
-                    role="none"
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    {showCloseButton && (
-                        <button
-                            onClick={onClose}
-                            className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[3px]"
-                        >
-                            <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
-                        </button>
-                    )}
-                    <div
-                        className={`rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 py-[40px] text-white ${bgClass}`}
-                    >
-                        {children}
-                    </div>
-                </div>
-            )}
+            {modalContent}
         </div>,
         document.body,
     )
 }
 
 export default Modal
-
-//max-w-md

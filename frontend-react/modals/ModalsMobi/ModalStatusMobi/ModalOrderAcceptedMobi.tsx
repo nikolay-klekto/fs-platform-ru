@@ -13,6 +13,7 @@ const ModalOrderAcceptedMobi: React.FC<IModalContent> = ({ onClose }) => {
     return (
         <Modal
             variant="mobile"
+            size="mobile-346"
             onClose={onClose}
             bgClass="bg-auto"
             className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]"
