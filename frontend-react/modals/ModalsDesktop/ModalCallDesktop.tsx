@@ -151,7 +151,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         inputTouched.name && validateNameDesktop(formData.name).styleError
                                             ? 'border-[#bc8070]'
                                             : 'border-[#878797]'
-                                    } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0`}
+                                    } h-[50px] w-full rounded-[50px] border-2 bg-transparent p-3 text-4xl font-medium text-white placeholder:text-2xl focus-visible:ring-offset-0`}
                                     label="Ваше имя*"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
@@ -161,13 +161,11 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             <div className="mb-5 flex w-full flex-col px-[75px]">
                                 <PhoneInputDesktop
                                     value={formData.phone}
-                                    //onBlur={() => handleInputBlur('phone')}
                                     onError={(error) => {
                                         setErrors((prev) => ({
                                             ...prev,
                                             phone: error,
                                         }))
-                                        console.log('Ошибки: ', errors)
                                     }}
                                     onChange={(value: string) =>
                                         handleChange({
@@ -181,7 +179,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
                                             ? 'border-[#bc8070] focus:border-[#bc8070]'
                                             : 'border-[#878797] focus:border-[#878797]'
-                                    }`}
+                                    } h-[50px] text-4xl placeholder:text-2xl`}
                                 />
                                 {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
                             </div>
@@ -194,7 +192,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     maxLength={100}
                                     value={formData.time}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                    className="h-10 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0"
+                                    className="h-[50px] w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-3 text-4xl font-medium text-white placeholder:text-2xl focus-visible:ring-offset-0"
                                     label="Удобное время для звонка"
                                     labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
                                     wrapperClassName="w-full"
@@ -225,7 +223,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     label="Я согласен(а) на обработку персональных данных"
                                     wrapperClassName="flex gap-2 pb-2"
                                     checkboxIconSize="w-[18px]"
-                                    labelClassName={`${formData.consent ? 'text-white' : 'text-[#878797]'}`}
+                                    labelClassName={`text-2xl ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                                 />
                             </div>
                             {errors.consent && <p className="error-form-desktop-custom px-[75px]">{errors.consent}</p>}
