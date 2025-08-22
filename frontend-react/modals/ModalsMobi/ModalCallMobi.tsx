@@ -91,13 +91,9 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                             <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
                         </button>
                         <div className=" rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 py-[40px]">
-                            <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
+                            <p className="bg-sub-title-gradient-mobi bg-clip-text pb-5 text-center text-4xl font-semibold text-transparent md:text-4xl">
                                 ЗАКАЗАТЬ ЗВОНОК
                             </p>
-                            <p className="pb-4 pl-3 text-base font-medium text-[#878797] md:text-lg">
-                                Заполните поля – и мы с вами свяжемся
-                            </p>
-
                             <form className="flex flex-col items-start pl-2 pr-1" onSubmit={handleSubmit}>
                                 <div className="mb-3 flex w-full flex-col p-0.5">
                                     <EnhancedInput
@@ -117,7 +113,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                                 ? 'border-[#bc8070]'
                                                 : 'border-[#878797]'
                                         } h-10 w-full rounded-[50px] bg-transparent p-4 text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] md:placeholder:text-2xl`}
-                                        label="Ваше имя"
+                                        label="Ваше имя*"
                                         labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
                                     />
@@ -160,16 +156,14 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         labelClassName="text-white text-xl"
                                         wrapperClassName="w-full"
                                     />
-                                    <p className="mt-2 text-sm font-medium leading-[18px] text-[#353652] ">
-                                        *Обязательное поле для ввода
-                                    </p>
+
                                     {Object.keys(errors).length > 0 && (
                                         <p className="mb-3 mt-2 text-sm font-medium leading-[18px] text-[#bc8070]">
                                             Заполните обязательные поля
                                         </p>
                                     )}
                                 </div>
-                                <div className="mb-2 flex items-center pt-4">
+                                <div className="mb-6 flex items-center">
                                     <input
                                         type="checkbox"
                                         id="consent"
@@ -191,7 +185,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 <button
                                     type="submit"
                                     disabled={Object.values(errors).some((err) => err?.trim())}
-                                    className={`bg-sub-title-gradient-mobi mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] text-3xl font-semibold text-white md:text-4xl  ${
+                                    className={`mx-auto p-[0.91rem_4.09rem] rounded-[50px] bg-sub-title-gradient-mobi text-white text-3xl font-semibold md:text-4xl  ${
                                         Object.values(errors).some((err) => err?.trim())
                                             ? 'bg-[#878797] disabled:opacity-100'
                                             : 'bg-sub-title-gradient-mobi'
