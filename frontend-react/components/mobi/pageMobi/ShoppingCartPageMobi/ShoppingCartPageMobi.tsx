@@ -34,20 +34,20 @@ const ShoppingCartPageMobi: React.FC = () => {
                             </p>
                         </div>
                         <Link href="/professions">
-                            <Button variant="send_btn_mobi" size="send_btn_desktop">
+                            <Button variant="send_btn_mobi" size="select_btn_mobi_prof">
                                 Выбрать профессию
                             </Button>
                         </Link>
                     </div>
                 )}
                 {/* авторизованный, корзина пустая */}
-                {isAuth && !hasOrders && (
+                {hasOrders && ( //isAuth && !hasOrders && (
                     <div className="flex flex-col items-center justify-center px-[15px] pt-[40px] pb-[400px] bg-[#101030]">
                         <p className="text-3xl font-semibold leading-[162%] text-center text-[#353652] px-[15px] mt-[70px] mb-[20px]">
                             Ваша корзина пуста
                         </p>
                         <Link href="/professions">
-                            <Button variant="send_btn_mobi" size="send_btn_desktop">
+                            <Button variant="send_btn_mobi" size="select_btn_mobi_prof">
                                 Выбрать профессию
                             </Button>
                         </Link>
@@ -71,9 +71,6 @@ const ShoppingCartPageMobi: React.FC = () => {
                                 />
                             ))}
                         </div>
-                        <Button variant={'select_mobi'} size={'registration_mobi'} className="w-[294px] text-[17px]">
-                            Очистить всё
-                        </Button>
                     </div>
                 )}
             </main>

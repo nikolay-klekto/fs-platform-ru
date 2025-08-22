@@ -97,6 +97,7 @@ const buttonVariants = cva(
                 confirm_btn_desktop: 'h-[64px] w-[250px]',
                 join_team_btn_desktop: 'h-[100px] w-[430px]',
                 join_team_btn_mobi: 'h-[44px] w-[187px]',
+                select_btn_mobi_prof: 'h-[50px] w-[294px]',
             },
         },
         defaultVariants: {

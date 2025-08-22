@@ -53,13 +53,13 @@ const ItemCardShoppingCartMobi: React.FC<IItemCardShoppingCart> = ({
                     <div className="text12px_mobi font-medium text-[#878797]">Адрес офиса:</div>
                     <div className="text14px_mobi leading-[1.2] text-white">{location}</div>
                 </div>
-                <div className="pt-[20px] flex items-center justify-between border-t-2">
+                <div className="flex items-center justify-between pt-[20px] border-t-2">
                     <div className="text16px_mobi   font-semibold text-white">{price} BYN</div>
                     <button>
                         <TrashIconMobi />
                     </button>
                     <Button variant={'select_mobi'} size={'select_mobi'} className="text-2xl" onClick={onClick}>
-                        Оформить заказ
+                        Оформить
                     </Button>
                 </div>
             </div>
