@@ -21,29 +21,31 @@ const ProfessionsSectionMobi: React.FC = () => {
                     Наиболее популярные на нашем сервисе
                 </p>
             </div>
-            <div
-                ref={contentRef}
-                className="no-scrollbar_custom mx-auto mb-[20px] flex w-full gap-[20px] overflow-y-hidden overflow-x-scroll py-[20px]">
-                {content.slice(0, 4).map((item) => (
-                    <ProfessionCardMobi
-                        key={item.id}
-                        image={item.image}
-                        profession={item.profession}
-                        price={item.price.toString()}
-                        onClick={() => {
-                            openModal('profession_modal_mobi', 'mobi', {
-                                profession: item.profession,
-                                professionId: item.id,
-                            })
-                        }}
-                    />
-                ))}
-            </div>
-            <div
-                ref={scrollbarRef}
-                className="scrollbar_custom mx-auto relative h-2 w-[97%] overflow-x-scroll sm_s:mb-[65px] md:mt-[60px] md:mb-[111px]"
-            >
-                <div className="h-full" style={{ width: `${scrollContentWidth}px` }}></div>
+            <div>
+                <div
+                    ref={contentRef}
+                    className="no-scrollbar_custom mx-auto mb-[20px] flex w-full gap-[20px] overflow-y-hidden overflow-x-scroll py-[20px]">
+                    {content.slice(0, 4).map((item) => (
+                        <ProfessionCardMobi
+                            key={item.id}
+                            image={item.image}
+                            profession={item.profession}
+                            price={item.price.toString()}
+                            onClick={() => {
+                                openModal('profession_modal_mobi', 'mobi', {
+                                    profession: item.profession,
+                                    professionId: item.id,
+                                })
+                            }}
+                        />
+                    ))}
+                </div>
+                <div
+                    ref={scrollbarRef}
+                    className="scrollbar_custom relative h-2 overflow-x-scroll"
+                >
+                    <div className="h-full" style={{ width: `${scrollContentWidth}px` }}></div>
+                </div>
             </div>
             <ProfessionSendMobi />
         </section>

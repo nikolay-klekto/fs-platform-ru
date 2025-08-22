@@ -1,3 +1,4 @@
+'use client'
 import { useState, useRef, useCallback, useEffect } from "react";
 export type RefReadable<T extends Element> = { current: T | null }
 export default function useScrollbarSync<
@@ -76,20 +77,20 @@ export default function useScrollbarSync<
         content.addEventListener('scroll', onContentScroll, { passive: true })
         scrollbar.addEventListener('scroll', onScrollbarScroll, { passive: true })
 
-        let roContent: ResizeObserver | null = null;
-        let roScrollbar: ResizeObserver | null = null;
-        let cleanupWin: (() => void) | null = null;
+        let observedContent: ResizeObserver | null = null;
+        let observedScrollbar: ResizeObserver | null = null;
+        let cleanupWindow: (() => void) | null = null;
 
         if (typeof ResizeObserver !== "undefined") {
-            roContent = new ResizeObserver(() => recalculate());
-            roScrollbar = new ResizeObserver(() => recalculate());
-            roContent.observe(content);
-            roScrollbar.observe(scrollbar);
+            observedContent = new ResizeObserver(() => recalculate());
+            observedScrollbar = new ResizeObserver(() => recalculate());
+            observedContent.observe(content);
+            observedScrollbar.observe(scrollbar);
         } else {
             window.addEventListener("resize", recalculate);
             window.addEventListener("orientationchange", recalculate);
 
-            cleanupWin = () => {
+            cleanupWindow = () => {
                 window.removeEventListener("resize", recalculate);
                 window.removeEventListener("orientationchange", recalculate);
             };
@@ -98,9 +99,9 @@ export default function useScrollbarSync<
         return () => {
             content.removeEventListener("scroll", onContentScroll);
             scrollbar.removeEventListener("scroll", onScrollbarScroll);
-            roContent?.disconnect();
-            roScrollbar?.disconnect();
-            cleanupWin?.();
+            observedContent?.disconnect();
+            observedScrollbar?.disconnect();
+            cleanupWindow?.();
         };
     }, [contentRef, scrollbarRef, onContentScroll, onScrollbarScroll, recalculate]);
 

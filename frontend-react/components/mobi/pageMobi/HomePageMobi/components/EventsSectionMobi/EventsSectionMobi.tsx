@@ -27,7 +27,7 @@ const EventsSectionMobi: React.FC = () => {
             </div>
             <div
                 ref={scrollbarRef}
-                className="scrollbar_custom mx-auto relative h-2 w-[97%] overflow-x-scroll sm_s:mb-[60px] md:mt-12 md:mb-[125px]"
+                className="scrollbar_custom relative h-2 overflow-x-scroll "
             >
                 <div className="h-full" style={{ width: `${scrollContentWidth}px` }}></div>
             </div>
