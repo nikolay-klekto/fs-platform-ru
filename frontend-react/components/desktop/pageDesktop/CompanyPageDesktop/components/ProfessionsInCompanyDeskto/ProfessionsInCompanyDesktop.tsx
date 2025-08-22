@@ -20,7 +20,7 @@ const InternshipProfessionsDesktop: React.FC = () => {
                         key={item.id}
                         image={item.image}
                         name={item.name}
-                        onWidthChange={() => { }}
+                        onWidthChange={() => {}}
                     />
                 ))}
             </div>
