@@ -111,7 +111,7 @@ const LoginModalMobi: React.FC<IModalContent> = ({ onClose }) => {
             variant="mobile"
             size="mobile-346"
             onClose={onClose}
-            className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]"
+            className="z-[70]"
             bgClass="flex flex-col items-center"
         >
             <h2 className="text18px_mobi mx-auto mb-1 mt-6 inline bg-sub-title-gradient-mobi bg-clip-text font-semibold uppercase text-transparent">

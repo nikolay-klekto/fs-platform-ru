@@ -82,12 +82,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
     return (
         <>
             {step === 'form' && (
-                <Modal
-                    variant="mobile"
-                    size="mobile-346"
-                    onClose={onClose}
-                    className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]"
-                >
+                <Modal variant="mobile" size="mobile-346" onClose={onClose} className="z-[70]">
                     <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
                         ЗАКАЗАТЬ ЗВОНОК
                     </p>
@@ -196,16 +191,10 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
             )}
 
             {step === 'accepted' && (
-                <Modal
-                    variant="mobile"
-                    size="mobile-346"
-                    onClose={onClose}
-                    bgClass="bg-auto"
-                    className=" fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]"
-                >
-                    <h1 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
+                <Modal variant="mobile" size="mobile-346" onClose={onClose} bgClass="bg-auto" className="z-[70]">
+                    <h2 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
                         ЗАЯВКА ПРИНЯТА
-                    </h1>
+                    </h2>
                     <p className="mb-1 px-3 pb-[18px] text-justify text-xl font-medium leading-[17px] text-[#878797] md:text-lg">
                         Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на сайте.
                     </p>

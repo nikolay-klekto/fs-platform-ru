@@ -50,13 +50,7 @@ const ModalForgotPasswordMobi: React.FC<IModalContent> = ({ onClose }) => {
     }, [handleOutsideClick])
 
     return (
-        <Modal
-            variant="mobile"
-            size="mobile-346"
-            onClose={onClose}
-            className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-[70%]"
-            bgClass="bg-auto"
-        >
+        <Modal variant="mobile" size="mobile-346" onClose={onClose} className="z-[70]" bgClass="bg-auto">
             <p className="mb-6 bg-sub-title-gradient-mobi bg-clip-text text-center text-4xl font-semibold text-transparent md:text-4xl">
                 ЗАБЫЛИ ПАРОЛЬ?
             </p>

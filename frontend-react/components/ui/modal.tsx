@@ -1,5 +1,6 @@
 import { ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
+import { twMerge } from 'tailwind-merge'
 import { X } from 'lucide-react'
 
 interface IModal {
@@ -70,7 +71,10 @@ const Modal: React.FC<IModal> = ({
                 </button>
             )}
             <div
-                className={`rounded-[50px] bg-[url('/background/Subtract_modalCall_png.png')] bg-[right_top] bg-no-repeat px-3 py-[40px] text-white ${bgClass || 'bg-cover'}`}
+                className={twMerge(
+                    "rounded-[35px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 py-[40px] text-white",
+                    bgClass,
+                )}
             >
                 {children}
             </div>
@@ -92,7 +96,11 @@ const Modal: React.FC<IModal> = ({
 
     return ReactDOM.createPortal(
         <div
-            className={`fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%] ${paddingClass} ${className}`}
+            className={twMerge(
+                'fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]',
+                paddingClass,
+                className,
+            )}
             onClick={onClose}
             role="button"
             tabIndex={0}
