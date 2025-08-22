@@ -4,6 +4,7 @@ import InternshipProfessionsDesktop from './components/ProfessionsInCompanyDeskt
 import InternshipRegistrationDesktop from './components/InternshipRegistrationDesktop/InternshipRegistrationDesktop'
 import CompanyInfoDesktop from './components/CompanyInfoDesktop/CompanyInfoDesktop'
 import InternshipProcessDesktop from './components/InternshipProcessDesktop/InternshipProcessDesktop'
+import ProfessionInOtherCompanies from './components/ProfessionInOtherCompanies/ProfessionInOtherCompanies'
 
 const CompanyPageDesktop: React.FC = () => {
     return (
@@ -16,13 +17,16 @@ const CompanyPageDesktop: React.FC = () => {
                 </h2>
                 <InternshipProcessDesktop />
                 <h2 className="mb-[63px] mt-[118px] text-[48px] font-medium uppercase ">Профессии в компании</h2>
-                <InternshipProfessionsDesktop />
-                <h2 className="3xl:mt-[100px] mb-[81px] mt-[120px] text-[48px] font-medium uppercase 2xl:mt-[80px]">
+
+                <h2 className='container mb-[81px] mt-[120px] text-[48px] font-medium uppercase 2xl:mt-[80px] 3xl:mt-[100px]'>
                     Профессия программиста в других компаниях
                 </h2>
+                <ProfessionInOtherCompanies />
+
                 <h2 className="3xl:mt-[100px] mb-[81px] mt-[120px] text-[48px] font-medium uppercase 2xl:mt-[80px]">
                     Другие профессии в этой компании
                 </h2>
+                <InternshipProfessionsDesktop />
             </main>
             <FooterDesktop />
         </>
