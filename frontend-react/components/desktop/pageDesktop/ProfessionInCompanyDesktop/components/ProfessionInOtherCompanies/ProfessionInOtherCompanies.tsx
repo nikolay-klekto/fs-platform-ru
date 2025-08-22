@@ -1,18 +1,12 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import { content } from './contentProfessionInOtherCompanies/content'
+import ItemProfessionsInOtherCompanyDesktop from './ItemProfessionsInOtherCompanies/ItemProfessionsInOtherCompanies'
+import { content } from './ItemProfessionsInOtherCompanies/contentProfessionInOtherCompanies/content'
 
-const ProfessionInOtherCompanies: React.FC = () => {
+const ProfessionsInOtherCompanyDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [scrollbarWidth, setScrollbarWidth] = useState(0)
-
-    const calculateScrollbarWidth = () => {
-        if (!contentRef.current || !scrollbarRef.current) return 0
-        const visibleContentWidth = contentRef.current.offsetWidth
-        const visibleScrollBarWidth = scrollbarRef.current.offsetWidth
-        return contentRef.current.scrollWidth - (visibleContentWidth - visibleScrollBarWidth)
-    }
 
     const handleScroll = () => {
         if (contentRef.current && scrollbarRef.current) {
@@ -27,6 +21,13 @@ const ProfessionInOtherCompanies: React.FC = () => {
     }
 
     useEffect(() => {
+        const calculateScrollbarWidth = () => {
+            if (!contentRef.current || !scrollbarRef.current) return 0
+            const visibleContentWidth = contentRef.current.offsetWidth
+            const visibleScrollBarWidth = scrollbarRef.current.offsetWidth
+            return contentRef.current.scrollWidth - (visibleContentWidth - visibleScrollBarWidth)
+        }
+
         const handleResize = () => {
             if (contentRef.current && scrollbarRef.current) {
                 const calculatedScrollbarWidth = calculateScrollbarWidth()
@@ -58,33 +59,24 @@ const ProfessionInOtherCompanies: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom flex w-full select-none gap-[20px] overflow-x-scroll pl-0 pr-[60px]
-                "
+                className="no-scrollbar_custom container flex select-none gap-[clamp(16px,2.03vw,39px)] overflow-x-scroll pl-0 pr-[60px]"
             >
                 {content.map((item) => (
-                    <div
-                        key={item.id}
-                        className="flex items-center justify-center"
-                        style={{
-                            width: '316px',
-                            height: '123px',
-                            border: '3.5px solid #878797',
-                            borderRadius: '50px',
-                        }}
-                    >
-                        <img src={item.logo.src} alt={item.logo.alt} className="max-w-full max-h-full object-contain" />
-                    </div>
+                    <ItemProfessionsInOtherCompanyDesktop key={item.id} image={item.image} onWidthChange={() => {}} />
                 ))}
             </div>
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="scrollbar_custom relative mb-[120px] mx-auto mt-[92px] w-[65%] cursor-pointer overflow-x-scroll"
+                className="scrollbar_custom relative mx-auto mt-[69px] w-[65%] cursor-pointer overflow-x-scroll 2xl:mb-[60px] 3xl:mb-[70px]"
             >
-                <div className="absolute h-2" style={{ width: `${scrollbarWidth}px` }}></div>
+                <div
+                    className="absolute h-2 min-w-[1000px] bg-transparent"
+                    style={{ width: `${scrollbarWidth}px` }}
+                ></div>
             </div>
         </>
     )
 }
 
-export default ProfessionInOtherCompanies
+export default ProfessionsInOtherCompanyDesktop

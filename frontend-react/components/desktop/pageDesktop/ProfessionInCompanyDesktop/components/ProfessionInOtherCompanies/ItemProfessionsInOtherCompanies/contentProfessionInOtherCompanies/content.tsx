@@ -1,7 +1,6 @@
 interface IContent {
-    title: string | undefined
     id: number
-    logo: {
+    image: {
         src: string
         alt: string
     }
@@ -9,91 +8,91 @@ interface IContent {
 export const content: IContent[] = [
     {
         id: 1,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },
     },
     {
         id: 2,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },
     },
     {
         id: 3,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },
     },
     {
         id: 4,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },
     },
     {
         id: 5,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },
     },
     {
         id: 6,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },
     },
     {
         id: 7,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },
     },
     {
         id: 8,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },
     },
     {
         id: 9,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },
     },
     {
         id: 10,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },
     },
     {
         id: 11,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },
     },
     {
         id: 12,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },
     },
     {
         id: 13,
-        logo: {
+        image: {
             src: '/images/epamLogo.png',
             alt: 'company-logo',
         },

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { ChevronDownIconDesktop } from '@/components/assets/iconsDesktop'
+import { ChevronDownIconDesktop, QuestionMark } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 
 interface ISelectOption {
@@ -89,6 +89,7 @@ const InternshipSelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (types: s
                                 {option.label}
                             </button>
                             {index < options.length - 1 && <div className="my-[25px] h-[1px] w-full bg-[#878797]" />}
+                            <QuestionMark className="h-[40px] w-[41px]" />
                         </div>
                     ))}
                 </div>

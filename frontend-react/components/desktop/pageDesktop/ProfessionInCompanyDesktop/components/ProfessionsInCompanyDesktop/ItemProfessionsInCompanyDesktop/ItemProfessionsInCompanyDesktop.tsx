@@ -6,8 +6,6 @@ interface IItemProfessionsInCompanyDesktop {
     image: {
         src: string
         alt: string
-        // width: number
-        // height: number
     }
     name: string
     onWidthChange: (width: number) => void
