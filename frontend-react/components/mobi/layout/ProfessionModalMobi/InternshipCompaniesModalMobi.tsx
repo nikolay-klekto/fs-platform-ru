@@ -17,7 +17,7 @@ const InternshipCompaniesModalMobi: React.FC = () => {
                 className="no-scrollbar_custom flex select-none gap-2 overflow-x-scroll"
             >
                 {contentInternshipCompaniesMobi.map((item) => (
-                    <ItemCompaniesMobi key={item.id} image={item.image} onWidthChange={() => { }} />
+                    <ItemCompaniesMobi key={item.id} image={item.image} onWidthChange={() => {}} />
                 ))}
             </div>
             <div
