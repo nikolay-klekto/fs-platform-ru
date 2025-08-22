@@ -82,9 +82,9 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
             fileError: null,
         }
 
-    setErrors(newErrors)
+        setErrors(newErrors)
 
-    return !Object.values(newErrors).some(Boolean)
+        return !Object.values(newErrors).some(Boolean)
     }
 
     const handleBlur = (field: keyof IFormData) => {
@@ -121,6 +121,8 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 </div>
             ),
         })
+
+        onClose()
     }
 
     const normalizePhone = (value: string) => {
