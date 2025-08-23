@@ -27,7 +27,7 @@ const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
     return (
         <>
             <div
-                className="sm_s:min-h-[192px] sm_xl:h-[226px] sm_xl:w-fit m-auto flex min-h-[212px] w-[346px] flex-col items-center justify-center rounded-[41px] drop-shadow-[0_3.26px_3.26px_rgba(0,0,0,0.25)] sm:min-h-[176px]"
+                className="sm_s:min-h-[192px] sm_xl:h-[226px] sm_xl:w-fit m-auto flex h-[200px] w-[346px] flex-col items-center justify-center rounded-[41px] drop-shadow-[0_3.26px_3.26px_rgba(0,0,0,0.25)] sm:min-h-[176px]"
                 style={{
                     backgroundImage: "url('/background/subtract_mobi.webp')",
                     backgroundSize: 'cover',
@@ -36,7 +36,7 @@ const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
                 }}
             >
                 <HelpTooltipMobi tooltipMessage={tooltipMessage} />
-                <div className="relative flex h-full w-full flex-col items-center justify-center gap-[17px] pb-8">
+                <div className="relative flex h-full w-full flex-col items-center justify-center gap-[17px] pb-6">
                     <div className="flex flex-col items-center justify-center text-center">
                         <div className="sm_s:text-3xl sm_s:leading-[24px] px-[30px] text-justify text-5xl font-medium leading-[32px] text-white sm:text-3xl sm:leading-[24px]">
                             {textBlack}{' '}
