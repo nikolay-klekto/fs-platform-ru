@@ -112,7 +112,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                             inputTouched.name && validateNameMobi(formData.name).styleError
                                                 ? 'border-[#bc8070]'
                                                 : 'border-[#878797]'
-                                        } h-10 w-full rounded-[50px] bg-transparent p-4 text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] md:placeholder:text-2xl`}
+                                        } h-10 w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] md:placeholder:text-2xl`}
                                         label="Ваше имя*"
                                         labelClassName="text-white text-xl font-medium"
                                         wrapperClassName="w-full"
@@ -136,7 +136,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         }
                                         showInternalError={true}
                                         className={`border-2 focus:border-2`}
-                                        labelClassName="text-2xl leading-[18px] font-medium text-white mb-0"
+                                        labelClassName="text-xl leading-[18px] font-medium text-white mb-0"
                                         wrapperClassName="w-full"
                                         required={true}
                                     />
@@ -151,7 +151,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         value={formData.time}
                                         onBlur={() => handleInputBlur('time')}
                                         onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                        className="h-11 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-base font-medium text-[#878797] placeholder:text-sm placeholder:font-medium placeholder:text-[#353652]"
+                                        className="h-11 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652]"
                                         label="Удобное время для звонка"
                                         labelClassName="text-white text-xl"
                                         wrapperClassName="w-full"
@@ -185,7 +185,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 <button
                                     type="submit"
                                     disabled={Object.values(errors).some((err) => err?.trim())}
-                                    className={`mx-auto p-[0.91rem_4.09rem] rounded-[50px] bg-sub-title-gradient-mobi text-white text-3xl font-semibold md:text-4xl  ${
+                                    className={`mx-auto p-[0.91rem_4.09rem] rounded-[50px] bg-sub-title-gradient-mobi text-white text-[1.0625rem] font-semibold md:text-4xl  ${
                                         Object.values(errors).some((err) => err?.trim())
                                             ? 'bg-[#878797] disabled:opacity-100'
                                             : 'bg-sub-title-gradient-mobi'
