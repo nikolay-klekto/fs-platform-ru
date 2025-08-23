@@ -57,7 +57,7 @@ const ReviewsModalDesktop: React.FC = () => {
                         key={item.id}
                         question={item.question}
                         answer={item.answer}
-                        onWidthChange={() => { }}
+                        onWidthChange={() => {}}
                     />
                 ))}
             </div>
