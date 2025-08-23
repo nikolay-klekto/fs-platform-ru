@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal'
+import { useRouter } from 'next/navigation'
 import { X } from 'lucide-react'
 import Link from 'next/link'
 import { EnhancedInput } from '@/components/ui/input'
@@ -34,6 +35,12 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
         phone: false,
         time: false,
     })
+
+    const router = useRouter()
+    const handleNavigateToProfessions = () => {
+        onClose()
+        router.push('/professions')
+    }
 
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
@@ -282,15 +289,14 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             </p>
                         </div>
                         <div className="mb-[67px] flex items-center justify-center">
-                            <Link href="/professions">
                                 <Button
+                                    onClick={handleNavigateToProfessions}
                                     variant="default"
                                     size="btn_modal_desktop"
                                     className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-8 rounded-full px-20 py-8 text-5xl font-semibold leading-[24px]"
                                 >
                                     Смотреть профессии
                                 </Button>
-                            </Link>
                         </div>
                     </div>
                 </Modal>
