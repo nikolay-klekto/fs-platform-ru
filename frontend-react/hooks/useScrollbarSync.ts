@@ -10,7 +10,7 @@ export default function useScrollbarSync<
 ) {
     const [scrollContentWidth, setScrollContentWidth] = useState<number>(0);
     const activeSourceRef = useRef<null | 'content' | 'scrollbar'>(null);
-    const sizesRef = useRef({ contentScrollWidth: 0, contentClientWidth: 0, trackClientWidth: 0 });
+    const cachedSizesRef = useRef({ contentScrollWidth: 0, contentClientWidth: 0, trackClientWidth: 0 });
     const recalculate = useCallback(() => {
         const content = contentRef.current;
         const track = scrollbarRef.current;
@@ -20,16 +20,16 @@ export default function useScrollbarSync<
         const contentClientWidth = content.clientWidth;
         const trackClientWidth = track.clientWidth;
 
-        const prev = sizesRef.current;
+        const previousSizes = cachedSizesRef.current;
         if (
-            prev.contentScrollWidth === contentScrollWidth &&
-            prev.contentClientWidth === contentClientWidth &&
-            prev.trackClientWidth === trackClientWidth
+            previousSizes.contentScrollWidth === contentScrollWidth &&
+            previousSizes.contentClientWidth === contentClientWidth &&
+            previousSizes.trackClientWidth === trackClientWidth
         ) {
             return;
         }
 
-        sizesRef.current = { contentScrollWidth, contentClientWidth, trackClientWidth };
+        cachedSizesRef.current = { contentScrollWidth, contentClientWidth, trackClientWidth };
 
         const projected = contentScrollWidth - (contentClientWidth - trackClientWidth);
         const nextWidth = Math.max(0, Math.round(projected));
@@ -77,15 +77,13 @@ export default function useScrollbarSync<
         content.addEventListener('scroll', onContentScroll, { passive: true })
         scrollbar.addEventListener('scroll', onScrollbarScroll, { passive: true })
 
-        let observedContent: ResizeObserver | null = null;
-        let observedScrollbar: ResizeObserver | null = null;
+        let resizeObserver: ResizeObserver | null = null;
         let cleanupWindow: (() => void) | null = null;
 
         if (typeof ResizeObserver !== "undefined") {
-            observedContent = new ResizeObserver(() => recalculate());
-            observedScrollbar = new ResizeObserver(() => recalculate());
-            observedContent.observe(content);
-            observedScrollbar.observe(scrollbar);
+            resizeObserver = new ResizeObserver(() => recalculate());
+            resizeObserver.observe(content);
+            resizeObserver.observe(scrollbar);
         } else {
             window.addEventListener("resize", recalculate);
             window.addEventListener("orientationchange", recalculate);
@@ -99,8 +97,7 @@ export default function useScrollbarSync<
         return () => {
             content.removeEventListener("scroll", onContentScroll);
             scrollbar.removeEventListener("scroll", onScrollbarScroll);
-            observedContent?.disconnect();
-            observedScrollbar?.disconnect();
+            resizeObserver?.disconnect();
             cleanupWindow?.();
         };
     }, [contentRef, scrollbarRef, onContentScroll, onScrollbarScroll, recalculate]);
