@@ -57,7 +57,7 @@ const InternshipCompaniesModalDesktop: React.FC = () => {
                         key={item.id}
                         image={item.image}
                         price={item.price}
-                        onWidthChange={() => { }}
+                        onWidthChange={() => {}}
                     />
                 ))}
             </div>
