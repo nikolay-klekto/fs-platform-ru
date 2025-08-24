@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import StarRatingDesktop from './StarRatingDesktop'
+import ModalFeedbackDesktop from '@/modals/ModalsDesktop/ModalFeedbackDesktop'
 
 interface IItemCardArchive {
     id: number
@@ -26,6 +27,7 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
     onRatingChange,
 }) => {
     const [draftRating, setDraftRating] = useState<number>(rating)
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
     useEffect(() => {
         setDraftRating(rating)
@@ -33,6 +35,10 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
 
     const handleSetRating = useCallback((newRating: number) => {
         setDraftRating(newRating)
+    }, [])
+
+    const handleCloseModal = useCallback(() => {
+        setIsModalOpen(false)
     }, [])
 
     const hasUnsavedRating = draftRating > 0 && draftRating !== rating
@@ -44,11 +50,13 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
     const handleButtonClick = useCallback(() => {
         if (hasUnsavedRating) {
             onRatingChange(draftRating)
-        } else {
+        } else if (rating > 0) {
+            setIsModalOpen (true)
         }
-    }, [hasUnsavedRating, draftRating, onRatingChange])
+    }, [hasUnsavedRating, draftRating, onRatingChange, rating])
 
     return (
+        <>
         <Card className="w-full flex flex-col items-center bg-white/10 backdrop-blur-[5px] rounded-[50px] p-8 3xl:p-7 2xl:p-6 min-h-[500px]">
             <div className="w-full aspect-[367/360] rounded-[50px] overflow-hidden mb-6 max-w-[367px]">
                 <Image
@@ -96,6 +104,10 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
                 <span className="relative">{buttonText}</span>
             </Button>
         </Card>
+        {isModalOpen && (
+                <ModalFeedbackDesktop onClose={handleCloseModal} />
+            )}
+        </>
     )
 }
 
