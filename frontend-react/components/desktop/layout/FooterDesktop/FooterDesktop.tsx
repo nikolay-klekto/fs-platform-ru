@@ -10,14 +10,14 @@ const FooterDesktop: React.FC = () => {
     return (
         <>
             <footer
-                className="flex h-[521px] items-center justify-center"
+                className="flex h-[321px] items-center justify-center"
                 style={{
                     backgroundColor: 'rgb(16,16,48)',
                     backgroundImage: `linear-gradient(rgba(16,16,48,0.5), rgba(16,16,48,0.5)), url(/background/bgFooterDesktop.png)`,
                     backgroundSize: 'cover',
                 }}
             >
-                <div className="container relative mx-4 h-[521px] rounded-t-[3.125rem] bg-[#10103033] p-6">
+                <div className="container relative mx-4 h-[321px] rounded-t-[3.125rem] bg-[#10103033] p-6">
                     <div className="absolute pt-3 2xl:hidden">
                         <LogoIconDesktop className="h-[59px] w-[71px]" />
                     </div>
@@ -55,6 +55,7 @@ const FooterDesktop: React.FC = () => {
                         </div>
                     </div>
                     <div className="bg-custom-grey h-[2px] w-full rounded-full"></div>
+                    {/*
                     <div className="mt-8 flex h-[162px] flex-col items-center justify-between px-24 2xl:px-0">
                         <div className="flex w-full max-w-[1190px] items-center justify-center gap-10">
                             {contentFooterImagesDesktop.map((image) => (
@@ -77,6 +78,7 @@ const FooterDesktop: React.FC = () => {
                             funscrut .by © 2023, ООО «funscrut» УНП 000000000
                         </p>
                     </div>
+                    */}
                 </div>
             </footer>
         </>
