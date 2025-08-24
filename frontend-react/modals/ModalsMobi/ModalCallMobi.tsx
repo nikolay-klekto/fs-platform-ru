@@ -162,7 +162,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     />
                                     {Object.keys(errors).length > 0 && (
                                         <p className="mb-3 mt-2 text-sm font-medium leading-[18px] text-[#bc8070]">
-                                            Заполните обязательные поля
+                                            *Заполните обязательные поля
                                         </p>
                                     )}
                                 </div>
