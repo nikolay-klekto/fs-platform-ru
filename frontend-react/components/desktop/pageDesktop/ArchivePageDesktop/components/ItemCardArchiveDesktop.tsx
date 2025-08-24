@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import StarRatingDesktop from './StarRatingDesktop'
-import ModalFeedbackDesktop from '@/modals/ModalsDesktop/ModalFeedbackDesktop'
+import { useModal } from '@/context/ContextModal'
 
 interface IItemCardArchive {
     id: number
@@ -27,7 +27,7 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
     onRatingChange,
 }) => {
     const [draftRating, setDraftRating] = useState<number>(rating)
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+    const { openModal } = useModal();
 
     useEffect(() => {
         setDraftRating(rating)
@@ -35,10 +35,6 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
 
     const handleSetRating = useCallback((newRating: number) => {
         setDraftRating(newRating)
-    }, [])
-
-    const handleCloseModal = useCallback(() => {
-        setIsModalOpen(false)
     }, [])
 
     const hasUnsavedRating = draftRating > 0 && draftRating !== rating
@@ -50,10 +46,13 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
     const handleButtonClick = useCallback(() => {
         if (hasUnsavedRating) {
             onRatingChange(draftRating)
-        } else if (rating > 0) {
-            setIsModalOpen (true)
+            return 
         }
-    }, [hasUnsavedRating, draftRating, onRatingChange, rating])
+        if (rating > 0) {
+            openModal('feedback_desktop', 'desktop')
+            return
+        }
+    }, [hasUnsavedRating, draftRating, onRatingChange, rating, openModal])
 
     return (
         <>
@@ -104,9 +103,6 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
                 <span className="relative">{buttonText}</span>
             </Button>
         </Card>
-        {isModalOpen && (
-                <ModalFeedbackDesktop onClose={handleCloseModal} />
-            )}
         </>
     )
 }
