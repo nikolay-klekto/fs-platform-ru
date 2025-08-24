@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { content } from '@/components/desktop/pageDesktop/UpcomingInternshipsPageDesktop/contentUpcomingInternshipsPageDesktop/content'
 import { Button } from '@/components/ui/button'
+import ItemCardUpcomingInternshipsDesktop from '../ItemCardUpcomingInternshipsDesktop/ItemCardUpcomingInternshipsDesktop'
 
 const UpcomingInternshipDesktop: React.FC = () => {
     if (!content) {
@@ -19,13 +20,12 @@ const UpcomingInternshipDesktop: React.FC = () => {
     }
     return (
         <>
-            <div className="grid pb-[49px]">
-                <div className="grid grid-cols-2 justify-between gap-[34px] self-end pb-[80px] 2xl:pb-[40px]">
-                    Вставить контент
+            <div className="grid">
+                <div className="mx-auto flex flex-col justify-between gap-[80px] pb-[88px] 2xl:pb-[40px]">
+                    {content.map((item) => (
+                        <ItemCardUpcomingInternshipsDesktop key={item.id} {...item} />
+                    ))}
                 </div>
-                <Button className="flex justify-self-center" variant={'send_btn_desktop'} size={'send_btn_desktop'}>
-                    Очистить всё
-                </Button>
             </div>
         </>
     )
