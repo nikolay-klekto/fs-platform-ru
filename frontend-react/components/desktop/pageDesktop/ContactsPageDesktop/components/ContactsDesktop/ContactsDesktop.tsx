@@ -215,7 +215,10 @@ const ContactsDesktop: React.FC = () => {
                                     size="contacts_page_desktop"
                                     rounded="rounded_53"
                                     value={formData.name}
-                                    onChange={(value) => handleChange('name', value)}
+                                    onChange={(value) => {
+                                        value = value.replace(/[^a-zA-Zа-яА-ЯёЁ]/g, '')
+                                        handleChange('name', value)
+                                    }}
                                 />
                                 <EnhancedInput
                                     type="email"

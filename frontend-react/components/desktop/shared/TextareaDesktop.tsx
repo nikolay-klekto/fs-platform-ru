@@ -10,9 +10,9 @@ const textareaVariants = cva(
                 default:
                     'border-input bg-background focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2',
                 contacts_page_desktop:
-                    'placeholder:text-[#353652] border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent placeholder:text-[19px] placeholder:font-medium focus:border-2 focus:ring-transparent',
+                    'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent placeholder:text-[19px] placeholder:font-medium placeholder:text-[#353652] focus:border-2 focus:border-[#FFFFFF] focus:ring-transparent',
                 contacts_page_error_desktop:
-                    'placeholder:text-[#353652] border-2 border-[#bc8070] bg-[#1F2040] text-5xl ring-offset-transparent placeholder:text-[19px] placeholder:font-medium focus:border-2 focus:ring-transparent',
+                    'border-2 border-[#bc8070] bg-[#1F2040] text-5xl ring-offset-transparent placeholder:text-[19px] placeholder:font-medium placeholder:text-[#353652] focus:border-2 focus:ring-transparent',
             },
             size: {
                 default: 'h-10 px-3 py-2',
