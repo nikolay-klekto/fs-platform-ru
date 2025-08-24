@@ -2,24 +2,16 @@
 
 import React, { useEffect, useState } from 'react'
 import { Search } from 'lucide-react'
+import { useDataContext } from '@/context/DataContext'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import SelectInternshipTypeDesktop from './components/SelectInternshipTypeDesktop'
 import ProfessionsSelectDesktop from './components/ProfessionsSelectDesktop'
-import ProfessionCard from './components/ProfessionCardPageDesktop'
+import ProfessionCardPageDesktop from './components/ProfessionCardPageDesktop'
 import ProfessionsPaginationDesktop from './components/ProfessionsPaginationDesktop'
 import ProfessionSearchDesktop from './components/ProfessionSendDesktop'
-
-//Интерфейс для карточки профессии:
-interface ProfessionCardType {
-    id: number
-    name: string
-    imagePath: string
-    pricePerWeek: string
-    professionIndustry: string
-}
 
 const ProfessionsPageDesktop: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('')
@@ -27,49 +19,21 @@ const ProfessionsPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [selectedInternshipTypes, setselectedInternshipTypes] = useState<string[]>([])
-
-    //Создала массив профессий:
-    const professionsCards: ProfessionCardType[] = [
-        {
-            id: 1,
-            name: 'Бизнес-аналитик',
-            imagePath: 'profession_1.jpg',
-            pricePerWeek: '100',
-            professionIndustry: 'Финансы',
-        },
-        {
-            id: 2,
-            name: 'Маркетолог',
-            imagePath: 'profession_2.jpg',
-            pricePerWeek: '85',
-            professionIndustry: 'Маркетинг',
-        },
-        {
-            id: 3,
-            name: 'Программист',
-            imagePath: 'profession_3.jpg',
-            pricePerWeek: '150',
-            professionIndustry: 'IT',
-        },
-        {
-            id: 4,
-            name: 'Финансист',
-            imagePath: 'profession_4.jpg',
-            pricePerWeek: '75',
-            professionIndustry: 'Финансы',
-        },
-    ]
-
+    const { professions } = useDataContext()
     useEffect(() => {
         setCurrentPage(1)
-    }, [searchQuery, selectedCategories, selectedInternshipTypes])
+    }, [searchQuery, selectedCategories])
 
-    const filteredContent = professionsCards.filter((item) => {
+    if (!professions) return null
+
+    const cardsPerPage = 12
+    const filteredContent = professions.filter((item) => {
         const matchesSearch =
             searchQuery.length < 3 || item.name.toLowerCase().includes(searchQuery.toLowerCase().trim())
-
         const matchesCategory =
-            selectedCategories.length === 0 || selectedCategories.includes(item.professionIndustry || '')
+            selectedCategories.length === 0 ||
+            selectedCategories.some((professionIndustry) => item.professionIndustry === professionIndustry)
+        const internshipTypeIds = item.internshipTypeId ? item.internshipTypeId.split(',').map((id) => id.trim()) : []
 
         const matchesInternshipTypes =
             selectedInternshipTypes.length === 0 ||
@@ -78,7 +42,6 @@ const ProfessionsPageDesktop: React.FC = () => {
         return matchesSearch && matchesCategory && matchesInternshipTypes
     })
 
-    const cardsPerPage = 12
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
 
     const handlePageChange = (page: number): void => {
@@ -88,7 +51,6 @@ const ProfessionsPageDesktop: React.FC = () => {
     const handleCategoryChange = (categories: string[]) => {
         setSelectedCategories(categories)
     }
-
     const handleIntenshipType = (categories: string[]) => {
         setselectedInternshipTypes(categories)
     }
@@ -107,13 +69,12 @@ const ProfessionsPageDesktop: React.FC = () => {
                             <EnhancedInput
                                 type="text"
                                 value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onChange={setSearchQuery}
                                 variant={'gradient_desktop'}
                                 size={'gradient_search_desktop'}
                                 rounded={'full'}
                                 className={`${isFocused ? 'bg-transparent' : 'bg-[#101030]'}`}
                                 wrapperClassName={`h-[64px] justify-between flex rounded-[50px] p-[2px] ${isFocused ? 'border-[2px] border-[#878797] bg-transparent' : 'bg-gradient-desktop border-none'}`}
-                                onFocus={() => setIsFocused(true)}
                                 onBlur={() => setIsFocused(false)}
                                 placeholder="Поиск"
                             />
@@ -132,11 +93,12 @@ const ProfessionsPageDesktop: React.FC = () => {
                             {filteredContent
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (
-                                    <ProfessionCard
+                                    <ProfessionCardPageDesktop
                                         key={item.id}
-                                        profession={item.name}
                                         image={item.imagePath}
+                                        profession={item.name}
                                         price={item.pricePerWeek}
+                                        category={item.professionIndustry}
                                     />
                                 ))}
                         </div>
