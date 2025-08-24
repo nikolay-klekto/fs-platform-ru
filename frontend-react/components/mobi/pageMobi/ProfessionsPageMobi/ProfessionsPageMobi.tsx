@@ -58,7 +58,7 @@ const ProfessionsPageMobi: React.FC = () => {
                             <div className="relative w-full max-w-[386px] rounded-full [@media(min-width:617px)]:max-w-[600px]">
                                 <EnhancedInput
                                     type="text"
-                                    className="pl-[20px] text-white"
+                                    className="pl-[20px] pr-[50px] text-white"
                                     value={searchQuery}
                                     onChange={(value) => setSearchQuery(value)}
                                     variant={'search_mobi'}
