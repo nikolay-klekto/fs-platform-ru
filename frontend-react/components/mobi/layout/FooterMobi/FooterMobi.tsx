@@ -2,12 +2,12 @@
 
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { LogoIconMobi, TelegramIconMobi, InstagramIconMobi, LinkedInIconMobi } from '@/components/assets/iconsMobi'
-import {
-    contentFooterMobi,
-    contentFooterMobiImages,
-} from '@/components/mobi/layout/FooterMobi/contentFooterMobi/content'
+import { contentFooterMobi } from '@/components/mobi/layout/FooterMobi/contentFooterMobi/content'
+// import {
+//     contentFooterMobiImages
+// } from '@/components/mobi/layout/FooterMobi/contentFooterMobi/content'
 
 const FooterMobi: React.FC = () => {
     return (
