@@ -53,7 +53,6 @@ const ContactsDesktop: React.FC = () => {
     const phoneMask = '+375 (__) ___-__-__'
 
     const handleChange = (field: keyof IFormData, value: string) => {
-        console.log('val', value)
         setFormData((prev) => ({
             ...prev,
             [field]: value,
@@ -84,8 +83,6 @@ const ContactsDesktop: React.FC = () => {
             role: !validateRoleDesktop(formData.role!).status && formData.role?.trim() !== '',
             message: !validateTextareaDesktop(formData.message).status || formData.message.trim() === '',
         }
-
-        console.log('All errors', errors)
 
         setFieldErrors(errors)
         if (
@@ -139,7 +136,6 @@ const ContactsDesktop: React.FC = () => {
         setFormError('')
 
         const error = getFormError()
-        console.log(error)
 
         if (error !== '') {
             setFormError(error)
@@ -150,7 +146,6 @@ const ContactsDesktop: React.FC = () => {
             })
 
             resetForm()
-            console.log('Форма отправлена:', formData)
         }
     }
 

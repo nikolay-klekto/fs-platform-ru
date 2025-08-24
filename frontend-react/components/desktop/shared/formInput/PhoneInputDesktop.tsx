@@ -122,7 +122,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                 id="phone"
                 type="tel"
                 name="phone"
-                autoComplete="tel"
+                autoComplete="off"
                 value={inputValue}
                 onChange={(e) => {
                     const newValue = e.target.value
