@@ -1,17 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
-import {
-    content,
-    IContent,
-} from '@/components/desktop/pageDesktop/UpcomingInternshipsPageDesktop/contentUpcomingInternshipsPageDesktop/content'
+import { content } from '@/components/desktop/pageDesktop/UpcomingInternshipsPageDesktop/contentUpcomingInternshipsPageDesktop/content'
 import { Button } from '@/components/ui/button'
 import ItemCardUpcomingInternshipsDesktop from '../ItemCardUpcomingInternshipsDesktop/ItemCardUpcomingInternshipsDesktop'
 
 const UpcomingInternshipDesktop: React.FC = () => {
-    const [internships, setInternships] = useState<IContent[]>(content)
-    const isEmpty = internships.length === 0
+    const isEmpty = content.length === 0
 
     if (isEmpty) {
         return (
@@ -28,7 +23,7 @@ const UpcomingInternshipDesktop: React.FC = () => {
     return (
         <div className="grid">
             <div className="mx-auto flex flex-col justify-between gap-[80px] pb-[88px] 2xl:pb-[40px]">
-                {internships.map((item) => (
+                {content.map((item) => (
                     <ItemCardUpcomingInternshipsDesktop key={item.id} {...item} />
                 ))}
             </div>
