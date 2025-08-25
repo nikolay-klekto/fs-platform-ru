@@ -31,12 +31,12 @@ const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
                 style={{
                     backgroundImage: "url('/background/subtract_mobi.webp')",
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundPosition: 'bottom right',
                     backgroundRepeat: 'no-repeat, no-repeat',
                 }}
             >
                 <HelpTooltipMobi tooltipMessage={tooltipMessage} />
-                <div className="relative flex h-full w-full flex-col items-center justify-center gap-[17px] pb-6">
+                <div className="relative flex h-full w-full flex-col items-center justify-center gap-[17px] pb-8">
                     <div className="flex flex-col items-center justify-center text-center">
                         <div className="sm_s:text-3xl sm_s:leading-[24px] px-[30px] text-justify text-5xl font-medium leading-[32px] text-white sm:text-3xl sm:leading-[24px]">
                             {textBlack}{' '}
@@ -49,7 +49,7 @@ const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
                             {price} <span translate={disableCurrencyTranslation ? 'no' : 'yes'}>{currency}</span>
                         </div>
                     </div>
-                    <Button variant="circleBlue" size="circleMobi" className="absolute bottom-0 right-[-5px]">
+                    <Button variant="circleBlue" size="circleMobi" className="absolute bottom-[4px] right-0">
                         <ArrowWhiteMobi />
                     </Button>
                 </div>
