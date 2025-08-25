@@ -5,11 +5,10 @@ export const imageMaps = {
         Epam: '79.webp',
     },
     professions: {
-        'бизнес-аналитик': 'profession_1.webp',
-        'маркетолог': 'profession_2.webp',
-        'программист': 'profession_3.webp',
-        'финансист': 'profession_4.webp',
-        'default': 'default.webp',
+        'Бизнес-аналитик': '10.webp',
+        'Маркетолог': '11.webp',
+        'Программист': '12.webp',
+        'Финансист': '13.webp',
     },
 } as const
 export type ImageMapCategory = keyof typeof imageMaps
@@ -19,5 +18,5 @@ export function getImagePath<T extends ImageMapCategory>(category: T, name: stri
     const normalizedName = name.toLowerCase().trim().replace(/\s+/g, ' ')
     const fileName = imageMaps[category][normalizedName as ImageMapKey<T>] ?? 'default.webp'
 
-    return `/api/photo/${category}/facade/${fileName}`
+    return `/api/photo/${category}/${fileName}`
 }
