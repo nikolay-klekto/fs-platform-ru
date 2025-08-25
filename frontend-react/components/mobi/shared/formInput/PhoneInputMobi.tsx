@@ -122,7 +122,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     return (
         <div className={`flex w-full flex-col gap-1.5 ${wrapperClassName}`}>
             <label htmlFor="phone" className={`mb-1 text-2xl font-medium text-white  ${labelClassName}`}>
-                Номер телефона*
+                Номер телефона
             </label>
             <input
                 ref={inputRef}
