@@ -27,9 +27,9 @@ const StarRatingMobi: React.FC<IStarRating> = ({ rating = 0, onRate }) => {
                     <button
                         key={starNumber}
                         type="button"
-                        className="focus:outline-none cursor-pointer"
+                        className="focus:outline-none"
                         onClick={() => handleClick(starNumber)}
-                        aria-label={`Поставить ${starNumber} звёзд`}
+                        aria-label={`Поставить ${starNumber} ${starNumber === 1 ? 'звезду' : starNumber < 5 ? 'звезды' : 'звезд'}`}
                     >
                         <StarIconMobi fill={shouldFill ? 'white' : 'none'} />
                     </button>

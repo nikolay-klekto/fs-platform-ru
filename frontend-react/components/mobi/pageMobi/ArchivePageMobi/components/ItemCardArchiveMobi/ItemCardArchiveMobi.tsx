@@ -26,6 +26,7 @@ const ItemCardArchiveMobi: React.FC<IItemCardArchive> = ({
     onRatingChange,
 }) => {
     const [draftRating, setDraftRating] = useState<number>(rating)
+    const [isClicked, setIsClicked] = useState<boolean>(false);
 
     useEffect(() => {
         setDraftRating(rating)
@@ -44,13 +45,12 @@ const ItemCardArchiveMobi: React.FC<IItemCardArchive> = ({
     const handleButtonClick = useCallback(() => {
         if (hasUnsavedRating) {
             onRatingChange(draftRating)
-        } else {
         }
     }, [hasUnsavedRating, draftRating, onRatingChange])
 
     return (
-        <Card className="w-full flex flex-col items-center bg-white/10 backdrop-blur-[5px] rounded-[20px] p-3 ">
-            <div className="w-full aspect-[144/141] rounded-[20px] overflow-hidden mb-3 h-[141px]">
+        <Card className="flex flex-col items-center bg-white/10 backdrop-blur-[5px] rounded-[20px] p-3 w-[167px] ">
+            <div className="w-full aspect-[144/141] rounded-[20px] overflow-hidden mb-3 h-[141px] max-w-[144px]">
                 <Image
                     src={image}
                     alt={`Изображение компании ${companyName}`}
@@ -61,9 +61,15 @@ const ItemCardArchiveMobi: React.FC<IItemCardArchive> = ({
             </div>
 
             <Link
-                href="#"
-                className="
-                    text-[14px] font-medium mb-[4px] uppercase tracking-wider text-center bg-gradient-desktop bg-clip-text text-transparent hover:bg-none hover:text-white transition-colors duration-100 cursor-pointer"
+                href="/company"
+                className={`
+                text-[14px] font-medium mb-[4px] uppercase tracking-wider text-center transition-colors duration-100
+                ${isClicked
+                        ? 'bg-gradient-mobi bg-clip-text text-transparent'
+                        : 'text-white'
+                    }
+                `}
+                onClick={() => setIsClicked(!isClicked)}
             >
                 {companyName}
             </Link>
