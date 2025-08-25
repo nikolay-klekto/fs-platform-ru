@@ -55,7 +55,6 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
     }, [hasUnsavedRating, draftRating, onRatingChange, rating, openModal])
 
     return (
-        <>
         <Card className="w-full flex flex-col items-center bg-white/10 backdrop-blur-[5px] rounded-[50px] p-8 3xl:p-7 2xl:p-6 min-h-[500px]">
             <div className="w-full aspect-[367/360] rounded-[50px] overflow-hidden mb-6 max-w-[367px]">
                 <Image
@@ -103,7 +102,6 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
                 <span className="relative">{buttonText}</span>
             </Button>
         </Card>
-        </>
     )
 }
 
