@@ -49,8 +49,8 @@ const ItemCardArchiveMobi: React.FC<IItemCardArchive> = ({
     }, [hasUnsavedRating, draftRating, onRatingChange])
 
     return (
-        <Card className="w-full flex flex-col items-center bg-white/10 backdrop-blur-[5px] rounded-[20px] p-3 min-h-[280px]">
-            <div className="w-full aspect-[144/141] rounded-[20px] overflow-hidden mb-3 max-h-[141px]">
+        <Card className="w-full flex flex-col items-center bg-white/10 backdrop-blur-[5px] rounded-[20px] p-3 ">
+            <div className="w-full aspect-[144/141] rounded-[20px] overflow-hidden mb-3 h-[141px]">
                 <Image
                     src={image}
                     alt={`Изображение компании ${companyName}`}
