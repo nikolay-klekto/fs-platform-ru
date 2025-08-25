@@ -41,7 +41,7 @@ const ShoppingCartPageMobi: React.FC = () => {
                     </div>
                 )}
                 {/* авторизованный, корзина пустая */}
-                {hasOrders && ( //isAuth && !hasOrders && (
+                {isAuth && !hasOrders && (
                     <div className="flex flex-col items-center justify-center px-[15px] pt-[40px] pb-[400px] bg-[#101030]">
                         <p className="text-3xl font-semibold leading-[162%] text-center text-[#353652] px-[15px] mt-[70px] mb-[20px]">
                             Ваша корзина пуста
