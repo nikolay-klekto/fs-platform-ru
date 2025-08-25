@@ -30,7 +30,7 @@ const ItemCardUpcomingInternshipsDesktop: React.FC<IInternshipsCard> = ({
     mapUrl,
 }) => {
     return (
-        <Card className="flex flex-col w-[1069px] min-w-[700px] bg-custom-upcoming-internship-card p-[40px]">
+        <Card className="flex flex-col w-full max-w-[1069px] min-w-[700px] bg-custom-upcoming-internship-card p-[40px]">
             <CardContent className="mb-[40px] p-0 flex items-center gap-[35px]">
                 <div className="pl-[45px]">
                     <CardHeader className="space-y-0 p-0 m-0">
