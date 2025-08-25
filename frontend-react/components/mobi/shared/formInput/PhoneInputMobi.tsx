@@ -15,6 +15,7 @@ interface IPhoneInputMobi {
     required?: boolean
     labelClassName?: string
     placeholder?: string
+    customLabel?: React.ReactNode
 }
 
 const PHONE_MASK = '+375 (__) ___-__-__'
@@ -35,6 +36,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     labelClassName,
     placeholder,
     required = false,
+    customLabel,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -122,7 +124,7 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     return (
         <div className={`flex w-full flex-col gap-1.5 ${wrapperClassName}`}>
             <label htmlFor="phone" className={`mb-1 text-2xl font-medium text-white  ${labelClassName}`}>
-                Номер телефона
+                {customLabel || 'Номер телефона'}
             </label>
             <input
                 ref={inputRef}

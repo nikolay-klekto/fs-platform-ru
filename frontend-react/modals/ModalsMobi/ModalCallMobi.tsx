@@ -128,10 +128,11 @@ h-10 w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25re
                                     }))
                                 }
                                 showInternalError={true}
-                                className={`border-2 p-[0.875rem_3.1875rem_0.8125rem_1.25rem] focus:border-2`}
+                                className={`border-2 p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl focus:border-2`}
                                 labelClassName="text-xl leading-[18px] font-medium text-white mb-0"
                                 wrapperClassName="w-full"
                                 required={true}
+                                customLabel={<span>Номер телефона*</span>}
                             />
                             {errors.phone && <p className="mt-1 text-sm text-[#bc8070]">{errors.phone}</p>}
                         </div>
@@ -144,7 +145,7 @@ h-10 w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25re
                                 value={formData.time}
                                 onBlur={() => handleInputBlur('time')}
                                 onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                className="h-11 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652]"
+                                className="h-11 w-full text-ellipsis rounded-[50px] border-2 border-[#878797] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25rem] font-medium text-[#878797] placeholder:text-xl placeholder:text-[#353652]"
                                 label="Удобное время для звонка"
                                 labelClassName="text-white text-xl"
                                 wrapperClassName="w-full"
@@ -163,7 +164,7 @@ h-10 w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25re
                                 onChange={(value) => setFormData((prev) => ({ ...prev, consent: value === 'true' }))}
                                 label="Я согласен(а) на обработку персональных данных"
                                 wrapperClassName="flex items-center"
-                                labelClassName="ml-1 text-xs font-medium md:text-sm"
+                                labelClassName="text-xs font-medium md:text-sm"
                                 checkboxIconSize="size-4"
                             />
                             {errors.consent && <p className="mt-1 text-sm text-[#bc8070]">{errors.consent}</p>}
@@ -171,7 +172,7 @@ h-10 w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25re
                         <button
                             type="submit"
                             disabled={Object.values(errors).some((err) => err?.trim())}
-                            className={`mx-auto p-[0.91rem_4.09rem] rounded-[50px] bg-sub-title-gradient-mobi text-white text-[1.0625rem] font-semibold md:text-4xl mt-[29px]  ${
+                            className={`mx-auto mt-[1.8rem] w-full max-w-[294px] whitespace-nowrap rounded-[50px] bg-sub-title-gradient-mobi py-[0.91rem] px-[1rem] min-[320px]:px-[4.09rem] md:px-[4.09rem] text-white font-semibold ${
                                 Object.values(errors).some((err) => err?.trim())
                                     ? 'bg-[#878797] disabled:opacity-100'
                                     : 'bg-sub-title-gradient-mobi'
