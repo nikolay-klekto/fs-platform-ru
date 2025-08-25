@@ -128,8 +128,8 @@ h-10 w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25re
                                     }))
                                 }
                                 showInternalError={true}
-                                className={`border-2 focus:border-2`}
-                                labelClassName="text-2xl leading-[18px] font-medium text-white mb-0"
+                                className={`border-2 p-[0.875rem_3.1875rem_0.8125rem_1.25rem] focus:border-2`}
+                                labelClassName="text-xl leading-[18px] font-medium text-white mb-0"
                                 wrapperClassName="w-full"
                                 required={true}
                             />
@@ -144,7 +144,7 @@ h-10 w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25re
                                 value={formData.time}
                                 onBlur={() => handleInputBlur('time')}
                                 onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                className="h-11 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-base font-medium text-[#878797] placeholder:text-sm placeholder:font-medium placeholder:text-[#353652]"
+                                className="h-11 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652]"
                                 label="Удобное время для звонка"
                                 labelClassName="text-white text-xl"
                                 wrapperClassName="w-full"
@@ -171,7 +171,7 @@ h-10 w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25re
                         <button
                             type="submit"
                             disabled={Object.values(errors).some((err) => err?.trim())}
-                            className={`bg-sub-title-gradient-mobi mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] text-3xl font-semibold text-white md:text-4xl  ${
+                            className={`mx-auto p-[0.91rem_4.09rem] rounded-[50px] bg-sub-title-gradient-mobi text-white text-[1.0625rem] font-semibold md:text-4xl mt-[29px]  ${
                                 Object.values(errors).some((err) => err?.trim())
                                     ? 'bg-[#878797] disabled:opacity-100'
                                     : 'bg-sub-title-gradient-mobi'
