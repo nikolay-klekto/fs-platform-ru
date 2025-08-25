@@ -69,27 +69,51 @@ const InternshipSelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (types: s
                     className="absolute top-[96px] z-50 flex flex-col overflow-hidden bg-[#1F203F]"
                     style={{
                         width: '751px',
-                        height: '201px',
-                        border: '3.5px solid #878797',
+                        height: '205px',
+                        border: '3.66px solid #878797',
                         borderRadius: '44px',
                     }}
                 >
                     {options.map((option, index) => (
                         <div key={option.value}>
-                            <button
-                                type="button"
-                                className={`w-full px-6 text-left text-[32px] font-medium transition-colors duration-200
-                  ${selectedOption === option.value ? 'text-white' : 'text-[#878797]'}
-                  hover:text-white ${index === 0 ? 'mt-[40px]' : ''} ${index === options.length - 1 ? 'mb-[33px]' : ''}`}
-                                onClick={() => {
-                                    setSelectedOption(option.value)
-                                    setIsOpen(false)
+                            {/* Опция */}
+                            <div
+                                className={`flex items-center justify-between`}
+                                style={{
+                                    marginTop: index === 0 ? '40px' : undefined,
+                                    paddingBottom: index === options.length - 1 ? '33px' : undefined,
+                                    paddingLeft: '42px',
+                                    paddingRight: '25px',
                                 }}
                             >
-                                {option.label}
-                            </button>
-                            {index < options.length - 1 && <div className="my-[25px] h-[1px] w-full bg-[#878797]" />}
-                            <QuestionMark className="h-[40px] w-[41px]" />
+                                <button
+                                    type="button"
+                                    className={`text-left text-[32px] font-medium transition-colors duration-200
+                    ${selectedOption === option.value ? 'text-white' : 'text-[#878797]'}
+                    hover:text-white`}
+                                    onClick={() => {
+                                        setSelectedOption(option.value)
+                                        setIsOpen(false)
+                                    }}
+                                >
+                                    {option.label}
+                                </button>
+                                <QuestionMark className="h-[40px] w-[41px]" />
+                            </div>
+
+                            {/* Разделитель */}
+                            {index < options.length - 1 && (
+                                <div
+                                    className="mx-auto"
+                                    style={{
+                                        width: '675px',
+                                        height: '3.66px',
+                                        backgroundColor: '#353652',
+                                        marginTop: '25px',
+                                        marginBottom: '25px',
+                                    }}
+                                />
+                            )}
                         </div>
                     ))}
                 </div>
