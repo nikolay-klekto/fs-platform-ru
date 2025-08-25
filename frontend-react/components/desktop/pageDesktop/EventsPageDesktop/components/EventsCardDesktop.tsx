@@ -36,7 +36,9 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
         <>
             <div
                 data-category={category}
-                className="flex min-h-[657px] max-w-[474px] items-center justify-center rounded-[3.125rem] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
+                className="flex min-h-[657px] max-w-[474px] 3xl:max-w-[414px]
+                2xl:max-w-[398px]
+                items-center justify-center rounded-[3.125rem] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
                 style={{
                     backgroundImage: "url('/background/subtract-events.png')",
                     backgroundSize: 'contain',
