@@ -14,6 +14,7 @@ interface IInternshipsCard {
     place: string
     note: string
     mapImage: string
+    mapUrl: string
 }
 
 const ItemCardUpcomingInternshipsDesktop: React.FC<IInternshipsCard> = ({
@@ -26,9 +27,10 @@ const ItemCardUpcomingInternshipsDesktop: React.FC<IInternshipsCard> = ({
     place,
     note,
     mapImage,
+    mapUrl,
 }) => {
     return (
-        <Card className="flex flex-col w-[1069px] min-w-[700px] bg-white/10 p-[40px]">
+        <Card className="flex flex-col w-[1069px] min-w-[700px] bg-custom-upcoming-internship-card p-[40px]">
             <CardContent className="mb-[40px] p-0 flex items-center gap-[35px]">
                 <div className="pl-[45px]">
                     <CardHeader className="space-y-0 p-0 m-0">
@@ -51,19 +53,18 @@ const ItemCardUpcomingInternshipsDesktop: React.FC<IInternshipsCard> = ({
                 </div>
             </CardContent>
             <div className="relative w-full h-[180px] rounded-[25px] mb-[40px] overflow-hidden">
-                <Image src={mapImage} alt="Карта превью" fill className="rounded-[26px] object-cover" />
+                <Image src={mapImage} alt="Изображение карты" fill className="rounded-[26px] object-cover" />
                 <div className="absolute inset-0 bg-[#1F203F] opacity-90 rounded-[25px] flex items-center justify-center">
-                    <a href="/#" className="text-[#878797] text24px_desktop hover:text-gray-200">
-                        Смотреть на карте
-                    </a>
+                    <Button variant="link" className="text-[24px] text-[#878797] hover:no-underline">
+                        <a href={mapUrl} target="_blank" rel="noopener noreferrer">
+                            Смотреть на карте
+                        </a>
+                    </Button>
                 </div>
             </div>
-            <CardFooter className="self-end ">
-                <Button
-                    variant="link"
-                    className="text20px_desktop text-[#878797] underline underline-offset-4 hover:text-gray-200"
-                >
-                    Отменить заказ
+            <CardFooter className="self-end">
+                <Button variant="link" className="text-[20px] text-[#878797] p-0 hover:no-underline">
+                    <span className="border-[#878797] border-b-[1px]">Отменить заказ</span>
                 </Button>
             </CardFooter>
         </Card>

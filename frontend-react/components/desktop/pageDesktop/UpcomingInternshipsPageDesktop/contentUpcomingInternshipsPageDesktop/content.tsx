@@ -8,6 +8,7 @@ export interface IContent {
     place: string
     note: string
     mapImage: string
+    mapUrl: string
     id: number
 }
 
@@ -22,6 +23,7 @@ export const content: IContent[] = [
         place: 'ул. Тиражная 150, корпус 4, оф. 506',
         note: '!Возьмите с собой паспорт и ознакомьтесь с компанией на официальном сайте',
         mapImage: '/images/internship_map.png',
+        mapUrl: '/',
         id: 1,
     },
     {
@@ -34,6 +36,7 @@ export const content: IContent[] = [
         place: 'ул. Тиражная 150, корпус 4, оф. 506',
         note: '!Возьмите с собой паспорт и ознакомьтесь с компанией на официальном сайте',
         mapImage: '/images/internship_map.png',
+        mapUrl: '/',
         id: 2,
     },
 ]

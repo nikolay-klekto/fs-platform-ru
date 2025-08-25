@@ -19,15 +19,13 @@ const UpcomingInternshipDesktop: React.FC = () => {
         )
     }
     return (
-        <>
-            <div className="grid">
-                <div className="mx-auto flex flex-col justify-between gap-[80px] pb-[88px] 2xl:pb-[40px]">
-                    {content.map((item) => (
-                        <ItemCardUpcomingInternshipsDesktop key={item.id} {...item} />
-                    ))}
-                </div>
+        <div className="grid">
+            <div className="mx-auto flex flex-col justify-between gap-[80px] pb-[88px] 2xl:pb-[40px]">
+                {content.map((item) => (
+                    <ItemCardUpcomingInternshipsDesktop key={item.id} {...item} />
+                ))}
             </div>
-        </>
+        </div>
     )
 }
 export default UpcomingInternshipDesktop
