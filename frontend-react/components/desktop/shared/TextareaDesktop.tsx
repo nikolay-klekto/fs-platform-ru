@@ -53,7 +53,6 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
             variant,
             size,
             rounded,
-            validate,
             onChange,
             onFocus,
             onBlur,
@@ -66,24 +65,7 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
         ref,
     ) => {
         const [internalValue, setInternalValue] = React.useState<string>('')
-        const [styleErrorClass, setStyleErrorClass] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
-
-        function validateComponent(newValue: string) {
-            if (validate) {
-                const validationResult = validate(newValue)
-                if (validationResult) {
-                    const { status, styleError } = validationResult
-                    if (!status) {
-                        if (!styleError) {
-                            setStyleErrorClass(true)
-                        }
-                    } else {
-                        setStyleErrorClass(false)
-                    }
-                }
-            }
-        }
 
         const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
             const newValue = e.target.value
@@ -99,10 +81,6 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-
-            if (internalValue) {
-                validateComponent(internalValue)
-            }
         }
 
         return (
@@ -113,7 +91,6 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
                         textareaVariants({ variant, size, rounded }),
                         isFocused && 'ring-2 ring-ring ring-offset-2',
                         className,
-                        styleErrorClass && 'border-[#BC8070]',
                     )}
                     ref={ref}
                     name={name}
