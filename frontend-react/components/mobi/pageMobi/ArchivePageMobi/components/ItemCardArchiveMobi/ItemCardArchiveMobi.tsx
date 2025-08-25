@@ -88,7 +88,7 @@ const ItemCardArchiveMobi: React.FC<IItemCardArchive> = ({
 
             <Button
                 variant="send_btn_mobi"
-                className="relative overflow-hidden border-[1.5px] text-[8px] font-semibold w-[107px] h-[26px]"
+                className="relative overflow-hidden border-[1.5px] text-[8px] font-semibold w-[107px] h-[26px] sm:text-[8px]"
                 onClick={handleButtonClick}
                 disabled={isDisabled}
             >
