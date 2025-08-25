@@ -49,7 +49,7 @@ const HeaderCardsItemMobi: React.FC<IHeaderCardItem> = ({
                             {price} <span translate={disableCurrencyTranslation ? 'no' : 'yes'}>{currency}</span>
                         </div>
                     </div>
-                    <Button variant="circleBlue" size="circleMobi" className="absolute bottom-[4px] right-0">
+                    <Button variant="circleBlue" size="circleMobi" className="absolute bottom-[1px] right-0">
                         <ArrowWhiteMobi />
                     </Button>
                 </div>
