@@ -56,18 +56,23 @@ const ProfessionsPageMobi: React.FC = () => {
                             <div className="relative w-full max-w-[386px] rounded-full [@media(min-width:617px)]:max-w-[600px]">
                                 <EnhancedInput
                                     type="text"
-                                    className="text-white"
+                                    className="pl-[20px] pr-[50px] text-white"
                                     value={searchQuery}
                                     onChange={setSearchQuery}
                                     variant={'search_mobi'}
                                     size={'search_mobi'}
                                     rounded={'full'}
                                     wrapperClassName={
-                                        'relative h-[48px] border-[2px] border-[#878797] bg-transparent flex-1 justify-between flex rounded-[50px] px-[10px]'
+                                        'relative h-[48px] border-[2px] border-[#878797] bg-transparent flex-1 justify-between flex rounded-[50px] '
                                     }
                                     placeholder="Поиск"
                                 />
-                                <Button variant="circle_btn_mobi" size="circle_btn_mobi">
+                                <Button
+                                    className="pr-[20px]"
+                                    variant="circle_btn_mobi"
+                                    size="circle_btn_mobi"
+                                    onClick={handleSearch}
+                                >
                                     <Search color="#878797" width={24} height={24} strokeWidth={2} />
                                 </Button>
                             </div>

@@ -2,12 +2,12 @@
 
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { LogoIconMobi, TelegramIconMobi, InstagramIconMobi, LinkedInIconMobi } from '@/components/assets/iconsMobi'
-import {
-    contentFooterMobi,
-    contentFooterMobiImages,
-} from '@/components/mobi/layout/FooterMobi/contentFooterMobi/content'
+import { contentFooterMobi } from '@/components/mobi/layout/FooterMobi/contentFooterMobi/content'
+// import {
+//     contentFooterMobiImages
+// } from '@/components/mobi/layout/FooterMobi/contentFooterMobi/content'
 
 const FooterMobi: React.FC = () => {
     return (
@@ -58,6 +58,7 @@ const FooterMobi: React.FC = () => {
                         </a>
                     </div>
                     <div className="bg-custom-grey h-[2px] w-full rounded-full"></div>
+                    {/*
                     <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-10">
                         {contentFooterMobiImages.map((image) => (
                             <Image
@@ -78,6 +79,7 @@ const FooterMobi: React.FC = () => {
                     <p className="text-center text-xs font-medium text-white">
                         funscrut .by © 2023, ООО «funscrut» УНП 000000000
                     </p>
+                    */}
                 </div>
             </footer>
         </>
