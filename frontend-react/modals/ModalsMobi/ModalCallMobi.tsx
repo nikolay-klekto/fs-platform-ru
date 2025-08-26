@@ -105,7 +105,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         ? 'border-[#bc8070]'
                                         : 'border-[#878797]'
                                 }
-h-10 w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] md:placeholder:text-2xl`}
+                                input-form-mobi-custom w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl font-medium text-[#878797] placeholder:font-medium placeholder:text-[#353652]`}
                                 label="Ваше имя*"
                                 labelClassName="text-white text-xl font-medium"
                                 wrapperClassName="w-full"
@@ -113,29 +113,35 @@ h-10 w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25re
                             {errors.name && <p className="mt-1 text-sm text-[#bc8070]">{errors.name}</p>}
                         </div>
                         <div className="mb-3 flex w-full flex-col p-0.5">
-                            <PhoneInputMobi
-                                value={formData.phone}
-                                onChange={(value: string) =>
-                                    handleChange({
-                                        target: { name: 'phone', value, type: 'text', checked: false },
-                                    } as React.ChangeEvent<HTMLInputElement>)
-                                }
-                                onBlur={() => handleInputBlur('phone')}
-                                onError={(error) =>
-                                    setErrors((prev) => ({
-                                        ...prev,
-                                        phone: error || '',
-                                    }))
-                                }
-                                showInternalError={true}
-                                className={`border-2 p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl focus:border-2`}
-                                labelClassName="text-xl leading-[18px] font-medium text-white mb-0"
-                                wrapperClassName="w-full"
-                                required={true}
-                                customLabel={<span>Номер телефона*</span>}
-                            />
+                            <div className="flex w-full flex-col gap-1.5">
+                                <label htmlFor="phone" className="mb-1 text-xl font-medium text-white">
+                                    Номер телефона
+                                    <span className="text-white-500">*</span>
+                                </label>
+                                <PhoneInputMobi
+                                    value={formData.phone}
+                                    onChange={(value: string) =>
+                                        handleChange({
+                                            target: { name: 'phone', value, type: 'text', checked: false },
+                                        } as React.ChangeEvent<HTMLInputElement>)
+                                    }
+                                    onBlur={() => handleInputBlur('phone')}
+                                    onError={(error) =>
+                                        setErrors((prev) => ({
+                                            ...prev,
+                                            phone: error || '',
+                                        }))
+                                    }
+                                    showInternalError={true}
+                                    className={`h-10 border-2 p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl focus:border-2`}
+                                    labelClassName="hidden"
+                                    wrapperClassName="w-full"
+                                    required={true}
+                                />
+                            </div>
                             {errors.phone && <p className="mt-1 text-sm text-[#bc8070]">{errors.phone}</p>}
                         </div>
+
                         <div className="mb-3 flex w-full flex-col p-0.5">
                             <EnhancedInput
                                 type="text"
@@ -145,7 +151,7 @@ h-10 w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25re
                                 value={formData.time}
                                 onBlur={() => handleInputBlur('time')}
                                 onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                className="h-11 w-full text-ellipsis rounded-[50px] border-2 border-[#878797] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25rem] font-medium text-[#878797] placeholder:text-xl placeholder:text-[#353652]"
+                                className="input-form-mobi-custom w-full rounded-[50px] border-[#878797] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl font-medium text-[#878797] placeholder:font-medium placeholder:text-[#353652]"
                                 label="Удобное время для звонка"
                                 labelClassName="text-white text-xl"
                                 wrapperClassName="w-full"
