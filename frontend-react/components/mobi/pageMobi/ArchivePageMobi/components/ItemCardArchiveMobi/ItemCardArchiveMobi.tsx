@@ -65,8 +65,8 @@ const ItemCardArchiveMobi: React.FC<IItemCardArchive> = ({
                 className={`
                 text-[14px] font-medium mb-[4px] uppercase tracking-wider text-center transition-colors duration-100
                 ${isClicked
-                        ? 'bg-gradient-mobi bg-clip-text text-transparent'
-                        : 'text-white'
+                        ? 'text-white'
+                        : 'bg-gradient-mobi bg-clip-text text-transparent'
                     }
                 `}
                 onClick={() => setIsClicked(!isClicked)}
