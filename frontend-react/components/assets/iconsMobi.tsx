@@ -1,13 +1,17 @@
 import React, { SVGProps } from 'react'
 
-interface IArrowBtn {
-    width?: number
-    height?: number
+interface ISvgIcon extends SVGProps<SVGSVGElement> {
+    width?: number | string
+    height?: number | string
+    fill?: string
+    stroke?: string
+    viewBox?: string
+    className?: string
 }
 
-export const ArrowBtn: React.FC<IArrowBtn> = ({ width = 56, height = 56 }) => {
+export const ArrowBtn: React.FC<ISvgIcon> = ({ width = 56, height = 56, ...rest }) => {
     return (
-        <svg width={width} height={height} viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width={width} height={height} viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" {...rest}>
             <path
                 d="M48.2331 27.8018L29.5038 9.92383V20.1398C11.58 20.1398 7.36914 32.9918 7.36914 45.6798C12.5421 39.0564 17.1169 35.4638 29.5038 35.4638V45.6798L48.2331 27.8018Z"
                 fill="url(#paint0_linear_782_18439)"
@@ -112,7 +116,7 @@ export const ProfileIconBurgerMobi: React.FC = (props) => {
     )
 }
 
-export const ShoppingCartIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const ShoppingCartIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -140,7 +144,7 @@ export const ShoppingCartIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) =
     )
 }
 
-export const LogoIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LogoIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="58" height="48" viewBox="0 0 100 83" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -155,7 +159,7 @@ export const LogoIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const PhoneIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const PhoneIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -169,7 +173,7 @@ export const PhoneIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const BurgerMenuIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const BurgerMenuIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M3 12H21" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -179,7 +183,7 @@ export const BurgerMenuIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => 
     )
 }
 
-export const CrossIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const CrossIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M18 6L6 18" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -188,7 +192,7 @@ export const CrossIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const TelegramIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const TelegramIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -199,7 +203,7 @@ export const TelegramIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const InstagramIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const InstagramIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -210,7 +214,7 @@ export const InstagramIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const VkIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const VkIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -247,7 +251,7 @@ export const InstagramIconBurgerMobi: React.FC = (props) => {
 
 export const VkIconBurgerMobi: React.FC = (props) => {
     return (
-        <svg width="26" height="17" viewBox="0 0 26 17" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <svg {...props}>
             <path
                 d="M25.1495 13.1152C24.5649 11.9385 23.7946 10.8635 22.868 9.93163C22.5581 9.58162 22.2336 9.24478 21.8954 8.922L21.8546 8.88226C21.729 8.76038 21.6051 8.63685 21.4828 8.51171C22.7494 6.75139 23.8332 4.86669 24.7175 2.88678L24.753 2.8073L24.7777 2.72352C24.8948 2.33363 25.0281 1.59252 24.5552 0.922299C24.0652 0.230595 23.2818 0.106002 22.7562 0.106002H20.3415C19.8358 0.0829729 19.3359 0.220389 18.9132 0.498585C18.4904 0.776781 18.1666 1.1815 17.988 1.65482C17.4683 2.89176 16.8176 4.06957 16.0471 5.16811V2.34008C16.0471 1.97489 16.0127 1.36267 15.6205 0.847113C15.1519 0.228447 14.4738 0.106002 14.0031 0.106002H10.1708C9.67076 0.0945022 9.18542 0.275664 8.81532 0.611971C8.44521 0.948278 8.2187 1.41397 8.18269 1.91259L8.17947 1.96093V2.00926C8.17947 2.53019 8.38581 2.91471 8.5513 3.15637C8.62546 3.26485 8.70391 3.36367 8.75442 3.42597L8.76516 3.43993C8.8189 3.50652 8.85436 3.55056 8.88982 3.59996C8.9844 3.72671 9.11873 3.92434 9.15742 4.43345V6.01556C8.38814 4.72809 7.75738 3.36285 7.27568 1.94267L7.26708 1.91904L7.25848 1.89648C7.12737 1.55385 6.91781 1.05548 6.49762 0.675262C6.00757 0.229521 5.42725 0.106002 4.89959 0.106002H2.44935C1.91524 0.106002 1.27151 0.230595 0.791137 0.736484C0.319358 1.23485 0.265625 1.83204 0.265625 2.14782V2.29174L0.295716 2.43137C0.974153 5.57924 2.37222 8.5275 4.38052 11.0454C5.29869 12.4926 6.54521 13.703 8.01897 14.5786C9.49272 15.4542 11.1522 15.9703 12.8629 16.085L12.9069 16.0882H12.9521C13.7323 16.0882 14.5458 16.0206 15.1573 15.6135C15.9816 15.0636 16.0471 14.2204 16.0471 13.7994V12.5771C16.2588 12.7489 16.521 12.9788 16.8424 13.2881C17.2314 13.6769 17.5409 14.0142 17.8063 14.3085L17.9482 14.4653C18.1545 14.6952 18.3576 14.9218 18.5425 15.1076C18.7746 15.3407 19.0615 15.5974 19.4205 15.7875C19.8106 15.9926 20.22 16.0861 20.6542 16.0861H23.1055C23.6224 16.0861 24.3629 15.9636 24.8841 15.36C25.4515 14.7027 25.4085 13.896 25.2301 13.3171L25.1979 13.2129L25.1495 13.1152ZM19.0024 13.229C18.6694 12.8569 18.3264 12.4938 17.974 12.1399L17.9708 12.1367C16.5124 10.7318 15.8322 10.488 15.3507 10.488C15.0939 10.488 14.8112 10.5159 14.6275 10.7458C14.5447 10.8554 14.4905 10.9838 14.4695 11.1196C14.4436 11.2772 14.4321 11.4368 14.4351 11.5964V13.7994C14.4351 14.0733 14.39 14.1882 14.2632 14.272C14.0944 14.3847 13.7344 14.476 12.9617 14.476C11.494 14.3762 10.0709 13.9297 8.80941 13.1731C7.54797 12.4165 6.48421 11.3714 5.70559 10.1239L5.69699 10.1099L5.68624 10.097C3.81537 7.76969 2.51151 5.03949 1.87762 2.12204C1.88192 1.98241 1.91201 1.89756 1.96145 1.846C2.01196 1.7923 2.13555 1.71711 2.44935 1.71711H4.89959C5.17148 1.71711 5.31333 1.77726 5.41543 1.86856C5.52934 1.97382 5.63036 2.15104 5.75072 2.46682C6.35254 4.23474 7.16498 5.88882 7.93552 7.1036C8.32025 7.71152 8.69853 8.21741 9.04028 8.57508C9.21115 8.75337 9.37772 8.9016 9.53785 9.00686C9.69153 9.10782 9.8667 9.18837 10.0472 9.18837C10.1418 9.18837 10.2525 9.17763 10.3589 9.13145C10.4738 9.08072 10.5684 8.993 10.6276 8.88226C10.7383 8.68034 10.7694 8.38282 10.7694 7.99293V4.37008C10.7125 3.49148 10.447 2.99634 10.1891 2.64511C10.1369 2.57486 10.0831 2.50575 10.0279 2.43782L10.0139 2.42063C9.9681 2.365 9.92436 2.30768 9.88282 2.24878C9.82992 2.1831 9.79808 2.10299 9.79147 2.01893C9.7999 1.93358 9.84065 1.85468 9.90538 1.79837C9.97011 1.74206 10.0539 1.71261 10.1397 1.71604H14.0031C14.2245 1.71604 14.2986 1.76974 14.3362 1.82022C14.39 1.89004 14.4351 2.03504 14.4351 2.34008V7.20348C14.4351 7.78134 14.7016 8.1723 15.0885 8.1723C15.5334 8.1723 15.8547 7.90271 16.4157 7.34204L16.4254 7.3313L16.434 7.32163C17.6924 5.78816 18.7205 4.07962 19.486 2.24985L19.4903 2.23697C19.5479 2.0753 19.6567 1.93688 19.8003 1.84283C19.9439 1.74877 20.1143 1.70425 20.2856 1.71604H22.7573C23.0926 1.71604 23.2022 1.80197 23.2388 1.85245C23.2764 1.90615 23.3033 2.02108 23.2388 2.24663C22.356 4.21901 21.2648 6.09139 19.9836 7.83182L19.975 7.84471C19.8514 8.03482 19.7149 8.24534 19.6956 8.48593C19.6741 8.74586 19.7859 8.98108 19.9825 9.23456C20.1255 9.44508 20.421 9.734 20.7208 10.0272L20.7488 10.0552C21.0626 10.3623 21.4032 10.6953 21.6762 11.0175L21.6837 11.025L21.6913 11.0336C22.5052 11.8451 23.1821 12.7831 23.6955 13.8112C23.7772 14.0904 23.7277 14.2344 23.6633 14.3085C23.5891 14.3944 23.4225 14.475 23.1066 14.475H20.6542C20.4871 14.479 20.3217 14.4402 20.1738 14.3622C19.9926 14.2569 19.8282 14.1251 19.6859 13.9712C19.5322 13.8176 19.3657 13.6318 19.1615 13.4052L19.0035 13.229H19.0024Z"
                 fill="#878797"
@@ -258,7 +262,7 @@ export const VkIconBurgerMobi: React.FC = (props) => {
     )
 }
 
-export const LinkedInIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LinkedInIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <g clipPath="url(#clip0_285_19389)">
@@ -276,7 +280,7 @@ export const LinkedInIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const AvatarIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const AvatarIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <rect width="40" height="40" rx="20" fill="#878797" />
@@ -295,7 +299,7 @@ export const AvatarIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const LinkedInIconMobiBurger: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LinkedInIconMobiBurger: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <g clipPath="url(#clip0_285_19389)">
@@ -315,7 +319,7 @@ export const LinkedInIconMobiBurger: React.FC<SVGProps<SVGSVGElement>> = (props)
     )
 }
 
-export const HelpIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const HelpIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -327,7 +331,7 @@ export const HelpIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const TrashIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const TrashIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 40 40" fill="none" {...props}>
             <path d="M5 10H8.33333H35" stroke="#878797" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
@@ -356,7 +360,7 @@ export const TrashIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const SearchIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const SearchIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -377,16 +381,7 @@ export const SearchIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-interface IForwardIcon extends React.SVGProps<SVGSVGElement> {
-    fill?: string
-    stroke?: string
-}
-
-export const ForwardIconMobi: React.FC<IForwardIcon> = ({
-    fill = 'currentColor',
-    stroke = 'currentColor',
-    ...props
-}) => {
+export const ForwardIconMobi: React.FC<ISvgIcon> = ({ fill = 'currentColor', stroke = 'currentColor', ...props }) => {
     return (
         <svg
             width={'100%'}
@@ -432,7 +427,7 @@ export const ForwardIconMobi: React.FC<IForwardIcon> = ({
     )
 }
 
-export const SendIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const SendIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <circle cx="17" cy="17" r="16.2917" stroke="url(#paint0_linear_1854_21403)" strokeWidth="1.41667" />
@@ -470,7 +465,7 @@ export const SendIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const FiltersIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const FiltersIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -481,7 +476,7 @@ export const FiltersIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const MapMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const MapMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -502,7 +497,7 @@ export const MapMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const UserMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const UserMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -523,7 +518,7 @@ export const UserMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const CalendarIconsMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const CalendarIconsMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -540,7 +535,7 @@ export const CalendarIconsMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const ForwardIconWhiteMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const ForwardIconWhiteMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="33" height="29" viewBox="0 0 33 29" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -553,7 +548,7 @@ export const ForwardIconWhiteMobi: React.FC<SVGProps<SVGSVGElement>> = (props) =
     )
 }
 
-export const LessIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LessIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -564,7 +559,7 @@ export const LessIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
         </svg>
     )
 }
-export const MoreIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const MoreIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -576,7 +571,7 @@ export const MoreIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const ChevronDownIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const ChevronDownIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg viewBox="0 0 27 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -587,7 +582,7 @@ export const ChevronDownIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) =>
     )
 }
 
-export const CheckedBoxIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const CheckedBoxIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -634,7 +629,7 @@ export const CheckedBoxIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => 
     )
 }
 
-export const QuestionMarkMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const QuestionMarkMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -645,7 +640,7 @@ export const QuestionMarkMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const LineDateMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const LineDateMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="22" height="2" viewBox="0 0 18 2" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M1 1H21" stroke="#878797" strokeWidth="2" strokeLinecap="round" />
@@ -653,7 +648,7 @@ export const LineDateMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const EyeOffPasswordMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const EyeOffPasswordMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <g clipPath="url(#clip0_908_1788)">
@@ -675,7 +670,7 @@ export const EyeOffPasswordMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => 
     )
 }
 
-export const EyeOnPasswordMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const EyeOnPasswordMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -696,7 +691,7 @@ export const EyeOnPasswordMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
     )
 }
 
-export const PasswordGeneratorMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const PasswordGeneratorMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M1 4V10H7" stroke="#878797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -712,7 +707,7 @@ export const PasswordGeneratorMobi: React.FC<SVGProps<SVGSVGElement>> = (props) 
     )
 }
 
-export const AttachFileIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const AttachFileIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <rect y="0.0634766" width="27.3153" height="27.8727" rx="13.6576" fill="url(#paint0_linear_1670_21472)" />
@@ -741,7 +736,7 @@ export const AttachFileIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => 
     )
 }
 
-export const ChevronLeftIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) => {
+export const ChevronLeftIconMobi: React.FC<ISvgIcon> = (props) => {
     return (
         <svg width="13" height="24" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -751,3 +746,14 @@ export const ChevronLeftIconMobi: React.FC<SVGProps<SVGSVGElement>> = (props) =>
         </svg>
     )
 }
+
+export const StarIconMobi: React.FC<ISvgIcon> = ({ fill = 'none', width = 10, height = 10, ...props }) => (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill={fill} xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path
+            d="M11.9991 2L15.1031 8.728L22.4611 9.601L17.0211 14.631L18.4651 21.899L11.9991 18.28L5.53311 21.9L6.97711 14.632L1.53711 9.6L8.89611 8.727L11.9991 2Z"
+            stroke="white"
+            strokeWidth={1.5}
+            strokeLinejoin="round"
+        />
+    </svg>
+)
