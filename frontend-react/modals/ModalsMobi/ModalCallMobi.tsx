@@ -177,7 +177,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                         <button
                             type="submit"
                             disabled={Object.values(errors).some((err) => err?.trim())}
-                            className={`mx-auto mt-[1.8rem] w-full max-w-[294px] whitespace-nowrap rounded-[50px] bg-sub-title-gradient-mobi py-[0.91rem] px-[1rem] min-[320px]:px-[4.09rem] md:px-[4.09rem] text-white font-semibold ${
+                            className={`bg-sub-title-gradient-mobi mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] text-3xl font-semibold text-white md:text-4xl ${
                                 Object.values(errors).some((err) => err?.trim())
                                     ? 'bg-[#878797] disabled:opacity-100'
                                     : 'bg-sub-title-gradient-mobi'
@@ -191,8 +191,8 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
 
             {step === 'accepted' && (
                 <Modal variant="mobile" size="mobile-346" onClose={onClose} bgClass="bg-auto" className="z-[70]">
-                    <h2 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
-                        ЗАЯВКА ПРИНЯТА
+                    <h2 className="bg-sub-title-gradient-mobi uppercase bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
+                        Заявка принята
                     </h2>
                     <p className="mb-1 px-3 pb-[18px] text-justify text-xl font-medium leading-[17px] text-[#878797] md:text-lg">
                         Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на сайте.
