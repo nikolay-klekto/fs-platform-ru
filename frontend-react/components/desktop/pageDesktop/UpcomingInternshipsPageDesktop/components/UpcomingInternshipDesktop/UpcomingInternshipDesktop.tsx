@@ -4,21 +4,23 @@ import Link from 'next/link'
 import { content } from '@/components/desktop/pageDesktop/UpcomingInternshipsPageDesktop/contentUpcomingInternshipsPageDesktop/content'
 import { Button } from '@/components/ui/button'
 import ItemCardUpcomingInternshipsDesktop from '../ItemCardUpcomingInternshipsDesktop/ItemCardUpcomingInternshipsDesktop'
-import { useIsAuth } from '@/hooks/useIsAuth'
 
 const UpcomingInternshipDesktop: React.FC = () => {
-    const isAuth = useIsAuth()
     const hasInternships = content && content.length > 0
 
     return (
         <>
-            {isAuth && !hasInternships && (
+            {!hasInternships && (
                 <div className="flex flex-col items-center pb-[370px]">
                     <p className="mb-4 text-7xl font-medium leading-[40px] text-[#353652]">
                         Предстоящих стажировок нет
                     </p>
                     <Link href={'/professions'}>
-                        <Button variant={'send_btn_desktop'} size={'send_btn_desktop'}>
+                        <Button
+                            variant={'select_desktop'}
+                            size={'select_btn_type_internship_desktop'}
+                            className="border-2"
+                        >
                             Выбрать профессию
                         </Button>
                     </Link>
