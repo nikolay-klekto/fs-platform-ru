@@ -9,11 +9,7 @@ interface ISelectOption {
     label: string
 }
 
-const InternshipTypeSelectAddressDesktop = ({
-    onAddressChange,
-}: {
-    onAddressChange: (addresses: string[]) => void
-}) => {
+const SelectTypeAddressDesktop = ({ onAddressChange }: { onAddressChange: (addresses: string[]) => void }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState<string | null>(null)
     const selectRef = useRef<HTMLDivElement>(null)
@@ -70,10 +66,9 @@ const InternshipTypeSelectAddressDesktop = ({
             {/* Дропдаун */}
             {isOpen && (
                 <div
-                    className="absolute top-[96px] z-[9999] flex flex-col overflow-hidden bg-[#1F203F]"
+                    className="absolute top-[96px] z-[9999] flex flex-col bg-[#1F203F] px-[60px] pt-[37px]"
                     style={{
-                        width: '751px',
-                        height: '201px',
+                        width: '908px',
                         border: '3.5px solid #878797',
                         borderRadius: '44px',
                     }}
@@ -82,9 +77,9 @@ const InternshipTypeSelectAddressDesktop = ({
                         <div key={option.value}>
                             <button
                                 type="button"
-                                className={`w-full px-6 text-left text-[32px] font-medium transition-colors duration-200
-                  ${selectedOption === option.value ? 'text-white' : 'text-[#878797]'}
-                  hover:text-white ${index === 0 ? 'mt-[40px]' : ''} ${index === options.length - 1 ? 'mb-[33px]' : ''}`}
+                                className={`w-full pl-[58px] text-left text-[32px] font-medium transition-colors duration-200 ${selectedOption === option.value ? 'text-white' : 'text-[#878797]'}
+                  hover:text-white
+                  ${index === 0 ? 'mt-0' : ''}`}
                                 onClick={() => {
                                     setSelectedOption(option.value)
                                     setIsOpen(false)
@@ -92,13 +87,16 @@ const InternshipTypeSelectAddressDesktop = ({
                             >
                                 {option.label}
                             </button>
-                            {index < options.length - 1 && <div className="my-[25px] h-[1px] w-full bg-[#878797]" />}
+                            {index < options.length - 1 && (
+                                <div className="px-[22px] my-[35px] h-[1px] w-full bg-[#878797]" />
+                            )}
                         </div>
                     ))}
+                    <div className="h-[50px]" />{' '}
                 </div>
             )}
         </div>
     )
 }
 
-export default InternshipTypeSelectAddressDesktop
+export default SelectTypeAddressDesktop

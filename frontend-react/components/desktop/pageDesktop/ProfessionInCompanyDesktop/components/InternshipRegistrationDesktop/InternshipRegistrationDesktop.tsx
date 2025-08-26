@@ -1,18 +1,20 @@
 'use client'
 
 import React, { useState } from 'react'
-import InternshipRegistrationSelecttypeDesktop from './components/SelectTypeDesktop/SelectTypeDesktop'
-import InternshipSelectAllDatesDesktop from './components/InternshipDatesDesktop/SelectAllDatesDesktop'
-import InternshipSelectAddressDesktop from './components/SelectAddressDesktop/SelectAddressDesktop'
+import SelectTypeDesktop from './components/SelectTypeDesktop/SelectTypeDesktop'
+import SelectAddressDesktop from './components/SelectAddressDesktop/SelectAddressDesktop'
+import SelectDatesDesktop from './components/SelectDatesDesktop/SelectDatesDesktop'
 import { Button } from '@/components/ui/button'
 
 const InternshipRegistrationDesktop: React.FC = () => {
     const [selectedTypes, setSelectedTypes] = useState<string[]>([])
     const [selectedAddresses, setSelectedAddresses] = useState<string[]>([])
-    const [addInternship, setAddInternship] = useState('')
+    const [errorDates, setErrorDates] = useState(false)
+    const [buttonDisabled, setButtonDisabled] = useState(false)
 
     const handleAddInternship = () => {
-        setAddInternship('')
+        setErrorDates(true)
+        setButtonDisabled(true)
     }
 
     const handleTypeChange = (types: string[]) => {
@@ -27,47 +29,74 @@ const InternshipRegistrationDesktop: React.FC = () => {
 
     return (
         <div className="mx-auto mb-[136px] mt-[98px] max-w-[1637px] rounded-[92px] bg-[#1F203F] p-10 text-white">
-            <h2 className="title66px_desktop bg-gradient-desktop bg-clip-text text-center font-medium  uppercase text-transparent">
+            <h2 className="title66px_desktop bg-gradient-desktop bg-clip-text text-center font-medium uppercase text-transparent">
                 Оформление стажировки
             </h2>
-            <div className="flex-start mt-[55px] mb-[36px] flex border-b border-white/20 pb-2">
-                <p className="text28px_desktop font-medium-500 text-[#878797]">Профессия</p>
-                <p className="text32px_desktop font-medium-500 text-[#FFFFF] pl-[291px]">Программист</p>
-            </div>
-            <div className="flex-start my-[36px] flex border-b border-white/20 pb-2">
-                <p className="text28px_desktop font-medium-500 text-[#878797]">Компания</p>
-                <p className="text32px_desktop font-medium-500 text-[#FFFFF] pl-[300px]">EPAM</p>
-            </div>
-            {/* Вид стажировки */}
-            <div className="flex-start my-[36px] flex border-b border-white/20 pb-2">
-                <p className="text28px_desktop font-medium-500 text-[#878797]">Вид стажировки</p>
-                <div className="pl-[200px]">
-                    {' '}
-                    <InternshipRegistrationSelecttypeDesktop onTypeChange={handleTypeChange} />
-                </div>
-            </div>
-            <div className="flex-start my-[36px] flex border-b border-white/20 pb-2">
-                <span className="text28px_desktop font-medium-500 text-[#878797]">Даты стажировки</span>
-                <InternshipSelectAllDatesDesktop />
-            </div>
 
-            {/* Адрес стажировки */}
-            <div className="flex-start my-[36px] flex border-b border-white pb-2">
-                <span className="text28px_desktop font-medium-500 text-[#878797]">Адрес стажировки</span>
-                <div className="pl-[200px]">
-                    {' '}
-                    <InternshipSelectAddressDesktop onAddressChange={handleAddressChange} />
+            {/* таблица */}
+            <div className="pl-[86px] pr-[74px] mt-[55px] flex flex-col">
+                {/* Профессия */}
+                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white pt-[55px] pb-[36px]">
+                    <div className="flex items-center">
+                        <p className="text28px_desktop font-medium text-[#878797]">Профессия</p>
+                    </div>
+                    <div className="flex items-center">
+                        <p className="text32px_desktop font-medium text-white">Программист</p>
+                    </div>
+                </div>
+
+                {/* Компания */}
+                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white py-[36px]">
+                    <div className=" flex items-center">
+                        <p className="text28px_desktop font-medium text-[#878797]">Компания</p>
+                    </div>
+                    <div className=" flex items-center">
+                        <p className="text32px_desktop font-medium text-white">EPAM</p>
+                    </div>
+                </div>
+
+                {/* Вид стажировки */}
+                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white  py-[36px]">
+                    <div className="flex items-center">
+                        <p className="text28px_desktop font-medium text-[#878797]">Вид стажировки</p>
+                    </div>
+                    <div className=" flex items-center">
+                        <SelectTypeDesktop onTypeChange={handleTypeChange} />
+                    </div>
+                </div>
+
+                {/* Даты стажировки */}
+                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white py-[36px]">
+                    <div className=" flex items-center">
+                        <p className="text28px_desktop font-medium text-[#878797]">Даты стажировки</p>
+                    </div>
+                    <div className="flex flex-col">
+                        <SelectDatesDesktop error={errorDates} />
+                    </div>
+                </div>
+
+                {/* Адрес стажировки */}
+                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white  py-[36px]">
+                    <div className=" flex items-center">
+                        <p className="text28px_desktop font-medium text-[#878797]">Адрес стажировки</p>
+                    </div>
+                    <div className=" flex items-center">
+                        <SelectAddressDesktop onAddressChange={handleAddressChange} />
+                    </div>
                 </div>
             </div>
 
             {/* Цена + кнопка */}
-            <div className="flex flex-row items-center justify-between mt-[62px] mb-[102px] px-[74px]">
+            <div className="mb-[102px] mt-[62px] flex flex-row items-center justify-between px-[74px]">
                 <p className="title66px_desktop font-medium">100 BYN</p>
                 <Button
                     variant={'add_to_chart_btn_desktop'}
                     size={'add_to_chart_btn_desktop'}
-                    className="text38px_desktop font-semibold text-white"
+                    className={`text38px_desktop font-semibold ${
+                        buttonDisabled ? 'cursor-not-allowed bg-[#878797] text-white' : 'text-white'
+                    }`}
                     onClick={handleAddInternship}
+                    disabled={buttonDisabled}
                 >
                     Добавить в корзину
                 </Button>
