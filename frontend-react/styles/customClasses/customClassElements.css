@@ -189,10 +189,6 @@
         background-color: #878797;
     }
 
-    .bg-custom-upcoming-internship-card {
-        @apply bg-white/10 backdrop-blur-[5px];
-    }
-
     .radial-gradient_desktop {
         @apply size-[852px] opacity-30 rounded-full absolute z-[0];
         background: radial-gradient(circle, #8917a5 0%, #30217b 100%);
