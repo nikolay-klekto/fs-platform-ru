@@ -12,17 +12,17 @@ export const imageMaps = {
     },
 } as const
 
-export type ImageMapCategory = keyof typeof imageMaps
-export type ImageMapKey<T extends ImageMapCategory> = keyof (typeof imageMaps)[T]
+const SUBDIR: Record<ImageMapCategory, string> = {
+    companies: 'facade',
+    professions: '',
+}
 
-export function getImagePath<T extends ImageMapCategory>(category: T, name: string): string {
-    const normalizedInput = name.toLowerCase().trim().replace(/\s+/g, ' ')
+const norm = (s: string) => s.toLowerCase().trim().replace(/\s+/g, ' ')
 
-    const foundKey = Object.keys(imageMaps[category]).find(
-        (key) => key.toLowerCase().trim().replace(/\s+/g, ' ') === normalizedInput,
-    ) as ImageMapKey<T> | undefined
-
-    const fileName = foundKey ? imageMaps[category][foundKey] : 'default.webp'
-
-    return `/api/photo/${category}/${fileName}`
+export function getImagePath(category: ImageMapCategory, name: string): string {
+    const map = imageMaps[category] as Record<string, string>
+    const match = Object.entries(map).find(([k]) => norm(k) === norm(name))
+    const file = match?.[1] ?? 'default.webp'
+    const sub = SUBDIR[category]
+    return `/api/photo/${category}${sub ? `/${sub}` : ''}/${file}`
 }
