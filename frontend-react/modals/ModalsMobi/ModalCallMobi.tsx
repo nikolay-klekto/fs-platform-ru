@@ -83,13 +83,9 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         <>
             {step === 'form' && (
                 <Modal variant="mobile" size="mobile-346" onClose={onClose} className="z-[70]">
-                    <p className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
-                        ЗАКАЗАТЬ ЗВОНОК
+                    <p className="bg-sub-title-gradient-mobi uppercase bg-clip-text pb-5 text-center text-4xl font-semibold text-transparent md:text-4xl">
+                        Заказать звонок
                     </p>
-                    <p className="pb-4 pl-3 text-base font-medium text-[#878797] md:text-lg">
-                        Заполните поля – и мы с вами свяжемся
-                    </p>
-
                     <form className="flex flex-col items-start pl-2 pr-1" onSubmit={handleSubmit}>
                         <div className="mb-3 flex w-full flex-col p-0.5">
                             <EnhancedInput
@@ -108,36 +104,43 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                     inputTouched.name && validateNameMobi(formData.name).styleError
                                         ? 'border-[#bc8070]'
                                         : 'border-[#878797]'
-                                } h-10 w-full rounded-[50px] bg-transparent p-4 text-xl font-medium text-[#878797] placeholder:text-xl placeholder:font-medium placeholder:text-[#353652] md:placeholder:text-2xl`}
-                                label="Ваше имя"
+                                }
+                                input-form-mobi-custom w-full rounded-[50px] pl-[20px] bg-transparent sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] text-xl font-medium text-white placeholder:font-medium placeholder:text-[#353652]`}
+                                label="Ваше имя*"
                                 labelClassName="text-white text-xl font-medium"
                                 wrapperClassName="w-full"
                             />
                             {errors.name && <p className="mt-1 text-sm text-[#bc8070]">{errors.name}</p>}
                         </div>
                         <div className="mb-3 flex w-full flex-col p-0.5">
-                            <PhoneInputMobi
-                                value={formData.phone}
-                                onChange={(value: string) =>
-                                    handleChange({
-                                        target: { name: 'phone', value, type: 'text', checked: false },
-                                    } as React.ChangeEvent<HTMLInputElement>)
-                                }
-                                onBlur={() => handleInputBlur('phone')}
-                                onError={(error) =>
-                                    setErrors((prev) => ({
-                                        ...prev,
-                                        phone: error || '',
-                                    }))
-                                }
-                                showInternalError={true}
-                                className={`border-2 focus:border-2`}
-                                labelClassName="text-2xl leading-[18px] font-medium text-white mb-0"
-                                wrapperClassName="w-full"
-                                required={true}
-                            />
+                            <div className="flex w-full flex-col gap-1.5">
+                                <label htmlFor="phone" className="mb-1 text-xl font-medium text-white">
+                                    Номер телефона*
+                                </label>
+                                <PhoneInputMobi
+                                    value={formData.phone}
+                                    onChange={(value: string) =>
+                                        handleChange({
+                                            target: { name: 'phone', value, type: 'text', checked: false },
+                                        } as React.ChangeEvent<HTMLInputElement>)
+                                    }
+                                    onBlur={() => handleInputBlur('phone')}
+                                    onError={(error) =>
+                                        setErrors((prev) => ({
+                                            ...prev,
+                                            phone: error || '',
+                                        }))
+                                    }
+                                    showInternalError={true}
+                                    className={`h-10 border-2 sm_l:placeholder:text-[14px] pl-[20px] sm_s:placeholder:text-[14px] text-xl focus:border-2`}
+                                    labelClassName="hidden"
+                                    wrapperClassName="w-full"
+                                    required={true}
+                                />
+                            </div>
                             {errors.phone && <p className="mt-1 text-sm text-[#bc8070]">{errors.phone}</p>}
                         </div>
+
                         <div className="mb-3 flex w-full flex-col p-0.5">
                             <EnhancedInput
                                 type="text"
@@ -147,7 +150,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 value={formData.time}
                                 onBlur={() => handleInputBlur('time')}
                                 onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                className="h-11 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-4 text-base font-medium text-[#878797] placeholder:text-sm placeholder:font-medium placeholder:text-[#353652]"
+                                className="input-form-mobi-custom w-full rounded-[50px] border-[#878797] bg-transparent sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] pl-[20px] text-xl font-medium text-white placeholder:font-medium placeholder:text-[#353652]"
                                 label="Удобное время для звонка"
                                 labelClassName="text-white text-xl"
                                 wrapperClassName="w-full"
@@ -166,7 +169,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 onChange={(value) => setFormData((prev) => ({ ...prev, consent: value === 'true' }))}
                                 label="Я согласен(а) на обработку персональных данных"
                                 wrapperClassName="flex items-center"
-                                labelClassName="ml-1 text-xs font-medium md:text-sm"
+                                labelClassName="text-xs font-medium md:text-sm"
                                 checkboxIconSize="size-4"
                             />
                             {errors.consent && <p className="mt-1 text-sm text-[#bc8070]">{errors.consent}</p>}
@@ -174,7 +177,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                         <button
                             type="submit"
                             disabled={Object.values(errors).some((err) => err?.trim())}
-                            className={`bg-sub-title-gradient-mobi mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] text-3xl font-semibold text-white md:text-4xl  ${
+                            className={`bg-sub-title-gradient-mobi mx-auto mt-[30px] h-12 w-4/5 rounded-[50px] text-3xl font-semibold text-white md:text-4xl ${
                                 Object.values(errors).some((err) => err?.trim())
                                     ? 'bg-[#878797] disabled:opacity-100'
                                     : 'bg-sub-title-gradient-mobi'
@@ -188,8 +191,8 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
 
             {step === 'accepted' && (
                 <Modal variant="mobile" size="mobile-346" onClose={onClose} bgClass="bg-auto" className="z-[70]">
-                    <h2 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
-                        ЗАЯВКА ПРИНЯТА
+                    <h2 className="bg-sub-title-gradient-mobi uppercase bg-clip-text pb-4 text-center text-4xl font-semibold text-transparent md:text-4xl">
+                        Заявка принята
                     </h2>
                     <p className="mb-1 px-3 pb-[18px] text-justify text-xl font-medium leading-[17px] text-[#878797] md:text-lg">
                         Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на сайте.
