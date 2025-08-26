@@ -105,7 +105,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         ? 'border-[#bc8070]'
                                         : 'border-[#878797]'
                                 }
-                                input-form-mobi-custom w-full rounded-[50px] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl font-medium text-[#878797] placeholder:font-medium placeholder:text-[#353652]`}
+                                input-form-mobi-custom w-full rounded-[50px] pl-[20px] bg-transparent sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] text-xl font-medium text-[#878797] placeholder:font-medium placeholder:text-[#353652]`}
                                 label="Ваше имя*"
                                 labelClassName="text-white text-xl font-medium"
                                 wrapperClassName="w-full"
@@ -115,8 +115,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                         <div className="mb-3 flex w-full flex-col p-0.5">
                             <div className="flex w-full flex-col gap-1.5">
                                 <label htmlFor="phone" className="mb-1 text-xl font-medium text-white">
-                                    Номер телефона
-                                    <span className="text-white-500">*</span>
+                                    Номер телефона*
                                 </label>
                                 <PhoneInputMobi
                                     value={formData.phone}
@@ -133,7 +132,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         }))
                                     }
                                     showInternalError={true}
-                                    className={`h-10 border-2 p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl focus:border-2`}
+                                    className={`h-10 border-2 sm_l:placeholder:text-[14px] pl-[20px] sm_s:placeholder:text-[14px] text-xl focus:border-2`}
                                     labelClassName="hidden"
                                     wrapperClassName="w-full"
                                     required={true}
@@ -151,7 +150,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 value={formData.time}
                                 onBlur={() => handleInputBlur('time')}
                                 onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                className="input-form-mobi-custom w-full rounded-[50px] border-[#878797] bg-transparent p-[0.875rem_3.1875rem_0.8125rem_1.25rem] text-xl font-medium text-[#878797] placeholder:font-medium placeholder:text-[#353652]"
+                                className="input-form-mobi-custom w-full rounded-[50px] border-[#878797] bg-transparent sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] pl-[20px] text-xl font-medium text-[#878797] placeholder:font-medium placeholder:text-[#353652]"
                                 label="Удобное время для звонка"
                                 labelClassName="text-white text-xl"
                                 wrapperClassName="w-full"
