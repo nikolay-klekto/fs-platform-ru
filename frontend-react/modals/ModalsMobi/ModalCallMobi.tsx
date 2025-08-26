@@ -83,8 +83,8 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         <>
             {step === 'form' && (
                 <Modal variant="mobile" size="mobile-346" onClose={onClose} className="z-[70]">
-                    <p className="bg-sub-title-gradient-mobi bg-clip-text pb-5 text-center text-4xl font-semibold text-transparent md:text-4xl">
-                        ЗАКАЗАТЬ ЗВОНОК
+                    <p className="bg-sub-title-gradient-mobi uppercase bg-clip-text pb-5 text-center text-4xl font-semibold text-transparent md:text-4xl">
+                        Заказать звонок
                     </p>
                     <form className="flex flex-col items-start pl-2 pr-1" onSubmit={handleSubmit}>
                         <div className="mb-3 flex w-full flex-col p-0.5">
@@ -105,7 +105,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         ? 'border-[#bc8070]'
                                         : 'border-[#878797]'
                                 }
-                                input-form-mobi-custom w-full rounded-[50px] pl-[20px] bg-transparent sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] text-xl font-medium text-[#878797] placeholder:font-medium placeholder:text-[#353652]`}
+                                input-form-mobi-custom w-full rounded-[50px] pl-[20px] bg-transparent sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] text-xl font-medium text-white placeholder:font-medium placeholder:text-[#353652]`}
                                 label="Ваше имя*"
                                 labelClassName="text-white text-xl font-medium"
                                 wrapperClassName="w-full"
@@ -150,7 +150,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 value={formData.time}
                                 onBlur={() => handleInputBlur('time')}
                                 onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                className="input-form-mobi-custom w-full rounded-[50px] border-[#878797] bg-transparent sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] pl-[20px] text-xl font-medium text-[#878797] placeholder:font-medium placeholder:text-[#353652]"
+                                className="input-form-mobi-custom w-full rounded-[50px] border-[#878797] bg-transparent sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] pl-[20px] text-xl font-medium text-white placeholder:font-medium placeholder:text-[#353652]"
                                 label="Удобное время для звонка"
                                 labelClassName="text-white text-xl"
                                 wrapperClassName="w-full"
