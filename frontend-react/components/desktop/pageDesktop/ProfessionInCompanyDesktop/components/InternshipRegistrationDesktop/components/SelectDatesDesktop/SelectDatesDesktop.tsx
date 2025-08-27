@@ -12,6 +12,7 @@ interface SelectDatesDesktopProps {
 
 const SelectDatesDesktop: React.FC<SelectDatesDesktopProps> = ({ error, onErrorChange }) => {
     const [intervals, setIntervals] = useState<number[]>([Date.now()])
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [datesErrors, setDatesErrors] = useState<boolean[]>([false])
 
     const handleRemove = (id: number) => {

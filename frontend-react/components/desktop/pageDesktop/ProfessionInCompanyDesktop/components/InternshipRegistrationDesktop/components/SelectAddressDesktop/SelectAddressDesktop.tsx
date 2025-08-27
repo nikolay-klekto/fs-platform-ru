@@ -84,7 +84,7 @@ const SelectTypeAddressDesktop = ({ onAddressChange }: { onAddressChange: (addre
                                 {option.label}
                             </button>
                             {index < options.length - 1 && (
-                                <div className="my-[35px] h-[1px] w-full bg-[#878797] px-[22px]" />
+                                <div className="my-[35px] h-px w-full bg-[#878797] px-[22px]" />
                             )}
                         </div>
                     ))}

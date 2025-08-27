@@ -99,7 +99,7 @@ const SelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (types: string[]) =
                                 >
                                     {option.label}
                                 </button>
-                                <div className="relative group ml-4">
+                                <div className="group relative ml-4">
                                     <QuestionMarkIconDesktop className="h-[40px] w-[41px] cursor-pointer" />
                                     <div
                                         className="absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 

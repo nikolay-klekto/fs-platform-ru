@@ -7,7 +7,9 @@ import SelectDatesDesktop from './components/SelectDatesDesktop/SelectDatesDeskt
 import { Button } from '@/components/ui/button'
 
 const InternshipRegistrationDesktop: React.FC = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [selectedTypes, setSelectedTypes] = useState<string[]>([])
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [selectedAddresses, setSelectedAddresses] = useState<string[]>([])
     const [errorDates, setErrorDates] = useState(false)
 
@@ -26,7 +28,7 @@ const InternshipRegistrationDesktop: React.FC = () => {
     }
 
     return (
-        <div className="mx-auto mb-[136px] mt-[98px] w-full max-w-[1637px] rounded-[92px] bg-[#1F203F] text-white">
+        <div className="2xl-mid:max-w-[700px] 3xl-mid:max-w-[1440px] mx-auto  mb-[136px] mt-[98px] w-full max-w-[1637px] rounded-[92px] bg-[#1F203F] text-white">
             <h2 className="title66px_desktop bg-gradient-desktop bg-clip-text pt-[73px] text-center font-medium uppercase text-transparent">
                 Оформление стажировки
             </h2>
