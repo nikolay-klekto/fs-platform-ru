@@ -12,7 +12,14 @@ export const imageMaps = {
     },
 } as const
 
-const SUBDIR: Record<ImageMapCategory, string> = {
+export type ImageMapCategory = keyof typeof imageMaps
+export type ImageMapKey<T extends ImageMapCategory> = keyof (typeof imageMaps)[T]
+
+export function getImagePath<T extends ImageMapCategory>(category: T, name: string): string {
+    return `/api/photo/${category}/facade/${imageMaps[category][name as ImageMapKey<T>] ?? 'default.webp'}`
+}
+
+/*const SUBDIR: Record<ImageMapCategory, string> = {
     companies: 'facade',
     professions: '',
 }
@@ -25,4 +32,4 @@ export function getImagePath(category: ImageMapCategory, name: string): string {
     const file = match?.[1] ?? 'default.webp'
     const sub = SUBDIR[category]
     return `/api/photo/${category}${sub ? `/${sub}` : ''}/${file}`
-}
+}*/
