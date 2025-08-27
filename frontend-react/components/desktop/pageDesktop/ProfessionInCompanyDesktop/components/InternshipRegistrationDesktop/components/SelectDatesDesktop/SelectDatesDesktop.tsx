@@ -12,7 +12,7 @@ interface SelectDatesDesktopProps {
 
 const SelectDatesDesktop: React.FC<SelectDatesDesktopProps> = ({ error, onErrorChange }) => {
     const [intervals, setIntervals] = useState<number[]>([Date.now()])
-    const [datesErrors, setDatesErrors] = useState<boolean[]>([true])
+    const [datesErrors, setDatesErrors] = useState<boolean[]>([false])
 
     const handleRemove = (id: number) => {
         const index = intervals.indexOf(id)
@@ -28,7 +28,7 @@ const SelectDatesDesktop: React.FC<SelectDatesDesktopProps> = ({ error, onErrorC
     const handleAdd = () => {
         setIntervals((prev) => [...prev, Date.now()])
         setDatesErrors((prev) => {
-            const newErrors = [...prev, true]
+            const newErrors = [...prev, false]
             onErrorChange?.(newErrors.some((e) => e))
             return newErrors
         })
@@ -50,7 +50,10 @@ const SelectDatesDesktop: React.FC<SelectDatesDesktopProps> = ({ error, onErrorC
                     <div className="relative flex items-center gap-4">
                         <SelectDateDesktop
                             selectedDates={{ startDate: null, endDate: null }}
-                            onChange={() => {}}
+                            onChange={(range) => {
+                                const hasError = !range.startDate
+                                onErrorChange?.(hasError)
+                            }}
                             onErrorChange={(hasError) => handleErrorChange(index, hasError)}
                             error={error}
                         />

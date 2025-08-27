@@ -10,11 +10,9 @@ const InternshipRegistrationDesktop: React.FC = () => {
     const [selectedTypes, setSelectedTypes] = useState<string[]>([])
     const [selectedAddresses, setSelectedAddresses] = useState<string[]>([])
     const [errorDates, setErrorDates] = useState(false)
-    // const [buttonDisabled, setButtonDisabled] = useState(false)
 
     const handleAddInternship = () => {
         setErrorDates(true)
-        // setButtonDisabled(true)
     }
 
     const handleTypeChange = (types: string[]) => {
@@ -28,7 +26,7 @@ const InternshipRegistrationDesktop: React.FC = () => {
     }
 
     return (
-        <div className="mx-auto mb-[136px] mt-[98px] max-w-[1637px] rounded-[92px] bg-[#1F203F] text-white">
+        <div className="mx-auto mb-[136px] mt-[98px] w-full max-w-[1637px] rounded-[92px] bg-[#1F203F] text-white">
             <h2 className="title66px_desktop bg-gradient-desktop bg-clip-text pt-[73px] text-center font-medium uppercase text-transparent">
                 Оформление стажировки
             </h2>

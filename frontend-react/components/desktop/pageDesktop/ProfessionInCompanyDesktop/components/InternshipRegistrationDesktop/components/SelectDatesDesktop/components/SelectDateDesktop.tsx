@@ -91,7 +91,7 @@ const SelectDateDesktop: React.FC<SelectDateDesktopProps> = ({ error = false, on
                 }}
             >
                 <button className="flex cursor-pointer items-center justify-center" onClick={() => setIsOpen(!isOpen)}>
-                    <CalendarIconsDesktop color={error ? '#BC8070' : '#FFFFFF'} className="size-[46px]" />
+                    <CalendarIconsDesktop color={error ? '#BC8070' : '#878797'} className="size-[46px]" />
                 </button>
                 <IMaskInput
                     mask="00.00.0000"
@@ -103,7 +103,7 @@ const SelectDateDesktop: React.FC<SelectDateDesktopProps> = ({ error = false, on
                         'font-medium w-[181px] bg-transparent text-center text-[33px]',
                         error
                             ? 'text-[#BC8070] font-medium placeholder:text-[#BC8070] placeholder:font-medium'
-                            : 'text-white placeholder:text-[#878797]',
+                            : 'text-[#878797] placeholder:text-[#878797]',
                     )}
                 />
             </div>

@@ -14,18 +14,18 @@ const CompanyPageDesktop: React.FC = () => {
                 <CompanyInfoDesktop />
                 <InternshipRegistrationDesktop />
                 <div className="container mb-[199px]">
-                    <h2 className="mb-[70px] mt-[136px] pl-[58px] title48px_desktop font-medium uppercase 2xl:mt-[80px] 3xl:mt-[100px]">
+                    <h2 className="title48px_desktop mb-[70px] mt-[136px] pl-[26px] font-medium uppercase 2xl:mt-[80px] 3xl:mt-[100px]">
                         Процесс стажировки
                     </h2>
                     <InternshipProcessDesktop />
                 </div>
                 <div className="overflow-hidden pl-[58px] pr-0  ">
-                    <h2 className="container mb-[70px] title48px_desktop font-medium uppercase ">
+                    <h2 className="title48px_desktop container mb-[70px] pl-0 font-medium uppercase ">
                         Профессия программиста в других компаниях
                     </h2>
                     <ProfessionInOtherCompanies />
 
-                    <h2 className="container mb-[81px] mt-[106px] title48px_desktop font-medium uppercase 2xl:mt-[80px] 3xl:mt-[90px]">
+                    <h2 className="title48px_desktop container mb-[81px] mt-[106px] pl-0 font-medium uppercase 2xl:mt-[80px] 3xl:mt-[90px]">
                         Другие профессии в этой компании
                     </h2>
                     <ProfessionsInCompanyDesktop />
