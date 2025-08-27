@@ -1,5 +1,6 @@
 'use client'
 import React, { useRef } from 'react'
+import Link from 'next/link'
 import { content } from './ItemProfessionsInCompanyDesktop/contentProfessionsDesktop/content'
 import ItemProfessionsInCompanyDesktop from './ItemProfessionsInCompanyDesktop/ItemProfessionsInCompanyDesktop'
 import useScrollbarSync from '@/hooks/useScrollbarSync'
@@ -16,12 +17,14 @@ const InternshipProfessionsDesktop: React.FC = () => {
                 className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll"
             >
                 {content.map((item) => (
-                    <ItemProfessionsInCompanyDesktop
-                        key={item.id}
-                        image={item.image}
-                        name={item.name}
-                        onWidthChange={() => {}}
-                    />
+                    <Link href={`/profession-in-company`} key={item.id}>
+                        <ItemProfessionsInCompanyDesktop
+                            key={item.id}
+                            image={item.image}
+                            name={item.name}
+                            onWidthChange={() => {}}
+                        />
+                    </Link>
                 ))}
             </div>
             <div className="mb-[120px] mt-[92px] w-full">

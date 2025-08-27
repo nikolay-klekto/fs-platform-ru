@@ -72,6 +72,7 @@
         background-origin: border-box;
         background-clip: padding-box, border-box;
     }
+
     .button-border-desktop {
         position: relative;
         box-sizing: border-box;
@@ -80,7 +81,27 @@
         background-origin: border-box;
         background-clip: padding-box, border-box;
     }
+
+.button-border-internship-desktop {
+        position: relative;
+        box-sizing: border-box;
+        border: 7px solid transparent;
+        background-image: linear-gradient(#1F203F, #1F203F), linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+    }
+
+.button-border-internship-desktop:disabled {
+  position: relative;
+    box-sizing: border-box;
+    border: 7px solid transparent;
+    background-image: linear-gradient(#878797, #878797),
+                  linear-gradient(#878797, #878797);
+    cursor: not-allowed;
+}
+
     .button-border-desktop:hover,
+    .button-border-internship-desktop:hover,
     .button-border-desktop.is-open {
         background-image: linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8),
             linear-gradient(90deg, #8333f3, #5f4af3, #3b51a8);
