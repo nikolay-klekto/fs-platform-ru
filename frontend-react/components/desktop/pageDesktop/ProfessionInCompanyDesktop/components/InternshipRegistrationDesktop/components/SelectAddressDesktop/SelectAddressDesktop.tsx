@@ -44,13 +44,11 @@ const SelectTypeAddressDesktop = ({ onAddressChange }: { onAddressChange: (addre
 
     return (
         <div className="relative z-[1]" ref={selectRef}>
-            {/* Селектор */}
             <Button
                 variant={'select_internship_btn_desktop'}
                 size={'select_internship_btn_desktop'}
                 onClick={handleSelectToggle}
-                className={`flex items-center justify-between
-          pl-[45px] pr-6
+                className={`flex items-center justify-between pl-[45px] pr-6
           ${isOpen || selectedOption ? 'border-white text-white' : 'border-[#878797] text-[#878797]'}
           text-[33px] font-medium`}
             >
@@ -62,8 +60,6 @@ const SelectTypeAddressDesktop = ({ onAddressChange }: { onAddressChange: (addre
                     }`}
                 />
             </Button>
-
-            {/* Дропдаун */}
             {isOpen && (
                 <div
                     className="absolute top-[96px] z-[9999] flex flex-col bg-[#1F203F] px-[60px] pt-[37px]"
@@ -77,7 +73,7 @@ const SelectTypeAddressDesktop = ({ onAddressChange }: { onAddressChange: (addre
                         <div key={option.value}>
                             <button
                                 type="button"
-                                className={`w-full pl-[58px] text-left text-[32px] font-medium transition-colors duration-200 ${selectedOption === option.value ? 'text-white' : 'text-[#878797]'}
+                                className={`text32px_desktop w-full pl-[58px] text-left font-medium transition-colors duration-200 ${selectedOption === option.value ? 'text-white' : 'text-[#878797]'}
                   hover:text-white
                   ${index === 0 ? 'mt-0' : ''}`}
                                 onClick={() => {
@@ -88,7 +84,7 @@ const SelectTypeAddressDesktop = ({ onAddressChange }: { onAddressChange: (addre
                                 {option.label}
                             </button>
                             {index < options.length - 1 && (
-                                <div className="px-[22px] my-[35px] h-[1px] w-full bg-[#878797]" />
+                                <div className="my-[35px] h-[1px] w-full bg-[#878797] px-[22px]" />
                             )}
                         </div>
                     ))}

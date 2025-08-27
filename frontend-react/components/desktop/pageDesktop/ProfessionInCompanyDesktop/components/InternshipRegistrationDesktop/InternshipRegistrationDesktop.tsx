@@ -10,11 +10,11 @@ const InternshipRegistrationDesktop: React.FC = () => {
     const [selectedTypes, setSelectedTypes] = useState<string[]>([])
     const [selectedAddresses, setSelectedAddresses] = useState<string[]>([])
     const [errorDates, setErrorDates] = useState(false)
-    const [buttonDisabled, setButtonDisabled] = useState(false)
+    // const [buttonDisabled, setButtonDisabled] = useState(false)
 
     const handleAddInternship = () => {
         setErrorDates(true)
-        setButtonDisabled(true)
+        // setButtonDisabled(true)
     }
 
     const handleTypeChange = (types: string[]) => {
@@ -28,15 +28,12 @@ const InternshipRegistrationDesktop: React.FC = () => {
     }
 
     return (
-        <div className="mx-auto mb-[136px] mt-[98px] max-w-[1637px] rounded-[92px] bg-[#1F203F] p-10 text-white">
-            <h2 className="title66px_desktop bg-gradient-desktop bg-clip-text text-center font-medium uppercase text-transparent">
+        <div className="mx-auto mb-[136px] mt-[98px] max-w-[1637px] rounded-[92px] bg-[#1F203F] text-white">
+            <h2 className="title66px_desktop bg-gradient-desktop bg-clip-text pt-[73px] text-center font-medium uppercase text-transparent">
                 Оформление стажировки
             </h2>
-
-            {/* таблица */}
-            <div className="pl-[86px] pr-[74px] mt-[55px] flex flex-col">
-                {/* Профессия */}
-                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white pt-[55px] pb-[36px]">
+            <div className="flex flex-col pl-[81px] pr-[74px] pt-[55px]">
+                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white pb-[37px] ">
                     <div className="flex items-center">
                         <p className="text28px_desktop font-medium text-[#878797]">Профессия</p>
                     </div>
@@ -44,9 +41,7 @@ const InternshipRegistrationDesktop: React.FC = () => {
                         <p className="text32px_desktop font-medium text-white">Программист</p>
                     </div>
                 </div>
-
-                {/* Компания */}
-                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white py-[36px]">
+                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white py-[37px]">
                     <div className=" flex items-center">
                         <p className="text28px_desktop font-medium text-[#878797]">Компания</p>
                     </div>
@@ -54,9 +49,7 @@ const InternshipRegistrationDesktop: React.FC = () => {
                         <p className="text32px_desktop font-medium text-white">EPAM</p>
                     </div>
                 </div>
-
-                {/* Вид стажировки */}
-                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white  py-[36px]">
+                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white  py-[37px]">
                     <div className="flex items-center">
                         <p className="text28px_desktop font-medium text-[#878797]">Вид стажировки</p>
                     </div>
@@ -64,19 +57,15 @@ const InternshipRegistrationDesktop: React.FC = () => {
                         <SelectTypeDesktop onTypeChange={handleTypeChange} />
                     </div>
                 </div>
-
-                {/* Даты стажировки */}
-                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white py-[36px]">
+                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white pt-[37px]">
                     <div className=" flex items-center">
-                        <p className="text28px_desktop font-medium text-[#878797]">Даты стажировки</p>
+                        <p className="text28px_desktop pb-[116px] font-medium text-[#878797]">Даты стажировки</p>
                     </div>
                     <div className="flex flex-col">
-                        <SelectDatesDesktop error={errorDates} />
+                        <SelectDatesDesktop error={errorDates} onErrorChange={setErrorDates} />
                     </div>
                 </div>
-
-                {/* Адрес стажировки */}
-                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white  py-[36px]">
+                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b border-white  py-[37px]">
                     <div className=" flex items-center">
                         <p className="text28px_desktop font-medium text-[#878797]">Адрес стажировки</p>
                     </div>
@@ -85,18 +74,13 @@ const InternshipRegistrationDesktop: React.FC = () => {
                     </div>
                 </div>
             </div>
-
-            {/* Цена + кнопка */}
-            <div className="mb-[102px] mt-[62px] flex flex-row items-center justify-between px-[74px]">
+            <div className="mt-[80px] flex flex-row items-center justify-between px-[74px] pb-[102px]">
                 <p className="title66px_desktop font-medium">100 BYN</p>
                 <Button
-                    variant={'add_to_chart_btn_desktop'}
+                    variant={'internship_add_to_chart_btn_desktop'}
                     size={'add_to_chart_btn_desktop'}
-                    className={`text38px_desktop font-semibold ${
-                        buttonDisabled ? 'cursor-not-allowed bg-[#878797] text-white' : 'text-white'
-                    }`}
                     onClick={handleAddInternship}
-                    disabled={buttonDisabled}
+                    disabled={errorDates}
                 >
                     Добавить в корзину
                 </Button>

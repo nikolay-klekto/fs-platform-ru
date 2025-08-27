@@ -33,7 +33,7 @@ const ItemProfessionsInOtherCompanyDesktop: React.FC<IItemProfessionsInOtherComp
     return (
         <div
             ref={itemRef}
-            className="flex justify-center items-center h-[123px] w-[316px] shrink-0 cursor-pointer rounded-[92px] border-[3.71px] border-[#878797]"
+            className="flex h-[123px] w-[316px] shrink-0 cursor-pointer items-center justify-center rounded-[92px] border-[3.71px] border-[#878797]"
         >
             <div className="relative h-[53px] w-[100px]">
                 <Image src={image.src} alt={image.alt} fill />

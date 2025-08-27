@@ -81,6 +81,11 @@
     .title28px_mobi_custom {
         @apply text-white text-9xl font-medium uppercase;
     }
+.title48px_desktop {
+        @apply text-[48px] 4xl:text-19xl 3xl:text-15xl 2xl:text-9xl;
+    }
+
+
     .title46px_desktop {
         @apply text-[46px] 4xl:text-18xl 3xl:text-14xl 2xl:text-8xl;
     }

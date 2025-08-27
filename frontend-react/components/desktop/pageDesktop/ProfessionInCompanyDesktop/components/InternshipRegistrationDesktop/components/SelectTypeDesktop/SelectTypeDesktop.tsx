@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { ChevronDownIconDesktop, QuestionMark } from '@/components/assets/iconsDesktop'
+import { ChevronDownIconDesktop, QuestionMarkIconDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 
 interface ISelectOption {
@@ -55,13 +55,11 @@ const SelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (types: string[]) =
 
     return (
         <div className="relative z-[1]" ref={selectRef}>
-            {/* Селектор */}
             <Button
                 variant={'select_internship_btn_desktop'}
                 size={'select_internship_btn_desktop'}
                 onClick={handleSelectToggle}
-                className={`flex items-center justify-between
-          pl-[45px] pr-6
+                className={`flex items-center justify-between pl-[45px] pr-6
           ${isOpen || selectedOption ? 'border-white text-white' : 'border-[#878797] text-[#878797]'}
           text-[33px] font-medium`}
             >
@@ -73,8 +71,6 @@ const SelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (types: string[]) =
                     }`}
                 />
             </Button>
-
-            {/* Дропдаун */}
             {isOpen && (
                 <div
                     className="absolute top-[96px] z-[9999] flex flex-col bg-[#1F203F] pl-[42px] pr-[25px]"
@@ -103,10 +99,8 @@ const SelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (types: string[]) =
                                 >
                                     {option.label}
                                 </button>
-
-                                {/* Иконка вопроса с тултипом */}
                                 <div className="relative group ml-4">
-                                    <QuestionMark className="h-[40px] w-[41px] cursor-pointer" />
+                                    <QuestionMarkIconDesktop className="h-[40px] w-[41px] cursor-pointer" />
                                     <div
                                         className="absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 
           opacity-0 transition-opacity duration-200 group-hover:opacity-100"

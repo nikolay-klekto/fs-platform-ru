@@ -11,9 +11,10 @@ interface SelectDateDesktopProps {
     error?: boolean
     selectedDates?: { startDate: Date | null; endDate: Date | null }
     onChange?: (range: { startDate: Date | null; endDate: Date | null }) => void
+    onErrorChange?: (value: boolean) => void
 }
 
-const SelectDateDesktop: React.FC<SelectDateDesktopProps> = ({ error = false, onChange }) => {
+const SelectDateDesktop: React.FC<SelectDateDesktopProps> = ({ error = false, onChange, onErrorChange }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedDate, setSelectedDate] = useState<Date | null>(null)
     const [inputValue, setInputValue] = useState('')
@@ -60,9 +61,11 @@ const SelectDateDesktop: React.FC<SelectDateDesktopProps> = ({ error = false, on
             const parsed = parseDate(formatted)
             setSelectedDate(parsed)
             onChange?.({ startDate: parsed, endDate: null })
+            onErrorChange?.(false)
         } else {
             setSelectedDate(null)
             onChange?.({ startDate: null, endDate: null })
+            onErrorChange?.(true)
         }
     }
 
@@ -87,17 +90,9 @@ const SelectDateDesktop: React.FC<SelectDateDesktopProps> = ({ error = false, on
                     height: 77,
                 }}
             >
-                {/* иконка */}
                 <button className="flex cursor-pointer items-center justify-center" onClick={() => setIsOpen(!isOpen)}>
-                    <CalendarIconsDesktop
-                        className={cn(
-                            'h-[46px] w-[46px]',
-                            error ? 'text-[#BC8070] font-medium ' : 'text-white font-medium',
-                        )}
-                    />
+                    <CalendarIconsDesktop color={error ? '#BC8070' : '#FFFFFF'} className="size-[46px]" />
                 </button>
-
-                {/* инпут */}
                 <IMaskInput
                     mask="00.00.0000"
                     lazy={false}

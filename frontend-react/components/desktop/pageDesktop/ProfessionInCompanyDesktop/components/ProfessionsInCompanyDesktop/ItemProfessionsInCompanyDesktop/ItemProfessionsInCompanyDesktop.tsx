@@ -42,7 +42,7 @@ const ItemProfessionsInCompanyDesktop: React.FC<IItemProfessionsInCompanyDesktop
                 <Image src={image.src} alt={image.alt} fill className="rounded-[60px]" />
             </div>
             <div className="absolute bottom-6 left-6 max-w-[210px] rounded-[23px] bg-white">
-                <p className="text-[22px] truncate px-[24px] py-[5px] font-medium text-[#101030]">{name}</p>
+                <p className="truncate px-[24px] py-[5px] text-[22px] font-medium text-[#101030]">{name}</p>
             </div>
         </div>
     )

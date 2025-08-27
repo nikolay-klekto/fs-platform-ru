@@ -28,7 +28,7 @@ const CompanyInfoDesktop: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col px-[26px]">
-                    <h1 className="mb-15 title80px_desktop relative z-10 font-medium uppercase">
+                    <h1 className="mb-[58px] title80px_desktop relative z-10 font-medium uppercase">
                         {' '}
                         Программист в компании Еpam
                     </h1>
@@ -44,7 +44,7 @@ const CompanyInfoDesktop: React.FC = () => {
 
                     {content.map((item) => (
                         <div key={item.id}>
-                            <p className="text32px_desktop max-w-[1803px] py-[57px] text-[rgb(135,135,151)]">
+                            <p className="text32px_desktop max-w-[1803px] pb-[60px] pt-[55px] text-[rgb(135,135,151)]">
                                 {item.text}
                             </p>
                             <div className="flex flex-row">

@@ -22,6 +22,9 @@ const buttonVariants = cva(
                     'button-border-desktop border-2 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white  2xl:text-3xl',
                 add_to_chart_btn_desktop:
                     'button-border-desktop border-2 rounded-[92px] text-[38px] font-semibold text-white',
+                internship_add_to_chart_btn_desktop:
+                    'button-border-internship-desktop border-[7px] rounded-[92px] text-[37px] font-semibold text-white',
+
                 send_btn_mobi:
                     'button-border-mobi border-2 rounded-[50px] text-[15px] sm:text-[14px] font-medium text-white',
                 select_mobi:
