@@ -99,8 +99,9 @@ const EventsPageDesktop: React.FC = () => {
                             </div>
                         ) : (
                             <div
-                                className="3xl:gap-[25px] 4xl:gap-[30px] flex min-h-[40vh] flex-wrap justify-between 
-                                gap-[36px] 2xl:gap-[20px]"
+                                className="grid grid-cols-3 xl:grid-cols-2
+                                gap-[36px] min-h-[40vh] w-full"
+                                style={{ gridAutoRows: '1fr' }}
                             >
                                 {pagedEvents.map((item) => (
                                     <EventsCardDesktop key={item.id} {...item} />

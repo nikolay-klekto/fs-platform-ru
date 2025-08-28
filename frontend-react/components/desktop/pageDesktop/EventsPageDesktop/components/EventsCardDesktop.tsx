@@ -36,9 +36,10 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
         <>
             <div
                 data-category={category}
-                className="flex min-h-[657px] max-w-[474px] 3xl:max-w-[414px]
-                2xl:max-w-[398px]
-                items-center justify-center rounded-[3.125rem] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
+                className="relative flex flex-col
+                aspect-[474/657]
+                flex-1
+                justify-start rounded-[3.125rem] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
                 style={{
                     backgroundImage: "url('/background/subtract-events.png')",
                     backgroundSize: 'contain',
@@ -47,8 +48,8 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
                 }}
             >
                 <div>
-                    <div className="relative mx-[20px] mb-[40px] mt-[20px] flex flex-col gap-[26px]">
-                        <div className="relative aspect-[4/3] w-full">
+                    <div className="px-[20px] pt-[20px] flex flex-col gap-[20px]">
+                        <div className="relative aspect-[434/358] w-full">
                             <Image
                                 src={image}
                                 fill
@@ -57,7 +58,9 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
                             />
                         </div>
 
-                        <div className="text28px_events text-gradient_desktop_custom pb-[4px] uppercase">{title}</div>
+                        <div className=" text28px_desktop text-gradient_desktop_custom pb-[5px] uppercase leading-tight">
+                            {title}
+                        </div>
                         <div className="text18px_desktop flex gap-[15px]">
                             <MapDesktop /> {date} ({week}) в {time}
                         </div>
@@ -70,7 +73,7 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
                         <Button
                             variant="circleDarkBlue"
                             size="circle_desktop"
-                            className="absolute -right-4 2xl:-bottom-[4.3rem] 2xl:-right-[1.2rem] -bottom-[4.1rem] 2xl:h-18 3xl:h-[4rem] 2xl:p-[16px]"
+                            className="absolute -right-0 -bottom-0 2xl:h-18 3xl:h-[4rem] 2xl:p-[16px]"
                         >
                             <ForwardIconWhiteDesktop />
                         </Button>
