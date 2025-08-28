@@ -12,6 +12,7 @@ interface IInternshipsCard {
     city: string
     place: string
     note: string
+    companyUrl: string
     mapImage: string
     mapUrl: string
 }
@@ -25,6 +26,7 @@ const ItemCardUpcomingInternshipsDesktop: React.FC<IInternshipsCard> = ({
     city,
     place,
     note,
+    companyUrl,
     mapImage,
     mapUrl,
 }) => {
@@ -45,13 +47,28 @@ const ItemCardUpcomingInternshipsDesktop: React.FC<IInternshipsCard> = ({
                     <p className="text-[24px] pb-[23px] font-medium">
                         {city}, {place}
                     </p>
-                    <p className="text-[15px] font-medium custom-grey">{note}</p>
+                    <p className="text-[15px] font-medium custom-grey">
+                        {note}
+                        <a
+                            href={companyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline decoration-1 underline-offset-2"
+                        >
+                            официальном сайте
+                        </a>
+                    </p>
                 </div>
                 <div className="relative w-full max-w-[332px] aspect-[332/328] rounded-[50px] overflow-hidden">
                     <Image src={image} fill alt={'Фото офиса EPAM'} className="object-cover object-center" />
                 </div>
             </CardContent>
-            <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="text-[24px] text-[#878797]">
+            <a
+                href={mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[24px] font-medium text-[#878797]"
+            >
                 <div className="relative w-full h-[180px] rounded-[25px] overflow-hidden">
                     <Image
                         src={mapImage}

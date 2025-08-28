@@ -16,11 +16,7 @@ const UpcomingInternshipDesktop: React.FC = () => {
                         Предстоящих стажировок нет
                     </p>
                     <Link href={'/professions'}>
-                        <Button
-                            variant={'select_desktop'}
-                            size={'select_btn_type_internship_desktop'}
-                            className="border-2"
-                        >
+                        <Button variant={'select_desktop'} size={'select_btn_internship_desktop'} className="border-2">
                             Выбрать профессию
                         </Button>
                     </Link>
