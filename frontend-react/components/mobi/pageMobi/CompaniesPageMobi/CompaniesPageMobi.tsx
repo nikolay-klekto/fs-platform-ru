@@ -32,8 +32,11 @@ const CompaniesPageMobi: React.FC = () => {
     })
 
     useEffect(() => {
-        setCurrentPage(1)
-    }, [debouncedSearchQuery, selectedCategories])
+        const newTotalPages = Math.ceil(filteredContent.length / cardsPerPage)
+        if (currentPage > newTotalPages) {
+            setCurrentPage(1)
+        }
+    }, [currentPage, filteredContent])
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
     const safeCurrentPage = Math.min(currentPage, totalPages || 1)
