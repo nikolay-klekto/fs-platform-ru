@@ -746,3 +746,14 @@ export const ChevronLeftIconMobi: React.FC<ISvgIcon> = (props) => {
         </svg>
     )
 }
+
+export const StarIconMobi: React.FC<ISvgIcon> = ({ fill = 'none', width = 10, height = 10, ...props }) => (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill={fill} xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path
+            d="M11.9991 2L15.1031 8.728L22.4611 9.601L17.0211 14.631L18.4651 21.899L11.9991 18.28L5.53311 21.9L6.97711 14.632L1.53711 9.6L8.89611 8.727L11.9991 2Z"
+            stroke="white"
+            strokeWidth={1.5}
+            strokeLinejoin="round"
+        />
+    </svg>
+)
