@@ -11,4 +11,4 @@ export function useDataContext() {
 }
 export function DataProvider({ children, data }: { children: React.ReactNode; data: IDataContext }) {
     return <DataContext.Provider value={data}>{children}</DataContext.Provider>
-} 
+}
