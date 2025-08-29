@@ -212,6 +212,24 @@ services:
       - /home/Nikolay/funScrut/photos/companies/facade:/app/uploads/companies/facade
       - /home/Nikolay/funScrut/photos/companies/logo:/app/uploads/companies/logo
       - /home/Nikolay/funScrut/files/resumes:/app/uploads/resumes
+      - /home/Nikolay/funScrut/files/documents:/app/uploads/documents
+    networks:
+      - prometheus-grafana-network
+
+  react-app-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile-React-Prod
+    ports:
+      - "3001:3000" # Указываем  внешний порт
+    volumes:
+      - /home/Nikolay/funScrut/photos/events:/app/uploads/events
+      - /home/Nikolay/funScrut/photos/professions:/app/uploads/professions
+      - /home/Nikolay/funScrut/photos/companies/facade:/app/uploads/companies/facade
+      - /home/Nikolay/funScrut/photos/companies/logo:/app/uploads/companies/logo
+      - /home/Nikolay/funScrut/files/resumes:/app/uploads/resumes
+      - /home/Nikolay/funScrut/files/documents:/app/uploads/documents
+
     networks:
       - prometheus-grafana-network
 
