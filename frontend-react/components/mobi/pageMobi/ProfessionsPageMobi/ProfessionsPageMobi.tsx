@@ -37,6 +37,10 @@ const ProfessionsPageMobi: React.FC = () => {
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
 
+    const handleSearch = () => {
+        console.log('Поиск профессий:', searchQuery)
+        setSearchQuery('')
+    }
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
@@ -58,7 +62,7 @@ const ProfessionsPageMobi: React.FC = () => {
                                     type="text"
                                     className="pl-[20px] pr-[50px] text-white"
                                     value={searchQuery}
-                                    onChange={setSearchQuery}
+                                    onChange={(value) => setSearchQuery(value)}
                                     variant={'search_mobi'}
                                     size={'search_mobi'}
                                     rounded={'full'}
