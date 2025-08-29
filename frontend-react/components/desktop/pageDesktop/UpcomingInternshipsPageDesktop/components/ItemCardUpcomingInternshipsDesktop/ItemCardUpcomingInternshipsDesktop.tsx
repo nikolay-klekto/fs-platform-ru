@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+
 import Image from 'next/image'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 
@@ -11,7 +11,6 @@ interface IInternshipsCard {
     time: string
     city: string
     place: string
-    note: string
     companyUrl: string
     mapImage: string
     mapUrl: string
@@ -25,30 +24,29 @@ const ItemCardUpcomingInternshipsDesktop: React.FC<IInternshipsCard> = ({
     time,
     city,
     place,
-    note,
     companyUrl,
     mapImage,
     mapUrl,
 }) => {
     return (
-        <Card className="flex flex-col w-full max-w-[1069px] min-w-[700px] bg-[#FFFFFF1A] p-[40px]">
-            <CardContent className="mb-[40px] p-0 flex items-center gap-[67px]">
+        <Card className="flex w-full min-w-[700px] max-w-[1069px] flex-col bg-[#FFFFFF1A] p-[40px]">
+            <CardContent className="mb-[40px] flex items-center gap-[67px] p-0">
                 <div className="pl-[45px]">
-                    <CardHeader className="flex-row space-y-0 p-0 m-0">
-                        <CardTitle className="text-[32px] text-gradient_desktop_custom rounded-none pb-[10px] font-medium uppercase">
+                    <CardHeader className="m-0 flex-row space-y-0 p-0">
+                        <CardTitle className="text-gradient_desktop_custom rounded-none pb-[10px] text-[32px] font-medium uppercase">
                             {title}
                         </CardTitle>
                     </CardHeader>
-                    <p className="text-[18px] custom-grey pb-[20px] font-medium">{subtitle}</p>
+                    <p className="custom-grey pb-[20px] text-[18px] font-medium">{subtitle}</p>
 
-                    <p className="text-[18px] pb-[20px] font-medium">
+                    <p className="pb-[20px] text-[18px] font-medium">
                         {date} в {time}
                     </p>
-                    <p className="text-[24px] pb-[23px] font-medium">
+                    <p className="pb-[23px] text-[24px] font-medium">
                         {city}, {place}
                     </p>
-                    <p className="text-[15px] font-medium custom-grey">
-                        {note}
+                    <p className="custom-grey text-[15px] font-medium">
+                        {'!Возьмите с собой паспорт и ознакомьтесь с компанией на '}
                         <a
                             href={companyUrl}
                             target="_blank"
@@ -59,7 +57,7 @@ const ItemCardUpcomingInternshipsDesktop: React.FC<IInternshipsCard> = ({
                         </a>
                     </p>
                 </div>
-                <div className="relative w-full max-w-[332px] aspect-[332/328] rounded-[50px] overflow-hidden">
+                <div className="relative aspect-[332/328] w-full max-w-[332px] overflow-hidden rounded-[50px]">
                     <Image src={image} fill alt={'Фото офиса EPAM'} className="object-cover object-center" />
                 </div>
             </CardContent>
@@ -69,22 +67,22 @@ const ItemCardUpcomingInternshipsDesktop: React.FC<IInternshipsCard> = ({
                 rel="noopener noreferrer"
                 className="text-[24px] font-medium text-[#878797]"
             >
-                <div className="relative w-full h-[180px] rounded-[25px] overflow-hidden">
+                <div className="relative h-[180px] w-full overflow-hidden rounded-[25px]">
                     <Image
                         src={mapImage}
                         alt="Изображение карты"
                         fill
-                        className="object-cover transform-gpu translate-full"
+                        className="translate-full transform-gpu object-cover"
                     />
-                    <div className="absolute inset-0 top-0 left-0 bg-[#1F203F] opacity-90 flex items-center justify-center">
+                    <div className="absolute inset-0 flex items-center justify-center bg-[#1F203F] opacity-90">
                         Смотреть на карте
                     </div>
                 </div>
             </a>
-            <CardFooter className="self-end mt-[40px]">
+            <CardFooter className="mt-[40px] self-end">
                 <button
                     type="button"
-                    className="text-[20px] text-[#878797] font-semibold underline underline-offset-4 decoration-1"
+                    className="text-[20px] font-semibold text-[#878797] underline decoration-1 underline-offset-4"
                 >
                     Отменить заказ
                 </button>

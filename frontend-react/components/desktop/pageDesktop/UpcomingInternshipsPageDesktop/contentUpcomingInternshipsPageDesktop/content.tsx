@@ -6,7 +6,6 @@ export interface IContent {
     time: string
     city: string
     place: string
-    note: string
     companyUrl: string
     mapImage: string
     mapUrl: string
@@ -22,10 +21,9 @@ export const content: IContent[] = [
         time: '9:00',
         city: 'Минск',
         place: 'ул. Тиражная 150, корпус 4, оф. 506',
-        note: '!Возьмите с собой паспорт и ознакомьтесь с компанией на ',
         companyUrl: 'https://www.epam.com/',
         mapImage: '/images/internship_map.png',
-        mapUrl: '/',
+        mapUrl: 'https://www.google.com/maps/',
         id: 1,
     },
     {
@@ -36,10 +34,9 @@ export const content: IContent[] = [
         time: '9:00',
         city: 'Минск',
         place: 'ул. Тиражная 150, корпус 4, оф. 506',
-        note: '!Возьмите с собой паспорт и ознакомьтесь с компанией на ',
         companyUrl: 'https://www.epam.com/',
         mapImage: '/images/internship_map.png',
-        mapUrl: '/',
+        mapUrl: 'https://www.google.com/maps/',
         id: 2,
     },
 ]
