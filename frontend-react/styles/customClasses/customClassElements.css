@@ -207,9 +207,8 @@
     }
 
     .input-form-mobi-custom {
-        @apply py-2 px-4 h-11 text-white border-2 text14px_mobi placeholder:text-[text14px_mobi]  border-[#878797] bg-[#101030] rounded-[50px] placeholder:text14px_mobi placeholder:font-medium placeholder:text-[#353652] placeholder:transition-colors duration-300 focus:border-[#878797] focus:outline-none transition;
+        @apply pl-4 border-[1.18px] text-xs h-[29.5px] w-full focus:text-white border-[#878797] bg-[#101030] rounded-[50px] placeholder:text-[#353652] placeholder:transition-colors duration-300 focus:border-[#878797] focus:outline-none transition;
     }
-
     .label-form-mobi-custom {
         @apply text-white text14px_mobi font-medium;
     }
