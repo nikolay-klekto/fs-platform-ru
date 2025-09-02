@@ -55,6 +55,7 @@ const SelectTypeAddressDesktop = ({ onAddressChange }: { onAddressChange: (addre
                 {selectedOption ? options.find((o) => o.value === selectedOption)?.label : 'Выберите адрес'}
 
                 <ChevronDownIconDesktop
+                    color="rgba(255,255,255,0.6)"
                     className={`h-[15px] w-[27px] transition-transform duration-200 2xl:w-[20px] ${
                         isOpen ? 'rotate-180' : ''
                     }`}

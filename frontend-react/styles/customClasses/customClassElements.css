@@ -70,10 +70,12 @@
     .title160px_desktop {
         @apply text-white text-[160px] 4xl:text-[150px] 3xl:text-[128px] 2xl:text-[115px] font-semibold uppercase;
     }
+    
     .title80px_desktop {
-        @apply text-white text-35xl 4xl:text-35xl 3xl:text-27xl 2xl:text-25xl font-semibold uppercase;
+        @apply text-white text-35xl 4xl:text-35xl 3xl:text-27xl 2xl:text-22xl font-semibold uppercase;
     }
 
+    
      .title66px_desktop {
         @apply text-white text-28xl 4xl:text-28xl 3xl:text-25xl 2xl:text-22xl font-medium uppercase;
     }
@@ -98,7 +100,7 @@
         @apply text-[36px] 4xl:text-10xl 3xl:text-9xl 2xl:text-7xl;
     }
     .text32px_desktop {
-        @apply text-[32px] 4xl:text-10xl 3xl:text-6xl 2xl:text-6xl;
+        @apply text-[32px] 4xl:text-11xl 3xl:text-6xl 2xl:text-6xl;
     }
     .text30px_desktop {
         @apply text-[30px] 4xl:text-9xl 3xl:text-8xl 2xl:text-6xl !important;

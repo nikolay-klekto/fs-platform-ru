@@ -498,12 +498,12 @@ export const HelpIconDesktop: React.FC<ISvgIcon> = (props) => {
     )
 }
 
-export const ChevronDownIconDesktop: React.FC<ISvgIcon> = (props) => {
+export const ChevronDownIconDesktop: React.FC<ISvgIcon> = ({ color = 'white', ...props }) => {
     return (
         <svg viewBox="0 0 27 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
                 d="M13.4997 14.7145C13.3311 14.7165 13.1639 14.6833 13.0089 14.6168C12.8539 14.5504 12.7145 14.4523 12.5997 14.3288L1.02829 2.75733C0.514007 2.24304 0.514007 1.4459 1.02829 0.931613C1.54258 0.417327 2.33972 0.417327 2.85401 0.931613L13.5254 11.603L24.1711 0.957327C24.6854 0.443041 25.4826 0.443041 25.9969 0.957327C26.5111 1.47161 26.5111 2.26876 25.9969 2.78304L14.4254 14.3545C14.1683 14.6116 13.834 14.7402 13.5254 14.7402L13.4997 14.7145Z"
-                fill="white"
+                fill={color}
             />
         </svg>
     )

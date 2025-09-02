@@ -59,13 +59,14 @@ const SelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (types: string[]) =
                 variant={'select_internship_btn_desktop'}
                 size={'select_internship_btn_desktop'}
                 onClick={handleSelectToggle}
-                className={`flex items-center justify-between pl-[45px] pr-6
+                className={`flex items-center justify-between px-[45px]
           ${isOpen || selectedOption ? 'border-white text-white' : 'border-[#878797] text-[#878797]'}
           text-[33px] font-medium`}
             >
                 {selectedOption ? options.find((o) => o.value === selectedOption)?.label : 'Выберите вид стажировки'}
 
                 <ChevronDownIconDesktop
+                    color="rgba(255,255,255,0.6)"
                     className={`h-[15px] w-[27px] transition-transform duration-200 2xl:w-[20px] ${
                         isOpen ? 'rotate-180' : ''
                     }`}
@@ -76,18 +77,21 @@ const SelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (types: string[]) =
                     className="absolute top-[96px] z-[9999] flex flex-col bg-[#1F203F] pl-[42px] pr-[25px]"
                     style={{
                         width: '751px',
-                        border: '3.66px solid #878797',
+                        border: '3.66px solid rgba(255,255,255,0.5)',
                         borderRadius: '44px',
                     }}
                 >
                     {options.map((option, index) => (
                         <div key={option.value}>
-                            <div className="flex items-center justify-between">
+                            <div
+                                className="flex items-center justify-between hover:bg-internship-desktop-hover
+                                hover:rounded-[33px]"
+                            >
                                 <button
                                     type="button"
-                                    className={`text-left text-[32px] font-medium transition-colors duration-200
-        ${selectedOption === option.value ? 'text-white' : 'text-[#878797]'}
-        hover:text-white`}
+                                    className={`text-left text32px_desktop whitespace-nowrap font-medium transition-colors duration-200
+        ${selectedOption === option.value ? 'text-[rgba(255,255,255,0.6)]' : 'text-[#878797]'}
+        hover:text-[rgba(255,255,255,1)] `}
                                     style={{
                                         marginTop: index === 0 ? '40px' : undefined,
                                         paddingBottom: index === options.length - 1 ? '33px' : undefined,
@@ -99,7 +103,7 @@ const SelectTypeDesktop = ({ onTypeChange }: { onTypeChange: (types: string[]) =
                                 >
                                     {option.label}
                                 </button>
-                                <div className="group relative ml-4">
+                                <div className="group relative ml-4 ">
                                     <QuestionMarkIconDesktop className="h-[40px] w-[41px] cursor-pointer" />
                                     <div
                                         className="absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 

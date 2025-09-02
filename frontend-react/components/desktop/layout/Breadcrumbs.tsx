@@ -41,7 +41,13 @@ export default function Breadcrumbs({
                                         {item.title}
                                     </BreadcrumbPage>
                                 ) : (
-                                    <BreadcrumbLink asChild className={item.className}>
+                                    <BreadcrumbLink
+                                        asChild
+                                        className={cn(
+                                            'text20px_desktop text-gray-500 hover:text-white',
+                                            item.className,
+                                        )}
+                                    >
                                         <Link href={item.href ?? '#'}>{item.title}</Link>
                                     </BreadcrumbLink>
                                 )}
