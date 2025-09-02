@@ -1,14 +1,17 @@
 import { ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
+import { twMerge } from 'tailwind-merge'
 import { X } from 'lucide-react'
 
 interface IModal {
     children: ReactNode
     onClose: () => void
-    size?: 'small' | 'medium' | 'semilarge' | 'semilarge-l' | 'large' | 'large-l' | 'large-lg' | 'extra-medium'
+    size?: 'small' | 'medium' | 'semilarge' | 'semilarge-l' | 'large' | 'large-l' | 'large-lg' | 'extra-medium' | 'mobile-346'
     showCloseButton?: boolean
     paddingClass?: string
     className?: string
+    bgClass?: string
+    variant?: 'desktop' | 'mobile'
 }
 const Modal: React.FC<IModal> = ({
     children,
@@ -17,6 +20,8 @@ const Modal: React.FC<IModal> = ({
     showCloseButton = true,
     paddingClass = '',
     className,
+    bgClass = '',
+    variant = 'desktop',
 }) => {
     useEffect(() => {
         const originalOverflow = document.body.style.overflow
@@ -44,14 +49,60 @@ const Modal: React.FC<IModal> = ({
                 return '2xl:w-[830px] max-w-[882px]'
             case 'extra-medium':
                 return 'max-w-lg'
+            case 'mobile-346':
+                return 'max-w-[346px]'
             default:
                 return 'max-w-lg'
         }
     }
 
+    const isMobile = variant === 'mobile'
+
+    const modalContent = isMobile ? (
+        <div
+            className={`relative mx-4 w-full ${getSizeClass()} modal-scrollable text-white`}
+            role="none"
+            onClick={(e) => e.stopPropagation()}
+        >
+            {showCloseButton && (
+                <button
+                    onClick={onClose}
+                    className="absolute right-0 top-0 rounded-[50px] bg-[#101030] bg-opacity-[80%] p-[3px]"
+                >
+                    <X size={24} color="#878797" className="opacity-50 hover:opacity-100" />
+                </button>
+            )}
+            <div
+                className={twMerge(
+                    "rounded-[35px] bg-[url('/background/Subtract_modalCall_png.png')] bg-cover bg-[right_top] bg-no-repeat px-3 py-[40px] text-white",
+                    bgClass,
+                )}
+            >
+                {children}
+            </div>
+        </div>
+    ) : (
+        <div
+            className={`relative w-full rounded-[50px] bg-[#101030] ${getSizeClass()} modal-scrollable text-white`}
+            role="none"
+            onClick={(e) => e.stopPropagation()}
+        >
+            {showCloseButton && (
+                <button className="absolute right-[-53px] top-0" onClick={onClose}>
+                    <X size={53} color="#878797" />
+                </button>
+            )}
+            {children}
+        </div>
+    )
+
     return ReactDOM.createPortal(
         <div
-            className={`fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%] ${paddingClass} ${className}`}
+            className={twMerge(
+                'fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[70%]',
+                paddingClass,
+                className,
+            )}
             onClick={onClose}
             role="button"
             tabIndex={0}
@@ -61,18 +112,7 @@ const Modal: React.FC<IModal> = ({
                 }
             }}
         >
-            <div
-                className={`relative w-full rounded-[50px] bg-[#101030] ${getSizeClass()} modal-scrollable text-white`}
-                role="none"
-                onClick={(e) => e.stopPropagation()}
-            >
-                {showCloseButton && (
-                    <button className="absolute right-[-53px] top-0" onClick={onClose}>
-                        <X size={53} color="#878797" />
-                    </button>
-                )}
-                {children}
-            </div>
+            {modalContent}
         </div>,
         document.body,
     )
