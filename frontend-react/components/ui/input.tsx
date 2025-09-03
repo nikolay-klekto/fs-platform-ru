@@ -76,6 +76,7 @@ export interface IEnhancedInput
     name?: string
     checkboxIconSize?: string
     checked?: boolean
+    hasError?: boolean
 }
 
 const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
@@ -97,6 +98,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             placeholder,
             checked,
             checkboxIconSize,
+            hasError,
             ...props
         },
         ref,
@@ -158,9 +160,10 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                     <label
                         htmlFor={name}
                         className={cn(
-                            'text15px_desktop font-medium text-[#878797]',
+                            'text15px_desktop font-medium',
                             labelClassName,
-                            isCheckbox && 'flex items-center gap-4',
+                            isCheckbox &&
+                                cn('flex items-center gap-4', internalValue ? 'text-white' : 'text-[#878797]'),
                         )}
                     >
                         {isCheckbox && (
@@ -169,19 +172,24 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 className={cn(
                                     'cursor-pointer flex items-center justify-center rounded transition-all',
                                     className,
+                                    hasError,
                                 )}
                                 onClick={handleCheckboxToggle}
                             >
                                 {internalValue ? (
                                     <CheckedBoxFormDesktop className={checkboxIconSize} />
                                 ) : (
-                                    <UncheckedBoxFormDesktop className={checkboxIconSize} />
+                                    <UncheckedBoxFormDesktop
+                                        className={checkboxIconSize}
+                                        style={{ color: hasError ? '#BC8070' : '#878797' }}
+                                    />
                                 )}
                             </button>
                         )}
                         {label}
                     </label>
                 )}
+
                 {!isCheckbox && (
                     <input
                         id={name}

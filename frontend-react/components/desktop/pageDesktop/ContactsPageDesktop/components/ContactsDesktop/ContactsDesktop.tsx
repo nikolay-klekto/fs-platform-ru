@@ -1,5 +1,6 @@
 'use client'
-import React, { useState } from 'react'
+import * as React from 'react'
+import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useToast } from '@/hooks/use-toast'
 import { useModal } from '@/context/ContextModal'
@@ -134,8 +135,8 @@ const ContactsDesktop: React.FC = () => {
                     <div className="radial-gradient_desktop left-[176px] top-[-330px]"></div>
                     <div className="radial-gradient_desktop right-[150px] top-[653px]"></div>
                     <div className="radial-gradient_desktop bottom-[-425px] left-[274px]"></div>
-                    <div className="3xl:mr-20 relative z-[1] mr-32 flex max-w-[541px] flex-col gap-7 2xl:mb-28 2xl:mr-0 2xl:max-w-none 2xl:self-start">
-                        <h2 className="text-26xl 3xl:text-23xl font-semibold uppercase">Cвяжитесь с нами</h2>
+                    <div className="relative z-[1] mr-32 flex max-w-[541px] flex-col gap-7 2xl:mb-28 2xl:mr-0 2xl:max-w-none 2xl:self-start 3xl:mr-20">
+                        <h2 className="text-26xl font-semibold uppercase 3xl:text-23xl">Cвяжитесь с нами</h2>
                         <Button
                             variant="send_btn_desktop"
                             size="contacts_btn_desktop"
@@ -172,7 +173,7 @@ const ContactsDesktop: React.FC = () => {
                                 {contentSocialContactsDesktop.map((item) => (
                                     <a key={item.id} href={item.href} className="flex max-w-[376px] items-center gap-5">
                                         <div>
-                                            <div className="bg-gradient-desktop hover:bg-gradient-desktop-hover flex h-[62px] w-[58px] items-center justify-center rounded-full">
+                                            <div className="flex h-[62px] w-[58px] items-center justify-center rounded-full bg-gradient-desktop hover:bg-gradient-desktop-hover">
                                                 {item.icon}
                                             </div>
                                         </div>

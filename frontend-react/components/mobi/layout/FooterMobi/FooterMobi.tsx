@@ -1,13 +1,13 @@
 'use client'
 
-import React from 'react'
+import * as React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { LogoIconMobi, TelegramIconMobi, InstagramIconMobi, LinkedInIconMobi } from '@/components/assets/iconsMobi'
-import {
-    contentFooterMobi,
-    contentFooterMobiImages,
-} from '@/components/mobi/layout/FooterMobi/contentFooterMobi/content'
+import { contentFooterMobi } from '@/components/mobi/layout/FooterMobi/contentFooterMobi/content'
+// import {
+//     contentFooterMobiImages
+// } from '@/components/mobi/layout/FooterMobi/contentFooterMobi/content'
 
 const FooterMobi: React.FC = () => {
     return (
@@ -58,7 +58,9 @@ const FooterMobi: React.FC = () => {
                         </a>
                     </div>
                     <div className="bg-custom-grey h-[2px] w-full rounded-full"></div>
+                    {/*
                     <div className="flex flex-wrap items-center gap-x-[49px] gap-y-4 pt-10 md:gap-x-[108px] md:gap-y-[60px]">
+>>>>>>> origin/dev-front-react
                         {contentFooterMobiImages.map((image) => (
                             <div key={image.id} className="size-fit">
                                 <div className="md:hidden">
@@ -85,6 +87,7 @@ const FooterMobi: React.FC = () => {
                     <p className="text-center text-xs font-medium text-white md:max-w-[694px] md:text-5xl">
                         funscrut .by © 2023, ООО «funscrut» УНП 000000000
                     </p>
+                    */}
                 </div>
             </footer>
         </>

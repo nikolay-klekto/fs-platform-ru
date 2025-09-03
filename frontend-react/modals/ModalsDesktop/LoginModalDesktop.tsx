@@ -180,7 +180,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={loading || (formError.show && !apiError)}
-                        className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] text-5xl font-semibold disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
+                        className="mx-auto mt-6 h-[64px] w-[64%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
                     >
                         {loading ? 'Вход...' : 'Войти'}
                     </Button>

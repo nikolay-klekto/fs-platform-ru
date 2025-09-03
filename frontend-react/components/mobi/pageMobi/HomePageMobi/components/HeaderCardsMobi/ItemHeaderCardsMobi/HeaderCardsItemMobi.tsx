@@ -1,5 +1,6 @@
 'use client'
 
+// eslint-disable-next-line import/default
 import React from 'react'
 import { ArrowWhiteMobi } from '@/components/assets/iconsMobi'
 import { Button } from '@/components/ui/button'
