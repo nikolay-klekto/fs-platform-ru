@@ -9,9 +9,9 @@ import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 const HeaderMainMobi: React.FC = () => {
     return (
         <>
-            <div className="px-[15px]">
+            <div className="p-[15px] md:p-0">
                 <div
-                    className="mx-auto flex h-[540px] w-full flex-col justify-between rounded-b-[40px] pb-[20px]"
+                    className="sm_l:justify-between sm_xl:h-[600px] mx-auto flex h-[540px] w-full flex-col justify-between rounded-b-[40px] p-0.5 pb-[40px] md:h-[707px] md:rounded-b-none md:p-[18px_9px_113px_9px]"
                     style={{
                         backgroundImage:
                             "linear-gradient(180deg, #0e0e28 0%, #10102ef4 21%, #14143ab0 53%, #211f5e 100%), url('/background/bgMobi.jpg')",
@@ -21,32 +21,34 @@ const HeaderMainMobi: React.FC = () => {
                     }}
                 >
                     <HeaderMobi disableBackground={true} />
-                    <div className="md:px-[15px]">
-                        <div className="min-w-[70%] max-w-[90%]">
-                            <h1 className="sm_xl:text-[2rem] sm_l:text-[1.875rem] sm_s:text-[1.875rem] w-full break-words pb-[10px] uppercase leading-[40px] text-white sm:text-[1.75rem] md:text-[2.125rem]">
+                    <div className="md:px-[10px]">
+                        <div className="sm_s:mt-[160px] mt-[180px] sm:mt-[140px] md:mt-0">
+                            <h1 className="text32px_mobi sm_l:leading-10 w-full min-w-[70%] max-w-[90%] font-normal uppercase text-white md:mb-[20px] md:mt-[43px] md:max-w-full md:leading-[60px]">
                                 Помогаем пройти стажировку
                             </h1>
-                            <p className="w-full break-words pb-[40px] text-[0.875rem] font-medium text-white">
+                            <p className="sm_l:max-w-[540px] sm_xl:max-w-[540px] sm_l:text-[0.875rem] sm_xl:text-[0.875rem] mb-8 max-w-[270px] text-base font-medium text-white md:mb-0 md:max-w-[540px] md:text-[clamp(0.875rem,4.05vw,1.5rem)]">
                                 В интересующей профессии и компании, независимо от наличия опыта и навыков
                             </p>
                         </div>
-                        <div className="mx-auto flex w-fit items-center justify-center md:mx-0">
-                            <Link href="/professions">
-                                <Button variant="accent_mobi" size="wide_mobi">
-                                    <span className="bg-gradient-desktop sm_s:p-[14px] bg-clip-text px-[20px] text-[1.125rem] font-semibold text-transparent sm:px-[10px]">
-                                        Выбрать профессию
-                                    </span>
-                                </Button>
-                            </Link>
-                            <Link href="/professions">
-                                <Button variant="accent_mobi" size="circle_mobi">
-                                    <ForwardIconMobi
-                                        fill={'url(#paint0_linear_847_15423)'}
-                                        stroke={'url(#paint1_linear_847_15423)'}
-                                    />
-                                </Button>
-                            </Link>
-                        </div>
+                    </div>
+
+                    <div className="sm_l:max-w-[310px] sm_xl:max-w-[310px] flex max-w-[260px] md:max-w-[540px] md:px-[11px]">
+                        <Link href="/professions" className="w-full">
+                            <Button variant="accent_mobi" size="wide_mobi">
+                                <span className="bg-gradient-desktop sm_s:p-[14px] sm_xl:text-4xl bg-clip-text text-3xl font-semibold text-transparent sm:px-[10px]  md:text-[clamp(0.7rem,5vw,30px)]">
+                                    Выбрать профессию
+                                </span>
+                            </Button>
+                        </Link>
+                        <Link href="/professions">
+                            <Button variant="accent_mobi" size="circle_mobi">
+                                <ForwardIconMobi
+                                    fill={'url(#paint0_linear_847_15423)'}
+                                    stroke={'url(#paint1_linear_847_15423)'}
+                                    className="size-[22px] md:size-[37px]"
+                                />
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

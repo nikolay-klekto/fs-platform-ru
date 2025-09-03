@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 interface IProfessionCard {
     profession: string
     image: string
-    price: string
+    price: string | null
     onClick?: () => void
 }
 
@@ -25,10 +25,10 @@ const ProfessionCardMobi: React.FC<IProfessionCard> = ({ image, profession, pric
                 </CardTitle>
             </CardHeader>
             <CardFooter variant={'profession_home_mobi'} size={'profession_home_mobi'} rounded={'rounded_38'}>
-                <p className="text18px_mobi text-[#878797]">
+                <p className="text-4xl text-[#878797] sm:text-2xl md:text-[clamp(13px,6vw,33px)]">
                     от{' '}
-                    <span className="bg-gradient-desktop sm_xl:text-6xl sm_l:text-5xl sm_s:text-5xl bg-clip-text text-[27px] font-medium text-transparent sm:text-5xl md:text-8xl">
-                        {price} BYN/
+                    <span className="bg-gradient-desktop bg-clip-text p-0.5 text-[27px] font-medium text-transparent sm:text-5xl md:text-[clamp(30px,7vw,50px)]">
+                        {price ? price : 'XX'} BYN/
                     </span>
                     неделя
                 </p>

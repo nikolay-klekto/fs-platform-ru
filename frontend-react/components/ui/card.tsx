@@ -22,7 +22,7 @@ const cardVariants = cva('border-none', {
             profession_home_desktop:
                 'aspect-[426/520] px-[30px] py-[20px] 2xl:px-[15px] 2xl:py-[10px] 3xl:px-[20px] 3xl:py-[15px]',
             profession_home_mobi:
-                'aspect-[5/6] w-[320px] p-[20px] sm:w-[260px] sm_s:w-[280px] sm_l:w-[300px] sm_xl:w-[320px]',
+                'aspect-[5/6] md:w-[clamp(400px,90vw,600px)] w-[320px] p-[20px] sm:w-[260px] sm_s:w-[280px] sm_l:w-[300px] sm_xl:w-[320px]',
             profession_page_desktop:
                 'aspect-[340/400] w-[340px] max-w-full  px-[20px] py-[25px] 2xl:px-[15px] 2xl:py-[20px]',
             profession_page_mobi:
@@ -57,7 +57,7 @@ const cardTitleVariants = cva('font-medium', {
             profession_home_desktop:
                 'text30px_desktop bg-white bg-opacity-[70%] font-semibold tracking-normal text-[#101030]',
             profession_home_mobi:
-                'text22px_mobi bg-white bg-opacity-[70%] font-semibold tracking-normal text-[#101030]',
+                'md:text-[clamp(25px,6vw,42px)] text-[22px] bg-white bg-opacity-[70%] font-semibold tracking-normal text-[#101030]',
             profession_page_desktop:
                 'truncate bg-white bg-opacity-[70%] text-7xl font-medium text-[#101030] 2xl:text-4xl 3xl:text-5xl 4xl:text-6xl',
             profession_page_mobi: 'bg-white bg-opacity-[70%] text-[13px] font-medium text-[#101030]',

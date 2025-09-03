@@ -1,5 +1,6 @@
 'use client'
-import React, { useState } from 'react'
+import * as React from 'react'
+import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useToast } from '@/hooks/use-toast'
 import { useModal } from '@/context/ContextModal'
