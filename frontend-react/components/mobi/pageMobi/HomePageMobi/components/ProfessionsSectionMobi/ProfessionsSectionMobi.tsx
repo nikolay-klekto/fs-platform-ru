@@ -24,7 +24,7 @@ const ProfessionsSectionMobi: React.FC = () => {
             </div>
             <div
                 ref={contentRef}
-                className="no-scrollbar_custom mx-auto mb-[20px] flex w-full gap-[20px] overflow-y-hidden overflow-x-scroll py-[32px]"
+                className="no-scrollbar_custom mx-auto mb-[20px] flex w-full gap-[20px] overflow-y-hidden overflow-x-scroll pb-[32px]"
             >
                 {content.slice(0, 4).map((item) => (
                     <ProfessionCardMobi

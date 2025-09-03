@@ -60,7 +60,10 @@ const FooterMobi: React.FC = () => {
                     <div className="bg-custom-grey h-[2px] w-full rounded-full"></div>
                     {/*
                     <div className="flex flex-wrap items-center gap-x-[49px] gap-y-4 pt-10 md:gap-x-[108px] md:gap-y-[60px]">
+<<<<<<< HEAD
 >>>>>>> origin/dev-front-react
+=======
+>>>>>>> 485708360da6df95e2248750136d4fbab45db45d
                         {contentFooterMobiImages.map((image) => (
                             <div key={image.id} className="size-fit">
                                 <div className="md:hidden">
