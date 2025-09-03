@@ -132,7 +132,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
 
         useEffect(() => {
             if (error) {
-                console.log('error:', error)
                 setStyleErrorClass(true)
             } else {
                 setStyleErrorClass(false)
