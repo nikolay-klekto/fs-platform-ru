@@ -173,7 +173,6 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
                     <Button
                         type="submit"
-                        variant="companies_desktop"
                         disabled={isSubmitDisabled}
                         className={
                             isSubmitDisabled
