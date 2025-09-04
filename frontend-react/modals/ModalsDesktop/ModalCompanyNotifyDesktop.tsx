@@ -1,8 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import { X } from 'lucide-react'
 import Modal from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
@@ -30,8 +29,6 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
     })
 
     const [checkboxTouched, setCheckboxTouched] = useState(false)
-
-    const [buttonDisabled, setButtonDisabled] = useState(false)
 
     const { toast } = useToast()
 
@@ -88,7 +85,6 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
         }
 
         if (hasErrors) {
-            setButtonDisabled(true)
             return hasErrors
         }
     }
@@ -113,19 +109,11 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
         }
     }
 
-    useEffect(() => {
-        if (!formErrors.email && !formErrors.consent) setButtonDisabled(false)
-    }, [formErrors.email, formErrors.consent])
+    const isSubmitDisabled = !!formErrors.email || !!formErrors.consent
 
     return (
-        <Modal onClose={onClose} size="semilarge-l" showCloseButton={false}>
+        <Modal onClose={onClose} size="semilarge-l" showCloseButton={true} crossPosition="right-5 top-4" crossSize={41}>
             <div className="mx-auto flex flex-col items-center justify-center px-[80px] pt-[43px]">
-                <button
-                    onClick={onClose}
-                    className="absolute right-5 top-4 transition-opacity duration-300 hover:opacity-100"
-                >
-                    <X className="size-10 opacity-70 hover:opacity-100" />
-                </button>
                 <h2
                     className="text-gradient_desktop_custom block w-[543px] whitespace-normal break-normal text-center text-[28px] font-medium uppercase leading-[1.22]"
                     style={{ textWrap: 'balance' }}
@@ -147,12 +135,12 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             error={!!formErrors.email}
                             labelClassName="text-white text-[15px] font-medium ml-[6px] mt-[18px] "
                             className={`focus:ring-0" h-[50px] w-[518px] rounded-[50px] border-2 bg-transparent text-[18px] font-medium text-white focus:outline-none
-                            ${formErrors.email ? 'border-[#E99B9B]' : 'border-[#878797]'}
+                            ${formErrors.email ? 'border-[#BC8070]' : 'border-[#878797]'}
                             `}
                         />
 
                         {(formErrors.email || formErrors.consent) && (
-                            <p className="mt-2 text-[15px] text-[#E99B9B]">{formErrors.email ?? 'Заполните поля'}</p>
+                            <p className="mt-2 text-[15px] text-[#BC8070]">{formErrors.email ?? 'Заполните поля'}</p>
                         )}
                     </div>
                     <div className="relative mb-4 flex items-center">
@@ -185,10 +173,10 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
                     <Button
                         type="submit"
-                        variant="companies_mobi"
-                        disabled={buttonDisabled}
+                        variant="companies_desktop"
+                        disabled={isSubmitDisabled}
                         className={
-                            buttonDisabled
+                            isSubmitDisabled
                                 ? 'pointer-events-none mx-auto mb-8 h-[52.35px] w-[220px] rounded-[40.44px] bg-[#878797] text-[16px] font-semibold text-white !opacity-100'
                                 : 'hover:bg-gradient-desktop-hover mx-auto mb-8 h-[52.35px] w-[220px] rounded-[40.44px] bg-gradient-to-r from-[#8333F3] via-[#5F4AF3] to-[#3B51A8] text-[16px] font-semibold transition-all duration-300 hover:shadow-lg'
                         }

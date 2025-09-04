@@ -6,12 +6,23 @@ import { X } from 'lucide-react'
 interface IModal {
     children: ReactNode
     onClose: () => void
-    size?: 'small' | 'medium' | 'semilarge' | 'semilarge-l' | 'large' | 'large-l' | 'large-lg' | 'extra-medium' | 'mobile-346'
+    size?:
+        | 'small'
+        | 'medium'
+        | 'semilarge'
+        | 'semilarge-l'
+        | 'large'
+        | 'large-l'
+        | 'large-lg'
+        | 'extra-medium'
+        | 'mobile-346'
     showCloseButton?: boolean
     paddingClass?: string
     className?: string
     bgClass?: string
     variant?: 'desktop' | 'mobile'
+    crossPosition?: string
+    crossSize?: number
 }
 const Modal: React.FC<IModal> = ({
     children,
@@ -22,6 +33,8 @@ const Modal: React.FC<IModal> = ({
     className,
     bgClass = '',
     variant = 'desktop',
+    crossPosition = 'right-[-53px] top-0',
+    crossSize = 53,
 }) => {
     useEffect(() => {
         const originalOverflow = document.body.style.overflow
@@ -40,7 +53,7 @@ const Modal: React.FC<IModal> = ({
             case 'semilarge':
                 return 'max-w-2xl'
             case 'semilarge-l':
-                return 'max-w-[701px]'
+                return 'max-w-[700px]'
             case 'large':
                 return 'max-w-4xl'
             case 'large-l':
@@ -88,8 +101,12 @@ const Modal: React.FC<IModal> = ({
             onClick={(e) => e.stopPropagation()}
         >
             {showCloseButton && (
-                <button className="absolute right-[-53px] top-0" onClick={onClose}>
-                    <X size={53} color="#878797" />
+                <button className={`absolute ${crossPosition}`} onClick={onClose}>
+                    <X
+                        size={crossSize}
+                        color="#FFFFFF"
+                        className="opacity-60 transition-opacity duration-100 hover:opacity-100"
+                    />
                 </button>
             )}
             {children}

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
-import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '../assets/iconsDesktop'
+import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
 import { useEffect } from 'react'
 
 const inputVariants = cva(
@@ -191,7 +191,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 ) : (
                                     <UncheckedBoxFormDesktop
                                         className={checkboxIconSize}
-                                        stroke={styleErrorClass ? '#E99B9B' : '#878797'}
+                                        stroke={styleErrorClass ? '#BC8070' : '#878797'}
                                     />
                                 )}
                             </button>

@@ -16,8 +16,8 @@ const ToastViewport = React.forwardRef<
     <ToastPrimitives.Viewport
         ref={ref}
         className={cn(
-            'fixed right-0 z-[400] flex w-auto',
-            'top-[70px]',
+            'fixed right-0 z-[100] flex w-auto',
+            'top-[150px]',
             'max-h-[calc(100vh-150px-20px)]',
             'max-md:top-[100px]',
             'max-sm_xl:top-[90px]',
@@ -40,16 +40,16 @@ const toastVariants = cva(
             },
             size: {
                 default: `
-                sm_xl:max-w-[360px]
-                sm_l:max-w-[315px]
-                sm_s:max-w-[320px]
-                w-[900px]
-                sm:max-w-[240px]
-                md:max-w-[420px]
-                lg:w-[500px]
-                xl:w-[600px]
-                2xl:w-[650px]
-                3xl:w-[800px]
+                    sm:max-w-[240px] 
+                    sm_s:max-w-[320px] 
+                    sm_l:max-w-[315px] 
+                    sm_xl:max-w-[360px] 
+                    md:max-w-[420px] 
+                    lg:w-[500px] 
+                    xl:w-[600px] 
+                    2xl:w-[650px] 
+                    3xl:w-[800px] 
+                    w-[900px]
               `,
             },
         },
