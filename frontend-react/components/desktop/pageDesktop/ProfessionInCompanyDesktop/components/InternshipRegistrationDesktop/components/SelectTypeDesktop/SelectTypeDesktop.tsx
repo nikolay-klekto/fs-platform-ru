@@ -83,11 +83,6 @@ const SelectTypeDesktop: React.FC<ISelectTypeDesktopProps> = ({ onTypeChange, on
         />
       </Button>
 
-      {error && (
-        <p className="text20px_desktop mt-[4px] font-medium leading-[100%] text-[#BC8070]">
-          Выберите вид стажировки
-        </p>
-      )}
 
       {isOpen && (
         <div

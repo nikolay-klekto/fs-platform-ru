@@ -64,18 +64,13 @@ const SelectTypeAddressDesktop: React.FC<ISelectTypeAdressProps> = ({ onTypeChan
                 {selectedOption ? options.find((o) => o.value === selectedOption)?.label : 'Выберите адрес'}
 
                 <ChevronDownIconDesktop
-                    color="rgba(255,255,255,0.6)"
-                    className={`h-[15px] w-[27px] transition-transform duration-200 2xl:w-[20px] ${
+                    color="rgba(255,255,255,0.6) "
+                    className={`h-[15px] w-[27px] transition-transform duration-200 2xl:w-[20px]  ${
                         isOpen ? 'rotate-180' : ''
                     }`}
                 />
             </Button>
-
-              {error && (
-        <p className="text-[#BC8070] leading-[100%] text20px_desktop mt-[4px] font-medium">
-          Выберите адрес стажировки
-        </p>
-      )}
+    
             {isOpen && (
                 <div
                     className="absolute top-[96px] z-[9999] flex w-[clamp(450px,90%,908px)] flex-col rounded-[44px] border-[3.5px] border-[#878797] bg-[#1F203F] px-[60px] pt-[37px]"

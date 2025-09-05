@@ -112,7 +112,7 @@ const SelectDatesDesktop: React.FC<ISelectDatesDesktopProps> = ({ onErrorChange,
                 const showError = (touched[index] || submitted) && intervalErrors[index]
 
                 return (
-                    <div key={index} className="flex flex-col gap-2">
+                    <div key={index} className="relative flex flex-col gap-2">
                         <div className="relative flex items-center gap-4" ref={dropdownRef}>
                             <button type="button" className="m-0 p-0" onClick={() => toggleDropdown(index)}>
                                 <SelectDateDesktop
@@ -180,7 +180,9 @@ const SelectDatesDesktop: React.FC<ISelectDatesDesktopProps> = ({ onErrorChange,
                         </div>
 
                         {showError && (
-                            <p className="text20px_desktop font-medium text-[#BC8070]">Выберите даты стажировки</p>
+                            <div className='absolute bottom-[-25px] '>
+                            <p className="text20px_desktop font-medium text-[#BC8070] pl-[20px]">Выберите даты стажировки</p>
+                            </div>
                         )}
                     </div>
                 )

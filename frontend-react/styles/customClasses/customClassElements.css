@@ -124,7 +124,7 @@
         @apply text-6xl 4xl:text-6xl 3xl:text-3xl 2xl:text-2xl;
     }
     .text20px_desktop {
-        @apply text-5xl 4xl:text-3xl 3xl:text-2xl 2xl:text-lg;
+        @apply text-[20px] 4xl:text-5xl 3xl:text-3xl 2xl:text-xl;
     }
     .text18px_desktop {
         @apply text-[18px] 4xl:text-4xl 3xl:text-2xl 2xl:text-xl;

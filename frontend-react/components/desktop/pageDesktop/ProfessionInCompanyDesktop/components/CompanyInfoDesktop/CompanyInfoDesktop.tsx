@@ -12,12 +12,13 @@ const CompanyInfoDesktop: React.FC = () => {
                 <div className="relative z-20 flex items-center space-x-1 pb-[29px] pl-[26px] pt-[60px] text20px_desktop text-gray-500 ">
                     <BreadcrumbsDesktop
                         items={[
-                            { title: 'Главная', href: '/' },
+                            { title: 'Главная', href: '/', className: 'text20px_desktop hover:text-white' },
                             {
                                 title: 'Компании',
                                 href: '/companies',
+                                className: 'text20px_desktop hover:text-white'
                             },
-                            { title: 'Компания Epam', className: 'text20px_desktop hover:text-white' },
+                            { title: 'Компания Epam',  href: '/company', className: 'text20px_desktop hover:text-white' },
                             {
                                 title: 'Программист в компании Epam',
                                 className: 'text20px_desktop ',
