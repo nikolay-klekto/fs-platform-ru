@@ -44,7 +44,7 @@ const buttonVariants = cva(
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover absolute flex items-center justify-center rounded-[50px] text-white',
                 circle_btn_mobi: 'absolute right-0 top-1/2 -translate-y-1/2',
                 select_internship_btn_desktop:
-                    'text-[33px] 3xl:text-10xl flex items-center gap-[20px] rounded-[92px] font-medium  2xl:text-8xl           border-[3.5px] hover:text-white hover:border-white',
+                    'text-[33px] 4xl:text-11xl 3xl:text-6xl 2xl:text-6xl flex items-center gap-[20px] rounded-[92px] font-medium  border-[3.5px] hover:text-white hover:border-white',
                 select_btn_desktop:
                     'button-border-desktop 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] text-5xl font-semibold  2xl:text-3xl',
                 circle: 'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
@@ -52,7 +52,7 @@ const buttonVariants = cva(
                 circleDarkBlue: 'rounded-[50%] bg-[#272744]',
                 select_day: 'bg-gradient-desktop rounded-[90px] text-white',
                 hover_button_date:
-                    'hover:button-border-desktop-date border-2 border-[#878797] bg-[#1f203f] rounded-[90px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg text-sm text-white',
+                    'hover:button-border-desktop-date border-2 border-[#878797] bg-[#1f203f] 4xl:text-2xl 3xl:text-xl 2xl:text-lg text-sm text-white',
                 cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
                 cookie_btn_mobi: 'button-border-mobi border-2 bg-inherit hover:bg-[#101030] rounded-[50px] text-white',
             },
@@ -78,9 +78,10 @@ const buttonVariants = cva(
                 header_btn:
                     'text-7.5xl 3xl:px-[2vw] 3xl:py-[15px] 3xl:text-4xl 4xl:px-[3vw] 4xl:py-[19px] 4xl:text-6xl max-h-[68px] px-[80px] py-[16px] 2xl:px-[2vw] 2xl:py-[14px] 2xl:text-3xl',
                 select_mobi_menu: 'h-[47px] w-full max-w-[195px] text-3xl',
-                add_to_chart_btn_desktop: 'h-[118px] w-[504px] 2xl:w-[250px]',
+                add_to_chart_btn_desktop: 'h-[118px] w-[504px] 2xl:w-[450px]',
                 send_btn_desktop: 'h-[64px] w-[272px] 2xl:w-[200px]',
-                select_internship_btn_desktop: 'h-[78px] w-[758px] 2xl:w-[650px]',
+                select_internship_btn_desktop: 'h-[78px] w-full',
+                select_address_btn_desktop:'h-[78px] w-full',
                 cookie_btn_desktop: '3xl:w-[250px] h-[64px] w-[237px]',
                 cookie_btn_mobi: 'w-[188px] h-[40px] text-wrap',
                 circle_btn_gradient_desktop: 'right-0 top-1/2 size-[60px] -translate-y-1/2 rounded-full',

@@ -67,6 +67,7 @@
         scrollbar-width: none;
     }
 
+
     .title160px_desktop {
         @apply text-white text-[160px] 4xl:text-[150px] 3xl:text-[128px] 2xl:text-[115px] font-semibold uppercase;
     }
@@ -97,8 +98,13 @@
     }
 
     .text36px_desktop {
-        @apply text-[36px] 4xl:text-10xl 3xl:text-9xl 2xl:text-7xl;
+        @apply text-[36px] 4xl:text-12xl 3xl:text-10xl 2xl:text-8xl;
     }
+
+    .text33px_desktop{
+        @apply text-[33px] 4xl:text-11xl 3xl:text-6xl 2xl:text-5xl font-medium;
+    }
+
     .text32px_desktop {
         @apply text-[32px] 4xl:text-11xl 3xl:text-6xl 2xl:text-6xl;
     }

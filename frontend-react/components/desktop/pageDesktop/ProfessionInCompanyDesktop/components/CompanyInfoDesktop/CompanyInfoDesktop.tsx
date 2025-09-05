@@ -9,7 +9,7 @@ const CompanyInfoDesktop: React.FC = () => {
     return (
         <>
             <div className="container relative overflow-hidden  ">
-                <div className="relative z-20 flex items-center space-x-1 pb-[29px] pl-[26px] pt-[60px] text-[20px] text-gray-500 ">
+                <div className="relative z-20 flex items-center space-x-1 pb-[29px] pl-[26px] pt-[60px] text20px_desktop text-gray-500 ">
                     <BreadcrumbsDesktop
                         items={[
                             { title: 'Главная', href: '/' },
@@ -85,7 +85,7 @@ const CompanyInfoDesktop: React.FC = () => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
-                                            <MapPinIconDesktop />
+                                            <MapPinIconDesktop color="#D1D1DD" />
                                         </a>
                                         <div className="pointer-events-none absolute left-0 top-0 z-10 opacity-0 transition-opacity duration-200 group-hover:opacity-80">
                                             <div className="flex h-[73px] w-[333px] items-center justify-center whitespace-nowrap rounded-[50px] bg-[url('/background/google-map.png')] bg-cover bg-no-repeat pb-[14px] pt-[30px] text-[21px] ">

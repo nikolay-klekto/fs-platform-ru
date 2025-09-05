@@ -3,13 +3,20 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { ChevronDownIconDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 interface ISelectOption {
     value: string
     label: string
 }
 
-const SelectTypeAddressDesktop = ({ onAddressChange }: { onAddressChange: (addresses: string[]) => void }) => {
+interface ISelectTypeAdressProps {
+  onTypeChange: (types: string[]) => void
+  error?: boolean
+  onValidationChange?: (isValid: boolean) => void
+}
+
+const SelectTypeAddressDesktop: React.FC<ISelectTypeAdressProps> = ({ onTypeChange, onValidationChange, error = false }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState<string | null>(null)
     const selectRef = useRef<HTMLDivElement>(null)
@@ -18,24 +25,21 @@ const SelectTypeAddressDesktop = ({ onAddressChange }: { onAddressChange: (addre
         setIsOpen((prev) => !prev)
     }
 
-    const handleClickOutside = (event: MouseEvent) => {
-        if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+          if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
             setIsOpen(false)
+          }
         }
-    }
-
-    useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [])
+        return () => document.removeEventListener('mousedown', handleClickOutside)
+      }, [])
 
     useEffect(() => {
-        if (selectedOption) {
-            onAddressChange([selectedOption])
-        }
-    }, [selectedOption, onAddressChange])
+      const isValid = !!selectedOption
+      onValidationChange?.(isValid)
+      if (selectedOption) onTypeChange([selectedOption])
+    }, [selectedOption, onTypeChange, onValidationChange])
 
     const options: ISelectOption[] = [
         { value: 'tirazhnaya_150_office_204', label: 'г. Минск, ул. Тиражная 150, офис 204' },
@@ -43,14 +47,19 @@ const SelectTypeAddressDesktop = ({ onAddressChange }: { onAddressChange: (addre
     ]
 
     return (
-        <div className="relative z-[1]" ref={selectRef}>
+        <div className="relative z-[1] w-[clamp(450px,90%,918px)]" ref={selectRef}>
             <Button
                 variant={'select_internship_btn_desktop'}
-                size={'select_internship_btn_desktop'}
-                onClick={handleSelectToggle}
-                className={`flex items-center justify-between pl-[45px] pr-6
-          ${isOpen || selectedOption ? 'border-white text-white' : 'border-[#878797] text-[#878797]'}
-          text-[33px] font-medium`}
+                size={'select_address_btn_desktop'}
+                 onClick={handleSelectToggle}
+                 className={cn(
+                         'flex items-center justify-between px-[45px]',
+                         error
+                           ? 'border-[rgba(188,128,112,1)] text-[rgba(188,128,112,0.6)]'
+                           : isOpen || selectedOption
+                           ? 'border-white text-white'
+                           : 'border-[#878797] text-[#878797]'
+                       )}
             >
                 {selectedOption ? options.find((o) => o.value === selectedOption)?.label : 'Выберите адрес'}
 
@@ -61,20 +70,21 @@ const SelectTypeAddressDesktop = ({ onAddressChange }: { onAddressChange: (addre
                     }`}
                 />
             </Button>
+
+              {error && (
+        <p className="text-[#BC8070] leading-[100%] text20px_desktop mt-[4px] font-medium">
+          Выберите адрес стажировки
+        </p>
+      )}
             {isOpen && (
                 <div
-                    className="absolute top-[96px] z-[9999] flex flex-col bg-[#1F203F] px-[60px] pt-[37px]"
-                    style={{
-                        width: '908px',
-                        border: '3.5px solid #878797',
-                        borderRadius: '44px',
-                    }}
-                >
+                    className="absolute top-[96px] z-[9999] flex w-[clamp(450px,90%,908px)] flex-col rounded-[44px] border-[3.5px] border-[#878797] bg-[#1F203F] px-[60px] pt-[37px]"
+                   >
                     {options.map((option, index) => (
                         <div key={option.value}>
                             <button
                                 type="button"
-                                className={`text32px_desktop w-full pl-[58px] text-left font-medium transition-colors duration-200 ${selectedOption === option.value ? 'text-white' : 'text-[#878797]'}
+                                className={`text33px_desktop w-full pl-[58px] text-left font-medium transition-colors duration-200 ${selectedOption === option.value ? 'text-white' : 'text-[#878797]'}
                   hover:text-white
                   ${index === 0 ? 'mt-0' : ''}`}
                                 onClick={() => {

@@ -1,45 +1,27 @@
 'use client'
 
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { IMaskInput } from 'react-imask'
-import { Calendar as CalendarPrimitive } from '@/components/ui/calendar'
 import { CalendarIconsDesktop } from '@/components/assets/iconsDesktop'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-interface SelectDateDesktopProps {
+interface ISelectDateDesktopProps {
     error?: boolean
-    selectedDates?: { startDate: Date | null; endDate: Date | null }
-    onChange?: (range: { startDate: Date | null; endDate: Date | null }) => void
-    onErrorChange?: (value: boolean) => void
+    selectedDate?: Date | null
+    onChange?: (date: Date | null) => void
 }
 
-const SelectDateDesktop: React.FC<SelectDateDesktopProps> = ({ error = false, onChange, onErrorChange }) => {
-    const [isOpen, setIsOpen] = useState(false)
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+const SelectDateDesktop: React.FC<ISelectDateDesktopProps> = ({ error = false, selectedDate, onChange }) => {
     const [inputValue, setInputValue] = useState('')
-    const calendarRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
-                setIsOpen(false)
-            }
+        if (selectedDate) {
+            const formatted = selectedDate.toLocaleDateString('ru-RU')
+            setInputValue(formatted)
+        } else {
+            setInputValue('')
         }
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => document.removeEventListener('mousedown', handleClickOutside)
-    }, [])
-
-    const autoFormatDate = (value: string): string => {
-        const numbersOnly = value.replace(/\D/g, '')
-        const day = numbersOnly.slice(0, 2)
-        const month = numbersOnly.slice(2, 4)
-        const year = numbersOnly.slice(4, 8)
-        let formattedDate = day
-        if (month) formattedDate += `.${month}`
-        if (year) formattedDate += `.${year}`
-        return formattedDate
-    }
+    }, [selectedDate])
 
     const isValidDate = (dateStr: string) => {
         const dateRegex = /^\d{2}\.\d{2}\.\d{4}$/
@@ -55,44 +37,23 @@ const SelectDateDesktop: React.FC<SelectDateDesktopProps> = ({ error = false, on
     }
 
     const handleInputChange = (value: string) => {
-        const formatted = autoFormatDate(value)
-        setInputValue(formatted)
-        if (isValidDate(formatted)) {
-            const parsed = parseDate(formatted)
-            setSelectedDate(parsed)
-            onChange?.({ startDate: parsed, endDate: null })
-            onErrorChange?.(false)
+        setInputValue(value)
+        if (isValidDate(value)) {
+            onChange?.(parseDate(value))
         } else {
-            setSelectedDate(null)
-            onChange?.({ startDate: null, endDate: null })
-            onErrorChange?.(true)
+            onChange?.(null)
         }
     }
 
-    const handleDateSelect = (date: Date | undefined) => {
-        if (!date) return
-        setSelectedDate(date)
-        setInputValue(autoFormatDate(date.toLocaleDateString('ru-RU')))
-        setIsOpen(false)
-    }
-
     return (
-        <div className="relative" ref={calendarRef}>
+        <div className="relative">
             <div
                 className={cn(
-                    'flex items-center justify-between px-[38px]',
-                    'rounded-[92px]',
-                    'transition-colors',
-                    error ? 'border-[3.71px] border-[#BC8070]' : 'border-[3.71px] border-[#878797]',
+                    'flex items-center justify-between px-[38px] 3xl:px-[29px] 2xl:px-[16px] w-[333px] 3xl:w-[260px] 2xl:w-[215px] h-[77px] border-[3.7px] rounded-[92px] transition-colors',
+                    error ? 'border-[#BC8070]' : 'border-[#878797]',
                 )}
-                style={{
-                    width: 333,
-                    height: 77,
-                }}
             >
-                <button className="flex cursor-pointer items-center justify-center" onClick={() => setIsOpen(!isOpen)}>
-                    <CalendarIconsDesktop color={error ? '#BC8070' : '#878797'} className="size-[46px]" />
-                </button>
+                <CalendarIconsDesktop color={error ? '#BC8070' : '#878797'} className="size-[46px]  2xl:size-[30px] 3xl:size-[40px]" />
                 <IMaskInput
                     mask="00.00.0000"
                     lazy={false}
@@ -100,44 +61,11 @@ const SelectDateDesktop: React.FC<SelectDateDesktopProps> = ({ error = false, on
                     value={inputValue}
                     onAccept={handleInputChange}
                     className={cn(
-                        'font-medium w-[181px] bg-transparent text-center text-[33px]',
-                        error
-                            ? 'text-[#BC8070] font-medium placeholder:text-[#BC8070] placeholder:font-medium'
-                            : 'text-[#878797] placeholder:text-[#878797]',
+                        'font-medium w-[181px] 3xl:w-[150px] 2xl:w-[120px] bg-transparent text-center text33px_desktop placeholder:text-[#878797]',
+                        error ? 'text-[#BC8070]' : inputValue ? 'text-white' : 'text-[#878797]',
                     )}
                 />
             </div>
-
-            {isOpen && (
-                <div className="absolute left-0 top-full z-[9999] mt-2 p-3">
-                    <CalendarPrimitive
-                        mode="single"
-                        selected={selectedDate ?? undefined}
-                        onSelect={handleDateSelect}
-                        className="rounded-[25px] bg-[#353652] p-4 text-white shadow-lg"
-                        components={{
-                            IconLeft: (props) => <ChevronLeft {...props} className="h-15 w-8 " />,
-                            IconRight: (props) => <ChevronRight {...props} className="h-15 w-8" />,
-                        }}
-                        classNames={{
-                            day: cn(
-                                'w-[44px] h-[44px] flex items-center justify-center rounded-full transition-all text-[18px] font-medium',
-                                'text-white',
-                                'hover:gradient-desktop-hover hover:text-white',
-                                'aria-selected:gradient-desktop-hover aria-selected:text-white',
-                            ),
-
-                            head_cell: cn(
-                                'w-[44px] h-[44px] flex items-center justify-center text-[18px] font-medium',
-                                'text-[#878797]',
-                            ),
-
-                            caption_label: cn('text-[22px] font-semibold', 'text-white'),
-                            nav_button: 'text-white',
-                        }}
-                    />
-                </div>
-            )}
         </div>
     )
 }

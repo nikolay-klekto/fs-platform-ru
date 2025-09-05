@@ -8,7 +8,7 @@ export const content: IContent[] = [
     {
         id: 1,
         number: '01',
-        text: 'Офрмление\nстажировки',
+        text: 'Оформление\nстажировки',
     },
     {
         id: 2,
