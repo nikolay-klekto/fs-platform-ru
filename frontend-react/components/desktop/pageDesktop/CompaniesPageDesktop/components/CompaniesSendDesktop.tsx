@@ -14,6 +14,7 @@ const CompaniesSendDesktop: React.FC = () => {
     const handleSubmitClick = (): void => {
         if (requestText.trim() !== '') {
             openModal('modal_company_notify_desktop', 'desktop')
+            setRequestText('')
         } else {
             setEmptyInputError(true)
         }

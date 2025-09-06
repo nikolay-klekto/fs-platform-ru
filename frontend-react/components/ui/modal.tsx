@@ -8,6 +8,7 @@ interface IModal {
     onClose: () => void
     size?:
         | 'small'
+        | 'mobile-346'
         | 'medium'
         | 'semilarge'
         | 'semilarge-l'
@@ -15,7 +16,6 @@ interface IModal {
         | 'large-l'
         | 'large-lg'
         | 'extra-medium'
-        | 'mobile-346'
     showCloseButton?: boolean
     paddingClass?: string
     className?: string
@@ -48,6 +48,8 @@ const Modal: React.FC<IModal> = ({
         switch (size) {
             case 'small':
                 return 'max-w-xs'
+            case 'mobile-346':
+                return 'max-w-[346px]'
             case 'medium':
                 return 'max-w-xl'
             case 'semilarge':
@@ -62,8 +64,6 @@ const Modal: React.FC<IModal> = ({
                 return '2xl:w-[830px] max-w-[882px]'
             case 'extra-medium':
                 return 'max-w-lg'
-            case 'mobile-346':
-                return 'max-w-[346px]'
             default:
                 return 'max-w-lg'
         }
