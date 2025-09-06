@@ -19,7 +19,7 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>) {
 }
 
 function BreadcrumbItem({ className, ...props }: React.ComponentProps<'li'>) {
-    return <li data-slot="breadcrumb-item" className={cn('inline-flex items-center', className)} {...props} />
+    return <li data-slot="breadcrumb-item" className={cn('flex items-center', className)} {...props} />
 }
 
 function BreadcrumbLink({
@@ -53,7 +53,7 @@ function BreadcrumbSeparator({ children, className, ...props }: React.ComponentP
             data-slot="breadcrumb-separator"
             role="presentation"
             aria-hidden="true"
-            className={cn('[&>svg]:size-3.5', className)}
+            className={cn('[&>svg]:size-3.5 px-0 mx-0', className)}
             {...props}
         >
             {children ?? <ChevronRight />}

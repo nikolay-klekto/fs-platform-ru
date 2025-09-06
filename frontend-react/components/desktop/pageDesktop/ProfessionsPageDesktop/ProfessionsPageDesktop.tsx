@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { useDataContext } from '@/context/DataContext'
 import { EnhancedInput } from '@/components/ui/input'
@@ -97,13 +98,14 @@ const ProfessionsPageDesktop: React.FC = () => {
                             {filteredContent
                                 .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                 .map((item) => (
-                                    <ProfessionCardPageDesktop
-                                        key={item.id}
-                                        image={item.imagePath}
-                                        profession={item.name}
-                                        price={item.pricePerWeek}
-                                        category={item.professionIndustry}
-                                    />
+                                    <Link href={`/profession`} key={item.id}>
+                                        <ProfessionCardPageDesktop
+                                            image={item.imagePath}
+                                            profession={item.name}
+                                            price={item.pricePerWeek}
+                                            category={item.professionIndustry}
+                                        />
+                                    </Link>
                                 ))}
                         </div>
                     ) : (
