@@ -11,7 +11,7 @@ import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDeskt
 import SelectInternshipTypeDesktop from './components/SelectInternshipTypeDesktop'
 import ProfessionsSelectDesktop from './components/ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './components/ProfessionCardPageDesktop'
-import ProfessionsPaginationDesktop from './components/ProfessionsPaginationDesktop'
+import PaginationDesktop from '../../shared/PaginationDesktop'
 import ProfessionSearchDesktop from './components/ProfessionSendDesktop'
 
 const ProfessionsPageDesktop: React.FC = () => {
@@ -25,7 +25,7 @@ const ProfessionsPageDesktop: React.FC = () => {
 
     useEffect(() => {
         setCurrentPage(1)
-    }, [debouncedSearchQuery, selectedCategories])
+    }, [debouncedSearchQuery, selectedCategories, selectedInternshipTypes])
 
     if (!professions) return null
 
@@ -47,10 +47,7 @@ const ProfessionsPageDesktop: React.FC = () => {
     })
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
-
-    const handlePageChange = (page: number): void => {
-        setCurrentPage(page)
-    }
+    const paginatedItems = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
 
     const handleCategoryChange = (categories: string[]) => {
         setSelectedCategories(categories)
@@ -94,17 +91,15 @@ const ProfessionsPageDesktop: React.FC = () => {
 
                     {filteredContent.length > 0 ? (
                         <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
-                            {filteredContent
-                                .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
-                                .map((item) => (
-                                    <ProfessionCardPageDesktop
-                                        key={item.id}
-                                        image={item.imagePath}
-                                        profession={item.name}
-                                        price={item.pricePerWeek}
-                                        category={item.professionIndustry}
-                                    />
-                                ))}
+                            {paginatedItems.map((item) => (
+                                <ProfessionCardPageDesktop
+                                    key={item.id}
+                                    image={item.imagePath}
+                                    profession={item.name}
+                                    price={item.pricePerWeek}
+                                    category={item.professionIndustry}
+                                />
+                            ))}
                         </div>
                     ) : (
                         <p className="my-20 min-h-[250px] text-center text-4xl text-white">Ничего не найдено</p>
@@ -113,10 +108,10 @@ const ProfessionsPageDesktop: React.FC = () => {
                     {totalPages <= 1 && <div className="h-[80px]"></div>}
 
                     {totalPages > 1 && filteredContent.length > 0 && (
-                        <ProfessionsPaginationDesktop
+                        <PaginationDesktop
                             totalPages={totalPages}
                             currentPage={currentPage}
-                            onPageChange={handlePageChange}
+                            onPageChange={setCurrentPage}
                         />
                     )}
 
