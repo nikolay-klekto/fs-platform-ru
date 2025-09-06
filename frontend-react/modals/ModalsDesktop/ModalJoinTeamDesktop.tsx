@@ -5,6 +5,7 @@ import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import PhoneInputDesktop from '@/components/desktop/shared/formInput/PhoneInputDesktop'
 import { AttachFileIconDesktop } from '@/components/assets/iconsDesktop'
+import { toast } from '@/hooks/use-toast';
 
 interface IFormData {
     name: string
@@ -105,12 +106,23 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
         }))
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         const isValid = validateForm()
+        
         if (!isValid) return
 
         const cleanedPhone = normalizePhone(formData.phoneNumber)
+                
+        toast({
+            description: (
+                <div className="pl-4">
+                    Спасибо! Ваша заявка была успешно отправлена
+                </div>
+            ),
+        })
+
+        onClose()
     }
 
     const normalizePhone = (value: string) => {
@@ -228,15 +240,9 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             labelClassName={`text-[23px] 2xl:text-[21px] ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                             checkboxIconSize="w-[28px]"
                             wrapperClassName="gap-4"
+                            hasError={errors.consent}
                         />
                     </div>
-                    {errors.consent ? (
-                        <p className="mb-[31px] text-4xl font-medium leading-[100%] tracking-normal text-[#bc8070]">
-                            Подтвердите согласие на обработку данных
-                        </p>
-                    ) : (
-                        ''
-                    )}
                     <p className="mb-[40px] text-[24px] font-medium leading-[100%] tracking-normal text-[#353652] ">
                         Защита от спама reCAPTCHA{' '}
                         <a href="/privacy-policy" className="leading-[100%] underline underline-offset-[5px]">
@@ -253,7 +259,8 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         variant={'header_desktop_btn_gradient'}
                         size={'join_team_btn_desktop'}
                         disabled={Object.values(errors).some(Boolean)}
-                        className={`*:treacking-0 text-11xl mx-auto block font-semibold leading-[100%] ${Object.values(errors).some(Boolean) ? 'bg-[#878797] disabled:opacity-100' : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'}`}
+                        className=
+                        {`*:treacking-0 text-11xl mx-auto block font-semibold leading-[100%] ${Object.values(errors).some(Boolean) ? 'bg-[#878797] disabled:opacity-100' : 'bg-gradient-desktop hover:bg-gradient-desktop-hover'}`}
                     >
                         Оставить заявку
                     </Button>

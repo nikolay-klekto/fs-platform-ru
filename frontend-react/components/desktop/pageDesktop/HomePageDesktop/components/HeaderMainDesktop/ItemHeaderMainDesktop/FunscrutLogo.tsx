@@ -1,3 +1,5 @@
+'use client'
+
 const FunscrutLogo: React.FC = () => {
     return (
         <div className="w-full">

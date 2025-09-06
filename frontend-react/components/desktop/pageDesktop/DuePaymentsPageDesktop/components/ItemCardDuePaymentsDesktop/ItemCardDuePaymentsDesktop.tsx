@@ -35,7 +35,7 @@ const ItemCardDuePaymentsDesktop: React.FC<IItemCardDuePayments> = ({
     return (
         <div className="flex flex-col flex-wrap rounded-[50px] bg-[#272745] px-[32px] py-[40px]">
             <div className="grid grid-cols-[4fr_4fr_5fr] grid-rows-8 pb-[13px] leading-none">
-                <div className="text30px_desktop text-gradient_desktop_custom col-span-2">ОПЛАТА ЗАКАЗА</div>
+                <div className="text30px_desktop text-gradient_desktop_custom col-span-2 uppercase">Оплата заказа</div>
                 <div className="relative row-span-6 mb-[20px] ml-[32px] max-h-[328px] max-w-[290px]">
                     <Image
                         src={image}
@@ -84,9 +84,9 @@ const ItemCardDuePaymentsDesktop: React.FC<IItemCardDuePayments> = ({
             <div className="flex items-center justify-between pt-[13px]">
                 <div className="text18px_desktop text-[#BC8070] "> Оплатить заказ до {daysForPayOrder}</div>
                 <div className="flex gap-[20px] self-end">
-                    <button>
+                    <div>
                         <TrashTooltipDesktop tooltipMessage="Расторгнуть договор" />
-                    </button>
+                    </div>
                     <Button variant={'send_btn_desktop'} size={'send_btn_desktop'} onClick={onClick}>
                         Оформить заказ
                     </Button>

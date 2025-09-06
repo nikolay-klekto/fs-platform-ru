@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect, useRef } from 'react'
 import { ChevronDownIconDesktop, CheckedBoxIconDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
@@ -47,8 +49,8 @@ const SelectInternshipTypeDesktop = ({ onCategoryChange }: { onCategoryChange: (
     }, [selectedOptions, onCategoryChange])
 
     const options: ISelectOption[] = [
-        { value: 'Наблюдатель', label: 'Наблюдатель' },
-        { value: 'Участник', label: 'Участник' },
+        { value: '1', label: 'Наблюдатель' },
+        { value: '2', label: 'Участник' },
     ]
 
     return (

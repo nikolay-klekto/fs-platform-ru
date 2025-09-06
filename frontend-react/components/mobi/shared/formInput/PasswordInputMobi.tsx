@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { EyeOffPasswordMobi, EyeOnPasswordMobi, PasswordGeneratorMobi } from '@/components/assets/iconsMobi'
 import { validatePasswordMobi } from '@/components/mobi/commonMobi/validate/validatePasswordMobi'
@@ -67,9 +69,11 @@ const PasswordInputMobi: React.FC<IPasswordInput> = ({
 
     return (
         <div className="w-full">
-            <label htmlFor={label} className={`${labelClassName}`}>
-                {label}
-            </label>
+            <div className="mb-[8px]">
+                <label htmlFor={label} className={`${labelClassName}`}>
+                    {label}
+                </label>
+            </div>
             <div className="relative flex w-full">
                 <input
                     id={label}

@@ -1,30 +1,42 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+
+import React, { useState, useEffect } from 'react'
+import { Search } from 'lucide-react'
+import { EnhancedInput } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { useModal } from '@/context/ContextModal'
+import useDebounce from '@/hooks/useDebounce'
+import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
+import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import CompaniesCardPageMobi from './components/CompaniesCardPageMobi'
 import CompaniesPaginationMobi from './components/CompaniesPaginationMobi'
 import CompaniesSendMobi from './components/CompaniesSendMobi'
-import { content } from './contentCompaniesPageMobi/content'
-import { EnhancedInput } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Search } from 'lucide-react'
-import { useModal } from '@/context/ContextModal'
 import CompaniesSelectMobi from './components/CompaniesSelectMobi'
-import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
-import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
+import { content } from './contentCompaniesPageMobi/content'
+
+const cardsPerPage = 6
 
 const CompaniesPageMobi: React.FC = () => {
     const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
+    const debouncedSearchQuery = useDebounce(searchQuery)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-    const cardsPerPage = 6
 
     const filteredContent = content.filter((item) => {
         const matchesSearch =
-            searchQuery.length < 3 || item.companyName.toLowerCase().includes(searchQuery.toLowerCase().trim())
+            (debouncedSearchQuery ?? '').length < 3 ||
+            item.companyName.toLowerCase().includes(debouncedSearchQuery.toLowerCase().trim())
         const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(item.industry)
         return matchesSearch && matchesCategory
     })
+
+    useEffect(() => {
+        const newTotalPages = Math.ceil(filteredContent.length / cardsPerPage)
+        if (currentPage > newTotalPages) {
+            setCurrentPage(1)
+        }
+    }, [currentPage, filteredContent])
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
     const safeCurrentPage = Math.min(currentPage, totalPages || 1)
@@ -36,13 +48,6 @@ const CompaniesPageMobi: React.FC = () => {
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
-
-    useEffect(() => {
-        const newTotalPages = Math.ceil(filteredContent.length / cardsPerPage)
-        if (currentPage > newTotalPages) {
-            setCurrentPage(1)
-        }
-    }, [currentPage, filteredContent])
 
     return (
         <>

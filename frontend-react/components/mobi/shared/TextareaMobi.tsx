@@ -12,7 +12,7 @@ const textareaVariants = cva(
                 contacts_page:
                     'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent focus:border-[3px] focus:ring-transparent',
                 contacts_page_error_mobi:
-                    'border-[1.18px] border-[#bc8070] bg-[#1f203f] ring-offset-transparent placeholder:font-medium focus:border-1.1 focus:border-white focus:ring-transparent md:text-xl md:placeholder:text-xs',
+                    'focus:border-1.1 border-[1.18px] border-[#bc8070] bg-[#1f203f] ring-offset-transparent placeholder:font-medium focus:border-white focus:ring-transparent md:text-xl md:placeholder:text-xs',
                 contacts_page_mobi:
                     'border-[1.18px] border-[#878797] bg-transparent ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent md:text-xl md:placeholder:text-xs',
             },
@@ -115,7 +115,7 @@ const EnhancedTextareaMobi = React.forwardRef<HTMLTextAreaElement, EnhancedTexta
                         textareaVariants({ variant, size, rounded }),
                         isFocused && 'ring-2 ring-ring ring-offset-2',
                         className,
-                        styleErrorClass && 'custom_error_style_input',
+                        styleErrorClass && 'border-[#BC8070]',
                     )}
                     ref={ref}
                     name={name}

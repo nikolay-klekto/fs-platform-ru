@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import SubTitleMobi from '@/components/mobi/shared/SubTitleMobi'
 import { Button } from '@/components/ui/button'
@@ -6,8 +8,8 @@ import { content } from './contentHowWeWorkMobi/content'
 const HowWeWorkMobi: React.FC = () => {
     const [showList, setShowList] = React.useState(true)
     return (
-        <div className="max-w-full px-[15px] py-[60px] sm_xl:mt-auto sm_l:mt-auto sm_s:mt-auto sm:mt-auto mt-[58px]">
-            <h2 className="sm_xl:mb-[24px] sm_l:mb-[24px] sm_s:mb-[24px] sm:mb-[24px] mb-[40px] md:text-11xl sm_xl:text-10xl sm_l:text-9xl sm_s:text-8xl text-[32px] font-medium uppercase text-white sm:text-8xl">
+        <section className="sm_xl:mt-auto sm_l:mt-auto sm_s:mt-auto max-w-full px-[15px] py-[60px] sm:mt-auto">
+            <h2 className="sm_xl:mb-[24px] sm_l:mb-[24px] sm_s:mb-[24px] md:text-11xl sm_xl:text-10xl sm_l:text-9xl sm_s:text-8xl mb-[40px] text-[32px] font-medium uppercase text-white sm:mb-[24px] sm:text-8xl">
                 Как мы работаем
             </h2>
             <div className="relative">
@@ -43,7 +45,7 @@ const HowWeWorkMobi: React.FC = () => {
                     </div>
                 )}
             </div>
-        </div>
+        </section>
     )
 }
 export default HowWeWorkMobi
