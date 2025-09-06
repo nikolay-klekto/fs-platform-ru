@@ -2,6 +2,7 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
+import { useEffect } from 'react'
 
 const inputVariants = cva(
     '',
@@ -63,7 +64,7 @@ export interface IEnhancedInput
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'>,
         VariantProps<typeof inputVariants> {
     validate?: (value: string) => { textError: string; status: boolean | null; styleError: boolean } | undefined
-    error?: string
+    error?: boolean
     onChange?: (value: string) => void
     onFocus?: () => void
     onBlur?: () => void
@@ -88,6 +89,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             size,
             rounded,
             validate,
+            error,
             onChange,
             onFocus,
             onBlur,
@@ -118,7 +120,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                 if (validationResult) {
                     const { status, styleError } = validationResult
                     if (!status) {
-                        if (!styleError) {
+                        if (styleError) {
                             setStyleErrorClass(true)
                         }
                     } else {
@@ -127,6 +129,14 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                 }
             }
         }
+
+        useEffect(() => {
+            if (error) {
+                setStyleErrorClass(true)
+            } else {
+                setStyleErrorClass(false)
+            }
+        }, [error])
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const newValue = isCheckbox ? e.target.checked : e.target.value
@@ -181,7 +191,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 ) : (
                                     <UncheckedBoxFormDesktop
                                         className={checkboxIconSize}
-                                        style={{ color: hasError ? '#BC8070' : '#878797' }}
+                                        stroke={styleErrorClass ? '#BC8070' : '#878797'}
                                     />
                                 )}
                             </button>
