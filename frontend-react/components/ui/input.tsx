@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
@@ -16,9 +16,9 @@ const inputVariants = cva(
                 search_mobi:
                     'flex border-0 bg-transparent text-xl text-[#878797] outline-none placeholder:text-[14px] placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
                 contacts_page_desktop:
-                    'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent placeholder:font-medium focus:border-[3px] focus:ring-transparent',
+                    'border-2 border-[#878797] bg-transparent focus:!bg-transparent text-5xl ring-offset-transparent placeholder:text-[19px] placeholder:text-[#353652] placeholder:font-medium focus:border-[#FFFFFF]',
                 contacts_page_error_desktop:
-                    'border-2 border-[#bc8070] bg-transparent text-5xl ring-offset-transparent placeholder:font-medium focus:border-[3px] focus:ring-transparent',
+                    'border-2 border-[#bc8070] bg-[#1F2040] text-5xl ring-offset-transparent placeholder:font-medium placeholder:text-[#353652] focus:bg-transparent',
                 contacts_page_mobi:
                     'focus:border-1.1 border-[1.18px] border-[#878797] bg-transparent ring-offset-transparent placeholder:font-medium focus:border-[1.18px] focus:border-white focus:bg-[#1f203f] focus:ring-transparent ',
                 contacts_page_error_mobi:
@@ -36,7 +36,7 @@ const inputVariants = cva(
                 search_mobi: 'size-full py-[16px] pl-[10px] pr-[20px]',
                 search_companies_mobi: 'size-full py-[15px]  pl-[20px]',
                 send_mobi: 'size-full px-[10px]',
-                contacts_page_desktop: 'h-[53px] w-[453px] px-4 py-3.5 2xl:w-[520px]',
+                contacts_page_desktop: 'h-[53px] w-full px-4 mt-0',
                 contacts_page_info_desktop: '3xl:w-[452px] h-[53px] w-[484px] px-4 py-3.5 2xl:w-[520px]',
                 contacts_page_mobi: 'h-[29.5px] md:h-[40px]',
                 common_input_desktop: 'mt-1 h-[50px] px-4 py-2',
@@ -67,6 +67,7 @@ export interface IEnhancedInput
     onChange?: (value: string) => void
     onFocus?: () => void
     onBlur?: () => void
+    onSubmit?: () => void
     label?: string
     helperText?: string
     helperTextClassName?: string
@@ -87,7 +88,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             variant,
             size,
             rounded,
-            validate,
             onChange,
             onFocus,
             onBlur,
@@ -109,24 +109,8 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             }
             return ''
         })
-        const [styleErrorClass, setStyleErrorClass] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
         const isCheckbox = type === 'checkbox'
-        function validateComponent(newValue: string | boolean) {
-            if (validate) {
-                const validationResult = validate(newValue.toString())
-                if (validationResult) {
-                    const { status, styleError } = validationResult
-                    if (!status) {
-                        if (!styleError) {
-                            setStyleErrorClass(true)
-                        }
-                    } else {
-                        setStyleErrorClass(false)
-                    }
-                }
-            }
-        }
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const newValue = isCheckbox ? e.target.checked : e.target.value
@@ -142,10 +126,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-
-            if (internalValue) {
-                validateComponent(internalValue)
-            }
         }
 
         const handleCheckboxToggle = () => {
@@ -198,7 +178,6 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                             inputVariants({ variant, size, rounded }),
                             isFocused && 'focus:bg-[#1f203f] focus:outline-none',
                             className,
-                            styleErrorClass && 'border-[#BC8070]',
                         )}
                         ref={ref}
                         name={name}
