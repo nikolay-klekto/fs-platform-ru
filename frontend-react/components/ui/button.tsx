@@ -45,7 +45,7 @@ const buttonVariants = cva(
                 circleDarkBlue: 'rounded-[50%] bg-[#272744]',
                 select_day: 'bg-gradient-desktop rounded-[90px] text-white',
                 hover_button_date:
-                    'hover:button-border-desktop-date border-2 border-[#878797] bg-[#1f203f] rounded-[90px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg text-sm rounded-[90px] text-white',
+                    'hover:button-border-desktop-date border-2 border-[#878797] bg-[#1f203f] rounded-[90px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg text-sm text-white',
                 cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
                 cookie_btn_mobi: 'button-border-mobi border-2 bg-inherit hover:bg-[#101030] rounded-[50px] text-white',
             },
@@ -76,7 +76,7 @@ const buttonVariants = cva(
                 cookie_btn_mobi: 'w-[188px] h-[40px] text-wrap',
                 circle_btn_gradient_desktop: 'right-0 top-1/2 size-[60px] -translate-y-1/2 rounded-full',
                 circle_btn_mobi: 'h-0 px-[11px] py-0',
-                gradient_btn_desktop: '3xl:w-[250px] h-[64px] w-[272px] 2xl:w-[250px]',
+                gradient_btn_desktop: 'h-[64px] w-[272px]',
                 select_btn_desktop:
                     '3xl:w-[300px] 3xl:px-[20px] h-[64px] w-[337px] px-[30px] py-[20px] 2xl:w-[270px] 2xl:px-[20px]',
                 select_btn_desktop_events:

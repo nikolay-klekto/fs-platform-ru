@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import StarRatingDesktop from './StarRatingDesktop'
+import { useModal } from '@/context/ContextModal'
 
 interface IItemCardArchive {
     id: number
@@ -26,6 +27,7 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
     onRatingChange,
 }) => {
     const [draftRating, setDraftRating] = useState<number>(rating)
+    const { openModal } = useModal();
 
     useEffect(() => {
         setDraftRating(rating)
@@ -44,9 +46,13 @@ const ItemCardArchiveDesktop: React.FC<IItemCardArchive> = ({
     const handleButtonClick = useCallback(() => {
         if (hasUnsavedRating) {
             onRatingChange(draftRating)
-        } else {
+            return 
         }
-    }, [hasUnsavedRating, draftRating, onRatingChange])
+        if (rating > 0) {
+            openModal('feedback_desktop', 'desktop')
+            return
+        }
+    }, [hasUnsavedRating, draftRating, onRatingChange, rating, openModal])
 
     return (
         <Card className="w-full flex flex-col items-center bg-white/10 backdrop-blur-[5px] rounded-[50px] p-8 3xl:p-7 2xl:p-6 min-h-[500px]">

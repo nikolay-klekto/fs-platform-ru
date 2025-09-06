@@ -43,8 +43,8 @@ const ModalFeedbackDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     </button>
                 </div>
                 <div className="mx-auto mt-[60px] flex min-w-[578px] max-w-lg flex-col  items-start rounded-lg">
-                    <h2 className="bg-gradient-desktop bg-clip-text text-[36px] font-medium leading-[44px] text-transparent">
-                        ОТЗЫВ О СТАЖИРОВКЕ
+                    <h2 className="bg-gradient-desktop bg-clip-text text-[36px] font-medium uppercase leading-[44px] text-transparent">
+                        Отзыв о стажировке
                     </h2>
                     <p className="text-[24px] font-medium text-white  ">Программист в компании EPAM</p>
                     <p className="pt-2.5 text-[15px] font-medium  text-[#878797]">
@@ -69,7 +69,7 @@ const ModalFeedbackDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         type="submit"
                         variant={'send_btn_desktop'}
                         size={'gradient_btn_desktop'}
-                        className="mb-10 hover:border"
+                        className="3xl:text-[20px] mb-10 hover:border 2xl:text-[20px]"
                     >
                         Сохранить отзыв
                     </Button>
