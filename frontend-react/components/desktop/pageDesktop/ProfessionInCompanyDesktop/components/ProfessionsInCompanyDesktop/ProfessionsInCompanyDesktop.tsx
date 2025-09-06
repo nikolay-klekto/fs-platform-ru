@@ -5,19 +5,19 @@ import { content } from './ItemProfessionsInCompanyDesktop/contentProfessionsDes
 import ItemProfessionsInCompanyDesktop from './ItemProfessionsInCompanyDesktop/ItemProfessionsInCompanyDesktop'
 import useScrollbarSync from '@/hooks/useScrollbarSync'
 
-const InternshipProfessionsDesktop: React.FC = () => {
+const ProfessionsInCompanyDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
-    const { scrollContentWidth } = useScrollbarSync(contentRef, scrollbarRef)
 
+    const { scrollContentWidth } = useScrollbarSync(contentRef, scrollbarRef)
     return (
         <>
             <div
                 ref={contentRef}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll"
+                className="no-scrollbar_custom container flex select-none gap-[clamp(16px,2.03vw,39px)] overflow-x-scroll pl-0 pr-[60px]"
             >
                 {content.map((item) => (
-                    <Link href={`/profession-in-company`} key={item.id}>
+                    <Link href={`/profession`} key={item.id}>
                         <ItemProfessionsInCompanyDesktop
                             key={item.id}
                             image={item.image}
@@ -27,16 +27,17 @@ const InternshipProfessionsDesktop: React.FC = () => {
                     </Link>
                 ))}
             </div>
-            <div className="mb-[120px] mt-[92px] w-full">
+            <div
+                ref={scrollbarRef}
+                className="scrollbar_custom relative mx-auto mb-[73px] mt-[80px] w-[65%] cursor-pointer overflow-x-scroll 2xl:mb-[60px] 3xl:mb-[70px]"
+            >
                 <div
-                    ref={scrollbarRef}
-                    className="scrollbar_custom relative mx-auto w-[65%] cursor-pointer overflow-x-scroll"
-                >
-                    <div className="absolute h-2" style={{ width: `${scrollContentWidth}px` }}></div>
-                </div>
+                    className="absolute h-2 min-w-[1000px] bg-transparent"
+                    style={{ width: `${scrollContentWidth}px` }}
+                ></div>
             </div>
         </>
     )
 }
 
-export default InternshipProfessionsDesktop
+export default ProfessionsInCompanyDesktop
