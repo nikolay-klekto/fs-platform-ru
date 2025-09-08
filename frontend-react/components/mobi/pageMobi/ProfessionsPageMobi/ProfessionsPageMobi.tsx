@@ -5,6 +5,7 @@ import { Search } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useModal } from '@/context/ContextModal'
+import useDebounce from '@/hooks/useDebounce'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import ProfessionCardPageMobi from './components/ProfessionCardPageMobi'
@@ -19,11 +20,12 @@ const minSearchLength = 3
 const ProfessionsPageMobi: React.FC = () => {
     const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
+    const debouncedSearchQuery = useDebounce(searchQuery)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [currentPage, setCurrentPage] = useState(1)
 
     const filteredContent = (() => {
-        const normalizedQuery = searchQuery.trim().toLowerCase()
+        const normalizedQuery = (debouncedSearchQuery ?? '').trim().toLowerCase()
         return content.filter(({ profession = '', category }) => {
             const profLower = profession.toLowerCase()
             if (normalizedQuery.length >= minSearchLength && !profLower.includes(normalizedQuery)) {
@@ -45,7 +47,7 @@ const ProfessionsPageMobi: React.FC = () => {
 
     useEffect(() => {
         setCurrentPage(1)
-    }, [searchQuery, selectedCategories])
+    }, [debouncedSearchQuery, selectedCategories])
 
     return (
         <>
