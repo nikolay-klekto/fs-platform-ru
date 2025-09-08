@@ -6,13 +6,13 @@ import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useModal } from '@/context/ContextModal'
 import useDebounce from '@/hooks/useDebounce'
+import { useDataContext } from '@/context/DataContext'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import CompaniesCardPageMobi from './components/CompaniesCardPageMobi'
 import CompaniesPaginationMobi from './components/CompaniesPaginationMobi'
 import CompaniesSendMobi from './components/CompaniesSendMobi'
 import CompaniesSelectMobi from './components/CompaniesSelectMobi'
-import { content } from './contentCompaniesPageMobi/content'
 
 const cardsPerPage = 6
 
@@ -22,12 +22,13 @@ const CompaniesPageMobi: React.FC = () => {
     const debouncedSearchQuery = useDebounce(searchQuery)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+    const { companies } = useDataContext()
 
-    const filteredContent = content.filter((item) => {
+    const filteredContent = companies.filter((item) => {
         const matchesSearch =
             (debouncedSearchQuery ?? '').length < 3 ||
-            item.companyName.toLowerCase().includes(debouncedSearchQuery.toLowerCase().trim())
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(item.industry)
+            item.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase().trim())
+        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(item.companyIndustry)
         return matchesSearch && matchesCategory
     })
 
@@ -37,6 +38,8 @@ const CompaniesPageMobi: React.FC = () => {
             setCurrentPage(1)
         }
     }, [currentPage, filteredContent])
+
+    if (!companies) return null
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
     const safeCurrentPage = Math.min(currentPage, totalPages || 1)
@@ -86,17 +89,17 @@ const CompaniesPageMobi: React.FC = () => {
                                         .map((item) => (
                                             <CompaniesCardPageMobi
                                                 key={item.id}
-                                                image={item.image}
-                                                industry={item.industry}
-                                                price={item.price.toString()}
+                                                image={item.imagePath}
+                                                industry={item.companyIndustry}
+                                                price={item.pricePerWeek}
                                                 // здесь будет открываться страница компании, пока оставлена ссылка на профессии
                                                 onClick={() => {
                                                     openModal('profession_modal_mobi', 'mobi', {
-                                                        profession: item.companyName,
+                                                        profession: item.name,
                                                         professionId: item.id,
                                                     })
                                                 }}
-                                                companyName={item.companyName}
+                                                companyName={item.name}
                                             />
                                         ))}
                                 </div>

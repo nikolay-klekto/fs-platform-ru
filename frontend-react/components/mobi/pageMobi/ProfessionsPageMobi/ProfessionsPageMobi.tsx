@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Search } from 'lucide-react'
+import { useDataContext } from '@/context/DataContext'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useModal } from '@/context/ContextModal'
@@ -12,7 +13,6 @@ import ProfessionCardPageMobi from './components/ProfessionCardPageMobi'
 import ProfessionsPaginationMobi from './components/ProfessionsPaginationMobi'
 import ProfessionSendMobi from './components/ProfessionSendMobi'
 import ProfessionsSelectMobi from './components/ProfessionsSelectMobi'
-import { content } from './contentProfessionsPageMobi/content'
 
 const cardsPerPage = 6
 const minSearchLength = 3
@@ -23,15 +23,22 @@ const ProfessionsPageMobi: React.FC = () => {
     const debouncedSearchQuery = useDebounce(searchQuery)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [currentPage, setCurrentPage] = useState(1)
+    const { professions } = useDataContext()
+    
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [debouncedSearchQuery, selectedCategories])
+
+    if (!professions) return null
 
     const filteredContent = (() => {
         const normalizedQuery = (debouncedSearchQuery ?? '').trim().toLowerCase()
-        return content.filter(({ profession = '', category }) => {
-            const profLower = profession.toLowerCase()
+        return professions.filter(({ name = '', professionIndustry }) => {
+            const profLower = name.toLowerCase()
             if (normalizedQuery.length >= minSearchLength && !profLower.includes(normalizedQuery)) {
                 return false
             }
-            return !(selectedCategories.length > 0 && !selectedCategories.includes(category))
+            return !(selectedCategories.length > 0 && !selectedCategories.includes(professionIndustry))
         })
     })()
 
@@ -44,10 +51,6 @@ const ProfessionsPageMobi: React.FC = () => {
     const handlePageChange = (page: number): void => {
         setCurrentPage(page)
     }
-
-    useEffect(() => {
-        setCurrentPage(1)
-    }, [debouncedSearchQuery, selectedCategories])
 
     return (
         <>
@@ -93,13 +96,13 @@ const ProfessionsPageMobi: React.FC = () => {
                                         .map((item) => (
                                             <ProfessionCardPageMobi
                                                 key={item.id}
-                                                image={item.image}
-                                                profession={item.profession}
-                                                price={item.price.toString()}
+                                                image={item.imagePath}
+                                                profession={item.name}
+                                                price={item.pricePerWeek}
                                                 onClick={() => {
                                                     openModal('profession_modal_mobi', 'mobi', {
-                                                        profession: item.profession,
-                                                        professionId: item.id,
+                                                        profession: item.name,
+                                                        description: item.description,
                                                     })
                                                 }}
                                             />
