@@ -4,14 +4,19 @@ import React from 'react'
 import Modal from '@/components/ui/modal'
 import InternshipCompaniesModalMobi from './InternshipCompaniesModalMobi'
 import ReviewsModalMobi from './ReviewsModalMobi'
+import { useDataContext } from '@/context/DataContext'
 
 interface IProfessionModal {
     onClose: () => void
     profession: string
-    description: string
+    professionId: string
 }
 
-const ProfessionModalMobi: React.FC<IProfessionModal> = ({ onClose, profession, description }) => {
+const ProfessionModalMobi: React.FC<IProfessionModal> = ({ onClose, profession, professionId }) => {
+    const { professions } = useDataContext()
+
+    const description = professions.find((item) => item.id === professionId)?.description || ''
+
     return (
         <Modal onClose={onClose} showCloseButton={false} className="px-[15px]">
             <div className="sm_s:py-8 sm_s:gap-8 flex flex-col gap-10 py-10 sm:gap-8 sm:py-8">

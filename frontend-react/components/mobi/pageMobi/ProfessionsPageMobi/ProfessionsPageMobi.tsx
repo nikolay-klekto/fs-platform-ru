@@ -102,7 +102,7 @@ const ProfessionsPageMobi: React.FC = () => {
                                                 onClick={() => {
                                                     openModal('profession_modal_mobi', 'mobi', {
                                                         profession: item.name,
-                                                        description: item.description,
+                                                        professionId: item.id,
                                                     })
                                                 }}
                                             />
