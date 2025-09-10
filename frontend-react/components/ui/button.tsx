@@ -18,8 +18,7 @@ const buttonVariants = cva(
                 link: 'text-primary underline-offset-4 hover:underline',
                 select_desktop:
                     'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white',
-                send_btn_desktop:
-                    'button-border-desktop border-4 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white  2xl:text-3xl',
+                send_btn_desktop: 'button-border-desktop border-4 rounded-[50px] text-[20px] font-semibold text-white',
                 send_btn_mobi:
                     'button-border-mobi border-2 rounded-[50px] text-[15px] sm:text-[14px] font-medium text-white',
                 select_mobi:
@@ -71,7 +70,7 @@ const buttonVariants = cva(
                 header_btn:
                     'text-7.5xl 3xl:px-[2vw] 3xl:py-[15px] 3xl:text-4xl 4xl:px-[3vw] 4xl:py-[19px] 4xl:text-6xl max-h-[68px] px-[80px] py-[16px] 2xl:px-[2vw] 2xl:py-[14px] 2xl:text-3xl',
                 select_mobi_menu: 'h-[47px] w-full max-w-[195px] text-3xl',
-                send_btn_desktop: 'h-[64px] w-[272px] 2xl:w-[200px]',
+                send_btn_desktop: 'h-[64px] w-[272px]',
                 cookie_btn_desktop: '3xl:w-[250px] h-[64px] w-[237px]',
                 cookie_btn_mobi: 'w-[188px] h-[40px] text-wrap',
                 circle_btn_gradient_desktop: 'right-0 top-1/2 size-[60px] -translate-y-1/2 rounded-full',

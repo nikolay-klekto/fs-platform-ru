@@ -36,7 +36,7 @@ const inputVariants = cva(
                 search_mobi: 'size-full py-[16px] pl-[10px] pr-[20px]',
                 search_companies_mobi: 'size-full py-[15px]  pl-[20px]',
                 send_mobi: 'size-full px-[10px]',
-                contacts_page_desktop: 'h-[53px] w-full px-4 mt-0',
+                contacts_page_desktop: 'h-[53px] w-full px-5 mt-0',
                 contacts_page_info_desktop: '3xl:w-[452px] h-[53px] w-[484px] px-4 py-3.5 2xl:w-[520px]',
                 contacts_page_mobi: 'h-[29.5px] md:h-[40px]',
                 common_input_desktop: 'mt-1 h-[50px] px-4 py-2',

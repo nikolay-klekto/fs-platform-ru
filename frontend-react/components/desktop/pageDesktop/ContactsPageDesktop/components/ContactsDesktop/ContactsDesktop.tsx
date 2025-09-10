@@ -1,8 +1,8 @@
 'use client'
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useToast } from '@/hooks/use-toast'
+import Link from 'next/link'
 import { useModal } from '@/context/ContextModal'
 
 import { Button } from '@/components/ui/button'
@@ -166,41 +166,39 @@ const ContactsDesktop: React.FC = () => {
                     </Button>
                 </div>
                 <div className="2xl:w-none relative z-[1] w-[1020px] 2xl:flex 2xl:w-full 2xl:flex-col">
-                    <div className="flex justify-between">
-                        <div className="flex flex-col">
-                            {contentContactsDesktop.map((item) => (
-                                <div
-                                    key={item.id}
-                                    className={`${item.id !== contentContactsDesktop.length ? 'pb-[60px]' : ''}`}
-                                >
-                                    <p className="pb-[5px] text-7xl font-semibold text-white/50">{item.title}</p>
-                                    {item.href ? (
-                                        <a
-                                            href={item.href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-15xl font-semibold"
-                                        >
-                                            {item.value}
-                                        </a>
-                                    ) : (
-                                        <p className="text-14xl font-semibold">{item.value}</p>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                        <div className="flex flex-col justify-between pt-2.5">
-                            {contentSocialContactsDesktop.map((item) => (
-                                <a key={item.id} href={item.href} className="flex max-w-[376px] items-center gap-5">
+                    <div className="grid grid-flow-col gap-y-[60px] grid-cols-2 grid-rows-4">
+                        {contentContactsDesktop.map((item) => (
+                            <div
+                                key={item.id}
+                                className={`flex flex-col   ${item.id !== contentContactsDesktop.length ? '' : ''}`}
+                            >
+                                <p className="pb-[5px] text-7xl font-semibold text-white/50">{item.title}</p>
+                                {item.href ? (
+                                    <a
+                                        href={item.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-15xl font-semibold"
+                                    >
+                                        {item.value}
+                                    </a>
+                                ) : (
+                                    <p className="text-14xl font-semibold">{item.value}</p>
+                                )}
+                            </div>
+                        ))}
+                        {contentSocialContactsDesktop.map((item) => (
+                            <a key={item.id} href={item.href} className="mt-4 max-w-[376px] ml-[120px]">
+                                <div className="flex items-center gap-5">
                                     <div>
                                         <div className="bg-gradient-desktop hover:bg-gradient-desktop-hover flex h-[62px] w-[58px] items-center justify-center rounded-full">
                                             {item.icon}
                                         </div>
                                     </div>
                                     <p className="text-7xl font-medium">{item.name}</p>
-                                </a>
-                            ))}
-                        </div>
+                                </div>
+                            </a>
+                        ))}
                     </div>
                     <div className="mb-[63px] mt-[99px] h-px w-full rounded-full bg-white/50"></div>
                     <div>
@@ -220,6 +218,19 @@ const ContactsDesktop: React.FC = () => {
                                         handleChange('name', value)
                                     }}
                                 />
+                                <PhoneInputDesktop
+                                    value={formData.tel}
+                                    onChange={(value: string) => {
+                                        handleChange('tel', value)
+                                    }}
+                                    onError={(error: string) => {
+                                        updateFieldError('tel', !!error)
+                                    }}
+                                    error={fieldErrors.tel}
+                                    className={`
+                                        mt-0 h-[53px] rounded-[53px] border-2 px-4 py-3.5 text-5xl ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent ${fieldErrors.tel ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] bg-transparent focus:border-[#878797]'}`}
+                                    labelClassName="hidden"
+                                />
                                 <EnhancedInput
                                     type="email"
                                     id="email"
@@ -233,25 +244,8 @@ const ContactsDesktop: React.FC = () => {
                                     rounded="rounded_53"
                                     value={formData.email}
                                     onChange={(value) => handleChange('email', value)}
-                                    validate={(value) => {
-                                        const validation = validateEmailDesktop(value)
-                                        updateFieldError('email', !validation.status)
-                                        return validation
-                                    }}
                                 />
-                                <PhoneInputDesktop
-                                    value={formData.tel}
-                                    onChange={(value: string) => {
-                                        handleChange('tel', value)
-                                    }}
-                                    onError={(error: string) => {
-                                        updateFieldError('tel', !!error)
-                                    }}
-                                    error={fieldErrors.tel}
-                                    className={`
-                                        h-[53px] rounded-[53px] border-2 px-4 py-3.5 text-5xl ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent ${fieldErrors.tel ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] bg-transparent focus:border-[#878797]'}`}
-                                    labelClassName="hidden"
-                                />
+
                                 <EnhancedInput
                                     type="text"
                                     id="role"
@@ -265,11 +259,6 @@ const ContactsDesktop: React.FC = () => {
                                     rounded="rounded_53"
                                     value={formData.role}
                                     onChange={(value) => handleChange('role', value)}
-                                    validate={(value) => {
-                                        const validation = validateRoleDesktop(value)
-                                        updateFieldError('role', !validation.status)
-                                        return validation
-                                    }}
                                     className={'focus:border-2 focus:border-[#FFFFFF]'}
                                 />
                             </div>
@@ -282,17 +271,12 @@ const ContactsDesktop: React.FC = () => {
                                 rounded="rounded_33"
                                 value={formData.message}
                                 onChange={(value) => handleChange('message', value)}
-                                validate={(value) => {
-                                    const validation = validateTextareaDesktop(value)
-                                    updateFieldError('message', !validation.status)
-                                    return validation
-                                }}
                             />
                             <div className="mt-4 flex flex-col justify-between">
                                 {formError && (
                                     <p className={cn('text-5xl', 'error-form-desktop-custom')}>{formError}</p>
                                 )}
-                                <div className="mt-5 flex items-center justify-between 2xl:justify-start 2xl:gap-10">
+                                <div className="3xl:gap-5 mt-5 flex items-center justify-between 2xl:justify-start 2xl:gap-10">
                                     <Button
                                         variant="send_btn_desktop"
                                         size="contacts_btn_send_desktop"
@@ -305,9 +289,16 @@ const ContactsDesktop: React.FC = () => {
                                     >
                                         Отправить
                                     </Button>
-                                    <p className="max-w-[663px] pl-3 text-[17px] font-medium text-white/20">
+                                    <p className="3xl:max-w-[600px] max-w-[663px] text-[17px] font-medium text-white/20">
                                         Нажимая кнопку “Отправить”, я даю согласие на обработку своих персональных
-                                        данных и соглашаюсь с Условиями использования и Политикой конфиденциальности
+                                        данных и соглашаюсь с{' '}
+                                        <Link
+                                            href="/privacy-policy"
+                                            rel="noopener noreferrer"
+                                            className="underline decoration-1 underline-offset-4"
+                                        >
+                                            Условиями использования и Политикой конфиденциальности
+                                        </Link>
                                     </p>
                                 </div>
                             </div>

@@ -16,7 +16,7 @@ const textareaVariants = cva(
             },
             size: {
                 default: 'h-10 px-3 py-2',
-                contacts_page_desktop: 'h-60 px-4 py-3.5',
+                contacts_page_desktop: 'h-60 p-5',
             },
             rounded: {
                 default: 'rounded-md',
