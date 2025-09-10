@@ -20,8 +20,9 @@ import ModalForgotPasswordDesktop from './ModalsDesktop/ModalForgotPasswordDeskt
 import ModalForgotPasswordMobi from './ModalsMobi/ModalForgotPasswordMobi'
 import ModalCookieDesktop from './ModalsDesktop/ModalCookieDesktop'
 import ModalJoinTeamDesktop from './ModalsDesktop/ModalJoinTeamDesktop'
-import ModalProfessionNotifyDesktop from './ModalsDesktop/ModalProfessionNotifyDesktop'
 import ModalCookieMobi from './ModalsMobi/ModalCookieMobi'
+import ModalCompanyNotifyDesktop from './ModalsDesktop/ModalCompanyNotifyDesktop'
+import ModalProfessionNotifyDesktop from './ModalsDesktop/ModalProfessionNotifyDesktop'
 
 interface IModalContent {
     onClose: () => void
@@ -88,6 +89,10 @@ export const modals = {
         {
             id: 'join_team_modal_desktop',
             content: ({ onClose }: IModalContent) => <ModalJoinTeamDesktop onClose={onClose} />,
+        },
+        {
+            id: 'modal_company_notify_desktop',
+            content: ({ onClose }: IModalContent) => <ModalCompanyNotifyDesktop onClose={onClose} />,
         },
         {
             id: 'profession_notify_desktop',

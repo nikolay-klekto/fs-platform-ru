@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import {
     ChevronDownIconMobi,
@@ -129,7 +131,6 @@ const EventsSelectSearchDateMobi = () => {
                 >
                     <div className="relative flex flex-col gap-1 rounded-[42px] bg-[#1F203F] p-3">
                         <div className="custom-grey flex items-center justify-between">
-                            {/* Календарь "От" */}
                             <div className="relative flex flex-col">
                                 <p>От</p>
                                 <div
@@ -167,7 +168,6 @@ const EventsSelectSearchDateMobi = () => {
 
                             <LineDateMobi className="mt-5" />
 
-                            {/* Календарь "До" */}
                             <div className="relative flex flex-col">
                                 <p>До</p>
                                 <div
@@ -203,7 +203,6 @@ const EventsSelectSearchDateMobi = () => {
                                 )}
                             </div>
                         </div>
-                        {/* Кнопки */}
                         <Button
                             variant={'hover_button_date'}
                             size={'hover_button_date_desktop'}
@@ -243,7 +242,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
     ({ children, isChecked, onClick, ...props }, forwardedRef) => {
         return (
             <div
-                className={`relative z-[3] flex cursor-pointer items-center justify-between rounded-[18px] p-[15px] text-[15px] font-medium ${
+                className={`relative z-[3] flex items-center justify-between rounded-[18px] p-[15px] text-[15px] font-medium ${
                     isChecked ? 'bg-[#5F4AF30F] text-white' : 'bg-transparent text-[#878797]'
                 }`}
                 {...props}
@@ -267,7 +266,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                                 e.stopPropagation()
                                 onClick()
                             }}
-                            className="absolute inset-0 size-full cursor-pointer opacity-0"
+                            className="absolute inset-0 size-full opacity-0"
                         />
                         {isChecked ? (
                             <CheckedBoxIconMobi

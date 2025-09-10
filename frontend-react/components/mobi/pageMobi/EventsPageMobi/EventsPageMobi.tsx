@@ -1,20 +1,20 @@
 'use client'
 
 import React, { useState } from 'react'
-
-import { content } from './contentEventsPageMobi/content'
+import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
+import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import EventsCardMobi from './components/EventsCardMobi'
 import EventsPaginationMobi from './components/EventsPaginationMobi'
 import EventsSelectSearchMobi from './components/EventsSelectSearchMobi'
 import EventsSelectSearchDateMobi from './components/EventsSelectSearchDateMobi'
 import EventsSelectSearchCityMobi from './components/EventsSelectSearchCityMobi'
-import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
-import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
+import { content } from './contentEventsPageMobi/content'
+
+const cardsPerPage = 6
 
 const EventsPageMobi: React.FC = () => {
     //const [searchQuery, setSearchQuery] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
-    const cardsPerPage = 6
     const totalPages = Math.ceil(content.length / cardsPerPage)
 
     // const handleSearch = () => {

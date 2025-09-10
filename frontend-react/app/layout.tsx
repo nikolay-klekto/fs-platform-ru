@@ -5,6 +5,9 @@ import { ModalProvider } from '@/context/ContextModal'
 import ApolloProviderWrapper from '@/components/wrapper/ApolloProviderWrapper'
 import '../styles/globals.css'
 import ScrollRestoration from '@/lib/scroll-restoration'
+import { loadInitialDataServer } from '@/lib/servicesServer/loadInitialDataServer'
+import { initialLoaders } from '@/lib/servicesServer/initialLoader'
+import { DataProvider } from '@/context/DataContext'
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -17,18 +20,21 @@ export const metadata: Metadata = {
     description: 'Сервис для стажировки',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode
 }>) {
+    const data = await loadInitialDataServer(initialLoaders)
     return (
         <html lang="en">
             <body className={montserrat.className}>
                 <ScrollRestoration />
-                <ApolloProviderWrapper>
-                    <ModalProvider modals={modals}>{children}</ModalProvider>
-                </ApolloProviderWrapper>
+                <DataProvider data={data}>
+                    <ApolloProviderWrapper>
+                        <ModalProvider modals={modals}>{children}</ModalProvider>
+                    </ApolloProviderWrapper>
+                </DataProvider>
             </body>
         </html>
     )

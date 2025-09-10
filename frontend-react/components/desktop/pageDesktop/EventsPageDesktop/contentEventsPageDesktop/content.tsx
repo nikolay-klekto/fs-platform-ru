@@ -1,4 +1,4 @@
-interface IContent {
+export interface IContent {
     title: string
     category: string
     image: string
@@ -14,11 +14,11 @@ interface IContent {
 export const content: IContent[] = [
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
-        date: '18.10.2023',
-        time: '11:00',
-        week: 'Среда',
+        date: '02.06.2025',
+        time: '23:59',
+        week: 'Пятница',
         city: 'Минск',
         place: 'ул. Тиражная 150',
         company: 'EPAM',
@@ -26,11 +26,11 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
-        date: '18.10.2023',
+        date: '03.06.2025',
         time: '11:00',
-        week: 'Среда',
+        week: 'Пятница',
         city: 'Минск',
         place: 'ул. Тиражная 150',
         company: 'EPAM',
@@ -38,11 +38,11 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
-        date: '18.10.2023',
+        date: '01.07.2025',
         time: '11:00',
-        week: 'Среда',
+        week: 'Вторник',
         city: 'Минск',
         place: 'ул. Тиражная 150',
         company: 'EPAM',
@@ -50,9 +50,9 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
-        date: '18.10.2023',
+        date: '30.07.2025',
         time: '11:00',
         week: 'Среда',
         city: 'Минск',
@@ -62,11 +62,11 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
-        date: '18.10.2023',
+        date: '28.08.2025',
         time: '11:00',
-        week: 'Среда',
+        week: 'Пятница',
         city: 'Минск',
         place: 'ул. Тиражная 150',
         company: 'EPAM',
@@ -74,11 +74,11 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
-        date: '18.10.2023',
+        date: '11.08.2025',
         time: '11:00',
-        week: 'Среда',
+        week: 'Понедельник',
         city: 'Минск',
         place: 'ул. Тиражная 150',
         company: 'EPAM',
@@ -86,11 +86,11 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
-        date: '18.10.2023',
+        date: '09.09.2025',
         time: '11:00',
-        week: 'Среда',
+        week: 'ВТорник',
         city: 'Минск',
         place: 'ул. Тиражная 150',
         company: 'EPAM',
@@ -98,9 +98,9 @@ export const content: IContent[] = [
     },
     {
         title: 'выставка “длиное НАЗВАНИЕ МЕРОПРИЯТИЯ”',
-        category: 'выставка',
+        category: 'Выставки/презентации',
         image: '/images/events_1.png',
-        date: '18.10.2023',
+        date: '17.09.2025',
         time: '11:00',
         week: 'Среда',
         city: 'Минск',
@@ -109,3 +109,28 @@ export const content: IContent[] = [
         id: 8,
     },
 ]
+
+export const categoryLabelBySlug: Record<string, string> = {
+    presentations: 'Выставки/презентации',
+    open_doors: 'Дни открытых дверей',
+    conferences: 'Конференции',
+    workshops: 'Мастер‑классы/семинары/тренинги',
+    internships: 'Стажировки',
+    job_fairs: 'Ярмарки вакансий',
+}
+
+export const categoryOptions = Object.entries(categoryLabelBySlug).map(([value, label]) => ({ value, label }))
+
+export const cityLabelBySlug: Record<string, string> = {
+    minsk: 'Минск',
+    brest: 'Брест',
+    vitebsk: 'Витебск',
+    gomel: 'Гомель',
+    grodno: 'Гродно',
+    mogilev: 'Могилев',
+}
+
+export const cityOptions = Object.entries(cityLabelBySlug).map(([value, label]) => ({
+    value,
+    label,
+}))

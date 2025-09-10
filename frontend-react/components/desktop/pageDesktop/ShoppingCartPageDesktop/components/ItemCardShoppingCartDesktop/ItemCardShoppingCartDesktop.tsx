@@ -30,9 +30,11 @@ const ItemCardShoppingCartDesktop: React.FC<IItemCardShoppingCart> = ({
     onClick,
 }) => {
     return (
-        <div className="flex flex-col flex-wrap rounded-[50px] bg-[#272745] px-[32px] py-[40px]">
+        <div className="z-5 relative flex flex-col flex-wrap rounded-[50px] bg-[#272745] px-[32px] py-[40px]">
             <div className="grid grid-cols-[4fr_4fr_5fr] grid-rows-8 pb-[13px] leading-none">
-                <div className="text30px_desktop text-gradient_desktop_custom col-span-2">ОФОРМЛЕНИЕ ЗАКАЗА</div>
+                <div className="text30px_desktop text-gradient_desktop_custom uppercase col-span-2">
+                    Оформление заказа
+                </div>
                 <div className="relative row-span-6 mb-[20px] ml-[32px] max-h-[328px] max-w-[290px]">
                     <Image
                         src={image}
@@ -72,14 +74,14 @@ const ItemCardShoppingCartDesktop: React.FC<IItemCardShoppingCart> = ({
                     {location}
                 </div>
                 <div className="text24px_desktop border-t-2 pt-[20px] font-semibold text-white">Стоимость:</div>
-                <div className="text28px_desktop col-span-2 border-t-2 pt-[20px] font-semibold text-white">
-                    {price} BYN
+                <div className="text28px_desktop col-span-2 border-t-2 pt-[20px] font-semibold uppercase text-white">
+                    {price} byn
                 </div>
             </div>
             <div className="flex justify-center gap-[20px] self-end pt-[13px]">
-                <button>
+                <div>
                     <TrashTooltipDesktop tooltipMessage="Удалить из корзины" />
-                </button>
+                </div>
                 <Button variant={'send_btn_desktop'} size={'send_btn_desktop'} onClick={onClick}>
                     Оформить заказ
                 </Button>

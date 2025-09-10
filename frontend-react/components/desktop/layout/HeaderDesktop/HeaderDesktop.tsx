@@ -1,14 +1,15 @@
 'use client'
 
-import React from 'react'
-import HeaderNavigationDesktop from './ItemHeaderDesktop/HeaderNavigationDesktop'
 import Link from 'next/link'
+import { useModal } from '@/context/ContextModal'
+import { useIsAuth } from '@/hooks/useIsAuth'
+import HeaderNavigationDesktop from './ItemHeaderDesktop/HeaderNavigationDesktop'
 import { ShoppingCartIconDesktop, ProfileIconDesktop, LogoIconDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
-import { useModal } from '@/context/ContextModal'
 
 const HeaderDesktop: React.FC = () => {
     const { openModal } = useModal()
+    const isAuth = useIsAuth()
 
     return (
         <>
@@ -40,10 +41,16 @@ const HeaderDesktop: React.FC = () => {
                         </Link>
                     </div>
                     <div className="max-w-[50px] 2xl:max-w-[36px] 3xl:max-w-[36px]">
-                        <ProfileIconDesktop
-                            className="h-auto w-full cursor-pointer"
-                            onClick={(): void => openModal('login_desktop', 'desktop')}
-                        />
+                        {isAuth ? (
+                            <Link href={'/profile'}>
+                                <ProfileIconDesktop className="h-auto w-full cursor-pointer" />
+                            </Link>
+                        ) : (
+                            <ProfileIconDesktop
+                                className="h-auto w-full cursor-pointer"
+                                onClick={() => openModal('login_desktop', 'desktop')}
+                            />
+                        )}
                     </div>
                 </div>
             </header>

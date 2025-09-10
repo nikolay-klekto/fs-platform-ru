@@ -1,7 +1,8 @@
-import React from 'react'
-import { AccountNavigationMobi } from '../../layout/AccountNavigationMobi/AccountNavigationMobi'
+'use client'
+
 import HeaderMobi from '../../layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '../../layout/FooterMobi/FooterMobi'
+import { AccountNavigationMobi } from '../../layout/AccountNavigationMobi/AccountNavigationMobi'
 
 const ProfilePageMobi: React.FC = () => {
     return (

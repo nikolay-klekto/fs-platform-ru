@@ -134,7 +134,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
     ({ children, isChecked, onClick, className = '', ...props }, forwardedRef) => {
         return (
             <div
-                className={`relative z-[3] flex cursor-pointer items-center gap-[20px] p-[16px] text-3xl font-medium leading-[20px] ${
+                className={`relative z-[3] flex items-center gap-[20px] p-[16px] text-3xl font-medium leading-[20px] ${
                     isChecked
                         ? 'mb-[10px] rounded-[18px] bg-[rgba(95,74,243,0.06)] text-white'
                         : 'mb-[10px] bg-transparent text-[#878797]'
@@ -159,7 +159,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, ISelectItem>(
                             e.stopPropagation()
                             onClick()
                         }}
-                        className="absolute inset-0 size-full cursor-pointer opacity-0"
+                        className="absolute inset-0 size-full opacity-0"
                     />
                     {isChecked ? (
                         <CheckedBoxIconMobi

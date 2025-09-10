@@ -33,7 +33,7 @@ const ItemCardDuePaymentsMobi: React.FC<IItemCardDuePayments> = ({
     return (
         <div className="flex flex-col flex-wrap rounded-[40px] bg-[#272745] px-[12px] py-[40px]">
             <div className="flex flex-col leading-none ">
-                <div className="text18px_mobi text-gradient_mobi_custom pb-[30px]">ОПЛАТА ЗАКАЗА</div>
+                <div className="text18px_mobi text-gradient_mobi_custom pb-[30px] uppercase">Оплата заказа</div>
                 <div className="relative h-[184px]">
                     <Image
                         src={image}

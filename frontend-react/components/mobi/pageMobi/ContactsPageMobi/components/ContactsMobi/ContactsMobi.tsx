@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { useToast } from '@/hooks/use-toast'
+import { useToast } from '@/hooks/useToast'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
 import { EnhancedTextareaMobi } from '@/components/mobi/shared/TextareaMobi'

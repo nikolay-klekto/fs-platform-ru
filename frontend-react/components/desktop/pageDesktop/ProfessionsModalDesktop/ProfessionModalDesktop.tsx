@@ -20,7 +20,7 @@ const ProfessionModalDesktop: React.FC<IProfessionModal> = ({ onClose, professio
                 <button onClick={onClose} className="absolute right-[36px] top-[23px]">
                     <X size={41} className="color-[#878797] opacity-50 hover:opacity-80"></X>
                 </button>
-                <h2 className="text46px_desktop text-gradient_desktop_custom mb-[5px] font-medium uppercase">
+                <h2 className="title46px_desktop text-gradient_desktop_custom mb-[5px] font-medium uppercase">
                     {profession}
                 </h2>
                 {contentProfessionAboutDesktop.map((item) => (
