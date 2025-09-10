@@ -169,10 +169,9 @@ const ContactsMobi: React.FC = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="pt-[58px]">
-                        <h2 className="text-9xl font-medium uppercase">Напишите нам</h2>
+                    <div className="pt-[112px]">
                         <form onSubmit={handleSubmit} noValidate>
-                            <div className="mt-5 flex flex-col gap-5">
+                            <div className="flex flex-col gap-5 font-medium">
                                 <EnhancedInput
                                     type="text"
                                     id="name"
@@ -191,6 +190,7 @@ const ContactsMobi: React.FC = () => {
                                 <PhoneInputMobi
                                     value={formData.tel}
                                     validationStatus={emptyFields.tel}
+                                    noLabel={true}
                                     onChange={(value) => handleChange('tel', value)}
                                     onError={() => {
                                         throw new Error('Error with phone input occured')
@@ -226,7 +226,6 @@ const ContactsMobi: React.FC = () => {
                                         return validation
                                     }}
                                 />
-
                                 <EnhancedTextareaMobi
                                     name="message"
                                     id="message"
@@ -244,28 +243,14 @@ const ContactsMobi: React.FC = () => {
                                     wrapperClassName={'h-[104px]'}
                                 />
                             </div>
-                            <div className="sm_s:h-[108px] flex h-[70px] flex-col justify-between sm:h-[108px]">
-                                <div
-                                    className={
-                                        'sm_s:flex-col sm_s:justify-between sm_s:items-start sm_s:gap-2 mt-auto  flex items-center gap-[19px] sm:flex-col sm:items-start sm:justify-between sm:gap-2 md:gap-7'
-                                    }
-                                >
-                                    <Button
-                                        variant="select_mobi"
-                                        size="contacts_btn_send_mobi"
-                                        disabled={disableSubmit}
-                                    >
-                                        <div
-                                            className={`w-[calc(100%+6px)] -m-[3px] h-[calc(100%+6px)] flex items-center justify-center border- rounded-[50px] ${disableSubmit ? 'bg-[#878797] border-spacing-1 border-[#878797]' : ''}`}
-                                        >
-                                            Отправить
-                                        </div>
-                                    </Button>
-                                    <p className="w-full text-[8px] font-medium text-white/20 md:max-w-[60%] md:text-xs  ">
-                                        Нажимая кнопку “Отправить”, я даю согласие на обработку своих персональных
-                                        данных и соглашаюсь с Условиями использования и Политикой конфиденциальности
-                                    </p>
-                                </div>
+                            <div className="min-h-[55px] flex items-center gap-[19px]">
+                                <Button variant="select_mobi" size="contacts_btn_send_mobi" disabled={disableSubmit}>
+                                    Отправить
+                                </Button>
+                                <p className="w-full text-[8px] font-medium text-white/20 md:max-w-[60%] md:text-xs  ">
+                                    Нажимая кнопку “Отправить”, я даю согласие на обработку своих персональных данных и
+                                    соглашаюсь с Условиями использования и Политикой конфиденциальности
+                                </p>
                             </div>
                         </form>
                     </div>
