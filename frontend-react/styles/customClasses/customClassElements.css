@@ -48,11 +48,16 @@
         background-color: rgba(255, 255, 255, 0.1);
         border-radius: 4px;
     }
-
     .scrollbar_custom::-webkit-scrollbar-corner {
         background: transparent;
     }
 
+    @-moz-document url-prefix() {
+        .scrollbar_custom {
+            scrollbar-width: thin;
+            scrollbar-color: #898997 rgba(255, 255, 255, 0.1);
+        }
+    }
     .no-scrollbar_custom::-webkit-scrollbar {
         display: none;
     }
@@ -111,6 +116,18 @@
     }
     .text18px_modal_desktop {
         @apply font-medium text-4xl 3xl:text-3xl 2xl:text-2xl;
+    }
+
+    .text-policy-subheading_desktop {
+        @apply mb-[15px] text32px_desktop font-medium uppercase;
+    }
+
+    .text-policy-paragraph_desktop {
+        @apply mb-[15px] text24px_desktop text-[#B3B3BD];
+    }
+
+    .text-policy-table_desktop {
+        @apply border text20px_desktop py-[16px] px-[10px] 2xl:py-[10px];
     }
 
     .text28px_mobi {

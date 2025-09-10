@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useMutation } from '@apollo/client'
-import { LOGIN_MUTATION } from '@/lib/mutations/auth'
+import { LOGIN_MUTATION } from '@/lib/graphql/mutations/auth'
 import { saveAuthTokens } from '@/lib/saveAuthTokens'
 import Cookies from 'js-cookie'
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, CLIENT_ID_KEY } from '@/lib/constants/auth'

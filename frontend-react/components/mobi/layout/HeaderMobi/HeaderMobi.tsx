@@ -87,7 +87,7 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
                             <CrossIconMobi onClick={toggleMenu} />
                         </div>
                         {!isAuth && (
-                            <div className="sm_s:pb-10 flex flex-col items-center gap-2.5 pb-12 pt-1 sm:pb-10">
+                            <div className="flex flex-col items-center gap-2.5 pb-12 pt-1 sm:pb-10 sm_s:pb-10">
                                 <button
                                     className="flex items-center gap-3.5"
                                     onClick={(): void => openModal('login_mobi', 'mobi')}
@@ -110,13 +110,13 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
                             Заказать звонок
                         </Button>
                         <div className="mt-6 flex items-center gap-6 pb-12">
-                            <a href="href" target="_blank" rel="noopener noreferrer">
+                            <a href="#href" target="_blank" rel="noopener noreferrer">
                                 <TelegramIconBurgerMobi />
                             </a>
-                            <a href="href" target="_blank" rel="noopener noreferrer">
+                            <a href="#href" target="_blank" rel="noopener noreferrer">
                                 <InstagramIconBurgerMobi />
                             </a>
-                            <a href="href" target="_blank" rel="noopener noreferrer">
+                            <a href="#href" target="_blank" rel="noopener noreferrer">
                                 <LinkedInIconMobiBurger />
                             </a>
                         </div>

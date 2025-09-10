@@ -1,8 +1,9 @@
 'use client'
-import React, { useState } from 'react'
+import * as React from 'react'
 import { cn } from '@/lib/utils'
-import { useToast } from '@/hooks/use-toast'
+import { useToast } from '@/hooks/useToast'
 import { useModal } from '@/context/ContextModal'
+import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'

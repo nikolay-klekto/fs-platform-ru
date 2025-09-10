@@ -2,6 +2,7 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
+import { useEffect } from 'react'
 
 const inputVariants = cva(
     '',
@@ -63,7 +64,7 @@ export interface IEnhancedInput
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'>,
         VariantProps<typeof inputVariants> {
     validate?: (value: string) => { textError: string; status: boolean | null; styleError: boolean } | undefined
-    error?: string
+    error?: boolean
     onChange?: (value: string) => void
     onFocus?: () => void
     onBlur?: () => void
@@ -76,6 +77,7 @@ export interface IEnhancedInput
     name?: string
     checkboxIconSize?: string
     checked?: boolean
+    hasError?: boolean
 }
 
 const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
@@ -87,6 +89,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             size,
             rounded,
             validate,
+            error,
             onChange,
             onFocus,
             onBlur,
@@ -97,6 +100,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             placeholder,
             checked,
             checkboxIconSize,
+            hasError,
             ...props
         },
         ref,
@@ -116,7 +120,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                 if (validationResult) {
                     const { status, styleError } = validationResult
                     if (!status) {
-                        if (!styleError) {
+                        if (styleError) {
                             setStyleErrorClass(true)
                         }
                     } else {
@@ -125,6 +129,14 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                 }
             }
         }
+
+        useEffect(() => {
+            if (error) {
+                setStyleErrorClass(true)
+            } else {
+                setStyleErrorClass(false)
+            }
+        }, [error])
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const newValue = isCheckbox ? e.target.checked : e.target.value
@@ -158,9 +170,10 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                     <label
                         htmlFor={name}
                         className={cn(
-                            'text15px_desktop font-medium text-[#878797]',
+                            'text15px_desktop font-medium',
                             labelClassName,
-                            isCheckbox && 'flex items-center gap-4',
+                            isCheckbox &&
+                                cn('flex items-center gap-4', internalValue ? 'text-white' : 'text-[#878797]'),
                         )}
                     >
                         {isCheckbox && (
@@ -169,19 +182,24 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 className={cn(
                                     'cursor-pointer flex items-center justify-center rounded transition-all',
                                     className,
+                                    hasError,
                                 )}
                                 onClick={handleCheckboxToggle}
                             >
                                 {internalValue ? (
                                     <CheckedBoxFormDesktop className={checkboxIconSize} />
                                 ) : (
-                                    <UncheckedBoxFormDesktop className={checkboxIconSize} />
+                                    <UncheckedBoxFormDesktop
+                                        className={checkboxIconSize}
+                                        stroke={styleErrorClass ? '#BC8070' : '#878797'}
+                                    />
                                 )}
                             </button>
                         )}
                         {label}
                     </label>
                 )}
+
                 {!isCheckbox && (
                     <input
                         id={name}

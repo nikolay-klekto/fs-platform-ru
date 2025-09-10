@@ -12,6 +12,7 @@ interface IPhoneInputDesktop {
     labelClassName?: string
     wrapperClassName?: string
     required?: boolean
+    onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 const PHONE_MASK = '+375 (__) ___-__-__'
@@ -50,6 +51,11 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         let newValue = inputValue || PHONE_MASK
+
+        if (e.key === ' ') {
+            e.preventDefault()
+            return
+        }
 
         if (e.key === 'Backspace') {
             e.preventDefault()

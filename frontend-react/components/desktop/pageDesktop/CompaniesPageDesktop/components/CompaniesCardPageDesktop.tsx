@@ -9,7 +9,6 @@ interface ICompanieCard {
     price: string
     industry?: string
 }
-
 const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName, price, industry }) => {
     return (
         <>
@@ -48,5 +47,4 @@ const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName,
         </>
     )
 }
-
 export default CompaniesCardPageDesktop

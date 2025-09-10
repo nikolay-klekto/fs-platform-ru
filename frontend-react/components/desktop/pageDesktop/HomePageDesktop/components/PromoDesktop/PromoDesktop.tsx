@@ -19,7 +19,7 @@ const PromoDesktop: React.FC = () => {
         >
             <div className="container flex items-center gap-[100px] p-6 lg:flex-col xl:flex-col">
                 <div className="max-w-[68rem]">
-                    <h3 className="text-18xl xl:text-15xl 2xl:text-16xl font-semibold uppercase text-white lg:text-9xl">
+                    <h3 className="text-18xl font-semibold uppercase text-white lg:text-9xl xl:text-15xl 2xl:text-16xl">
                         Регистрируйся, выбирай профессию и компанию, получай новые знания и опыт
                     </h3>
                     <p className="text-6xl font-medium text-white lg:text-3xl xl:text-5xl">

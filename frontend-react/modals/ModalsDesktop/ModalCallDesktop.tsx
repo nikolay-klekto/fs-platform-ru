@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal'
+import { useRouter } from 'next/navigation'
 import { X } from 'lucide-react'
 import Link from 'next/link'
 import { EnhancedInput } from '@/components/ui/input'
@@ -34,6 +35,12 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
         phone: false,
         time: false,
     })
+
+    const router = useRouter()
+    const handleNavigateToProfessions = () => {
+        onClose()
+        router.push('/professions')
+    }
 
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
@@ -185,7 +192,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 />
                                 {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
                             </div>
-                            <div className="flex w-full flex-col px-[75px]">
+                            <div className="mb-6 flex w-full flex-col px-[75px]">
                                 <EnhancedInput
                                     type="text"
                                     id="time"
@@ -206,7 +213,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     <p className="error-form-desktop-custom mb-3">Заполните обязательные поля</p>
                                 )}
                             </div>
-                            <div className="mb-3 px-[75px]">
+                            <div className="px-[75px]">
                                 <EnhancedInput
                                     type="checkbox"
                                     id="consent"
@@ -229,7 +236,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 />
                             </div>
                             {errors.consent && <p className="error-form-desktop-custom px-[75px]">{errors.consent}</p>}
-                            <div className="mx-auto mt-5">
+                            <div className="mx-auto">
                                 <p className="px-[75px] text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
                                     <a
@@ -282,15 +289,14 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             </p>
                         </div>
                         <div className="mb-[67px] flex items-center justify-center">
-                            <Link href="/professions">
                                 <Button
+                                    onClick={handleNavigateToProfessions}
                                     variant="default"
                                     size="btn_modal_desktop"
                                     className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-8 rounded-full px-20 py-8 text-5xl font-semibold leading-[24px]"
                                 >
                                     Смотреть профессии
                                 </Button>
-                            </Link>
                         </div>
                     </div>
                 </Modal>

@@ -4,7 +4,7 @@ export function validateEmailDesktop(email: string) {
 
     return {
         status: isValid,
-        textError: isValid ? '' : 'Введите корректный адрес электронной почты',
+        textError: isValid ? '' : 'Неверный формат почты',
         styleError: !isValid,
     }
 }
