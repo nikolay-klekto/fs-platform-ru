@@ -11,7 +11,7 @@ import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDeskt
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
 import CompaniesSelectDesktop from './components/CompaniesSelectDesktop'
 import CompaniesCardPageDesktop from './components/CompaniesCardPageDesktop'
-import CompaniesPaginationDesktop from './components/CompaniesPaginationDesktop'
+import PaginationDesktop from '../../shared/PaginationDesktop'
 import CompaniesSearchDesktop from './components/CompaniesSendDesktop'
 
 const cardsPerPage = 12
@@ -23,7 +23,7 @@ const CompaniesPageDesktop: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const { companies } = useDataContext()
-    
+
     useEffect(() => {
         setCurrentPage(1)
     }, [debouncedSearchQuery, selectedCategories])
@@ -38,10 +38,7 @@ const CompaniesPageDesktop: React.FC = () => {
         return matchesSearch && matchesCategory
     })
     const totalPages = Math.ceil(filteredCompanies.length / cardsPerPage)
-
-    const handlePageChange = (page: number): void => {
-        setCurrentPage(page)
-    }
+    const paginatedCompanies = filteredCompanies.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
 
     const handleCategoryChange = (categories: string[]) => {
         setSelectedCategories(categories)
@@ -83,28 +80,28 @@ const CompaniesPageDesktop: React.FC = () => {
                             className="max-w-[calc(4*340px +  
                         3*45px)]justify-items-center grid grid-cols-4 gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]"
                         >
-                            {filteredCompanies
-                                .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
-                                .map((item) => (
-                                    <Link href={`/company`} key={item.id}>
-                                        <CompaniesCardPageDesktop
-                                            image={item.imagePath}
-                                            industry={item.companyIndustry}
-                                            price={item.pricePerWeek}
-                                            companyName={item.name}
-                                        />
-                                    </Link>
-                                ))}
+                            {paginatedCompanies.map((item) => (
+                                <Link href={`/company`} key={item.id}>
+                                    <CompaniesCardPageDesktop
+                                        image={item.imagePath}
+                                        industry={item.companyIndustry}
+                                        price={item.pricePerWeek}
+                                        companyName={item.name}
+                                    />
+                                </Link>
+                            ))}
                         </div>
                     ) : (
                         <p className="my-20 h-[150px] text-center text-4xl text-white">Ничего не найдено</p>
                     )}
+
                     {totalPages <= 1 && <div className="h-[80px]"></div>}
+
                     {totalPages > 1 && filteredCompanies.length > 0 && (
-                        <CompaniesPaginationDesktop
+                        <PaginationDesktop
                             totalPages={totalPages}
                             currentPage={currentPage}
-                            onPageChange={handlePageChange}
+                            onPageChange={setCurrentPage}
                         />
                     )}
                     <CompaniesSearchDesktop />
