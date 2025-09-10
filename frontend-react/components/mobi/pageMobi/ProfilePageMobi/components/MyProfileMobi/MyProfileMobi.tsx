@@ -1,13 +1,17 @@
 'use client'
 
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailMobi } from '@/components/mobi/commonMobi/validate/validateEmailMobi'
-import AvatarMobi from '@/components/mobi/shared/AvatarMobi/AvatarMobi'
+import AvatarMobi from '@/components/mobi/pageMobi/ProfilePageMobi/components/AvatarMobi/AvatarMobi'
 import { CalendarIconsMobi, ChevronDownIconMobi } from '@/components/assets/iconsMobi'
 import DatePickerCalendarMobi from '@/components/mobi/shared/CalendarProfileMobi/CalendarProfileMobi'
+
+type MyProfileMobiProps = {
+    onCancel: () => void
+}
 
 interface IFormData {
     name: string
@@ -41,7 +45,7 @@ const occupationOption: ISelectOption[] = [
     { value: 'part-time', label: 'Частичная' },
 ]
 
-const MyProfileMobi: React.FC = () => {
+const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
     const [formData, setFormData] = useState<IFormData>({
         name: '',
         surname: '',
@@ -69,12 +73,64 @@ const MyProfileMobi: React.FC = () => {
     const [isOccupationOpen, setIsOccupationOpen] = useState(false)
     const [isOccupationFocused, setIsOccupationFocused] = useState(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+    const modalRef = useRef<HTMLFormElement>(null)
+    const educationRef = useRef<HTMLDivElement>(null)
+    const occupationRef = useRef<HTMLDivElement>(null)
+    const calendarRef = useRef<HTMLDivElement>(null)
 
     const closeAllMenusExcept = (menuToKeep: 'calendar' | 'education' | 'occupation') => {
         if (menuToKeep !== 'calendar') setIsCalendarOpen(false)
         if (menuToKeep !== 'education') setIsEducationOpen(false)
         if (menuToKeep !== 'occupation') setIsOccupationOpen(false)
     }
+
+    const closeAllMenus = () => {
+        setIsCalendarOpen(false)
+        setIsEducationOpen(false)
+        setIsOccupationOpen(false)
+    }
+
+    const handleClickOutside = (event: MouseEvent) => {
+        const target = event.target as Node
+
+        const isInsideEducation = educationRef.current?.contains(target)
+        const isInsideOccupation = occupationRef.current?.contains(target)
+        const isInsideCalendar = calendarRef.current?.contains(target)
+        const isInsideModal = modalRef.current?.contains(target)
+
+        if (!isInsideEducation && !isInsideOccupation && !isInsideCalendar && !isInsideModal) {
+            closeAllMenus()
+        }
+    }
+
+    useEffect(() => {
+        const handleModalClickOutside = (event: MouseEvent) => {
+            if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+                handleCancel()
+            }
+        }
+
+        document.addEventListener('mousedown', handleModalClickOutside)
+        document.addEventListener('mousedown', handleClickOutside)
+
+        return () => {
+            document.removeEventListener('mousedown', handleModalClickOutside)
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add('overflow-hidden')
+        } else {
+            document.body.classList.remove('overflow-hidden')
+        }
+
+        return () => {
+            document.body.classList.remove('overflow-hidden')
+        }
+    }, [isOpen])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target
@@ -83,6 +139,11 @@ const MyProfileMobi: React.FC = () => {
             [name]: type === 'checkbox' ? checked : value,
         }))
         setErrors((prev) => ({ ...prev, [name]: '' }))
+    }
+
+    const handleCancel = () => {
+        onCancel()
+        setIsOpen(false)
     }
 
     const handleConfirmDate = (newDate: string) => {
@@ -160,6 +221,7 @@ const MyProfileMobi: React.FC = () => {
     return (
         <div className="py-[20px] w-full flex justify-center">
             <form
+                ref={modalRef}
                 onSubmit={handleSubmit}
                 className="flex flex-col justify-start bg-[#1F203F] rounded-[40px] px-[15px] gap-[24px] py-[35px] max-w-[400px] w-full"
             >
@@ -200,7 +262,7 @@ const MyProfileMobi: React.FC = () => {
                             type="text"
                         />
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col" ref={calendarRef}>
                         <label htmlFor="birthDate" className="mb-1 text-2xl font-medium text-[#878797]">
                             Дата рождения
                         </label>
@@ -301,7 +363,7 @@ const MyProfileMobi: React.FC = () => {
                             <p className="error-form-mobi-custom !text-[#bc8070]">{inputInternalErrors.email}</p>
                         )}
                     </form>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col" ref={educationRef}>
                         <label htmlFor="education" className="text14px_mobi mb-1 text-2xl font-medium text-[#878797]">
                             Образование
                         </label>
@@ -322,7 +384,9 @@ const MyProfileMobi: React.FC = () => {
                                     setIsEducationOpen(!isEducationOpen)
                                 }}
                                 onFocus={() => setIsEducationFocused(true)}
-                                onBlur={() => setIsEducationFocused(false)}
+                                onBlur={() => {
+                                    setIsEducationFocused(false)
+                                }}
                                 tabIndex={0}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter' || e.key === ' ') {
@@ -387,7 +451,7 @@ const MyProfileMobi: React.FC = () => {
                             )}
                         </div>
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col" ref={occupationRef}>
                         <label
                             htmlFor="occupation"
                             className="text14px_mobi mb-1 text-2xl font-medium text-opacity text-[#878797]"
@@ -411,7 +475,9 @@ const MyProfileMobi: React.FC = () => {
                                     setIsOccupationOpen(!isOccupationOpen)
                                 }}
                                 onFocus={() => setIsOccupationFocused(true)}
-                                onBlur={() => setIsOccupationFocused(false)}
+                                onBlur={() => {
+                                    setIsOccupationFocused(false)
+                                }}
                                 tabIndex={0}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter' || e.key === ' ') {
