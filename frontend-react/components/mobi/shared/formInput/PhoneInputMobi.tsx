@@ -37,10 +37,10 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     placeholder,
     noLabel,
     required = false,
-    onBlur,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
+    const [internalError, setInternalError] = useState<string | null>(null)
 
     const setCaretToPosition = (pos: number) => {
         if (inputRef.current) {
@@ -88,19 +88,21 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
         } else {
             e.preventDefault()
         }
+        validateValue(newValue)
+    }
+
+    const validateValue = (value: string) => {
+        const error =
+            required && (value === PHONE_MASK || !value)
+                ? 'Поле обязательно для заполнения'
+                : validatePhoneMobi(value).textError
+        setInternalError(error)
+        onError(error)
+        onChange(value)
     }
 
     const handleBlur = () => {
-        const error =
-            required && (inputValue === PHONE_MASK || !inputValue)
-                ? 'Поле обязательно для заполнения'
-                : validatePhoneMobi(inputValue).textError
-
-        onError(error || '')
-
-        if (onBlur) {
-            onBlur(inputValue)
-        }
+        validateValue(inputValue)
     }
 
     const handleFocus = () => {
