@@ -1,7 +1,7 @@
 'use client'
 import * as React from 'react'
 import { cn } from '@/lib/utils'
-import { useToast } from '@/hooks/useToast'
+import { useToast } from '@/context/ToastContext'
 import { useModal } from '@/context/ContextModal'
 import { useState } from 'react'
 
