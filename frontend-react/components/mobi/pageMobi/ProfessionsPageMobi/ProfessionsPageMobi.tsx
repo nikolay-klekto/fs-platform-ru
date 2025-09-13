@@ -5,10 +5,11 @@ import { Search } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useModal } from '@/context/ContextModal'
+import useDebounce from '@/hooks/useDebounce'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import ProfessionCardPageMobi from './components/ProfessionCardPageMobi'
-import ProfessionsPaginationMobi from './components/ProfessionsPaginationMobi'
+import PaginationMobi from '../../shared/PaginationMobi'
 import ProfessionSendMobi from './components/ProfessionSendMobi'
 import ProfessionsSelectMobi from './components/ProfessionsSelectMobi'
 import { content } from './contentProfessionsPageMobi/content'
@@ -19,11 +20,12 @@ const minSearchLength = 3
 const ProfessionsPageMobi: React.FC = () => {
     const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
+    const debouncedSearchQuery = useDebounce(searchQuery)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [currentPage, setCurrentPage] = useState(1)
 
     const filteredContent = (() => {
-        const normalizedQuery = searchQuery.trim().toLowerCase()
+        const normalizedQuery = (debouncedSearchQuery ?? '').trim().toLowerCase()
         return content.filter(({ profession = '', category }) => {
             const profLower = profession.toLowerCase()
             if (normalizedQuery.length >= minSearchLength && !profLower.includes(normalizedQuery)) {
@@ -34,18 +36,16 @@ const ProfessionsPageMobi: React.FC = () => {
     })()
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
+    const paginatedItems = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
 
     const handleSearch = () => {
         console.log('Поиск профессий:', searchQuery)
         setSearchQuery('')
     }
-    const handlePageChange = (page: number): void => {
-        setCurrentPage(page)
-    }
 
     useEffect(() => {
         setCurrentPage(1)
-    }, [searchQuery, selectedCategories])
+    }, [debouncedSearchQuery, selectedCategories])
 
     return (
         <>
@@ -86,28 +86,26 @@ const ProfessionsPageMobi: React.FC = () => {
                         {filteredContent.length > 0 ? (
                             <>
                                 <div className="flex flex-wrap justify-center gap-4">
-                                    {filteredContent
-                                        .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
-                                        .map((item) => (
-                                            <ProfessionCardPageMobi
-                                                key={item.id}
-                                                image={item.image}
-                                                profession={item.profession}
-                                                price={item.price.toString()}
-                                                onClick={() => {
-                                                    openModal('profession_modal_mobi', 'mobi', {
-                                                        profession: item.profession,
-                                                        professionId: item.id,
-                                                    })
-                                                }}
-                                            />
-                                        ))}
+                                    {paginatedItems.map((item) => (
+                                        <ProfessionCardPageMobi
+                                            key={item.id}
+                                            image={item.image}
+                                            profession={item.profession}
+                                            price={item.price.toString()}
+                                            onClick={() => {
+                                                openModal('profession_modal_mobi', 'mobi', {
+                                                    profession: item.profession,
+                                                    professionId: item.id,
+                                                })
+                                            }}
+                                        />
+                                    ))}
                                 </div>
                                 {totalPages > 1 && (
-                                    <ProfessionsPaginationMobi
+                                    <PaginationMobi
                                         totalPages={totalPages}
                                         currentPage={currentPage}
-                                        onPageChange={handlePageChange}
+                                        onPageChange={setCurrentPage}
                                     />
                                 )}
                             </>
