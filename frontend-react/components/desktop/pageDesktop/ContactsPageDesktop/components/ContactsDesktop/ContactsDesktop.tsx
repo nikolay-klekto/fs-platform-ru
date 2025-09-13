@@ -1,7 +1,8 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+
+import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { useToast } from '@/hooks/use-toast'
+import { useToast } from '@/hooks/useToast'
 import Link from 'next/link'
 import { useModal } from '@/context/ContextModal'
 
@@ -42,15 +43,17 @@ const ContactsDesktop: React.FC = () => {
         message: false,
     })
 
-    const [formError, setFormError] = React.useState('')
+    const [formError, setFormError] = useState('')
 
     const [isSubmit, setIsSubmit] = useState(false)
-
-    const [isSubmitDisabled, setIsSubmitDisabled] = useState(false)
 
     const { toast } = useToast()
 
     const phoneMask = '+375 (__) ___-__-__'
+
+    const hasErrors = Object.values(fieldErrors).some(Boolean)
+
+    const isDisabled = isSubmit && (hasErrors || !!formError)
 
     const handleChange = (field: keyof IFormData, value: string) => {
         setFormData((prev) => ({
@@ -71,7 +74,13 @@ const ContactsDesktop: React.FC = () => {
         }))
     }
 
-    const getFormError = (): string => {
+    const getFieldsErrors = (): {
+        name: boolean
+        email: boolean
+        tel: boolean
+        role: boolean
+        message: boolean
+    } => {
         const errors = {
             name: formData.name.trim() === '',
             email: !validateEmailDesktop(formData.email).status || formData.email.trim() === '',
@@ -84,7 +93,16 @@ const ContactsDesktop: React.FC = () => {
             message: !validateTextareaDesktop(formData.message).status || formData.message.trim() === '',
         }
 
-        setFieldErrors(errors)
+        return errors
+    }
+
+    const getFormError = (errors: {
+        name: boolean
+        email: boolean
+        tel: boolean
+        role: boolean
+        message: boolean
+    }): string => {
         if (
             formData.name.trim() === '' ||
             formData.email.trim() === '' ||
@@ -102,14 +120,6 @@ const ContactsDesktop: React.FC = () => {
 
         return ''
     }
-
-    useEffect(() => {
-        if (isSubmit) {
-            const error = getFormError()
-            setFormError(error)
-            setIsSubmitDisabled(Boolean(error))
-        }
-    }, [formData, isSubmit])
 
     const resetForm = () => {
         setFormData({
@@ -130,16 +140,23 @@ const ContactsDesktop: React.FC = () => {
         setFormError('')
     }
 
+    useEffect(() => {
+        if (isSubmit) {
+            const errors = getFieldsErrors()
+            setFieldErrors(errors)
+            const formError = getFormError(errors)
+            setFormError(formError)
+        }
+    }, [formData, isSubmit])
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmit(true)
-        setFormError('')
 
-        const error = getFormError()
+        const error = getFormError(fieldErrors)
 
         if (error !== '') {
             setFormError(error)
-            setIsSubmitDisabled(true)
         } else {
             toast({
                 description: 'Спасибо! Ваша заявка была успешно отправлена',
@@ -166,12 +183,9 @@ const ContactsDesktop: React.FC = () => {
                     </Button>
                 </div>
                 <div className="2xl:w-none relative z-[1] w-[1020px] 2xl:flex 2xl:w-full 2xl:flex-col">
-                    <div className="grid grid-flow-col gap-y-[60px] grid-cols-2 grid-rows-4">
+                    <div className="grid grid-flow-col grid-cols-2 grid-rows-4 gap-y-[60px]">
                         {contentContactsDesktop.map((item) => (
-                            <div
-                                key={item.id}
-                                className={`flex flex-col   ${item.id !== contentContactsDesktop.length ? '' : ''}`}
-                            >
+                            <div key={item.id} className={'flex flex-col'}>
                                 <p className="pb-[5px] text-7xl font-semibold text-white/50">{item.title}</p>
                                 {item.href ? (
                                     <a
@@ -188,7 +202,13 @@ const ContactsDesktop: React.FC = () => {
                             </div>
                         ))}
                         {contentSocialContactsDesktop.map((item) => (
-                            <a key={item.id} href={item.href} className="mt-4 max-w-[376px] ml-[120px]">
+                            <a
+                                key={item.id}
+                                href={item.href}
+                                target={item.id === 4 ? undefined : '_blank'}
+                                rel={item.id === 4 ? undefined : 'noopener noreferrer'}
+                                className="ml-[120px] mt-4 max-w-[376px]"
+                            >
                                 <div className="flex items-center gap-5">
                                     <div>
                                         <div className="bg-gradient-desktop hover:bg-gradient-desktop-hover flex h-[62px] w-[58px] items-center justify-center rounded-full">
@@ -281,9 +301,9 @@ const ContactsDesktop: React.FC = () => {
                                         variant="send_btn_desktop"
                                         size="contacts_btn_send_desktop"
                                         type="submit"
-                                        disabled={isSubmitDisabled}
+                                        disabled={isDisabled}
                                         className={cn(
-                                            isSubmitDisabled &&
+                                            isDisabled &&
                                                 'button-border-desktop border-2 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white  2xl:text-3xl disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none',
                                         )}
                                     >
