@@ -24,6 +24,14 @@ interface IFormData {
     message: string
 }
 
+interface IFormErrors {
+    name: boolean
+    email: boolean
+    tel: boolean
+    role: boolean
+    message: boolean
+}
+
 const ContactsDesktop: React.FC = () => {
     const { openModal } = useModal()
 
@@ -35,7 +43,7 @@ const ContactsDesktop: React.FC = () => {
         message: '',
     })
 
-    const [fieldErrors, setFieldErrors] = useState({
+    const [fieldErrors, setFieldErrors] = useState<IFormErrors>({
         name: false,
         email: false,
         tel: false,
@@ -74,13 +82,7 @@ const ContactsDesktop: React.FC = () => {
         }))
     }
 
-    const getFieldsErrors = (): {
-        name: boolean
-        email: boolean
-        tel: boolean
-        role: boolean
-        message: boolean
-    } => {
+    const getFieldsErrors = (): IFormErrors => {
         const errors = {
             name: formData.name.trim() === '',
             email: !validateEmailDesktop(formData.email).status || formData.email.trim() === '',
@@ -96,13 +98,7 @@ const ContactsDesktop: React.FC = () => {
         return errors
     }
 
-    const getFormError = (errors: {
-        name: boolean
-        email: boolean
-        tel: boolean
-        role: boolean
-        message: boolean
-    }): string => {
+    const getFormError = (errors: IFormErrors): string => {
         if (
             formData.name.trim() === '' ||
             formData.email.trim() === '' ||
