@@ -18,6 +18,7 @@ const ProfessionCardDesktop: React.FC<IProfessionCard> = ({ image, profession, p
                 size={'profession_home_desktop'}
                 style={{ backgroundImage: `url(${image})` }}
                 onClick={onClick}
+                hoverShadow={'with_hover_shadow'}
             >
                 <CardHeader className="pl-0 pt-3">
                     <CardTitle variant={'profession_home_desktop'} size={'profession_home_desktop'}>
