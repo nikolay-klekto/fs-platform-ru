@@ -14,7 +14,7 @@ const CompanyAdvantageDesktop: React.FC = () => {
         <>
             <div
                 ref={contentRef}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll"
+                className="no-scrollbar_custom flex w-full select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll px-[58px]"
             >
                 {content.map((item) => (
                     <ItemCompanyAdvantageDesktop
@@ -25,7 +25,7 @@ const CompanyAdvantageDesktop: React.FC = () => {
                     />
                 ))}
             </div>
-            <div className=" mb-[132px] mt-[52px] w-full">
+            <div className="mb-[132px] mt-[52px] w-full">
                 <div
                     ref={scrollbarRef}
                     className="scrollbar_custom relative mx-auto w-[65%] cursor-pointer overflow-x-scroll"

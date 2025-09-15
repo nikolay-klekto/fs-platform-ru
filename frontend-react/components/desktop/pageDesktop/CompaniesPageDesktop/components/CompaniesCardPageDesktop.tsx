@@ -12,20 +12,10 @@ interface ICompanieCard {
 const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName, price, industry }) => {
     return (
         <>
-            {/* <div className="relative overflow-hidden rounded-[20px] "> */}
-            {/* <div
-                    className="absolute inset-0 z-0 rounded-[20px] bg-center opacity-80 "
-                    style={{
-                        backgroundImage: `url(${image})`,
-                        backgroundSize: '150%',
-                        backgroundPosition: 'center',
-                    }}
-                /> */}
             <Card
                 variant={'companies_page_desktop'}
                 size={'companies_page_desktop'}
                 rounded="rounded_20"
-                // className="z-5 relative"
                 style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(${image})`,
                     backgroundSize: '150%',
@@ -49,7 +39,6 @@ const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName,
                     </p>
                 </CardFooter>
             </Card>
-            {/* </div> */}
         </>
     )
 }

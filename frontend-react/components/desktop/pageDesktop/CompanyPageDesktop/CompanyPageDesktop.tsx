@@ -13,8 +13,8 @@ const CompanyPageDesktop: React.FC = () => {
     return (
         <>
             <HeaderDesktop />
-            <main className="bg-[#101030] text-white ">
-                <div className="container relative overflow-hidden  ">
+            <main className="bg-[#101030] text-white">
+                <div className="relative overflow-hidden">
                     <div className="relative z-20 flex items-center space-x-1 pb-[29px] pl-[65px] pt-[60px] text-[20px] text-gray-500 ">
                         <Link href="/" className="hover:underline">
                             Главная
@@ -30,8 +30,11 @@ const CompanyPageDesktop: React.FC = () => {
                     </div>
 
                     <div className="flex flex-col px-[58px]">
-                        <h1 className="mb-15 title80px_desktop relative z-10 font-medium uppercase"> Компания Epam</h1>
-                        <p className="title160px_desktop absolute left-0 top-0 mt-[18px] pl-[85px] font-semibold uppercase opacity-[0.02] ">
+                        <h1 className="mb-[58px] title80px_desktop relative z-10 font-medium uppercase">
+                            {' '}
+                            Компания Epam
+                        </h1>
+                        <p className="title160px_desktop absolute left-0 top-0 mt-[18px] pl-[65px] font-semibold uppercase opacity-[0.02] ">
                             Компания Epam
                         </p>
                         <div className="relative max-h-[613px] w-full">
@@ -101,15 +104,13 @@ const CompanyPageDesktop: React.FC = () => {
                             </div>
                         ))}
 
-                        <h2 className="mb-[63px] mt-[118px] text-[48px] font-medium uppercase ">
-                            Профессии в компании
-                        </h2>
-                        <InternshipProfessionsDesktop />
-                        <h2 className="3xl:mt-[100px] mb-[81px] mt-[120px] text-[48px] font-medium uppercase 2xl:mt-[80px]">
-                            Преимущества компании
-                        </h2>
-                        <CompanyAdvantageDesktop />
+                        <h2 className="mt-[118px] text-[48px] font-medium uppercase ">Профессии в компании</h2>
                     </div>
+                    <InternshipProfessionsDesktop />
+                    <h2 className="3xl:mt-[100px] mb-[81px] mt-[120px] px-[58px] text-[48px] font-medium uppercase 2xl:mt-[80px]">
+                        Преимущества компании
+                    </h2>
+                    <CompanyAdvantageDesktop />
                 </div>
             </main>
             <FooterDesktop />
