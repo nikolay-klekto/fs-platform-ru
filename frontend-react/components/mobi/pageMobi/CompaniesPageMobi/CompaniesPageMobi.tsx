@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useModal } from '@/context/ContextModal'
 import useDebounce from '@/hooks/useDebounce'
 import { useDataContext } from '@/context/DataContext'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
@@ -17,7 +17,6 @@ import CompaniesSelectMobi from './components/CompaniesSelectMobi'
 const cardsPerPage = 6
 
 const CompaniesPageMobi: React.FC = () => {
-    const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const debouncedSearchQuery = useDebounce(searchQuery)
     const [currentPage, setCurrentPage] = useState(1)
@@ -87,20 +86,16 @@ const CompaniesPageMobi: React.FC = () => {
                                     {filteredContent
                                         .slice((safeCurrentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
                                         .map((item) => (
-                                            <CompaniesCardPageMobi
-                                                key={item.id}
-                                                image={item.imagePath}
-                                                industry={item.companyIndustry}
-                                                price={item.pricePerWeek}
-                                                // здесь будет открываться страница компании, пока оставлена ссылка на профессии
-                                                onClick={() => {
-                                                    openModal('profession_modal_mobi', 'mobi', {
-                                                        profession: item.name,
-                                                        professionId: item.id,
-                                                    })
-                                                }}
-                                                companyName={item.name}
-                                            />
+                                            //здесь будет открываться страница компании
+                                            <Link href={`/company/${item.id}`} key={item.id}>
+                                                <CompaniesCardPageMobi
+                                                    key={item.id}
+                                                    image={item.imagePath}
+                                                    industry={item.companyIndustry}
+                                                    price={item.pricePerWeek}
+                                                    companyName={item.name}
+                                                />
+                                            </Link>
                                         ))}
                                 </div>
                                 {totalPages >= 1 && (

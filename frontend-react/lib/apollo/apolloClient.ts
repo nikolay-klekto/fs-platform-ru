@@ -9,6 +9,10 @@ function routeByOperationName(name: string) {
     switch (true) {
         case name.startsWith('getCards'):
             return new HttpLink({ uri: CARDS_ENDPOINT, credentials: 'same-origin' })
+        case name.startsWith('getFeedbackByProfessionId'):
+            return new HttpLink({ uri: CARDS_ENDPOINT, credentials: 'same-origin' })
+        case name.startsWith('getAllCompaniesByProfessionId'):
+            return new HttpLink({ uri: CARDS_ENDPOINT, credentials: 'same-origin' })
         default:
             return new HttpLink({ uri: AUTH_ENDPOINT, credentials: 'same-origin' })
     }
