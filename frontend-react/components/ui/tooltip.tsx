@@ -9,7 +9,17 @@ import { HelpIconMobi } from '@/components/assets/iconsMobi'
 
 interface IHelpTooltip {
     tooltipMessage: string
+    children?: React.ReactNode
     className?: string
+    contentClassName?: string,
+    textClassName?: string
+    side?: 'top' | 'bottom' | 'left' | 'right'
+    sideOffset?: number
+    align?: 'start' | 'center' | 'end'
+    alignOffset?: number
+    arrowPadding?: number
+    avoidCollisions?: boolean
+    collisionPadding?: { top?: number; left?: number; bottom?: number; right?: number }
 }
 
 const Popover = PopoverPrimitive.Root
@@ -210,3 +220,53 @@ export const HelpEventsTooltipDesktop: React.FC<IHelpTooltip> = ({ tooltipMessag
         </Tooltip>
     </TooltipProvider>
 )
+
+export const HelpInternshipTooltipDesktop: React.FC<IHelpTooltip> = ({
+    tooltipMessage,
+    children,
+    className,
+    contentClassName,
+    textClassName,
+    side,
+    sideOffset,
+    align,
+   
+}) => {
+     return (
+      <TooltipProvider delayDuration={200}>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    {children} 
+                </TooltipTrigger>
+
+                <TooltipContent
+                    className={cn(
+                        'border-none bg-transparent shadow-none',
+                        className,
+                    )}
+                    side={side}
+                    sideOffset={sideOffset}
+                    align={align}
+                    alignOffset={0}
+                    arrowPadding={0}
+                    avoidCollisions={false}
+                    collisionPadding={{ top: 10, left: 20 }}
+                >
+                    {/* Контейнер для фона */}
+                    <div className={cn(
+                        'w-full h-full bg-cover bg-no-repeat',
+                        contentClassName
+                    )}>
+                        <p className={cn(
+                            'text-white font-medium',
+                            textClassName,
+                        )}>
+                            {tooltipMessage}
+                        </p>
+                    </div>
+                    <TooltipArrow className="transform translate-y-[-1px] h-2 fill-[#353652cc]" />
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
+    )
+}

@@ -5,13 +5,13 @@ import { IMaskInput } from 'react-imask'
 import { CalendarIconsDesktop } from '@/components/assets/iconsDesktop'
 import { cn } from '@/lib/utils'
 
-interface ISelectDateDesktopProps {
+interface ISelectDateDesktop {
     error?: boolean
     selectedDate?: Date | null
     onChange?: (date: Date | null) => void
 }
 
-const SelectDateDesktop: React.FC<ISelectDateDesktopProps> = ({ error = false, selectedDate, onChange }) => {
+const SelectDateDesktop: React.FC<ISelectDateDesktop> = ({ error = false, selectedDate, onChange }) => {
     const [inputValue, setInputValue] = useState('')
 
     useEffect(() => {

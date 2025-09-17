@@ -4,31 +4,22 @@ import React, { useState, useEffect, useRef } from 'react'
 import { ChevronDownIconDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import {ISelectOption, ISelectTypeDesktop} from '@/types/selectors/selectors'
 
-interface ISelectOption {
-    value: string
-    label: string
-}
 
-interface ISelectTypeAdressProps {
-  onTypeChange: (types: string[]) => void
-  error?: boolean
-  onValidationChange?: (isValid: boolean) => void
-}
-
-const SelectTypeAddressDesktop: React.FC<ISelectTypeAdressProps> = ({ onTypeChange, onValidationChange, error = false }) => {
-    const [isOpen, setIsOpen] = useState(false)
+const SelectTypeAddressDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValidationChange, error = false }) => {
+    const [isOpenOptions, setIsOpenOptions] = useState(false)
     const [selectedOption, setSelectedOption] = useState<string | null>(null)
     const selectRef = useRef<HTMLDivElement>(null)
 
     const handleSelectToggle = () => {
-        setIsOpen((prev) => !prev)
+        setIsOpenOptions((prev) => !prev)
     }
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
           if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
-            setIsOpen(false)
+            setIsOpenOptions(false)
           }
         }
         document.addEventListener('mousedown', handleClickOutside)
@@ -56,7 +47,7 @@ const SelectTypeAddressDesktop: React.FC<ISelectTypeAdressProps> = ({ onTypeChan
                          'flex items-center justify-between px-[45px]',
                          error
                            ? 'border-[rgba(188,128,112,1)] text-[rgba(188,128,112,0.6)]'
-                           : isOpen || selectedOption
+                           : isOpenOptions || selectedOption
                            ? 'border-white text-white'
                            : 'border-[#878797] text-[#878797]'
                        )}
@@ -66,12 +57,12 @@ const SelectTypeAddressDesktop: React.FC<ISelectTypeAdressProps> = ({ onTypeChan
                 <ChevronDownIconDesktop
                     color="rgba(255,255,255,0.6) "
                     className={`h-[15px] w-[27px] transition-transform duration-200 2xl:w-[20px]  ${
-                        isOpen ? 'rotate-180' : ''
+                        isOpenOptions ? 'rotate-180' : ''
                     }`}
                 />
             </Button>
     
-            {isOpen && (
+            {isOpenOptions && (
                 <div
                     className="absolute top-[96px] z-[9999] flex w-[clamp(450px,90%,908px)] flex-col rounded-[44px] border-[3.5px] border-[#878797] bg-[#1F203F] px-[60px] pt-[37px]"
                    >
@@ -84,7 +75,7 @@ const SelectTypeAddressDesktop: React.FC<ISelectTypeAdressProps> = ({ onTypeChan
                   ${index === 0 ? 'mt-0' : ''}`}
                                 onClick={() => {
                                     setSelectedOption(option.value)
-                                    setIsOpen(false)
+                                    setIsOpenOptions(false)
                                 }}
                             >
                                 {option.label}

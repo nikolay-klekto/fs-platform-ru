@@ -4,10 +4,11 @@ import React, { useState, useRef, useEffect } from 'react'
 import { X, Calendar } from 'lucide-react'
 import { PlusIconDesktop } from '@/components/assets/iconsDesktop'
 import SelectDateDesktop from './components/SelectDateDesktop'
+import { HelpInternshipTooltipDesktop } from '@/components/ui/tooltip'
 
-interface ISelectDatesDesktopProps {
+interface ISelectDatesDesktop {
     onErrorChange?: (value: boolean) => void
-    submitted?: boolean // флаг, что форма прошла валидацию
+    submitted?: boolean 
 }
 
 export interface IDateInterval {
@@ -30,7 +31,7 @@ const parseDate = (str: string): Date => {
     return new Date(year, month - 1, day)
 }
 
-const SelectDatesDesktop: React.FC<ISelectDatesDesktopProps> = ({ onErrorChange, submitted = false }) => {
+const SelectDatesDesktop: React.FC<ISelectDatesDesktop> = ({ onErrorChange, submitted = false }) => {
     const [intervals, setIntervals] = useState<IDateInterval[]>([{ startDate: null, endDate: null }])
     const [intervalErrors, setIntervalErrors] = useState<boolean[]>([false])
     const [touched, setTouched] = useState<boolean[]>([false])
@@ -131,26 +132,22 @@ const SelectDatesDesktop: React.FC<ISelectDatesDesktopProps> = ({ onErrorChange,
                             />
 
                             {intervals.length > 1 && (
-                                <button onClick={() => handleRemoveDateInterval(index)} className="group relative ml-4">
-                                    <X
-                                        size={70}
-                                        color={showError ? '#BC8070' : '#878797'}
-                                        className="opacity-50 hover:opacity-100"
-                                    />
-                                    <div
-                                        className="absolute left-1/2 top-full z-10 -mt-7
-                                    translate-x-[-40px] opacity-0 transition-opacity duration-200 
-                                    group-hover:opacity-100"
+                                <button onClick={() => handleRemoveDateInterval(index)} className="group relative ml-4 ">
+                                    <HelpInternshipTooltipDesktop
+                                        className="bg-[url('/background/delete-dates-desktop.png')] bg-cover bg-no-repeat pb-[14px] pt-[30px] flex items-center justify-center w-[339px] "
+                                        textClassName="text-left text-[21px]"
+                                        side="bottom"
+                                        align="start"
+                                        sideOffset={-35}
+                                        tooltipMessage="Удалить интервал дат"
                                     >
-                                        <div
-                                            className="flex h-[77px] w-[339px] items-center justify-center 
-                                        whitespace-nowrap rounded-[50px] 
-                                        bg-[url('/background/delete-dates-desktop.png')] bg-cover bg-no-repeat 
-                                        pb-[14px] pt-[30px] text-[21px] text-white"
-                                        >
-                                            Удалить интервал дат
-                                        </div>
-                                    </div>
+                                        <X
+                                            size={70}
+                                            color='#878797'
+                                            className="opacity-50 hover:opacity-100"
+                                        />
+                                    </HelpInternshipTooltipDesktop>
+                                
                                 </button>
                             )}
 
@@ -180,8 +177,10 @@ const SelectDatesDesktop: React.FC<ISelectDatesDesktopProps> = ({ onErrorChange,
                         </div>
 
                         {showError && (
-                            <div className='absolute bottom-[-25px] '>
-                            <p className="text20px_desktop font-medium text-[#BC8070] pl-[20px]">Выберите даты стажировки</p>
+                            <div className="absolute bottom-[-25px] ">
+                                <p className="text20px_desktop font-medium text-[#BC8070] pl-[20px]">
+                                    Выберите даты стажировки
+                                </p>
                             </div>
                         )}
                     </div>

@@ -1,16 +1,10 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
 import Image from 'next/image'
+import {IItemCardDesktop} from '@/types/itemCards/itemCards'
 
-interface IItemProfessionsInOtherCompanyDesktop {
-    image: {
-        src: string
-        alt: string
-    }
-    onWidthChange?: (width: number) => void
-}
 
-const ItemProfessionsInOtherCompanyDesktop: React.FC<IItemProfessionsInOtherCompanyDesktop> = ({
+const ItemProfessionsInOtherCompanyDesktop: React.FC<IItemCardDesktop> = ({
     image,
     onWidthChange,
 }) => {
