@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { useToast } from '@/context/ToastContext'
 import {
     Toast,
@@ -10,7 +12,12 @@ import {
 } from '@/components/ui/toast'
 
 export function Toaster() {
-    const { toasts } = useToast()
+    const { toasts, dismiss } = useToast()
+    const pathname = usePathname()
+
+    useEffect(() => {
+        dismiss()
+    }, [pathname, dismiss])
 
     return (
         <RadixToastProvider>

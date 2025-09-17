@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, createContext, useContext } from 'react'
+import { useState, createContext, useContext, useCallback } from 'react'
 import type { ToastActionElement, ToastProps } from '@/components/ui/toast'
 
 const TOAST_LIMIT = 1
@@ -46,17 +46,14 @@ function useToastCore() {
         return id
     }
 
-    const dismiss = (id?: string) => {
-        if (id) {
-            setToasts((prev) => prev.map((t) => (t.id === id ? { ...t, open: false } : t)))
-            setTimeout(() => {
-                setToasts((prev) => prev.filter((t) => t.id !== id))
-            }, TOAST_REMOVE_DELAY)
-        } else {
-            setToasts((prev) => prev.map((t) => ({ ...t, open: false })))
-            setTimeout(() => setToasts([]), TOAST_REMOVE_DELAY)
-        }
-    }
+    const dismiss = useCallback((id?: string) => {
+        setToasts((prev) =>
+            id ? prev.map((t) => (t.id === id ? { ...t, open: false } : t)) : prev.map((t) => ({ ...t, open: false })),
+        )
+        setTimeout(() => {
+            setToasts((prev) => (id ? prev.filter((t) => t.id !== id) : []))
+        }, TOAST_REMOVE_DELAY)
+    }, [])
 
     return { toasts, toast, dismiss }
 }
