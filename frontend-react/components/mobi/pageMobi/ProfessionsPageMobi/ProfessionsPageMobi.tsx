@@ -10,7 +10,7 @@ import useDebounce from '@/hooks/useDebounce'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import ProfessionCardPageMobi from './components/ProfessionCardPageMobi'
-import ProfessionsPaginationMobi from './components/ProfessionsPaginationMobi'
+import PaginationMobi from '../../shared/PaginationMobi'
 import ProfessionSendMobi from './components/ProfessionSendMobi'
 import ProfessionsSelectMobi from './components/ProfessionsSelectMobi'
 
@@ -43,13 +43,11 @@ const ProfessionsPageMobi: React.FC = () => {
     })()
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
+    const paginatedItems = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
 
     const handleSearch = () => {
         console.log('Поиск профессий:', searchQuery)
         setSearchQuery('')
-    }
-    const handlePageChange = (page: number): void => {
-        setCurrentPage(page)
     }
 
     return (
@@ -91,10 +89,8 @@ const ProfessionsPageMobi: React.FC = () => {
                         {filteredContent.length > 0 ? (
                             <>
                                 <div className="flex flex-wrap justify-center gap-4">
-                                    {filteredContent
-                                        .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
-                                        .map((item) => (
-                                            <ProfessionCardPageMobi
+                                    {paginatedItems.map((item) => (
+                                        <ProfessionCardPageMobi
                                                 key={item.id}
                                                 image={item.imagePath}
                                                 profession={item.name}
@@ -106,13 +102,13 @@ const ProfessionsPageMobi: React.FC = () => {
                                                     })
                                                 }}
                                             />
-                                        ))}
+                                    ))}
                                 </div>
                                 {totalPages > 1 && (
-                                    <ProfessionsPaginationMobi
+                                    <PaginationMobi
                                         totalPages={totalPages}
                                         currentPage={currentPage}
-                                        onPageChange={handlePageChange}
+                                        onPageChange={setCurrentPage}
                                     />
                                 )}
                             </>
