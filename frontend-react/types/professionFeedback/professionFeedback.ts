@@ -1,5 +1,5 @@
 export interface IFeedback {
-    id: string
+    id: number
     professionId: string
     question: string
     answer: string

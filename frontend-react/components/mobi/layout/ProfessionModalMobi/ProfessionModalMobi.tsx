@@ -24,8 +24,6 @@ const ProfessionModalMobi: React.FC<IProfessionModal> = ({ onClose, profession, 
 
     const description = professions.find((item) => item.id === professionId)?.description || ''
 
-    console.log(feedback)
-
     useEffect(() => {
         loadCompaniesOfProfession(+professionId).then(setCompanies)
         loadProfessionFeedback(+professionId).then(setFeedback)
@@ -46,7 +44,7 @@ const ProfessionModalMobi: React.FC<IProfessionModal> = ({ onClose, profession, 
                 </div>
                 <div className="sm_s:gap-5 flex flex-col gap-6 pl-3 sm:gap-5">
                     <h3 className="text18px_mobi font-semibold uppercase text-white">отзывы о профессии</h3>
-                    <ReviewsModalMobi />
+                    <ReviewsModalMobi feedback={feedback}/>
                 </div>
             </div>
         </Modal>
