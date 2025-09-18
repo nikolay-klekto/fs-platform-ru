@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { useDataContext } from '@/context/DataContext'
 import { EnhancedInput } from '@/components/ui/input'
@@ -92,6 +93,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                     {filteredContent.length > 0 ? (
                         <div className="grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
                             {paginatedItems.map((item) => (
+                                <Link href={`/profession`} key={item.id}>
                                 <ProfessionCardPageDesktop
                                     key={item.id}
                                     image={item.imagePath}
@@ -99,6 +101,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                                     price={item.pricePerWeek}
                                     category={item.professionIndustry}
                                 />
+                                </Link>
                             ))}
                         </div>
                     ) : (
