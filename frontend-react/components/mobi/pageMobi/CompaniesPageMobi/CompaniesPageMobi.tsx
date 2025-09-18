@@ -77,16 +77,16 @@ const CompaniesPageMobi: React.FC = () => {
                             <>
                                 <div className="flex flex-wrap justify-center gap-[20px] sm_xl:gap-[15px]">
                                     {paginatedItems.map((item) => (
-                                        //здесь будет открываться страница компании
-                                        <Link href={`/company/${item.id}`} key={item.id}>
-                                            <CompaniesCardPageMobi
-                                                key={item.id}
-                                                image={item.imagePath}
-                                                industry={item.companyIndustry}
-                                                price={item.pricePerWeek}
-                                                companyName={item.name}
-                                            />
-                                        </Link>
+                                     //здесь будет открываться страница компании
+                                            <Link href={`/company/${item.id}`} key={item.id}>
+                                                <CompaniesCardPageMobi
+                                                    key={item.id}
+                                                    image={item.imagePath}
+                                                    industry={item.companyIndustry}
+                                                    price={item.pricePerWeek}
+                                                    companyName={item.name}
+                                                />
+                                            </Link>
                                     ))}
                                 </div>
                                 {totalPages >= 1 && (

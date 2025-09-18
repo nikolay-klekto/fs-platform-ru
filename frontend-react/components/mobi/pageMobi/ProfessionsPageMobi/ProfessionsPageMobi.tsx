@@ -91,17 +91,17 @@ const ProfessionsPageMobi: React.FC = () => {
                                 <div className="flex flex-wrap justify-center gap-4">
                                     {paginatedItems.map((item) => (
                                         <ProfessionCardPageMobi
-                                            key={item.id}
-                                            image={item.imagePath}
-                                            profession={item.name}
-                                            price={item.pricePerWeek}
-                                            onClick={() => {
-                                                openModal('profession_modal_mobi', 'mobi', {
-                                                    profession: item.name,
-                                                    professionId: item.id,
-                                                })
-                                            }}
-                                        />
+                                                key={item.id}
+                                                image={item.imagePath}
+                                                profession={item.name}
+                                                price={item.pricePerWeek}
+                                                onClick={() => {
+                                                    openModal('profession_modal_mobi', 'mobi', {
+                                                        profession: item.name,
+                                                        professionId: item.id,
+                                                    })
+                                                }}
+                                            />
                                     ))}
                                 </div>
                                 {totalPages > 1 && (
