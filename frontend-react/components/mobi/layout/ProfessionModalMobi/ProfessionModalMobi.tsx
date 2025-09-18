@@ -22,7 +22,7 @@ const ProfessionModalMobi: React.FC<IProfessionModal> = ({ onClose, profession, 
     const [companies, setCompanies] = useState<ICompanyOfProfession[]>([])
     const [feedback, setFeedback] = useState<IFeedback[]>([])
 
-    const description = professions.find((item) => item.id === professionId)?.description || ''
+    const description = professions.find((item) => item.id === professionId.toString())?.description || ''
 
     useEffect(() => {
         loadCompaniesOfProfession(+professionId).then(setCompanies)
