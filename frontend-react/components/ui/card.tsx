@@ -12,6 +12,8 @@ const cardVariants = cva('border-none', {
             profession_page_desktop:
                 'relative flex cursor-pointer flex-col justify-between border-none bg-cover bg-center',
             profession_page_mobi: 'flex flex-col justify-between border-none bg-cover bg-center bg-no-repeat',
+                'hover:button-shadow_around_desktop_custom relative flex cursor-pointer flex-col justify-between border-none bg-cover bg-center overflow-hidden',
+            profession_page_mobi: 'flex flex-col justify-between border-none bg-cover bg-center bg-no-repeat ',
             companies_page_mobi: 'flex flex-col justify-between border-none bg-cover bg-center bg-no-repeat',
             companies_page_desktop:
                 'z-5 relative flex cursor-pointer flex-col justify-between border-none bg-cover bg-center',
