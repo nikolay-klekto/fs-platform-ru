@@ -52,10 +52,12 @@ const ProfessionPageDesktop: React.FC = () => {
                     </div>
                 </div>
                 <div className="overflow-hidden pl-[58px] pr-0">
-                    <h2 className="container mb-[63px]  mt-[96px] pl-0 text-[48px] font-medium uppercase">
+                    <h2 className="container mt-[96px] pl-0 text-[48px] font-medium uppercase">
                         Компании для стажировки
                     </h2>
-                    <InternshipCompaniesDesktop />
+                </div>
+                <InternshipCompaniesDesktop />
+                <div className="overflow-hidden pl-[58px] pr-0">
                     <h2 className="container mb-[81px]  pl-0 text-[48px] font-medium uppercase ">Отзывы о профессии</h2>
                     <ProfessionReviewsDesktop />
                 </div>
