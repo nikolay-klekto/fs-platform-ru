@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Card, CardFooter } from '@/components/ui/card'
 
 interface IItemProfessionsInCompanyDesktop {
@@ -10,11 +10,36 @@ interface IItemProfessionsInCompanyDesktop {
         // height: number
     }
     name: string
+    onWidthChange: (width: number) => void
 }
 
-const ItemProfessionsInCompanyDesktop: React.FC<IItemProfessionsInCompanyDesktop> = ({ image, name }) => {
+const ItemProfessionsInCompanyDesktop: React.FC<IItemProfessionsInCompanyDesktop> = ({
+    image,
+    name,
+    onWidthChange,
+}) => {
+    const itemRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const updateWidth = () => {
+            if (itemRef.current) {
+                onWidthChange(itemRef.current.offsetWidth)
+            }
+        }
+
+        updateWidth()
+        window.addEventListener('resize', updateWidth)
+
+        return () => {
+            window.removeEventListener('resize', updateWidth)
+        }
+    }, [onWidthChange])
+
     return (
-        <div className="relative flex h-auto w-[clamp(180px,_20vw,_328px)] shrink-0 cursor-pointer rounded-[60px] text-center">
+        <div
+            ref={itemRef}
+            className="relative flex h-auto w-[clamp(180px,_20vw,_328px)] shrink-0 cursor-pointer rounded-[60px] text-center"
+        >
             <Card
                 style={{ backgroundImage: `url(${image.src})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                 hoverShadow={'with_hover_shadow'}

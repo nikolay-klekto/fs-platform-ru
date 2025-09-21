@@ -14,7 +14,7 @@ const CompanyAdvantageDesktop: React.FC = () => {
         <>
             <div
                 ref={contentRef}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll px-[58px]"
+                className="no-scrollbar_custom flex w-full select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll"
             >
                 {content.map((item) => (
                     <ItemCompanyAdvantageDesktop

@@ -14,7 +14,7 @@ const InternshipProfessionsDesktop: React.FC = () => {
         <>
             <div
                 ref={contentRef}
-                className="no-scrollbar_custom px-[58px] flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll"
+                className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll"
             >
                 {content.map((item) => (
                     <Link href={`/profession`} key={item.id}>
