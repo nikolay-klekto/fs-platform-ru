@@ -132,7 +132,7 @@ const SelectDatesDesktop: React.FC<ISelectDatesDesktop> = ({ onErrorChange, subm
                             />
 
                             {intervals.length > 1 && (
-                                <button onClick={() => handleRemoveDateInterval(index)} className="group relative ml-4 ">
+                                <button onClick={() => handleRemoveDateInterval(index)} className="group relative ml-4 2xl:ml-[-10px] ">
                                     <HelpInternshipTooltipDesktop
                                         className="bg-[url('/background/delete-dates-desktop.png')] bg-cover bg-no-repeat pb-[14px] pt-[30px] flex items-center justify-center w-[339px] "
                                         textClassName="text-left text-[21px]"

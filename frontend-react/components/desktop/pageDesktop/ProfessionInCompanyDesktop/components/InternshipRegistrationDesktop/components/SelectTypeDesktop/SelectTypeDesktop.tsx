@@ -55,7 +55,7 @@ const SelectTypeDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValid
                 size={'select_internship_btn_desktop'}
                 onClick={handleSelectToggle}
                 className={cn(
-                    'flex items-center justify-between px-[45px] text32_desktop font-medium',
+                    'flex items-center justify-between px-[45px] 2xl:px-[35px] text32px_desktop font-medium',
                     error
                         ? 'border-[rgba(188,128,112,1)] text-[rgba(188,128,112,0.6)]'
                         : isOpen || selectedOption
@@ -68,14 +68,14 @@ const SelectTypeDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValid
                 <ChevronDownIconDesktop
                     color={error ? 'rgba(188,128,112,0.6)' : 'rgba(255,255,255,0.6)'}
                     className={cn(
-                        'h-[15px] w-[27px] transition-transform duration-200 2xl:w-[20px]',
+                        'h-[24px] w-[43px] transition-transform duration-200 2xl:w-[35px]',
                         isOpen ? 'rotate-180' : '',
                     )}
                 />
             </Button>
 
             {isOpen && (
-                <div className="absolute top-[96px] z-[9999] flex w-[751px] 2xl:w-[500px] 3xl:w-[600px] flex-col rounded-[44px] border-[3.7px] border-[#FFFFFF80] bg-[#1F203F] pl-[42px] 3xl:pl-[33px] 2xl:pl-[15px] pr-[25px] 2xl:pr-[10px]">
+                <div className="absolute top-[96px] z-[9999] flex w-[751px] 2xl:w-[550px] 3xl:w-[600px] flex-col rounded-[44px] border-[3.7px] border-[#FFFFFF80] bg-[#1F203F] pl-[42px] 3xl:pl-[33px] 2xl:pl-[15px] pr-[25px] 2xl:pr-[10px]">
                     {options.map((option, index) => {
                         const isFirst = index === 0
                         const isLast = index === options.length - 1
@@ -106,9 +106,9 @@ const SelectTypeDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValid
                                         {option.label}
                                     </span>
                                     <HelpInternshipTooltipDesktop
-                                        className="w-[540px] rounded-[35px] overflow-hidden z-50"
-                                        contentClassName="bg-[url('/background/internship-type-popup2.png')] p-[30px_34px_15px_40px]"
-                                        textClassName="text-left text-[21px] text-white whitespace-pre-line"
+                                        className=" z-50 w-[540px] overflow-hidden rounded-[35px] bg-[url('/background/internship-type-popup2.png')] opacity-100"
+                                        contentClassName=" p-[30px_34px_15px_25px]"
+                                        textClassName="text-left text24px_desktop text-white whitespace-pre-line"
                                         side="bottom"
                                         align="start"
                                         tooltipMessage={options1.find((o) => o.value === option.value)?.label || ''}

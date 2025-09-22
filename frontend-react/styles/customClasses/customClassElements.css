@@ -108,6 +108,7 @@
     .text32px_desktop {
         @apply text-[32px] 4xl:text-11xl 3xl:text-6xl 2xl:text-6xl;
     }
+
     .text30px_desktop {
         @apply text-[30px] 4xl:text-9xl 3xl:text-8xl 2xl:text-6xl !important;
     }

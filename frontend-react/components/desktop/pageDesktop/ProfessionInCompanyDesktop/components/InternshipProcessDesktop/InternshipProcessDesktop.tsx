@@ -14,7 +14,7 @@ const InternshipProcessDesktop: React.FC = () => {
                         </p>
 
                     </div>
-                    <p className="text24px-desktop whitespace-pre-line pl-[13px] text-start font-semibold tracking-[0.045em] text-white">
+                    <p className="text24px_desktop whitespace-pre-line pl-[13px] text-start font-semibold tracking-[0.045em] text-white">
                         {item.text}
                     </p>
                 </div>

@@ -61,7 +61,7 @@ const SelectDateDesktop: React.FC<ISelectDateDesktop> = ({ error = false, select
                     value={inputValue}
                     onAccept={handleInputChange}
                     className={cn(
-                        'font-medium w-[181px] 3xl:w-[150px] 2xl:w-[120px] bg-transparent text-center text33px_desktop placeholder:text-[#878797]',
+                        'font-medium w-[181px] 3xl:w-[150px] 2xl:w-[120px] bg-transparent focus:outline-none focus:ring-0 text-center text33px_desktop placeholder:text-[#878797]',
                         error ? 'text-[#BC8070]' : inputValue ? 'text-white' : 'text-[#878797]',
                     )}
                 />

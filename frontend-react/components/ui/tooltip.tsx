@@ -252,10 +252,7 @@ export const HelpInternshipTooltipDesktop: React.FC<IHelpTooltip> = ({
                     avoidCollisions={false}
                     collisionPadding={{ top: 10, left: 20 }}
                 >
-                    {/* Контейнер для фона */}
-                    <div className={cn(
-                        'w-full h-full bg-cover bg-no-repeat',
-                        contentClassName
+                     <div className={cn(contentClassName
                     )}>
                         <p className={cn(
                             'text-white font-medium',

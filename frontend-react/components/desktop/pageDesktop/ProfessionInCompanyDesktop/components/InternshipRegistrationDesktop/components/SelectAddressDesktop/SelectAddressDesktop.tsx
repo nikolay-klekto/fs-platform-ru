@@ -38,13 +38,13 @@ const SelectTypeAddressDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, 
     ]
 
     return (
-        <div className="relative z-[1] w-[clamp(450px,90%,918px)]" ref={selectRef}>
+        <div className="relative z-[1] w-[clamp(720px,90%,918px)]  2xl:w-[500px] 3xl:w-[600px] " ref={selectRef}>
             <Button
                 variant={'select_internship_btn_desktop'}
                 size={'select_address_btn_desktop'}
                  onClick={handleSelectToggle}
                  className={cn(
-                         'flex items-center justify-between px-[45px]',
+                         'flex items-center justify-between px-[45px] 2xl:px-[30px]',
                          error
                            ? 'border-[rgba(188,128,112,1)] text-[rgba(188,128,112,0.6)]'
                            : isOpenOptions || selectedOption
@@ -56,7 +56,7 @@ const SelectTypeAddressDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, 
 
                 <ChevronDownIconDesktop
                     color="rgba(255,255,255,0.6) "
-                    className={`h-[15px] w-[27px] transition-transform duration-200 2xl:w-[20px]  ${
+                    className={`h-[24px] w-[43px] transition-transform duration-200 2xl:w-[35px]  ${
                         isOpenOptions ? 'rotate-180' : ''
                     }`}
                 />
@@ -64,13 +64,13 @@ const SelectTypeAddressDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, 
     
             {isOpenOptions && (
                 <div
-                    className="absolute top-[96px] z-[9999] flex w-[clamp(450px,90%,908px)] flex-col rounded-[44px] border-[3.5px] border-[#878797] bg-[#1F203F] px-[60px] pt-[37px]"
+                    className="absolute top-[96px] z-[9999] flex w-[908px]  2xl:w-[550px] 3xl:w-[600px] flex-col rounded-[44px] border-[3.5px] border-[#878797] bg-[#1F203F] px-[22px] pt-[37px]"
                    >
                     {options.map((option, index) => (
                         <div key={option.value}>
                             <button
                                 type="button"
-                                className={`text33px_desktop w-full pl-[58px] text-left font-medium transition-colors duration-200 ${selectedOption === option.value ? 'text-white' : 'text-[#878797]'}
+                                className={`text33px_desktop w-full pl-[38px] 2xl:pl-[30px] text-left font-medium transition-colors duration-200 ${selectedOption === option.value ? 'text-white' : 'text-[#878797]'}
                   hover:text-white
                   ${index === 0 ? 'mt-0' : ''}`}
                                 onClick={() => {

@@ -12,12 +12,12 @@ const CompanyPageDesktop: React.FC = () => {
             <HeaderDesktop />
             <main className="bg-[#101030] text-white ">
                 <CompanyInfoDesktop />
-                <div className='container mx-auto mb-[136px] mt-[clamp(60px,5vw,98px)] pl-[clamp(100px,8.23vw,158px)] pr-[clamp(80px,6.51vw,125px)]'>
+                <div className='container mx-auto mb-[136px] 2xl:mb-[80px] 3xl:mb-[100px] mt-[clamp(60px,5vw,98px)] pl-[clamp(100px,8.23vw,158px)] pr-[clamp(80px,6.51vw,125px)]'>
  <InternshipRegistrationDesktop />
                 </div>
                
-                <div className="container mb-[199px]">
-                    <h2 className="title48px_desktop mb-[70px] mt-[136px] pl-[26px] font-medium uppercase 2xl:mt-[80px] 3xl:mt-[100px]">
+                <div className="container mb-[199px] 2xl:mb-[100px] 3xl:mb-[140px] ">
+                    <h2 className="title48px_desktop mb-[70px] mt-[136px]  pl-[26px] font-medium uppercase 2xl:mt-[80px] 3xl:mt-[100px]">
                         Процесс стажировки
                     </h2>
                     <InternshipProcessDesktop />

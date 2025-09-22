@@ -39,7 +39,7 @@ const InternshipRegistrationDesktop: React.FC = () => {
                 Оформление стажировки
             </h2>
             <div className="flex flex-col pl-[81px] pr-[74px] pt-[55px]">
-                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b-[3.71px] border-[#353652] pb-[37px] 2xl:grid-cols-[255px_1fr] 2xl:gap-[100px] ">
+                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b-[3.71px] border-[#353652] pb-[37px] 2xl:grid-cols-[240px_1fr] 2xl:gap-[100px] ">
                     <div className="flex items-center">
                         <p className="text28px_desktop font-medium text-[#878797]">Профессия</p>
                     </div>
@@ -47,7 +47,7 @@ const InternshipRegistrationDesktop: React.FC = () => {
                         <p className="text32px_desktop font-medium text-white">Программист</p>
                     </div>
                 </div>
-                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b-[3.71px] border-[#353652] py-[37px] 2xl:grid-cols-[255px_1fr] 2xl:gap-[100px]">
+                <div className="grid grid-cols-[291px_1fr] gap-x-[150px] border-b-[3.71px] border-[#353652] py-[37px] 2xl:grid-cols-[240px_1fr] 2xl:gap-[100px]">
                     <div className=" flex items-center">
                         <p className="text28px_desktop font-medium text-[#878797]">Компания</p>
                     </div>
@@ -71,7 +71,7 @@ const InternshipRegistrationDesktop: React.FC = () => {
                         )}
                     </div>
                 </div>
-                <div className="grid grid-cols-[291px_1fr] 2xl:grid-cols-[255px_1fr] gap-x-[150px] 2xl:gap-[100px] border-b-[3.71px] border-[#353652] pt-[37px]">
+                <div className="grid grid-cols-[291px_1fr] 2xl:grid-cols-[240px_1fr] gap-x-[150px] 2xl:gap-[100px] border-b-[3.71px] border-[#353652] pt-[37px]">
                     <div className=" flex items-center">
                         <p className="text28px_desktop pb-[116px] font-medium text-[#878797]">Даты стажировки</p>
                     </div>

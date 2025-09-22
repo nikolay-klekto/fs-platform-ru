@@ -44,7 +44,7 @@ const buttonVariants = cva(
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover absolute flex items-center justify-center rounded-[50px] text-white',
                 circle_btn_mobi: 'absolute right-0 top-1/2 -translate-y-1/2',
                 select_internship_btn_desktop:
-                    'text-[33px] 4xl:text-11xl 3xl:text-6xl 2xl:text-6xl flex items-center gap-[20px] rounded-[92px] font-medium  border-[3.5px] hover:text-white hover:border-white',
+                    'text-[33px] 4xl:text-11xl 3xl:text-6xl 2xl:text-5xl flex items-center gap-[20px] rounded-[92px] font-medium  border-[3.5px] hover:text-white hover:border-white',
                 select_btn_desktop:
                     'button-border-desktop 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] text-5xl font-semibold  2xl:text-3xl',
                 circle: 'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
