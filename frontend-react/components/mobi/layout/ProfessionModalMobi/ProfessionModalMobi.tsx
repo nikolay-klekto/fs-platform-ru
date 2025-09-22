@@ -1,7 +1,6 @@
 'use client'
 
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from '@/components/ui/modal'
 import InternshipCompaniesModalMobi from './InternshipCompaniesModalMobi'
 import ReviewsModalMobi from './ReviewsModalMobi'

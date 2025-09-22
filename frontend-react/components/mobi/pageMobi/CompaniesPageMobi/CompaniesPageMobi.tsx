@@ -75,19 +75,20 @@ const CompaniesPageMobi: React.FC = () => {
                         </div>
                         {filteredContent.length > 0 ? (
                             <>
-                                <div className="flex flex-wrap justify-center gap-[20px] sm_xl:gap-[15px]">
-                                    {paginatedItems.map((item) => (
-                                     //здесь будет открываться страница компании
+                                <div className="flex justify-center">
+                                    <div className="grid grid-cols-2 gap-[20px] sm:grid-cols-2 sm_xl:gap-[15px]">
+                                        {paginatedItems.map((item) => (
+                                            //здесь будет открываться страница компании
                                             <Link href={`/company/${item.id}`} key={item.id}>
                                                 <CompaniesCardPageMobi
-                                                    key={item.id}
                                                     image={item.imagePath}
                                                     industry={item.companyIndustry}
                                                     price={item.pricePerWeek}
                                                     companyName={item.name}
                                                 />
                                             </Link>
-                                    ))}
+                                        ))}
+                                    </div>
                                 </div>
                                 {totalPages >= 1 && (
                                     <PaginationMobi
