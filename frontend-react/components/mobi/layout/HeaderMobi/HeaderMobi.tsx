@@ -52,17 +52,20 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
                 }
             >
                 <div className={`relative flex h-[56px] w-full items-center justify-between px-[15px]`}>
-                    <PhoneIconMobi onClick={(): void => openModal('modalcall_mobi', 'mobi')} />
+                    <PhoneIconMobi
+                        className="size-6 md:size-[34px]"
+                        onClick={(): void => openModal('modalcall_mobi', 'mobi')}
+                    />
                     <div className="absolute left-1/2 top-7 -translate-x-1/2 -translate-y-1/2">
                         <Link href="/">
-                            <LogoIconMobi />
+                            <LogoIconMobi className="h-[48px] w-[58px] md:h-[68px] md:w-[92px]" />
                         </Link>
                     </div>
                     <div className="flex gap-[17px]">
                         <Link href="/cart">
-                            <ShoppingCartIconMobi className="shrink-0" />
+                            <ShoppingCartIconMobi className="size-6 shrink-0 md:size-[34px]" />
                         </Link>
-                        <BurgerMenuIconMobi className="shrink-0" onClick={toggleMenu} />
+                        <BurgerMenuIconMobi className="size-6 shrink-0 md:size-[34px]" onClick={toggleMenu} />
                     </div>
                 </div>
             </header>
@@ -87,7 +90,7 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
                             <CrossIconMobi onClick={toggleMenu} />
                         </div>
                         {!isAuth && (
-                            <div className="sm_s:pb-10 flex flex-col items-center gap-2.5 pb-12 pt-1 sm:pb-10">
+                            <div className="flex flex-col items-center gap-2.5 pb-12 pt-1 sm:pb-10 sm_s:pb-10">
                                 <button
                                     className="flex items-center gap-3.5"
                                     onClick={(): void => openModal('login_mobi', 'mobi')}
@@ -110,13 +113,13 @@ const HeaderMobi: React.FC<IHeader> = ({ disableBackground }) => {
                             Заказать звонок
                         </Button>
                         <div className="mt-6 flex items-center gap-6 pb-12">
-                            <a href="href" target="_blank" rel="noopener noreferrer">
+                            <a href="#href" target="_blank" rel="noopener noreferrer">
                                 <TelegramIconBurgerMobi />
                             </a>
-                            <a href="href" target="_blank" rel="noopener noreferrer">
+                            <a href="#href" target="_blank" rel="noopener noreferrer">
                                 <InstagramIconBurgerMobi />
                             </a>
-                            <a href="href" target="_blank" rel="noopener noreferrer">
+                            <a href="#href" target="_blank" rel="noopener noreferrer">
                                 <LinkedInIconMobiBurger />
                             </a>
                         </div>

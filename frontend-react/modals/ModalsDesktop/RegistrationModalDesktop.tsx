@@ -65,7 +65,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
             formData.phoneNumber === '' ||
             formData.password === '' ||
             formData.confirmPassword === '' ||
-            formData.agree !== true
+            !formData.agree === true
 
         const hasErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
         const hasInternalErrors = Object.values(inputInternalErrors).some((error) => error !== null && error !== '')
@@ -178,7 +178,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 <button onClick={onClose} className="absolute right-[5%] top-[5%] w-[7%]">
                     <X size={41} color="#878797" className="w-full opacity-50 hover:opacity-100" />
                 </button>
-                <h2 className="text36px_desktop text-gradient_desktop_custom 3xl:mb-5 4xl:mb-6 mb-7 inline font-medium uppercase 2xl:mb-4">
+                <h2 className="text36px_desktop text-gradient_desktop_custom mb-7 inline font-medium uppercase 2xl:mb-4 3xl:mb-5 4xl:mb-6">
                     Регистрация
                 </h2>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle">
@@ -316,7 +316,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         variant="default"
                         size="btn_modal_desktop"
                         disabled={formError}
-                        className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-6 h-[64px] w-[70%] rounded-[50px] text-5xl font-semibold disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
+                        className="mx-auto mt-6 h-[64px] w-[70%] rounded-[50px] bg-gradient-desktop text-5xl font-semibold hover:bg-gradient-desktop-hover disabled:cursor-not-allowed disabled:bg-[#878789] disabled:bg-none disabled:text-[#CBD6EF] disabled:opacity-100 disabled:hover:bg-none"
                     >
                         {loading ? 'Загрузка...' : 'Зарегистрироваться'}
                     </Button>
