@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { content } from './ItemProfessionsInCompanyDesktop/contentProfessionsDesktop/content'
 import ItemProfessionsInCompanyDesktop from './ItemProfessionsInCompanyDesktop/ItemProfessionsInCompanyDesktop'
 import useScrollbarSync from '@/hooks/useScrollbarSync'
+import { Link } from 'lucide-react'
 
 const InternshipProfessionsDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)

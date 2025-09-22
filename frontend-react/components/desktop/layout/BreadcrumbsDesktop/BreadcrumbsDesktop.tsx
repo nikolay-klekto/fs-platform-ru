@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import { SlashIcon } from 'lucide-react'
 
 import {
     Breadcrumb,
@@ -12,27 +11,25 @@ import {
     BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 
-type BreadcrumbEntry = {
-    title: string
-    href?: string
-    className?: string
-}
-
-interface BreadcrumbsProps {
-    items: BreadcrumbEntry[]
+interface IBreadcrumbs {
+    items: {
+        title: string
+        href?: string
+        className?: string
+        isLink?: boolean
+    }[]
     separator?: React.ReactNode
 }
 
-export default function Breadcrumbs({
+const BreadcrumbsDesktop: React.FC<IBreadcrumbs> = ({
     items,
-    separator = <SlashIcon className="text20px_desktop" />,
-}: BreadcrumbsProps) {
+    separator = <span className="text20px_desktop rotate-[15deg] leading-none">/</span>,
+}) => {
     return (
-        <Breadcrumb className="custom-grey">
+        <Breadcrumb aria-label="Breadcrumb" className="custom-grey">
             <BreadcrumbList>
                 {items.map((item, index) => {
                     const isLast = index === items.length - 1
-
                     return (
                         <React.Fragment key={index}>
                             <BreadcrumbItem>
@@ -60,3 +57,5 @@ export default function Breadcrumbs({
         </Breadcrumb>
     )
 }
+
+export default BreadcrumbsDesktop
