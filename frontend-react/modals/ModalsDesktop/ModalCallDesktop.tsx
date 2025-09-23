@@ -139,8 +139,8 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                 Заказать звонок
                             </h3>
                         </div>
-                        <form onSubmit={handleSubmit}>
-                            <div className="mb-5 flex w-full flex-col px-[75px]">
+                        <form onSubmit={handleSubmit} className="px-[75px]">
+                            <div className="mb-5 flex w-full flex-col">
                                 <EnhancedInput
                                     type="text"
                                     name="name"
@@ -164,7 +164,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     wrapperClassName="w-full"
                                 />
                             </div>
-                            <div className="mb-5 flex w-full flex-col px-[75px]">
+                            <div className="mb-5 flex w-full flex-col">
                                 <PhoneInputDesktop
                                     value={formData.phone}
                                     onError={(error) => {
@@ -188,7 +188,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     } mt-0 h-[50px] py-[14px] pl-[20px] text-4xl placeholder:text-2xl placeholder:text-[#353652]`}
                                 />
                             </div>
-                            <div className="mb-6 flex w-full flex-col px-[75px]">
+                            <div className="mb-6 flex w-full flex-col">
                                 <EnhancedInput
                                     type="text"
                                     id="time"
@@ -206,10 +206,10 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     *Обязательное поле для ввода
                                 </p>
                                 {Object.values(errors).some((val) => val && val.trim() !== '') && (
-                                    <p className="error-form-desktop-custom mb-3">Заполните обязательные поля</p>
+                                    <p className="error-form-desktop-custom">Заполните обязательные поля</p>
                                 )}
                             </div>
-                            <div className="mt-[27.85px] px-[75px]">
+                            <div className="">
                                 <EnhancedInput
                                     type="checkbox"
                                     id="consent"
@@ -226,28 +226,30 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         } as React.ChangeEvent<HTMLInputElement>)
                                     }
                                     label="Я согласен(а) на обработку персональных данных"
-                                    wrapperClassName="flex gap-[10px] pb-2"
+                                    wrapperClassName="flex"
                                     checkboxIconSize="w-[18px]"
                                     labelClassName={`text-2xl w-[398px] whitespace-nowrap ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                                 />
                             </div>
-                            {errors.consent && <p className="error-form-desktop-custom px-[75px]">{errors.consent}</p>}
+                            {errors.consent && <p className="error-form-desktop-custom">{errors.consent}</p>}
                             <div className="mx-auto mt-[10px]">
-                                <p className="px-[75px] text-2xl font-medium text-[#353652]">
+                                <p className="text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
-                                    <a
+                                    <Link
                                         href="/privacy-policy"
-                                        className="hover:cursor ml-1 text-2xl font-medium leading-[18px] text-[#353652] underline"
+                                        onClick={onClose}
+                                        className="hover:cursor underline-decoration-1 ml-1 text-2xl font-medium leading-[18px] text-[#353652] underline underline-offset-2"
                                     >
                                         Конфиденциальность
-                                    </a>{' '}
+                                    </Link>{' '}
                                     <br />и{' '}
-                                    <a
-                                        href="href"
-                                        className="mb-4 text-2xl font-medium leading-[18px] text-[#353652] underline"
+                                    <Link
+                                        href="/privacy-policy"
+                                        onClick={onClose}
+                                        className="underline-decoration-1 mb-4 text-2xl font-medium leading-[18px] text-[#353652] underline underline-offset-2"
                                     >
                                         Условия использования
-                                    </a>
+                                    </Link>
                                 </p>
                             </div>
                             <div className="mb-10 mt-5 flex justify-center">
