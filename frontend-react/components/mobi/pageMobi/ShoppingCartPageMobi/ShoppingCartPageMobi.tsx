@@ -1,9 +1,9 @@
 'use client'
 
-import React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
+import FooterMobi from '../../layout/FooterMobi/FooterMobi'
 import { AccountNavigationMobi } from '@/components/mobi/layout/AccountNavigationMobi/AccountNavigationMobi'
 import ItemCardShoppingCartMobi from '@/components/mobi/pageMobi/ShoppingCartPageMobi/components/ItemCardShoppingCartMobi/ItemCardShoppingCartMobi'
 import { content } from './contentShoppingCartPageMobi/content'
@@ -16,47 +16,46 @@ const ShoppingCartPageMobi: React.FC = () => {
     return (
         <>
             <HeaderMobi />
-            <main className="grow px-[15px] pb-[40px] bg-[#101030]">
-                {/* авторизованный */}
+            <main className="grow bg-[#101030] px-[15px] pb-10">
                 {isAuth && (
-                    <div className="flex flex-col items-center justify-center bg-[#101030] pt-[40px]">
-                        <h1 className="title28px_mobi_custom mb-[20px] uppercase">Личный кабинет</h1>
+                    <div className="flex flex-col items-center justify-center pt-10">
+                        <h1 className="title28px_mobi_custom mb-5 uppercase">Личный кабинет</h1>
                         <AccountNavigationMobi />
                     </div>
                 )}
-                {/* неавторизованный корзина пустая */}
+
                 {!isAuth && !hasOrders && (
-                    <div className="flex flex-col items-center pt-[160px] pb-[370px]">
-                        <div className="text-3xl font-semibold leading-[162%] text-center text-[#353652] px-[15px] mb-[47px]">
+                    <div className="flex flex-col items-center pb-[270px] pt-[160px]">
+                        <div className="mb-11 max-w-[350px] text-center text-3xl font-semibold leading-[26px] text-[#353652]">
                             <p> Ваша корзина пуста</p>
                             <p>
-                                Загляните на главную чтобы выбрать понравившуюся стажировку, либо войдите в Ваш аккаунт
+                                Загляните на главную, чтобы выбрать понравившуюся стажировку, либо войдите в Ваш аккаунт
                             </p>
                         </div>
                         <Link href="/professions">
-                            <Button variant="send_btn_mobi" size="select_btn_mobi_prof">
+                            <Button variant="send_btn_mobi" size="choose_profession_btn_mobi">
                                 Выбрать профессию
                             </Button>
                         </Link>
                     </div>
                 )}
-                {/* авторизованный, корзина пустая */}
+
                 {isAuth && !hasOrders && (
-                    <div className="flex flex-col items-center justify-center px-[15px] pt-[40px] pb-[400px] bg-[#101030]">
-                        <p className="text-3xl font-semibold leading-[162%] text-center text-[#353652] px-[15px] mt-[70px] mb-[20px]">
+                    <div className="flex flex-col items-center pb-[270px] pt-16">
+                        <p className="mb-5 text-center text-3xl font-semibold leading-[26px] text-[#353652]">
                             Ваша корзина пуста
                         </p>
                         <Link href="/professions">
-                            <Button variant="send_btn_mobi" size="select_btn_mobi_prof">
+                            <Button variant="send_btn_mobi" size="choose_profession_btn_mobi">
                                 Выбрать профессию
                             </Button>
                         </Link>
                     </div>
                 )}
-                {/* корзина полная*/}
+
                 {hasOrders && (
-                    <div className="pt-[35px] mx-[15px] text-center">
-                        <div className="flex flex-wrap justify-center gap-[34px] self-end pb-[50px] 2xl:pt-[75px]">
+                    <div className="pt-9 text-center">
+                        <div className="flex flex-col items-center gap-[30px] self-end pb-[50px]">
                             {content.map((item) => (
                                 <ItemCardShoppingCartMobi
                                     key={item.id}
@@ -74,6 +73,7 @@ const ShoppingCartPageMobi: React.FC = () => {
                     </div>
                 )}
             </main>
+            <FooterMobi />
         </>
     )
 }

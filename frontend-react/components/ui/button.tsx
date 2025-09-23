@@ -45,7 +45,7 @@ const buttonVariants = cva(
                 circleDarkBlue: 'rounded-[50%] bg-[#272744]',
                 select_day: 'bg-gradient-desktop rounded-[90px] text-white',
                 hover_button_date:
-                    'hover:button-border-desktop-date border-2 border-[#878797] bg-[#1f203f] rounded-[90px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg text-sm rounded-[90px] text-white',
+                    'hover:button-border-desktop-date border-2 border-[#878797] bg-[#1f203f] rounded-[90px] 4xl:text-2xl 3xl:text-xl 2xl:text-lg text-sm text-white',
                 cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
                 cookie_btn_mobi: 'button-border-mobi border-2 bg-inherit hover:bg-[#101030] rounded-[50px] text-white',
             },
@@ -56,9 +56,9 @@ const buttonVariants = cva(
                 arrow_registration_desktop: '3xl:size-[88px] size-[95px] rounded-full 2xl:size-[80px]',
                 registration_desktop:
                     '3xl:w-[376px] 3xl:h-[88px] h-[95px] w-[500px] rounded-[45px] 2xl:h-[80px] 2xl:w-[323px] ',
-                registration_mobi: 'h-[51px] rounded-full px-4 py-2',
+                registration_mobi: 'h-[50px] rounded-full px-4 py-2',
                 arrow_registration_mobi: 'size-[51px] rounded-full',
-                select_mobi: 'h-[40px] w-full max-w-[188px] ',
+                select_mobi: 'h-[40px] w-full max-w-[188px]',
                 gradient_circle_mobi: 'aspect-square size-[44px] p-[10px]',
                 btn_modal_desktop: 'h-12 max-w-[272px] rounded-md',
                 btn_modal_mobi: 'h-11 max-w-[272px] rounded-md',
@@ -72,6 +72,7 @@ const buttonVariants = cva(
                     'text-7.5xl 3xl:px-[2vw] 3xl:py-[15px] 3xl:text-4xl 4xl:px-[3vw] 4xl:py-[19px] 4xl:text-6xl max-h-[68px] px-[80px] py-[16px] 2xl:px-[2vw] 2xl:py-[14px] 2xl:text-3xl',
                 select_mobi_menu: 'h-[47px] w-full max-w-[195px] text-3xl',
                 send_btn_desktop: 'h-[64px] w-[272px] 2xl:w-[200px]',
+                choose_profession_btn_mobi: 'h-[50px] w-[240px] sm_xl:w-[294px] md:w-[294px]',
                 cookie_btn_desktop: '3xl:w-[250px] h-[64px] w-[237px]',
                 cookie_btn_mobi: 'w-[188px] h-[40px] text-wrap',
                 circle_btn_gradient_desktop: 'right-0 top-1/2 size-[60px] -translate-y-1/2 rounded-full',
@@ -97,7 +98,6 @@ const buttonVariants = cva(
                 confirm_btn_desktop: 'h-[64px] w-[250px]',
                 join_team_btn_desktop: 'h-[100px] w-[430px]',
                 join_team_btn_mobi: 'h-[44px] w-[187px]',
-                select_btn_mobi_prof: 'h-[50px] w-[294px]',
             },
         },
         defaultVariants: {
