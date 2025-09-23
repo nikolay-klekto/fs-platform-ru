@@ -135,9 +135,9 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             <X size={41} color="#FFFFFF" className="opacity-80 hover:opacity-100" />
                         </button>
                         <div className="ml-[101px] mr-[102px] max-w-md flex-col rounded-lg text-center">
-                            <h1 className="text-13xl bg-gradient-desktop mb-[19px] mt-[83px] bg-clip-text font-medium leading-[44px] text-transparent w-[375px] whitespace-nowrap">
-                                ЗАКАЗАТЬ ЗВОНОК
-                            </h1>
+                            <h3 className="text-13xl bg-gradient-desktop mb-[19px] mt-[83px] w-[375px] whitespace-nowrap bg-clip-text font-medium uppercase leading-[44px] text-transparent">
+                                Заказать звонок
+                            </h3>
                         </div>
                         <form onSubmit={handleSubmit}>
                             <div className="mb-5 flex w-full flex-col px-[75px]">
@@ -158,12 +158,11 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         inputTouched.name && validateNameDesktop(formData.name).styleError
                                             ? 'border-[#bc8070]'
                                             : 'border-[#878797]'
-                                    } h-[50px] w-full rounded-[50px] border-2 bg-transparent pl-[20px] pt-[14px] pb-[14px] text-4xl font-medium text-white placeholder:text-2xl placeholder:text-[#353652] focus-visible:ring-offset-0`}
+                                    } h-[50px] w-full rounded-[50px] border-2 bg-transparent py-[14px] pl-[20px] text-4xl font-medium text-white placeholder:text-2xl placeholder:text-[#353652] focus-visible:ring-offset-0`}
                                     label="Ваше имя*"
-                                    labelClassName="mb-[10px] text-2xl leading-[18px] font-medium text-white"
+                                    labelClassName="text-2xl leading-[100%] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
-                                {errors.name && <p className="error-form-desktop-custom">{errors.name}</p>}
                             </div>
                             <div className="mb-5 flex w-full flex-col px-[75px]">
                                 <PhoneInputDesktop
@@ -179,16 +178,15 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                             target: { name: 'phone', value, type: 'text', checked: false },
                                         } as React.ChangeEvent<HTMLInputElement>)
                                     }
-                                    labelClassName="mb-[10px] text-2xl leading-[18px] font-medium text-white"
+                                    labelClassName="leading-[100%]"
                                     wrapperClassName="w-full gap-0"
                                     required={true}
                                     className={`${
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
                                             ? 'border-[#bc8070] focus:border-[#bc8070]'
                                             : 'border-[#878797] focus:border-[#878797]'
-                                    } h-[50px] text-4xl placeholder:text-2xl placeholder:text-[#353652] pl-[20px] pt-[14px] pb-[14px]`}
+                                    } mt-0 h-[50px] py-[14px] pl-[20px] text-4xl placeholder:text-2xl placeholder:text-[#353652]`}
                                 />
-                                {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
                             </div>
                             <div className="mb-6 flex w-full flex-col px-[75px]">
                                 <EnhancedInput
@@ -199,12 +197,12 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     maxLength={100}
                                     value={formData.time}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                    className="h-[50px] w-full rounded-[50px] border-2 border-[#878797] bg-transparent pl-[20px] pt-[14px] pb-[14px] text-4xl font-medium text-white placeholder:text-2xl placeholder:text-[#353652] focus-visible:ring-offset-0"
+                                    className="h-[50px] w-full rounded-[50px] border-2 border-[#878797] bg-transparent py-[14px] pl-[20px] text-4xl font-medium text-white placeholder:text-2xl placeholder:text-[#353652] focus-visible:ring-offset-0"
                                     label="Удобное время для звонка"
-                                    labelClassName="mb-[10px] text-2xl leading-[18px] font-medium text-white"
+                                    labelClassName="text-2xl leading-[100%] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
-                                <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
+                                <p className="mt-2 text-2xl font-medium leading-[100%] text-[#353652]">
                                     *Обязательное поле для ввода
                                 </p>
                                 {Object.values(errors).some((val) => val && val.trim() !== '') && (
@@ -287,14 +285,14 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             </p>
                         </div>
                         <div className="mb-[67px] flex items-center justify-center">
-                                <Button
-                                    onClick={handleNavigateToProfessions}
-                                    variant="default"
-                                    size="btn_modal_desktop"
-                                    className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-8 rounded-full px-20 py-8 text-5xl font-semibold leading-[24px]"
-                                >
-                                    Смотреть профессии
-                                </Button>
+                            <Button
+                                onClick={handleNavigateToProfessions}
+                                variant="default"
+                                size="btn_modal_desktop"
+                                className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-8 rounded-full px-20 py-8 text-5xl font-semibold leading-[24px]"
+                            >
+                                Смотреть профессии
+                            </Button>
                         </div>
                     </div>
                 </Modal>
