@@ -88,7 +88,8 @@ const ProfessionsPageMobi: React.FC = () => {
                         </div>
                         {filteredContent.length > 0 ? (
                             <>
-                                <div className="flex flex-wrap justify-center gap-4">
+                            <div className="flex justify-center">
+                                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 sm_xl:grid-cols-2">
                                     {paginatedItems.map((item) => (
                                         <ProfessionCardPageMobi
                                                 key={item.id}
@@ -104,6 +105,7 @@ const ProfessionsPageMobi: React.FC = () => {
                                             />
                                     ))}
                                 </div>
+                            </div>
                                 {totalPages > 1 && (
                                     <PaginationMobi
                                         totalPages={totalPages}
