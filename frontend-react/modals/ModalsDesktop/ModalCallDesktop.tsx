@@ -134,11 +134,9 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         <button onClick={onClose} className="absolute right-7 top-6">
                             <X size={41} color="#FFFFFF" className="opacity-80 hover:opacity-100" />
                         </button>
-                        <div className="ml-[101px] mr-[102px] max-w-md flex-col rounded-lg text-center">
-                            <h3 className="text-13xl bg-gradient-desktop mb-[19px] mt-[83px] w-[375px] whitespace-nowrap bg-clip-text font-medium uppercase leading-[44px] text-transparent">
-                                Заказать звонок
-                            </h3>
-                        </div>
+                        <h3 className="text-13xl bg-gradient-desktop mx-auto mb-5 mt-20 w-[375px] whitespace-nowrap bg-clip-text font-medium uppercase leading-[100%] text-transparent">
+                            Заказать звонок
+                        </h3>
                         <form onSubmit={handleSubmit} className="px-[75px]">
                             <div className="mb-5 flex w-full flex-col">
                                 <EnhancedInput
