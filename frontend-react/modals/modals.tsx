@@ -8,7 +8,6 @@ import ModalConfirmOrderDeleteDesktop from '@/modals/ModalsDesktop/ModalConfirmD
 import ModalCallMobi from '@/modals/ModalsMobi/ModalCallMobi'
 import RegistrationModalMobi from '@/modals/ModalsMobi/RegistrationModalMobi'
 import LoginModalMobi from '@/modals/ModalsMobi/LoginModalMobi'
-import ProfessionModalDesktop from '@/components/desktop/pageDesktop/ProfessionsModalDesktop/ProfessionModalDesktop'
 import ProfessionModalMobi from '@/components/mobi/layout/ProfessionModalMobi/ProfessionModalMobi'
 import ModalOrderPlacedDesktop from '@/modals/ModalsDesktop/ModalOrderPlacedDesktop'
 import ModalContractTerminatedDesktop from '@/modals/ModalsDesktop/ModalContractTerminatedDesktop'
@@ -20,6 +19,7 @@ import ModalForgotPasswordDesktop from './ModalsDesktop/ModalForgotPasswordDeskt
 import ModalForgotPasswordMobi from './ModalsMobi/ModalForgotPasswordMobi'
 import ModalCookieDesktop from './ModalsDesktop/ModalCookieDesktop'
 import ModalJoinTeamDesktop from './ModalsDesktop/ModalJoinTeamDesktop'
+import ModalCompanyNotifyDesktop from './ModalsDesktop/ModalCompanyNotifyDesktop'
 import ModalCookieMobi from './ModalsMobi/ModalCookieMobi'
 
 interface IModalContent {
@@ -40,13 +40,6 @@ export const modals = {
         {
             id: 'login_desktop',
             content: ({ onClose }: IModalContent) => <LoginModalDesktop onClose={onClose} />,
-        },
-        {
-            id: 'profession_modal_desktop',
-            content: ({ onClose, modalProps }: IModalContent) => {
-                const { profession, professionId } = modalProps as { profession: string; professionId: number | null }
-                return <ProfessionModalDesktop onClose={onClose} profession={profession} professionId={professionId} />
-            },
         },
         {
             id: 'confirm_avoid_contract_desktop',
@@ -87,6 +80,10 @@ export const modals = {
         {
             id: 'join_team_modal_desktop',
             content: ({ onClose }: IModalContent) => <ModalJoinTeamDesktop onClose={onClose} />,
+        },
+        {
+            id: 'modal_company_notify_desktop',
+            content: ({ onClose }: IModalContent) => <ModalCompanyNotifyDesktop onClose={onClose} />,
         },
     ],
     mobi: [
