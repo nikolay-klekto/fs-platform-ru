@@ -13,7 +13,7 @@ const ItemEventsDesktop: React.FC<IEventSection> = ({ image, title, date }) => {
     const [day, month] = date.split(' ')
 
     return (
-        <div className="flex min-w-[27%] max-w-[27%] flex-col">
+        <div className="flex basis-[27%] grow-0 shrink-0 flex-col">
             <Card
                 hoverShadow={true}
                 className="relative aspect-[4/3] w-full rounded-[3.125rem] 2xl:rounded-[2rem] mt-[4vh] cursor-pointer overflow-hidden"
