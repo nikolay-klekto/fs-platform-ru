@@ -114,12 +114,12 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
     return (
         <Modal onClose={onClose} size="semilarge-l" showCloseButton={true} crossPosition="right-5 top-4" crossSize={41}>
             <div className="mx-auto flex flex-col items-center justify-center px-[80px] pt-[43px]">
-                <h2
+                <h3
                     className="text-gradient_desktop_custom block w-[543px] whitespace-normal break-normal text-center text-[28px] font-medium uppercase leading-[1.22]"
                     style={{ textWrap: 'balance' }}
                 >
                     Когда компания станет доступна, куда вам сообщить?
-                </h2>
+                </h3>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col px-[5px] align-middle" noValidate>
                     <EnhancedInput
                         type="email"
@@ -133,7 +133,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         variant="gradient_desktop"
                         error={!!formErrors.email}
                         labelClassName="text-white text-[15px] font-medium ml-[6px] mt-[18px] "
-                        className={`focus:ring-0" h-[50px] w-[518px] rounded-[50px] border-2 bg-transparent text-[18px] font-medium text-white focus:outline-none
+                        className={`h-[50px] w-[518px] rounded-[50px] border-2 bg-transparent text-[18px] font-medium text-white focus:outline-none focus:ring-0
                             ${formErrors.email ? 'border-[#BC8070]' : 'border-[#878797]'}
                             `}
                     />
