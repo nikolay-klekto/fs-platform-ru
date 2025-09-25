@@ -57,8 +57,10 @@ const ProfessionPageDesktop: React.FC = () => {
                     </h2>
                 </div>
                 <InternshipCompaniesDesktop />
-                <div className="overflow-hidden pl-[58px] pr-0">
-                    <h2 className="container mb-[81px]  pl-0 text-[48px] font-medium uppercase ">Отзывы о профессии</h2>
+                <div className="overflow-hidden">
+                    <h2 className="container mb-[81px] pl-[58px] text-[48px] font-medium uppercase ">
+                        Отзывы о профессии
+                    </h2>
                     <ProfessionReviewsDesktop />
                 </div>
             </main>

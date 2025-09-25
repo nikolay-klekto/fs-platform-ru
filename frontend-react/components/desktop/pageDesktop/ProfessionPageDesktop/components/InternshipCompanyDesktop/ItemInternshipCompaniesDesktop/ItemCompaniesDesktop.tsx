@@ -37,7 +37,7 @@ const ItemCompaniesDesktop: React.FC<IItemCompaniesDesktop> = ({ image, name, in
         <Card
             ref={itemRef}
             className="relative mb-[77px] mt-[63px] flex h-auto w-[clamp(280px,_20vw,_328px)] shrink-0 cursor-pointer rounded-[20px] text-center"
-            hoverShadow={'with_hover_shadow'}
+            hoverShadow={true}
         >
             <CardContent className="relative aspect-[4/5] w-full">
                 <Image src={image.src} alt={image.alt} fill className="rounded-[20px] opacity-60 object-cover" />

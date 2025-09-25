@@ -21,7 +21,7 @@ const CompaniesCardPageDesktop: React.FC<ICompanieCard> = ({ image, companyName,
                     backgroundSize: '150%',
                     backgroundPosition: 'center',
                 }}
-                hoverShadow={'with_hover_shadow'}
+                hoverShadow={true}
             >
                 <CardTitle variant={'companies_page_desktop'} size={'companies_page_desktop'}>
                     {industry}

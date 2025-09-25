@@ -15,18 +15,18 @@ const ItemEventsDesktop: React.FC<IEventSection> = ({ image, title, date }) => {
     return (
         <div className="flex min-w-[27%] max-w-[27%] flex-col">
             <Card
-                hoverShadow={'with_hover_shadow'}
+                hoverShadow={true}
                 className="relative aspect-[4/3] w-full rounded-[3.125rem] 2xl:rounded-[2rem] mt-[4vh] cursor-pointer overflow-hidden"
             >
                 <CardContent
-                    className="relative h-full w-full"
+                    className="relative size-full"
                     style={{
                         backgroundImage: `url(${image})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}
                 >
-                    <div className="absolute right-[5%] top-[4%] flex aspect-[113/100] w-[22%] flex-col items-center justify-center rounded-3xl bg-white bg-opacity-80 2xl:rounded-2xl">
+                    <div className="absolute right-[5%] top-[4%] flex aspect-[113/100] w-[22%] flex-col items-center justify-center rounded-3xl bg-white/80 2xl:rounded-2xl">
                         <p className="4xl:text-7xl 3xl:text-6xl text-9xl font-semibold text-[#1f203f] 2xl:text-4xl">
                             {day}
                         </p>

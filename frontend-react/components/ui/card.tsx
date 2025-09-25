@@ -42,15 +42,15 @@ const cardVariants = cva('border-none', {
             rounded_20: 'rounded-[20px]',
         },
         hoverShadow: {
-            default: '',
-            with_hover_shadow: 'hover:button-shadow_around_desktop_custom',
+            true: 'hover:button-shadow_around_desktop_custom',
+            false: '',
         },
     },
     defaultVariants: {
         variant: 'default',
         size: 'default',
         rounded: 'default',
-        hoverShadow: 'default',
+        hoverShadow: false,
     },
 })
 
