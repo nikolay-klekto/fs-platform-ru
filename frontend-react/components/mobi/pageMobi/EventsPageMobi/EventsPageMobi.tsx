@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFilteredEvents, EventsFilterConfig } from '@/hooks/useFilteredEvents'
 import EventsCardMobi from './components/EventsCardMobi'
-import EventsPaginationMobi from './components/EventsPaginationMobi'
+import PaginationMobi from '../../shared/PaginationMobi'
 import EventsFilterModalMobi from '../../../../modals/ModalsMobi/ModalFilterEventsMobi/EventsFilterModalMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
@@ -19,6 +19,10 @@ const EventsPageMobi: React.FC = () => {
         dateScope: '',
     })
 
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [filters])
+
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
     const [showFilter, setShowFilter] = useState(false)
@@ -26,10 +30,6 @@ const EventsPageMobi: React.FC = () => {
     const { events, categories, cities, loading, error } = useFilteredEvents(filters, USE_FAKE_DATA)
 
     const totalPages = Math.ceil(events.length / cardsPerPage)
-
-    const handlePageChange = (page: number): void => {
-        setCurrentPage(page)
-    }
 
     const hasActiveFilters = (filters: EventsFilterConfig) => {
         return (
@@ -111,7 +111,7 @@ const EventsPageMobi: React.FC = () => {
                                                 key={item.id}
                                                 title={item.name}
                                                 category={item.eventCategory.category}
-                                                image={`/api/events/image?eventId=${item.id}`}
+                                                image={item.imagePath ?? '/images/events_1.png'}
                                                 date={item.date}
                                                 time={item.time}
                                                 city={item.city.name}
@@ -123,10 +123,10 @@ const EventsPageMobi: React.FC = () => {
                             </div>
                         </div>
                         {totalPages > 1 ? (
-                            <EventsPaginationMobi
+                            <PaginationMobi
                                 totalPages={totalPages}
                                 currentPage={currentPage}
-                                onPageChange={handlePageChange}
+                                onPageChange={setCurrentPage}
                             />
                         ) : (
                             <div className="h-[30px]" />

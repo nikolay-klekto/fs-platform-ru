@@ -1,4 +1,4 @@
-import { useAllActualEvents } from '@/lib/api/events/events'
+import { useDataContext } from '@/context/DataContext'
 import { useMemo } from 'react'
 import { fakeEvents, IEventApiContent } from '@/components/mobi/pageMobi/EventsPageMobi/contentEventsPageMobi/content'
 import {
@@ -18,7 +18,11 @@ export type EventsFilterConfig = {
 }
 
 export function useFilteredEvents(filters: EventsFilterConfig, useFakeData: boolean = false) {
-    const { events: allEvents, loading, error } = useAllActualEvents()
+    const { events: allEvents } = useDataContext()
+
+    const loading = !allEvents
+    const error = allEvents ? null : new Error('Events not available')
+
     const events: IEventApiContent[] = useFakeData
         ? fakeEvents
         : allEvents && allEvents.length > 0

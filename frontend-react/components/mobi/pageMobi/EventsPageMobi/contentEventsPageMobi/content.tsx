@@ -37,6 +37,7 @@ export interface IEventApiContent {
         id: string
         category: string
     }
+    imagePath?: string
 }
 
 export const fakeEvents: IEventApiContent[] = [
