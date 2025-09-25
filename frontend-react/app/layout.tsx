@@ -3,7 +3,7 @@ import { Montserrat } from 'next/font/google'
 import { modals } from '@/modals/modals'
 import { ModalProvider } from '@/context/ContextModal'
 import { ToastProvider } from '@/context/ToastContext'
-import { Toaster } from '@/components/ui/toaster'
+import { NotificationsToaster } from '@/components/wrapper/NotificationsToaster'
 import ApolloProviderWrapper from '@/components/wrapper/ApolloProviderWrapper'
 import '../styles/globals.css'
 import ScrollRestoration from '@/lib/scroll-restoration'
@@ -36,7 +36,7 @@ export default async function RootLayout({
                     <ApolloProviderWrapper>
                         <ToastProvider>
                             <ModalProvider modals={modals}>{children}</ModalProvider>
-                            <Toaster />
+                            <NotificationsToaster />
                         </ToastProvider>
                     </ApolloProviderWrapper>
                 </DataProvider>
