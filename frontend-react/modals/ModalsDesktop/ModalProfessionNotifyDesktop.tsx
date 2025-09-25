@@ -121,28 +121,29 @@ const ModalProfessionNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     Когда профессия станет доступна, куда вам сообщить?
                 </h2>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col px-[5px] align-middle" noValidate>
-                    <div className={formErrors.email || formErrors.consent ? 'mb-2' : 'mb-5'}>
-                        <EnhancedInput
-                            type="email"
-                            name="email"
-                            placeholder="Ваш e-mail"
-                            label="Почта"
-                            value={formData.email}
-                            validate={validateEmailDesktop}
-                            onChange={(value) => handleChange('email', value)}
-                            onBlur={handleEmailBlur}
-                            variant="gradient_desktop"
-                            error={!!formErrors.email}
-                            labelClassName="text-white text-[15px] font-medium ml-[6px] mt-[18px] "
-                            className={`focus:ring-0" h-[50px] w-[518px] rounded-[50px] border-2 bg-transparent text-[18px] font-medium text-white focus:outline-none
+                    <EnhancedInput
+                        type="email"
+                        name="email"
+                        placeholder="Ваш e-mail"
+                        label="Почта"
+                        value={formData.email}
+                        validate={validateEmailDesktop}
+                        onChange={(value) => handleChange('email', value)}
+                        onBlur={handleEmailBlur}
+                        variant="gradient_desktop"
+                        error={!!formErrors.email}
+                        labelClassName="text-white text-[15px] font-medium ml-[6px] mt-[18px] "
+                        className={`focus:ring-0" h-[50px] w-[518px] rounded-[50px] border-2 bg-transparent text-[18px] font-medium text-white focus:outline-none
                             ${formErrors.email ? 'border-[#BC8070]' : 'border-[#878797]'}
                             `}
-                        />
+                    />
 
+                    <div className="flex h-9 flex-col justify-center">
                         {(formErrors.email || formErrors.consent) && (
-                            <p className="mt-2 text-[15px] text-[#BC8070]">{formErrors.email ?? 'Заполните поля'}</p>
+                            <p className="text-[15px] text-[#BC8070]">{formErrors.email ?? 'Заполните поля'}</p>
                         )}
                     </div>
+
                     <div className="relative mb-4 flex items-center">
                         <div className="relative">
                             <EnhancedInput
