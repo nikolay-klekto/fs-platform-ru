@@ -288,11 +288,13 @@ const ContactsDesktop: React.FC = () => {
                                 value={formData.message}
                                 onChange={(value) => handleChange('message', value)}
                             />
-                            <div className="mt-4 flex flex-col justify-between">
-                                {formError && (
-                                    <p className={cn('text-5xl', 'error-form-desktop-custom')}>{formError}</p>
-                                )}
-                                <div className="3xl:gap-5 mt-5 flex items-center justify-between 2xl:justify-start 2xl:gap-10">
+                            <div className="flex flex-col justify-between">
+                                <div className="flex h-14 flex-col justify-center">
+                                    {formError && (
+                                        <p className={cn('text-5xl', 'error-form-desktop-custom')}>{formError}</p>
+                                    )}
+                                </div>
+                                <div className="3xl:gap-5 flex items-center justify-between 2xl:justify-start 2xl:gap-10">
                                     <Button
                                         variant="send_btn_desktop"
                                         size="contacts_btn_send_desktop"
