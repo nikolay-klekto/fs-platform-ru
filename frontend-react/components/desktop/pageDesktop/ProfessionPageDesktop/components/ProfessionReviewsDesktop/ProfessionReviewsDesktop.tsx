@@ -1,20 +1,13 @@
 'use client'
 
 import React, { useRef, useEffect, useState } from 'react'
-import { contentReviewsDesktop } from './data/content'
-import ItemReviewsDesktop from './ItemReviewsDesktop'
+import { content } from './contentProfessionReviewsDesktop/content'
+import ItemProfessionReviewsDesktop from './ItemProfessionReviewsDesktop/ItemProfessionReviewsDesktop'
 
-const ReviewsModalDesktop: React.FC = () => {
+const ReviewsDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const [scrollbarWidth, setScrollbarWidth] = useState(0)
-
-    const calculateScrollbarWidth = () => {
-        if (!contentRef.current || !scrollbarRef.current) return 0
-        const visibleContentWidth = contentRef.current.offsetWidth
-        const visibleScrollBarWidth = scrollbarRef.current.offsetWidth
-        return contentRef.current.scrollWidth - (visibleContentWidth - visibleScrollBarWidth)
-    }
 
     const handleScroll = () => {
         if (contentRef.current && scrollbarRef.current) {
@@ -29,6 +22,13 @@ const ReviewsModalDesktop: React.FC = () => {
     }
 
     useEffect(() => {
+        const calculateScrollbarWidth = () => {
+            if (!contentRef.current || !scrollbarRef.current) return 0
+            const visibleContentWidth = contentRef.current.offsetWidth
+            const visibleScrollBarWidth = scrollbarRef.current.offsetWidth
+            return contentRef.current.scrollWidth - (visibleContentWidth - visibleScrollBarWidth)
+        }
+
         const handleResize = () => {
             if (contentRef.current && scrollbarRef.current) {
                 const calculatedScrollbarWidth = calculateScrollbarWidth()
@@ -45,15 +45,25 @@ const ReviewsModalDesktop: React.FC = () => {
         }
     }, [])
 
+    useEffect(() => {
+        const scrollbar = scrollbarRef.current
+        if (!scrollbar) return
+        const timer = setInterval(() => {
+            scrollbar.scrollLeft += 1
+            scrollbar.scrollLeft -= 1
+        }, 1000)
+        return () => clearInterval(timer)
+    }, [])
+
     return (
         <div>
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll"
+                className="no-scrollbar_custom  container flex select-none gap-[clamp(20px,_1.6vw,_32px)] overflow-x-scroll pl-0 pr-[60px] "
             >
-                {contentReviewsDesktop.map((item) => (
-                    <ItemReviewsDesktop
+                {content.map((item) => (
+                    <ItemProfessionReviewsDesktop
                         key={item.id}
                         question={item.question}
                         answer={item.answer}
@@ -64,12 +74,15 @@ const ReviewsModalDesktop: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="scrollbar_custom relative mx-auto mt-[clamp(25px,_2vw,_40px)] h-[14px] w-[65%] cursor-pointer overflow-x-scroll"
+                className="scrollbar_custom relative mx-auto mb-[85px] mt-[58px] w-[65%] cursor-pointer overflow-x-scroll"
             >
-                <div className="absolute h-2" style={{ width: `${scrollbarWidth}px` }}></div>
+                <div
+                    className="absolute h-2 min-w-[1000px] bg-transparent"
+                    style={{ width: `${scrollbarWidth}px` }}
+                ></div>
             </div>
         </div>
     )
 }
 
-export default ReviewsModalDesktop
+export default ReviewsDesktop
