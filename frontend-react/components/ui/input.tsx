@@ -17,9 +17,9 @@ const inputVariants = cva(
                 search_mobi:
                     'flex border-0 bg-transparent text-xl text-[#878797] outline-none placeholder:text-[14px] placeholder:font-medium placeholder:text-[#353652] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
                 contacts_page_desktop:
-                    'border-2 border-[#878797] bg-transparent focus:!bg-transparent text-5xl ring-offset-transparent placeholder:text-[19px] placeholder:text-[#353652] placeholder:font-medium focus:border-[#FFFFFF]',
+                    'border-2 border-[#878797] font-medium bg-transparent focus:!bg-transparent text-5xl ring-offset-transparent placeholder:text-[19px] placeholder:text-[#353652] placeholder:font-medium focus:border-[#FFFFFF]',
                 contacts_page_error_desktop:
-                    'border-2 border-[#bc8070] bg-[#1F2040] text-5xl ring-offset-transparent placeholder:font-medium placeholder:text-[#353652] focus:bg-transparent',
+                    'border-2 border-[#bc8070] font-medium bg-[#1F2040] text-5xl ring-offset-transparent placeholder:font-medium placeholder:text-[#353652] focus:bg-transparent',
                 contacts_page_mobi:
                     'border-[1.18px] border-[#878797] bg-transparent ring-offset-transparent text-xs pl-4 focus:text-white font-medium placeholder:text-[#353652] focus:border-white focus:ring-transparent',
                 contacts_page_error_mobi:
