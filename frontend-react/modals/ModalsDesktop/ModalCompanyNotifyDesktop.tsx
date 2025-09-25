@@ -161,7 +161,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         <div className="flex">
                             <span>Защита от спама reCAPTCHA</span>
                             <Link
-                                href="/"
+                                href="/privacy-policy"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="ml-[5px] underline decoration-1 underline-offset-4"
@@ -171,7 +171,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         </div>
                         <span className="mr-[5px]">и</span>
                         <Link
-                            href="/"
+                            href="/privacy-policy"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="underline decoration-1 underline-offset-4"
