@@ -20,9 +20,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (!fs.existsSync(fullPath)) {
             return res.status(404).json({ error: 'Photo not found' })
         }
-        // if (!fs.existsSync(fullPath) || fs.statSync(fullPath).isDirectory()) {
-        //     return res.status(404).json({ error: 'Photo not found' })
-        // }
 
         const extension = path.extname(fullPath).toLowerCase()
         const contentType =
