@@ -232,7 +232,7 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                     <div className="flex flex-col">
                         <label
                             htmlFor="surname"
-                            className="text14px_mobi text-[#878797] mb-1 text-2xl bg-transparent font-medium"
+                            className="text14px_form_mobi text-[#878797] mb-1 text-2xl bg-transparent font-medium"
                         >
                             Имя*
                         </label>
@@ -325,7 +325,7 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                     <div className="flex flex-col">
                         <label
                             htmlFor="city"
-                            className="text14px_mobi text-[#878797] mb-1 text-2xl bg-transparent font-medium"
+                            className="text14px_form_mobi text-[#878797] mb-1 text-2xl bg-transparent font-medium"
                         >
                             Город
                         </label>
@@ -335,7 +335,7 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                             value={formData.city}
                             onChange={handleChange}
                             onBlur={() => handleInputBlur('city')}
-                            className={'input-profile-mobi-custom border-2 h-[44px] text14px_mobi'}
+                            className={'input-profile-mobi-custom border-2 h-[44px] text14px_form_mobi'}
                             placeholder="Город"
                             type="text"
                         />
@@ -364,7 +364,10 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                         )}
                     </form>
                     <div className="flex flex-col" ref={educationRef}>
-                        <label htmlFor="education" className="text14px_mobi mb-1 text-2xl font-medium text-[#878797]">
+                        <label
+                            htmlFor="education"
+                            className="text14px_form_mobi mb-1 text-2xl font-medium text-[#878797]"
+                        >
                             Образование
                         </label>
                         <div className="relative">
@@ -454,7 +457,7 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                     <div className="flex flex-col" ref={occupationRef}>
                         <label
                             htmlFor="occupation"
-                            className="text14px_mobi mb-1 text-2xl font-medium text-opacity text-[#878797]"
+                            className="text14px_form_mobi mb-1 text-2xl font-medium text-opacity text-[#878797]"
                         >
                             Занятость
                         </label>

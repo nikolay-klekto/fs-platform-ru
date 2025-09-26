@@ -145,7 +145,7 @@ const DatePickerCalendarMobi: React.FC<DatePickerCalendarProps> = ({ onConfirm, 
                 whitespace-nowrap
                 text-white
                 font-medium
-                ${isActive ? 'text-[16px] font-semibold' : 'text14px_mobi opacity-50'}
+                ${isActive ? 'text-[16px] font-semibold' : 'text-[14px] opacity-50'}
                 ${
                     index < visibleDays.length - 1
                         ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:opacity-70 after:bg-[#FFFFFF]'
@@ -192,7 +192,7 @@ const DatePickerCalendarMobi: React.FC<DatePickerCalendarProps> = ({ onConfirm, 
                     w-[80px]
                     text-white
                     font-medium
-                    ${isActive ? 'text-[16px] font-semibold' : 'text14px_mobi opacity-50'}
+                    ${isActive ? 'text-[16px] font-semibold' : 'text-[14px] opacity-50'}
                    ${
                        index < visibleMonths.length - 1
                            ? 'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[60px] after:h-[1px] after:opacity-70 after:bg-[#FFFFFF]'
@@ -231,7 +231,7 @@ const DatePickerCalendarMobi: React.FC<DatePickerCalendarProps> = ({ onConfirm, 
                                         }}
                                         tabIndex={0}
                                         className={`py-[13px] cursor-pointer relative w-[60px] text-white font-medium ${
-                                            index === 1 ? 'text16px_mobi font-semibold' : 'text14px_mobi opacity-50'
+                                            index === 1 ? 'text-[16px] font-semibold' : 'text-[14px] opacity-50'
                                         } ${
                                             index < visibleYears.length - 1
                                                 ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:opacity-70 after:bg-[#FFFFFF]'

@@ -145,6 +145,9 @@
     .text14px_mobi {
         @apply text-[14px] sm_l:text-xs sm_s:text-xs sm:text-xs;
     }
+    .text14px_form_mobi {
+        @apply text-[14px];
+    }
     .text12px_mobi {
         @apply text-base md:text-base sm_xl:text-sm sm_l:text-xs sm_s:text-xs sm:text-xs;
     }
@@ -212,7 +215,7 @@
         duration-300 focus:border-[#878797] focus:outline-none transition;
     }
     .input-profile-mobi-custom {
-        @apply py-2 px-4 mt-1 text-white border text14px_mobi border-[#878797] bg-[#1F203F] rounded-[50px] placeholder:text14px_mobi  placeholder:font-medium placeholder:text-[#353652] focus:border focus:border-[#878797] focus:outline-none
+        @apply py-2 px-4 mt-1 text-white border text14px_form_mobi border-[#878797] bg-[#1F203F] rounded-[50px] placeholder:text14px_form_mobi  placeholder:font-medium placeholder:text-[#353652] focus:border-2 focus:border-[#878797] focus:outline-none
         focus:bg-[#1f203f];
     }
     .label-form-mobi-custom {
