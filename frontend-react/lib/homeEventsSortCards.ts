@@ -1,4 +1,4 @@
-export const MONTHS = [
+const MONTHS = [
     'Января',
     'Февраля',
     'Марта',
@@ -24,6 +24,17 @@ export function parseEventDate(dateStr: string): Date | null {
         return new Date(year, monthIndex, day)
     }
     return null
+}
+
+export function parseDateForDisplay(dateStr: string): { day: string; month: string } {
+    const jsDate = parseEventDate(dateStr)
+    if (jsDate) {
+        const day = jsDate.getDate().toString().padStart(2, '0')
+        const month = MONTHS[jsDate.getMonth()]
+        return { day, month }
+    }
+    const [dayRaw, monthRaw] = dateStr.split(' ')
+    return { day: dayRaw || '', month: monthRaw || '' }
 }
 
 export function getEventsToShow<T extends { date: string }>(events: T[], EVENTS_TO_SHOW_COUNT = 6): T[] {

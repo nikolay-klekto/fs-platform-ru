@@ -2,35 +2,12 @@
 
 import React, { useRef } from 'react'
 import Image from 'next/image'
-import { MONTHS, parseEventDate } from '@/lib/homeEventsSortCards'
+import { parseDateForDisplay } from '@/lib/homeEventsSortCards'
 
 interface IEventSection {
     image: string
     title: string
     date: string
-}
-
-// function parseDateForDisplay(dateStr: string): { day: string; month: string } {
-//     const jsDate = new Date(dateStr)
-//     if (!isNaN(jsDate.getTime())) {
-//         const day = jsDate.getDate().toString().padStart(2, '0')
-//         const month = MONTHS[jsDate.getMonth()]
-//         return { day, month }
-//     }
-
-//     const [dayRaw, monthRaw] = dateStr.split(' ')
-//     return { day: dayRaw || '', month: monthRaw || '' }
-// }
-
-function parseDateForDisplay(dateStr: string): { day: string; month: string } {
-    const jsDate = parseEventDate(dateStr)
-    if (jsDate) {
-        const day = jsDate.getDate().toString().padStart(2, '0')
-        const month = MONTHS[jsDate.getMonth()]
-        return { day, month }
-    }
-    const [dayRaw, monthRaw] = dateStr.split(' ')
-    return { day: dayRaw || '', month: monthRaw || '' }
 }
 
 const ItemEventsDesktop: React.FC<IEventSection> = ({ image, title, date }) => {
