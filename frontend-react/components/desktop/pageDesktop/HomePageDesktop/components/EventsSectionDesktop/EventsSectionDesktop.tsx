@@ -6,38 +6,10 @@ import ItemEventsDesktop from './ItemEventsDesktop/ItemEventsDesktop'
 import { contentEventsSection } from './contentEventsSectionDesktop/content'
 import useScrollbarSync from '@/hooks/useScrollbarSync'
 import { useDataContext } from '@/context/DataContext'
+import { getEventsToShow } from '@/lib/homeEventsSortCards'
 
-const SHOW_BACKEND_EVENTS = true
+const SHOW_BACKEND_EVENTS = false
 const EVENTS_TO_SHOW_COUNT = 6
-
-export const MONTHS = [
-    'Января',
-    'Февраля',
-    'Марта',
-    'Апреля',
-    'Мая',
-    'Июня',
-    'Июля',
-    'Августа',
-    'Сентября',
-    'Октября',
-    'Ноября',
-    'Декабря',
-]
-
-function parseEventDate(dateStr: string): Date | null {
-    const iso = new Date(dateStr)
-    if (!isNaN(iso.getTime())) return iso
-
-    const [dayRaw, monthRaw] = dateStr.split(' ')
-    const day = Number(dayRaw)
-    const monthIndex = MONTHS.findIndex((m) => m.toLowerCase() === (monthRaw ?? '').toLowerCase())
-    if (!isNaN(day) && monthIndex >= 0) {
-        const year = new Date().getFullYear()
-        return new Date(year, monthIndex, day)
-    }
-    return null
-}
 
 const EventsSectionDesktop: React.FC = () => {
     const { events } = useDataContext()
@@ -46,15 +18,7 @@ const EventsSectionDesktop: React.FC = () => {
     const { scrollContentWidth } = useScrollbarSync(contentRef, scrollbarRef)
 
     const eventSource = SHOW_BACKEND_EVENTS && events && events.length > 0 ? events : contentEventsSection
-
-    const sortedEvents = eventSource.slice().sort((a, b) => {
-        const dateA = parseEventDate(a.date)
-        const dateB = parseEventDate(b.date)
-        if (!dateA || !dateB) return 0
-        return dateB.getTime() - dateA.getTime()
-    })
-
-    const eventsToShow = sortedEvents.slice(0, EVENTS_TO_SHOW_COUNT)
+    const eventsToShow = getEventsToShow(eventSource, EVENTS_TO_SHOW_COUNT)
 
     return (
         <div className="py-[10vh]">

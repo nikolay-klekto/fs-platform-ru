@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react'
 import Image from 'next/image'
-import { MONTHS } from '../EventsSectionDesktop'
+import { MONTHS, parseEventDate } from '@/lib/homeEventsSortCards'
 
 interface IEventSection {
     image: string
@@ -10,14 +10,25 @@ interface IEventSection {
     date: string
 }
 
+// function parseDateForDisplay(dateStr: string): { day: string; month: string } {
+//     const jsDate = new Date(dateStr)
+//     if (!isNaN(jsDate.getTime())) {
+//         const day = jsDate.getDate().toString().padStart(2, '0')
+//         const month = MONTHS[jsDate.getMonth()]
+//         return { day, month }
+//     }
+
+//     const [dayRaw, monthRaw] = dateStr.split(' ')
+//     return { day: dayRaw || '', month: monthRaw || '' }
+// }
+
 function parseDateForDisplay(dateStr: string): { day: string; month: string } {
-    const jsDate = new Date(dateStr)
-    if (!isNaN(jsDate.getTime())) {
+    const jsDate = parseEventDate(dateStr)
+    if (jsDate) {
         const day = jsDate.getDate().toString().padStart(2, '0')
         const month = MONTHS[jsDate.getMonth()]
         return { day, month }
     }
-
     const [dayRaw, monthRaw] = dateStr.split(' ')
     return { day: dayRaw || '', month: monthRaw || '' }
 }
