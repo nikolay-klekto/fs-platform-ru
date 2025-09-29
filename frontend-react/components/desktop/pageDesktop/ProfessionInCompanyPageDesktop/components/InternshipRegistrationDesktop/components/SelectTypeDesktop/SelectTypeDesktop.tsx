@@ -5,13 +5,24 @@ import { ChevronDownIconDesktop, HelpIconDesktop } from '@/components/assets/ico
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { HelpInternshipTooltipDesktop } from '@/components/ui/tooltip'
-import {ISelectOption, ISelectTypeDesktop} from '@/types/selectors/selectors'
-
+import { ISelectOption, ISelectTypeDesktop } from '@/types/selectors/selectors'
 
 const SelectTypeDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValidationChange, error = false }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState<string | null>(null)
+    const [isMediumScreen, setIsMediumScreen] = useState(false)
     const selectRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const checkScreen = () => {
+            const width = window.innerWidth
+            setIsMediumScreen(width >= 1240 && width < 1560)
+        }
+
+        checkScreen()
+        window.addEventListener('resize', checkScreen)
+        return () => window.removeEventListener('resize', checkScreen)
+    }, [])
 
     const handleSelectToggle = () => setIsOpen((prev) => !prev)
 
@@ -43,13 +54,12 @@ const SelectTypeDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValid
         },
         {
             value: 'participant',
-
             label: 'Вы получаете стажировку\nнаблюдателя, но с рабочими\nзадачами под ваш уровень и\nчеловеком, который в случае чего\nпоможет подтянуть знания',
         },
     ]
 
     return (
-        <div className="relative z-[1] w-[758px] 2xl:w-[500px] 3xl:w-[600px] " ref={selectRef}>
+        <div className="relative z-[1] w-[758px] 2xl:w-[500px] 3xl:w-[600px]" ref={selectRef}>
             <Button
                 variant={'select_internship_btn_desktop'}
                 size={'select_internship_btn_desktop'}
@@ -59,8 +69,8 @@ const SelectTypeDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValid
                     error
                         ? 'border-[rgba(188,128,112,1)] text-[rgba(188,128,112,0.6)]'
                         : isOpen || selectedOption
-                          ? 'border-white text-white'
-                          : 'border-[#878797] text-[#878797]',
+                        ? 'border-white text-white'
+                        : 'border-[#878797] text-[#878797]',
                 )}
             >
                 {selectedOption ? options.find((o) => o.value === selectedOption)?.label : 'Выберите вид стажировки'}
@@ -75,7 +85,7 @@ const SelectTypeDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValid
             </Button>
 
             {isOpen && (
-                <div className="absolute top-[96px] z-[9999] flex w-[751px] 2xl:w-[550px] 3xl:w-[600px] flex-col rounded-[44px] border-[3.7px] border-[#FFFFFF80] bg-[#1F203F] pl-[42px] 3xl:pl-[33px] 2xl:pl-[15px] pr-[25px] 2xl:pr-[10px]">
+                <div className="absolute top-[96px] z-[9999] flex w-[751px] 2xl:w-[550px] 3xl:w-[600px] flex-col rounded-[44px] border-[3.7px] border-[#FFFFFF80] bg-[#1F203F] overflow-hidden">
                     {options.map((option, index) => {
                         const isFirst = index === 0
                         const isLast = index === options.length - 1
@@ -85,11 +95,10 @@ const SelectTypeDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValid
                                 <button
                                     type="button"
                                     className={cn(
-                                        'flex font-medium items-center justify-between w-full text33px_desktop  pt-[43px] transition-all duration-200',
-                                        'cursor-pointer',
+                                        'flex items-center justify-between mx-[13px] my-[8px] w-[calc(100%-26px)] px-[42px] py-[20px]',
                                         isFirst ? 'rounded-t-[33px]' : '',
                                         isLast ? 'rounded-b-[33px]' : '',
-                                        'hover:bg-internship-desktop-hover',
+                                        'transition-all duration-200 cursor-pointer hover:bg-internship-desktop-hover',
                                     )}
                                     onClick={() => {
                                         setSelectedOption(option.value)
@@ -98,19 +107,25 @@ const SelectTypeDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValid
                                 >
                                     <span
                                         className={cn(
-                                            'text33px_desktop whitespace-nowrap font-medium text-left ',
+                                            'text33px_desktop whitespace-nowrap font-medium text-left',
                                             selectedOption === option.value ? 'text-white' : 'text-[#878797]',
                                             'transition-colors duration-200',
                                         )}
                                     >
                                         {option.label}
                                     </span>
+
                                     <HelpInternshipTooltipDesktop
-                                        className=" z-50 w-[540px] overflow-hidden rounded-[35px] bg-[url('/background/internship-type-popup2.png')] opacity-100"
-                                        contentClassName=" p-[30px_34px_15px_25px]"
+                                        className={cn(
+                                            'z-50 overflow-hidden rounded-[35px] opacity-80',
+                                            isMediumScreen
+                                                ? "w-[420px] bg-[url('/background/internship-type-popup-2xl.png')] bg-cover bg-no-repeat"
+                                                : "w-[540px] bg-[url('/background/internship-type-popup2.png')]",
+                                        )}
+                                        contentClassName={isMediumScreen ? "p-[27px_13px_20px_26px]" : "p-[30px_34px_15px_25px]"}
                                         textClassName="text-left text24px_desktop text-white whitespace-pre-line"
                                         side="bottom"
-                                        align="start"
+                                        align={isMediumScreen ? "end" : "start"}
                                         tooltipMessage={options1.find((o) => o.value === option.value)?.label || ''}
                                     >
                                         <button className="size-[42px]">
@@ -119,23 +134,10 @@ const SelectTypeDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValid
                                     </HelpInternshipTooltipDesktop>
                                 </button>
 
-                                {index < options.length - 1 && (
-                                    <div
-                                        className="mx-auto"
-                                        style={{
-                                            width: '90vvw',
-                                            height: '3.7px',
-                                            backgroundColor: '#353652',
-                                            marginTop: '25px',
-                                            marginBottom: '25px',
-                                        }}
-                                    />
-                                )}
+                                {!isLast && <div className="h-[3.7px] bg-[#353652] mx-[37px]" />}
                             </div>
                         )
                     })}
-
-                    <div style={{ height: '33px' }} />
                 </div>
             )}
         </div>

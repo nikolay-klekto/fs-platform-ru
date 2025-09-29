@@ -1,14 +1,9 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
 import Image from 'next/image'
-import {IItemCardDesktop} from '@/types/itemCards/itemCards'
+import { IItemCardDesktop } from '@/types/item-cards/item-cards'
 
-
-const ItemProfessionsInCompanyDesktop: React.FC<IItemCardDesktop> = ({
-    image,
-    name,
-    onWidthChange,
-}) => {
+const ItemProfessionsInCompanyDesktop: React.FC<IItemCardDesktop> = ({ image, name, onWidthChange }) => {
     const itemRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {

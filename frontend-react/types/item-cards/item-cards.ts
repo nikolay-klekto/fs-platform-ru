@@ -1,14 +1,10 @@
-export interface IContent {
+export interface IItemCardImage{
     id: number
     image: {
         src: string
         alt: string
     }
   }
-
-export interface IContentName extends IContent {
-  name: string
-}
 
 export interface IItemCardDesktop {
     image: {

@@ -11,6 +11,7 @@ interface IHelpTooltip {
     tooltipMessage: string
     children?: React.ReactNode
     className?: string
+    style?:React.CSSProperties,
     contentClassName?: string,
     textClassName?: string
     side?: 'top' | 'bottom' | 'left' | 'right'
@@ -225,6 +226,7 @@ export const HelpInternshipTooltipDesktop: React.FC<IHelpTooltip> = ({
     tooltipMessage,
     children,
     className,
+    style,
     contentClassName,
     textClassName,
     side,
@@ -244,6 +246,7 @@ export const HelpInternshipTooltipDesktop: React.FC<IHelpTooltip> = ({
                         'border-none bg-transparent shadow-none',
                         className,
                     )}
+                    style={style}
                     side={side}
                     sideOffset={sideOffset}
                     align={align}

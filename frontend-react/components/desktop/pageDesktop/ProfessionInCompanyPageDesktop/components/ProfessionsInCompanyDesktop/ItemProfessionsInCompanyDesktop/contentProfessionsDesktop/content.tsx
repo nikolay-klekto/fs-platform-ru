@@ -1,4 +1,4 @@
-import {IContentName} from '@/types/itemCards/itemCards'
+import { IContentName } from '@/types/item-cards/item-cards'
 
 export const content: IContentName[] = [
     {

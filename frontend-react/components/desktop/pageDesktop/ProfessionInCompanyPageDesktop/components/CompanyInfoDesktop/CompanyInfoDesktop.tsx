@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import BreadcrumbsDesktop from '@/components/desktop/layout/Breadcrumbs'
+import BreadcrumbsDesktop from '@/components/desktop/layout/BreadcrumbsDesktop/BreadcrumbsDesktop'
 import { MapPinIconDesktop } from '@/components/assets/iconsDesktop'
 import { content } from './contentCompanyInfoDesktop/content'
 

@@ -3,7 +3,7 @@ import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDeskt
 import InternshipRegistrationDesktop from './components/InternshipRegistrationDesktop/InternshipRegistrationDesktop'
 import CompanyInfoDesktop from './components/CompanyInfoDesktop/CompanyInfoDesktop'
 import InternshipProcessDesktop from './components/InternshipProcessDesktop/InternshipProcessDesktop'
-import ProfessionInOtherCompanies from './components/ProfessionInOtherCompanies/ProfessionInOtherCompanies'
+import ProfessionInOtherCompanies from './components/ProfessionInOtherCompaniesDesktop/ProfessionInOtherCompanies'
 import ProfessionsInCompanyDesktop from './components/ProfessionsInCompanyDesktop/ProfessionsInCompanyDesktop'
 import HeaderDesktop from '../../layout/HeaderDesktop/HeaderDesktop'
 const CompanyPageDesktop: React.FC = () => {
