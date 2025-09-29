@@ -14,7 +14,7 @@ import ProfessionsSelectDesktop from './components/ProfessionsSelectDesktop'
 import ProfessionCardPageDesktop from './components/ProfessionCardPageDesktop'
 import PaginationDesktop from '../../shared/PaginationDesktop'
 import ProfessionSearchDesktop from './components/ProfessionSendDesktop'
-import { Toaster } from '@/components/ui/toaster'
+import { NotificationsToaster } from '@/components/wrapper/NotificationsToaster'
 
 const ProfessionsPageDesktop: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('')
@@ -95,13 +95,13 @@ const ProfessionsPageDesktop: React.FC = () => {
                         <div className="3xl:gap-[25px] 4xl:gap-[30px] grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px]">
                             {paginatedItems.map((item) => (
                                 <Link href={`/profession`} key={item.id}>
-                                <ProfessionCardPageDesktop
-                                    key={item.id}
-                                    image={item.imagePath}
-                                    profession={item.name}
-                                    price={item.pricePerWeek}
-                                    category={item.professionIndustry}
-                                />
+                                    <ProfessionCardPageDesktop
+                                        key={item.id}
+                                        image={item.imagePath}
+                                        profession={item.name}
+                                        price={item.pricePerWeek}
+                                        category={item.professionIndustry}
+                                    />
                                 </Link>
                             ))}
                         </div>
@@ -123,7 +123,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                 </div>
             </main>
             <FooterDesktop />
-            <Toaster />
+            <NotificationsToaster />
         </>
     )
 }

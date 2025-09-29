@@ -6,7 +6,7 @@ import Modal from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { EnhancedInput } from '@/components/ui/input'
 import { validateEmailDesktop } from '@/components/desktop/commonDesktop/validate/validateEmailDesktop'
-import { useToast } from '@/hooks/useToast'
+import { useToast } from '@/context/ToastContext'
 
 interface INotifyFormData {
     email: string
