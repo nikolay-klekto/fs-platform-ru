@@ -6,7 +6,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
 
-const ToastProvider = ToastPrimitives.Provider
+const RadixToastProvider = ToastPrimitives.Provider
 
 const ToastViewport = React.forwardRef<
     React.ElementRef<typeof ToastPrimitives.Viewport>,
@@ -122,7 +122,7 @@ type ToastActionElement = React.ReactElement<typeof ToastAction>
 export {
     type ToastProps,
     type ToastActionElement,
-    ToastProvider,
+    RadixToastProvider,
     ToastViewport,
     Toast,
     ToastTitle,
