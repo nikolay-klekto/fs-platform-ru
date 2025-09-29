@@ -22,7 +22,7 @@ const HomePageDesktop: React.FC = () => {
             openModal(modalKey, modalType)
             localStorage.setItem('hasSeenCookies', 'true')
         }
-    }, [])
+    }, [openModal])
 
     return (
         <>
