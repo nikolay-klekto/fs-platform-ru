@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import { modals } from '@/modals/modals'
 import { ModalProvider } from '@/context/ContextModal'
+import { ToastProvider } from '@/context/ToastContext'
+import { NotificationsToaster } from '@/components/wrapper/NotificationsToaster'
 import ApolloProviderWrapper from '@/components/wrapper/ApolloProviderWrapper'
 import '../styles/globals.css'
 import ScrollRestoration from '@/lib/scroll-restoration'
@@ -32,7 +34,10 @@ export default async function RootLayout({
                 <ScrollRestoration />
                 <DataProvider data={data}>
                     <ApolloProviderWrapper>
-                        <ModalProvider modals={modals}>{children}</ModalProvider>
+                        <ToastProvider>
+                            <ModalProvider modals={modals}>{children}</ModalProvider>
+                            <NotificationsToaster />
+                        </ToastProvider>
                     </ApolloProviderWrapper>
                 </DataProvider>
             </body>
