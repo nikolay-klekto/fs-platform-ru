@@ -17,7 +17,7 @@ interface IModalContent {
     onClose: () => void
 }
 
-const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
+const ModalProfessionNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const [formData, setFormData] = useState<INotifyFormData>({
         email: '',
         consent: false,
@@ -104,6 +104,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
             toast({
                 description: 'Спасибо! Ваша заявка была успешно отправлена',
+                duration: 4000,
             })
         }
     }
@@ -117,7 +118,7 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     className="text-gradient_desktop_custom block w-[543px] whitespace-normal break-normal text-center text-[28px] font-medium uppercase leading-[1.22]"
                     style={{ textWrap: 'balance' }}
                 >
-                    Когда компания станет доступна, куда вам сообщить?
+                    Когда профессия станет доступна, куда вам сообщить?
                 </h3>
                 <form onSubmit={handleSubmit} className="flex w-full flex-col px-[5px] align-middle" noValidate>
                     <EnhancedInput
@@ -136,11 +137,13 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             ${formErrors.email ? 'border-[#BC8070]' : 'border-[#878797]'}
                             `}
                     />
+
                     <div className="flex h-9 flex-col justify-center">
                         {(formErrors.email || formErrors.consent) && (
-                            <p className="mt-2 text-[15px] text-[#BC8070]">{formErrors.email ?? 'Заполните поля'}</p>
+                            <p className="text-[15px] text-[#BC8070]">{formErrors.email ?? 'Заполните поля'}</p>
                         )}
                     </div>
+
                     <div className="relative mb-4 flex items-center">
                         <div className="relative">
                             <EnhancedInput
@@ -196,4 +199,4 @@ const ModalCompanyNotifyDesktop: React.FC<IModalContent> = ({ onClose }) => {
     )
 }
 
-export default ModalCompanyNotifyDesktop
+export default ModalProfessionNotifyDesktop
