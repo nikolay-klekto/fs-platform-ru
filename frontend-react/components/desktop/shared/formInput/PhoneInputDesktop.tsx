@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { validatePhoneDesktop } from '@/components/desktop/commonDesktop/validate/validatePhoneDesktop'
 
 interface IPhoneInputDesktop {
     value: string
     onChange: (value: string) => void
     onError: (value: string) => void
     onBlur?: (value: string) => void
+    error?: boolean
     className?: string
     labelClassName?: string
     wrapperClassName?: string
@@ -27,16 +27,15 @@ for (let i = 0; i < PHONE_MASK.length; i++) {
 const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     value,
     onChange,
-    onError,
     onBlur,
+    error,
     className,
     labelClassName,
     wrapperClassName,
-    required = false,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
-    const [error, setError] = useState<string | null>(null)
+    const [isFocused, setIsFocused] = useState<boolean>(false)
 
     const setCaretToPosition = (pos: number) => {
         if (inputRef.current) {
@@ -88,27 +87,16 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
             e.preventDefault()
         }
 
-        validateValue(newValue)
-    }
-
-    const validateValue = (value: string) => {
-        const error =
-            required && (value === PHONE_MASK || !value)
-                ? 'Поле обязательно для заполнения'
-                : validatePhoneDesktop(value).textError
-        setError(error)
-        onError(error)
-        onChange(value)
-
-        return error
+        onChange(newValue)
     }
 
     const handleBlur = () => {
-        validateValue(inputValue)
         onBlur?.(inputValue)
+        setIsFocused(false)
     }
 
     const handleFocus = () => {
+        setIsFocused(true)
         if (inputValue === PHONE_MASK) {
             setCaretToPosition(digitPositions[0])
         } else {
@@ -134,19 +122,18 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                 id="phone"
                 type="tel"
                 name="phone"
-                autoComplete="tel"
+                autoComplete="off"
                 value={inputValue}
                 onChange={(e) => {
                     const newValue = e.target.value
                     setInputValue(newValue)
-                    validateValue(newValue)
                 }}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}
                 onClick={handleClick}
                 onBlur={handleBlur}
-                placeholder={PHONE_MASK}
-                className={`input-form-desktop-custom w-full font-medium placeholder:text-[#353652] ${error ? 'border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                placeholder={isFocused ? PHONE_MASK : 'Номер телефона*'}
+                className={`input-form-desktop-custom w-full font-medium placeholder:text-[19px] placeholder:text-[#353652] ${isFocused && 'focus:border-2 focus:border-[#FFFFFF] focus:ring-transparent focus:placeholder:text-[#FFFFFF]'} ${error ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
         </div>
     )

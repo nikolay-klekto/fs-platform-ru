@@ -18,7 +18,7 @@ const buttonVariants = cva(
                 select_desktop:
                     'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white',
                 send_btn_desktop:
-                    'button-border-desktop 3xl:text-4xl rounded-[50px] border-2 text-[20px] font-semibold text-white  2xl:text-3xl',
+                    'button-border-desktop 3xl:text-4xl rounded-[50px] border-4 text-[20px] font-semibold text-white  2xl:text-3xl',
                 send_btn_mobi:
                     'button-border-mobi rounded-[50px] border-2 text-[15px] font-medium text-white sm:text-[14px]',
                 select_mobi:
