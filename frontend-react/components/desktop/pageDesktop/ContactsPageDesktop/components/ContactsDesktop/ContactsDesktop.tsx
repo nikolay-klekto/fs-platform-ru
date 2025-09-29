@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { useToast } from '@/hooks/useToast'
 import Link from 'next/link'
+import { useToast } from '@/context/ToastContext'
 import { useModal } from '@/context/ContextModal'
 
 import { Button } from '@/components/ui/button'
