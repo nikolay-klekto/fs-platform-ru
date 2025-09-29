@@ -2,6 +2,7 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { CheckedBoxFormDesktop, UncheckedBoxFormDesktop } from '@/components/assets/iconsDesktop'
+import { useEffect } from 'react'
 
 const inputVariants = cva(
     '',
@@ -18,11 +19,11 @@ const inputVariants = cva(
                 contacts_page_desktop:
                     'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent placeholder:font-medium focus:border-[3px] focus:ring-transparent',
                 contacts_page_error_desktop:
-                    'border-2 border-[#bc8070] bg-transparent text-5xl ring-offset-transparent placeholder:font-medium focus:border-[3px] focus:ring-transparent',
+                    'border-2 border-[#bc8070] bg-transparent text-5xl ring-offset-transparent placeholder:text-[#353652] font-medium focus:border-[3px] focus:ring-transparent',
                 contacts_page_mobi:
-                    'focus:border-1.1 border-[1.18px] border-[#878797] bg-transparent ring-offset-transparent placeholder:font-medium focus:border-[1.18px] focus:border-white focus:bg-[#1f203f] focus:ring-transparent ',
+                    'border-[1.18px] border-[#878797] bg-transparent ring-offset-transparent text-xs pl-4 focus:text-white font-medium placeholder:text-[#353652] focus:border-white focus:ring-transparent',
                 contacts_page_error_mobi:
-                    'focus:border-1.1 border-[1.18px] border-[#bc8070] bg-[#1f203f] ring-offset-transparent placeholder:font-medium focus:border-white focus:ring-transparent',
+                    'border-[1.18px] border-[#bc8070] bg-[#1f203f] pl-4 ring-offset-transparent text-xs placeholder:text-[#353652] focus:ring-transparent font-medium',
                 events_date_desktop: 'h-[22px] border-none bg-transparent placeholder-gray-500 outline-none',
                 common_input_desktop:
                     'text18px_desktop placeholder:text18px_desktop border-2 border-[#878797] bg-[#101030] font-medium text-white outline-none placeholder:font-medium placeholder:text-[#353652] focus:border-[#878797] focus:bg-[#1f203f] focus:outline-none',
@@ -38,7 +39,7 @@ const inputVariants = cva(
                 send_mobi: 'size-full px-[10px]',
                 contacts_page_desktop: 'h-[53px] w-[453px] px-4 py-3.5 2xl:w-[520px]',
                 contacts_page_info_desktop: '3xl:w-[452px] h-[53px] w-[484px] px-4 py-3.5 2xl:w-[520px]',
-                contacts_page_mobi: 'h-[29.5px] md:h-[40px]',
+                contacts_page_mobi: 'h-[29.5px]',
                 common_input_desktop: 'mt-1 h-[50px] px-4 py-2',
                 common_input_mobi: 'h-11 px-4 py-2',
             },
@@ -63,7 +64,7 @@ export interface IEnhancedInput
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'>,
         VariantProps<typeof inputVariants> {
     validate?: (value: string) => { textError: string; status: boolean | null; styleError: boolean } | undefined
-    error?: string
+    error?: boolean
     onChange?: (value: string) => void
     onFocus?: () => void
     onBlur?: () => void
@@ -88,6 +89,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
             size,
             rounded,
             validate,
+            error,
             onChange,
             onFocus,
             onBlur,
@@ -118,7 +120,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                 if (validationResult) {
                     const { status, styleError } = validationResult
                     if (!status) {
-                        if (!styleError) {
+                        if (styleError) {
                             setStyleErrorClass(true)
                         }
                     } else {
@@ -127,6 +129,14 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                 }
             }
         }
+
+        useEffect(() => {
+            if (error) {
+                setStyleErrorClass(true)
+            } else {
+                setStyleErrorClass(false)
+            }
+        }, [error])
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const newValue = isCheckbox ? e.target.checked : e.target.value
@@ -181,7 +191,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, IEnhancedInput>(
                                 ) : (
                                     <UncheckedBoxFormDesktop
                                         className={checkboxIconSize}
-                                        style={{ color: hasError ? '#BC8070' : '#878797' }}
+                                        stroke={styleErrorClass ? '#BC8070' : '#878797'}
                                     />
                                 )}
                             </button>

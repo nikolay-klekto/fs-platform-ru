@@ -6,12 +6,23 @@ import { X } from 'lucide-react'
 interface IModal {
     children: ReactNode
     onClose: () => void
-    size?: 'small' | 'medium' | 'semilarge' | 'large' | 'large-l' | 'large-lg' | 'extra-medium' | 'mobile-346'
+    size?:
+        | 'small'
+        | 'mobile-346'
+        | 'medium'
+        | 'semilarge'
+        | 'semilarge-l'
+        | 'large'
+        | 'large-l'
+        | 'large-lg'
+        | 'extra-medium'
     showCloseButton?: boolean
     paddingClass?: string
     className?: string
     bgClass?: string
     variant?: 'desktop' | 'mobile'
+    crossPosition?: string
+    crossSize?: number
 }
 const Modal: React.FC<IModal> = ({
     children,
@@ -22,6 +33,8 @@ const Modal: React.FC<IModal> = ({
     className,
     bgClass = '',
     variant = 'desktop',
+    crossPosition = 'right-[-53px] top-0',
+    crossSize = 53,
 }) => {
     useEffect(() => {
         const originalOverflow = document.body.style.overflow
@@ -35,10 +48,14 @@ const Modal: React.FC<IModal> = ({
         switch (size) {
             case 'small':
                 return 'max-w-xs'
+            case 'mobile-346':
+                return 'max-w-[346px]'
             case 'medium':
                 return 'max-w-xl'
             case 'semilarge':
                 return 'max-w-2xl'
+            case 'semilarge-l':
+                return 'max-w-[700px]'
             case 'large':
                 return 'max-w-4xl'
             case 'large-l':
@@ -47,8 +64,6 @@ const Modal: React.FC<IModal> = ({
                 return '2xl:w-[830px] max-w-[882px]'
             case 'extra-medium':
                 return 'max-w-lg'
-            case 'mobile-346':
-                return 'max-w-[346px]'
             default:
                 return 'max-w-lg'
         }
@@ -86,8 +101,12 @@ const Modal: React.FC<IModal> = ({
             onClick={(e) => e.stopPropagation()}
         >
             {showCloseButton && (
-                <button className="absolute right-[-53px] top-0" onClick={onClose}>
-                    <X size={53} color="#878797" />
+                <button className={`absolute ${crossPosition}`} onClick={onClose}>
+                    <X
+                        size={crossSize}
+                        color="#FFFFFF"
+                        className="opacity-60 transition-opacity duration-100 hover:opacity-100"
+                    />
                 </button>
             )}
             {children}

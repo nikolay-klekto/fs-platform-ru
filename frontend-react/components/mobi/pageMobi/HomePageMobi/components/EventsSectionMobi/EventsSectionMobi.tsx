@@ -10,25 +10,20 @@ const EventsSectionMobi: React.FC = () => {
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const { scrollContentWidth } = useScrollbarSync(contentRef, scrollbarRef)
     return (
-        <section className="mx-auto flex flex-col px-[14px] py-[60px] align-middle">
+        <section className="flex w-full flex-col px-[15px] py-[60px] md:px-[32px]">
             <TitleMobi title={'МЕРОПРИЯТИЯ'} href="/events" />
-            <div
-                ref={contentRef}
-                className="no-scrollbar_custom flex max-w-full gap-8 overflow-x-scroll pt-9">
+            <div ref={contentRef} className="no-scrollbar_custom flex max-w-full gap-8 overflow-x-scroll pt-8">
                 {content.map((item) => (
                     <ItemEventsMobi
                         image={item.image}
                         title={item.title}
                         date={item.date}
                         key={item.id}
-                        adress={item.adress}
+                        address={item.address}
                     />
                 ))}
             </div>
-            <div
-                ref={scrollbarRef}
-                className="scrollbar_custom relative h-2 overflow-x-scroll "
-            >
+            <div ref={scrollbarRef} className="scrollbar_custom relative h-2 overflow-x-scroll ">
                 <div className="h-full" style={{ width: `${scrollContentWidth}px` }}></div>
             </div>
         </section>
