@@ -4,7 +4,7 @@ import React, { useRef } from 'react'
 import ItemReviewsMobi from './ItemReviewsMobi'
 import useScrollbarSync from '@/hooks/useScrollbarSync'
 
-interface ReviewsModalMobiProps {
+interface IReviewsModalMobi {
     feedback: {
         id: number
         question: string
@@ -12,7 +12,7 @@ interface ReviewsModalMobiProps {
     }[]
 }
 
-const ReviewsModalMobi: React.FC<ReviewsModalMobiProps> = ({feedback}) => {
+const ReviewsModalMobi: React.FC<IReviewsModalMobi> = ({feedback}) => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const { scrollContentWidth } = useScrollbarSync(contentRef, scrollbarRef)

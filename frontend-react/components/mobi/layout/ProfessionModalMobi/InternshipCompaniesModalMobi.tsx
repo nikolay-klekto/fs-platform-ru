@@ -4,11 +4,11 @@ import React, { useRef } from 'react'
 import ItemCompaniesMobi from './ItemCompaniesMobi'
 import useScrollbarSync from '@/hooks/useScrollbarSync'
 
-interface InternshipCompaniesModalMobiProps {
+interface ICompaniesModalMobi {
     companies: { id: number; name: string; logoPath: string }[]
 }
 
-const InternshipCompaniesModalMobi: React.FC<InternshipCompaniesModalMobiProps> = ({companies}) => {
+const InternshipCompaniesModalMobi: React.FC<ICompaniesModalMobi> = ({companies}) => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const { scrollContentWidth } = useScrollbarSync(contentRef, scrollbarRef)
