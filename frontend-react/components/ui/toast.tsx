@@ -18,6 +18,8 @@ const ToastViewport = React.forwardRef<
             'fixed right-0 z-[100] flex w-auto',
             'top-[180px]',
             'max-h-[calc(100vh-150px-20px)]',
+            'xl:top-[100px]',
+            'lg:top-[100px]',
             'md:top-[90px]',
             'sm_xl:top-[90px]',
             'sm_l:top-[80px]',
@@ -36,17 +38,17 @@ const toastVariants = cva(
         variants: {
             variant: {
                 default:
-                    'break-words bg-[#1C1B55] sm:px-5 sm:py-2 sm_s:px-5 sm_s:py-2 sm_l:px-5 sm_l:py-2 sm_xl:px-5 sm_xl:py-2 md:py-2 text-justify text-white md:px-7 p-6',
+                    'break-words bg-[#1C1B55] sm:px-5 sm:py-2 sm_s:px-5 sm_s:py-2 sm_l:px-5 sm_l:py-2 sm_xl:px-5 sm_xl:py-2 md:py-2 text-justify text-white md:px-7 p-6 lg:px-7',
                 destructive: 'destructive border-destructive bg-destructive text-destructive-foreground group',
             },
             size: {
                 default: `
                     sm:max-w-[250px]
-                    sm_s:max-w-[313px] 
+                    sm_s:max-w-[280px] 
                     sm_l:max-w-[313px] 
                     sm_xl:max-w-[313px] 
                     md:max-w-[clamp(390px,70vw,430px)] 
-                    lg:w-[500px] 
+                    lg:w-[600px] 
                     xl:w-[650px]
                     2xl:w-[650px] 
                     3xl:w-[800px] 
@@ -103,12 +105,12 @@ const ToastDescription = React.forwardRef<
             '3xl:text-9xl',
             '2xl:text-6xl',
             'xl:text-6xl',
-            'lg:text-2xl',
+            'lg:text-5xl',
             'md:text-[clamp(16px,3vw,18px)]',
             'sm:text-xl',
             'sm_xl:text-xl',
             'sm_l:text-xl',
-            'sm_s:text-lg',
+            'sm_s:text-base',
             'sm:text-base',
             className,
         )}
