@@ -96,6 +96,15 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 }))
             }
         }
+
+        if (name === 'consent') {
+            if (checked) {
+                setErrors((prev) => ({
+                    ...prev,
+                    consent: '',
+                }))
+            }
+        }
     }
 
     const handleInputBlur = (field: 'name') => {
