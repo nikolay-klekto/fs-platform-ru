@@ -18,10 +18,11 @@ const ToastViewport = React.forwardRef<
             'fixed right-0 z-[100] flex w-auto',
             'top-[180px]',
             'max-h-[calc(100vh-150px-20px)]',
-            'max-md:top-[100px]',
-            'max-sm_xl:top-[90px]',
-            'max-sm_l:top-[80px]',
-            'max-sm:top-[70px]',
+            'md:top-[90px]',
+            'sm_xl:top-[90px]',
+            'sm_l:top-[80px]',
+            'sm_s:top-[80px]',
+            'sm:top-[70px]',
             className,
         )}
         {...props}
@@ -30,25 +31,26 @@ const ToastViewport = React.forwardRef<
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName
 
 const toastVariants = cva(
-    'data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full group pointer-events-auto relative flex items-center justify-center overflow-hidden rounded-full p-6 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none',
+    'data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=e7d]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full group pointer-events-auto relative flex items-center justify-center overflow-hidden rounded-full shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none',
     {
         variants: {
             variant: {
-                default: 'bg-[#1C1B55] text-white',
+                default:
+                    'break-words bg-[#1C1B55] sm:px-5 sm:py-2 sm_s:px-5 sm_s:py-2 sm_l:px-5 sm_l:py-2 sm_xl:px-5 sm_xl:py-2 md:py-2 text-justify text-white md:px-7 p-6',
                 destructive: 'destructive border-destructive bg-destructive text-destructive-foreground group',
             },
             size: {
                 default: `
-                    sm:max-w-[240px] 
-                    sm_s:max-w-[320px] 
-                    sm_l:max-w-[315px] 
-                    sm_xl:max-w-[360px] 
-                    md:max-w-[420px] 
+                    sm:max-w-[250px]
+                    sm_s:max-w-[313px] 
+                    sm_l:max-w-[313px] 
+                    sm_xl:max-w-[313px] 
+                    md:max-w-[clamp(390px,70vw,430px)] 
                     lg:w-[500px] 
-                    xl:w-[600px] 
+                    xl:w-[650px]
                     2xl:w-[650px] 
                     3xl:w-[800px] 
-                    w-[900px]
+                    w-[900px] 
               `,
             },
         },
@@ -100,14 +102,14 @@ const ToastDescription = React.forwardRef<
             'text-10xl opacity-90',
             '3xl:text-9xl',
             '2xl:text-6xl',
-            'xl:text-4xl',
+            'xl:text-6xl',
             'lg:text-2xl',
-            'md:text-xl',
-            'sm:text-lg',
-            'sm_xl:text-base',
-            'sm_l:text-xs',
-            'sm_s:text-xs',
-            'max-sm:text-[8px]',
+            'md:text-[clamp(16px,3vw,18px)]',
+            'sm:text-xl',
+            'sm_xl:text-xl',
+            'sm_l:text-xl',
+            'sm_s:text-lg',
+            'sm:text-base',
             className,
         )}
         {...props}
