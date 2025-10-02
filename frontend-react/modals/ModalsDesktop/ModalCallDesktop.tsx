@@ -44,12 +44,16 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
-        if (!formData.name.trim()) {
-            newErrors.name = 'Это поле обязательно для заполнения'
+        const nameValidation = validateNameDesktop(formData.name)
+        if (!nameValidation.status) {
+            newErrors.name = nameValidation.textError
         }
-        if (!formData.phone.trim()) {
-            newErrors.phone = 'Это поле обязательно для заполнения'
+
+        const phoneValidation = validatePhoneDesktop(formData.phone)
+        if (!phoneValidation.status) {
+            newErrors.phone = phoneValidation.textError
         }
+
         if (!formData.consent) {
             newErrors.consent = 'Подтвердите согласие на обработку данных'
         }
@@ -58,16 +62,16 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
         return Object.keys(newErrors).length === 0
     }
 
-    const normalizePhone = (value: string) => {
-        return value.replace(/[^\d+]/g, '')
-    }
+    // const normalizePhone = (value: string) => {
+    //     return value.replace(/[^\d+]/g, '')
+    // }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         const isValid = validateForm()
         if (!isValid) return
 
-        const cleanedPhone = normalizePhone(formData.phone)
+        // const cleanedPhone = normalizePhone(formData.phone)
         setStep('accepted')
     }
 
@@ -107,7 +111,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
         }
     }
 
-    const handleInputBlur = (field: 'name') => {
+    const handleInputBlur = (field: 'name' | 'phone') => {
         setInputTouched((prev) => ({
             ...prev,
             [field]: true,
@@ -155,7 +159,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     maxLength={30}
                                     value={formData.name}
                                     onBlur={() => handleInputBlur('name')}
-                                    validate={(value) => validateNameDesktop(value)}
                                     onChange={(value: string) =>
                                         handleChange({
                                             target: { name: 'name', value, type: 'text', checked: false },
@@ -185,6 +188,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                             target: { name: 'phone', value, type: 'text', checked: false },
                                         } as React.ChangeEvent<HTMLInputElement>)
                                     }
+                                    onBlur={() => handleInputBlur('phone')}
                                     labelClassName="leading-[100%]"
                                     wrapperClassName="w-full gap-0"
                                     required={true}
@@ -213,7 +217,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     *Обязательное поле для ввода
                                 </p>
                                 {Object.values(errors).some((val) => val && val.trim() !== '') && (
-                                    <p className="error-form-desktop-custom">Заполните обязательные поля</p>
+                                    <p className="error-form-desktop-custom">{errors.name || errors.phone}</p>
                                 )}
                             </div>
                             <div className="">
