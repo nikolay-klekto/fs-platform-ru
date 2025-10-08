@@ -45,8 +45,8 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
                 }}
             >
                 <div>
-                    <div className="relative mx-[20px] mb-[40px] mt-[20px] flex flex-col gap-[26px] 2xl:gap-4 3xl:gap-5 4xl:gap-4">
-                        <div className="relative aspect-[4/3] w-full">
+                    <div className="relative mx-[20px] mb-[40px] mt-[20px] flex flex-col gap-4 2xl:gap-4 3xl:gap-5 4xl:gap-4">
+                        <div className="relative aspect-[6/5] w-full">
                             <Image
                                 src={image}
                                 fill
@@ -55,7 +55,7 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
                             />
                         </div>
 
-                        <div className="text28px_events text-gradient_desktop_custom pb-[4px] uppercase">{title}</div>
+                        <div className="text-gradient_desktop_custom pb-[4px] text-7xl uppercase">{title}</div>
                         <div className="text18px_desktop flex gap-[15px]">
                             <MapDesktop /> {date} ({week}) в {time}
                         </div>
@@ -68,7 +68,7 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
                         <Button
                             variant="circleDarkBlue"
                             size="circle_desktop"
-                            className="absolute -bottom-[4.3rem] -right-5 2xl:-bottom-9 2xl:-right-[1.2rem] 2xl:h-[50px] 2xl:p-2 3xl:-bottom-11 3xl:-right-5 3xl:h-[58px] 3xl:p-3 4xl:-bottom-10 4xl:h-14 4xl:p-3"
+                            className="absolute -bottom-[3rem] -right-5 2xl:-bottom-13 2xl:-right-[1rem] 2xl:h-19 2xl:p-2 3xl:-bottom-11 3xl:-right-5 3xl:h-19 3xl:p-3 4xl:-bottom-15 4xl:h-19 4xl:p-3"
                         >
                             <ForwardIconWhiteDesktop />
                         </Button>
