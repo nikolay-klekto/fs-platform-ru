@@ -45,7 +45,7 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
                 }}
             >
                 <div>
-                    <div className="relative mx-[20px] mb-[40px] mt-[20px] flex flex-col gap-4 2xl:gap-4 3xl:gap-5 4xl:gap-4">
+                    <div className="relative mx-[20px] mb-[40px] mt-[20px] flex flex-col gap-4 2xl:gap-3 3xl:gap-4 4xl:gap-3">
                         <div className="relative aspect-[6/5] w-full">
                             <Image
                                 src={image}
@@ -55,20 +55,20 @@ const EventsCardDesktop: React.FC<IEventsCard> = ({
                             />
                         </div>
 
-                        <div className="text-gradient_desktop_custom pb-[4px] text-7xl uppercase">{title}</div>
-                        <div className="text18px_desktop flex gap-[15px]">
+                        <div className="text-gradient_desktop_custom pb-[4px] text-7xl 2xl:text-3xl 3xl:text-4xl 4xl:text-4xl uppercase">{title}</div>
+                        <div className="text18px_desktop 4xl:text-3xl flex gap-[15px]">
                             <MapDesktop /> {date} ({week}) в {time}
                         </div>
-                        <div className="text18px_desktop flex gap-[15px]">
+                        <div className="text18px_desktop 4xl:text-3xl flex gap-[15px]">
                             <CalendarIconsDesktop /> {city}, {place}
                         </div>
-                        <div className="text18px_desktop flex gap-[15px]">
+                        <div className="text18px_desktop 4xl:text-3xl flex gap-[15px]">
                             <UserDesktop /> {company}
                         </div>
                         <Button
                             variant="circleDarkBlue"
                             size="circle_desktop"
-                            className="absolute -bottom-[3rem] -right-5 2xl:-bottom-13 2xl:-right-[1rem] 2xl:h-19 2xl:p-2 3xl:-bottom-11 3xl:-right-5 3xl:h-19 3xl:p-3 4xl:-bottom-15 4xl:h-19 4xl:p-3"
+                            className="absolute -bottom-[3rem] -right-5 2xl:-bottom-9 2xl:-right-[1/1rem] 2xl:h-12 2xl:p-2 3xl:-bottom-9 3xl:-right-5 3xl:h-[58px] 3xl:p-3 4xl:-bottom-10 4xl:-right-6 4xl:h-[55px] 4xl:p-3"
                         >
                             <ForwardIconWhiteDesktop />
                         </Button>
