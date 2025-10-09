@@ -69,7 +69,6 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         },
         [formData],
     )
-
     const getFieldsErrors = useCallback((): IFormErrors => {
         const errors = {
             name: formData.name.trim() === '',
@@ -116,7 +115,6 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
 
     useEffect(() => {
         if (isSubmit) {
-            console.log('effect')
             const errorsFromForm = getFieldsErrors()
             setFormErrors(errorsFromForm)
             const errorMessage = getFormError(errorsFromForm)
@@ -195,7 +193,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 wrapperClassName="w-full"
                             />
                         </div>
-                        <div className="flex items-center">
+                        <div className="flex gap-[10px]">
                             <EnhancedInput
                                 type="checkbox"
                                 name="consent"
@@ -205,12 +203,22 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         target: { name: 'consent', value },
                                     } as React.ChangeEvent<HTMLInputElement>)
                                 }
-                                label="Я согласен(а) на обработку персональных данных"
+                                label=" "
                                 wrapperClassName="flex items-center"
-                                labelClassName="text-xs font-medium md:text-sm"
                                 checkboxIconSize="size-4"
                                 error={formErrors.consent}
                             />
+                            <div className="text-xs font-medium text-[#878797] md:text-sm">
+                                Я согласен(а) на{' '}
+                                <Link
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="underline decoration-1 underline-offset-4"
+                                    href="/privacy-policy"
+                                >
+                                    обработку персональных данных
+                                </Link>
+                            </div>
                         </div>
                         <div className="h-[30px]">
                             {formError && (
