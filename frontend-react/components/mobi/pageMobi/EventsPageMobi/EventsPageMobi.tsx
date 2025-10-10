@@ -1,63 +1,136 @@
 'use client'
 
-import React, { useState } from 'react'
-import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
-import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
+import React, { useState, useEffect } from 'react'
+import { useFilteredEvents, EventsFilterConfig } from '@/hooks/useFilteredEvents'
 import EventsCardMobi from './components/EventsCardMobi'
-import EventsPaginationMobi from './components/EventsPaginationMobi'
-import EventsSelectSearchMobi from './components/EventsSelectSearchMobi'
-import EventsSelectSearchDateMobi from './components/EventsSelectSearchDateMobi'
-import EventsSelectSearchCityMobi from './components/EventsSelectSearchCityMobi'
-import { content } from './contentEventsPageMobi/content'
+import PaginationMobi from '../../shared/PaginationMobi'
+import EventsFilterModalMobi from '../../../../modals/ModalsMobi/ModalFilterEventsMobi/EventsFilterModalMobi'
+import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
+import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
+import { FiltersIconMobi } from '@/components/assets/iconsMobi'
 
-const cardsPerPage = 6
+const USE_FAKE_DATA = false
 
 const EventsPageMobi: React.FC = () => {
-    //const [searchQuery, setSearchQuery] = useState('')
-    const [currentPage, setCurrentPage] = useState(1)
-    const totalPages = Math.ceil(content.length / cardsPerPage)
+    const [filters, setFilters] = useState<EventsFilterConfig>({
+        categories: [],
+        dates: [],
+        cities: [],
+        dateScope: '',
+    })
 
-    // const handleSearch = () => {
-    //console.log('Поиск мероприятия:', searchQuery)
-    //setSearchQuery('')
-    //}
-    const handlePageChange = (page: number): void => {
-        setCurrentPage(page)
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [filters])
+
+    const [currentPage, setCurrentPage] = useState(1)
+    const cardsPerPage = 6
+    const [showFilter, setShowFilter] = useState(false)
+
+    const { events, categories, cities, loading, error } = useFilteredEvents(filters, USE_FAKE_DATA)
+
+    const totalPages = Math.ceil(events.length / cardsPerPage)
+
+    const hasActiveFilters = (filters: EventsFilterConfig) => {
+        return (
+            (filters.categories && filters.categories.length > 0) ||
+            (filters.dates && filters.dates.length > 0) ||
+            (filters.cities && filters.cities.length > 0) ||
+            !!filters.dateScope
+        )
     }
 
+    const resetFilters = () => {
+        setFilters({
+            categories: [],
+            dates: [],
+            cities: [],
+            dateScope: '',
+        })
+    }
+
+    if (loading)
+        return (
+            <div className="flex min-h-screen items-center justify-center bg-[#101030] text-white">
+                <div className="p-8 text-center">Загрузка...</div>
+            </div>
+        )
+
+    if (error)
+        return (
+            <div className="flex min-h-screen items-center justify-center bg-[#101030] text-red-400">
+                <div className="p-8 text-center">{error.message || String(error)}</div>
+            </div>
+        )
     return (
         <>
-            <div className="h-[20px] bg-[#101030]">
+            <div className="flex min-h-screen flex-col bg-[#101030] text-white">
                 <HeaderMobi />
                 <div className="bg-[#101030] text-white">
-                    <div className="3xl:p-[76px_130px_150px_130px] container relative overflow-hidden p-[76px_212px_200px_212px] 2xl:p-[60px_100px_100px_100px]">
-                        <h1 className="text28px_mobi relative z-[1]">Мероприятия</h1>
-                        <div className="relative z-[1] flex items-center justify-end gap-[30px] pb-[30px] pt-[116px]">
-                            <EventsSelectSearchMobi />
-                            <EventsSelectSearchDateMobi />
-                            <EventsSelectSearchCityMobi />
-                        </div>
-                        <div className="3xl:gap-[25px] 4xl:gap-[30px] flex flex-wrap justify-center gap-[36px] 2xl:gap-[20px]">
-                            {content.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((item) => (
-                                <EventsCardMobi
-                                    key={item.id}
-                                    title={item.title}
-                                    category={item.category}
-                                    image={item.image}
-                                    date={item.date}
-                                    time={item.time}
-                                    week={item.week}
-                                    city={item.city}
-                                    place={item.place}
-                                    company={item.company}
+                    <div className="relative overflow-hidden px-[16px] pt-[40px]">
+                        <div className="mb-10 flex items-center justify-between pr-[4px]">
+                            <h1 className="text28px_mobi relative font-medium uppercase">Мероприятия</h1>
+                            <FiltersIconMobi
+                                className={`size-[24px] ${hasActiveFilters(filters) ? 'text-white' : 'text-[#878797]'}`}
+                                onClick={() => setShowFilter(true)}
+                            />
+                            {showFilter && (
+                                <EventsFilterModalMobi
+                                    onClose={() => setShowFilter(false)}
+                                    filters={{
+                                        categories: filters.categories ?? [],
+                                        dates: filters.dates ?? [],
+                                        cities: filters.cities ?? [],
+                                        dateScope: filters.dateScope ?? '',
+                                    }}
+                                    onApply={setFilters}
+                                    categories={categories}
+                                    cities={cities}
                                 />
-                            ))}
+                            )}
                         </div>
-                        <EventsPaginationMobi
-                            totalPages={totalPages}
-                            currentPage={currentPage}
-                            onPageChange={handlePageChange}
-                        />
+                        <div className="flex justify-center">
+                            <div className="flex flex-wrap justify-center gap-[24px]">
+                                {events.length === 0 ? (
+                                    <div className="flex min-h-[300px] flex-col items-center gap-10">
+                                        <div className="text-center text-[14px] font-medium text-[#878797] md:text-[16px]">
+                                            Нет мероприятий по выбранным фильтрам
+                                        </div>
+                                        <button
+                                            onClick={resetFilters}
+                                            className="w-[188px] rounded-full border-2 border-[#3d50ad] bg-transparent py-2 text-[15px] font-medium text-white transition-all duration-200 active:opacity-80"
+                                        >
+                                            Вернуться назад
+                                        </button>
+                                    </div>
+                                ) : (
+                                    events
+                                        .slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
+                                        .map((item) => (
+                                            <EventsCardMobi
+                                                key={item.id}
+                                                title={item.name}
+                                                category={item.eventCategory.category}
+                                                image={item.imagePath ?? '/images/events_1.png'}
+                                                date={item.date}
+                                                time={item.time}
+                                                city={item.city.name}
+                                                place={item.publicPlaceName}
+                                                company={item.organizer}
+                                            />
+                                        ))
+                                )}
+                            </div>
+                        </div>
+                        {totalPages > 1 ? (
+                            <PaginationMobi
+                                totalPages={totalPages}
+                                currentPage={currentPage}
+                                onPageChange={setCurrentPage}
+                            />
+                        ) : (
+                            <div className="h-[30px]" />
+                        )}
                     </div>
                 </div>
                 <FooterMobi />

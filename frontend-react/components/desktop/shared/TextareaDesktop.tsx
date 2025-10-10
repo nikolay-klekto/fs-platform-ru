@@ -10,13 +10,13 @@ const textareaVariants = cva(
                 default:
                     'border-input bg-background focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2',
                 contacts_page_desktop:
-                    'border-2 border-[#878797] bg-transparent text-5xl ring-offset-transparent focus:border-[3px] focus:ring-transparent',
+                    'border-2 border-[#878797] bg-transparent text-5xl font-medium ring-offset-transparent placeholder:text-[19px] placeholder:font-medium placeholder:text-[#353652] focus:border-2 focus:border-[#FFFFFF] focus:ring-transparent',
                 contacts_page_error_desktop:
-                    'border-2 border-[#bc8070] bg-transparent text-5xl ring-offset-transparent focus:border-[3px] focus:ring-transparent',
+                    'border-2 border-[#bc8070] bg-[#1F2040] text-5xl font-medium ring-offset-transparent placeholder:text-[19px] placeholder:font-medium placeholder:text-[#353652] focus:border-2 focus:ring-transparent',
             },
             size: {
                 default: 'h-10 px-3 py-2',
-                contacts_page_desktop: 'h-60 px-4 py-3.5',
+                contacts_page_desktop: 'h-60 p-5',
             },
             rounded: {
                 default: 'rounded-md',
@@ -53,12 +53,10 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
             variant,
             size,
             rounded,
-            validate,
             onChange,
             onFocus,
             onBlur,
             label,
-            helperText,
             name,
             wrapperClassName,
             placeholder,
@@ -67,29 +65,7 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
         ref,
     ) => {
         const [internalValue, setInternalValue] = React.useState<string>('')
-        const [internalError, setInternalError] = React.useState('')
-        const [styleErrorClass, setStyleErrorClass] = React.useState(false)
         const [isFocused, setIsFocused] = React.useState(false)
-
-        function validateComponent(newValue: string) {
-            if (validate) {
-                const validationResult = validate(newValue)
-                if (validationResult) {
-                    const { textError, status, styleError } = validationResult
-                    if (!status) {
-                        if (textError) {
-                            setInternalError(textError)
-                        }
-                        if (!styleError) {
-                            setStyleErrorClass(true)
-                        }
-                    } else {
-                        setStyleErrorClass(false)
-                        setInternalError('')
-                    }
-                }
-            }
-        }
 
         const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
             const newValue = e.target.value
@@ -105,10 +81,6 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
         const handleBlur = () => {
             setIsFocused(false)
             onBlur?.()
-
-            if (internalValue) {
-                validateComponent(internalValue)
-            }
         }
 
         return (
@@ -119,7 +91,6 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
                         textareaVariants({ variant, size, rounded }),
                         isFocused && 'ring-2 ring-ring ring-offset-2',
                         className,
-                        styleErrorClass && 'border-[#BC8070]',
                     )}
                     ref={ref}
                     name={name}
@@ -130,11 +101,6 @@ const EnhancedTextareaDesktop = React.forwardRef<HTMLTextAreaElement, EnhancedTe
                     onBlur={handleBlur}
                     {...props}
                 />
-                {(helperText || internalError !== '') && (
-                    <span className={cn('text-xs', internalError ? 'text-destructive' : 'text-muted-foreground')}>
-                        {internalError || helperText}
-                    </span>
-                )}
             </div>
         )
     },

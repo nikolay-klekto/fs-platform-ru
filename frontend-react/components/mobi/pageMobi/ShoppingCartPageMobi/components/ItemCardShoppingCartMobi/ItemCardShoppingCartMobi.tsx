@@ -28,10 +28,12 @@ const ItemCardShoppingCartMobi: React.FC<IItemCardShoppingCart> = ({
     onClick,
 }) => {
     return (
-        <div className="flex flex-col flex-wrap rounded-[40px] bg-[#272745] px-[12px] py-[40px]">
+        <div className="rounded-[40px] bg-[#1F203F] px-[12px] py-[40px]">
             <div className="flex flex-col gap-[20px] leading-none">
-                <div className="text18px_mobi text-gradient_mobi_custom pb-[10px] uppercase">Оформление заказа</div>
-                <div className="relative h-[184px]">
+                <div className="text18px_mobi text-gradient_mobi_custom pb-[10px] font-semibold uppercase">
+                    Оформление заказа
+                </div>
+                <div className="sm_s:h-[150px] relative h-[184px] sm:h-[150px]">
                     <Image
                         src={image}
                         fill
@@ -39,7 +41,7 @@ const ItemCardShoppingCartMobi: React.FC<IItemCardShoppingCart> = ({
                         className="pointer-events-none select-none rounded-[25px]"
                     />
                 </div>
-                <div className="grid grid-cols-2 gap-[20px] text-wrap text-left">
+                <div className="grid grid-cols-2 gap-[20px] text-wrap text-left sm:gap-4">
                     <div className="text12px_mobi font-medium text-[#878797]">Профессия:</div>
                     <div className="text14px_mobi leading-[1.2] text-white">{profession}</div>
                     <div className="text12px_mobi font-medium text-[#878797]">Компания:</div>
@@ -53,13 +55,19 @@ const ItemCardShoppingCartMobi: React.FC<IItemCardShoppingCart> = ({
                     <div className="text12px_mobi font-medium text-[#878797]">Адрес офиса:</div>
                     <div className="text14px_mobi leading-[1.2] text-white">{location}</div>
                 </div>
-                <div className="pt-[20px]r flex items-center justify-between border-t-2">
-                    <div className="text16px_mobi   font-semibold text-white">{price} BYN</div>
+                <div className="flex items-center justify-between border-t-2 pt-[20px]">
+                    <div className="text16px_mobi font-semibold text-white">{price} BYN</div>
                     <button>
                         <TrashIconMobi />
                     </button>
-                    <Button variant={'select_mobi'} size={'select_mobi'} className="text-2xl" onClick={onClick}>
-                        Оформить заказ
+                    <Button
+                        type="button"
+                        variant={'select_mobi'}
+                        size={'select_mobi'}
+                        className="sm_s:max-w-[150px] sm_l:max-w-[150px] bg-[#1F203F] text-2xl sm:max-w-[150px]"
+                        onClick={onClick}
+                    >
+                        Оформить
                     </Button>
                 </div>
             </div>

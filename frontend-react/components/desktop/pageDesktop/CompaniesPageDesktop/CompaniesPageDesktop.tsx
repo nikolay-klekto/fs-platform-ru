@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Toaster } from '@/components/ui/toaster'
 import useDebounce from '@/hooks/useDebounce'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
@@ -109,7 +108,6 @@ const CompaniesPageDesktop: React.FC = () => {
                 </div>
             </main>
             <FooterDesktop />
-            <Toaster />
         </>
     )
 }
