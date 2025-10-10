@@ -206,6 +206,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     onBlur={() => handleInputBlur('phone')}
                                     labelClassName="leading-[100%]"
                                     wrapperClassName="w-full gap-0"
+                                    modalName="ModalCallDesktop"
                                     required={true}
                                     className={`${
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
@@ -254,6 +255,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                             },
                                         } as React.ChangeEvent<HTMLInputElement>)
                                     }
+                                    error={hasErrors}
                                     label="Я согласен(а) на обработку персональных данных"
                                     wrapperClassName="flex"
                                     checkboxIconSize="w-[18px]"
