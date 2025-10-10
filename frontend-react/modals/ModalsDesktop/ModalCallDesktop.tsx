@@ -44,12 +44,9 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
-        const allFieldsEmpty = !formData.name.trim() && !formData.phone.trim() && !formData.consent
         switch (true) {
-            case allFieldsEmpty:
+            case !formData.name.trim():
                 newErrors.name = 'Заполните обязательные поля'
-                newErrors.phone = 'Заполните обязательные поля'
-                newErrors.consent = 'Заполните обязательные поля'
                 break
 
             case !validateNameDesktop(formData.name).status:
