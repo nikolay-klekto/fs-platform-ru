@@ -44,18 +44,28 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
-        const nameValidation = validateNameDesktop(formData.name)
-        if (!nameValidation.status) {
-            newErrors.name = nameValidation.textError
-        }
+        const allFieldsEmpty = !formData.name.trim() && !formData.phone.trim() && !formData.consent
+        switch (true) {
+            case allFieldsEmpty:
+                newErrors.name = 'Заполните обязательные поля'
+                newErrors.phone = 'Заполните обязательные поля'
+                newErrors.consent = 'Заполните обязательные поля'
+                break
 
-        const phoneValidation = validatePhoneDesktop(formData.phone)
-        if (!phoneValidation.status) {
-            newErrors.phone = phoneValidation.textError
-        }
+            case !validateNameDesktop(formData.name).status:
+                newErrors.name = validateNameDesktop(formData.name).textError
+                break
 
-        if (!formData.consent) {
-            newErrors.consent = 'Подтвердите согласие на обработку данных'
+            case !formData.phone.trim():
+                newErrors.phone = 'Заполните обязательные поля'
+                break
+
+            case !formData.consent:
+                newErrors.consent = 'Заполните обязательные поля'
+                break
+
+            default:
+                break
         }
 
         setErrors(newErrors)
@@ -68,6 +78,11 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
+        setInputTouched({
+            name: true,
+            phone: true,
+            time: false,
+        })
         const isValid = validateForm()
         if (!isValid) return
 
@@ -121,7 +136,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
         if (field === 'name') {
             error = validateNameDesktop(formData.name)?.textError
         } else if (field === 'phone') {
-            error = validatePhoneDesktop(formData.phone)?.textError
+            error = !validatePhoneDesktop(formData.phone)?.status ? 'Номер телефона введён не полностью' : ''
         }
 
         if (error) {
@@ -199,7 +214,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     } mt-0 h-[50px] py-[14px] pl-[20px] text-4xl placeholder:text-2xl placeholder:text-[#353652]`}
                                 />
                             </div>
-                            <div className="mb-6 flex w-full flex-col">
+                            <div className="mb-[14px] flex w-full flex-col">
                                 <EnhancedInput
                                     type="text"
                                     id="time"
@@ -213,11 +228,14 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     labelClassName="text-2xl leading-[100%] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
-                                <p className="mt-2 text-2xl font-medium leading-[100%] text-[#353652]">
-                                    *Обязательное поле для ввода
-                                </p>
-                                {Object.values(errors).some((val) => val && val.trim() !== '') && (
-                                    <p className="error-form-desktop-custom">{errors.name || errors.phone}</p>
+                                {Object.values(errors).some((val) => val && val.trim() !== '') ? (
+                                    <p className="error-form-desktop-custom mt-[10px]">
+                                        {errors.name || errors.phone || errors.consent}
+                                    </p>
+                                ) : (
+                                    <p className="mt-[10px] text-2xl font-medium leading-[100%] text-[#353652]">
+                                        *Обязательное поле для ввода
+                                    </p>
                                 )}
                             </div>
                             <div className="">
@@ -242,7 +260,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     labelClassName={`text-2xl w-[398px] whitespace-nowrap ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                                 />
                             </div>
-                            {errors.consent && <p className="error-form-desktop-custom">{errors.consent}</p>}
                             <div className="mx-auto mt-[10px]">
                                 <p className="text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
