@@ -96,7 +96,7 @@ const EventsPageDesktop: React.FC = () => {
                                 </p>
                             </div>
                         ) : (
-                            <div className="grid min-h-[40vh] grid-cols-3 2xl:justify-items-center 2xl:grid-cols-2 3xl:justify-items-center 3xl:grid-cols-2 4xl:grid-cols-2 gap-[36px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
+                            <div className="grid min-h-[40vh] grid-cols-3 justify-items-center 2xl:justify-items-center 2xl:grid-cols-2 3xl:justify-items-center 3xl:grid-cols-2 4xl:grid-cols-2 gap-[36px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
                                 {paginatedItems.map((item) => (
                                     <EventsCardDesktop key={item.id} {...item} />
                                 ))}
