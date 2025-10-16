@@ -61,7 +61,7 @@ const InternshipCompaniesDesktop: React.FC = () => {
             <div
                 ref={contentRef}
                 onScroll={handleScroll}
-                className="no-scrollbar_custom container flex select-none gap-9 overflow-x-scroll pl-0 pr-[60px]"
+                className="no-scrollbar_custom container flex select-none gap-9 overflow-x-scroll px-[58px]"
             >
                 {content.map((item) => (
                     <Link href={`/company`} key={item.id}>
@@ -79,7 +79,7 @@ const InternshipCompaniesDesktop: React.FC = () => {
             <div
                 ref={scrollbarRef}
                 onScroll={handleScrollbarScroll}
-                className="scrollbar_custom relative mx-auto mb-[192px] mt-[77px] w-[65%] cursor-pointer overflow-x-scroll 2xl:mb-[120px] 3xl:mb-[160px]"
+                className="scrollbar_custom relative mx-auto mb-[192px] w-[65%] cursor-pointer overflow-x-scroll 2xl:mb-[120px] 3xl:mb-[160px]"
             >
                 <div
                     className="absolute h-2 min-w-[1000px] bg-transparent"

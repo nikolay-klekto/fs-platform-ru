@@ -92,7 +92,7 @@ const ProfessionsPageDesktop: React.FC = () => {
                     </div>
 
                     {filteredContent.length > 0 ? (
-                        <div className="3xl:gap-[25px] 4xl:gap-[30px] grid grid-cols-4 justify-items-center gap-[45px] 2xl:gap-[20px]">
+                        <div className="grid grid-cols-4 w-full justify-between items-center gap-[45px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
                             {paginatedItems.map((item) => (
                                 <Link href={`/profession`} key={item.id}>
                                     <ProfessionCardPageDesktop
