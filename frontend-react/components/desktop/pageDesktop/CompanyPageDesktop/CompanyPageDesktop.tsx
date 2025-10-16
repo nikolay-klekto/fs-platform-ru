@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { MapPinIconDesktop } from '@/components/assets/iconsDesktop'
 import HeaderDesktop from '@/components/desktop/layout/HeaderDesktop/HeaderDesktop'
 import FooterDesktop from '@/components/desktop/layout/FooterDesktop/FooterDesktop'
-import InternshipProfessionsDesktop from './components/ProfessionsInCompanyDeskto/ProfessionsInCompanyDesktop'
+import InternshipProfessionsDesktop from './components/ProfessionsInCompanyDesktop/ProfessionsInCompanyDesktop'
 import CompanyAdvantageDesktop from './components/CompanyAdvantageDesktop/CompanyAdvantageDesktop'
 import BreadcrumbsDesktop from '../../layout/BreadcrumbsDesktop/BreadcrumbsDesktop'
 import { content } from './contentCompanyPageDesktop/content'
@@ -106,8 +106,10 @@ const CompanyPageDesktop: React.FC = () => {
                         {' '}
                         Профессии в компании
                     </h2>
-                    <InternshipProfessionsDesktop />
-                    <h2 className="container mb-[81px] mt-[120px] pl-0 text-[48px] font-medium uppercase 2xl:mt-[80px] 3xl:mt-[100px] ">
+                </div>
+                <InternshipProfessionsDesktop />
+                <div className="overflow-hidden">
+                    <h2 className="container mb-[81px] mt-[120px] pl-[58px] text-[48px] font-medium uppercase 2xl:mt-[80px] 3xl:mt-[100px]">
                         Преимущества компании
                     </h2>
                     <CompanyAdvantageDesktop />

@@ -7,11 +7,10 @@ const cardVariants = cva('border-none', {
     variants: {
         variant: {
             default: '',
-            profession_home_desktop:
-                'hover:button-shadow_around_desktop_custom flex cursor-pointer flex-col justify-between border-none bg-cover bg-center',
+            profession_home_desktop: 'flex cursor-pointer flex-col justify-between border-none bg-cover bg-center',
             profession_home_mobi: 'flex shrink-0 grow-0 flex-col justify-between bg-cover bg-center',
             profession_page_desktop:
-                'hover:button-shadow_around_desktop_custom relative flex cursor-pointer flex-col justify-between border-none bg-cover bg-center overflow-hidden',
+                'relative flex cursor-pointer flex-col justify-between border-none bg-cover bg-center overflow-hidden',
             profession_page_mobi: 'flex flex-col justify-between border-none bg-cover bg-center bg-no-repeat ',
             companies_page_mobi: 'flex flex-col justify-between border-none bg-cover bg-center bg-no-repeat',
             companies_page_desktop:
@@ -42,11 +41,16 @@ const cardVariants = cva('border-none', {
             rounded_10: 'rounded-[10px]',
             rounded_20: 'rounded-[20px]',
         },
+        hoverShadow: {
+            false: '',
+            true: 'hover:button-shadow_around_desktop_custom',
+        },
     },
     defaultVariants: {
         variant: 'default',
         size: 'default',
         rounded: 'default',
+        hoverShadow: false,
     },
 })
 
@@ -131,9 +135,11 @@ const cardFooterVariants = cva('p-0', {
 
 export interface ICard extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardVariants> {}
 
-const Card = React.forwardRef<HTMLDivElement, ICard>(({ className, variant, size, rounded, ...props }, ref) => (
-    <div ref={ref} className={cn(cardVariants({ variant, size, rounded }), className)} {...props} />
-))
+const Card = React.forwardRef<HTMLDivElement, ICard>(
+    ({ className, variant, size, rounded, hoverShadow, ...props }, ref) => (
+        <div ref={ref} className={cn(cardVariants({ variant, size, rounded, hoverShadow }), className)} {...props} />
+    ),
+)
 Card.displayName = 'Card'
 
 export interface ICardTitle extends React.HTMLAttributes<HTMLHeadingElement>, VariantProps<typeof cardTitleVariants> {}
