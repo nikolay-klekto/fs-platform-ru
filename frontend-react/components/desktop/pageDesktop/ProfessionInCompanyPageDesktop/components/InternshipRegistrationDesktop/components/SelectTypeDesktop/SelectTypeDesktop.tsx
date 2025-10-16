@@ -128,9 +128,9 @@ const SelectTypeDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValid
                                         align={isMediumScreen ? "end" : "start"}
                                         tooltipMessage={options1.find((o) => o.value === option.value)?.label || ''}
                                     >
-                                        <button className="size-[42px]">
+                                        <div className="size-[42px]">
                                             <HelpIconDesktop className="size-[42px] cursor-pointer" />
-                                        </button>
+                                        </div>
                                     </HelpInternshipTooltipDesktop>
                                 </button>
 

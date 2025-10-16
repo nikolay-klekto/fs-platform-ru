@@ -6,7 +6,13 @@ export interface IItemCardImage{
     }
   }
 
-export interface IItemCardDesktop {
+export interface IItemCardImageName extends IItemCardImage {
+    name: string
+}
+
+
+
+export interface IItemCard{
     image: {
         src: string
         alt: string

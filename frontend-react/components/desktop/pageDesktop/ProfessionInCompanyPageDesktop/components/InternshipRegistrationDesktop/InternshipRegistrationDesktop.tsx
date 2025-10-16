@@ -60,7 +60,7 @@ const InternshipRegistrationDesktop: React.FC = () => {
                         <p className="text28px_desktop font-medium text-[#878797]">Вид стажировки</p>
                     </div>
 
-                    <div className="relative ml-[150px] flex-1 2xl:ml-[100px]">
+                    <div className="relative ml-[150px] flex-1 2xl:ml-[85px]">
                         <SelectTypeDesktop onTypeChange={handleTypeChange} error={submitAttempted && typeHasError} />
                         {submitAttempted && typeHasError && (
                             <div className="absolute inset-x-0 bottom-[-27px]">
@@ -84,7 +84,7 @@ const InternshipRegistrationDesktop: React.FC = () => {
                         <p className="text28px_desktop font-medium text-[#878797]">Адрес стажировки</p>
                     </div>
 
-                    <div className="relative ml-[150px] flex-1 2xl:ml-[100px]">
+                    <div className="relative ml-[150px] flex-1 2xl:ml-[85px]">
                         <SelectAddressDesktop
                             onTypeChange={handleAddressChange}
                             error={submitAttempted && typeHasError}

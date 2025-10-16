@@ -28,14 +28,14 @@ const CompanyInfoDesktop: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col px-[26px]">
-                    <h1 className="title80px_desktop relative z-10 mb-[58px] font-medium uppercase">
+                    <h1 className="text-white text-35xl 4xl:text-32xl 3xl:text-27xl 2xl:text-22xl relative z-10 mb-[58px] font-medium uppercase">
                         {' '}
                         Программист в компании Еpam
                     </h1>
                     <div className="relative max-h-[613px] w-full">
                         <Image
                             src="/images/epam-for-company-page.png"
-                            alt="EpamLogo"
+                            alt="Логитип Epam"
                             className="object-contain"
                             width={1802}
                             height={613}

@@ -4,10 +4,13 @@ import React, { useState, useEffect, useRef } from 'react'
 import { ChevronDownIconDesktop } from '@/components/assets/iconsDesktop'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import {ISelectOption, ISelectTypeDesktop} from '@/types/selectors/selectors'
+import { ISelectOption, ISelectTypeDesktop } from '@/types/selectors/selectors'
 
-
-const SelectTypeAddressDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, onValidationChange, error = false }) => {
+const SelectTypeAddressDesktop: React.FC<ISelectTypeDesktop> = ({
+    onTypeChange,
+    onValidationChange,
+    error = false,
+}) => {
     const [isOpenOptions, setIsOpenOptions] = useState(false)
     const [selectedOption, setSelectedOption] = useState<string | null>(null)
     const selectRef = useRef<HTMLDivElement>(null)
@@ -18,18 +21,18 @@ const SelectTypeAddressDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, 
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-          if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
-            setIsOpenOptions(false)
-          }
+            if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+                setIsOpenOptions(false)
+            }
         }
         document.addEventListener('mousedown', handleClickOutside)
         return () => document.removeEventListener('mousedown', handleClickOutside)
-      }, [])
+    }, [])
 
     useEffect(() => {
-      const isValid = !!selectedOption
-      onValidationChange?.(isValid)
-      if (selectedOption) onTypeChange([selectedOption])
+        const isValid = !!selectedOption
+        onValidationChange?.(isValid)
+        if (selectedOption) onTypeChange([selectedOption])
     }, [selectedOption, onTypeChange, onValidationChange])
 
     const options: ISelectOption[] = [
@@ -42,15 +45,15 @@ const SelectTypeAddressDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, 
             <Button
                 variant={'select_internship_btn_desktop'}
                 size={'select_address_btn_desktop'}
-                 onClick={handleSelectToggle}
-                 className={cn(
-                         'flex items-center justify-between px-[45px] 2xl:px-[30px]',
-                         error
-                           ? 'border-[rgba(188,128,112,1)] text-[rgba(188,128,112,0.6)]'
-                           : isOpenOptions || selectedOption
-                           ? 'border-white text-white'
-                           : 'border-[#878797] text-[#878797]'
-                       )}
+                onClick={handleSelectToggle}
+                className={cn(
+                    'flex items-center justify-between px-[45px] 2xl:px-[30px]',
+                    error
+                        ? 'border-[rgba(188,128,112,1)] text-[rgba(188,128,112,0.6)]'
+                        : isOpenOptions || selectedOption
+                          ? 'border-white text-white'
+                          : 'border-[#878797] text-[#878797]',
+                )}
             >
                 {selectedOption ? options.find((o) => o.value === selectedOption)?.label : 'Выберите адрес'}
 
@@ -61,32 +64,44 @@ const SelectTypeAddressDesktop: React.FC<ISelectTypeDesktop> = ({ onTypeChange, 
                     }`}
                 />
             </Button>
-    
+
             {isOpenOptions && (
-                <div
-                    className="absolute top-[96px] z-[9999] flex w-[908px]  2xl:w-[550px] 3xl:w-[600px] flex-col rounded-[44px] border-[3.5px] border-[#878797] bg-[#1F203F] px-[22px] pt-[37px]"
-                   >
-                    {options.map((option, index) => (
+                <div className="absolute top-[96px] z-[9999] flex w-[908px]  flex-col rounded-[44px] border-[3.5px] border-[#878797] bg-[#1F203F] px-[22px] 2xl:w-[550px] 3xl:w-[600px]">
+                    {options.map((option, index) => {
+                        const isFirst = index === 0
+                        const isLast = index === options.length - 1
+                        
+                        return (   
                         <div key={option.value}>
                             <button
                                 type="button"
-                                className={`text33px_desktop w-full pl-[38px] 2xl:pl-[30px] text-left font-medium transition-colors duration-200 ${selectedOption === option.value ? 'text-white' : 'text-[#878797]'}
-                  hover:text-white
-                  ${index === 0 ? 'mt-0' : ''}`}
+                                className={cn(
+                                    'flex items-center justify-between mx-[13px] my-[8px] w-[calc(100%-26px)] px-[42px] py-[20px]   ',
+                                    isFirst ? 'rounded-t-[33px]' : '',
+                                    isLast ? 'rounded-b-[33px]' : '',
+                                    'transition-all duration-200 cursor-pointer hover:bg-internship-desktop-hover',
+                                )}
                                 onClick={() => {
                                     setSelectedOption(option.value)
                                     setIsOpenOptions(false)
                                 }}
                             >
-                                {option.label}
+                                <span
+                                    className={cn(
+                                        'text33px_desktop whitespace-nowrap font-medium text-left',
+                                        selectedOption === option.value ? 'text-white' : 'text-[#878797]',
+                                        'transition-colors duration-200',
+                                    )}
+                                >
+                                    {option.label}
+                                </span>
                             </button>
-                            {index < options.length - 1 && (
-                                <div className="my-[35px] h-px w-full bg-[#878797] px-[22px]" />
-                            )}
+                            {!isLast && <div className="mx-[22px] h-[3.7px] bg-[#353652]" />}
                         </div>
-                    ))}
-                    <div className="h-[50px]" />{' '}
-                </div>
+                         )
+                     }
+                    )}
+                   </div>
             )}
         </div>
     )

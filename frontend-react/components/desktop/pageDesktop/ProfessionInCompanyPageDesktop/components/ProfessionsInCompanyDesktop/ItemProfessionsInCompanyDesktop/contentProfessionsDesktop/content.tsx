@@ -1,11 +1,11 @@
-import { IContentName } from '@/types/item-cards/item-cards'
+import { IItemCardImageName } from '@/types/item-cards/item-cards'
 
-export const content: IContentName[] = [
+export const content: IItemCardImageName[] = [
     {
         id: 1,
         image: {
             src: '/images/profession_1.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист frontend разработчик',
     },
@@ -13,7 +13,7 @@ export const content: IContentName[] = [
         id: 2,
         image: {
             src: '/images/profession_1.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист',
     },
@@ -21,7 +21,7 @@ export const content: IContentName[] = [
         id: 3,
         image: {
             src: '/images/profession_2.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист',
     },
@@ -29,7 +29,7 @@ export const content: IContentName[] = [
         id: 4,
         image: {
             src: '/images/profession_2.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист',
     },
@@ -37,7 +37,7 @@ export const content: IContentName[] = [
         id: 5,
         image: {
             src: '/images/profession_3.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист',
     },
@@ -45,7 +45,7 @@ export const content: IContentName[] = [
         id: 6,
         image: {
             src: '/images/profession_3.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист',
     },
@@ -53,7 +53,7 @@ export const content: IContentName[] = [
         id: 7,
         image: {
             src: '/images/profession_3.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист',
     },
@@ -61,7 +61,7 @@ export const content: IContentName[] = [
         id: 8,
         image: {
             src: '/images/profession_3.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист',
     },
@@ -69,7 +69,7 @@ export const content: IContentName[] = [
         id: 9,
         image: {
             src: '/images/profession_4.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист',
     },
@@ -77,7 +77,7 @@ export const content: IContentName[] = [
         id: 10,
         image: {
             src: '/images/profession_4.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист',
     },
@@ -85,7 +85,7 @@ export const content: IContentName[] = [
         id: 11,
         image: {
             src: '/images/profession_4.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист',
     },
@@ -93,7 +93,7 @@ export const content: IContentName[] = [
         id: 12,
         image: {
             src: '/images/profession_4.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист',
     },
@@ -101,7 +101,7 @@ export const content: IContentName[] = [
         id: 13,
         image: {
             src: '/images/profession_4.jpg',
-            alt: 'profession-description-photo',
+            alt: '${name}',
         },
         name: 'Программист',
     },
