@@ -43,12 +43,7 @@ const CompaniesSendDesktop: React.FC = () => {
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
                 />
-                <Button
-                    variant={'send_btn_desktop'}
-                    size={'send_btn_desktop'}
-                    className="3xl:text-4xl border-4 2xl:text-3xl"
-                    onClick={handleSubmitClick}
-                >
+                <Button variant={'send_btn_desktop'} size={'send_btn_desktop'} onClick={handleSubmitClick}>
                     Отправить
                 </Button>
             </div>

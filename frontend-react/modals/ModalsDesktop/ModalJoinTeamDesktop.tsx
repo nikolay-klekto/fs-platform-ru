@@ -5,7 +5,7 @@ import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import PhoneInputDesktop from '@/components/desktop/shared/formInput/PhoneInputDesktop'
 import { AttachFileIconDesktop } from '@/components/assets/iconsDesktop'
-import { toast } from '@/hooks/useToast'
+import { useToast } from '@/context/ToastContext'
 
 interface IFormData {
     name: string
@@ -39,6 +39,8 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
         consent: false,
         fileError: null,
     })
+
+    const { toast } = useToast()
 
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -115,7 +117,7 @@ const ModalJoinTeamDesktop: React.FC<IModalContent> = ({ onClose }) => {
         const cleanedPhone = normalizePhone(formData.phoneNumber)
 
         toast({
-            description: <div className="pl-4">Спасибо! Ваша заявка была успешно отправлена</div>,
+            description: 'Спасибо! Ваша заявка была успешно отправлена',
         })
 
         onClose()

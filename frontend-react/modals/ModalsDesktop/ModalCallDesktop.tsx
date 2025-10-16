@@ -132,15 +132,13 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 <Modal onClose={onClose} size="medium" showCloseButton={false}>
                     <div>
                         <button onClick={onClose} className="absolute right-7 top-6">
-                            <X size={41} color="#878797" className="opacity-50 hover:opacity-100" />
+                            <X size={41} color="#FFFFFF" className="opacity-80 hover:opacity-100" />
                         </button>
-                        <div className="mx-[75px] max-w-md flex-col rounded-lg text-center">
-                            <h1 className="text-13xl bg-gradient-desktop mb-[2.56rem] mt-[53px] bg-clip-text font-medium leading-[44px] text-transparent">
-                                ЗАКАЗАТЬ ЗВОНОК
-                            </h1>
-                        </div>
-                        <form onSubmit={handleSubmit}>
-                            <div className="mb-5 flex w-full flex-col px-[75px]">
+                        <h3 className="text-13xl bg-gradient-desktop mx-auto mb-5 mt-20 w-[375px] whitespace-nowrap bg-clip-text font-medium uppercase leading-[100%] text-transparent">
+                            Заказать звонок
+                        </h3>
+                        <form onSubmit={handleSubmit} className="px-[75px]">
+                            <div className="mb-5 flex w-full flex-col">
                                 <EnhancedInput
                                     type="text"
                                     name="name"
@@ -158,41 +156,37 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         inputTouched.name && validateNameDesktop(formData.name).styleError
                                             ? 'border-[#bc8070]'
                                             : 'border-[#878797]'
-                                    } h-10 w-full rounded-[50px] border-2 bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0`}
+                                    } h-[50px] w-full rounded-[50px] border-2 bg-transparent py-[14px] pl-[20px] text-4xl font-medium text-white placeholder:text-2xl placeholder:text-[#353652] focus-visible:ring-offset-0`}
                                     label="Ваше имя*"
-                                    labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
+                                    labelClassName="text-2xl leading-[100%] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
-                                {errors.name && <p className="error-form-desktop-custom">{errors.name}</p>}
                             </div>
-                            <div className="mb-5 flex w-full flex-col px-[75px]">
+                            <div className="mb-5 flex w-full flex-col">
                                 <PhoneInputDesktop
                                     value={formData.phone}
-                                    //onBlur={() => handleInputBlur('phone')}
                                     onError={(error) => {
                                         setErrors((prev) => ({
                                             ...prev,
                                             phone: error,
                                         }))
-                                        console.log('Ошибки: ', errors)
                                     }}
                                     onChange={(value: string) =>
                                         handleChange({
                                             target: { name: 'phone', value, type: 'text', checked: false },
                                         } as React.ChangeEvent<HTMLInputElement>)
                                     }
-                                    labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
+                                    labelClassName="leading-[100%]"
                                     wrapperClassName="w-full gap-0"
                                     required={true}
                                     className={`${
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
                                             ? 'border-[#bc8070] focus:border-[#bc8070]'
                                             : 'border-[#878797] focus:border-[#878797]'
-                                    }`}
+                                    } mt-0 h-[50px] py-[14px] pl-[20px] text-4xl placeholder:text-2xl placeholder:text-[#353652]`}
                                 />
-                                {errors.phone && <p className="error-form-desktop-custom">{errors.phone}</p>}
                             </div>
-                            <div className="mb-6 flex w-full flex-col px-[75px]">
+                            <div className="mb-6 flex w-full flex-col">
                                 <EnhancedInput
                                     type="text"
                                     id="time"
@@ -201,19 +195,19 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     maxLength={100}
                                     value={formData.time}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                    className="h-10 w-full rounded-[50px] border-2 border-[#878797] bg-transparent p-3 text-xl font-medium text-white focus-visible:ring-offset-0"
+                                    className="h-[50px] w-full rounded-[50px] border-2 border-[#878797] bg-transparent py-[14px] pl-[20px] text-4xl font-medium text-white placeholder:text-2xl placeholder:text-[#353652] focus-visible:ring-offset-0"
                                     label="Удобное время для звонка"
-                                    labelClassName="mb-2 text-2xl leading-[18px] font-medium text-white"
+                                    labelClassName="text-2xl leading-[100%] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
-                                <p className="mt-2 text-2xl font-medium leading-[18px] text-[#353652]">
+                                <p className="mt-2 text-2xl font-medium leading-[100%] text-[#353652]">
                                     *Обязательное поле для ввода
                                 </p>
                                 {Object.values(errors).some((val) => val && val.trim() !== '') && (
-                                    <p className="error-form-desktop-custom mb-3">Заполните обязательные поля</p>
+                                    <p className="error-form-desktop-custom">Заполните обязательные поля</p>
                                 )}
                             </div>
-                            <div className="px-[75px]">
+                            <div className="">
                                 <EnhancedInput
                                     type="checkbox"
                                     id="consent"
@@ -230,28 +224,30 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         } as React.ChangeEvent<HTMLInputElement>)
                                     }
                                     label="Я согласен(а) на обработку персональных данных"
-                                    wrapperClassName="flex gap-2 pb-2"
+                                    wrapperClassName="flex"
                                     checkboxIconSize="w-[18px]"
-                                    labelClassName={`${formData.consent ? 'text-white' : 'text-[#878797]'}`}
+                                    labelClassName={`text-2xl w-[398px] whitespace-nowrap ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                                 />
                             </div>
-                            {errors.consent && <p className="error-form-desktop-custom px-[75px]">{errors.consent}</p>}
-                            <div className="mx-auto">
-                                <p className="px-[75px] text-2xl font-medium text-[#353652]">
+                            {errors.consent && <p className="error-form-desktop-custom">{errors.consent}</p>}
+                            <div className="mx-auto mt-[10px]">
+                                <p className="text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
-                                    <a
+                                    <Link
                                         href="/privacy-policy"
-                                        className="hover:cursor ml-1 text-2xl font-medium leading-[18px] text-[#353652] underline"
+                                        onClick={onClose}
+                                        className="hover:cursor underline-decoration-1 ml-1 text-2xl font-medium leading-[18px] text-[#353652] underline underline-offset-2"
                                     >
                                         Конфиденциальность
-                                    </a>{' '}
+                                    </Link>{' '}
                                     <br />и{' '}
-                                    <a
-                                        href="href"
-                                        className="mb-4 text-2xl font-medium leading-[18px] text-[#353652] underline"
+                                    <Link
+                                        href="/privacy-policy"
+                                        onClick={onClose}
+                                        className="underline-decoration-1 mb-4 text-2xl font-medium leading-[18px] text-[#353652] underline underline-offset-2"
                                     >
                                         Условия использования
-                                    </a>
+                                    </Link>
                                 </p>
                             </div>
                             <div className="mb-10 mt-5 flex justify-center">
@@ -289,14 +285,14 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             </p>
                         </div>
                         <div className="mb-[67px] flex items-center justify-center">
-                                <Button
-                                    onClick={handleNavigateToProfessions}
-                                    variant="default"
-                                    size="btn_modal_desktop"
-                                    className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-8 rounded-full px-20 py-8 text-5xl font-semibold leading-[24px]"
-                                >
-                                    Смотреть профессии
-                                </Button>
+                            <Button
+                                onClick={handleNavigateToProfessions}
+                                variant="default"
+                                size="btn_modal_desktop"
+                                className="bg-gradient-desktop hover:bg-gradient-desktop-hover mx-auto mt-8 rounded-full px-20 py-8 text-5xl font-semibold leading-[24px]"
+                            >
+                                Смотреть профессии
+                            </Button>
                         </div>
                     </div>
                 </Modal>

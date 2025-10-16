@@ -10,6 +10,12 @@ export const imageMaps = {
         'Программист': '12.webp',
         'Финансист': '13.webp',
     },
+    events: {
+        '50': '50.webp',
+        '51': '51.webp',
+        '52': '52.webp',
+        '53': '53.webp',
+    },
 } as const
 
 export type ImageMapCategory = keyof typeof imageMaps
@@ -19,6 +25,7 @@ const norm = (s: string) => s.toLowerCase().trim().replace(/\s+/g, ' ')
 const SUBDIR: Record<ImageMapCategory, string | undefined> = {
     companies: 'facade',
     professions: undefined,
+    events: undefined,
 }
 const joinUrl = (...parts: Array<string | undefined>) =>
     parts
@@ -26,9 +33,14 @@ const joinUrl = (...parts: Array<string | undefined>) =>
         .map((p) => p!.replace(/^\/+|\/+$/g, ''))
         .join('/')
 
-export function getImagePath<T extends ImageMapCategory>(category: T, name: string): string {
+export function getImagePath<T extends ImageMapCategory>(category: T, key: string): string {
     const map = imageMaps[category] as Record<string, string>
-    const file = Object.entries(map).find(([k]) => norm(k) === norm(name))?.[1]
+    let file: string | undefined
+    if (category === 'events') {
+        file = map[key]
+    } else {
+        file = Object.entries(map).find(([k]) => norm(k) === norm(key))?.[1]
+    }
 
     return '/' + joinUrl('api/photo', category, SUBDIR[category], file)
 }

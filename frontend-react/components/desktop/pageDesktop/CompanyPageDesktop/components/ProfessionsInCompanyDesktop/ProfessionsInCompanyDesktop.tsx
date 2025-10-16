@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import { content } from './ItemProfessionsInCompanyDesktop/contentProfessionsDesktop/content'
 import ItemProfessionsInCompanyDesktop from './ItemProfessionsInCompanyDesktop/ItemProfessionsInCompanyDesktop'
 import useScrollbarSync from '@/hooks/useScrollbarSync'
-import { Link } from 'lucide-react'
+import Link from 'next/link'
 
 const InternshipProfessionsDesktop: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null)
@@ -14,7 +14,7 @@ const InternshipProfessionsDesktop: React.FC = () => {
         <>
             <div
                 ref={contentRef}
-                className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll"
+                className="no-scrollbar_custom flex w-full select-none gap-[clamp(16px,_1.3vw,_25px)] overflow-x-scroll px-[58px]"
             >
                 {content.map((item) => (
                     <Link href={`/profession-in-company`} key={item.id}>
@@ -27,7 +27,7 @@ const InternshipProfessionsDesktop: React.FC = () => {
                     </Link>
                 ))}
             </div>
-            <div className="mb-[120px] mt-[92px] w-full">
+            <div className="w-full">
                 <div
                     ref={scrollbarRef}
                     className="scrollbar_custom relative mx-auto w-[65%] cursor-pointer overflow-x-scroll"
