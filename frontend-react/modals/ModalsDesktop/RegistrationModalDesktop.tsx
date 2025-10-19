@@ -214,7 +214,7 @@ const RegistrationModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             onError={(error) => handleError('phone', error)}
                             wrapperClassName="w-full"
                             required={true}
-                            className={` placeholder:text-[19px] ${
+                            className={` placeholder:text-[18px] ${
                                 inputTouched.phoneNumber && validatePhoneDesktop(formData.phoneNumber).styleError
                                     ? 'border-[#bc8070] focus:border-[#bc8070]'
                                     : 'border-[#878797] focus:border-[#878797]'

@@ -180,7 +180,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         inputTouched.name && validateNameDesktop(formData.name).styleError
                                             ? 'border-[#bc8070]'
                                             : 'border-[#878797]'
-                                    } h-[50px] w-full rounded-[50px] border-2 bg-transparent py-[14px] pl-[20px] text-4xl font-medium text-white placeholder:text-[19px] placeholder:text-[#353652] focus-visible:ring-offset-0`}
+                                    } h-[50px] w-full rounded-[50px] border-2 bg-transparent py-[14px] pl-[20px] text-4xl font-medium text-white placeholder:text-[18px] placeholder:text-[#353652] focus-visible:ring-offset-0`}
                                     label="Ваше имя*"
                                     labelClassName="text-2xl leading-[100%] font-medium text-white"
                                     wrapperClassName="w-full"
@@ -204,7 +204,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     labelClassName="leading-[100%]"
                                     wrapperClassName="w-full gap-0"
                                     required={true}
-                                    className={`placeholder:text-[19px] ${
+                                    className={`placeholder:text-[18px] ${
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
                                             ? 'border-[#bc8070] focus:border-[#bc8070]'
                                             : 'border-[#878797] focus:border-[#878797]'
@@ -220,7 +220,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     maxLength={100}
                                     value={formData.time}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                    className="h-[50px] w-full rounded-[50px] border-2 border-[#878797] bg-transparent py-[14px] pl-[20px] text-4xl font-medium text-white placeholder:text-[19px] placeholder:text-[#353652] focus-visible:ring-offset-0"
+                                    className="h-[50px] w-full rounded-[50px] border-2 border-[#878797] bg-transparent py-[14px] pl-[20px] text-4xl font-medium text-white placeholder:text-[18px] placeholder:text-[#353652] focus-visible:ring-offset-0"
                                     label="Удобное время для звонка"
                                     labelClassName="text-2xl leading-[100%] font-medium text-white"
                                     wrapperClassName="w-full"
