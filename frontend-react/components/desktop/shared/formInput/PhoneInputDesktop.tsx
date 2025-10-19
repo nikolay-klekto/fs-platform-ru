@@ -114,10 +114,6 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
         }
     }
 
-    const getPlaceholder = () => {
-        return showMaskAlways ? PHONE_MASK : isFocused ? PHONE_MASK : 'Номер телефона*'
-    }
-
     return (
         <div className={`flex w-full flex-col gap-1.5 ${wrapperClassName}`}>
             <label htmlFor="phone" className={`text-2xl font-medium text-white ${labelClassName}`}>
@@ -138,7 +134,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                 onKeyDown={handleKeyDown}
                 onClick={handleClick}
                 onBlur={handleBlur}
-                placeholder={getPlaceholder()}
+                placeholder={showMaskAlways || isFocused ? PHONE_MASK : 'Номер телефона*'}
                 className={`input-form-desktop-custom w-full font-medium placeholder:text-[#353652] ${isFocused && 'focus:border-2 focus:border-[#FFFFFF] focus:ring-transparent focus:placeholder:text-[#FFFFFF]'} ${error ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
         </div>

@@ -203,7 +203,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     onBlur={() => handleInputBlur('phone')}
                                     labelClassName="leading-[100%]"
                                     wrapperClassName="w-full gap-0"
-                                    showMaskAlways={true}
                                     required={true}
                                     className={`placeholder:text-[19px] ${
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
