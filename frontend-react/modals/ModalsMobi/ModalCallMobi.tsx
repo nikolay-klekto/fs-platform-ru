@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { EnhancedInput } from '@/components/ui/input'
 import Modal from '@/components/ui/modal'
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
+import { Button } from '@/components/ui/button'
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 import Link from 'next/link'
 
@@ -141,8 +142,8 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         target: { name: 'name', value },
                                     } as React.ChangeEvent<HTMLInputElement>)
                                 }}
-                                className={`border-2 ${formErrors.name ? 'border-[#bc8070] hover:border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797]'}
-                                input-form-mobi-custom sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] w-full rounded-[50px] bg-transparent pl-[20px] text-xl font-medium text-white placeholder:font-medium placeholder:text-[#353652]`}
+                                className={`border-2 ${formErrors.name ? 'border-[#bc8070] !bg-[#1F203F] hover:border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797]'}
+                                input-form-mobi-custom sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] h-11 w-full rounded-[50px] bg-transparent pl-[20px] text-xl font-medium text-white placeholder:font-medium placeholder:text-[#353652]`}
                                 label="Ваше имя*"
                                 labelClassName="text-white text-xl font-medium"
                                 wrapperClassName="w-full"
@@ -167,7 +168,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         }))
                                     }
                                     showInternalError={true}
-                                    className={`${formErrors.phone ? 'border-[#bc8070] hover:border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797]'} sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] h-10 border-2 pl-[20px] text-xl focus:border-2`}
+                                    className={`${formErrors.phone ? 'border-[#bc8070] !bg-[#1F203F] hover:border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797]'} sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] h-11 border-2 pl-[20px] text-xl focus:border-2`}
                                     labelClassName="hidden"
                                     wrapperClassName="w-full"
                                 />
@@ -187,7 +188,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                         target: { name: 'time', value },
                                     } as React.ChangeEvent<HTMLInputElement>)
                                 }}
-                                className={`${formErrors.time ? 'border-[#bc8070] hover:border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797]'} input-form-mobi-custom sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] w-full rounded-[50px] border-2 bg-transparent pl-[20px] text-xl font-medium text-white placeholder:font-medium placeholder:text-[#353652]`}
+                                className={`${formErrors.time ? 'border-[#bc8070] !bg-[#1F203F] hover:border-[#bc8070] focus:border-[#bc8070]' : 'border-[#878797]'} input-form-mobi-custom sm_l:placeholder:text-[14px] sm_s:placeholder:text-[14px] h-11 w-full rounded-[50px] border-2 bg-transparent pl-[20px] text-xl font-medium text-white placeholder:font-medium placeholder:text-[#353652]`}
                                 label="Удобное время для звонка"
                                 labelClassName="text-white text-xl"
                                 wrapperClassName="w-full"
@@ -213,7 +214,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 <Link
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="underline decoration-1 underline-offset-4"
+                                    className="underline decoration-1 underline-offset-2"
                                     href="/privacy-policy"
                                 >
                                     обработку персональных данных
@@ -227,15 +228,15 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 </p>
                             )}
                         </div>
-                        <button
+                        <Button
                             type="submit"
                             disabled={isDisabled}
-                            className={`mx-auto h-12 w-4/5 rounded-[50px] text-3xl font-semibold text-white md:text-4xl
-                            ${isDisabled ? 'cursor-not-allowed bg-[#878797] opacity-100' : 'bg-sub-title-gradient-mobi'}
-                            `}
+                            variant={'call_mobi'}
+                            size={'call_mobi'}
+                            className={`${isDisabled && 'cursor-not-allowed bg-[#878797] opacity-100'}`}
                         >
                             Отправить заявку
-                        </button>
+                        </Button>
                     </form>
                 </Modal>
             )}

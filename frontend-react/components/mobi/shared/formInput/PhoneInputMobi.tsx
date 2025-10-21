@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
+import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
 
 interface IPhoneInputMobi {
     value: string
     onChange: (value: string) => void
     onError: (value: string) => void
     onBlur?: (value: string) => void
-    error?: boolean
     validationStatus?: boolean
     className?: string
     wrapperClassName?: string
@@ -30,16 +30,17 @@ for (let i = 0; i < PHONE_MASK.length; i++) {
 const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
     value,
     onChange,
-    onBlur,
-    error,
+    onError,
     className,
     wrapperClassName,
     labelClassName,
+    placeholder,
     noLabel,
+    required = false,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
-    const [isFocused, setIsFocused] = useState<boolean>(false)
+    const [internalError, setInternalError] = useState<string | null>(null)
 
     const setCaretToPosition = (pos: number) => {
         if (inputRef.current) {
@@ -73,7 +74,6 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
         } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Tab') {
             return
         } else if (e.key >= '0' && e.key <= '9') {
-            console.log(e)
             e.preventDefault()
             const pos = inputRef.current?.selectionStart
             if (pos === undefined || pos === null) return
@@ -88,15 +88,24 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
         } else {
             e.preventDefault()
         }
+        validateValue(newValue)
+    }
+
+    const validateValue = (value: string) => {
+        const error =
+            required && (value === PHONE_MASK || !value)
+                ? 'Поле обязательно для заполнения'
+                : validatePhoneMobi(value).textError
+        setInternalError(error)
+        onError(error)
+        onChange(value)
     }
 
     const handleBlur = () => {
-        onBlur?.(inputValue)
-        setIsFocused(false)
+        validateValue(inputValue)
     }
 
     const handleFocus = () => {
-        setIsFocused(true)
         if (inputValue === PHONE_MASK) {
             setCaretToPosition(digitPositions[0])
         } else {
@@ -131,8 +140,8 @@ const PhoneInputMobi: React.FC<IPhoneInputMobi> = ({
                 onChange={() => {}}
                 onClick={handleClick}
                 onBlur={handleBlur}
-                placeholder={isFocused ? PHONE_MASK : 'Номер телефона*'}
-                className={`input-form-mobi-custom ${isFocused && 'focus:border-2 focus:border-[#FFFFFF] focus:ring-transparent focus:placeholder:text-[#FFFFFF]'} ${error ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                placeholder={PHONE_MASK || placeholder}
+                className={`input-form-mobi-custom ${internalError ? 'border-[#bc8070] focus:border-[#bc8070] bg-[#1f203f] ' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
         </div>
     )

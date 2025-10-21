@@ -47,6 +47,7 @@ const buttonVariants = cva(
                     'hover:button-border-desktop-date 4xl:text-2xl 3xl:text-xl rounded-[90px] border-2 border-[#878797] bg-[#1f203f] text-sm text-white 2xl:text-lg',
                 cancel_btn_desktop: 'text-[20px] font-semibold text-[#878797] underline hover:text-white',
                 cookie_btn_mobi: 'button-border-mobi rounded-[50px] border-2 bg-inherit text-white hover:bg-[#101030]',
+                call_mobi: 'bg-sub-title-gradient-mobi rounded-[50px] text-3xl font-semibold text-white md:text-4xl',
             },
             size: {
                 default: 'h-10 px-4 py-2',
@@ -105,6 +106,7 @@ const buttonVariants = cva(
                 confirm_btn_desktop: 'h-[64px] w-[250px]',
                 join_team_btn_desktop: 'h-[100px] w-[430px]',
                 join_team_btn_mobi: 'h-[44px] w-[187px]',
+                call_mobi: 'mx-auto h-[50px] max-w-[294px] w-full'
             },
         },
         defaultVariants: {
