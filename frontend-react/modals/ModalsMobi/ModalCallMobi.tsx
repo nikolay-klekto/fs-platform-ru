@@ -127,7 +127,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         <>
             {step === 'form' && (
                 <Modal variant="mobile" size="mobile-346" onClose={onClose} className="z-[70]">
-                    <p className="bg-sub-title-gradient-mobi bg-clip-text pb-5 text-center text-4xl font-semibold uppercase text-transparent md:text-4xl">
+                    <p className="bg-sub-title-gradient-mobi bg-clip-text pb-5 text-center text-4xl font-semibold uppercase text-transparent">
                         Заказать звонок
                     </p>
                     <form className="flex flex-col items-start pl-2 pr-1" onSubmit={handleSubmit}>
@@ -209,7 +209,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 checkboxIconSize="size-4"
                                 error={formErrors.consent}
                             />
-                            <div className="text-xs font-medium text-[#878797] md:text-sm">
+                            <div className="text-xs font-medium text-[#878797]">
                                 Я согласен(а) на{' '}
                                 <Link
                                     target="_blank"
@@ -223,7 +223,7 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                         </div>
                         <div className="h-[30px]">
                             {formError && (
-                                <p className="ml-[30px] mt-1 text-sm font-medium leading-[18px] text-[#bc8070]">
+                                <p className="ml-[30px] mt-1 text-xs font-medium leading-[18px] text-[#bc8070]">
                                     {formError}
                                 </p>
                             )}
@@ -243,10 +243,10 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
 
             {step === 'accepted' && (
                 <Modal variant="mobile" size="mobile-346" onClose={onClose} bgClass="bg-auto" className="z-[70]">
-                    <h2 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold uppercase text-transparent md:text-4xl">
+                    <h2 className="bg-sub-title-gradient-mobi bg-clip-text pb-4 text-center text-4xl font-semibold uppercase text-transparent">
                         Заявка принята
                     </h2>
-                    <p className="mb-1 px-3 pb-[18px] text-justify text-xl font-medium leading-[17px] text-[#878797] md:text-lg">
+                    <p className="mb-1 px-3 pb-[18px] text-justify text-xl font-medium leading-[17px] text-[#878797]">
                         Мы с вами свяжемся в ближайшее время, а пока вы можете ознакомиться с нашими услугами на сайте.
                     </p>
                     <div className="bg-sub-title-gradient-mobi mx-auto my-2 flex w-[180px] items-center justify-center rounded-[50px] p-[3px]">
