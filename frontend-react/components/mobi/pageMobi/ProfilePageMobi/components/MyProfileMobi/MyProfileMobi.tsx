@@ -31,6 +31,16 @@ interface ISelectOption {
     label: string
 }
 
+interface FormData {
+    name: string
+    surname: string
+    city: string
+    email: string
+    phone: string
+    education: string
+    occupation: string
+}
+
 const educationOptions: ISelectOption[] = [
     { value: 'higher', label: 'Высшее' },
     { value: 'higher_not-finished', label: 'Высшее незаконченное' },
@@ -74,6 +84,7 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
     const [isOccupationFocused, setIsOccupationFocused] = useState(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
+    const [isActive, setIsActive] = useState(false)
     const modalRef = useRef<HTMLFormElement>(null)
     const educationRef = useRef<HTMLDivElement>(null)
     const occupationRef = useRef<HTMLDivElement>(null)
@@ -97,9 +108,8 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
         const isInsideEducation = educationRef.current?.contains(target)
         const isInsideOccupation = occupationRef.current?.contains(target)
         const isInsideCalendar = calendarRef.current?.contains(target)
-        const isInsideModal = modalRef.current?.contains(target)
 
-        if (!isInsideEducation && !isInsideOccupation && !isInsideCalendar && !isInsideModal) {
+        if (!isInsideEducation && !isInsideOccupation && !isInsideCalendar) {
             closeAllMenus()
         }
     }
@@ -157,6 +167,10 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
 
     const handleError = (field: string, error: string | null) => {
         setInputInternalErrors((prev) => ({ ...prev, [field]: error }))
+    }
+
+    const handleActive = () => {
+        setIsActive(true)
     }
 
     const handleInputBlur = (field: keyof IFormData) => {
@@ -217,6 +231,8 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
 
     const requiredFields: (keyof IFormData)[] = ['name', 'surname', 'phone', 'email']
     const hasEmptyRequired = requiredFields.some((field) => !formData[field])
+    const isFieldValid = (fieldName: keyof FormData) =>
+        inputTouched[fieldName] && !errors[fieldName] && formData[fieldName].trim() !== ''
 
     return (
         <div className="py-[20px] w-full flex justify-center">
@@ -243,6 +259,8 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                             onChange={handleChange}
                             onBlur={() => handleInputBlur('name')}
                             className={`input-profile-mobi-custom border-2 h-[44px] text14px_mobi ${errors.name && inputTouched.name ? 'border-[#BC8070]' : ''}`}
+                            style={isFieldValid('name') ? { backgroundColor: '#353652' } : {}}
+                            onClick={handleActive}
                             placeholder="Ваше имя"
                             type="text"
                         />
@@ -258,6 +276,8 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                             onChange={handleChange}
                             onBlur={() => handleInputBlur('surname')}
                             className={`input-profile-mobi-custom h-[44px] border-2 ${errors.surname && inputTouched.surname ? 'border-[#BC8070]' : ''}`}
+                            style={isFieldValid('surname') ? { backgroundColor: '#353652' } : {}}
+                            onClick={handleActive}
                             placeholder="Ваша фамилия"
                             type="text"
                         />
@@ -288,7 +308,7 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                                 value={formData.birthDate}
                                 onChange={handleChange}
                                 onBlur={() => handleInputBlur('birthDate')}
-                                className="w-full border-none bg-transparent text-[#878797] text-[16px] outline-none placeholder:text-gray-500"
+                                className="w-full border-none bg-transparent text-[white] text-[16px] outline-none placeholder:text-gray-500"
                                 placeholder="__.__.____"
                                 type="text"
                                 readOnly
@@ -314,11 +334,15 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                                 phone: error || '',
                             }))
                         }
-                        className={`${
-                            inputTouched.phone && errors.phone
-                                ? 'border-[#bc8070] focus:border-[#bc8070]'
-                                : 'border-[#878797] focus:border-[#878797]'
-                        } h-[44px] w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium text-white`}
+                        className={`
+                            input-profile-mobi-custom h-[44px] w-full rounded-[20px] border-2 p-3 font-medium text-white
+                            ${
+                                inputTouched.phone && errors.phone
+                                    ? 'border-[#bc8070] focus:border-[#bc8070]'
+                                    : 'border-[#878797] focus:border-[#878797]'
+                            }
+                            ${isFieldValid('phone') ? 'bg-[#353652]' : 'bg-transparent'}
+                        `}
                         wrapperClassName="w-full !gap-0"
                         required={true}
                     />
@@ -336,6 +360,8 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                             onChange={handleChange}
                             onBlur={() => handleInputBlur('city')}
                             className={'input-profile-mobi-custom border-2 h-[44px] text14px_form_mobi'}
+                            style={isFieldValid('city') ? { backgroundColor: '#353652' } : {}}
+                            onClick={handleActive}
                             placeholder="Город"
                             type="text"
                         />
@@ -350,11 +376,13 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                                 handleInputBlur('email')
                             }}
                             onChange={(value) => setFormData((prev) => ({ ...prev, email: value }))}
-                            className={`${
-                                inputTouched.email && validateEmailMobi(formData.email).styleError
-                                    ? 'border-[#bc8070] focus:border-[#bc8070] '
-                                    : 'border-[#878797] focus:border-[#878797]'
-                            } input-profile-mobi-custom pt-0 mt-0 h-[44px] w-full rounded-[20px] border-2 bg-transparent p-3 text-xl font-medium placeholder:text-[#353652] text-white gap-0`}
+                            className={`input-profile-mobi-custom pt-0 mt-0 h-[44px] w-full rounded-[20px] border-2 p-3 text-xl font-medium placeholder:text-[#353652] text-white gap-0
+    ${
+        inputTouched.email && validateEmailMobi(formData.email).styleError
+            ? 'border-[#bc8070] focus:border-[#bc8070]'
+            : 'border-[#878797] focus:border-[#878797]'
+    }
+    ${isFieldValid('email') ? 'bg-[#353652]' : 'bg-transparent'}`}
                             label="Почта*"
                             labelClassName="mb-0 text-2xl font-medium text-[#878797]"
                             wrapperClassName="w-full"
@@ -363,17 +391,17 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                             <p className="error-form-mobi-custom !text-[#bc8070]">{inputInternalErrors.email}</p>
                         )}
                     </form>
-                    <div className="flex flex-col" ref={educationRef}>
+                    <div className="flex flex-col">
                         <label
                             htmlFor="education"
                             className="text14px_form_mobi mb-1 text-2xl font-medium text-[#878797]"
                         >
                             Образование
                         </label>
-                        <div className="relative">
+                        <div className="relative" ref={educationRef}>
                             <div
                                 className={`input-profile-mobi-custom flex h-[44px] text-[14px] border-2 items-center justify-between cursor-pointer
-                               ${isEducationOpen || isEducationFocused ? 'border-white' : 'border-[#878797]'}`}
+                               ${isEducationOpen || isEducationFocused || formData.education ? 'border-[#878797]  bg-[#353652]' : 'border-[#878797]'}`}
                                 style={
                                     isEducationOpen || isEducationFocused
                                         ? {
@@ -418,7 +446,7 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                                         background: 'linear-gradient(90deg, #1F203F)',
                                     }}
                                 >
-                                    <div className="flex flex-col gap-1 rounded-[20px] bg-[#1F203F] border-2 p-2 border-[#878797]">
+                                    <div className="flex flex-col gap-1 rounded-[20px] bg-[#1F203F] border-2 p-2 border-white">
                                         {educationOptions.map((option) => (
                                             <div
                                                 key={option.value}
@@ -454,17 +482,17 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                             )}
                         </div>
                     </div>
-                    <div className="flex flex-col" ref={occupationRef}>
+                    <div className="flex flex-col">
                         <label
                             htmlFor="occupation"
                             className="text14px_form_mobi mb-1 text-2xl font-medium text-opacity text-[#878797]"
                         >
                             Занятость
                         </label>
-                        <div className="relative">
+                        <div className="relative" ref={occupationRef}>
                             <div
                                 className={`input-profile-mobi-custom flex h-[44px] text-opacity text-[14px] border-2 items-center justify-between cursor-pointer
-                                ${isOccupationOpen || isOccupationFocused ? 'border-white' : 'border-[#878797]'}`}
+                                ${isOccupationOpen || isOccupationFocused || formData.occupation ? 'border-[#878797]  bg-[#353652]' : 'border-[#878797]'}`}
                                 style={
                                     isOccupationOpen || isOccupationFocused
                                         ? {
@@ -513,7 +541,7 @@ const MyProfileMobi: React.FC<MyProfileMobiProps> = ({ onCancel }) => {
                                         background: 'linear-gradient(90deg, #1F203F)',
                                     }}
                                 >
-                                    <div className="flex flex-col gap-1 mt-[8px] rounded-[20px] bg-[#1F203F] border-2 p-2 border-[#878797]">
+                                    <div className="flex flex-col gap-1 mt-[8px] rounded-[20px] bg-[#1F203F] border-2 p-2 border-white">
                                         {occupationOption.map((option) => (
                                             <div
                                                 key={option.value}
