@@ -6,6 +6,7 @@ import Modal from '@/components/ui/modal'
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
 import { Button } from '@/components/ui/button'
 import { validatePhoneMobi } from '@/components/mobi/commonMobi/validate/validatePhoneMobi'
+import { validateTimeMobi } from '@/components/mobi/commonMobi/validate/validateTimeMobi'
 import Link from 'next/link'
 
 interface IFormData {
@@ -18,7 +19,7 @@ interface IFormData {
 interface IFormErrors {
     name: boolean
     phone: boolean
-    time: boolean
+    time: string
     consent: boolean
 }
 
@@ -33,12 +34,12 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
         time: '',
         consent: false,
     })
-    const [step, setStep] = useState<'form' | 'accepted' | null>('form')
+    const [step, setStep] = useState<'form' | 'accepted'>('form')
     const [formError, setFormError] = useState('')
     const [formErrors, setFormErrors] = useState<IFormErrors>({
         name: false,
         phone: false,
-        time: false,
+        time: '',
         consent: false,
     })
 
@@ -46,25 +47,16 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
 
     const [isSubmit, setIsSubmit] = useState(false)
 
-    const hasErrors = Object.values(formErrors).some(Boolean)
-
-    const isDisabled = isSubmit && hasErrors
+    const isDisabled = isSubmit && Object.values(formErrors).some(Boolean)
 
     const getFormError = useCallback(
         (errors: IFormErrors): string => {
-            if (
-                errors.name ||
-                formData.phone.trim() === '' ||
-                formData.phone.trim() === '' ||
-                formData.phone === phoneMask ||
-                formData.time.trim() === '' ||
-                errors.consent
-            ) {
+            if (errors.name || formData.phone.trim() === '' || formData.phone === phoneMask || errors.consent) {
                 return '*Заполните обязательные поля'
             }
 
-            if (errors.phone) return 'Номер телефона введен неверно'
-            if (errors.time) return 'Неверный формат времени (ЧЧ.ММ)'
+            if (errors.phone) return 'Номер телефона введен не полностью'
+            if (errors.time !== '') return errors.time
 
             return ''
         },
@@ -78,19 +70,25 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                     (formData.phone.trim() !== '' || formData.phone !== phoneMask)) ||
                 formData.phone.trim() === '' ||
                 formData.phone === phoneMask,
-            time: formData.time.trim() === '' || !/^\d{2}\.\d{2}$/.test(formData.time),
+            time: formData.time !== '' ? validateTimeMobi(formData.time).textError : '',
             consent: !formData.consent,
         }
 
         return errors
     }, [formData])
 
-    const validateForm = (): string => {
-        const errorsFromForm = getFieldsErrors()
-        const errorMessage = getFormError(errorsFromForm)
-        setFormError(errorMessage)
+    const updateErrors = useCallback(() => {
+        const newFieldErrors = getFieldsErrors()
+        const newFormError = getFormError(newFieldErrors)
 
-        return errorMessage
+        setFormErrors(newFieldErrors)
+        setFormError(newFormError)
+
+        return newFormError
+    }, [getFieldsErrors, getFormError])
+
+    const validateForm = (): string => {
+        return updateErrors()
     }
 
     // const normalizePhone = (value: string) => {
@@ -116,12 +114,9 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
 
     useEffect(() => {
         if (isSubmit) {
-            const errorsFromForm = getFieldsErrors()
-            setFormErrors(errorsFromForm)
-            const errorMessage = getFormError(errorsFromForm)
-            setFormError(errorMessage)
+            updateErrors()
         }
-    }, [formData, isSubmit, getFormError, getFieldsErrors])
+    }, [isSubmit, updateErrors])
 
     return (
         <>
@@ -209,7 +204,9 @@ const ModalCallMobi: React.FC<IModalContent> = ({ onClose }) => {
                                 checkboxIconSize="size-4"
                                 error={formErrors.consent}
                             />
-                            <div className="text-xs font-medium text-[#878797]">
+                            <div
+                                className={`text-xs font-medium ${formData.consent ? 'text-[#FFFFFF]' : 'text-[#878797]'}`}
+                            >
                                 Я согласен(а) на{' '}
                                 <Link
                                     target="_blank"
