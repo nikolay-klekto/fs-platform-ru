@@ -243,6 +243,7 @@ const ContactsDesktop: React.FC = () => {
                                         updateFieldError('tel', !!error)
                                     }}
                                     error={fieldErrors.tel}
+                                    showMaskAlways={false}
                                     className={`
                                         mt-0 h-[53px] rounded-[53px] border-2 px-4 py-3.5 text-5xl ring-offset-transparent placeholder:font-medium focus:border-2 focus:ring-transparent ${fieldErrors.tel ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] bg-transparent focus:border-[#878797]'}`}
                                     labelClassName="hidden"

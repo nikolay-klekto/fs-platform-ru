@@ -13,6 +13,7 @@ interface IPhoneInputDesktop {
     wrapperClassName?: string
     required?: boolean
     onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+    showMaskAlways?: boolean
 }
 
 const PHONE_MASK = '+375 (__) ___-__-__'
@@ -32,6 +33,7 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
     className,
     labelClassName,
     wrapperClassName,
+    showMaskAlways = true,
 }) => {
     const [inputValue, setInputValue] = useState<string>(value)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -132,8 +134,8 @@ const PhoneInputDesktop: React.FC<IPhoneInputDesktop> = ({
                 onKeyDown={handleKeyDown}
                 onClick={handleClick}
                 onBlur={handleBlur}
-                placeholder={isFocused ? PHONE_MASK : 'Номер телефона*'}
-                className={`input-form-desktop-custom w-full font-medium placeholder:text-[19px] placeholder:text-[#353652] ${isFocused && 'focus:border-2 focus:border-[#FFFFFF] focus:ring-transparent focus:placeholder:text-[#FFFFFF]'} ${error ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
+                placeholder={showMaskAlways || isFocused ? PHONE_MASK : 'Номер телефона*'}
+                className={`input-form-desktop-custom w-full font-medium placeholder:text-[#353652] ${isFocused && 'focus:border-2 focus:border-[#FFFFFF] focus:ring-transparent focus:placeholder:text-[#FFFFFF]'} ${error ? 'border-[#bc8070] bg-[#1f203f] focus:border-[#bc8070]' : 'border-[#878797] focus:border-[#878797]'} ${className}`}
             />
         </div>
     )

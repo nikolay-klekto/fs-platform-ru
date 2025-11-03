@@ -44,30 +44,46 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
 
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
-        if (!formData.name.trim()) {
-            newErrors.name = 'Это поле обязательно для заполнения'
-        }
-        if (!formData.phone.trim()) {
-            newErrors.phone = 'Это поле обязательно для заполнения'
-        }
-        if (!formData.consent) {
-            newErrors.consent = 'Подтвердите согласие на обработку данных'
+        switch (true) {
+            case !formData.name.trim():
+                newErrors.name = 'Заполните обязательные поля'
+                break
+
+            case !validateNameDesktop(formData.name).status:
+                newErrors.name = validateNameDesktop(formData.name).textError
+                break
+
+            case !formData.phone.trim():
+                newErrors.phone = 'Заполните обязательные поля'
+                break
+
+            case !formData.consent:
+                newErrors.consent = 'Заполните обязательные поля'
+                break
+
+            default:
+                break
         }
 
         setErrors(newErrors)
         return Object.keys(newErrors).length === 0
     }
 
-    const normalizePhone = (value: string) => {
-        return value.replace(/[^\d+]/g, '')
-    }
+    // const normalizePhone = (value: string) => {
+    //     return value.replace(/[^\d+]/g, '')
+    // }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
+        setInputTouched({
+            name: true,
+            phone: true,
+            time: false,
+        })
         const isValid = validateForm()
         if (!isValid) return
 
-        const cleanedPhone = normalizePhone(formData.phone)
+        // const cleanedPhone = normalizePhone(formData.phone)
         setStep('accepted')
     }
 
@@ -96,9 +112,18 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                 }))
             }
         }
+
+        if (name === 'consent') {
+            if (checked) {
+                setErrors((prev) => ({
+                    ...prev,
+                    consent: '',
+                }))
+            }
+        }
     }
 
-    const handleInputBlur = (field: 'name') => {
+    const handleInputBlur = (field: 'name' | 'phone') => {
         setInputTouched((prev) => ({
             ...prev,
             [field]: true,
@@ -108,7 +133,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
         if (field === 'name') {
             error = validateNameDesktop(formData.name)?.textError
         } else if (field === 'phone') {
-            error = validatePhoneDesktop(formData.phone)?.textError
+            error = !validatePhoneDesktop(formData.phone)?.status ? 'Номер телефона введён не полностью' : ''
         }
 
         if (error) {
@@ -146,7 +171,6 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     maxLength={30}
                                     value={formData.name}
                                     onBlur={() => handleInputBlur('name')}
-                                    validate={(value) => validateNameDesktop(value)}
                                     onChange={(value: string) =>
                                         handleChange({
                                             target: { name: 'name', value, type: 'text', checked: false },
@@ -156,7 +180,7 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                         inputTouched.name && validateNameDesktop(formData.name).styleError
                                             ? 'border-[#bc8070]'
                                             : 'border-[#878797]'
-                                    } h-[50px] w-full rounded-[50px] border-2 bg-transparent py-[14px] pl-[20px] text-4xl font-medium text-white placeholder:text-2xl placeholder:text-[#353652] focus-visible:ring-offset-0`}
+                                    } h-[50px] w-full rounded-[50px] border-2 bg-transparent py-[14px] pl-[20px] text-4xl font-medium text-white placeholder:text-[18px] placeholder:text-[#353652] focus-visible:ring-offset-0`}
                                     label="Ваше имя*"
                                     labelClassName="text-2xl leading-[100%] font-medium text-white"
                                     wrapperClassName="w-full"
@@ -176,17 +200,18 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                             target: { name: 'phone', value, type: 'text', checked: false },
                                         } as React.ChangeEvent<HTMLInputElement>)
                                     }
+                                    onBlur={() => handleInputBlur('phone')}
                                     labelClassName="leading-[100%]"
                                     wrapperClassName="w-full gap-0"
                                     required={true}
-                                    className={`${
+                                    className={`placeholder:text-[18px] ${
                                         inputTouched.phone && validatePhoneDesktop(formData.phone).styleError
                                             ? 'border-[#bc8070] focus:border-[#bc8070]'
                                             : 'border-[#878797] focus:border-[#878797]'
                                     } mt-0 h-[50px] py-[14px] pl-[20px] text-4xl placeholder:text-2xl placeholder:text-[#353652]`}
                                 />
                             </div>
-                            <div className="mb-6 flex w-full flex-col">
+                            <div className="mb-[14px] flex w-full flex-col">
                                 <EnhancedInput
                                     type="text"
                                     id="time"
@@ -195,16 +220,19 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                     maxLength={100}
                                     value={formData.time}
                                     onChange={(value) => setFormData((prev) => ({ ...prev, time: value }))}
-                                    className="h-[50px] w-full rounded-[50px] border-2 border-[#878797] bg-transparent py-[14px] pl-[20px] text-4xl font-medium text-white placeholder:text-2xl placeholder:text-[#353652] focus-visible:ring-offset-0"
+                                    className="h-[50px] w-full rounded-[50px] border-2 border-[#878797] bg-transparent py-[14px] pl-[20px] text-4xl font-medium text-white placeholder:text-[18px] placeholder:text-[#353652] focus-visible:ring-offset-0"
                                     label="Удобное время для звонка"
                                     labelClassName="text-2xl leading-[100%] font-medium text-white"
                                     wrapperClassName="w-full"
                                 />
-                                <p className="mt-2 text-2xl font-medium leading-[100%] text-[#353652]">
-                                    *Обязательное поле для ввода
-                                </p>
-                                {Object.values(errors).some((val) => val && val.trim() !== '') && (
-                                    <p className="error-form-desktop-custom">Заполните обязательные поля</p>
+                                {Object.values(errors).some((val) => val && val.trim() !== '') ? (
+                                    <p className="error-form-desktop-custom mt-[10px]">
+                                        {errors.name || errors.phone || errors.consent}
+                                    </p>
+                                ) : (
+                                    <p className="mt-[10px] text-2xl font-medium leading-[100%] text-[#353652]">
+                                        *Обязательное поле для ввода
+                                    </p>
                                 )}
                             </div>
                             <div className="">
@@ -223,13 +251,13 @@ const ModalCallDesktop: React.FC<IModalContent> = ({ onClose }) => {
                                             },
                                         } as React.ChangeEvent<HTMLInputElement>)
                                     }
+                                    error={hasErrors}
                                     label="Я согласен(а) на обработку персональных данных"
                                     wrapperClassName="flex"
                                     checkboxIconSize="w-[18px]"
                                     labelClassName={`text-2xl w-[398px] whitespace-nowrap ${formData.consent ? 'text-white' : 'text-[#878797]'}`}
                                 />
                             </div>
-                            {errors.consent && <p className="error-form-desktop-custom">{errors.consent}</p>}
                             <div className="mx-auto mt-[10px]">
                                 <p className="text-2xl font-medium text-[#353652]">
                                     Защита от спама reCAPTCHA{' '}
