@@ -30,6 +30,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
     const [formError, setFormError] = useState({
         show: false,
         message: '',
+        serverError: false,
     })
     const { login, error: apiError, loading } = useLogin()
     const router = useRouter()
@@ -42,10 +43,19 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
             setFormError({
                 show: true,
                 message: 'Введите e-mail и пароль',
+                serverError: false,
             })
             return true
+        } else if (!validateEmailDesktop(formData.email).status) {
+            setFormError({
+                show: true,
+                message: validateEmailDesktop(formData.email).textError,
+                serverError: false,
+            })
+            return true
+        } else {
+            return false
         }
-        return false
     }, [formData.email, formData.password])
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -61,7 +71,8 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
         } else {
             setFormError({
                 show: true,
-                message: 'Аккаунт не найден, проверьте вводимые данные',
+                message: result.errorMessage || 'Произошла ошибка при входе',
+                serverError: true,
             })
         }
     }
@@ -87,7 +98,7 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                     Вход
                 </h2>
 
-                <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle">
+                <form onSubmit={handleSubmit} className="flex w-full flex-col align-middle" noValidate>
                     <div className="mb-5">
                         <EnhancedInput
                             type="email"
@@ -111,7 +122,10 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                             }}
                             validate={validateEmailDesktop}
                             className={` ${
-                                formError.show && (formData.email === '' || !validateEmailDesktop(formData.email))
+                                formError.show &&
+                                (formData.email === '' ||
+                                    !validateEmailDesktop(formData.email).status ||
+                                    formError.serverError)
                                     ? 'border-[#bc8070] focus:border-[#bc8070]'
                                     : 'border-[#878797] focus:border-[#878797]'
                             } `}
@@ -141,16 +155,11 @@ const LoginModalDesktop: React.FC<IModalContent> = ({ onClose }) => {
                         />
                     </div>
 
-                    <div className={`flex w-full ${formError.show || apiError ? 'justify-between' : 'justify-end'}`}>
-                        {formError.show && !apiError && (
-                            <p className="error-form-desktop-custom">{formError.message}</p>
-                        )}
-                        {apiError && (
-                            <p className="error-form-desktop-custom">Аккаунт не найден, проверьте вводимые данные</p>
-                        )}
+                    <div className={`flex w-full ${formError.show ? 'items-start justify-between' : 'justify-end'}`}>
+                        {formError.show && <p className="error-form-desktop-custom">{formError.message}</p>}
                         <button
                             type="button"
-                            className="text15px_desktop bg-transparent font-semibold text-[#878797]"
+                            className="text15px_desktop whitespace-nowrap bg-transparent font-semibold text-[#878797]"
                             onClick={openForgotPasswordModal}
                         >
                             Забыли пароль?
