@@ -1,12 +1,6 @@
-interface IContent {
-    id: number
-    image: {
-        src: string
-        alt: string
-    }
-    name: string
-}
-export const content: IContent[] = [
+import { IItemCardImageName } from '@/types/item-cards/item-cards'
+
+export const content: IItemCardImageName[] = [
     {
         id: 1,
         image: {

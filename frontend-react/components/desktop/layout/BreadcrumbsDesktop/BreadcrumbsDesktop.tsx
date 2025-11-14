@@ -30,19 +30,23 @@ const BreadcrumbsDesktop: React.FC<IBreadcrumbs> = ({
             <BreadcrumbList>
                 {items.map((item, index) => {
                     const isLast = index === items.length - 1
-                    const isLink = item.isLink ?? !isLast
-
                     return (
-                        <React.Fragment key={item.title}>
+                        <React.Fragment key={index}>
                             <BreadcrumbItem>
-                                {isLink && item.href ? (
-                                    <BreadcrumbLink asChild className={item.className}>
-                                        <Link href={item.href}>{item.title}</Link>
-                                    </BreadcrumbLink>
-                                ) : (
+                                {isLast ? (
                                     <BreadcrumbPage className={cn('text-white', item.className)}>
                                         {item.title}
                                     </BreadcrumbPage>
+                                ) : (
+                                    <BreadcrumbLink
+                                        asChild
+                                        className={cn(
+                                            'text20px_desktop text-gray-500 hover:text-white',
+                                            item.className,
+                                        )}
+                                    >
+                                        <Link href={item.href ?? '#'}>{item.title}</Link>
+                                    </BreadcrumbLink>
                                 )}
                             </BreadcrumbItem>
                             {!isLast && <BreadcrumbSeparator>{separator}</BreadcrumbSeparator>}

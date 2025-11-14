@@ -18,7 +18,12 @@ const buttonVariants = cva(
                 select_desktop:
                     'button-border-desktop hover:bg-gradient-desktop rounded-[50px] text-[20px] font-semibold text-white',
                 send_btn_desktop:
-                    'button-border-desktop 3xl:text-4xl rounded-[50px] border-4 text-[20px] font-semibold text-white  2xl:text-3xl',
+                    'button-border-desktop border-2 3xl:text-4xl rounded-[50px] text-[20px] font-semibold text-white  2xl:text-3xl',
+                add_to_chart_btn_desktop:
+                    'button-border-desktop border-2 rounded-[92px] text-[38px] font-semibold text-white',
+                internship_add_to_chart_btn_desktop:
+                    'button-border-internship-desktop border-[7px] rounded-[92px] text-[37px] font-semibold text-white',
+
                 send_btn_mobi:
                     'button-border-mobi rounded-[50px] border-2 text-[15px] font-medium text-white sm:text-[14px]',
                 select_mobi:
@@ -37,6 +42,8 @@ const buttonVariants = cva(
                 circle_btn_gradient_desktop:
                     'bg-gradient-desktop hover:bg-gradient-desktop-hover absolute flex items-center justify-center rounded-[50px] text-white',
                 circle_btn_mobi: 'absolute right-0 top-1/2 -translate-y-1/2',
+                select_internship_btn_desktop:
+                    'text-[33px] 4xl:text-11xl 3xl:text-6xl 2xl:text-5xl flex items-center gap-[20px] rounded-[92px] font-medium  border-[3.5px] hover:text-white hover:border-white',
                 select_btn_desktop:
                     'button-border-desktop 3xl:text-4xl flex items-center gap-[20px] rounded-[50px] text-5xl font-semibold  2xl:text-3xl',
                 circle: 'bg-gradient-desktop hover:bg-gradient-desktop-hover rounded-[50px] text-white',
@@ -78,8 +85,10 @@ const buttonVariants = cva(
                 header_btn:
                     'text-7.5xl 3xl:px-[2vw] 3xl:py-[15px] 3xl:text-4xl 4xl:px-[3vw] 4xl:py-[19px] 4xl:text-6xl max-h-[68px] px-[80px] py-[16px] 2xl:px-[2vw] 2xl:py-[14px] 2xl:text-3xl',
                 select_mobi_menu: 'h-[47px] w-full max-w-[195px] text-3xl',
+                add_to_chart_btn_desktop: 'h-[118px] w-[504px] 2xl:w-[450px]',
                 send_btn_desktop: 'h-[64px] w-[272px] 2xl:w-[200px]',
-                choose_profession_btn_mobi: 'sm_xl:w-[294px] h-[50px] w-[240px] md:w-[294px]',
+                select_internship_btn_desktop: 'h-[78px] w-full',
+                select_address_btn_desktop:'h-[78px] w-full',
                 cookie_btn_desktop: '3xl:w-[250px] h-[64px] w-[237px]',
                 cookie_btn_mobi: 'h-[40px] w-[188px] text-wrap',
                 circle_btn_gradient_desktop: 'right-0 top-1/2 size-[60px] -translate-y-1/2 rounded-full',
