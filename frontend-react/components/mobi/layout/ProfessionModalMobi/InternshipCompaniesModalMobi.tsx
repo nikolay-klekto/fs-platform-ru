@@ -1,11 +1,14 @@
 'use client'
 
 import React, { useRef } from 'react'
-import { contentInternshipCompaniesMobi } from './content'
 import ItemCompaniesMobi from './ItemCompaniesMobi'
 import useScrollbarSync from '@/hooks/useScrollbarSync'
 
-const InternshipCompaniesModalMobi: React.FC = () => {
+interface ICompaniesModalMobi {
+    companies: { id: number; name: string; logoPath: string }[]
+}
+
+const InternshipCompaniesModalMobi: React.FC<ICompaniesModalMobi> = ({companies}) => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const { scrollContentWidth } = useScrollbarSync(contentRef, scrollbarRef)
@@ -16,8 +19,13 @@ const InternshipCompaniesModalMobi: React.FC = () => {
                 ref={contentRef}
                 className="no-scrollbar_custom flex select-none gap-2 overflow-x-scroll"
             >
-                {contentInternshipCompaniesMobi.map((item) => (
-                    <ItemCompaniesMobi key={item.id} image={item.image} onWidthChange={() => {}} />
+                {companies.map((item) => (
+                    <ItemCompaniesMobi key={item.id} image={{
+                        src: item.logoPath,
+                        alt: item.name,
+                        width: 52,
+                        height: 20
+                    }} onWidthChange={() => {}} />
                 ))}
             </div>
             <div

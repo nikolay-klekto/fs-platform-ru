@@ -8,10 +8,9 @@ interface IProfessionCard {
     image: string
     price: string
     industry?: string
-    onClick: () => void
 }
 
-const ProfessionCardPageMobi: React.FC<IProfessionCard> = ({ image, companyName, price, industry, onClick }) => {
+const ProfessionCardPageMobi: React.FC<IProfessionCard> = ({ image, companyName, price, industry }) => {
     return (
         <>
             <div className="relative overflow-hidden rounded-[10px]">
@@ -24,7 +23,6 @@ const ProfessionCardPageMobi: React.FC<IProfessionCard> = ({ image, companyName,
                     size={'companies_page_mobi'}
                     rounded="rounded_10"
                     className="z-5 relative"
-                    onClick={onClick}
                 >
                     <CardTitle variant={'companies_page_mobi'} size={'companies_page_mobi'}>
                         {industry}

@@ -20,7 +20,6 @@ const ItemCompaniesMobi: React.FC<IItemCompanies> = ({ image, onWidthChange }) =
         const updateWidth = () => {
             if (itemRef.current) {
                 onWidthChange(itemRef.current.offsetWidth)
-                console.log('itemRef ', itemRef)
             }
         }
 

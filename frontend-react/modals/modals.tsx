@@ -107,7 +107,7 @@ export const modals = {
         {
             id: 'profession_modal_mobi',
             content: ({ onClose, modalProps }: IModalContent) => {
-                const { profession, professionId } = modalProps as { profession: string; professionId: number | null }
+                const { profession, professionId } = modalProps as { profession: string; professionId: string }
                 return <ProfessionModalMobi onClose={onClose} profession={profession} professionId={professionId} />
             },
         },

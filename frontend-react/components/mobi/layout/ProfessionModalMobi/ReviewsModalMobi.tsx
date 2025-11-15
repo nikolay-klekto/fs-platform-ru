@@ -1,11 +1,18 @@
 'use client'
 
 import React, { useRef } from 'react'
-import { contentReviewsMobi } from './content'
 import ItemReviewsMobi from './ItemReviewsMobi'
 import useScrollbarSync from '@/hooks/useScrollbarSync'
 
-const ReviewsModalMobi: React.FC = () => {
+interface IReviewsModalMobi {
+    feedback: {
+        id: number
+        question: string
+        answer: string
+    }[]
+}
+
+const ReviewsModalMobi: React.FC<IReviewsModalMobi> = ({feedback}) => {
     const contentRef = useRef<HTMLDivElement>(null)
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const { scrollContentWidth } = useScrollbarSync(contentRef, scrollbarRef)
@@ -16,7 +23,7 @@ const ReviewsModalMobi: React.FC = () => {
                 ref={contentRef}
                 className="no-scrollbar_custom flex select-none gap-2 overflow-x-scroll"
             >
-                {contentReviewsMobi.map((item) => (
+                {feedback.map((item) => (
                     <ItemReviewsMobi
                         key={item.id}
                         question={item.question}

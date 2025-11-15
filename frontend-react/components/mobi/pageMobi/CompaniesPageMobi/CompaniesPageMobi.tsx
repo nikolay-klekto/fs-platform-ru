@@ -1,39 +1,41 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useModal } from '@/context/ContextModal'
 import useDebounce from '@/hooks/useDebounce'
+import { useDataContext } from '@/context/DataContext'
 import HeaderMobi from '@/components/mobi/layout/HeaderMobi/HeaderMobi'
 import FooterMobi from '@/components/mobi/layout/FooterMobi/FooterMobi'
 import CompaniesCardPageMobi from './components/CompaniesCardPageMobi'
 import PaginationMobi from '../../shared/PaginationMobi'
 import CompaniesSendMobi from './components/CompaniesSendMobi'
 import CompaniesSelectMobi from './components/CompaniesSelectMobi'
-import { content } from './contentCompaniesPageMobi/content'
 
 const cardsPerPage = 6
 
 const CompaniesPageMobi: React.FC = () => {
-    const { openModal } = useModal()
     const [searchQuery, setSearchQuery] = useState('')
     const debouncedSearchQuery = useDebounce(searchQuery)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+    const { companies } = useDataContext()
 
-    const filteredContent = content.filter((item) => {
+    const filteredContent = companies.filter((item) => {
         const matchesSearch =
             (debouncedSearchQuery ?? '').length < 3 ||
-            item.companyName.toLowerCase().includes(debouncedSearchQuery.toLowerCase().trim())
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(item.industry)
+            item.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase().trim())
+        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(item.companyIndustry)
         return matchesSearch && matchesCategory
     })
 
     useEffect(() => {
         setCurrentPage(1)
     }, [searchQuery, selectedCategories])
+
+    if (!companies) return null
 
     const totalPages = Math.ceil(filteredContent.length / cardsPerPage)
     const paginatedItems = filteredContent.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage)
@@ -73,23 +75,20 @@ const CompaniesPageMobi: React.FC = () => {
                         </div>
                         {filteredContent.length > 0 ? (
                             <>
-                                <div className="flex flex-wrap justify-center gap-[20px] sm_xl:gap-[15px]">
-                                    {paginatedItems.map((item) => (
-                                        <CompaniesCardPageMobi
-                                            key={item.id}
-                                            image={item.image}
-                                            industry={item.industry}
-                                            price={item.price.toString()}
-                                            // здесь будет открываться страница компании, пока оставлена ссылка на профессии
-                                            onClick={() => {
-                                                openModal('profession_modal_mobi', 'mobi', {
-                                                    profession: item.companyName,
-                                                    professionId: item.id,
-                                                })
-                                            }}
-                                            companyName={item.companyName}
-                                        />
-                                    ))}
+                                <div className="flex justify-center">
+                                    <div className="grid grid-cols-1 gap-[20px] sm_xl:grid-cols-2 md:grid-cols-2 sm_xl:gap-[15px]">
+                                        {paginatedItems.map((item) => (
+                                            //здесь будет открываться страница компании
+                                            <Link href={`/company/${item.id}`} key={item.id}>
+                                                <CompaniesCardPageMobi
+                                                    image={item.imagePath}
+                                                    industry={item.companyIndustry}
+                                                    price={item.pricePerWeek}
+                                                    companyName={item.name}
+                                                />
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
                                 {totalPages >= 1 && (
                                     <PaginationMobi

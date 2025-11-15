@@ -44,3 +44,14 @@ export function getImagePath<T extends ImageMapCategory>(category: T, key: strin
 
     return '/' + joinUrl('api/photo', category, SUBDIR[category], file)
 }
+
+export function getLogoPath(name: string): string {
+    const map = imageMaps.companies as Record<string, string>
+    const file = Object.entries(map).find(([k]) => norm(k) === norm(name))?.[1]
+
+    if (!file) return ''
+    
+    const fileWithPng = file.replace(/\.webp$/i, '.png')
+
+    return '/' + joinUrl('api/photo', 'companies', 'logo', fileWithPng)
+}
