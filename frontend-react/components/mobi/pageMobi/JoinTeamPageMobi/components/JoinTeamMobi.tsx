@@ -6,6 +6,8 @@ import { EnhancedInput } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import PhoneInputMobi from '@/components/mobi/shared/formInput/PhoneInputMobi'
 import Link from 'next/link'
+import { useToast } from '@/context/ToastContext'
+import { useRouter } from 'next/navigation'
 
 interface IFormData {
     name: string
@@ -38,6 +40,9 @@ const JoinTeamMobi: React.FC = () => {
 
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
+
+    const { toast } = useToast()
+    const router = useRouter()
 
     const openFileDialog = () => {
         fileInputRef.current?.click()
@@ -107,7 +112,16 @@ const JoinTeamMobi: React.FC = () => {
         const isValid = validateForm()
         if (!isValid) return
 
-        //const cleanedPhone = normalizePhone(formData.phoneNumber)
+        router.push('/contacts')
+        setTimeout(
+            () =>
+                toast({
+                    description: 'Спасибо! Ваша заявка была успешно отправлена',
+                }),
+            200,
+        )
+
+        // const cleanedPhone = normalizePhone(formData.phoneNumber)
     }
 
     // const normalizePhone = (value: string) => {
