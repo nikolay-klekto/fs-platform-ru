@@ -65,10 +65,10 @@ const EventsPageDesktop: React.FC = () => {
             <HeaderDesktop />
 
             <main className="bg-[#101030] text-white">
-                <div className="container relative min-h-screen overflow-hidden p-[76px_212px_88px_212px] 2xl:p-[60px_100px_88px_100px] 3xl:p-[76px_130px_150px_130px]">
+                <div className="container relative min-h-screen overflow-hidden p-[76px_212px_88px_212px] 2xl:p-[60px_130px_88px_130px] 3xl:p-[76px_230px_150px_230px] 4xl:p-[76px_290px_150px_290px]">
                     <h1 className="title80px_desktop relative z-[1]">Мероприятия</h1>
 
-                    <div className="relative z-[1] flex items-center justify-end gap-[30px] pt-[116px]">
+                    <div className="relative z-[1] flex items-center justify-end gap-[30px] pt-[65px]">
                         <EventsSelectSearchDesktop
                             selectedOptions={selectedCategories}
                             onChange={setSelectedCategories}
@@ -96,7 +96,7 @@ const EventsPageDesktop: React.FC = () => {
                                 </p>
                             </div>
                         ) : (
-                            <div className="flex min-h-[40vh] flex-wrap justify-center gap-[36px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
+                            <div className="grid min-h-[40vh] grid-cols-3 justify-items-center 2xl:justify-items-center 2xl:grid-cols-2 3xl:justify-items-center 3xl:grid-cols-2 4xl:grid-cols-2 gap-[36px] 2xl:gap-[20px] 3xl:gap-[25px] 4xl:gap-[30px]">
                                 {paginatedItems.map((item) => (
                                     <EventsCardDesktop key={item.id} {...item} />
                                 ))}
